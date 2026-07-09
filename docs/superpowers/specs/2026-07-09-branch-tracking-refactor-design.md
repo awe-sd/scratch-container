@@ -97,6 +97,23 @@ review flags) plus universe-tracking columns:
   retirement signal — cross-checked against DAM dormancy, which the
   residue analysis showed is itself a real status signal).
 
+### DB-side versioning (per the user: track changes, revert, back-cast)
+
+The DDL delivers an APPEND-ONLY SNAPSHOT design, not a flat table:
+- `branch_tracking_snapshot` — all final-table columns plus
+  `snapshot_id int`, `snapshot_date datetime`, `git_commit char(40)`
+  (ties every DB snapshot to the exact repo commit that produced it).
+- `branch_tracking_snapshot_registry` — one row per upload:
+  `snapshot_id`, `snapshot_date`, `git_commit`, `note`, `is_current bit`.
+- View `branch_tracking_current` — the rows of the registry's current
+  snapshot; consumers query the view.
+Upload flow (manual, as always): INSERT the new snapshot's rows + one
+registry row; flip `is_current`. Nothing is ever UPDATEd or DELETEd in
+place. Revert = flip `is_current` back to an older snapshot. Back-cast
+validation = query a historical `snapshot_id` (or date) directly and
+compare against known-correct topology for that period. At ~11k rows per
+snapshot, storage is negligible for years of uploads.
+
 ## Incremental updates (sources.py)
 
 Every DB pull is cached under `data/raw/` with a watermark; an update run
