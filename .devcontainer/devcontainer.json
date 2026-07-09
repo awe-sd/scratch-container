@@ -32,7 +32,8 @@
   ],
   "remoteEnv": {
     "DEVCONTAINER": "true",
-    "AGENT_ID": "scratch-container"
+    "AGENT_ID": "scratch-container",
+    "TOKEN_VENDING_URL": "http://token-vending:8080"
   },
   // Connect to the sidecar's internal network after start
   "customizations": {
