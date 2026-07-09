@@ -26,7 +26,7 @@ from awconnect import db
 
 ISOMARKETID_ERCOT = 6
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = Path(__file__).resolve().parents[2]
 OUTPUT_CSV = REPO_ROOT / "output" / "duplicate_teid_groups.csv"
 
 
