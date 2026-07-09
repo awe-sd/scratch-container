@@ -43,17 +43,18 @@ Output: output/dampsse_default_status.csv (one row per mapped teid).
 Read-only. Writes only to branch_tracking/output/.
 """
 import sys
-from datetime import date, timedelta
+from datetime import timedelta
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from branch_tracking.pipeline.dampsse import (  # noqa: E402
+    compute_inservice_status, map_exact_names,
+)
 from branch_tracking.pipeline.naming import normalize_name  # noqa: E402
+from branch_tracking.pipeline.config import AWDATEID_ANCHOR, WINDOW_DAYS  # noqa: E402
 
 import awconnect
 import pandas as pd
 from awconnect import db
-
-WINDOW_DAYS = 730  # ~2 years of hourly DA models, per the user's direction
-AWDATEID_ANCHOR = (44926, date(2023, 1, 1))  # confirmed by schema exploration
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 RAW_DIR = REPO_ROOT / "data" / "raw"  # local cache of DB pulls (gitignore later)
@@ -122,48 +123,32 @@ def main():
     ours = teid_map[teid_map["match_status"] != "unmatched"][
         ["teid", "branch_id", "OP_EQCODE", "FromName", "ToName", "DeviceType"]
     ].copy()
-    ours["opeq_norm"] = ours["OP_EQCODE"].apply(normalize_name)
 
-    dampsse_def["name_norm"] = dampsse_def["branchNameRaw"].apply(normalize_name)
     st = stations.set_index("ercotDampsseStationId")
     dampsse_def["from_station"] = dampsse_def["fromStationId"].map(st["stationName"])
     dampsse_def["to_station"] = dampsse_def["toStationId"].map(st["stationName"])
 
-    # Exact normalized-name match. Ambiguity accounting: a normalized name
-    # can appear on multiple dampsse ids (re-definitions over the years) or
-    # multiple teids -- keep 1:1 matches as high confidence; for
-    # many-dampsse-to-one-teid keep the dampsse id with hourly data in the
-    # current window (i.e., currently published), reporting how often that
-    # resolves it.
-    ours_by_name = ours.dropna(subset=["opeq_norm"]).groupby("opeq_norm")
-    name_to_teids = ours_by_name["teid"].apply(list)
-
+    # Exact normalized-name match (map_exact_names). Ambiguity accounting: a
+    # normalized name can appear on multiple dampsse ids (re-definitions
+    # over the years) or multiple teids -- keep 1:1 matches as high
+    # confidence; for many-dampsse-to-one-teid keep the dampsse id with
+    # hourly data in the current window (i.e., currently published),
+    # reporting how often that resolves it.
     active_ids = set(agg["ercotDampsseId"])
-    rows = []
-    ambiguous_teid_names = 0
-    for name, group in dampsse_def.dropna(subset=["name_norm"]).groupby("name_norm"):
-        teids = name_to_teids.get(name)
-        if teids is None:
-            continue
-        if len(set(teids)) > 1:
-            ambiguous_teid_names += 1
-            continue
-        teid = teids[0]
-        cands = group
-        if len(cands) > 1:
-            in_window = cands[cands["ercotDampsseId"].isin(active_ids)]
-            cands = in_window if len(in_window) else cands.tail(1)
-        for _, c in cands.iterrows():
-            rows.append({
-                "teid": teid,
-                "ercotDampsseId": c["ercotDampsseId"],
-                "dampsse_name_raw": c["branchNameRaw"],
-                "dampsse_from_station": c["from_station"],
-                "dampsse_to_station": c["to_station"],
-                "dampsse_filetype": c["ercotDampsseFileTypeId"],
-            })
-    mapping = pd.DataFrame(rows).drop_duplicates(subset=["teid", "ercotDampsseId"])
+    mapping = map_exact_names(ours, dampsse_def, active_ids)
     print(f"\nName-mapped teids: {mapping['teid'].nunique()} of {ours['teid'].nunique()} ours")
+
+    # Ambiguity accounting for the print below only (map_exact_names already
+    # skips these internally): a normalized name that maps to >1 teid.
+    name_to_teids = (
+        ours.assign(_opeq_norm=ours["OP_EQCODE"].apply(normalize_name))
+        .dropna(subset=["_opeq_norm"]).groupby("_opeq_norm")["teid"].apply(list)
+    )
+    dampsse_names = dampsse_def["branchNameRaw"].apply(normalize_name).dropna().unique()
+    ambiguous_teid_names = sum(
+        1 for n in dampsse_names
+        if n in name_to_teids.index and len(set(name_to_teids[n])) > 1
+    )
     print(f"Names skipped as ambiguous (one name -> multiple teids): {ambiguous_teid_names}")
 
     # --- status inference ---
@@ -172,10 +157,7 @@ def main():
         n_hours=("n_hours", "sum"), n_inservice=("n_inservice", "sum"),
         dampsse_ids=("ercotDampsseId", "nunique"),
     ).reset_index()
-    per_teid["pct_inservice"] = (per_teid["n_inservice"] / per_teid["n_hours"]).round(4)
-    per_teid["dampsse_default_status"] = per_teid["pct_inservice"].apply(
-        lambda p: "Closed" if p >= 0.5 else "Open"
-    )
+    per_teid = compute_inservice_status(per_teid)
 
     table = pd.read_csv(TABLE_CSV)[
         ["teid", "branch_id", "implied_default_status", "pct_closed", "from_bus", "to_bus", "DeviceType"]
