@@ -1,0 +1,699 @@
+# branch_tracking Refactor — Phase 1: Package Skeleton + Verbatim Move + Regression Tests
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Restructure `branch_tracking/scripts/` into a `branch_tracking/pipeline/` package with NO behavior change, pinned by golden-file and fixture regression tests, on a dedicated worktree branch.
+
+**Architecture:** Pure logic moves verbatim from scripts into focused modules (`config`, `naming`, `dampsse`, `status`, `assemble`, `dates`, `mapping`, `legs`); the original scripts become thin wrappers so every existing invocation keeps working. Tests never touch the DB — they run on `data/raw/` cache slices frozen into `tests/fixtures/` and on the two fully-local rerunnable scripts (golden byte-hash checks).
+
+**Tech Stack:** Python 3.12 via `uv run` (never bare python), pandas, pytest.
+
+**Spec:** `docs/superpowers/specs/2026-07-09-branch-tracking-refactor-design.md`. This plan covers ONLY spec migration phase 1. Phases 2–5 get successor plans authored after this one lands (phase 2's content depends on phase 1's review findings).
+
+## Global Constraints
+
+- All work on branch `refactor/pipeline-v1` in a worktree — master stays free for parallel prototyping. Worktree is created via the `superpowers:using-git-worktrees` skill at execution start (Task 0).
+- Run everything from the WORKTREE root with `uv run ...`. Never bare `python`/`pip`.
+- NO DB access anywhere in tests or in this phase's new code. `awconnect` imports stay only inside the wrapper scripts' `main()` paths.
+- NO behavior change: the two DB-free-regenerable outputs must stay byte-identical (Task 1 pins hashes); all other logic is pinned by fixture tests.
+- Read-only rule stands: nothing ever writes to the live DB.
+- Every module file gets a docstring stating its single responsibility.
+- Orchestration (for the main session, not task workers): implementation subagents run on **Sonnet**, per-task code review subagents on **Opus**, main session reviews overall.
+- Import bootstrap convention (phase 1 pragmatic choice, revisited in phase 5): wrapper scripts and `tests/conftest.py` prepend the repo root to `sys.path` and import `branch_tracking.pipeline.*`. Requires `branch_tracking/__init__.py` and `branch_tracking/pipeline/__init__.py` (empty files).
+
+---
+
+### Task 0: Worktree, branch, pytest scaffolding
+
+**Files:**
+- Create: `branch_tracking/__init__.py` (empty), `branch_tracking/pipeline/__init__.py` (empty)
+- Create: `tests/__init__.py` (empty), `tests/conftest.py`, `tests/test_sanity.py`
+- Modify: `pyproject.toml` (add pytest dev dependency)
+
+**Interfaces:**
+- Produces: `tests/conftest.py` fixture `repo_root` (pathlib.Path to worktree root) used by every later test; sys.path bootstrap for `branch_tracking.pipeline` imports.
+
+- [ ] **Step 1: Create the worktree + branch** (main session does this via superpowers:using-git-worktrees before dispatching)
+
+```bash
+git worktree add ../scratch-workspace-refactor -b refactor/pipeline-v1
+cd ../scratch-workspace-refactor
+```
+Expected: new directory `../scratch-workspace-refactor` on branch `refactor/pipeline-v1`. ALL subsequent tasks run here.
+
+- [ ] **Step 2: Add pytest as a dev dependency**
+
+```bash
+uv add --dev pytest
+```
+Expected: `pyproject.toml` gains a `[dependency-groups] dev = ["pytest>=..."]` entry; `uv.lock` updates.
+
+- [ ] **Step 3: Create package markers and conftest**
+
+Create empty files `branch_tracking/__init__.py`, `branch_tracking/pipeline/__init__.py`, `tests/__init__.py`. Create `tests/conftest.py`:
+
+```python
+import sys
+from pathlib import Path
+
+import pytest
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT))
+
+
+@pytest.fixture(scope="session")
+def repo_root():
+    return REPO_ROOT
+```
+
+- [ ] **Step 4: Write the sanity test**
+
+`tests/test_sanity.py`:
+
+```python
+def test_pipeline_package_importable(repo_root):
+    import branch_tracking.pipeline  # noqa: F401
+    assert (repo_root / "branch_tracking" / "pipeline" / "__init__.py").exists()
+```
+
+- [ ] **Step 5: Run it**
+
+Run: `uv run pytest tests/test_sanity.py -v`
+Expected: 1 passed.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add pyproject.toml uv.lock branch_tracking/__init__.py branch_tracking/pipeline/__init__.py tests/
+git commit -m "refactor(phase1): worktree scaffolding — pipeline package markers, pytest, conftest"
+```
+
+---
+
+### Task 1: Golden hashes for the two DB-free-regenerable outputs
+
+**Files:**
+- Create: `tests/goldens/hashes.json`, `tests/test_goldens.py`
+
+**Interfaces:**
+- Produces: `tests/test_goldens.py::test_dbfree_rerun_reproduces_goldens` — the phase-wide no-behavior-change gate, rerun at the END of every later task.
+- Golden set covers exactly: `output/dampsse_fallback_mappings.csv`, `output/dampsse_unmapped_diagnosis.csv`, `output/dampsse_default_status_fallback.csv` (regenerated by `map_unmapped_dampsse_teids.py`, DB-free) and `output/branch_tracking_table.csv` (regenerated by `build_final_branch_table.py`, DB-free). The other outputs need DB pulls to regenerate and are pinned by fixture tests instead (Tasks 3–7).
+
+- [ ] **Step 1: Record current hashes**
+
+```bash
+uv run python - <<'EOF'
+import hashlib, json
+from pathlib import Path
+files = [
+    "branch_tracking/output/dampsse_fallback_mappings.csv",
+    "branch_tracking/output/dampsse_unmapped_diagnosis.csv",
+    "branch_tracking/output/dampsse_default_status_fallback.csv",
+    "branch_tracking/output/branch_tracking_table.csv",
+]
+hashes = {f: hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in files}
+out = Path("tests/goldens/hashes.json"); out.parent.mkdir(parents=True, exist_ok=True)
+out.write_text(json.dumps(hashes, indent=2))
+print(json.dumps(hashes, indent=2))
+EOF
+```
+Expected: `tests/goldens/hashes.json` with 4 sha256 entries.
+
+- [ ] **Step 2: Write the golden test**
+
+`tests/test_goldens.py`:
+
+```python
+import hashlib
+import json
+import subprocess
+
+
+def _sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def test_dbfree_rerun_reproduces_goldens(repo_root):
+    golden = json.loads((repo_root / "tests/goldens/hashes.json").read_text())
+    for script in [
+        "branch_tracking/scripts/map_unmapped_dampsse_teids.py",
+        "branch_tracking/scripts/build_final_branch_table.py",
+    ]:
+        r = subprocess.run(
+            ["uv", "run", script], cwd=repo_root, capture_output=True, text=True
+        )
+        assert r.returncode == 0, r.stderr[-2000:]
+    for rel, expected in golden.items():
+        assert _sha(repo_root / rel) == expected, f"{rel} changed vs golden"
+```
+
+- [ ] **Step 3: Run it (regenerates the 4 outputs, then compares)**
+
+Run: `uv run pytest tests/test_goldens.py -v`
+Expected: 1 passed (takes ~1–2 min; the scripts are local-only).
+If it FAILS on first run: the scripts are not deterministic — investigate before proceeding (suspect dict/set iteration order in `map_unmapped_dampsse_teids.py`; fix by sorting before writing, re-record hashes once, and note it in the commit message).
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add tests/goldens/hashes.json tests/test_goldens.py branch_tracking/output/
+git commit -m "test(phase1): pin golden hashes for DB-free-regenerable outputs"
+```
+
+---
+
+### Task 2: `pipeline/config.py` — one home for constants
+
+**Files:**
+- Create: `branch_tracking/pipeline/config.py`, `tests/test_config.py`
+
+**Interfaces:**
+- Produces (exact names, consumed by every later module):
+  `ISOMARKETID_ERCOT=6`, `REASON_NEW_EQUIPMENT=4`, `REASON_RETIREMENT=9`,
+  `DEFAULT_IN_SERVICE_DATE` (pd.Timestamp 1990-01-01), `DEFAULT_RETIREMENT_DATE` (pd.Timestamp 2099-12-31),
+  `CHAIN_GAP_TOLERANCE` (pd.Timedelta 3 days), `STATUS_CONTRADICTION_MIN_ROWS=5`,
+  `INVALID_STATUS_KEYWORDS` (tuple), `PLACEHOLDER_NAMES` (set), `FILETYPE_FOR_DEVICE` (dict),
+  `WINDOW_DAYS=730`, `CKT_WINDOW_DAYS=90`, `AWDATEID_ANCHOR=(44926, date(2023,1,1))`,
+  `REPO_ROOT`, `DATA_DIR`, `RAW_DIR`, `OUTPUT_DIR` (pathlib.Paths anchored on this file's parents[2]).
+- NOTE: scripts are NOT rewired to config in this task (each later task rewires its own script when it becomes a wrapper). This task only creates the module + tests, so values are copied verbatim from: `build_inservice_retirement_dates.py:226-265`, `map_unmapped_dampsse_teids.py:64`, `build_dampsse_default_status.py:53-54`, `cache_dampsse_ckt.py:19`.
+
+- [ ] **Step 1: Write the failing test** — `tests/test_config.py`:
+
+```python
+import pandas as pd
+
+
+def test_config_values():
+    from branch_tracking.pipeline import config as c
+    assert c.ISOMARKETID_ERCOT == 6
+    assert c.REASON_NEW_EQUIPMENT == 4 and c.REASON_RETIREMENT == 9
+    assert c.DEFAULT_IN_SERVICE_DATE == pd.Timestamp("1990-01-01")
+    assert c.DEFAULT_RETIREMENT_DATE == pd.Timestamp("2099-12-31")
+    assert c.CHAIN_GAP_TOLERANCE == pd.Timedelta(days=3)
+    assert c.STATUS_CONTRADICTION_MIN_ROWS == 5
+    assert "cancl" in c.INVALID_STATUS_KEYWORDS and "withd" in c.INVALID_STATUS_KEYWORDS
+    assert "BLANK" in c.PLACEHOLDER_NAMES
+    assert c.FILETYPE_FOR_DEVICE == {"Line": 1, "Transformer": 2}
+    assert c.WINDOW_DAYS == 730 and c.CKT_WINDOW_DAYS == 90
+    assert c.AWDATEID_ANCHOR[0] == 44926
+    assert (c.OUTPUT_DIR / "branch_tracking_table.csv").exists()
+```
+
+- [ ] **Step 2: Run to verify failure**
+
+Run: `uv run pytest tests/test_config.py -v`
+Expected: FAIL — `ModuleNotFoundError`/`ImportError: cannot import name 'config'`.
+
+- [ ] **Step 3: Implement `branch_tracking/pipeline/config.py`** by copying each constant VERBATIM from the source lines listed in Interfaces (do not retype values from memory — copy from the files), plus:
+
+```python
+from datetime import date
+from pathlib import Path
+
+import pandas as pd
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+DATA_DIR = REPO_ROOT / "branch_tracking" / "data"
+RAW_DIR = DATA_DIR / "raw"
+OUTPUT_DIR = REPO_ROOT / "branch_tracking" / "output"
+```
+
+- [ ] **Step 4: Run tests** — `uv run pytest tests/test_config.py tests/test_goldens.py -v` → all pass (goldens untouched: nothing rewired yet).
+
+- [ ] **Step 5: Commit** — `git add branch_tracking/pipeline/config.py tests/test_config.py && git commit -m "refactor(phase1): pipeline/config.py with verbatim constants"`
+
+---
+
+### Task 3: `pipeline/naming.py` + rewire the two scripts that duplicate it
+
+**Files:**
+- Create: `branch_tracking/pipeline/naming.py`, `tests/test_naming.py`
+- Modify: `branch_tracking/scripts/map_unmapped_dampsse_teids.py` (delete lines 50–113: `normalize_name`, `names_relate`, `FILETYPE_FOR_DEVICE`, `UNIT_LEG_RE`, `unit_and_leg`, `pick_by_leg`; import from pipeline instead), `branch_tracking/scripts/build_dampsse_default_status.py` (delete lines 65–70 `normalize_name`; import), `branch_tracking/scripts/build_inservice_retirement_dates.py` (delete lines 265–291 `PLACEHOLDER_NAMES`/`normalize_name`/`names_relate`; import)
+
+**Interfaces:**
+- Produces: `normalize_name(value) -> str|None`, `names_relate(a, b) -> bool`, `unit_and_leg(norm_name) -> tuple[str|None, str|None]`, `pick_by_leg(our_norm, candidates: pd.DataFrame) -> pd.Series|None` (candidates must carry a `name_norm` column) — all moved VERBATIM from `map_unmapped_dampsse_teids.py:50-113`; `normalize_name` keeps the `PLACEHOLDER_NAMES` handling from `build_inservice_retirement_dates.py:265-277` (the map-script copy lacks it — adopt the placeholder-aware version, which is a strict superset: placeholder strings become None; verify goldens still pass since placeholder names never matched anything anyway).
+- Wrapper import bootstrap (top of each modified script, replacing the deleted defs):
+
+```python
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from branch_tracking.pipeline.naming import (  # noqa: E402
+    normalize_name, names_relate, unit_and_leg, pick_by_leg,
+)
+from branch_tracking.pipeline.config import FILETYPE_FOR_DEVICE  # noqa: E402
+```
+
+- [ ] **Step 1: Write the failing tests** — `tests/test_naming.py` (real cases from this project's history):
+
+```python
+import pandas as pd
+
+
+def test_normalize_strips_and_uppercases():
+    from branch_tracking.pipeline.naming import normalize_name
+    assert normalize_name("6520_G") == "6520G"
+    assert normalize_name("6520__G") == "6520G"      # underscore drift
+    assert normalize_name("LINE_1_1") == normalize_name("LINE1_1")  # known collision
+    assert normalize_name("BLANK") is None            # placeholder -> unknown
+    assert normalize_name(None) is None
+    assert normalize_name(float("nan")) is None
+
+
+def test_names_relate_substring_containment():
+    from branch_tracking.pipeline.naming import names_relate, normalize_name
+    assert names_relate(normalize_name("T1"), normalize_name("BKSLESST1"))
+    assert names_relate(normalize_name("EXCSWMR2H"), normalize_name("MR2H"))
+    assert not names_relate(normalize_name("CB_1814"), normalize_name("AT2H"))  # teid=113628
+    assert not names_relate(None, "ANYTHING")
+
+
+def test_unit_and_leg_extraction():
+    from branch_tracking.pipeline.naming import unit_and_leg
+    assert unit_and_leg("CMNSWAXFMR1H") == ("1", "H")
+    assert unit_and_leg("SNDSWMR2L") == ("2", "L")
+    assert unit_and_leg("MDOAT1") == ("1", None)
+    assert unit_and_leg("SNDSWAXFMR1LH") == ("1", "L")  # '1L-H' style: leg is L
+    assert unit_and_leg("NODIGITS") == (None, None)
+
+
+def test_pick_by_leg_prefers_matching_unit_and_leg():
+    from branch_tracking.pipeline.naming import pick_by_leg
+    cands = pd.DataFrame({
+        "name_norm": ["SNDSWMR1H", "SNDSWMR1L", "SNDSWMR2H", "SNDSWMR2L"],
+        "ercotDampsseId": [1, 2, 3, 4],
+    })
+    got = pick_by_leg("SNDSWAXFMR1LH", cands)   # our low-side teid
+    assert got is not None and got["name_norm"] == "SNDSWMR1L"
+    got = pick_by_leg("SNDSWAXFMR1HH", cands)   # our high-side teid
+    assert got is not None and got["name_norm"] == "SNDSWMR1H"
+    assert pick_by_leg("NOUNIT", cands) is None
+```
+
+- [ ] **Step 2: Run to verify failure** — `uv run pytest tests/test_naming.py -v` → FAIL (module missing).
+
+- [ ] **Step 3: Create `branch_tracking/pipeline/naming.py`** — move the functions verbatim from `map_unmapped_dampsse_teids.py:50-113`, replacing its `normalize_name` body with the placeholder-aware version from `build_inservice_retirement_dates.py:268-277` (which imports `PLACEHOLDER_NAMES` from `.config`); `pick_by_leg` keeps its exact scoring logic and its `unit_and_leg` dependency.
+
+- [ ] **Step 4: Run naming tests** — `uv run pytest tests/test_naming.py -v` → all pass.
+
+- [ ] **Step 5: Rewire the three scripts** — delete their local copies (exact line ranges in Files above), add the bootstrap import block. `map_unmapped_dampsse_teids.py` also drops its local `FILETYPE_FOR_DEVICE` in favor of the config import.
+
+- [ ] **Step 6: Full gate** — `uv run pytest tests/ -v` → everything passes INCLUDING `test_goldens` (byte-identical reruns prove the rewire changed nothing).
+
+- [ ] **Step 7: Commit** — `git add -A && git commit -m "refactor(phase1): pipeline/naming.py, dedupe name logic from 3 scripts"`
+
+---
+
+### Task 4: `pipeline/dampsse.py` — DAM mapping tiers + status computation
+
+**Files:**
+- Create: `branch_tracking/pipeline/dampsse.py`, `tests/test_dampsse.py`, `tests/fixtures/dampsse_def_slice.csv`, `tests/fixtures/dampsse_agg_slice.csv`, `tests/fixtures/our_teids_slice.csv`, `tests/fixtures/stations.csv`
+- Modify: `branch_tracking/scripts/map_unmapped_dampsse_teids.py` (its `main()` becomes: load inputs → call pipeline functions → write outputs; ALL matching/consensus logic deleted), `branch_tracking/scripts/build_dampsse_default_status.py` (same treatment for its name-mapping + status-tally blocks; the DB queries and cache writes stay in the script)
+
+**Interfaces:**
+- Produces (consumed by Task 5's assemble wiring and by the wrapper scripts):
+  - `compute_inservice_status(agg: pd.DataFrame) -> pd.DataFrame` — input columns `ercotDampsseId, n_hours, n_inservice`; adds `pct_inservice` (round 4) and `dampsse_default_status` ("Closed" iff pct >= 0.5).
+  - `map_exact_names(ours: pd.DataFrame, dampsse_def: pd.DataFrame, active_ids: set) -> pd.DataFrame` — the exact-name tier from `build_dampsse_default_status.py`'s main (one row per (teid, ercotDampsseId); skips names mapping to >1 teid).
+  - `map_fallback_tiers(unmapped: pd.DataFrame, pool: pd.DataFrame, agg: pd.DataFrame, ckt_by_id: dict) -> tuple[pd.DataFrame, pd.DataFrame]` — returns (mappings with `tier` column, diagnosis with `bucket` column); verbatim logic from `map_unmapped_dampsse_teids.py:main` including tiers `substring_name`, `substring_name_station`, `substring_name_leg`, `station_pair`, `station_pair_leg`, `station_pair_ckt`.
+  - `consensus_status(diagnosis: pd.DataFrame, unmapped: pd.DataFrame, pool: pd.DataFrame, agg: pd.DataFrame) -> pd.DataFrame` — the candidates-consensus tier, verbatim.
+- Fixture files are cut from the real cache/outputs (commands below) so tests reproduce real history: the SNDSW leg pair, MULBERRY ambiguity, a station_pair_ckt case, and ~20 exact-name rows.
+
+- [ ] **Step 1: Freeze fixtures from the live cache**
+
+```bash
+uv run python - <<'EOF'
+import pandas as pd
+from pathlib import Path
+fx = Path("tests/fixtures"); fx.mkdir(parents=True, exist_ok=True)
+d = pd.read_csv("branch_tracking/data/raw/ercotDampsseDef.csv")
+keep = d["branchNameRaw"].astype(str).str.contains(
+    "SNDSW|MULBERRY|CMNSW|6520|PS0|LINE_1_1|LINE1_1|CLIMAX", na=False)
+d[keep].to_csv(fx / "dampsse_def_slice.csv", index=False)
+a = pd.read_csv("branch_tracking/data/raw/dampsse_inservice_agg.csv")
+a[a["ercotDampsseId"].isin(d[keep]["ercotDampsseId"])].to_csv(
+    fx / "dampsse_agg_slice.csv", index=False)
+t = pd.read_csv("branch_tracking/output/teid_branch_id_map.csv")
+t[t["teid"].isin([280444, 280447, 279293, 280307, 720535, 317479, 30352, 120056])]\
+    .to_csv(fx / "our_teids_slice.csv", index=False)
+import shutil
+shutil.copy("branch_tracking/data/raw/ercotDampsseStation.csv", fx / "stations.csv")
+print("fixtures written")
+EOF
+```
+Expected: three small CSVs under `tests/fixtures/` (spot-check each has >0 rows; if a filter returns 0 rows, widen the name pattern until the listed teids/names are covered).
+
+- [ ] **Step 2: Write the failing tests** — `tests/test_dampsse.py`:
+
+```python
+import pandas as pd
+import pytest
+
+
+@pytest.fixture()
+def fixtures(repo_root):
+    fx = repo_root / "tests" / "fixtures"
+    return (
+        pd.read_csv(fx / "dampsse_def_slice.csv"),
+        pd.read_csv(fx / "dampsse_agg_slice.csv"),
+        pd.read_csv(fx / "our_teids_slice.csv"),
+        pd.read_csv(fx / "stations.csv"),
+    )
+
+
+def test_compute_inservice_status_majority():
+    from branch_tracking.pipeline.dampsse import compute_inservice_status
+    agg = pd.DataFrame({"ercotDampsseId": [1, 2],
+                        "n_hours": [100, 100], "n_inservice": [99, 10]})
+    out = compute_inservice_status(agg)
+    assert list(out["dampsse_default_status"]) == ["Closed", "Open"]
+    assert out["pct_inservice"].tolist() == [0.99, 0.10]
+
+
+def test_fallback_maps_sndsw_legs_to_matching_units(fixtures):
+    from branch_tracking.pipeline.dampsse import (
+        map_fallback_tiers, prepare_pool, prepare_unmapped,
+    )
+    dampsse_def, agg, ours, stations = fixtures
+    pool = prepare_pool(dampsse_def, stations, claimed_ids=set())
+    unmapped = prepare_unmapped(ours)
+    mappings, diagnosis = map_fallback_tiers(unmapped, pool, agg, ckt_by_id={})
+    got = mappings.set_index("teid")["dampsse_name_raw"].to_dict()
+    assert got.get(280444) == "SNDSW_MR1L"   # low-side teid -> MR1L
+    assert got.get(280447) == "SNDSW_MR1H"   # high-side teid -> MR1H
+    assert got.get(279293) == "CMNSW_MR1H"
+
+
+def test_mulberry_stays_ambiguous_without_consensus(fixtures):
+    from branch_tracking.pipeline.dampsse import (
+        map_fallback_tiers, prepare_pool, prepare_unmapped,
+    )
+    dampsse_def, agg, ours, stations = fixtures
+    pool = prepare_pool(dampsse_def, stations, claimed_ids=set())
+    unmapped = prepare_unmapped(ours)
+    mappings, diagnosis = map_fallback_tiers(unmapped, pool, agg, ckt_by_id={})
+    assert 720535 in set(diagnosis["teid"])  # MULBERRY must NOT auto-resolve
+```
+
+- [ ] **Step 3: Run to verify failure** — `uv run pytest tests/test_dampsse.py -v` → FAIL (module missing).
+
+- [ ] **Step 4: Create `branch_tracking/pipeline/dampsse.py`** by moving logic VERBATIM:
+  - `prepare_unmapped(ours)` = the normalization block from `map_unmapped_dampsse_teids.py:main` (opeq_norm/sub1_norm/sub2_norm/ckt_norm columns).
+  - `prepare_pool(dampsse_def, stations, claimed_ids)` = the pool block (name_norm + fromStationId/toStationId mapped to normalized station names via the stations frame; rows whose ercotDampsseId is in claimed_ids excluded).
+  - `map_fallback_tiers`, `consensus_status` = the two loops, unchanged.
+  - `map_exact_names`, `compute_inservice_status` = from `build_dampsse_default_status.py:main`.
+
+- [ ] **Step 5: Run dampsse tests** — `uv run pytest tests/test_dampsse.py -v` → pass.
+
+- [ ] **Step 6: Rewire both scripts as wrappers** (keep their DB pulls, cache writes, prints, CSV writes; delete moved logic; call the pipeline functions).
+
+- [ ] **Step 7: Full gate incl. goldens** — `uv run pytest tests/ -v` → all pass; goldens byte-identical.
+
+- [ ] **Step 8: Commit** — `git add -A && git commit -m "refactor(phase1): pipeline/dampsse.py — mapping tiers + inService status as pure functions"`
+
+---
+
+### Task 5: `pipeline/status.py` + `pipeline/assemble.py` — final-table join
+
+**Files:**
+- Create: `branch_tracking/pipeline/status.py`, `branch_tracking/pipeline/assemble.py`, `tests/test_status.py`, `tests/test_assemble.py`
+- Modify: `branch_tracking/scripts/build_final_branch_table.py` → thin wrapper (reads the input CSVs, calls `assemble.build_table(...)`, writes CSV + prints)
+
+**Interfaces:**
+- `status.resolve_default_status(table: pd.DataFrame) -> pd.DataFrame` — input has `dampsse_default_status`, `implied_default_status`; adds `default_status` (DAM first, auction fallback) and `default_status_source` (`"dampsse_inservice"` / `"auction_fallback"` / NA) — verbatim from `build_final_branch_table.py:main`'s resolved-status block.
+- `assemble.build_table(teid_map, dates, status, dampsse, dampsse_fallback) -> pd.DataFrame` — the full join + defaults + column order, verbatim from `build_final_branch_table.py:48-...`; returns the frame, does NOT write files.
+
+- [ ] **Step 1: Write failing tests**
+
+`tests/test_status.py`:
+
+```python
+import pandas as pd
+
+
+def test_resolve_default_status_hierarchy():
+    from branch_tracking.pipeline.status import resolve_default_status
+    t = pd.DataFrame({
+        "dampsse_default_status": ["Open", None, None],
+        "implied_default_status": ["Closed", "Closed", None],
+    })
+    out = resolve_default_status(t)
+    assert list(out["default_status"]) == ["Open", "Closed", None] or \
+           out["default_status"].tolist()[:2] == ["Open", "Closed"] and pd.isna(out["default_status"].iloc[2])
+    assert out["default_status_source"].tolist()[:2] == ["dampsse_inservice", "auction_fallback"]
+    assert pd.isna(out["default_status_source"].iloc[2])
+```
+
+`tests/test_assemble.py`:
+
+```python
+import pandas as pd
+
+
+def test_build_table_matches_current_output_exactly(repo_root):
+    from branch_tracking.pipeline import assemble
+    out_dir = repo_root / "branch_tracking" / "output"
+    table = assemble.build_table(
+        teid_map=pd.read_csv(out_dir / "teid_branch_id_map.csv"),
+        dates=pd.read_csv(out_dir / "teid_inservice_retirement_dates.csv"),
+        status=pd.read_csv(out_dir / "branch_default_status.csv"),
+        dampsse=pd.read_csv(out_dir / "dampsse_default_status.csv"),
+        dampsse_fallback=pd.read_csv(out_dir / "dampsse_default_status_fallback.csv"),
+    )
+    current = pd.read_csv(out_dir / "branch_tracking_table.csv")
+    pd.testing.assert_frame_equal(
+        table.reset_index(drop=True).astype(str),
+        current.astype(str),
+    )
+```
+
+- [ ] **Step 2: Run to verify failure** — `uv run pytest tests/test_status.py tests/test_assemble.py -v` → FAIL.
+
+- [ ] **Step 3: Create the two modules** by moving `build_final_branch_table.py:main`'s body verbatim: joins + date defaults + renames + dampsse concat into `assemble.build_table`, the resolved-status block into `status.resolve_default_status` (called by `build_table`).
+
+- [ ] **Step 4: Run the two test files** → pass. The assemble test IS a full-strength golden (frame-equal against the committed output).
+
+- [ ] **Step 5: Rewire `build_final_branch_table.py`** to a wrapper; rerun `uv run pytest tests/ -v` → all pass incl. byte-golden.
+
+- [ ] **Step 6: Commit** — `git add -A && git commit -m "refactor(phase1): pipeline/status.py + assemble.py; final table as pure join"`
+
+---
+
+### Task 6: `pipeline/dates.py` — decompose the 673-line monolith
+
+**Files:**
+- Create: `branch_tracking/pipeline/dates.py`, `tests/test_dates.py`, `tests/fixtures/retirement_events_slice.csv` (copy of `branch_tracking/output/retirement_flags_investigation.csv` — it is already a frozen raw-revision dump for 19 real teids incl. 821/1743)
+- Modify: `branch_tracking/scripts/build_inservice_retirement_dates.py` → wrapper: DB pull (`load_reason_events`, lines 294–306) + status CSV read + composition call + output/review-CSV writes + prints.
+
+**Interfaces:**
+- Produces (each moved/extracted VERBATIM from `build_inservice_retirement_dates.py`; source anchors in parentheses):
+  - `is_invalid_status(row) -> bool` (309–316)
+  - `sticky_actual_dates(events) -> pd.DataFrame` (the ffill block inside main; groups by `(toOutageIdentifierId, BranchId)` sorted by `toStateId`)
+  - `dedupe_revisions(events) -> pd.DataFrame` (the drop_duplicates block; keep highest `toStateId` per `(toOutageIdentifierId, BranchId)`)
+  - `assign_chain_ids(tier) -> list[int]` (319–335)
+  - `resolve_by_chain(group, boundary) -> pd.Series` (338–384; boundary in {"end","start"})
+  - `crosscheck_branchid(events, legit_map) -> tuple[pd.DataFrame, int]`
+  - `crosscheck_device_name(events, legit_map) -> tuple[pd.DataFrame, pd.DataFrame, int]` (returns kept, mismatch_dump, count)
+  - `correct_same_device_mistags(result) -> tuple[pd.DataFrame, int]`
+  - `correct_status_contradictions(result) -> tuple[pd.DataFrame, int, pd.Series]`
+  - `flag_rows(result) -> pd.Series` (the `flag` closure)
+  - `resolve_dates(events, legit_map, status) -> dict` — composes all of the above in main()'s exact order; returns `{"result": df, "mismatch_dump": df, "counts": {...}}`. The wrapper writes files from this dict.
+
+- [ ] **Step 1: Freeze the fixture** — `cp branch_tracking/output/retirement_flags_investigation.csv tests/fixtures/retirement_events_slice.csv && git add tests/fixtures/retirement_events_slice.csv`
+
+- [ ] **Step 2: Write the failing tests** — `tests/test_dates.py` (marquee behaviors; synthetic frames for chain logic, real slice for mistag/sticky):
+
+```python
+import pandas as pd
+import pytest
+
+
+def _mk_events(rows):
+    base = {"teid": 1, "BranchId": 10, "EquipmentName": "X", "ReasonID": 4,
+            "toOutageIdentifierId": 100, "toStateId": 1,
+            "plannedStartDate": pd.NaT, "plannedEndDate": pd.NaT,
+            "actualStartDate": pd.NaT, "actualEndDate": pd.NaT,
+            "CancellationDate": pd.NaT, "CancellationReason": None,
+            "status": "Apprv", "ReqStatus": "PL"}
+    return pd.DataFrame([{**base, **r} for r in rows])
+
+
+def test_sticky_actual_dates_survive_admin_revision():
+    from branch_tracking.pipeline.dates import sticky_actual_dates
+    ev = _mk_events([
+        {"toStateId": 1, "actualEndDate": pd.Timestamp("2016-08-05")},
+        {"toStateId": 2, "status": "RatE"},          # later admin rev, blank dates
+    ])
+    out = sticky_actual_dates(ev)
+    assert out.loc[out["toStateId"] == 2, "actualEndDate"].iloc[0] == pd.Timestamp("2016-08-05")
+
+
+def test_dedupe_keeps_highest_tostateid_per_ticket_and_branch():
+    from branch_tracking.pipeline.dates import dedupe_revisions
+    ev = _mk_events([
+        {"BranchId": 10, "toStateId": 1}, {"BranchId": 10, "toStateId": 2},
+        {"BranchId": 11, "toStateId": 2},   # bundled second device, same ticket
+    ])
+    out = dedupe_revisions(ev)
+    assert len(out) == 2 and set(out["BranchId"]) == {10, 11}
+    assert out.loc[out["BranchId"] == 10, "toStateId"].iloc[0] == 2
+
+
+def test_chain_collapse_and_longest_wins_for_energization():
+    from branch_tracking.pipeline.dates import assign_chain_ids, resolve_by_chain
+    # 552333 pattern: 11-month chain vs later few-hour ticket
+    g = _mk_events([
+        {"toOutageIdentifierId": 1, "actualStartDate": pd.Timestamp("2022-01-05"),
+         "actualEndDate": pd.Timestamp("2022-06-01")},
+        {"toOutageIdentifierId": 2, "actualStartDate": pd.Timestamp("2022-06-02"),
+         "actualEndDate": pd.Timestamp("2022-12-06")},
+        {"toOutageIdentifierId": 3, "actualStartDate": pd.Timestamp("2023-05-16"),
+         "actualEndDate": pd.Timestamp("2023-05-16 13:04")},
+    ])
+    g["event_date"] = g["actualStartDate"]
+    g["event_end_date"] = g["actualEndDate"]
+    g["device_name_match"] = False
+    g["equip_name_norm"] = "X"
+    chains = assign_chain_ids(g.sort_values("event_date"))
+    assert chains == [1, 1, 2]              # first two merge, third is separate
+    res = resolve_by_chain(g, boundary="end")
+    assert res["event_date"] == pd.Timestamp("2022-12-06")   # longest chain's END
+    assert res["n_chains"] == 2
+
+
+def test_mistag_and_wrongdevice_on_real_slice(repo_root):
+    from branch_tracking.pipeline.dates import resolve_dates
+    events = pd.read_csv(repo_root / "tests/fixtures/retirement_events_slice.csv",
+                         parse_dates=["plannedStartDate", "plannedEndDate",
+                                      "actualStartDate", "actualEndDate",
+                                      "CancellationDate"])
+    out_dir = repo_root / "branch_tracking" / "output"
+    teid_map = pd.read_csv(out_dir / "teid_branch_id_map.csv")
+    legit = teid_map[teid_map["match_status"] != "unmatched"]
+    status = pd.read_csv(out_dir / "branch_default_status.csv")
+    res = resolve_dates(events, legit, status)["result"].set_index("teid")
+    current = pd.read_csv(out_dir / "teid_inservice_retirement_dates.csv").set_index("teid")
+    for teid in [821, 654439, 1743, 113628]:
+        if teid in res.index and teid in current.index:
+            assert str(res.loc[teid, "retirement_date"]) == str(current.loc[teid, "retirement_date"]), teid
+            assert res.loc[teid, "review_flag"] == current.loc[teid, "review_flag"], teid
+```
+
+NOTE for the implementer: the fixture slice contains ALL ReasonIDs for its 19 teids while production input is pre-filtered to (4,9) — `resolve_dates` must therefore start by filtering `ReasonID.isin((REASON_NEW_EQUIPMENT, REASON_RETIREMENT))` (this filter already effectively exists via the SQL WHERE; adding it in-function is behavior-preserving for production input and makes the fixture valid). The slice also lacks the `status`/`ReqStatus`… verify the columns present in the fixture CSV first with `head -1`; if a needed column is missing, extend the test's expectations to the subset of steps the fixture can drive (at minimum 821 mistag + 1743 sticky), and say so in the commit message.
+
+- [ ] **Step 3: Run to verify failure** — `uv run pytest tests/test_dates.py -v` → FAIL (module missing).
+
+- [ ] **Step 4: Create `branch_tracking/pipeline/dates.py`** — move functions per the Interfaces list; extract the inline main() blocks into the named functions with signatures above; `resolve_dates` composes them in main()'s current order (sticky → event_date/end_date derivation → dedupe → invalid-status filter → teid scope → branchid crosscheck → device-name crosscheck (+dump) → split 4/9 → groupby resolve_by_chain (end/start) → join → defaults/sources → mistag correction → status-contradiction correction → had_dropped_evidence → flags).
+
+- [ ] **Step 5: Run dates tests** — `uv run pytest tests/test_dates.py -v` → pass.
+
+- [ ] **Step 6: Rewire the script as wrapper**, keeping its SQL + prints + CSV writes. There is no byte-golden for this output (needs DB); the real-slice test in Step 2 is the regression pin. Run `uv run pytest tests/ -v` → all pass.
+
+- [ ] **Step 7: Commit** — `git add -A && git commit -m "refactor(phase1): pipeline/dates.py — monolith decomposed into named steps"`
+
+---
+
+### Task 7: `pipeline/mapping.py` + `pipeline/legs.py`
+
+**Files:**
+- Create: `branch_tracking/pipeline/mapping.py`, `branch_tracking/pipeline/legs.py`, `tests/test_mapping.py`, `tests/test_legs.py`
+- Modify: `branch_tracking/scripts/build_teid_branchid_map.py`, `branch_tracking/scripts/build_transformer_leg_map.py` → wrappers (DB loaders stay; resolution logic moves)
+
+**Interfaces:**
+- `mapping.fuzzy_ratio(a, b) -> float` (source: build_teid_branchid_map.py:102), `mapping.is_high_side(op_eqcode) -> bool` (109–116; must match the `_?HISIDE|_?HIGH|_?H` regex behavior), `mapping.resolve_duplicates(candidates_frame) -> pd.DataFrame` — the layered duplicate-resolution passes extracted from main() (opeqcode-exact → exact-duplicate collapse → fuzzy (min ratio 0.6, margin 0.15) → high-side + latest-id), producing the same `match_status` values as today.
+- `legs.classify_leg(op_eqcode) -> str|None` (47–54), `legs.base_name(op_eqcode) -> str` (56–58), `legs.bus_pair(row, from_col, to_col) -> frozenset|None` (60–65), `legs.pick_best(rows, prefer_col) -> pd.Series` (85–87).
+
+- [ ] **Step 1: Write failing tests**
+
+`tests/test_mapping.py`:
+
+```python
+def test_is_high_side_matches_all_spellings():
+    from branch_tracking.pipeline.mapping import is_high_side
+    assert is_high_side("BTTSW_AXFMR1_HISIDE")
+    assert is_high_side("X_HIGH")
+    assert is_high_side("DIB_MT2H")
+    assert not is_high_side("DIB_MT2L")
+    assert not is_high_side("BTTSW_AXFMR1_LOSIDE")
+
+
+def test_fuzzy_ratio_vealmoor_case():
+    from branch_tracking.pipeline.mapping import fuzzy_ratio
+    # VEALMOOR_VLM7TR2H vs VEALMOOR_VLMTR2L: same asset, name drift
+    assert fuzzy_ratio("VEALMOOR_VLM7TR2H", "VEALMOOR_VLMTR2H") > 0.9
+```
+
+`tests/test_legs.py`:
+
+```python
+def test_classify_and_base_name():
+    from branch_tracking.pipeline.legs import classify_leg, base_name
+    assert classify_leg("DIB_MT2H") == "H"
+    assert classify_leg("DIB_MT2L") == "L"
+    assert base_name("DIB_MT2H") == base_name("DIB_MT2L")
+```
+
+- [ ] **Step 2: Run to verify failure** → FAIL (modules missing).
+
+- [ ] **Step 3: Create both modules** — move the helper functions verbatim (source anchors above); extract `resolve_duplicates` from `build_teid_branchid_map.py:main` keeping pass order and constants (`FUZZY_MIN_TOP_RATIO=0.6`, `FUZZY_MIN_MARGIN=0.15` move to config if module-level there).
+
+- [ ] **Step 4: Run tests** → pass. (If `classify_leg`'s actual behavior differs from the test guess, fix the TEST to match current behavior and note it — phase 1 pins current behavior, right or wrong.)
+
+- [ ] **Step 5: Rewire both scripts as wrappers**; `uv run pytest tests/ -v` → all pass incl. goldens.
+
+- [ ] **Step 6: Commit** — `git add -A && git commit -m "refactor(phase1): pipeline/mapping.py + legs.py"`
+
+---
+
+### Task 8: Move investigation scripts to `scripts/adhoc/` + compile check
+
+**Files:**
+- Move (git mv, unchanged content except import fixes): `analyze_duplicate_opeqcode.py`, `analyze_duplicate_teids.py`, `analyze_duplicate_teids_snowflake.py`, `analyze_unmatched.py`, `explore_branch_schema.py`, `explore_branch_sqlserver.py`, `explore_outage_lookups.py`, `explore_outage_schema.py`, `explore_rt_rating_dampsse_schema.py`, `find_collapseid_fix_candidates.py`, `find_retirement_status_contradictions.py`, `find_teid_collision_candidates.py`, `inspect_teid_energization_example.py`, `investigate_retirement_flags.py`, `review_multiple_energization_chains.py`, `compare_base_model_status.py` → `branch_tracking/scripts/adhoc/`
+- Create: `tests/test_compiles.py`
+
+**Interfaces:**
+- Consumes: adhoc scripts that `import build_teid_branchid_map` or `from build_inservice_retirement_dates import ...` (grep for `^from build_|^import build_` first) get a 3-line sys.path prepend of `../` (the scripts dir) so the cross-import keeps resolving — no logic changes.
+
+- [ ] **Step 1: Write the compile test** — `tests/test_compiles.py`:
+
+```python
+import py_compile
+from pathlib import Path
+
+
+def test_every_script_compiles(repo_root):
+    for p in sorted((repo_root / "branch_tracking").rglob("*.py")):
+        py_compile.compile(str(p), doraise=True)
+```
+
+- [ ] **Step 2: Run it (passes already — establishes baseline)** — `uv run pytest tests/test_compiles.py -v` → pass.
+
+- [ ] **Step 3: `git mv` the 16 files** into `branch_tracking/scripts/adhoc/`, add the sys.path prepend to the ones with cross-imports (grep first: `grep -l "^from build_\|^import build_" branch_tracking/scripts/adhoc/*.py`).
+
+- [ ] **Step 4: Re-run compile test + full suite** — `uv run pytest tests/ -v` → all pass.
+
+- [ ] **Step 5: Commit** — `git add -A && git commit -m "refactor(phase1): move investigation scripts to scripts/adhoc/"`
+
+---
+
+### Task 9: Phase-1 gate + docs pointer
+
+**Files:**
+- Modify: `branch_tracking/CLAUDE.md` (prepend a short "Code layout (post phase-1)" section: pipeline modules list, wrapper scripts, adhoc dir, tests — 10 lines max; full docs restructure is phase 5)
+
+**Interfaces:** none new.
+
+- [ ] **Step 1: Full suite** — `uv run pytest tests/ -v` → ALL pass.
+- [ ] **Step 2: Fresh-clone sanity** — from the worktree: `uv run branch_tracking/scripts/map_unmapped_dampsse_teids.py && uv run branch_tracking/scripts/build_final_branch_table.py` → both succeed, goldens test still green after.
+- [ ] **Step 3: Update `branch_tracking/CLAUDE.md`** with the layout section.
+- [ ] **Step 4: Commit** — `git add -A && git commit -m "refactor(phase1): complete — layout docs pointer"`
+- [ ] **Step 5 (main session):** dispatch Opus review of the whole branch diff (`git diff master...refactor/pipeline-v1`), adjudicate findings, then present phase-2 plan proposal to the user.
+
+---
+
+## Successor plans (authored after phase 1 lands — NOT in this document)
+
+- Phase 2: fresh-eyes module review + logic improvements (auction snapshot discounting; DAM-dormancy flag) — goldens updated deliberately.
+- Phase 3: gates.py + invariants.py + run_update.py (full-rebuild mode).
+- Phase 4: sources.py with watermarks; incremental==full invariant; raw events cache enabling full dates.py goldens.
+- Phase 5: snapshot-versioned DDL (`ddl/branch_tracking_snapshots.sql` per spec) + docs restructure + packaging cleanup (replace sys.path bootstrap).
