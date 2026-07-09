@@ -42,9 +42,11 @@ suggest a switchable/normally-open element.
 Output: output/dampsse_default_status.csv (one row per mapped teid).
 Read-only. Writes only to branch_tracking/output/.
 """
-import re
+import sys
 from datetime import date, timedelta
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from branch_tracking.pipeline.naming import normalize_name  # noqa: E402
 
 import awconnect
 import pandas as pd
@@ -60,13 +62,6 @@ TABLE_CSV = REPO_ROOT / "output" / "branch_tracking_table.csv"
 CLEAN_CMP_CSV = REPO_ROOT / "output" / "base_model_status_comparison.csv"
 OUTAGE_CMP_CSV = REPO_ROOT / "output" / "base_model_outages_status_comparison.csv"
 OUTPUT_CSV = REPO_ROOT / "output" / "dampsse_default_status.csv"
-
-
-def normalize_name(value):
-    if pd.isna(value):
-        return None
-    stripped = re.sub(r"[^A-Z0-9]", "", str(value).upper())
-    return stripped or None
 
 
 def date_to_awdateid(d):

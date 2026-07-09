@@ -34,8 +34,13 @@ Outputs (both for review, not auto-applied to the pipeline yet):
   output/dampsse_unmapped_diagnosis.csv -- everything else, bucketed
 Read-only, local files only.
 """
-import re
+import sys
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from branch_tracking.pipeline.naming import (  # noqa: E402
+    normalize_name, names_relate, unit_and_leg, pick_by_leg,
+)
+from branch_tracking.pipeline.config import FILETYPE_FOR_DEVICE  # noqa: E402
 
 import pandas as pd
 
@@ -45,72 +50,6 @@ TEID_MAP_CSV = REPO_ROOT / "output" / "teid_branch_id_map.csv"
 DAMPSSE_STATUS_CSV = REPO_ROOT / "output" / "dampsse_default_status.csv"
 MAPPINGS_CSV = REPO_ROOT / "output" / "dampsse_fallback_mappings.csv"
 DIAGNOSIS_CSV = REPO_ROOT / "output" / "dampsse_unmapped_diagnosis.csv"
-
-
-def normalize_name(value):
-    if pd.isna(value):
-        return None
-    stripped = re.sub(r"[^A-Z0-9]", "", str(value).upper())
-    return stripped or None
-
-
-def names_relate(a, b):
-    if a is None or b is None:
-        return False
-    return a in b or b in a
-
-
-# DeviceType -> ercotDampsseFileTypeId (1=Line, 2=Transformer)
-FILETYPE_FOR_DEVICE = {"Line": 1, "Transformer": 2}
-
-UNIT_LEG_RE = re.compile(r"(\d+)\s*[-_]?\s*([HLT])?(?:[-_]?[HLT])?$")
-
-
-def unit_and_leg(norm_name):
-    """Extract (unit_digits, leg_letter) from the tail of a normalized
-    name -- e.g. CMNSWAXFMR1H -> ('1','H'), SNDSWMR2L -> ('2','L'),
-    MDOAT1 -> ('1', None). Transformer teids in our data name the winding
-    unit + leg at the end; DAM leg defs do the same (MR1H, AT2, XF1A...).
-    Returns (None, None) when no trailing unit digit is found."""
-    if not norm_name:
-        return None, None
-    m = re.search(r"(\d+)([HLT]?)$", norm_name)
-    if not m:
-        # leg letter may follow the digits with other chars stripped, e.g. '...1LH'
-        m = re.search(r"(\d+)([HLT])[HLT]$", norm_name)
-        if not m:
-            return None, None
-    return m.group(1), (m.group(2) or None)
-
-
-def pick_by_leg(our_norm, candidates):
-    """Among transformer candidates sharing a station pair, prefer the one
-    matching our unit digit and (per the pipeline's established
-    high-side-preference convention) the H leg -- our mapped BRANCH row is
-    the high-side leg wherever legs were distinguishable. Returns a single
-    row or None when still ambiguous."""
-    unit, leg = unit_and_leg(our_norm)
-    if unit is None:
-        return None
-    prefer_leg = leg or "H"
-
-    def score(name_norm):
-        c_unit, c_leg = unit_and_leg(name_norm)
-        s = 0
-        if c_unit == unit:
-            s += 2
-        if c_leg == prefer_leg:
-            s += 2
-        elif c_leg is None and prefer_leg == "H":
-            s += 1  # whole-transformer def, acceptable stand-in for H
-        return s
-
-    scored = candidates.assign(_score=candidates["name_norm"].apply(score))
-    top = scored["_score"].max()
-    if top < 2:
-        return None
-    winners = scored[scored["_score"] == top]
-    return winners.iloc[0] if len(winners) == 1 else None
 
 
 def main():

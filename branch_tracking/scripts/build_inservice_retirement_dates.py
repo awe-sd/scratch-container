@@ -215,9 +215,13 @@ Known limitations (not solved here, a stopgap for the user to refine):
 
 Read-only. Writes only to branch_tracking/output/.
 """
-import re
+import sys
 from functools import partial
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from branch_tracking.pipeline.naming import (  # noqa: E402
+    normalize_name, names_relate,
+)
 
 import awconnect
 import pandas as pd
@@ -257,38 +261,6 @@ TEID_MAP_CSV = REPO_ROOT / "output" / "teid_branch_id_map.csv"
 STATUS_CSV = REPO_ROOT / "output" / "branch_default_status.csv"
 OUTPUT_CSV = REPO_ROOT / "output" / "teid_inservice_retirement_dates.csv"
 REVIEW_CSV = REPO_ROOT / "output" / "inservice_retirement_review_flags.csv"
-
-
-# Literal placeholder values seen in EquipmentName -- these assert nothing
-# about the device, so they should be treated as "unknown" (like a NULL),
-# not compared at all. Found via teid=324528's outage tagged "BLANK".
-PLACEHOLDER_NAMES = {"BLANK", "NONE", "NA", "TBD", "UNKNOWN"}
-
-
-def normalize_name(value):
-    """Strip to uppercase alphanumeric only, so formatting drift like
-    "6520_G" vs "6520__G" (extra underscore) or "GSU2_Y" vs "GSU2Y"
-    doesn't defeat an otherwise-real match."""
-    if pd.isna(value):
-        return None
-    stripped = re.sub(r"[^A-Z0-9]", "", str(value).upper())
-    if not stripped or stripped in PLACEHOLDER_NAMES:
-        return None
-    return stripped
-
-
-def names_relate(a, b):
-    """True if either normalized name contains the other. Confirmed via a
-    sample of 1,104 teids initially dropped by exact-equality matching:
-    88% (977) were this exact pattern -- the outage system commonly
-    records only the short device tag (e.g. "T1", "MR2H", "XT4"), while
-    teid_branch_id_map.csv's OpEqName/branch_name holds the full
-    Substation+Device name (e.g. "BKSLESST1", "EXCSWMR2H"). Requiring
-    exact equality was far too strict and discarded the large majority of
-    genuinely correct evidence."""
-    if pd.isna(a) or pd.isna(b):
-        return False
-    return a in b or b in a
 
 
 def load_reason_events():
