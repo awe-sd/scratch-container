@@ -1,0 +1,52 @@
+// Copy this file to your project as .devcontainer/devcontainer.json
+// Then open the project in VS Code and select "Reopen in Container"
+//
+// Prerequisites:
+//   - Docker Desktop running
+//   - VS Code Dev Containers extension installed
+//   - ai-agent-container image built locally OR pulled from Docker Hub:
+//       docker pull appianway/ai-agent-container:latest
+{
+  "name": "AI Agent Container",
+  // --- Image ---
+  // Local build:
+  "image": "ai-agent-container:latest",
+  // Docker Hub:
+  // "image": "appianway/ai-agent-container:latest",
+  // --- Runtime flags ---
+  "runArgs": [
+    "--cap-add=NET_ADMIN",
+    "--memory=8g",
+    "--memory-swap=8g",
+    "--cpus=2",
+    "--name=scratch-container"
+  ],
+  // --- Mounts (uncomment what you need) ---
+  // Your project folder is mounted as the workspace automatically.
+  "mounts": [
+    // Windows: mount AWS credentials (read-only)
+    "source=${localEnv:USERPROFILE}/.aws/read_only_creds_tmp.txt,target=/home/node/.aws/credentials,type=bind,readonly",
+    "source=${localEnv:USERPROFILE}/Code/git/agent-gateway/secrets/scratch-container.secret,target=/run/secrets/agent-secret,type=bind,readonly"
+    // macOS/Linux: mount AWS credentials (read-only)
+    // "source=${localEnv:HOME}/.aws,target=/home/node/.aws,type=bind,readonly"
+  ],
+  "remoteEnv": {
+    "DEVCONTAINER": "true",
+    "AGENT_ID": "scratch-container"
+  },
+  // Connect to the sidecar's internal network after start
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh"
+      },
+      "extensions": [
+        "anthropic.claude-code",
+        "github.copilot",
+        "github.copilot-chat",
+        "ms-python.python"
+      ]
+    }
+  },
+  "postCreateCommand": "zsh -c 'echo \"Container ready!\"'"
+}

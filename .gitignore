@@ -1,0 +1,10 @@
+# local DB-pull cache -- regenerable, potentially large
+branch_tracking/data/raw/
+
+# same-run diff copies (git history is the real archive)
+branch_tracking/output/*.prev
+
+# python
+__pycache__/
+*.pyc
+.venv/

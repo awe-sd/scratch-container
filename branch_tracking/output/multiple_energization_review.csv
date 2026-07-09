@@ -1,0 +1,860 @@
+teid,chain_id,n_tickets_in_chain,chain_start,chain_end,branch_ids,equipment_names,group_labels,sample_notes
+1661,1,1,2025-01-28 08:00:00,2025-01-28 11:35:00,60003932.0,CKT_9741,25-00088,"REV: Tue Jan 28 08:00:33 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Substation will need to de-energize CKT 974 on the 28th to attach the mobile, and then re-energize the line, heating up the mobile for the first time. It will soak for 2 days and then be removed from service on the 30th, with another outage. No load will be added to the mobile transformer at this time."
+1661,2,1,2025-03-04 08:00:00,2025-03-04 12:35:00,60003932.0,CKT_9741,25-00209,"SUP: Outage completed & mobile was connected.
+REV: Tue Mar 04 08:00:40 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Energize mobile transformer & transfer DE-123 load to mobile sub for the first time for testing."
+2513,1,1,2025-02-13 07:00:00,2025-02-13 14:06:00,60003773.0,CG_SP_06A,JFSPA 06,"REQ: Connect LN06 to mobile switch 1945M @ CG -Will roll load
+REV: Thu Feb 13 07:00:54 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+2513,2,1,2025-07-03 07:00:00,2025-07-03 13:02:00,60003773.0,CG_SP_06A,JFSPA 06,"REV: Thu Jul 03 07:00:08 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Disconnect LN06 from mobile switch 1945M @ CG -Will roll load"
+3678,1,1,2025-02-13 07:00:00,2025-02-13 14:06:00,60003772.0,CG_PA_06A,JFSPA 06,"REQ: Connect LN06 to mobile switch 1945M @ CG -Will roll load
+REV: Thu Feb 13 07:00:54 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+3678,2,1,2025-07-03 07:00:00,2025-07-03 13:02:00,60003772.0,CG_PA_06A,JFSPA 06,"REV: Thu Jul 03 07:00:08 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Disconnect LN06 from mobile switch 1945M @ CG -Will roll load"
+4225,1,1,2025-02-13 07:00:00,2025-02-13 14:06:00,60003771.0,CG_JFS06A,JFSPA 06,"REQ: Connect LN06 to mobile switch 1945M @ CG -Will roll load
+REV: Thu Feb 13 07:00:54 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+4225,2,1,2025-07-03 07:00:00,2025-07-03 13:02:00,60003771.0,CG_JFS06A,JFSPA 06,"REV: Thu Jul 03 07:00:08 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Disconnect LN06 from mobile switch 1945M @ CG -Will roll load"
+16629,1,2,2015-10-16 17:01:00,2015-12-01 16:24:00,,REAC_R3,"AGULFO2, FOAGUL",
+16629,2,1,2017-02-01 00:00:00,2017-05-19 17:00:00,60008681.0,ESMERA_FRIEND11,NewEquip,
+43143,1,1,2014-09-10 00:00:00,2015-05-31 23:59:00,60005713.0,LA_PAL_MVRANG11,NewEquip,
+43143,2,1,2015-09-10 00:00:00,2015-09-17 23:59:00,60005713.0,LA_PAL_MVRANG11,NewEquip,
+56924,1,1,2014-10-01 00:00:00,2015-04-01 00:00:00,60000843.0,217T1601,MCNEIL,
+56924,2,2,2015-04-15 20:01:00,2015-06-30 20:00:00,60000843.0,217T1601,MCNEIL,
+58390,1,1,2016-03-01 00:00:00,2016-12-30 17:00:00,,A1,NewEquip,
+58390,2,1,2017-02-28 16:57:00,2017-06-29 15:00:00,,A1,NewEquip,
+66363,1,3,2017-06-01 00:00:00,2017-08-18 14:30:00,,GSU-1,"CHAMON , Chamon",
+66363,2,1,2017-08-31 14:31:00,2017-09-20 23:59:00,,GSU-1,Chamon,
+70365,1,1,2015-05-21 11:40:00,2015-08-01 17:00:00,60008059.0,CEDRHI_OAKC11,NewEquip,
+70365,2,1,2015-10-30 16:43:00,2016-04-29 17:00:00,60008059.0,CEDRHI_OAKC11,NewEquip,
+70365,3,1,2016-10-28 16:43:00,2016-12-30 17:00:00,60008059.0,CEDRHI_OAKC11,NewEquip,
+76864,1,1,2015-02-11 00:00:00,2015-03-27 17:00:00,60002951.0,AIRP_ALLEYO11,NewEquip,
+76864,2,1,2015-06-11 07:00:00,2015-07-08 15:15:00,60002951.0,AIRP_ALLEYO11,Dinny,
+79056,1,3,2017-06-01 00:00:00,2017-08-18 14:30:00,,GSU-2,"CHAMON , Chamon",
+79056,2,1,2017-08-31 14:31:00,2017-09-20 23:59:00,,GSU-2,Chamon,
+79625,1,1,2015-02-04 00:00:00,2015-03-27 17:00:00,60004309.0,DINNY_DISCOV11,NewEquip,
+79625,2,1,2015-06-11 07:00:00,2015-07-08 15:15:00,60004309.0,DINNY_DISCOV11,Dinny,
+79665,1,1,2015-02-04 00:00:00,2015-03-27 17:00:00,60004310.0,DINNY_IRAAN11,NewEquip,
+79665,2,1,2015-06-11 07:00:00,2015-07-08 15:15:00,60004310.0,DINNY_IRAAN11,Dinny,
+81773,1,1,2016-12-08 00:00:00,2017-08-31 18:00:00,,AT1,NewEqupt,
+81773,2,2,2017-12-07 12:01:00,2018-09-19 09:58:00,,AT1,NewEqupt,
+82291,1,1,2015-03-04 00:00:00,2015-03-04 00:01:00,60002933.0,AI_SRB87A,AI,
+82291,2,1,2015-05-17 23:59:00,2015-05-18 00:01:00,60002933.0,AI_SRB87A,,
+82291,3,1,2015-06-01 07:00:00,2015-06-02 17:07:00,60002933.0,AI_SRB87A,AI,
+82779,1,1,2017-04-19 00:00:00,2017-08-25 16:00:00,60009166.0,LARDST_LAREDO11,LarLard,
+82779,2,3,2018-04-18 16:01:00,2018-11-21 16:00:00,60009166.0,LARDST_LAREDO11,LarLard,
+83320,1,1,2015-06-03 00:00:00,2015-08-05 14:00:00,60007988.0,SHANNON_TL1,SHAN-HV	,
+83320,2,1,2015-08-20 14:01:00,2015-08-25 14:00:00,60007988.0,SHANNON_TL1,SHAN820,
+89299,1,1,2015-04-01 00:00:00,2015-04-21 11:22:00,,SST1,SSPUR2,
+89299,2,1,2015-06-27 00:00:00,2015-07-28 23:59:00,,SST1,SS2-0728,
+89306,1,1,2015-04-01 00:00:00,2015-04-21 11:22:00,,SST2,SSPUR2,
+89306,2,1,2015-06-27 00:00:00,2015-07-28 23:59:00,,SST2,SS2-0728,
+89326,1,1,2015-04-01 00:00:00,2015-04-21 11:22:00,,SS3_TLINE1,SSPUR2,
+89326,2,1,2015-06-27 00:00:00,2015-07-28 23:59:00,,SS3_TLINE1,SS2-0728,
+97202,1,1,2015-06-03 00:00:00,2015-07-08 17:29:00,60003669.0,CARRIZ_CRYSTA11,NewEquip,
+97202,2,1,2015-07-21 10:11:00,2015-11-24 17:00:00,60003669.0,CARRIZ_CRYSTA11,NewEquip,
+97221,1,1,2015-06-03 00:00:00,2015-06-30 17:00:00,60004162.0,CRYSTA_TURTLC11,NewEquip,
+97221,2,1,2015-07-21 10:15:00,2016-01-14 01:00:00,60004162.0,CRYSTA_TURTLC11,NewEquip,
+98920,1,1,2016-03-01 00:00:00,2016-06-03 16:00:00,60008383.0,WHILPII_WEST1,6316NE,
+98920,2,1,2016-10-04 17:01:00,2016-11-11 18:00:00,60008383.0,WHILPII_WEST1,6316NE,
+183643,1,1,2016-01-19 17:00:00,2016-02-10 07:20:00,,JS04,,
+183643,2,1,2016-02-25 13:00:00,2016-06-30 17:00:00,,JS04,,
+185333,1,1,2016-11-01 00:00:00,2016-12-31 00:00:00,,PS27,MARION ,
+185333,2,1,2017-07-06 00:00:00,2018-01-08 19:00:00,60009221.0,138_SDS_EPS1,38140-1,
+208470,1,1,2015-12-18 16:15:00,2016-02-08 15:00:00,60008125.0,NEDIN_REDTAP11,NewEquip,
+208470,2,1,2016-02-12 08:59:00,2016-02-12 10:30:00,60008125.0,NEDIN_REDTAP11,NewEquip,
+208783,1,1,2015-12-18 16:15:00,2016-02-08 15:00:00,60008154.0,RACHAL_REDTAP11,NewEquip,
+208783,2,1,2016-02-12 08:59:00,2016-02-12 10:30:00,60008154.0,RACHAL_REDTAP11,NewEquip,
+219319,1,1,2015-12-16 00:00:00,2015-12-18 19:00:00,60008105.0,138_WMT_WMS1,30194-1,
+219319,2,1,2016-02-02 08:32:00,2016-03-01 19:00:00,60008105.0,138_WMT_WMS1,30194-1,
+219553,1,1,2015-12-16 00:00:00,2015-12-18 19:00:00,60008161.0,138_WMP_WMT1,30194-1,
+219553,2,1,2016-02-02 08:32:00,2016-03-01 19:00:00,60008161.0,138_WMP_WMT1,,
+240521,1,1,2016-03-23 00:00:00,2016-05-31 17:00:00,60008491.0,ES_GS_70A,ES,
+240521,2,1,2016-07-17 17:01:00,2016-07-23 12:00:00,60008491.0,ES_GS_70A,ES,
+314759,1,1,2017-12-30 11:54:00,2018-01-30 19:00:00,60007059.0,SALTMN_BULLDG1,bdgSTAup,
+314759,2,1,2018-02-05 19:01:00,2018-02-13 16:05:00,60007059.0,SALTMN_BULLDG1,bdgSTAup,
+319113,1,1,2016-11-01 00:00:00,2016-11-28 09:00:00,60008675.0,CAPELL_ELY11,Newequip,
+319113,2,1,2016-12-20 15:01:00,2017-02-24 19:00:00,60008675.0,CAPELL_ELY11,Newequip,
+324091,1,1,2017-03-15 00:00:00,2017-03-15 00:01:00,,LY2_TAP031,LY,
+324091,2,1,2017-04-03 07:00:00,2017-04-07 17:56:00,,LY2_TAP031,LY,
+324095,1,1,2017-03-15 00:00:00,2017-03-15 00:01:00,60009234.0,BCVLY_03A,LY,
+324095,2,1,2017-04-03 07:00:00,2017-04-07 17:56:00,60009234.0,BCVLY_03A,LY,
+324096,1,1,2017-03-15 00:00:00,2017-03-15 00:01:00,60009237.0,CV_LY_03A,LY,
+324096,2,1,2017-04-03 07:00:00,2017-04-07 17:56:00,60009237.0,CV_LY_03A,LY,
+325089,1,1,2017-03-08 00:00:00,2017-04-05 17:00:00,60009179.0,HECKER_WHITE_11,NewEquip,
+325089,2,1,2017-04-20 17:01:00,2017-04-21 18:00:00,60009179.0,HECKER_WHITE_11,,
+325666,1,1,2017-04-05 00:00:00,2017-05-01 17:00:00,60009291.0,N_SHAR_SANTAS11,,
+325666,2,2,2017-05-31 19:45:00,2017-06-09 12:00:00,60009291.0,N_SHAR_SANTAS11,,
+325666,3,1,2017-06-19 15:01:00,2017-08-11 15:00:00,60009291.0,N_SHAR_SANTAS11,,
+331363,1,2,2017-08-09 00:00:00,2017-08-24 17:00:00,60009260.0,LEVOYS15A,levee,
+331363,2,1,2017-08-29 07:42:00,2017-09-15 17:00:00,60009260.0,LEVOYS15A,,
+331363,3,1,2017-10-24 13:17:00,2017-11-27 17:00:00,60009260.0,LEVOYS15A,,
+331507,1,3,2017-08-09 00:00:00,2017-09-15 17:00:00,60009259.0,LEVOYS11A,levee,
+331507,2,1,2017-10-24 13:16:00,2018-01-07 17:00:00,60009259.0,LEVOYS11A,,
+332475,1,1,2017-10-04 00:00:00,2017-12-29 14:00:00,60009235.0,BNMCHL70A,CHL,
+332475,2,1,2018-03-22 17:01:00,2018-04-23 17:00:00,60009235.0,BNMCHL70A,CHL,
+336008,1,1,2017-12-01 00:01:00,2017-12-31 23:59:00,60009034.0,ALBANY_GRIFFI21,GRIFFIN,
+336008,2,2,2018-01-12 16:01:00,2018-02-09 18:00:00,60009034.0,ALBANY_GRIFFI21,GRIFFIN,
+340987,1,1,2018-03-01 00:00:00,2018-06-01 00:00:00,60009290.0,MCCAMP_TPCO21,1234,
+340987,2,1,2018-10-04 13:31:00,2018-10-05 17:30:00,60009290.0,MCCAMP_TPCO21,1234,
+340987,3,1,2018-11-01 07:43:00,2019-01-17 17:30:00,60009290.0,MCCAMP_TPCO21,1234,
+340987,4,2,2019-01-23 14:35:00,2020-01-01 15:00:00,60009290.0,MCCAMP_TPCO21,"1234, NewEquip",
+344148,1,1,2018-08-04 09:16:00,2018-09-28 16:00:00,,COLETO_EULER11,NewEquip,
+344148,2,1,2018-10-04 11:31:00,2018-11-30 16:00:00,,COLETO_EULER11,NewEquip,
+347772,1,1,2018-06-01 00:01:00,2018-09-14 17:00:00,,EAGLE__GANSO11,NewEquip,
+347772,2,2,2018-10-04 13:03:00,2018-11-15 15:16:00,,EAGLE__GANSO11,NewEquip,
+347790,1,1,2018-06-01 00:01:00,2018-09-14 17:00:00,,GANSO_MAVERI11,NewEquip,
+347790,2,2,2018-10-04 13:03:00,2018-11-12 16:00:00,,GANSO_MAVERI11,NewEquip,
+347844,1,3,2018-06-02 08:27:00,2019-04-30 19:00:00,,SU_XF_VEALMOOR34507TR1_ST,Vealx2,
+347844,2,3,2019-05-06 17:00:00,2020-02-21 18:30:00,,SU_XF_VEALMOOR34507TR1_ST,", Vealmoor, Vealx2",
+349392,1,1,2018-03-14 00:00:00,2018-03-16 10:45:00,60007964.0,6535_E,,
+349392,2,3,2018-04-02 12:01:00,2018-05-11 19:00:00,60007964.0,6535_E,,
+361523,1,1,2018-08-31 16:01:00,2018-09-28 13:28:00,,AUT1,NewEquip,
+361523,2,2,2018-10-01 13:29:00,2018-11-20 21:00:00,,AUT1,NewEquip,
+361531,1,1,2018-08-31 16:01:00,2018-09-28 13:28:00,,AUT2,NewEquip,
+361531,2,2,2018-10-01 13:29:00,2018-11-20 21:00:00,,AUT2,NewEquip,
+361553,1,1,2018-08-31 16:01:00,2018-09-28 13:28:00,,LA_PAL_PALMAS11,NewEquip,
+361553,2,2,2018-10-01 13:29:00,2018-11-20 21:00:00,,LA_PAL_PALMAS11,NewEquip,
+361562,1,1,2018-08-31 16:01:00,2018-09-28 13:28:00,,LA_PAL_PALMAS21,NewEquip,
+361562,2,2,2018-10-01 13:29:00,2018-11-20 21:00:00,,LA_PAL_PALMAS21,NewEquip,
+363194,1,1,2018-07-18 00:00:00,2018-07-18 08:00:00,,1575_A,54085,
+363194,2,1,2018-11-14 09:27:00,2018-11-14 09:28:00,,1575_A,,
+364057,1,1,2018-08-01 00:00:00,2018-11-06 16:00:00,,TAHOKA T1,Tahoka,
+364057,2,1,2019-11-21 07:00:00,2019-11-22 09:10:00,,TAHOKA T1,Tahoka O,
+364058,1,1,2018-08-01 00:00:00,2018-11-06 16:00:00,,TAHOKA T2,Tahoka,
+364058,2,1,2019-11-21 07:00:00,2019-11-22 09:10:00,,TAHOKA T2,Tahoka O,
+364637,1,1,2018-08-01 00:00:00,2018-11-06 16:00:00,,TAHOKA_TLINE1,Tahoka,
+364637,2,1,2019-11-21 07:00:00,2019-11-22 09:10:00,,TAHOKA_TLINE1,Tahoka O,
+365472,1,1,2018-09-19 00:00:00,2018-10-06 17:00:00,,6116_F,,
+365472,2,1,2018-10-10 10:01:00,2018-10-11 10:00:00,,6116_F,,
+366379,1,1,2018-09-06 00:00:00,2018-09-21 16:00:00,,T2,OCI,
+366379,2,1,2018-10-10 16:00:00,2018-11-30 17:00:00,,T2,Ivory,
+373259,1,1,2018-10-03 00:00:00,2018-10-03 00:01:00,,1940_C,55611,
+373259,2,1,2018-11-14 09:32:00,2018-12-05 10:00:00,,1940_C,55472,
+373260,1,1,2018-10-03 00:00:00,2018-10-03 00:01:00,,2230_G,55611,
+373260,2,1,2018-11-14 09:32:00,2018-12-05 10:00:00,,2230_G,55472,
+374372,1,1,2018-12-05 00:00:00,2019-01-18 17:00:00,,BW_CWS94A,,
+374372,2,1,2019-02-12 19:01:00,2019-02-13 01:03:00,,BW_CWS94A,,
+374373,1,1,2018-12-05 00:00:00,2019-01-18 17:00:00,,CWSHIM94A,,
+374373,2,1,2019-02-12 19:01:00,2019-02-13 01:03:00,,CWSHIM94A,,
+375138,1,1,2018-12-05 00:00:00,2018-12-21 16:00:00,,BLSUMMIT_TRF2,BLSUM,
+375138,2,1,2019-10-01 08:00:00,2019-10-09 18:55:00,,BLSUMMIT_TRF2,BS,
+380192,1,1,2019-02-06 00:00:00,2019-05-03 11:18:00,,PHOEBE_T2,,
+380192,2,1,2019-05-07 14:51:00,2019-05-17 10:00:00,,PHOEBE_T2,,
+382388,1,2,2019-03-06 00:00:00,2019-03-14 23:59:00,,RANCHERO_TL1,,
+382388,2,1,2019-04-26 16:01:00,2019-05-15 11:00:00,,RANCHERO_TL1,,
+382388,3,1,2019-07-10 13:12:00,2019-08-22 12:00:00,,RANCHERO_TL1,,
+386202,1,1,2019-04-03 00:00:00,2019-05-03 17:00:00,,ASHERT_LIPTON11,NewEquip,
+386202,2,1,2019-05-16 13:40:00,2019-05-20 14:54:00,,ASHERT_LIPTON11,,
+386211,1,1,2019-04-03 00:00:00,2019-05-03 17:00:00,,LIPTON_W_BATE11,NewEquip,
+386211,2,1,2019-05-16 13:40:00,2019-05-20 14:54:00,,LIPTON_W_BATE11,,
+395624,1,1,2019-04-03 00:00:00,2019-06-01 13:00:00,,EDITHC_FOARDC11,,
+395624,2,1,2019-06-05 15:05:00,2019-06-30 16:00:00,,EDITHC_FOARDC11,,
+399516,1,1,2019-11-20 00:00:00,2020-01-03 09:48:00,,GRE_GRAHAM1,,
+399516,2,1,2020-05-07 07:48:00,2020-05-18 13:41:00,,GRE_GRAHAM1,Grahman,
+400780,1,2,2019-07-10 00:01:00,2020-01-06 10:38:00,,CANTJKSN_RC1,"SPP2A, SPP2AA",
+400780,2,1,2025-09-10 07:00:00,2025-09-10 12:20:00,,CANTJKSN_RC1,JACK,"REV: Wed Sep 10 07:00:52 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: No load will actually be lost.  the load will be back fed from Bartons Chapel, Walton, Mabank, and Glen Pine"
+400781,1,2,2019-07-10 00:01:00,2020-01-06 10:38:00,,EXPLJKSN_RC1,"SPP2A, SPP2AA",
+400781,2,1,2025-09-10 07:00:00,2025-09-10 12:20:00,,EXPLJKSN_RC1,JACK,"REV: Wed Sep 10 07:00:52 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: No load will actually be lost.  the load will be back fed from Bartons Chapel, Walton, Mabank, and Glen Pine"
+400835,1,2,2019-07-10 00:01:00,2020-01-06 10:38:00,,EXPLMBNK_RC1,"SPP2A, SPP2AA",
+400835,2,1,2025-09-09 07:00:00,2025-09-09 20:00:00,,EXPLMBNK_RC1,MABEXP,REV: Tue Sep 09 07:00:52 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+400976,1,1,2019-07-10 00:01:00,2020-01-07 17:58:00,,EUSTWLTN_RC1,,
+400976,2,1,2023-02-20 08:00:00,2023-02-22 16:00:00,,EUSTWLTN_RC1,EUSWAL,"REV: Mon Feb 20 08:00:45 CST 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: THIS WILL ALLOW CUT IN TO THE NEW WALTON SWITCH
+RAS: NONE
+REQ: THIS WILL ALLOW CUT IN TO THE NEW WALTON SWITCH"
+401132,1,1,2019-07-10 00:01:00,2020-01-07 10:20:00,,ATHNWALTN_RC1,,
+401132,2,1,2022-12-01 00:01:00,2023-06-28 09:39:00,,ATHNWALTN_RC1,,"SUP: This project is in coordination with the Walton Switch project.
+REQ: The energization date has been pushed back
+SUP: NEW RING BUS AT NORTH ATHENS SWITCH
+RAS: NONE
+REQ: NORTH ATHENS REBUILD"
+404118,1,1,2019-08-07 00:00:00,2019-10-28 23:59:00,,AZTECA_CLOSNE11,NewEquip,
+404118,2,1,2019-11-01 13:26:00,2019-11-11 17:22:00,,AZTECA_CLOSNE11,NewEquip,
+404124,1,1,2019-08-07 00:00:00,2019-10-28 23:59:00,,CLOSNE_SE_EDI11,NewEquip,
+404124,2,1,2019-11-01 13:26:00,2019-11-11 17:22:00,,CLOSNE_SE_EDI11,NewEquip,
+408167,1,1,2019-10-23 00:00:00,2019-10-23 00:01:00,,820_G,58706,
+408167,2,1,2020-03-23 10:00:00,2020-03-29 20:56:00,,820_G,20-05018,
+408497,1,1,2019-09-18 00:00:00,2019-12-05 17:35:00,,1318T3131,JCity138,
+408497,2,1,2020-05-06 00:00:00,2020-05-08 10:00:00,,318T3131,WirtzPS,
+415478,1,1,2020-02-19 00:00:00,2020-02-19 00:45:00,,389_A,,
+415478,2,2,2020-05-06 07:30:00,2020-05-15 10:01:00,,389_A,,
+421094,1,2,2019-10-16 00:00:00,2020-02-11 16:36:00,,NBOHR_HARALD1,", Harald 1",
+421094,2,2,2020-02-25 11:00:00,2020-05-04 12:38:00,,NBOHR_HARALD1,"Harald, harald",
+421221,1,2,2019-10-16 00:00:00,2020-02-11 18:11:00,,HARALD T1 GSU,", Harald 1",
+421221,2,2,2020-02-25 11:00:00,2020-05-04 12:38:00,,HARALD T1 GSU,"Harald, harald",
+432598,1,2,2020-02-26 00:00:00,2020-02-28 11:23:00,,1421T4411,Motorman,
+432598,2,3,2020-04-21 10:43:00,2021-12-30 10:30:00,,1421T4411,Motorman,"REQ: Temporary equipment for Motorman sub to allow ONCOR to place their POD. Request to show flow through temp Motorman sub to feed Hazel POD.
+SUP: We were late on extending the new equipment energization outage. The equipment is not expected to energize until dec 2021"
+432599,1,2,2020-02-26 00:00:00,2020-02-28 11:23:00,,432T4411,Motorman,
+432599,2,3,2020-04-21 10:43:00,2021-12-30 10:30:00,,432T4411,Motorman,"REQ: Temporary equipment for Motorman sub to allow ONCOR to place their POD. Request to show flow through temp Motorman sub to feed Hazel POD.
+SUP: We were late on extending the new equipment energization outage. The equipment is not expected to energize until dec 2021"
+437759,1,1,2020-05-06 00:00:00,2020-05-06 00:01:00,,6200_B,,
+437759,2,1,2020-09-21 07:00:00,2020-10-01 20:00:00,,6200_B,,
+438080,1,1,2020-05-06 00:00:00,2020-05-06 00:01:00,,15050_B,61705_1,
+438080,2,1,2020-10-07 00:00:00,2020-10-07 00:01:00,,15050_B,41001,
+438428,1,1,2020-03-04 00:00:00,2020-04-01 15:00:00,,AMADEU_FIGARO11,,
+438428,2,1,2020-06-30 14:19:00,2020-09-15 16:16:00,,AMADEU_FIGARO11,,
+440948,1,1,2020-05-06 00:00:00,2020-06-15 17:00:00,,MPT2,Part 1,
+440948,2,1,2020-06-24 16:01:00,2020-06-27 09:00:00,,MPT2,,
+441293,1,3,2020-05-06 00:00:00,2020-06-19 16:40:00,,MPT1,"PART 1, Part 1",
+441293,2,1,2020-06-27 08:00:00,2020-06-28 12:15:00,,MPT1,DEWOLF,
+445914,1,1,2020-05-13 00:00:00,2020-11-19 16:01:00,,PUTN_SOLANU11,NewEquip,
+445914,2,1,2020-11-25 17:06:00,2020-12-08 17:01:00,,PUTN_SOLANU11,,
+446444,1,3,2020-05-20 00:00:00,2020-10-30 17:00:00,,SOLNM_TOMATO1,,
+446444,2,1,2020-11-06 14:44:00,2020-11-19 17:09:00,,SOLNM_TOMATO1,,
+446444,3,1,2020-11-25 17:09:00,2020-12-31 18:22:00,,SOLNM_TOMATO1,,
+460017,1,4,2020-10-07 00:00:00,2021-12-02 15:31:00,,PST1,PST,"REV: Wed Oct 07 00:00:51 CDT 2020: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New equipment entering the model."
+460017,2,2,2021-12-08 15:31:00,2022-08-09 11:20:00,,PST1,PST,"SUP: .
+REQ: Solsitce equipment and line outaged in AEP00345288.
+REQ: New equipment entering the model."
+461164,1,1,2020-10-14 00:00:00,2020-11-06 00:00:00,,T1,WILD,
+461164,2,2,2020-12-07 09:12:00,2020-12-28 15:22:00,,T1,WILD,
+461739,1,1,2020-10-07 00:00:00,2020-12-08 12:34:00,,T1,ANSON1,
+461739,2,1,2025-10-06 07:00:00,2025-10-20 18:29:00,,T1,ANS1,"SUP: .
+REV: Mon Oct 06 07:00:39 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Connecting Anson 2 site to POI structure"
+465308,1,1,2020-09-02 00:00:00,2020-09-25 16:00:00,,RELOJ_TLINE1,,
+465308,2,3,2020-10-01 19:01:00,2020-12-21 17:25:00,,RELOJ_TLINE1,,
+466567,1,2,2020-12-02 00:00:00,2021-11-01 17:28:00,,14065_A,40650,"SUP: .
+REQ: New equipment energization outages."
+466567,2,1,2022-03-31 18:01:00,2022-07-22 18:13:00,,14065_A,,SUP: .
+467380,1,1,2020-10-14 00:00:00,2020-11-06 00:00:00,,WILDWIND_TLINE1,WILD,
+467380,2,4,2020-12-07 09:12:00,2020-12-29 12:24:00,,WILDWIND_TLINE1,WILD,
+471385,1,1,2020-12-02 00:00:00,2020-12-31 18:39:00,,1062_A,64839_1,
+471385,2,1,2021-04-30 13:15:00,2021-12-04 18:00:00,,1062_A,64839_1,"SUP: extended.  PS1, PS2 inverted
+REV: Fri Apr 30 13:15:47 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+471386,1,1,2020-12-02 00:00:00,2020-12-31 18:39:00,,1063_A,64839_1,
+471386,2,1,2021-04-30 13:15:00,2021-11-21 09:44:00,,1063_A,,"SUP: .
+REV: Fri Apr 30 13:15:47 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+479363,1,1,2020-12-02 00:00:00,2020-12-02 00:01:00,,TR1,PHOENIX,
+479363,2,1,2021-01-06 00:00:00,2021-03-17 12:10:00,,TR1,,
+486971,1,1,2021-02-03 00:00:00,2021-05-03 19:30:00,,T1P,104,
+486971,2,1,2021-05-06 19:47:00,2021-05-21 09:32:00,,T1P,LPL PY,
+486972,1,1,2021-02-03 00:00:00,2021-05-03 19:30:00,,T1S,104,
+486972,2,1,2021-05-06 19:47:00,2021-05-21 09:32:00,,T1S,LPL PY,
+486974,1,1,2021-02-03 00:00:00,2021-05-03 19:30:00,,T2P,104,
+486974,2,1,2021-05-06 19:47:00,2021-05-21 09:32:00,,T2P,LPL PY,
+486975,1,1,2021-02-03 00:00:00,2021-05-03 19:30:00,,T2S,104,
+486975,2,1,2021-05-06 19:47:00,2021-05-21 09:32:00,,T2S,LPL PY,
+487499,1,1,2021-02-03 00:00:00,2021-02-03 00:01:00,,BOGPIR88A,BOGPIR88,"REQ: NOMCR FOR NEW LINES INTO NEW BOGGY SUB WITHDRAWN. WILL RESCHEDULE IN FALL
+REV: Wed Feb 03 00:01:01 CST 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: CUT IN LN88 INTO NEW BOGGY SUB"
+487499,2,2,2021-10-06 00:00:00,2022-10-18 19:00:00,,BOGPIR88A,,"REV: Wed Oct 06 00:02:54 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: INTRODUCE NEW LINE SEGMENT INTO ERCOT MODEL"
+487520,1,1,2021-02-03 00:00:00,2021-02-03 00:01:00,,BOGDER85A,BOGDER85,
+487520,2,1,2021-10-06 00:00:00,2021-10-08 16:47:00,,BOGDER85A,,"REV: Wed Oct 06 00:02:39 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: NEW LINE SEGMENT INTO NEW SUB BOG"
+487530,1,1,2021-02-03 00:00:00,2021-02-03 00:01:00,,BOGSL_85A,BOGSL_85,
+487530,2,1,2021-10-06 00:00:00,2021-10-08 16:47:00,,BOGSL_85A,,"REV: Wed Oct 06 00:02:38 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: NEW LINE SEGMENT INTO NEW SUB BOG"
+487543,1,1,2021-02-03 00:00:00,2021-02-03 00:01:00,,BOGEAB88A,BOGEAB88,"REQ: NOMCR FOR NEW LINES INTO NEW BOGGY SUB WITHDRAWN. WILL RESCHEDULE IN FALL
+REV: Wed Feb 03 00:01:01 CST 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: CUT IN LN88 INTO NEW BOGGY SUB"
+487543,2,2,2021-10-06 00:00:00,2022-10-18 19:00:00,,BOGEAB88A,,"REV: Wed Oct 06 00:02:53 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: INTRODUCE NEW LINE SEGMENT IN ERCOT MODEL"
+489283,1,1,2021-02-03 00:00:00,2021-05-03 19:44:00,,LPLSE_LPLPY1,110,
+489283,2,1,2021-05-06 20:41:00,2021-06-08 16:06:00,,LPLSE_LPLPY1,202,"SUP: Energized new transmission line between LPL PY and LPL SE
+REV: Thu May 06 20:41:28 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: LPL PY to SE new equipment"
+493688,1,1,2021-10-06 00:00:00,2021-10-08 17:30:00,,T2H,BG101021,"REV: Wed Oct 06 00:02:42 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: Energizing equipment for first time and conducting post energizing checks."
+493688,2,3,2021-10-13 09:44:00,2022-08-01 00:09:00,,T2H,BG061822,"REQ: Connected to outage # 30557
+SUP: This equipment is not being Operational until T2 is energized (06/18/22). This equipment is all in Boggy's Bay 4 where T2 is located. CNP Line 4 Ckt. 88 to South Channel and DSC 1884 be operational later on in Oct. 2022 (subject of another outage form)."
+493691,1,1,2021-10-06 00:00:00,2021-10-08 17:30:00,,T5H,BG101021,"REV: Wed Oct 06 00:02:42 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: Energizing equipment for first time and conducting post energizing checks."
+493691,2,2,2021-10-13 09:06:00,2022-04-25 15:26:00,,T5H,BG041822,"REQ: Forced Outages on this equipment until new equipment is Operational in April 18,2022.
+SUP: This equipment is not being Operational until T5 is energized (04/18/22). This equipment is all in Boggy's Bay 2 where T5 is located. CNP Line 3 Ckt. 88 to South Channel and DSC 1885 be operational later on in 4/18/22 (subject of another outage form)."
+493697,1,1,2021-10-06 00:00:00,2021-10-08 17:30:00,,T6H,BG101021,"REV: Wed Oct 06 00:02:42 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: Energizing equipment for first time and conducting post energizing checks."
+493697,2,2,2021-10-13 09:15:00,2022-04-01 13:00:00,,T6H,BG032722,"REQ: Forced Outages on this equipment until new equipment is Operational in March 27,2022.
+SUP: This equipment is not being Operational until Transformer 6 is Operational on March 27, 2022."
+493700,1,1,2021-10-06 00:00:00,2021-10-08 17:30:00,,T1,BG101021,"REV: Wed Oct 06 00:02:42 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: Energizing equipment for first time and conducting post energizing checks."
+493700,2,2,2021-10-13 09:26:00,2021-12-09 17:00:00,,T1,BG120921,"REQ: Forced Outages on this equipment until new equipment is Operational in Decemeber 9,2021. * Connected to outage # 30153
+SUP: This equipment is not being Operational until Transformer T1 is Operational on December 9th, 2021."
+493701,1,1,2021-10-06 00:00:00,2021-10-08 17:30:00,,T3,BG101021,"REV: Wed Oct 06 00:02:42 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: Energizing equipment for first time and conducting post energizing checks."
+493701,2,2,2021-10-13 08:51:00,2022-03-04 17:00:00,,T3,BG030422,"REQ: Forced Outages on this equipment until new equipment is Operational in March 04,2022. * Connected to outage # 30538
+SUP: T3 being relocated from Shell to Boggy. This equipment not being Operational until T3 is energized (03/04/22). This equipment is all in Bay 3 where T3 is located. T6H1 and T6 to be operational later on in March 2022. T6 and T6H1 subject of other outage form."
+497123,1,1,2021-01-11 00:00:00,2021-01-20 11:06:00,,LILY_TLINE1,lily,
+497123,2,1,2021-02-03 00:01:00,2021-04-08 14:58:00,,LILY_TLINE1,lily,
+497350,1,1,2021-01-11 00:00:00,2021-01-20 11:06:00,,T1,lily,
+497350,2,1,2021-02-03 00:01:00,2021-04-08 14:58:00,,T1,lily,
+497670,1,1,2021-05-12 00:00:00,2021-05-12 01:00:00,,VINSW_CPL1,COPLGRAP,
+497670,2,1,2021-12-05 05:00:00,2021-12-12 20:00:00,,VINSW_CPL1,,"SUP: Energized for relay testing
+REV: Sun Dec 05 05:00:19 CST 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Oncor construction of New Vineyard Switch.  ER will be the extent of the outage."
+500354,1,1,2021-04-01 00:00:00,2021-05-06 15:20:00,,T1,,
+500354,2,1,2022-11-16 18:01:00,2022-11-21 12:59:00,,T1,,SUP: New equipment energization
+502660,1,1,2021-04-01 00:00:00,2021-04-30 16:20:00,,BATCAVE_TLINE1,,
+502660,2,1,2021-06-03 00:01:00,2021-06-03 00:02:00,,BATCAVE_TLINE1,,SUP: outage started by mistake
+502803,1,1,2021-04-01 00:00:00,2021-04-30 16:20:00,,T1,,
+502803,2,1,2021-06-03 00:01:00,2021-06-03 00:02:00,,T1,,SUP: outage entered by mistake
+504317,1,3,2021-05-05 00:00:00,2021-05-15 02:40:00,,790_F,67184_1,
+504317,2,1,2024-11-01 00:00:00,2024-12-05 13:26:00,,790_F,,"SUP: .
+REV: Fri Nov 01 00:02:04 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Line clearance needed in order to cut in station A-frame for the new Rendon Substation."
+505458,1,1,2021-05-05 00:00:00,2021-07-23 14:00:00,,PLN_TLINE1,PLN Tx,"REV: Wed May 05 00:02:41 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+SUP: New transmission equipment outages for Ramsey/Plainview Solar."
+505458,2,1,2022-12-29 08:00:00,2022-12-30 18:00:00,,PLN_TLINE1,PLN,"REV: Thu Dec 29 08:00:55 CST 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: Main Breaker K010 Tripped Open. Plainview Unit #1 offline.  Need GSU testing to help find cause of Plant outage. This requires Hiljie/ Plainview line de-energized.
+REQ: Need Ramsey/Plainview substation isolated for substation GSU Testing."
+509640,1,1,2021-05-12 00:00:00,2021-05-18 12:00:00,,15050_E,,
+509640,2,1,2024-04-10 06:59:00,2024-04-12 18:52:00,,15050_E,24-06597,"SUP: .
+REQ: This clearance is needed to disconnect the temporary bypass, jumpers and floaters around where Merrick POD will be cut into. Manager's approval email for HIO line submittal has been attached."
+514362,1,1,2021-07-01 00:00:00,2021-09-29 09:00:00,,T1,,"REV: Thu Jul 01 00:01:15 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New equipment energization for all Flower Valley II transmission equipment (sans pseudo breaker)"
+514362,2,1,2022-03-23 08:00:00,2022-03-23 14:24:00,,T1,FVII,"REV: Wed Mar 23 08:00:19 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: Complete punch list tasks for site completion												 Complte tasks for COD"
+515202,1,1,2021-07-01 00:00:00,2021-09-15 16:35:00,,T2,,"SUP: T2 Energized and soaking for 24 hours.
+REV: Thu Jul 01 00:00:36 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Blackjack new equipment energization"
+515202,2,2,2022-03-02 12:26:00,2022-03-29 09:40:00,,T2,New Eq,SUP: Forced to cover the mistake of ending the group outage until the planned outage can start
+520203,1,1,2021-09-01 00:00:00,2021-09-01 00:01:00,,EGLWC_02A,,REV: Wed Sep 01 00:01:09 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+520203,2,1,2022-01-05 00:00:00,2022-03-11 16:25:00,,EGLWC_02A,,"SUP: WORK COMPLETE
+REV: Wed Jan 05 00:00:03 CST 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+521078,1,1,2021-09-09 00:00:00,2021-12-07 16:00:00,,SCOUT_STMBOA11,NewEquip,"SUP: Continues
+REV: Thu Sep 09 00:00:29 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New Equipment not yet in service."
+521078,2,2,2021-12-10 16:43:00,2022-02-18 17:00:00,,SCOUT_STMBOA11,NewEquip,"SUP: outage will continue
+REQ: New Equipment not yet in service. Outage continues"
+522217,1,2,2021-09-01 00:00:00,2021-10-03 09:21:00,,T1,"Blue Jay, PLANT","REQ: creating outage ticket in other ID this  one expired
+REV: Wed Sep 01 00:01:26 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+522217,2,2,2021-10-27 10:32:00,2021-12-16 11:49:00,,T1,"BLUEEQT2, BLUEJAYT","SUP: Outage expired, New planned end will be submitted
+SUP: Missing equipment added until energization"
+522218,1,2,2021-09-01 00:00:00,2021-10-03 09:21:00,,T2,"Blue Jay, PLANT","REQ: creating outage ticket in other ID this  one expired
+REV: Wed Sep 01 00:01:26 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+522218,2,2,2021-10-27 10:32:00,2021-11-12 10:31:00,,T2,BLUEEQT2,"SUP: Outage expired, New planned end will be submitted
+SUP: Missing equipment added until energization"
+533032,1,1,2021-11-03 00:00:00,2021-12-09 14:00:00,,KT2,BFCK T2,"REV: Wed Nov 03 00:01:42 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New Equipment Energization"
+533032,2,1,2021-12-13 17:10:00,2021-12-14 10:37:00,,KT2,BCK,SUP: Equipment with open trans equip upline
+539264,1,3,2021-12-01 00:00:00,2021-12-30 16:00:00,,T2,"NOBLE, Noble HS","REV: Wed Dec 01 00:02:52 CST 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New equipment energization tickets for Noble Solar"
+539264,2,1,2022-01-06 21:26:00,2022-01-12 12:31:00,,T2,NOB,"SUP: 89T2, 52T2 & T2 were ended prematurely and will remain de-energized."
+547757,1,1,2021-11-03 00:00:00,2021-12-10 01:13:00,,APOGEE_TLINE1,KNGCREEK,"REV: Wed Nov 03 00:01:49 CDT 2021: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New Equipment Energization"
+547757,2,1,2021-12-17 17:01:00,2021-12-29 14:11:00,,APOGEE_TLINE1,,"SUP: Line energized
+SUP: New equipment"
+552333,1,3,2022-01-05 00:00:00,2022-12-06 08:00:00,,"CIS_BSS1, CKT_31371",,"SUP: will continue with new outage
+REV: Wed Jan 05 00:01:12 CST 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: NOMCR for new Cistern substation cut-in. Associated with AEN00094069."
+552333,2,1,2023-05-16 08:00:00,2023-05-16 13:04:00,,CKT_31371,23-00854,"REV: Tue May 16 08:00:59 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Put SSVT in service"
+555249,1,1,2022-02-02 00:00:00,2022-05-20 07:56:00,,T1,,"SUP: Site has been energized
+SUP: LCRA has yet to give an update on when work is expected to be completed
+SUP: Date is moved, based on LCRA TSP line test
+SUP: Expected energization date is tomorrow 5/17
+SUP: New expected dates
+SUP: LCRA (TSP) still has to complete works at their POI - Cedar Canyon Switching Station (CEDACA) before HI-LONEB can energize. The latest expected completion days is 4/25. We were just recently informed of this and adjusting project schedule to match.
+REV: Wed Feb 02 00:01:52 CST 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+SUP: New Equipment Energization per ERCOT Request for the High Lonesome BESS System"
+555249,2,2,2025-12-19 10:57:00,2026-03-01 05:05:00,,HILO,Hi_Lo,"REV: Fri Dec 19 11:39:45 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: High Lonesome transmission equipment out and pending energization based upon completion of construction."
+561049,1,1,2022-03-02 00:00:00,2022-06-08 14:37:00,,T1,,"SUP: Site has energized
+REV: Wed Mar 02 00:01:18 CST 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New equipment Outages for the Roseland Project
+SUP: New equipment outages for the Roseland project as requested by ERCOT Outage specialist"
+561049,2,1,2022-09-09 17:01:00,2022-09-09 17:02:00,,T1,,"SUP: Equipment was added to this list incorrectly, equipment energized"
+561050,1,1,2022-03-02 00:00:00,2022-06-08 15:24:00,,T2,,"SUP: Site has energized
+REV: Wed Mar 02 00:01:18 CST 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+SUP: New equipment outages for the Roseland project as requested by ERCOT Outage specialist
+REQ: New equipment Outages for the Roseland Project"
+561050,2,1,2022-09-09 17:01:00,2022-09-22 10:47:00,,T2,,SUP: Equipment was restored
+561051,1,1,2022-03-02 00:00:00,2022-06-08 14:31:00,,T3,,"SUP: Site has energized
+REV: Wed Mar 02 00:01:18 CST 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New equipment Outages for the Roseland Project
+SUP: New equipment outages for the Roseland project as requested by ERCOT Outage specialist"
+561051,2,1,2022-09-09 17:01:00,2022-09-22 10:45:00,,T3,,SUP: Equipment was restored
+574184,1,1,2022-05-04 00:00:00,2022-05-04 00:01:00,,DABLON01A,,REV: Wed May 04 00:04:14 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+574184,2,1,2022-06-02 00:00:00,2022-07-21 11:08:00,,DABLON01A,,"REV: Thu Jun 02 00:02:30 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New Equipment Energization - Add to the model"
+575144,1,1,2022-04-01 00:01:00,2022-09-30 13:00:00,,KT1,,"REQ: Per Angie Moy email on 9/30/2022, we are ending the outages for equipment: K011, K010, KT1, and LOAD1
+REV: Fri Apr 01 00:04:12 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Revised start date of 4/1/2022 for New Energization of Sandy Branch (SBE).  Another ticket will be created to cover outage period through 5/31/2023"
+575144,2,1,2023-04-01 00:01:00,2023-04-18 11:15:00,,KT1,,"REV: Sat Apr 01 00:01:21 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: ticket  created to cover outage period through 5/31/2023"
+575144,3,1,2023-09-28 00:00:00,2023-10-22 09:31:00,,KT1,,"SUP: energized and closed state.
+REQ: Entering equipment outages from QSE transfer."
+580444,1,1,2022-07-06 00:00:00,2022-07-06 00:05:00,,ETP_GALOW1,NEW,"REV: Wed Jul 06 00:00:08 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model."
+580444,2,1,2022-08-03 00:00:00,2022-08-03 00:05:00,,ETP_GALOW1,NEW,"SUP: .
+REV: Wed Aug 03 00:01:29 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+580445,1,1,2022-07-06 00:00:00,2022-07-06 00:05:00,,GALOW_RICEBI1,NEW,"REV: Wed Jul 06 00:00:08 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model."
+580445,2,1,2022-08-03 00:00:00,2022-08-03 00:05:00,,GALOW_RICEBI1,NEW,"SUP: .
+REV: Wed Aug 03 00:01:29 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+581822,1,1,2022-07-01 00:00:00,2022-07-01 00:05:00,,SCHNDR_BIGHIL22,,"REV: Fri Jul 01 00:00:42 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model."
+581822,2,3,2023-06-12 10:12:00,2023-12-15 11:01:00,,SCHNDR_BIGHIL22,,"SUP: .
+REQ: 2nd circuit being built between Big Hill and Schneeman Draw"
+585347,1,1,2022-09-14 00:00:00,2023-01-30 10:00:00,,6118_D,,"SUP: .
+REV: Wed Sep 14 00:00:59 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model"
+585347,2,1,2023-05-31 18:01:00,2024-05-15 17:52:00,,6118_D,,SUP: .
+586751,1,1,2022-09-01 00:00:00,2022-12-05 13:00:00,,CROSSO_PALOUS11,NEWEQUIP,"REV: Thu Sep 01 00:02:05 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New equipment entering the model. Not yet in service"
+586751,2,1,2022-12-12 10:44:00,2022-12-12 20:16:00,,CROSSO_PALOUS11,NEWEQUIP,"SUP: site energized
+REQ: Palouse has been energized.  This is to put pseudo switch in right position."
+595306,1,1,2022-11-09 00:00:00,2022-12-02 13:37:00,,6520_F,,"REV: Wed Nov 09 00:01:10 CST 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model"
+595306,2,1,2022-12-06 08:28:00,2022-12-17 00:27:00,,6520_F,,SUP: Dry Wind Tap was placed in service.  No DPC_CAMR associated with this project.  ERCOT/Cody & Shift Engineer/Cody granted permission to place this new line & station in service.  ERCOT/Cody was notified when Dry Wind Tap & the Dry Wind Tap to Sandhills 138 kV line was energized.
+601938,1,2,2022-11-02 00:00:00,2022-12-16 14:50:00,,KT1,MYRT0,"SUP: Outage continuing on subsequent ticket.
+REQ: Outage continuing on subsequent ticket.
+REQ: New equipment energization"
+601938,2,1,2023-04-24 06:43:00,2023-04-24 06:44:00,,KT1,MYRTLE,"SUP: x
+REQ: Equipment states documented for temporary outage.  Substation opened for safety as unit is working toward new engergization."
+601939,1,2,2022-11-02 00:00:00,2022-12-16 14:50:00,,KT2,MYRT0,"SUP: Outage continuing on subsequent ticket.
+REQ: Outage continuing on subsequent ticket.
+REQ: New equipment energization"
+601939,2,1,2023-04-24 06:43:00,2023-04-24 06:44:00,,KT2,MYRTLE,"SUP: x
+REQ: Equipment states documented for temporary outage.  Substation opened for safety as unit is working toward new engergization."
+602570,1,1,2022-11-02 00:00:00,2022-12-16 09:51:00,,T1A,,"SUP: Site was approved to energize, not generate.
+REV: Wed Nov 02 00:03:08 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model."
+602570,2,1,2022-12-28 10:25:00,2023-01-11 23:59:00,,T1A,Inertia,REQ: Per Angie Moy request via email
+602571,1,1,2022-11-02 00:00:00,2022-12-16 09:51:00,,T1B,,"SUP: Site was approved to energize, not generate.
+REV: Wed Nov 02 00:03:08 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model."
+602571,2,1,2022-12-28 10:25:00,2023-01-11 23:59:00,,T1B,Inertia,REQ: Per Angie Moy request via email
+602572,1,1,2022-11-02 00:00:00,2022-12-16 09:51:00,,T2,,"SUP: Site was approved to energize, not generate.
+REV: Wed Nov 02 00:03:08 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model."
+602572,2,1,2022-12-28 10:25:00,2023-01-11 23:59:00,,T2,Inertia,REQ: Per Angie Moy request via email
+604347,1,1,2022-11-02 00:00:00,2023-04-25 23:59:00,,T1,FENCESLR,"SUP: Switched QSE to ENEL13
+REV: Wed Nov 02 00:03:58 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+604347,2,2,2023-05-05 00:01:00,2023-11-21 12:31:00,,T1,FPOST,SUP: New equipment in commissioning
+604348,1,1,2022-11-02 00:00:00,2023-04-25 23:59:00,,T2,FENCESLR,"SUP: Switched QSE to ENEL13
+REV: Wed Nov 02 00:03:58 CDT 2022: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+604348,2,2,2023-05-05 00:01:00,2023-11-21 12:31:00,,T2,FPOST,SUP: New equipment in commissioning
+605101,1,2,2022-12-01 00:00:00,2022-12-15 18:00:00,,T-3161,MHOSCLOS,"REQ: WETT Fletcher and ERCOT Moy spoke regarding this outage on 12/1
+SUP: New Equipment Energization for Mhos SS"
+605101,2,1,2023-01-05 00:00:00,2023-03-09 10:05:00,,T-3161,NVAPline,"REV: Thu Jan 05 00:01:29 CST 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New Equipment Energization
+REQ: Lines will be up and energized via jumpers over NVAP station until Mar 9th.  I spoke with Angie Moy about the delay from in service to commissioning, she directed this solution."
+605102,1,2,2022-12-01 00:00:00,2022-12-15 18:00:00,,T-3211,MHOSCLOS,"REQ: WETT Fletcher and ERCOT Moy spoke regarding this outage on 12/1
+SUP: New Equipment Energization for Mhos SS"
+605102,2,1,2023-01-05 00:00:00,2023-03-09 10:05:00,,T-3211,NVAPline,"REV: Thu Jan 05 00:01:29 CST 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New Equipment Energization
+REQ: Lines will be up and energized via jumpers over NVAP station until Mar 9th.  I spoke with Angie Moy about the delay from in service to commissioning, she directed this solution."
+609266,1,1,2023-01-05 00:00:00,2023-01-27 00:00:00,,T-1031,NVAP,"REV: Thu Jan 05 00:01:04 CST 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New Equipment Energization of the Nova Prime SS"
+609266,2,1,2023-03-22 15:04:00,2023-04-10 14:52:00,,T-1031,NVAP138,"REQ: Resubmitted due to incorrectly being completed early.
+SUP: New Equipment Energization that is being resubmitted due to being inadvertently completed early."
+610169,1,1,2022-12-01 00:00:00,2022-12-01 00:01:00,,413_A,,SUP: .
+610169,2,1,2023-02-10 07:19:00,2023-06-28 10:44:00,,413_A,,"SUP: the line has been energized.
+REV: Fri Feb 10 07:19:03 CST 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+618411,1,3,2023-04-05 00:00:00,2024-07-25 17:05:00,,138_LNC_GDA1,76626-1,"SUP: Equipment is loaded in model but not yet energized. Outage could not be extended due to over a year.
+REV: Wed Apr 05 00:00:13 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Adding new line terminal to future Bitcoin Genesis Digital Assets and a new terminal feeding 4-40 MVAR capbanks. Heidi"
+618411,2,1,2026-04-30 15:00:00,2027-04-30 14:59:00,,138_LNC_GDA1,26-00335,REQ: Waiting on customer
+620175,1,1,2023-04-05 00:00:00,2023-04-14 18:00:00,,1765_B,47343,"SUP: ...
+REV: Wed Apr 05 00:00:47 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+620175,2,1,2023-06-29 14:30:00,2023-12-02 07:59:00,,1765_B,,"SUP: .
+REQ: forced outage on equipment not yet in service"
+621287,1,1,2023-03-01 00:00:00,2023-10-23 06:42:00,,6280_A,40622,"SUP: .
+REV: Wed Mar 01 00:01:57 CST 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+621287,2,1,2023-12-15 18:01:00,2024-06-12 12:00:00,,6280_A,40622,SUP: updating to new in service date
+621288,1,1,2023-03-01 00:00:00,2023-10-23 06:42:00,,6280_B,40622,"SUP: .
+REV: Wed Mar 01 00:01:57 CST 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+621288,2,1,2023-12-15 18:01:00,2024-06-12 12:00:00,,6280_B,40622,SUP: updating to new in service date
+622110,1,1,2023-08-02 00:00:00,2023-08-02 09:32:00,,ANGSTR_GRISSO11,NEWEQUIP,"SUP: .
+REV: Wed Aug 02 00:01:18 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New Equipment entering the  model"
+622110,2,1,2024-01-01 00:00:00,2024-11-15 12:59:00,,ANGSTR_GRISSO11,,"SUP: .
+REQ: not ready for service"
+626574,1,1,2023-05-03 00:00:00,2023-10-16 23:23:00,,1395_A,46888,REV: Wed May 03 00:02:30 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+626574,2,1,2026-01-09 18:16:00,2026-05-27 13:29:00,,1395_A,,SUP: ACF was signed off 5-27-26 by TGO as line energized.
+630747,1,3,2023-05-03 00:00:00,2024-05-08 12:00:00,,15030_A,46909,"SUP: force extended on new outage, equipment not yet in service
+REV: Wed May 03 00:02:45 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+630747,2,1,2024-08-08 15:30:00,2024-09-30 18:55:00,,15030_A,46909,"SUP: In service.
+REQ: force extension equipment not yet in service"
+639836,1,4,2023-05-03 00:30:00,2023-10-15 10:45:00,,T1,Catleman,"REV: Wed May 03 00:30:25 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+SUP: New Equipment Energization
+RAS: New Equipment Energization
+REQ: New Equipment Energization"
+639836,2,1,2023-11-17 18:00:00,2023-11-18 01:28:00,,T1,Cap Bank,"REV: Fri Nov 17 18:00:36 CST 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: Site needs to be offline to Install capacitor 52C1"
+640238,1,2,2023-06-01 00:00:00,2023-08-08 10:13:00,,T2,HS 2,"REV: Thu Jun 01 00:02:13 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New Equipment Energization Ticket"
+640238,2,1,2023-09-22 18:52:00,2023-09-26 16:25:00,,T2,Coral2,SUP: New Equipment not energized.
+649088,1,1,2023-10-04 00:00:00,2024-02-27 00:00:00,,HYDR_ESS_TLINE1,QBRD11,REV: Wed Oct 04 00:03:22 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+649088,2,4,2024-04-15 18:15:00,2024-05-21 12:20:00,,HYDR_ESS_TLINE1,"QBRD11, QSUE74",REQ: Adding a Forced outage request before the new Planned Outage request for New Equipment Energization begin.
+649571,1,1,2023-10-04 00:00:00,2024-02-27 00:00:00,,T1,QBRD11,REV: Wed Oct 04 00:03:22 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+649571,2,4,2024-04-15 18:15:00,2024-05-21 12:20:00,,T1,"QBRD11, QSUE74",REQ: Adding a Forced outage request before the new Planned Outage request for New Equipment Energization begin.
+649725,1,1,2023-10-04 00:00:00,2024-03-15 00:00:00,,PALE_ESS_TLINE1,QBRD11,REV: Wed Oct 04 00:03:18 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+649725,2,4,2024-04-18 00:00:00,2024-07-01 16:01:00,,PALE_ESS_TLINE1,"QBRD11, QSUE74","REV: Thu Apr 18 00:00:13 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Extending the Planned outage request based on commissioning schedule."
+649836,1,1,2023-10-04 00:00:00,2024-03-15 00:00:00,,T1,QBRD11,REV: Wed Oct 04 00:03:18 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+649836,2,3,2024-04-18 00:00:00,2024-07-01 12:00:00,,T1,"QBRD11, QSUE74","REV: Thu Apr 18 00:00:13 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Extending the Planned outage request based on commissioning schedule."
+655149,1,1,2023-10-03 23:39:00,2023-10-03 23:40:00,,695_A,,
+655149,2,2,2023-10-15 18:01:00,2023-11-01 12:00:00,,695_A,,REV: Sun Oct 15 18:01:27 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+661546,1,1,2023-10-04 00:00:00,2024-04-17 23:59:00,,T1,QBRD11,REV: Wed Oct 04 00:03:23 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+661546,2,2,2024-05-01 00:00:00,2024-06-05 12:20:00,,T1,QSUE74,"SUP: . ERCOT requested that outages be resubmitted as a Forced Outage for the first three days of the QSE
+REQ: Resubmitting for QSE change (from QBRD11 to QSUE 74)  Resubmitting to include additional components."
+661931,1,1,2023-10-04 00:00:00,2024-04-17 23:59:00,,TORTO_BA_TLINE1,QBRD11,REV: Wed Oct 04 00:03:23 CDT 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+661931,2,2,2024-05-01 00:00:00,2024-06-05 12:20:00,,TORTO_BA_TLINE1,QSUE74,"SUP: . ERCOT requested that outages be resubmitted as a Forced Outage for the first three days of the QSE
+REQ: Resubmitting for QSE change (from QBRD11 to QSUE 74)  Resubmitting to include additional components."
+665428,1,1,2023-12-01 00:00:00,2023-12-01 00:01:00,,HIDOUT_WISE1,HIDEOUT,"REV: Fri Dec 01 00:05:00 CST 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Line sections for New Hideout POI."
+665428,2,1,2024-01-24 18:01:00,2024-05-08 17:19:00,,HIDOUT_WISE1,,"SUP: Line from Jack County -Hideout - Wise County has been energized. Additional equipment at Hideout will be energized at a later date.
+REV: Wed Jan 24 18:01:34 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New equipment energization. New Hideout POI being constructed for New Oncor Runaway Bay Sub."
+665429,1,1,2023-12-01 00:00:00,2023-12-01 00:01:00,,JCKCN_HIDOUT1,HIDEOUT,"REV: Fri Dec 01 00:05:00 CST 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Line sections for New Hideout POI."
+665429,2,1,2024-01-24 18:01:00,2024-05-08 17:19:00,,JCKCN_HIDOUT1,,"SUP: Line from Jack County -Hideout - Wise County has been energized. Additional equipment at Hideout will be energized at a later date.
+REV: Wed Jan 24 18:01:34 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New equipment energization. New Hideout POI being constructed for New Oncor Runaway Bay Sub."
+668910,1,1,2023-12-01 00:00:00,2024-01-31 12:40:00,,T1,,REV: Fri Dec 01 00:03:24 CST 2023: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+668910,2,1,2024-03-06 08:00:00,2024-03-06 17:00:00,,T1,QBRD11,"REV: Wed Mar 06 08:00:21 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Transformer tap changer position adjustment"
+672174,1,2,2024-01-04 00:00:00,2024-04-15 06:59:00,,CMLCHE_RESNIK21,NewEquip,"SUP: Continues
+REV: Thu Jan 04 00:00:50 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New equipment entering the model. Not in service."
+672174,2,1,2024-07-23 10:06:00,2025-02-14 06:59:00,,CMLCHE_RESNIK21,,"SUP: .
+REQ: CML not ready for service"
+677536,1,1,2024-02-01 00:00:00,2024-02-19 14:00:00,,KT2,ROW2tran,"REV: Thu Feb 01 00:01:59 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: new equipment for commissioning resource"
+677536,2,1,2024-03-07 18:30:00,2024-03-07 21:30:00,,KT2,ROW,"REV: Thu Mar 07 18:30:45 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: Outage required to swich control room over to permanent plant power source from tempory construction power source.
+REQ: Outage required to switch control room over to permanent plant power source from tempory construction power source."
+679670,1,1,2024-04-03 00:00:00,2024-04-03 00:01:00,,KT1,CLO ener,"REV: Wed Apr 03 00:03:02 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: commissioning new equipment"
+679670,2,1,2024-04-17 00:00:00,2024-05-01 17:22:00,,KT1,,"REV: Wed Apr 17 00:00:40 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New Equipment Energization"
+679670,3,1,2024-05-10 16:30:00,2024-05-13 15:45:00,,KT1,,"REQ: [240510_1630_2558]
+SUP: new equipment energization "
+679671,1,1,2024-04-03 00:00:00,2024-04-03 00:01:00,,KT2,CLO ener,"REV: Wed Apr 03 00:03:02 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: commissioning new equipment"
+679671,2,1,2024-04-17 00:00:00,2024-05-01 17:22:00,,KT2,,"REV: Wed Apr 17 00:00:40 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New Equipment Energization"
+681398,1,2,2024-04-10 00:00:00,2024-04-22 12:40:00,,245_A,48528,REV: Wed Apr 10 00:01:21 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+681398,2,1,2024-04-30 18:01:00,2024-05-14 12:52:00,,245_A,,SUP: .
+700396,1,1,2024-05-01 00:00:00,2024-06-12 13:54:00,,527_A,49664,"SUP: closed
+SUP: .
+REV: Thu May 02 10:34:15 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+700396,2,1,2024-10-09 07:25:00,2024-12-20 22:30:00,,527_A,49664,SUP: .
+700397,1,1,2024-05-01 00:00:00,2024-06-12 13:54:00,,529_B,49664,"SUP: closed
+SUP: .
+REV: Thu May 02 10:34:15 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+700397,2,1,2024-10-09 07:25:00,2024-12-20 22:30:00,,529_B,49664,SUP: .
+707045,1,1,2024-07-03 00:00:00,2024-07-18 14:41:00,,GKS_BESS_TLINE1,,"REV: Wed Jul 03 00:00:46 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+SUP: New Equipment Energization
+REQ: [240515_1059_2113]"
+707045,2,1,2024-09-14 09:00:00,2024-09-15 19:10:00,,GKS_BESS_TLINE1,GKC,"REV: Sat Sep 14 09:00:42 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: Full site outage to thoroughly inspect equipment prior to site energization
+REQ: [240913_1129_0936]"
+707168,1,1,2024-07-03 00:00:00,2024-07-18 15:30:00,,MPT1,,"REV: Wed Jul 03 00:00:46 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: [240515_1059_2113]
+SUP: New Equipment Energization"
+707168,2,1,2024-09-14 09:00:00,2024-09-15 19:10:00,,MPT1,GKC,"REV: Sat Sep 14 09:00:42 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: Full site outage to thoroughly inspect equipment prior to site energization
+REQ: [240913_1129_0936]"
+710668,1,1,2024-08-01 00:00:00,2025-03-01 23:59:00,,FP_SD1,STRAND,"SUP: New outages submitted due to expired entries. New End Date is 4/30/25.
+REV: Thu Aug 01 00:00:56 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: ENGINEERING WILL BE SUBMITTING THE NOMCRS FOR EXISTING OPERATIONAL MODEL AS PART OF THE AIRPORT SUBSTATION DECOMMISSION PROJECT."
+710668,2,1,2025-03-10 22:31:00,2025-05-22 15:33:00,,FP_SD1,STRAND,"REQ: Line was energized on May 22 at 1533.
+REQ: As per Mr. Martinez, this outage needs to be extended until the end of May.
+SUP: As per Mr. Martinez, this outage needs to be extended until the end of May.
+REQ: ORIGINAL OUTAGE BPU00023175 and BPU00023174 WAS NOT EXTENDED DURING THE TIMEFRAME PERMITTED. A NEW OUTAGE IS BEING SUBMITTED.  ENGINEERING WILL BE SUBMITTING THE NOMCRS FOR EXISTING OPERATIONAL MODEL AS PART OF THE AIRPORT SUBSTATION DECOMMISSION PROJECT."
+710681,1,1,2024-08-01 00:00:00,2025-03-01 23:59:00,,SP_SM1,STRAND,"SUP: New outages submitted due to expired entries. New End Date is 4/30/25.
+REV: Thu Aug 01 00:00:56 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: ENGINEERING WILL BE SUBMITTING THE NOMCRS FOR EXISTING OPERATIONAL MODEL AS PART OF THE AIRPORT SUBSTATION DECOMMISSION PROJECT."
+710681,2,1,2025-03-10 22:31:00,2025-05-10 10:21:00,,SP_SM1,,"REQ: the 138kv line from south plant to southmost is energized.
+SUP: As per Mr. Martinez, this outage needs to be extended until the end of May.
+REQ: As per Mr. Martinez, this outage needs to be extended until the end of May.
+REQ: ORIGINAL OUTAGE BPU00023175 and BPU00023174 WAS NOT EXTENDED DURING THE TIMEFRAME PERMITTED. A NEW OUTAGE IS BEING SUBMITTED.  ENGINEERING WILL BE SUBMITTING THE NOMCRS FOR EXISTING OPERATIONAL MODEL AS PART OF THE AIRPORT SUBSTATION DECOMMISSION PROJECT."
+719944,1,2,2024-10-01 23:55:00,2024-11-15 18:00:00,,14120_A,49455,REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+719944,2,1,2024-12-03 15:17:00,2024-12-09 16:42:00,,14120_A,,"SUP: .
+REQ: extend new equipment"
+719945,1,2,2024-10-01 23:55:00,2024-11-15 18:00:00,,6481_G,49455,REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+719945,2,1,2024-12-03 15:17:00,2024-12-09 16:42:00,,6481_G,,"SUP: .
+REQ: extend new equipment"
+719946,1,2,2024-10-01 23:55:00,2024-11-15 18:00:00,,6482_E,49455,REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+719946,2,1,2024-12-03 15:17:00,2024-12-09 16:43:00,,6482_E,,"SUP: .
+REQ: extend new equipment"
+722121,1,1,2024-11-01 00:00:00,2025-03-27 10:12:00,,T1,Anol_Tx,"SUP: Energization in process. Outages for these points are now ended.
+SUP: Energization is occurring in phases over the next few days.
+REV: Fri Nov 01 00:02:08 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: Anole substation out during new equipment energization. Energization date is 3/27/2025. Emergency restoration hours set to outage length because equipment is not able to be brought online prior to energization date in the event of an emergency."
+722121,2,1,2025-05-20 10:30:00,2025-05-20 16:58:00,,T1,ANOLE TX,"SUP: Work complete
+REV: Tue May 20 11:58:44 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Substation maintenance work for new equipment energization"
+722136,1,2,2024-11-01 00:00:00,2024-12-18 11:00:00,,T1,BKSL_TX,"SUP: Burksol energization is starting today.
+SUP: Energization rescheduled
+SUP: Received notice from RE that energization is delayed
+SUP: Burksol onsite team is planning to energize substation (12/11) at 9AM Central, ending the outages on following points: BKSL_TLINE1 89-L1 52-T1 T1 Remaining points will be re-entered as new outages.
+SUP: New planned end for commissioning of asset.
+REV: Fri Nov 01 00:02:09 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New equipment energization. PLD November 1, 2024, energization date November 20 2024."
+722136,2,1,2025-01-05 09:00:00,2025-01-05 13:00:00,,T1,BKSL_TX,"SUP: Late with actual end
+REV: Sun Jan 05 09:00:48 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: Substation punchlist activities"
+724069,1,1,2024-11-01 00:00:00,2025-01-02 09:42:00,,T1,DSWL_TX,"SUP: Energization date delayed
+REV: Fri Nov 01 00:02:10 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New equipment energization. PLD November 1, 2024, energization date December 12 2024."
+724069,2,2,2025-01-06 15:26:00,2025-01-17 07:50:00,,T1,"DSWL_TX, DW_TX1","SUP: Troubleshooting ended
+SUP: Substation troubleshooting extended.
+SUP: Reason is substation troubleshooting"
+724071,1,1,2024-11-01 00:00:00,2025-01-10 00:00:00,,DSWL_SC1,,"SUP: Outage should have been extended, which was an error. Given planned end is no longer editable, we will end this outage and create a new forced outage with the correct planned end date.
+SUP: Energization delayed
+SUP: Energization date delayed
+REV: Fri Nov 01 00:02:10 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New equipment energization. PLD November 1, 2024, energization date December 12 2024."
+724071,2,1,2025-01-15 13:15:00,2025-01-27 08:00:00,,DSWL_SC1,DSWL_TX3,"SUP: Commissioning schedule change
+SUP: Hot commissioning ongoing
+SUP: Planned end is updated schedule for start of hot commissioning.
+SUP: Adjusting work schedule
+SUP: Energization is still in process. Planned end is updated schedule for start of hot commissioning."
+725267,1,4,2024-10-02 00:00:00,2025-03-10 15:15:00,,T1,"PAD1, PAD1_ESS","REV: Wed Oct 02 00:01:11 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New Equipment Energization
+SUP: New Equipment Energization"
+725267,2,1,2025-04-07 14:44:00,2025-04-10 09:13:00,,T1,Padua,"REQ: outage for energization of new equipment
+SUP: outage for energization of new equipment"
+728562,1,1,2024-12-04 00:00:00,2024-12-04 00:01:00,,ANTL_ESS_TLINE1,ANTL,"REV: Wed Dec 04 00:01:06 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New equipment energization"
+728562,2,2,2025-01-08 00:00:00,2025-02-28 23:59:00,,ANTL_ESS_TLINE1,ANTL,"SUP: Continuation entered
+REV: Wed Jan 08 00:00:47 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New equipment energization"
+728842,1,1,2024-11-01 00:00:00,2025-03-27 10:12:00,,ANOL_ESS_TLINE1,Anol_Tx,"SUP: Energization in process. Outages for these points are now ended.
+SUP: Energization is occurring in phases over the next few days.
+REV: Fri Nov 01 00:02:08 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: Anole substation out during new equipment energization. Energization date is 3/27/2025. Emergency restoration hours set to outage length because equipment is not able to be brought online prior to energization date in the event of an emergency."
+728842,2,1,2025-05-20 10:30:00,2025-05-20 16:58:00,,ANOL_ESS_TLINE1,ANOLE TX,"SUP: Work complete
+REV: Tue May 20 11:58:44 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Substation maintenance work for new equipment energization"
+728935,1,2,2024-11-01 00:00:00,2024-12-18 11:00:00,,BKSL_TLINE1,BKSL_TX,"SUP: Energization starting today
+SUP: Energization rescheduled
+SUP: Received notice from RE that energization is delayed
+SUP: Burksol onsite team is planning to energize substation (12/11) at 9AM Central, ending the outages on following points: BKSL_TLINE1 89-L1 52-T1 T1 Remaining points will be re-entered as new outages.
+SUP: New planned end for commissioning of asset.
+REV: Fri Nov 01 00:02:09 CDT 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New equipment energization. PLD November 1, 2024, energization date November 20 2024."
+728935,2,1,2025-01-05 09:00:00,2025-01-05 13:00:00,,BKSL_TLINE1,BKSL_TX,"SUP: Late with actual end
+REV: Sun Jan 05 09:00:48 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: Substation punchlist activities"
+729701,1,1,2024-12-04 00:00:00,2024-12-04 00:01:00,,T1,ANTL,"REV: Wed Dec 04 00:01:06 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New equipment energization"
+729701,2,2,2025-01-08 00:00:00,2025-02-28 23:59:00,,T1,ANTL,"SUP: Continuation entered
+REV: Wed Jan 08 00:00:47 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New equipment energization"
+731626,1,1,2024-12-04 00:00:00,2024-12-04 00:01:00,,CARN_ESS_TL1,CARN,"REV: Wed Dec 04 00:01:07 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New equipment energization"
+731626,2,2,2025-01-08 00:00:00,2025-04-30 23:59:00,,CARN_ESS_TL1,CARN,"SUP: Continuation entered
+REV: Wed Jan 08 00:00:48 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New equipment energization"
+731819,1,1,2024-12-04 00:00:00,2024-12-04 00:01:00,,T1,CARN,"REV: Wed Dec 04 00:01:07 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New equipment energization"
+731819,2,2,2025-01-08 00:00:00,2025-04-30 23:59:00,,T1,CARN,"SUP: Continuation entered
+REV: Wed Jan 08 00:00:48 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New equipment energization"
+731938,1,2,2024-12-04 00:00:00,2025-04-05 15:30:00,,SU2H,TIMPP,"SUP: Initial energization has occurred,
+REQ: Energization date pushed back
+REQ: New energization date
+REV: Wed Dec 04 00:00:41 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New equipment energization"
+731938,2,1,2025-04-11 15:01:00,2025-05-02 09:30:00,,SU2H,TIMPP,"SUP: Energized.
+REQ: Energization date pushed back
+REQ: Energization pushed back
+REQ: Outages on these elements were closed but the energization process is having problems and needs to be pushed back."
+732011,1,1,2025-02-05 00:00:00,2025-02-05 00:01:00,,6148_E,39399,"REV: Wed Feb 05 00:00:39 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model."
+732011,2,1,2025-02-18 11:00:00,2025-03-19 18:00:00,,6148_E,39399,SUP: new
+732012,1,1,2025-02-05 00:00:00,2025-02-05 00:01:00,,6148_F,39399,"REV: Wed Feb 05 00:00:39 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model."
+732012,2,1,2025-02-18 11:00:00,2025-03-19 18:00:00,,6148_F,39399,SUP: new
+732013,1,1,2025-02-05 00:00:00,2025-02-05 00:01:00,,6148_G,39399,"REV: Wed Feb 05 00:00:39 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model."
+732013,2,1,2025-02-18 11:00:00,2025-03-19 18:00:00,,6148_G,39399,SUP: new
+735404,1,1,2024-12-04 00:00:00,2024-12-04 00:01:00,,SIOUX_LOWR_ESS1,,"SUP: ICCP modeling issue
+REV: Wed Dec 04 00:01:19 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Lower Rio BESS addition at Sioux substation."
+735404,2,1,2025-02-05 00:00:00,2025-05-02 19:10:00,,SIOUX_LOWR_ESS1,,"SUP: Work complete. Lower Rio Bess line in service.
+REV: Wed Feb 05 00:00:43 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Lower Rio BESS addition at Sioux substation."
+744779,1,1,2025-04-02 00:00:00,2025-04-10 08:19:00,,CLAYTNVL_CMPSP1,campspgs,"SUP: Extended due to lack of materials.
+REV: Wed Apr 02 00:00:37 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New station for Big Country EC"
+744779,2,1,2025-04-13 08:20:00,2025-07-09 09:12:00,,CLAYTNVL_CMPSP1,campspgs,"SUP: Work is Complete.
+REQ: Equipment not ready for energization.
+REV: Sun Apr 13 08:20:55 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New station for Big Country EC. This was extended due to lack of materials needed to complete."
+745547,1,1,2024-12-04 00:00:00,2024-12-04 00:01:00,,PEYTON_II_LINE1,1204,"REV: Wed Dec 04 00:01:04 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New Equipment Energization
+SUP: New Equipment Energization"
+745547,2,1,2024-12-18 00:00:00,2025-01-13 12:13:00,,PEYTON_II_LINE1,,"REQ: Ending outage.
+SUP: Ending outage.
+REV: Wed Dec 18 00:01:00 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New Equipment Energization
+REQ: New Equipment Energization"
+745660,1,1,2024-12-04 00:00:00,2024-12-04 00:01:00,,KT1,1204,"REV: Wed Dec 04 00:01:04 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+SUP: New Equipment Energization
+REQ: New Equipment Energization"
+745660,2,1,2024-12-18 00:00:00,2025-01-13 12:13:00,,KT1,,"SUP: Ending outage.
+REQ: Ending outage.
+REV: Wed Dec 18 00:01:00 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New Equipment Energization
+REQ: New Equipment Energization"
+749621,1,1,2025-05-01 00:00:00,2025-05-15 18:53:00,,3423_A,,REV: Thu May 01 00:02:05 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+749621,2,1,2025-05-28 08:59:00,2025-06-12 12:00:00,,3423_A,24-27344,"SUP: HOOK EM
+REQ: Line not yet energized"
+750147,1,1,2025-05-01 00:00:00,2025-06-27 17:00:00,,KT1,TNG,"SUP: Extension of outages to 6/27/2025 (17:00)
+SUP: Extension of outages to 6/27/2025 (20:00)
+REV: Thu May 01 00:02:15 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New Equipment Energization"
+750147,2,2,2025-07-10 13:04:00,2025-08-21 09:30:00,,KT1,TNG,SUP: New Equipment forced extension
+750148,1,1,2025-05-01 00:00:00,2025-06-27 17:00:00,,KT2,TNG,"SUP: Extension of outages to 6/27/2025 (17:00)
+SUP: Extension of outages to 6/27/2025 (20:00)
+REV: Thu May 01 00:02:15 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New Equipment Energization"
+750148,2,2,2025-07-10 13:04:00,2025-08-21 09:30:00,,KT2,TNG,SUP: New Equipment forced extension
+752220,1,1,2025-01-08 00:00:00,2025-03-30 23:59:00,,T1,Cachi,"SUP: Additional outage entered
+REV: Wed Jan 08 00:00:27 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New equipment energization"
+752220,2,1,2025-04-14 11:15:00,2025-05-12 10:14:00,,T1,QSUE79,"SUP: Site synchronizing to grid
+REQ: New equipment energization"
+752785,1,1,2024-12-04 00:00:00,2024-12-04 00:01:00,,T1A,LR1204,"SUP: not in the system yet.
+REV: Wed Dec 04 00:01:11 CST 2024: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New Equipment Energization Outages."
+752785,2,1,2025-01-15 00:00:00,2025-04-08 23:59:00,,T1A,LR225A,"REV: Wed Jan 15 00:00:34 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New Equipment Energization Outages."
+755247,1,1,2025-05-01 00:00:00,2025-05-14 19:17:00,,6471_A,51304,"SUP: .
+REV: Thu May 01 00:02:07 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+755247,2,1,2025-10-23 08:37:00,2025-12-13 04:35:00,,6471_A,,SUP: inservice
+762299,1,1,2025-06-18 00:00:00,2025-09-16 06:59:00,,EARLY_HOLDER1,Early,"REV: Wed Jun 18 00:00:08 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New Equipment Energization"
+762299,2,1,2025-10-03 17:01:00,2025-10-06 14:42:00,,EARLY_HOLDER1,Early,"SUP: Station energized.
+REV: Fri Oct 03 17:01:39 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New Equipment Energization"
+762671,1,1,2025-06-18 00:00:00,2025-09-16 06:59:00,,BROWNWOD_EARLY1,Early,"REV: Wed Jun 18 00:00:08 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New Equipment Energization"
+762671,2,1,2025-10-03 17:01:00,2025-10-06 14:42:00,,BROWNWOD_EARLY1,Early,"SUP: Station energized.
+REV: Fri Oct 03 17:01:39 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New Equipment Energization"
+762734,1,1,2025-04-09 00:00:00,2025-05-01 16:00:00,,BRISITA_SERDEV1,,"REV: Wed Apr 09 00:00:56 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Current ISD is 5/1/2025
+REQ: Not yet in service."
+762734,2,1,2025-05-05 08:19:00,2025-05-14 16:45:00,,BRISITA_SERDEV1,,"SUP: .
+REQ: Brisita ISD 5/14."
+766631,1,5,2025-05-01 00:00:00,2025-08-25 08:56:00,,T1,Tidwell1,"REV: Thu May 01 00:01:53 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New Equipment Energization
+RAS: New Equipment Energization
+REQ: New Equipment Energization"
+766631,2,1,2026-03-16 08:00:00,2026-03-16 08:01:00,,T1,QMEA6,"SUP: Outage taken for new equipment energization.
+REV: Mon Mar 16 08:00:56 CDT 2026: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization"
+774258,1,1,2025-10-08 00:00:00,2025-10-08 00:01:00,,D5_V4TP1,,"SUP: Completed
+REV: Wed Oct 08 00:00:41 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New Equipment Energization"
+774258,2,1,2025-12-22 08:00:00,2026-03-05 12:43:00,,D5_V4TP1,,"REV: Mon Dec 22 08:00:45 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Holding this line element out until the new energization in spring of 2026"
+775324,1,1,2025-10-08 00:00:00,2025-10-08 00:01:00,,E4_V4TP1,,"SUP: Completed
+REV: Wed Oct 08 00:00:40 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New Equipment Energization"
+775324,2,1,2025-12-22 08:00:00,2026-03-05 12:43:00,,E4_V4TP1,,"REV: Mon Dec 22 08:00:45 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Holding this line element out until the new energization in spring of 2026"
+775406,1,1,2025-10-08 00:00:00,2025-10-08 00:01:00,,V4_V4TP1,,"SUP: Completed
+REV: Wed Oct 08 00:00:41 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New Equipment Energization"
+775406,2,1,2025-12-22 08:00:00,2026-03-05 12:43:00,,V4_V4TP1,,"REV: Mon Dec 22 08:00:45 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Holding this line element out until the new energization in spring of 2026"
+775882,1,1,2025-09-04 00:00:00,2025-11-30 23:45:00,,T1,QSUE79,"SUP: Equipment testing/energization complete.
+REV: Thu Sep 04 00:00:40 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New Equipment Energization"
+775882,2,1,2025-12-05 00:00:00,2026-03-03 12:04:00,,T1,Desna,"SUP: Site energized
+SUP: Extend Outage
+REQ: New equipment energization"
+776413,1,1,2025-09-04 00:00:00,2025-11-30 23:05:00,,T1,CAST,"SUP: Equipment testing/energization complete.
+REV: Thu Sep 04 00:00:38 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New Equipment Energization"
+776413,2,1,2025-12-05 00:00:00,2026-01-27 14:15:00,,T1,Castor,"SUP: Site has been energized
+REQ: New equipment energization"
+776463,1,2,2025-09-04 00:00:00,2026-03-27 23:59:00,,T1,AMAD_TX,"REV: Thu Sep 04 00:00:42 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+SUP: Updating my phone number to Gridmatic's 24/7 line for any questions or requests.
+SUP: New equipment energization outage with planned start and midnight of in service and planned end as the estimated energization date."
+776463,2,1,2026-04-03 00:00:00,2026-06-30 23:59:00,,T1,AMAD_TX,"REV: Fri Apr 03 00:00:47 CDT 2026: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: continued delays in constructing and commissioning the project"
+837951,1,1,2025-09-04 00:00:00,2025-09-04 00:01:00,,ANSON1_TLINE1,,"SUP: .
+REV: Thu Sep 04 00:00:47 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New Equipment Energization"
+837951,2,1,2025-10-06 07:00:00,2025-10-20 18:29:00,,ANSON1_TLINE1,ANS1,"SUP: .
+REV: Mon Oct 06 07:00:39 CDT 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: Connecting Anson 2 site to POI structure"
+838993,1,1,2025-11-05 00:00:00,2025-12-16 14:24:00,,PITTSDK2_LINE1,,"REV: Wed Nov 05 00:01:11 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+SUP: New Equipment"
+838993,2,1,2026-01-28 18:00:00,2026-02-03 14:08:00,,PITTSDK2_LINE1,PITS2,"SUP: Equipment Energized outage ended
+SUP: New Equipment Energization"
+839127,1,1,2025-11-05 00:00:00,2025-12-16 14:24:00,,T1,,"REV: Wed Nov 05 00:01:11 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+SUP: New Equipment"
+839127,2,1,2026-01-28 18:00:00,2026-02-03 14:08:00,,T1,PITS2,"SUP: Equipment Energized outage ended
+SUP: New Equipment Energization"
+842700,1,3,2025-11-05 00:00:00,2025-12-12 14:00:00,,SU3H,"TIMPP5-8, TIMPPWS","SUP: Failed to extend before end date.  Closing this outage and starting new one
+REV: Wed Nov 05 00:01:08 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New equipment energization."
+842700,2,1,2025-12-17 07:00:00,2025-12-17 09:45:00,,SU3H,TP521115,"REQ: Outage to trouble shoot breaker 52-1115. Corresponding switch SW1115A is already showing to be in outage. Corresponding Transformers SU3H,X and Y are included in this group ""TP521115"". Breakers 52-1112 and 52-1315 are already in outage  as well as all downstream equipment, as seen in group TIMMPWS.
+SUP: Outage to trouble shoot breaker 52-1115. Corresponding switch SW1115A is already showing to be in outage. Corresponding Transformers SU3H,X and Y are included in this group ""TP521115"". Breakers 52-1112 and 52-1315 are already in outage  as well as all downstream equipment, as seen in group TIMMPWS."
+851622,1,1,2025-12-10 00:00:00,2026-01-20 15:04:00,,T1,FERD,"REV: Wed Dec 10 00:00:48 CST 2025: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+SUP: New Equipment Energization
+REQ: New Equipment Energization"
+851622,2,1,2026-04-20 07:00:00,2026-04-23 17:54:00,,T1,Ferd_ESS,"SUP: END
+REQ: New Equipment Energization"
+858466,1,4,2026-02-04 00:00:00,2026-05-29 16:00:00,,HNY_COMB_TLINE1,,"REV: Wed Feb 04 00:00:41 CST 2026: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New equipment energization"
+858466,2,3,2026-06-03 16:10:00,2026-08-31 23:59:00,,HNY_COMB_TLINE1,"HNYT, HNY_COMB","SUP: Another outage will be submitted
+REQ: New Resource energization"
+858600,1,4,2026-02-04 00:00:00,2026-05-14 23:59:00,,T1,"HNYCMB, HNYCOMB, HNY_COMB","REV: Wed Feb 04 00:00:41 CST 2026: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REV: This is your notification that further evaluation is required for this request. A decision will be made in the next approval period.  The new equipment is not available in the current future model.
+REQ: New equipment energization"
+858600,2,3,2026-06-03 16:10:00,2026-08-31 23:59:00,,T1,"HNYT, HNY_COMB","SUP: Another outage will be submitted
+REQ: New Resource energization"
+863575,1,1,2026-04-01 00:00:00,2026-05-04 09:00:00,,POMPAT_SERDEV1,,"SUP: made new outage due to expired.
+REV: Wed Apr 01 00:01:03 CDT 2026: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New equipment entering the model for Pompano Tap to LNG plant. Not in service. SERDEV associated with CB T018K5."
+863575,2,1,2026-05-07 16:00:00,2026-05-11 15:49:00,,POMPAT_SERDEV1,,"SUP: RESTORED
+REQ: New equipment entering the model for Pompano Tap to LNG plant. Not in service. SERDEV associated with CB T018K5."
+873324,1,3,2026-04-01 00:00:00,2026-05-08 23:59:00,,T3,CMPD,"SUP: extended
+REV: Wed Apr 01 00:01:22 CDT 2026: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+SUP: New equipment added as per e-mail
+REQ: New Equipment Energization"
+873324,2,1,2026-05-14 00:00:00,2026-05-28 23:59:00,,T3,CMPD,"REV: Thu May 14 00:00:52 CDT 2026: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New Equipment Energization"
+873394,1,1,2026-06-03 00:00:00,2026-06-03 00:01:00,,HV_GEN_TIE1,,REV: Wed Jun 03 00:00:31 CDT 2026: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+873394,2,1,2026-07-01 00:00:00,2026-07-31 18:00:00,,HV_GEN_TIE1,,REV: Wed Jul 01 00:00:50 CDT 2026: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+875097,1,1,2026-05-01 00:00:00,2026-05-15 18:00:00,,BULLO_AQUIL3A,,"SUP: continued on new outage
+REQ: continued on new outage
+REV: Fri May 01 00:01:49 CDT 2026: Actual Start has been auto-populated by OS due to Nature Of Work = New Equipment Energization
+REQ: New equipment energization for new Aquilla Lake 3 Wind generation interconnection. Expected Synch Date of 05/15."
+875097,2,1,2026-06-10 17:47:00,2026-07-02 18:28:00,,BULLO_AQUIL3A,,"SUP: Sam Switch - Aquilla Lake #3 put in service at 1828
+REQ: Continued from LST00021949. New equipment energization for new Aquilla Lake 3 Wind generation interconnection. Expected Synch Date ???"

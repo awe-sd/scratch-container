@@ -1,0 +1,514 @@
+teid,RdfId,PsseType,NodeType,CircuitIdentifier,Name,BusNumber1,BusName1,Substation1,BusNumber2,BusName2,Substation2,EquipmentName,OpEqName,branch_id,branch_name,b1,b2,ckt,DeviceType,FromName,ToName,OP_EQCODE,EQNAME,match_status,unmatched_reason
+493744,18471b3f-b22b-407f-b93f-fbc9a4adbac0,Branch,ACLineSegment,1,BOG_T4S_1 1 1 12.47kV,110955,SL_11,SL,110961,BOG_T4S,BOG,1,BOG_T4S_1,,,,,,,,,,,unmatched,generation_plant_internal
+4800,1e1ed054-929a-49e0-ba20-a4f4659e16ee,Branch,ACLineSegment,1,STE_DIES_1 1 1 13kV,952,DIESELA,DIESEL,150711,STEA_STEAM_1,STEAM1A,1,STE_DIES_1,,,,,,,,,,,unmatched,generation_plant_internal
+493742,236fe478-e3ed-4d42-95e2-ad6aaf05eb28,Branch,ACLineSegment,1,BOG_T2S_1 1 1 12.47kV,110955,SL_11,SL,110958,BOG_T2S,BOG,1,BOG_T2S_1,,,,,,,,,,,unmatched,generation_plant_internal
+493745,3a01fd41-a1b7-43e3-aa25-0150a146db69,Branch,ACLineSegment,1,BOG_T4T_1 1 1 12.47kV,110952,SL_9_1,SL,110962,BOG_T4T,BOG,1,BOG_T4T_1,,,,,,,,,,,unmatched,generation_plant_internal
+493748,53138801-fa41-4605-a8fe-1629a20c6426,Branch,ACLineSegment,1,BOG_T6S_1 1 1 12.47kV,110950,SL_6,SL,110965,BOG_T6S,BOG,1,BOG_T6S_1,,,,,,,,,,,unmatched,generation_plant_internal
+493743,54c5f2d2-3fca-4a6a-b976-18b1cd74de84,Branch,ACLineSegment,1,BOG_T2T_1 1 1 12.47kV,110953,SL_9,SL,110960,BOG_T2T,BOG,1,BOG_T2T_1,,,,,,,,,,,unmatched,generation_plant_internal
+3954,790cfeec-1a9d-4ad2-abf7-09adf826997d,Branch,ACLineSegment,1,BUCH_COR_GSUT1_1 1 1 6.9000001kV,180001,BUC_BUCHANG1,BUCHAN,180004,BUCHAN_1,CORONA,1,BUCH_COR_GSUT1_1,,,,,,,,,,,unmatched,generation_plant_internal
+4542,863de789-4477-4e1c-8d09-e41615af38ec,Branch,ACLineSegment,1,BUCH_COR_GSUT3_G3 G3 1 6.9000001kV,180003,BUC_BUCHANG3,BUCHAN,180006,BUCHAN_3,CORONA,G3,BUCH_COR_GSUT3_G3,,,,,,,,,,,unmatched,generation_plant_internal
+493749,8c034fbd-f026-49da-8388-62e6be6826af,Branch,ACLineSegment,1,BOG_T6T_1 1 1 12.47kV,110951,SL_7,SL,110966,BOG_T6T,BOG,1,BOG_T6T_1,,,,,,,,,,,unmatched,generation_plant_internal
+39803,8daefd6b-32f7-4259-a022-5ace020b696c,Branch,ACLineSegment,60,ZBR_BYUG8_BBP_1 1 60 13.8kV,110205,BYU_BYU_G8,BYU,110207,BBP_1_8,BBP,1,ZBR_BYUG8_BBP_1,,,,,,,,,,,unmatched,generation_plant_internal
+493740,9d397bfe-ef94-4b2f-b75f-696be0ff1724,Branch,ACLineSegment,1,BOG_T1_1 1 1 34.5kV,110947,SL_3,SL,110957,BOG_T1_34,BOG,1,BOG_T1_1,,,,,,,,,,,unmatched,generation_plant_internal
+493741,b0b3b2ef-3f38-4a93-9377-ec11be8a3091,Branch,ACLineSegment,1,BOG_T3_1 1 1 34.5kV,110948,SL_4,SL,110959,BOG_T3_34,BOG,1,BOG_T3_1,,,,,,,,,,,unmatched,generation_plant_internal
+3320,caf35934-e673-4dd4-aceb-6e3ea33291cf,Branch,ACLineSegment,1,BUCH_COR_GSUT2_1 1 1 6.9000001kV,180002,BUC_BUCHANG2,BUCHAN,180005,BUCHAN_2,CORONA,1,BUCH_COR_GSUT2_1,,,,,,,,,,,unmatched,generation_plant_internal
+493746,d009417a-e6c1-412f-8356-3dbb1f0feb01,Branch,ACLineSegment,1,BOG_T5S_1 1 1 12.47kV,110950,SL_6,SL,110963,BOG_T5S,BOG,1,BOG_T5S_1,,,,,,,,,,,unmatched,generation_plant_internal
+493747,fdb3392f-4c2c-4a5f-9b1a-8d45474190e6,Branch,ACLineSegment,1,BOG_T5T_1 1 1 12.47kV,110951,SL_7,SL,110964,BOG_T5T,BOG,1,BOG_T5T_1,,,,,,,,,,,unmatched,generation_plant_internal
+851624,009e5174-2c83-4685-a552-8487850a09ff,Branch,SeriesCompensator,1,1,171071,FERD_ESS_B1,FERD_ESS,171072,FERD_ESS_SD,FERD_ESS,1,FERD_ESS_CLR_1,,,,,,,,,,,unmatched,generation_plant_internal
+298306,03b2ecee-768d-4d9a-adb2-d56408b2ec22,Branch,SeriesCompensator,SG,1,110117,DOW_DOW_ST64,DOWGEN,110121,DOWGEN_3,DOWGEN,1,DOW_RE-O640_1,,,,,,,,,,,unmatched,generation_plant_internal
+664711,074c578e-ec6e-4e52-a733-3cd1e119a1a0,Branch,SeriesCompensator,1,1,170881,LBRA_ESS_B1,LBRA_ESS,170883,LBRA_ESS_L1,LBRA_ESS,1,LBRA_CLR1_1,,,,,,,,,,,unmatched,generation_plant_internal
+298458,1829797b-dd5e-4e9f-9b62-244bc68f5851,Branch,SeriesCompensator,SG,1,110115,DOWG_DOW_G62,DOWGEN,110118,DOW_61_2_64,DOWGEN,1,DOW_RE-T620_1,,,,,,,,,,,unmatched,generation_plant_internal
+298402,1da37771-e029-40a3-96b9-3336ce551b53,Branch,SeriesCompensator,SG,1,110116,DOWG_DOW_G63,DOWGEN,110118,DOW_61_2_64,DOWGEN,1,DOW_RE-T630_1,,,,,,,,,,,unmatched,generation_plant_internal
+281629,26df32e1-f0e5-491d-8f52-eab5c7346283,Branch,SeriesCompensator,SG,1,110946,SL_2,SL,110948,SL_4,SL,1,SL_CBL_3502J13_1,,,,,,,,,,,unmatched,generation_plant_internal
+847498,32edea73-07d9-4fad-ad77-8c0b5cfa4995,Branch,SeriesCompensator,S1,1,153481,RRC_WIND_W1,RRC_WIND,153483,RRC_WIND_B2,RRC_WIND,1,RRC_WIND_CLR1_1,,,,,,,,,,,unmatched,generation_plant_internal
+676201,41d3670e-6db8-486f-9f46-ec4b2cfcdcf4,Branch,SeriesCompensator,1,1,144561,BAKE_SLR_S1,BAKE_SLR,144567,BAKE_SLR_L1,BAKE_SLR,1,BAKER_CLR1_1,,,,,,,,,,,unmatched,generation_plant_internal
+341321,47d7fe7c-deb3-40fc-accf-a951865a4296,Branch,SeriesCompensator,SG,1,110943,SL_SL_G3,SL,110954,SL_10,SL,1,SL_CBL_1293_1,,,,,,,,,,,unmatched,generation_plant_internal
+281723,4a8cf51b-51cf-4bdf-a8c6-2761c6c8f3c4,Branch,SeriesCompensator,SG,1,110945,SL_1,SL,110947,SL_3,SL,1,SL_CBL_3502J4_1,,,,,,,,,,,unmatched,generation_plant_internal
+560260,4e86c3e1-78a7-43da-82ed-4d0f4bfa5454,Branch,SeriesCompensator,1,1,152131,ROSELAND_S1,ROSELAND,152137,ROSELAND_TL1,ROSELAND,1,CLR1_1,,,,,,,,,,,unmatched,generation_plant_internal
+512751,537a6cc6-615c-4db5-94b4-8eb70884caf4,Branch,SeriesCompensator,GL,1,49210,GENTHW1_01_1,THW,110041,THW_THWGT_1,THW,1,THWGEN01_1,,,,,,,,,,,unmatched,generation_plant_internal
+539290,55c8324f-933a-48d7-baa1-7bcc4e0abb0b,Branch,SeriesCompensator,1,1,152081,NOBLESLR_R1,NOBLESLR,152085,NOBLE_T1L,NOBLESLR,1,R1_1,,,,,,,,,,,unmatched,generation_plant_internal
+298358,628d09cc-a847-418e-8523-19b7132ceed1,Branch,SeriesCompensator,SG,1,110118,DOW_61_2_64,DOWGEN,110119,DOWGEN_2,DOWGEN,1,DOW_RE-O680_1,,,,,,,,,,,unmatched,generation_plant_internal
+298527,6448e136-d4fa-4b11-bad3-2e40afe99946,Branch,SeriesCompensator,SG,1,110121,DOWGEN_3,DOWGEN,110122,DOW_647X,DOWGEN,1,DOW_2643_1,,,,,,,,,,,unmatched,generation_plant_internal
+700274,65836eda-339b-4ef2-bbcd-4e80b733d02f,Branch,SeriesCompensator,2,1,136342,TRBT_SLR_S2,TRBT_SLR,136345,TRBT_SLR_L1,TRBT_SLR,1,TRBT_SLR_CLRT2_1,,,,,,,,,,,unmatched,generation_plant_internal
+839627,67a96530-d3c0-4c63-a484-9bb7e725b5ab,Branch,SeriesCompensator,1,1,142511,BLSMT_2_25,BLSUMMIT,144951,BLSUMMI1_B1,BLSUMMIT,1,BLSUMMIT_CLR2_1,,,,,,,,,,,unmatched,generation_plant_internal
+871319,6b1ce615-5a65-446e-8a0b-a17f52a97e07,Branch,SeriesCompensator,1,1,137141,GRND_SLR_S1,GRND_SLR,137142,GRND_SLR_SD,GRND_SLR,1,GRND_SLR_CLR-1_1,,,,,,,,,,,unmatched,generation_plant_internal
+823800,6e2a7f51-c375-4eb0-9c6d-aef2f8c239d7,Branch,SeriesCompensator,KB,1,113801,BYP_B1,BYP,113802,BYP_SD,BYP,1,KBR1_1,,,,,,,,,,,unmatched,generation_plant_internal
+298589,742672e8-f432-409a-82b4-2eff49285f69,Branch,SeriesCompensator,SG,1,110117,DOW_DOW_ST64,DOWGEN,110118,DOW_61_2_64,DOWGEN,1,DOW_RE-T640_1,,,,,,,,,,,unmatched,generation_plant_internal
+871578,748ed9ab-b384-4f87-8f01-11fcadc621c3,Branch,SeriesCompensator,1,1,155891,AQLA_WND_W1,AQLA_WND,155893,AQLA_WND_SC,AQLA_WND,1,AQLA_WND_CLR1_1,,,,,,,,,,,unmatched,generation_plant_internal
+700287,8c708bc4-416c-4dde-8323-654cb24b15fc,Branch,SeriesCompensator,1,1,136341,TRBT_SLR_S1,TRBT_SLR,136346,TRBT_SLR_L2,TRBT_SLR,1,TRBT_SLR_CLRT1_1,,,,,,,,,,,unmatched,generation_plant_internal
+298588,a3c72c00-6b3e-477f-877f-61431028359e,Branch,SeriesCompensator,SG,1,110114,DOWG_DOW_G61,DOWGEN,110118,DOW_61_2_64,DOWGEN,1,DOW_RE-T610_1,,,,,,,,,,,unmatched,generation_plant_internal
+647607,ad4afb60-0bc1-4af2-a427-0f40ca8ba099,Branch,SeriesCompensator,1,1,111532,MYR_S2,MYR,113311,MYR_B1,MYR,1,BR1_1,,,,,,,,,,,unmatched,generation_plant_internal
+298590,b1d71b12-11d5-4f1a-906c-0fc7026e5ddb,Branch,SeriesCompensator,SG,1,110126,DOW_G66_ST65,DOWGEN,110199,DOW_T670,DOWGEN,1,DOW_RE-T670_1,,,,,,,,,,,unmatched,generation_plant_internal
+34553,b2964079-3baf-4a55-a7b5-3f05964a18a9,Branch,SeriesCompensator,SG,1,110111,DOWG_DOW_G37,DOWGEN,110112,DOWGEN_1,DOWGEN,1,DOW37_1,,,,,,,,,,,unmatched,generation_plant_internal
+72989,b4978605-c927-47a0-a6db-747098743df3,Branch,SeriesCompensator,1,1,111101,RNPCOGEN_1,MIN,111102,RNPCOGEN_4,MIN,1,COGEN_L1_1,,,,,,,,,,,unmatched,generation_plant_internal
+341335,b83503f1-a373-456d-af70-01d5ca2cd1b6,Branch,SeriesCompensator,SG,1,110949,SL_5,SL,110953,SL_9,SL,1,SL_RX1302_1,,,,,,,,,,,unmatched,generation_plant_internal
+326456,c0b0f27f-0f7b-4030-9b54-92db31051ee2,Branch,SeriesCompensator,1,1,111201,NA_GT1,,111207,NA_4,,1,LINE_M1_1,,,,,,,,,,,unmatched,branch_other
+661650,c92766aa-5efe-4d23-919e-1fec4276719f,Branch,SeriesCompensator,1,1,136281,SHAMROCK_W,SHAMROCK,136284,SHAMROCK_4,SHAMROCK,1,SR_CLR1_1,,,,,,,,,,,unmatched,generation_plant_internal
+326457,d8b858d4-3202-4773-ae91-772e0fd343e0,Branch,SeriesCompensator,2,1,111202,NA_GT2,,111206,NA_3,,1,LINE_M2_1,,,,,,,,,,,unmatched,branch_other
+298403,dfa58421-e3f9-4e75-b320-bd9a82fae740,Branch,SeriesCompensator,SG,1,110157,DOWGEN_7,DOWGEN,110161,DOW_647Y,DOWGEN,1,DOW_2672_1,,,,,,,,,,,unmatched,generation_plant_internal
+341323,e370b7f3-2b89-483d-9c9d-e5fb3c0f52d3,Branch,SeriesCompensator,SG,1,110952,SL_9_1,SL,110953,SL_9,SL,1,SL_RX1264_1,,,,,,,,,,,unmatched,generation_plant_internal
+341333,e6b74eff-8902-49aa-b3fc-a089c5b40df5,Branch,SeriesCompensator,SG,1,110943,SL_SL_G3,SL,110944,SL_SL_G4,SL,1,SL_RX1285_1,,,,,,,,,,,unmatched,generation_plant_internal
+298528,e83ce11a-c3e0-4aa1-a69a-3aa4c745c532,Branch,SeriesCompensator,SG,1,110125,DOW_DOW_ST65,DOWGEN,110126,DOW_G66_ST65,DOWGEN,1,DOW_RE-T650_1,,,,,,,,,,,unmatched,generation_plant_internal
+298404,e8717aa1-d65a-4f07-8653-8e079a2e0af0,Branch,SeriesCompensator,SG,1,110124,DOWG_DOW_G66,DOWGEN,110126,DOW_G66_ST65,DOWGEN,1,DOW_RE-T660_1,,,,,,,,,,,unmatched,generation_plant_internal
+847499,e8bcf1e0-99fa-40ef-9f12-aa8079333c5c,Branch,SeriesCompensator,S2,1,151481,RRC_WIND_W3,RRC_WIND,151482,RRC_WIND_B1,RRC_WIND,1,RRC_WIND_CLR2_1,,,,,,,,,,,unmatched,generation_plant_internal
+341334,eb01df10-cf50-4714-b8cc-0dfed34c5881,Branch,SeriesCompensator,SG,1,110952,SL_9_1,SL,110954,SL_10,SL,1,SL_RX1293_1,,,,,,,,,,,unmatched,generation_plant_internal
+341322,f2ad56c6-6496-4c8e-afa7-122817ff2f1d,Branch,SeriesCompensator,SG,1,110944,SL_SL_G4,SL,110949,SL_5,SL,1,SL_CBL_1302_1,,,,,,,,,,,unmatched,generation_plant_internal
+676202,fbe119fc-4367-40cc-8eb5-169462fe2deb,Branch,SeriesCompensator,2,1,144562,BAKE_SLR_S2,BAKE_SLR,144568,BAKE_SLR_L2,BAKE_SLR,1,BAKER_CLR2_1,,,,,,,,,,,unmatched,generation_plant_internal
+539289,ff6d3e88-9197-482d-bcc3-961cf9fd9134,Branch,SeriesCompensator,2,1,152082,NOBLESLR_R2,NOBLESLR,152086,NOBLE_T2L,NOBLESLR,1,R2_1,,,,,,,,,,,unmatched,generation_plant_internal
+279831,00865c40-079c-42bb-a453-5c2ef19ef3a4,Transformer,PowerTransformer,1,MT6L 13.8kV-1kV,170138,BRAU_VHB6CT6,BRAUNIG,5036,BR_STR56,BRAUNIG,MT6L,BRAUNIG_MT6L,,,,,,,,,,,unmatched,transformer_tertiary_stub
+299937,00d15f1b-2c63-4356-b356-0ce382ea274e,Transformer,PowerTransformer,A2,AT2T 23kV-1kV,49070,N_BELT_A2TER,NB,49170,N_BELT_A2STR,NB,AT2T,NB_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279966,02224448-e594-4552-9ba3-cc1141e6dfe0,Transformer,PowerTransformer,1,12T1 13.8kV-1kV,170063,LEON__LCPCT1,LEON_CRK,5270,LCPSTR12,LEON_CRK,12T1,LEON_CRK_12T1,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280308,0279cc14-81ef-41b9-8521-a96fe90cb5ec,Transformer,PowerTransformer,1,138T 13.8kV-1kV,8160,CC1TERT,COLETO,8163,CC1DUM0A,COLETO,138T,COLETO_138T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+834211,02abb331-13a2-40e5-bf1a-09531c0fb026,Transformer,PowerTransformer,1,MR3T 13.2kV-1kV,24966,FERIS_13,FERIS,24170,FERIS_1,FERIS,MR3T,FERIS_MR3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280311,02de114e-e657-4769-9b52-b32d23cdb5ee,Transformer,PowerTransformer,G1,XT5F 13.8kV-1kV,110055,THW_N4,THW,49174,49174_STAR,THW,XT5F,THW_XT5F,,,,,,,,,,,unmatched,transformer_tertiary_stub
+327086,02f20d6c-b8e7-40a4-ba14-114df8e2a1ae,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49036,JONCRK_A1TER,JCK,49136,JONCRK_A1STR,JCK,AT1T,JCK_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279416,037ca947-2f27-48b9-ba68-bf5bb4cdb276,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,29577,COLLIN1_3,CN345,24056,CN3451_1,CN345,MR1T,CN345_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+829940,04684b80-5ba7-4966-a3f7-f79f1e90787e,Transformer,PowerTransformer,1,XF1T 12.47kV-1kV,8402,GARZA0A,GARZA,8398,GZDMYA,GARZA,XF1T,GARZA_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279771,04eda456-f73a-4524-8c1f-1df45e909645,Transformer,PowerTransformer,1,AT2T 13kV-1kV,49042,WHITOK_A2TER,WO,49141,WHITOK_A2STR,WO,AT2T,WO_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+339763,05f25c0c-10e3-4166-a709-bebc4659d9e8,Transformer,PowerTransformer,2,G0CY 13.8kV-1kV,151198,DEC_0Y,DEC,151204,DEC_0_1,DEC,G0CY,DEC_G0CY,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280317,070f6b65-be4e-46f4-b7ca-0bed1c299872,Transformer,PowerTransformer,2,MR1T 13.8kV-1kV,16358,RNRDPL1_3,RENSW,24099,RENSW1_1,RENSW,MR1T,RENSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+487186,077e83f5-4ad9-44e0-8afa-37f31c041136,Transformer,PowerTransformer,1,T2T 13.5kV-1kV,59167,LP_HOLLY_T,LPLHY,59165,T2STAR,LPLHY,T2T,LPLHY_T2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+28082,07b90537-baf8-4da7-b0f4-78392b613482,Transformer,PowerTransformer,3,MR7T 13.8kV-1kV,24140,TRINIDAD2_3,TRSES,24048,TRSES7_1,TRSES,MR7T,TRSES_MR7T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+609506,07ed4848-3932-45a9-b75a-76461e5ecc7e,Transformer,PowerTransformer,A1,AT1T 13kV-1kV,49004,CLINTN_A1TER,CL,49103,CLINTN_A1STR,CL,AT1T,CL_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279324,08247734-57f7-4266-bd5a-a7bd05b0e25f,Transformer,PowerTransformer,2,ATBT 24.9kV-1kV,5908,SMIGLT1,SANMIGL,5904,NOTMODMIDPT1,SANMIGL,ATBT,SANMIGL_ATBT,,,,,,,,,,,unmatched,transformer_tertiary_stub
+304179,0a594eed-6e08-4bb1-8b7e-e55901251fcd,Transformer,PowerTransformer,A2,AT2T 23kV-1kV,49067,TOMBAL_A2TER,TB,49167,TOMBAL_A2STR,TB,AT2T,TB_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+676578,0adc127e-f8ce-4f26-b51a-da28ae7c0096,Transformer,PowerTransformer,X2,TR2X 12.47kV-1kV,110458,FOR_FORMOSG8,FORMOSA,111146,FORMOSA_TR2,FORMOSA,TR2X,FORMOSA_TR2X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280328,0b06deca-e2dd-422e-a45f-3eb25bfc14ae,Transformer,PowerTransformer,3,MR1T 13.8kV-1kV,1787,RIVERCST_3,RCSES,24097,RCSES1_1,RCSES,MR1T,RCSES_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279110,0b734089-2213-4a1f-bb1e-f5708681bdee,Transformer,PowerTransformer,3,FM3T 12.4kV-1kV,969,GIBN_CREK_T3,GIBCRK,955,GIBN_CRK_1_1,GIBCRK,FM3T,GIBCRK_FM3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+720714,0c15529f-8b0b-4547-8837-206ddd38b196,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,10064,ROCKHOUND1_3,RCKSW,24158,ROCKHOUND1_T,RCKSW,MR1T,RCKSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279569,0c610009-07d7-43ff-8dd9-79bb27ddb1e8,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,29176,FORGROV_3,FGRSW,24071,FGRSW1_1,FGRSW,MR1T,FGRSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+313720,0c8a4184-5e17-47ea-a10a-5398aade546e,Transformer,PowerTransformer,1,AT1T 13.2kV-1kV,76998,L_NORTMC1_1Y,NORTMC,776999,LNORSTR1,NORTMC,AT1T,NORTMC_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+7285,0d4f13f4-07f9-4c64-b3ac-0c37b07df3f7,Transformer,PowerTransformer,5,AT5T 13.2kV-1kV,77154,L_KENDAL1_5Y,KENDAL,77801,L_KENDAL1_3,KENDAL,AT5T,KENDAL_AT5T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+859555,0d8a38de-aae2-4209-8336-a4dd6aa4216b,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,24962,TMPSW13_2,TMPSW,24174,TMPSW1_2,TMPSW,MR2T,TMPSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280334,0dacd2a8-4240-46dc-bc61-789cb718425c,Transformer,PowerTransformer,3,MR4T 13.8kV-1kV,11034,MGCKTERT4_3,MGSES,24018,700209_3STAR,MGSES,MR4T,MGSES_MR4T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+486976,0e0ca7c9-f8fe-4a44-a267-674af7a3a329,Transformer,PowerTransformer,1,T2T 13.8kV-1kV,59190,LP_POSEY_T2,LPLPY,59191,PYT2STAR,LPLPY,T2T,LPLPY_T2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+140019,0e959adc-30e1-4437-87de-25a391bcf745,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,11927,LIGGETTA2_3,LIGSW,24031,LIGSW2_1,LIGSW,MR2T,LIGSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279258,0f249239-3d40-4e4d-bfdb-f26e518147b8,Transformer,PowerTransformer,A3,AT3T 23kV-1kV,49082,JENETA_A3TER,JN,49182,JENETA_A3STR,JN,AT3T,JN_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+61859,0f24c776-dfdd-4fa6-b3f4-cbffb1788df4,Transformer,PowerTransformer,3T,MR3T 13.8kV-1kV,18530,ODSSAEHV3_3,ODEHV,24109,ODEHV3_1,ODEHV,MR3T,ODEHV_MR3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279459,0fff20e3-7302-423b-beff-a786e0c4923a,Transformer,PowerTransformer,2,T2T 12.4kV-1kV,972,W_DENT_T2,W_DENT,997,W_DENT_1,W_DENT,T2T,W_DENT_T2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+493699,100ba992-78dc-493a-99e9-4edb173396e6,Transformer,PowerTransformer,6,T6T 12.47kV-1kV,110966,BOG_T6T,BOG,110970,BOG_T6,BOG,T6T,BOG_T6T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280015,122f975a-dff6-4bb1-96c5-c3bed2eb26bd,Transformer,PowerTransformer,A2,AT2T 12.47kV-1kV,49020,DWNTWN_A2TER,DT,49120,DWNTWN_A2STR,DT,AT2T,DT_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+59947,143dac19-b2b4-4a9a-befb-bd741771c8da,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49031,OBRIEN_A1TER,OB,49164,OBRIEN_A1STR,OB,AT1T,OB_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+60485,15657499-8b28-4ce0-8b56-040f9d40167f,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,18527,MOSS_3,MOSSW,24033,MOSSW1_1,MOSSW,MR1T,MOSSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279964,15d256f8-a706-497b-b2ef-1cc69ad699e6,Transformer,PowerTransformer,2,34T4 13.8kV-1kV,170066,LEON__LCPCT4,LEON_CRK,5271,LCPSTR34,LEON_CRK,34T4,LEON_CRK_34T4,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280350,174181e8-8cab-404f-aeee-86b4dcc43585,Transformer,PowerTransformer,1,A1-T 13.09kV-1kV,8303,LD2TERT,LAREDO,8292,LD2DUM,LAREDO,A1-T,LAREDO_A1-T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+493693,18d5a94f-7721-460d-a865-66832cceded7,Transformer,PowerTransformer,5,T5T 12.47kV-1kV,110964,BOG_T5T,BOG,110969,BOG_T5,BOG,T5T,BOG_T5T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+419978,1953ac24-13b6-4d45-85b9-7e4f855211d4,Transformer,PowerTransformer,2,AX2T 13.8kV-1kV,24995,ACSSW_13,ACSSW,24126,ACSSW_2,ACSSW,AX2T,ACSSW_AX2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+21244,19ff6692-770f-4de7-bc6e-05a3d16835e0,Transformer,PowerTransformer,1,A5T 14.4kV-1kV,110152,DOW_A5_1,DOW,49195,DOW____A5STR,DOW,A5T,DOW_A5T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+731939,1a557434-5e2f-4698-bfcd-cbb1c674ea70,Transformer,PowerTransformer,T2,SU2Y 13.8kV-1kV,171094,TIMPP_N4,TIMPP,171098,TIMPP_0_T2,TIMPP,SU2Y,TIMPP_SU2Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280355,1a6721d7-2258-44ef-8fb0-81fb9e2e5a29,Transformer,PowerTransformer,2,382T 13.8kV-1kV,8502,LH4TERT,LON_HILL,8450,LH2DUM,LON_HILL,382T,LON_HILL_382T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+246538,1a94281c-1df0-4a1b-83f2-9ba53d51817e,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,13410,LAKE_CRK1_3,LCSES,24077,LCSES2_1,LCSES,MR2T,LCSES_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+626865,1acf94e0-010a-4f2a-9324-79f7c9f56a6a,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,11367,EXPANSE1_3,EXPSW,900636,HIIEE,EXPSW,MR1T,EXPSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279356,1b64cf97-1d67-411d-91a4-00e4e7b064dc,Transformer,PowerTransformer,2,A2-T 13.09kV-1kV,8298,LD1TERT,LAREDO,8291,LD1DUM,LAREDO,A2-T,LAREDO_A2-T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+334202,1b74b014-528e-49ef-9169-87e74b2b7056,Transformer,PowerTransformer,2,2TR2 17.5kV-1kV,23916,TULECNY2,TULECNYN,79525,TULESTR,TULECNYN,2TR2,TULECNYN_2TR2,,,,,,,,,,,unmatched,transformer_tertiary_stub
+533374,1c037657-c401-4629-b5a2-b171546a4286,Transformer,PowerTransformer,2,CT2T 12.5kV-1kV,983,MCCREE2_T2,MCCREE,9501,MCCREE_2,MCCREE,CT2T,MCCREE_CT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279830,1c435af1-b235-4bcb-ba7b-4e0e063cbf8f,Transformer,PowerTransformer,1,MT7L 13.8kV-1kV,170139,BRAU_VHB6CT7,BRAUNIG,5037,BR_STR78,BRAUNIG,MT7L,BRAUNIG_MT7L,,,,,,,,,,,unmatched,transformer_tertiary_stub
+126113,1c9ef8fa-3951-4c9c-b419-4901259b4b3a,Transformer,PowerTransformer,1,AX1T 13.8kV-1kV,18534,DERMOTT1_3,DMTSW,24000,DMTSW1_1,DMTSW,AX1T,DMTSW_AX1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280358,1ccbd0d2-06a7-49b6-ba4f-3f7950c9b600,Transformer,PowerTransformer,G1,XT3E 13.8kV-1kV,110045,THW_THWGT34,THW,49139,49139_STAR,THW,XT3E,THW_XT3E,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279508,1cec2d83-c483-46ec-8a25-1f6ba14115c2,Transformer,PowerTransformer,1,VFT 17.5kV-17.5kV,80170,LARDVFT0B,LARDVFT,80014,LARDC,LARDVFT,VFT,LARDVFT_VFT,,,,,,,,,,,unmatched,transformer_other
+736075,1d2411ad-f283-40d3-a08c-4be857bed40a,Transformer,PowerTransformer,1,XF1T 13.8kV-1kV,89616,WHITEPT0C,WHITE_PT,8988,WHITEPT1A,WHITE_PT,XF1T,WHITE_PT_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279751,1d52fa22-5dfa-4529-94c1-d9447b6c037c,Transformer,PowerTransformer,G2,2MP0 34.5kV-13.8kV,110946,SL_2,SL,110942,SL_SL_G2,SL,2MP0,SL_2MP0,,,,,,,,,,,unmatched,transformer_other
+719726,1d8010ee-dbe3-4d1c-8a55-6faa6fbe42ce,Transformer,PowerTransformer,R1,XF1T 13.8kV-1kV,60104,MULETER0A,MULBERRY,60102,MULEDUM0A,MULBERRY,XF1T,MULBERRY_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279263,1db1b211-e12f-46cf-bd85-fde14e33c803,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,11881,ROCKYCRK_3,RKCRK,24100,RKCRK1_1,RKCRK,MR1T,RKCRK_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279762,1e7746fa-fb60-40fa-b2b4-572da2c694ca,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49039,T_H_W__A1TER,THW,49179,T_H_W__A1STR,THW,AT1T,THW_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+681448,20659d3c-ee78-4378-8509-ec2a92cfa437,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,25089,TEASW_13_1,TEASW,26089,TEASW_1_1,TEASW,MR1T,TEASW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+748682,20935dfe-376e-467f-bffa-f1f8920d1df2,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,10055,CATTLEMAN1_3,CATSW,20055,CATTLEMAN3_3,CATSW,MR1T,CATSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279241,211e7fe6-0101-43ca-be6e-68e73a907d10,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,12948,SARGT1_3,SARRD,24103,SARRD1_1,SARRD,MR1T,SARRD_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+90206,214c4c25-2696-4c1e-81b7-274ad5b5df56,Transformer,PowerTransformer,A2,AT2T 23kV-1kV,49045,RTHWOD_A2TER,RTW,49152,RTHWOD_A2STR,RTW,AT2T,RTW_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279640,223e3701-fe97-43b1-91c6-e9b69151c77f,Transformer,PowerTransformer,1,AT1T 13.2kV-1kV,9078,LYTTON_T1,LYTTON_S,9398,LYTTON1_1KV,LYTTON_S,AT1T,LYTTON_S_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+493696,2357d3de-f9da-4420-8087-823f9d1a9430,Transformer,PowerTransformer,4,T4T 12.47kV-1kV,110962,BOG_T4T,BOG,110968,BOG_T4,BOG,T4T,BOG_T4T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280451,23f4c33d-c29a-4451-9ddf-2732521a409a,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49062,DOW____A1TER,DOW,49191,DOW____A1STR,DOW,AT1T,DOW_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+31519,250a2e11-2eba-4df4-91b3-966f11bb184f,Transformer,PowerTransformer,1,XF2T 13.8kV-1kV,11572,ORAN2_3,ORANS,24045,ORANS2_1,ORANS,XF2T,ORANS_XF2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280369,258f58ed-82d5-4d9f-b7db-9e05b583613e,Transformer,PowerTransformer,4,MR4T 13.8kV-1kV,5060,CAGAUTO4,CAGNON,5064,CAGSTAR4,CAGNON,MR4T,CAGNON_MR4T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+41016,25df6fb0-f641-4612-8ab6-4f0c6d94383b,Transformer,PowerTransformer,1,XF9T 14.4kV-1kV,110145,DOWGEN_6,DOWGEN,110148,DOWGEN_STAR,DOWGEN,XF9T,DOWGEN_XF9T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+24405,266aed0e-1bda-42c4-8be9-77bed8183159,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,18000,HCKSW2_3,HCKSW,24012,HCKSW1_1,HCKSW,MR1T,HCKSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+834977,267d4a5d-c983-4e41-91e3-7152c2a0ece9,Transformer,PowerTransformer,1,XF1T 12kV-1kV,80030,MAGRUDER0A,MAGRUDER,80031,MAGRUDER1A,MAGRUDER,XF1T,MAGRUDER_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+842704,273b8484-d290-484d-9550-3009f9db1c2f,Transformer,PowerTransformer,T5,SU4X 13.8kV-1kV,171103,TIMPP_N7,TIMPP,171108,TIMPP_0_T4,TIMPP,SU4X,TIMPP_SU4X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+307566,2740b565-b006-4455-839b-31f9b1de73e4,Transformer,PowerTransformer,3,MR1T 13.8kV-1kV,18537,WILLOWVAL_3,WLVSW,24046,WLVSW1_1,WLVSW,MR1T,WLVSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+731936,278857ef-4c2e-41fe-9cd9-d9b421d977f2,Transformer,PowerTransformer,T1,SU1Y 13.8kV-1kV,171092,TIMPP_N2,TIMPP,171097,TIMPP_0_T1,TIMPP,SU1Y,TIMPP_SU1Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280380,28d75a21-905b-436f-b3f6-08dac98ebc3f,Transformer,PowerTransformer,1,T1T 12.4kV-1kV,984,W_DENT_T1,W_DENT,998,W_DENT_2,W_DENT,T1T,W_DENT_T1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+321285,297e3355-d956-4f8f-bbbe-dffc9ac85ef2,Transformer,PowerTransformer,A1,AT1T 13kV-1kV,49016,GARDEN_A1TER,GV,49116,GARDEN_A1STR,GV,AT1T,GV_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+855781,2a4c45be-5fb6-40ab-8964-99416c2e789c,Transformer,PowerTransformer,1,FMRT 13.8kV-1kV,60114,BALLING0A,BALLINGE,6339,BL1DUM,BALLINGE,FMRT,BALLINGE_FMRT,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280389,2b0bc8ec-76b9-4df8-8479-8f0b48f388b8,Transformer,PowerTransformer,1,T1_T 34.5kV-1kV,900735,BLFTERT1,BLUF_CRK,60075,BLCKDUM1,BLUF_CRK,T1_T,BLUF_CRK_T1_T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+334274,2b85d7e1-ea8f-4385-8e60-feb18cfed22f,Transformer,PowerTransformer,2,2TR2 17.5kV-1kV,23902,ALIBATE2,ALIBATES,79524,ALIBSTR,ALIBATES,2TR2,ALIBATES_2TR2,,,,,,,,,,,unmatched,transformer_tertiary_stub
+126152,2bf08965-03fb-406f-a947-49d5edb23c96,Transformer,PowerTransformer,2,AX2T 13.8kV-1kV,18533,DERMOTT2_3,DMTSW,24001,DMTSW2_1,DMTSW,AX2T,DMTSW_AX2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279025,2c411fd1-f23a-4cdf-92c2-bf26d7bce480,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,11850,ROANOKE1_3,RNKSW,24101,RNKSW1_1,RNKSW,MR1T,RNKSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+493695,2c58c087-38f0-4e12-82ad-c8fc8ba2a1ad,Transformer,PowerTransformer,4,T4S 12.47kV-1kV,110961,BOG_T4S,BOG,110968,BOG_T4,BOG,T4S,BOG_T4S,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279304,2ce2710b-8fd9-4bd6-9347-7576cbeacd51,Transformer,PowerTransformer,3,MR2T 13.8kV-1kV,13439,SAND2_ONC_3,SNDSW,24106,SNDSW2_1,SNDSW,MR2T,SNDSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+647464,2d5b0bd7-aaff-46bd-b601-77e4ce49d469,Transformer,PowerTransformer,1,XF3T 12.5kV-1kV,88742,BROOKHOL0A,BROOKHOL,88741,BROOKHOL0B,BROOKHOL,XF3T,BROOKHOL_XF3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+55020,2d914fdd-e0cf-416a-a4e2-e54b15a9835e,Transformer,PowerTransformer,1,XF1T 13.8kV-1kV,11571,ORAN1_3,ORANS,24044,ORANS1_1,ORANS,XF1T,ORANS_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280021,2dad9806-d5bd-44de-8d9e-71d5fdf7469d,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49018,GRNBYU_A1TER,GBY,49119,GRNBYU_A1STR,GBY,AT1T,GBY_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+19350,2e348202-4ae2-4bae-bac7-e79aaf2ab8f8,Transformer,PowerTransformer,13,ST 18kV-1kV,170136,BRAU_AVR1_ST,BRAUNIG,5474,AVR_STR1,BRAUNIG,ST,BRAUNIG_ST,,,,,,,,,,,unmatched,transformer_tertiary_stub
+429040,2e780634-71bc-4ebe-9da5-2e4c09304e52,Transformer,PowerTransformer,1,AX1T 13.8kV-1kV,11085,RIVERTON1_3,RVRSW,24129,RVRSW_2A,RVRSW,AX1T,RVRSW_AX1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279018,2e8adaf0-d15f-47e1-878c-4ae3c38f227b,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,1686,PARIS_SW1_3,PRSSW,24094,PRSSW1_1,PRSSW,MR1T,PRSSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280397,2fdf2985-b6a3-42a3-9967-c494caf11163,Transformer,PowerTransformer,G1,XT4F 13.8kV-1kV,110050,THW_THWGT44,THW,49172,49172_STAR,THW,XT4F,THW_XT4F,,,,,,,,,,,unmatched,transformer_tertiary_stub
+346166,31d8b939-4c1f-42ef-ad8c-0662907024fe,Transformer,PowerTransformer,1,AT1T 13.2kV-1kV,7771,L_BERGHE1_1Y,BERGHE,77855,L_BERGHE1_2Y,BERGHE,AT1T,BERGHE_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+207095,3236eebb-034c-4404-a532-8d82d4abd327,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,3660,HUTTOSS1_3,HUTTO,13660,HUTTOSS1_1,HUTTO,MR1T,HUTTO_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+493689,3241c036-628f-4cd0-a1ce-7fdb07ec6e22,Transformer,PowerTransformer,2,T2S 12.47kV-1kV,110958,BOG_T2S,BOG,110967,BOG_T2,BOG,T2S,BOG_T2S,,,,,,,,,,,unmatched,transformer_tertiary_stub
+725836,3244e766-ae3f-477c-976a-15bd0375db55,Transformer,PowerTransformer,1,XF1T 12.5kV-1kV,8213,DS0A,DILLEYSW,8211,DSDMYA,DILLEYSW,XF1T,DILLEYSW_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+96881,32480edf-485a-4189-b49b-277303f4f23b,Transformer,PowerTransformer,3,MR1T 13.8kV-1kV,1186,MIDCONW_3,MCNSW,24004,MIDCONW_1,MCNSW,MR1T,MCNSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+546680,3281aafe-1ced-4872-9f3f-4ead9871138e,Transformer,PowerTransformer,1,AT3T 13.2kV-1kV,7217,L_LOCKHA1_3Y,LOCKHA,77216,L_LOCKHA1_2Y,LOCKHA,AT3T,LOCKHA_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+453260,334f0796-1084-4e43-b4dd-801805db3790,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49054,DEPWTR_A1TER,DPW,49160,DEPWTR_A1STR,DPW,AT1T,DPW_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+593153,3367826a-fe7a-48a4-8a2e-a1dbed22688d,Transformer,PowerTransformer,T1,12T 12.5kV-1kV,89413,VALER_E0A,VALERO_E,89412,VALER_E0B,VALERO_E,12T,VALERO_E_12T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+646858,33794f37-d3ce-44e1-88a3-c6af57235df8,Transformer,PowerTransformer,1,T3T 13.8kV-1kV,900688,WHITEPT0C,WHITE_PT,89617,WHITEPT0D,WHITE_PT,T3T,WHITE_PT_T3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+370249,344c272c-cccc-4527-8c77-f3e2632a7983,Transformer,PowerTransformer,1,XF1T 13.8kV-1kV,24999,CRSCNT_1,CRSCN,24122,CRSCN1_1,CRSCN,XF1T,CRSCN_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+755663,3558b79f-a21f-48a3-a2be-c8c7875c9175,Transformer,PowerTransformer,1,XFT1 12.5kV-1kV,89613,NAVALBS0A,NAVALBAS,89614,NAVALBS0B,NAVALBAS,XFT1,NAVALBAS_XFT1,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279681,360d491f-af24-41f3-a47f-14090e4e8872,Transformer,PowerTransformer,1,T_1T 13.2kV-1kV,9130,NL_TERTY,NORTHLAN,9395,NORTHLAN_1KV,NORTHLAN,T_1T,NORTHLAN_T_1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+676577,376911f6-8a24-43a0-9aaa-47ce6ff998b0,Transformer,PowerTransformer,X2,TR2Y 12.47kV-1kV,110461,FORMOSA_1,FORMOSA,111146,FORMOSA_TR2,FORMOSA,TR2Y,FORMOSA_TR2Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+503637,37bee34b-863f-421b-be15-469b4e79ad5d,Transformer,PowerTransformer,A4,AT4T 13kV-1kV,49021,WHITOK_A4TER,WO,49199,49199,WO,AT4T,WO_AT4T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280417,38740a34-09bc-43fb-8c7a-850ecc62ca30,Transformer,PowerTransformer,G1,XT4E 13.8kV-1kV,110049,THW_THWGT43,THW,49172,49172_STAR,THW,XT4E,THW_XT4E,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279288,387f9917-1db8-4754-a010-6a296a8a81ac,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,12434,SGVLSW1_3,SGVSW,24105,SGVSW2_1,SGVSW,MR2T,SGVSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+27035,397cf7a7-8de1-4eb0-9446-3c9747aabb37,Transformer,PowerTransformer,1,13X 13.8kV-1kV,131244,QALSW_GT3,QALSW,131248,QALSW_13_1KV,QALSW,13X,QALSW_13X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+662091,39f2d61e-90a6-4c94-8f93-79edeb2ce3f5,Transformer,PowerTransformer,T1,P131 34.5kV-13.8kV,112013,APTXCITY_L2,APTXCITY,112011,APTXCITY_G1,APTXCITY,P131,APTXCITY_P131,,,,,,,,,,,unmatched,transformer_other
+114370,3a0b448c-0969-4cd5-96dd-58e6664ec5c7,Transformer,PowerTransformer,A2,AT2T 23kV-1kV,49051,MEADOW_A2TER,MDO,49133,MEADOW_A2STR,MDO,AT2T,MDO_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279560,3a26125e-e4df-4a83-b018-5d4d4eafe59f,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,11795,MOSES1_3,MNSES,24085,MNSES1_1,MNSES,MR1T,MNSES_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280420,3ab45725-2a25-43c0-9b57-24a5b77507e0,Transformer,PowerTransformer,3,MR3T 13.8kV-1kV,11884,EVRMAN1_3,EVRSW,24070,EVRSW3_1,EVRSW,MR3T,EVRSW_MR3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+222519,3bb9834c-cfa6-419d-a939-68a202a37bc2,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,13414,TEMP_SS__3,TMPSW,24110,TMPSW1_1,TMPSW,MR1T,TMPSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+774298,3c70255f-1c92-4bf7-82ad-84dacbfb9b8c,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,24971,PRNGMOSS1_3,PRMSW,24165,PRNGMOSS1_T,PRMSW,MR1T,PRMSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279817,3c8f4901-d0e9-4c46-8dc3-fc3640f70355,Transformer,PowerTransformer,1,HT1T 13.8kV-1kV,36996,WHNTY131,WHTNY,245,WHTNYSTAR,WHTNY,HT1T,WHTNY_HT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279478,3d2bc9e0-bb63-46ba-bc0b-b33ee2b97799,Transformer,PowerTransformer,A2,AT2T 23kV-1kV,49084,BELAIR_A2TER,BI,49101,BELAIR_A2STR,BI,AT2T,BI_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279410,3d72936b-9620-46c9-a8e1-5d54c2a1a252,Transformer,PowerTransformer,1,BT1T 12.5kV-1kV,963,SHELBY3,SHELBY,996,SHELBY_1,SHELBY,BT1T,SHELBY_BT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+379014,3ded4b0c-8cf2-4b1f-b1f2-1427530be91a,Transformer,PowerTransformer,A2,A2T 14.4kV-1kV,110156,DOW_A2_1,DOW,49192,DOW__A2STR,DOW,A2T,DOW_A2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+319570,3f6f95bd-6cfb-4130-8434-238ed85fd03b,Transformer,PowerTransformer,2,AT3T 13.2kV-1kV,7838,L_SALEM_1_3Y,SALEM,777290,L_SELAM01_1Y,SALEM,AT3T,SALEM_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+377190,41c7d81a-557d-42fc-9ef5-e027049d82e2,Transformer,PowerTransformer,1,AT1T 12.5kV-1kV,840,DENTSW12,DENTSW,841,DENTSW1,DENTSW,AT1T,DENTSW_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279366,41cd13bc-d5f7-4c98-930d-46e8ed3d30f7,Transformer,PowerTransformer,1,138T 13.8kV-1kV,8341,ED1TERT,NEDIN,8381,8381_3STAR,NEDIN,138T,NEDIN_138T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+503225,42bf3b9a-ac6a-479b-9aba-1f30c5047b8c,Transformer,PowerTransformer,2,AX2T 13.8kV-1kV,11216,QUARRYFLD2_3,QRYSW,24138,QUARRY_2,QRYSW,AX2T,QRYSW_AX2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+410007,437c2938-154b-471f-8e74-a7f63232e9cc,Transformer,PowerTransformer,T2,T2TC 34.5kV-1kV,134594,QUEEN_S4,QUEEN_SL,134596,T2,QUEEN_SL,T2TC,QUEEN_SL_T2TC,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279103,43f62a08-e390-4806-bcb0-e2db6573c3cd,Transformer,PowerTransformer,G1,XT7B 13.8kV-1kV,110092,GBY_GBYGT73,GBY,49130,49130_STAR,GBY,XT7B,GBY_XT7B,,,,,,,,,,,unmatched,transformer_tertiary_stub
+95424,444d0da0-295f-4af1-abdb-fe7ceb54bb93,Transformer,PowerTransformer,T4,XT4T 13.8kV-1kV,111135,BAC_CTG4,BAC,111139,111139_STAR,BAC,XT4T,BAC_XT4T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+485857,45d78788-8494-44fd-a6c9-51ad75fa3b3c,Transformer,PowerTransformer,1,T3T 13.5kV-1kV,59142,LP_COOP_T,LPLCO,59141,COT3,LPLCO,T3T,LPLCO_T3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+534357,45e89ce3-9f12-4eb0-a545-41711a2e39ed,Transformer,PowerTransformer,T6,XT2Y 13.8kV-1kV,112414,RABBS_N4,RAB,112422,112422,RAB,XT2Y,RAB_XT2Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280006,4676d003-6cd1-446d-bccb-1f568b3886db,Transformer,PowerTransformer,A4,AT4T 23kV-1kV,49047,P_H_R__A4TER,PHR,49146,P_H_R__A4STR,PHR,AT4T,PHR_AT4T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+319011,4697b8ea-a747-4f4d-a7ff-68b0e2a673a5,Transformer,PowerTransformer,A6,AT6T 23kV-1kV,49069,DOW____A6TER,DOW,49196,DOW____A6STR,DOW,AT6T,DOW_AT6T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279551,47bffcb4-c5db-4c25-aebf-a60b073ddbf5,Transformer,PowerTransformer,1,AT1T 13.2kV-1kV,77281,L_TWINBU1_1Y,TWINBU,77155,L_TWINBU_1Z,TWINBU,AT1T,TWINBU_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+842705,4800bbe6-fa4b-4ebc-9dc8-d4e9f0d5a507,Transformer,PowerTransformer,T6,SU4Y 13.8kV-1kV,171104,TIMPP_N8,TIMPP,171108,TIMPP_0_T4,TIMPP,SU4Y,TIMPP_SU4Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279520,493764ed-1f73-479f-9077-c41843f160e7,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49068,LEG____A1TER,LEG,49168,49168_STAR,LEG,AT1T,LEG_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279089,4946e844-e478-4e9b-aaf0-0ccf35d506c1,Transformer,PowerTransformer,1,XF1T 12.5kV-1kV,978,JKCREEK3,JK_CK,999,JCREEK_1,JK_CK,XF1T,JK_CK_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+373935,497d84b2-5943-49ea-ad29-b76af3616f00,Transformer,PowerTransformer,1,MR1T 2.4000001kV-1kV,24998,WHTSTLMNT2_8,WSMSW,24123,WHTSTLMNT1_8,WSMSW,MR1T,WSMSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+486656,4a359df6-0048-46b7-85c4-1fb1396b8d40,Transformer,PowerTransformer,1,T4T 13.8kV-1kV,59163,LP_YEL_T2,LPLYH,59153,YHT4STAR,LPLYH,T4T,LPLYH_T4T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+650239,4b1ebf2e-1847-44a6-9843-fabc3d7b4b41,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,24986,LPNSW_13_1,LPNSW,24145,LPNSW_1_1,LPNSW,MR1T,LPNSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+742155,4c270a9c-ede8-4218-81f8-78c056a0b0e0,Transformer,PowerTransformer,1,XF1T 13.09kV-1kV,60461,KINNISON0A,KINNISON,60117,KINDUM,KINNISON,XF1T,KINNISON_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+720544,4c2c57e0-4fbd-486d-a790-43a8f42613a8,Transformer,PowerTransformer,R2,XF2T 13.8kV-1kV,60105,MULWTER0A,MULBERRY,60103,MULWDUM0A,MULBERRY,XF2T,MULBERRY_XF2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+87564,4c315ce4-098f-4f41-b24c-dc25ec5af014,Transformer,PowerTransformer,2,AT1T 13.2kV-1kV,77683,L_CLEASP1_1Y,CLEASP,77681,L_CLEASP1_1Z,CLEASP,AT1T,CLEASP_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+728512,4d85a348-f9da-440b-b516-784c5b5af6f3,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,24976,TEMP_PEC__34,TMPCR,24161,TMPCR1_2,TMPCR,MR2T,TMPCR_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+422441,4e53582a-b05c-4a28-a0e2-169d1307e042,Transformer,PowerTransformer,A3,AT3T 23kV-1kV,49038,JONCRK_A3TER,JCK,49138,JONCRK_A3STR,JCK,AT3T,JCK_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279823,4e8d402a-27c8-47f2-a1d3-f660128c60d5,Transformer,PowerTransformer,1,XF1C 13.8kV-1kV,8328,LP3TERT,LA_PALMA,8315,LP3DUM,LA_PALMA,XF1C,LA_PALMA_XF1C,,,,,,,,,,,unmatched,transformer_tertiary_stub
+730818,4f26a3d3-6fd0-436c-8558-cf8f69a3a007,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,24977,REDLAND_3,REDSW,24160,REDLAND_1,REDSW,MR1T,REDSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279308,50192552-effd-47f1-84c5-6565a344d8b3,Transformer,PowerTransformer,1,MR1T 13kV-1kV,11952,HANDLEY_3,HLSES,24075,HLSES1_1,HLSES,MR1T,HLSES_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+485159,50ad7d56-436f-4bac-b0b3-cfda114d2012,Transformer,PowerTransformer,1,T3T 13.5kV-1kV,59112,LP_MCKNZE_T1,LPLMK,59113,LPLMKSTAR,LPLMK,T3T,LPLMK_T3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+324290,51299159-f6c4-4f03-ada2-a93b9f52c7a8,Transformer,PowerTransformer,2,AT2T 13.2kV-1kV,7834,L_ZORN__1_2Y,ZORN,777181,L_ZORN__1_2Z,ZORN,AT2T,ZORN_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279085,515fd0a2-9c5a-4213-a18e-f808d23584c9,Transformer,PowerTransformer,G1,XT8A 13.8kV-1kV,110097,GBY_GBYGT84,GBY,49118,49118_STAR,GBY,XT8A,GBY_XT8A,,,,,,,,,,,unmatched,transformer_tertiary_stub
+152815,5250c933-4856-44ca-8cba-c84bd73c392a,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,11920,SHRY_B_3,SHRSW,24036,SHRSW1_1,SHRSW,MR1T,SHRSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279747,52df536f-c4fe-4abc-8821-36daceb1cc7e,Transformer,PowerTransformer,1,T1T 34.5kV-1kV,170236,HHGT_1,HHGT,170252,HHGT_1_STAR,HHGT,T1T,HHGT_T1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279612,54330674-e099-4575-9cc0-94f8b2d23085,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,5373,SKYAUTO2,SKYLINE,5365,SKYSTAR2,SKYLINE,MR2T,SKYLINE_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280183,54edba3f-4d57-4197-bf35-c98fd0caf72c,Transformer,PowerTransformer,2,AT2T 13.2kV-1kV,9330,AUSTROT2,AUSTRO,9396,AUSTRO2_1KV,AUSTRO,AT2T,AUSTRO_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+534353,565f55b7-c9e8-4372-a5f2-7e2e96f6480a,Transformer,PowerTransformer,T2,XT1X 13.8kV-1kV,112411,RABBS_N1,RAB,112420,112420,RAB,XT1X,RAB_XT1X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+3867,56e259ce-5374-4b71-afe2-169f42081411,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49026,P_H_R__A1TER,PHR,49126,P_H_R__A1STR,PHR,AT1T,PHR_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+410003,576f6eb3-7438-464a-bd7e-c49f64a3da11,Transformer,PowerTransformer,T1,T1SC 34.5kV-1kV,134591,QUEEN_S1,QUEEN_SL,134595,T1,QUEEN_SL,T1SC,QUEEN_SL_T1SC,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279567,579aaa37-f530-4dba-a25b-114da97369bd,Transformer,PowerTransformer,1,MR3T 13.8kV-1kV,3392,JEWETT1_3,JEWET,24076,JEWET3_1,JEWET,MR3T,JEWET_MR3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+700694,58b753a8-33d8-4c03-a4e8-1be12936eef9,Transformer,PowerTransformer,T3,MPTB 34.5kV-1kV,153531,ELZA_SLR_B1,ELZA_SLR,153534,ELZA_SLR_L1,ELZA_SLR,MPTB,ELZA_SLR_MPTB,,,,,,,,,,,unmatched,transformer_tertiary_stub
+458031,5950d69f-7129-41c8-8003-ff9369407062,Transformer,PowerTransformer,T2,XT2T 13.8kV-1kV,111133,BAC_CTG2,BAC,111138,111138,BAC,XT2T,BAC_XT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279708,59ad1f2e-2b21-476f-9d6d-66b0a9d633ee,Transformer,PowerTransformer,4,MR4T 13.8kV-1kV,5215,HCAUTO4,HILLCTRY,5217,HC_STAR4,HILLCTRY,MR4T,HILLCTRY_MR4T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+848232,5aeadb76-bb67-482c-b72f-568313a6de5a,Transformer,PowerTransformer,1,MR2T 13.8kV-1kV,12430,WATMLL1_3,WTRML,24157,WTRML1_11,WTRML,MR2T,WTRML_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279423,5bb2c542-5263-486f-bfd2-6f95e25c2a1c,Transformer,PowerTransformer,1,MR1T 13.2kV-1kV,3519,HILLBORO1_3,HLSBR,24074,HLSBR1_1,HLSBR,MR1T,HLSBR_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279170,5bb8d6f4-388f-42d3-83d1-14272fd0cf17,Transformer,PowerTransformer,A1,AT1T 13kV-1kV,49027,S_CHAN_A1TER,SC,49127,S_CHAN_A1STR,SC,AT1T,SC_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279070,5bc4819f-1b1d-4b84-a6e7-13f5c8ca329d,Transformer,PowerTransformer,1,MR2T 12kV-1kV,29108,CROCKETT_3,CRKET,24060,CRKET2_1,CRKET,MR2T,CRKET_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280022,5c063b26-c309-4afa-8241-86932aea4927,Transformer,PowerTransformer,2,AT4T 13.2kV-1kV,77289,L_SALEM_1_4Y,SALEM,777289,L_SALEM1_1,SALEM,AT4T,SALEM_AT4T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+42411,5c0856d6-47db-4d87-9770-89080372dc7c,Transformer,PowerTransformer,1,15X 13.8kV-1kV,131243,QALSW_STG1,QALSW,131249,QALSW_15_1KV,QALSW,15X,QALSW_15X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280223,5c2aa5a3-e868-4462-869b-4c6703502b86,Transformer,PowerTransformer,G1,XT3D 13.8kV-1kV,110044,THW_THWGT33,THW,49139,49139_STAR,THW,XT3D,THW_XT3D,,,,,,,,,,,unmatched,transformer_tertiary_stub
+21504,5c70a15e-e145-4dca-9fe1-72ae426eb3d8,Transformer,PowerTransformer,A2,AT2T 13kV-1kV,49056,GABLE__A2TER,GS,49156,GABLE__A2STR,GS,AT2T,GS_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279075,5d8e3654-de4a-49f5-b369-e0d6ddf82bc5,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,11698,SULP_SS1_3,SSPSW,24108,SSPSW1_1,SSPSW,MR1T,SSPSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+486708,5eadd3fa-3764-4255-b505-4215b4b2da4b,Transformer,PowerTransformer,1,T2T 13.8kV-1kV,59176,LP_DUNBAR_T1,LPLDB,59179,DBT2STAR,LPLDB,T2T,LPLDB_T2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279967,5eddb28c-f5a7-4265-b29f-65fec6aadb84,Transformer,PowerTransformer,1,12T2 13.8kV-1kV,170064,LEON__LCPCT2,LEON_CRK,5270,LCPSTR12,LEON_CRK,12T2,LEON_CRK_12T2,,,,,,,,,,,unmatched,transformer_tertiary_stub
+411478,5fbd5158-416a-4d21-8d43-77b649501b19,Transformer,PowerTransformer,2,T2TC 34.5kV-1kV,134511,HILO_4_5,HI_LONE,134514,HILO_1KV2,HI_LONE,T2TC,HI_LONE_T2TC,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279003,5fd366ee-5041-4171-9b66-f01a77d51558,Transformer,PowerTransformer,1,381T 13.8kV-1kV,8499,LH3TERT,LON_HILL,8449,LH1DUM,LON_HILL,381T,LON_HILL_381T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+609338,60190de7-945c-4905-b4a2-d9a326622418,Transformer,PowerTransformer,1,T1_T 4.1599998kV-1kV,847,LOOKOUT4_T1,LOOKOUT,858,858,LOOKOUT,T1_T,LOOKOUT_T1_T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+842702,605947d7-604d-486b-a898-b54765a95916,Transformer,PowerTransformer,T3,SU3Y 13.8kV-1kV,171102,TIMPP_N6,TIMPP,171107,TIMPP_0_T3,TIMPP,SU3Y,TIMPP_SU3Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+715168,60954862-6ee2-4e73-b2c3-f28f1c8acb0a,Transformer,PowerTransformer,1,XF1T 13.8kV-1kV,88659,NAISMITH0A,NAISMITH,88661,NAISMITH0C,NAISMITH,XF1T,NAISMITH_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+754789,6120ecf8-ad8b-4131-9d39-3cbd883fe1ed,Transformer,PowerTransformer,2,MR2T 13.2kV-1kV,24973,CALMONT2_T,CMTSW,24164,CALMONT2_1,CMTSW,MR2T,CMTSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+486705,61bf2954-7616-45bd-9465-5597a5c6d82c,Transformer,PowerTransformer,1,T1T 13.8kV-1kV,59177,LP_DUNBAR_T2,LPLDB,59172,DBT1STAR,LPLDB,T1T,LPLDB_T1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+61448,6250055e-bc6d-4ddd-8b5a-8a30f8617bb2,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,11910,VENUS2_3,VENSW,24041,VENSW1_1,VENSW,MR1T,VENSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+281278,62be7a4b-b46d-47d9-9fef-71820a5da9ad,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,5212,HCAUTO1,HILLCTRY,5206,HC_STAR1,HILLCTRY,MR1T,HILLCTRY_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+94515,639f0cbd-42d8-40c0-9879-a5e20e93b6f7,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49085,ZENITH_A1TER,ZEN,49185,ZENITH_A1STR,ZEN,AT1T,ZEN_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+327089,63f40572-3ded-4674-af3a-bca9d731f41f,Transformer,PowerTransformer,A2,AT2T 23kV-1kV,49037,JONCRK_A2TER,JCK,49137,JONCRK_A2STR,JCK,AT2T,JCK_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+410004,6453472c-2f15-49c5-b633-8a7161983961,Transformer,PowerTransformer,T1,T1TC 34.5kV-1kV,134592,QUEEN_S2,QUEEN_SL,134595,T1,QUEEN_SL,T1TC,QUEEN_SL_T1TC,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280197,65057f02-7368-488d-a016-a1184d2923f8,Transformer,PowerTransformer,2,T2T 34.5kV-1kV,170237,HHGT_2,HHGT,170253,HHGT_2_STAR,HHGT,T2T,HHGT_T2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+299945,6571d8d0-bcd6-43a8-b2da-3d40b2483f5a,Transformer,PowerTransformer,A3,AT3T 23kV-1kV,49075,N_BELT_A3TER,NB,49175,N_BELT_A3STR,NB,AT3T,NB_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+720971,65a623c2-6ee3-41cc-9841-7924b4621de4,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,10065,ROCKHOUND2_3,RCKSW,24159,ROCKHOUND2_T,RCKSW,MR2T,RCKSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+329839,65cd00f7-774e-4615-b5f9-4823eae37f54,Transformer,PowerTransformer,1,AX1T 13.2kV-1kV,11701,TCOSW1_3,TCOSW,24013,TOCO_1,TCOSW,AX1T,TCOSW_AX1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+630888,66084611-f6bc-40ea-aa9f-84496ed6dcb6,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,11370,EXPANSE2_3,EXPSW,24150,HIIEE,EXPSW,MR2T,EXPSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279490,6708f361-aa5a-4454-9f84-d8c3fe3e36ac,Transformer,PowerTransformer,2A,A2AT 20.9kV-1kV,49006,CEDARP_2ATER,CBY,49107,CEDARP_2BSTR,CBY,A2AT,CBY_A2AT,,,,,,,,,,,unmatched,transformer_tertiary_stub
+308387,67e58151-f6eb-4522-b1a4-0bb1ecfd6562,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49061,ADICKS_A1TER,ADK,49161,ADICKS_A1STR,ADK,AT1T,ADK_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279292,6a121220-6dc8-4ee5-8c3d-cbbea4c0ecef,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,11440,CMCHE_SS_3,CMNSW,24055,CMNSW1_1,CMNSW,MR1T,CMNSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280211,6a51941b-2703-4503-8db5-7bf9cb17b11d,Transformer,PowerTransformer,2,MR2T 13.2kV-1kV,11033,MGCK2_3,MGSES,24017,700208_3STAR,MGSES,MR2T,MGSES_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+410006,6a6d7cca-7df4-43c6-9a9c-b9004e44b007,Transformer,PowerTransformer,T2,T2SC 34.5kV-1kV,134593,QUEEN_S3,QUEEN_SL,134596,T2,QUEEN_SL,T2SC,QUEEN_SL_T2SC,,,,,,,,,,,unmatched,transformer_tertiary_stub
+764612,6b82f501-9b7d-41b9-b009-8e280fa89a6c,Transformer,PowerTransformer,1,XF1T 12kV-1kV,8451,NUECESB0A,NUECES_B,8440,NBDMYA,NUECES_B,XF1T,NUECES_B_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279529,6cbed699-11bc-408b-82f2-592db0b58c94,Transformer,PowerTransformer,A1,AT1T 12.47kV-1kV,49058,H_O_C__A1TER,HOC,49158,H_O_C__A1STR,HOC,AT1T,HOC_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280225,6cfddb67-c755-42ed-8ed4-091c68152237,Transformer,PowerTransformer,2,XT2T 13.2kV-1kV,957,GREENV_IN_T2,GN_S_I,990,GREENV_IN_2,GN_S_I,XT2T,GN_S_I_XT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279451,6f04d980-8ff1-4814-bbd6-db186d6b2ca7,Transformer,PowerTransformer,1,MR2T 12kV-1kV,3476,NAVARRO1_3,NVARO,24088,NVARO2_1,NVARO,MR2T,NVARO_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280454,6f4b416c-c267-416e-9975-16b5d6be9bfd,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49001,BELAIR_A1TER,BI,49100,BELAIR_A1STR,BI,AT1T,BI_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280232,6fedd67d-8c4c-4d98-ae36-07cec5a0a7a6,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,29050,BOWMAN_B3,BOMSW,24053,BOMSW2_1,BOMSW,MR2T,BOMSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+344699,706ebcbf-e18b-4701-bc8a-418ef6b92800,Transformer,PowerTransformer,A3,AT3T 23kV-1kV,49091,ZENITH_A3TER,ZEN,49187,ZENITH_A3STR,ZEN,AT3T,ZEN_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+493698,70c71750-50a9-4329-9964-d8a68b2840fa,Transformer,PowerTransformer,6,T6S 12.47kV-1kV,110965,BOG_T6S,BOG,110970,BOG_T6,BOG,T6S,BOG_T6S,,,,,,,,,,,unmatched,transformer_tertiary_stub
+82151,71c6e2e8-7913-4f7d-a4e4-0a8a6204da28,Transformer,PowerTransformer,2,AT2T 13.2kV-1kV,77280,L_TWINBU1_2Y,TWINBU,77156,L_TWINBU1_2Z,TWINBU,AT2T,TWINBU_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+492646,730a80aa-d934-4672-ba6c-38adf9d1517f,Transformer,PowerTransformer,A1,AT3T 23kV-1kV,49079,49079,JOR,49114,49114,JOR,AT3T,JOR_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+468073,73ac2df0-f144-4c8d-a8b1-a26c9cc1fd42,Transformer,PowerTransformer,X3,TR3Y 12.47kV-1kV,110462,FORMOSA_2,FORMOSA,111145,FORMOSA_TR3,FORMOSA,TR3Y,FORMOSA_TR3Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+871627,75c2453c-b7bd-4522-99be-11115d0baf02,Transformer,PowerTransformer,1,XF1T 12.47kV-1kV,80190,VERN1A,VERN,80191,VERN0A,VERN,XF1T,VERN_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280247,76febff9-d617-4cc6-8358-97bf77d876a9,Transformer,PowerTransformer,G1,XT5B 13.8kV-1kV,110052,THW_N1,THW,49149,49149_STAR,THW,XT5B,THW_XT5B,,,,,,,,,,,unmatched,transformer_tertiary_stub
+95072,77aee2ec-e441-438a-9ab1-d90ee5bab964,Transformer,PowerTransformer,T6,XT6S 13.8kV-1kV,111136,BAC_CTG5,BAC,111140,111140_STAR,BAC,XT6S,BAC_XT6S,,,,,,,,,,,unmatched,transformer_tertiary_stub
+61234,781e1b20-f8aa-4996-af03-b2f00a456508,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,3338,TYLERGND_3,TYGND,24114,TYGND1_1,TYGND,MR1T,TYGND_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+534356,782d5341-bac2-423a-a857-52c3470cc4a2,Transformer,PowerTransformer,T5,XT2X 13.8kV-1kV,112413,RABBS_N3,RAB,112422,112422,RAB,XT2X,RAB_XT2X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279381,78399250-ff91-483a-9069-6305b16faaa4,Transformer,PowerTransformer,2,T2_T 34.5kV-1kV,60043,BLFTERT2,BLUF_CRK,60074,BLCKDUM2,BLUF_CRK,T2_T,BLUF_CRK_T2_T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+828251,7a525104-9345-4024-ac40-8087ad44b6ce,Transformer,PowerTransformer,1,MR1T 13.2kV-1kV,24968,SPRABERRY1_3,SBYSW,24169,SPRABERRY_1,SBYSW,MR1T,SBYSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+715201,7a5abf66-be02-4f34-be9f-310275720ce6,Transformer,PowerTransformer,2,XF2T 13.8kV-1kV,88660,NAISMITH0B,NAISMITH,88662,NAISMITH0D,NAISMITH,XF2T,NAISMITH_XF2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+306104,7aca5cc6-df0c-4b44-a597-36432a2d457d,Transformer,PowerTransformer,1,TRTG 34.5kV-13.8kV,110562,MSN_110562,MSN,110561,MSN_110561,MSN,TRTG,MSN_TRTG,,,,,,,,,,,unmatched,transformer_other
+279506,7b058907-a696-493d-b18a-2f5698ac25d5,Transformer,PowerTransformer,A3,AT3T 23kV-1kV,49008,CEDARP_A3TER,CBY,49110,CEDARP_A3STR,CBY,AT3T,CBY_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+345060,7b725d78-5289-4376-a197-a1d5f6d7eb70,Transformer,PowerTransformer,01,T1M 34.5kV-1kV,170442,CACTSFLT_T1,CFLATS,170447,CACTSFLT_3Y,CFLATS,T1M,CFLATS_T1M,,,,,,,,,,,unmatched,transformer_tertiary_stub
+326922,7c628d83-02e4-4daa-b92c-fb39eef650ea,Transformer,PowerTransformer,A2,AT2T 23kV-1kV,49090,ZENITH_A2TER,ZEN,49186,ZENITH_A2STR,ZEN,AT2T,ZEN_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+441476,7d5a7242-0e29-470d-a13d-705847e2aba6,Transformer,PowerTransformer,1,AX1T 13.8kV-1kV,11099,SANDLAKE1_3,SLKSW,24133,SANDLK_A_1,SLKSW,AX1T,SLKSW_AX1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279246,7d6d8546-7c2a-4d58-808f-31b7d6f2c18d,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,13402,LAKE_CRK2_3,LCSES,24078,LCSES1_1,LCSES,MR1T,LCSES_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279333,7db740de-4dab-410f-ae55-8fa282393ef0,Transformer,PowerTransformer,A1,AT1T 12.47kV-1kV,49066,GABLE__A1TER,GS,49166,GABLE__A1STR,GS,AT1T,GS_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+28830,7e0e10b5-2717-4b96-8044-51e850226d85,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49077,JORDAN_A1TER,JOR,49112,JORDAN_A1STR,JOR,AT1T,JOR_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+586829,7e3312f4-656a-413a-ada4-fd08b61e9c25,Transformer,PowerTransformer,3,MR1T 13.8kV-1kV,24988,CRESLENN1_13,CRESW,24142,CRESLENN1_1,CRESW,MR1T,CRESW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279100,7f2695d8-973b-40fe-9008-c0195fac4d25,Transformer,PowerTransformer,G1,XT7A 13.8kV-1kV,110093,GBY_GBYGT74,GBY,49130,49130_STAR,GBY,XT7A,GBY_XT7A,,,,,,,,,,,unmatched,transformer_tertiary_stub
+873314,800a93e8-cf3a-4aaf-a0f4-8d0c64bf29e7,Transformer,PowerTransformer,2,AT2T 12kV-1kV,80026,RKPRT0B,ROCKPORT,80027,RKPRTDMY0B,ROCKPORT,AT2T,ROCKPORT_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+34035,80c7abac-8446-4220-a29c-a3667b8cbe55,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,13423,KILL_SS_3,KLNSW,24027,KLNSW1_1,KLNSW,MR1T,KLNSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280263,814b79dd-2568-471b-8ffa-eae149679e5a,Transformer,PowerTransformer,1,MR2T 13.8kV-1kV,29090,CNVIL2_3,CNRSW,24058,CNRSW2_1,CNRSW,MR2T,CNRSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+313524,81e2a9d2-ae59-4e1d-9579-c32dae1cf7d2,Transformer,PowerTransformer,2,AT3T 13.2kV-1kV,77180,L_ZORN__1_3Y,ZORN,777182,L_ZORN__1_3Z,ZORN,AT3T,ZORN_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+534363,83d606d5-431b-4393-8038-5c09deebb730,Transformer,PowerTransformer,T4,XT4Y 13.8kV-1kV,112418,RABBS_N8,RAB,112421,112421,RAB,XT4Y,RAB_XT4Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+124521,843d78f4-9993-4658-bf7c-0e49249333c1,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,18536,SCURCNTY2_3,SCOSW,19751,SCURCNTY2_1,SCOSW,MR2T,SCOSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280271,85493f39-b6b5-42a5-93b8-d931e2bda7e2,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,11848,ROANOKE2_3,RNKSW,24102,RNKSW2_1,RNKSW,MR2T,RNKSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280272,85580728-f67c-4bdb-b5d9-e778e9625284,Transformer,PowerTransformer,G1,XT3C 13.8kV-1kV,110043,THW_THWGT32,THW,49151,49151_STAR,THW,XT3C,THW_XT3C,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280273,862a72e6-8dc9-4994-85ba-e2266c4c6c7e,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,18528,ODSSAEHV2_3,ODEHV,24090,ODEHV2_1,ODEHV,MR2T,ODEHV_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279319,8683e40e-58e2-49a6-baaa-85df0deb7115,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,900930,WATMLL1_3,WTRML,24118,WTRML1_1,WTRML,MR1T,WTRML_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279464,868b859e-5eec-4f5f-941c-22278ef34562,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,12360,CRLTN_NW1_3,CRLNW,24061,CRLNW1_1,CRLNW,MR1T,CRLNW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+863968,86bd3a96-970d-4837-a060-ac9663f80f9b,Transformer,PowerTransformer,1A,XFT1 13.8kV-1kV,80004,FRONTERA0A,FRONTERA,8035,FRONTERA0C,FRONTERA,XFT1,FRONTERA_XFT1,,,,,,,,,,,unmatched,transformer_tertiary_stub
+153990,86de128a-6dfe-4b15-ad58-c8d14f501fe5,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,11921,SHRY_A_3,SHRSW,24037,SHRSW2_1,SHRSW,MR2T,SHRSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+88078,86fb531f-5dc3-4028-ac58-fff3ae48b3a8,Transformer,PowerTransformer,A4,AT4T 23kV-1kV,49002,BELAIR_A4TER,BI,49102,BELAIR_A4STR,BI,AT4T,BI_AT4T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+299915,87375be3-0099-4e5d-a0c5-5e890a35ebaf,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49050,N_BELT_A1TER,NB,49150,N_BELT_A1STR,NB,AT1T,NB_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+375370,875275af-cc42-4c20-a713-5d552782b29a,Transformer,PowerTransformer,T3,AT3T 13.2kV-1kV,77044,L_MARION1_3Y,MARION,77179,L_MARION_2Y,MARION,AT3T,MARION_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+423287,877e89f0-584d-4d60-a409-83a2182f3819,Transformer,PowerTransformer,1,XT1Y 13.8kV-1kV,110824,CVC_CVC_G5,CVC,110828,CVC_TERT,CVC,XT1Y,CVC_XT1Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+774319,887351cd-7b43-44ec-8b3d-63344c254792,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,24972,PRNGMOSS2_3,PRMSW,24166,PRNGMOSS2_T,PRMSW,MR2T,PRMSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+319888,89d4faa4-8e4a-4725-b694-12963ec3baf5,Transformer,PowerTransformer,2,MR1T 13.8kV-1kV,3398,JEWETT1_1,JEWET,24121,JEWET1_1,JEWET,MR1T,JEWET_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+835254,8add4601-2745-4262-8bc4-cffa36bde4c2,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,24965,GUNTERSW1_3,GTRSW,24171,GUNTERSW1_T,GTRSW,MR1T,GTRSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+60536,8c7f32f6-8516-44ac-8aa6-92e5854f842f,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,16424,NORWD2_3,NORSW,24034,NORSW2_1,NORSW,MR2T,NORSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+534362,8e393a6d-eecd-4775-914f-ea993eed1833,Transformer,PowerTransformer,T4,XT4X 13.8kV-1kV,112417,RABBS_N7,RAB,112421,112421,RAB,XT4X,RAB_XT4X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+95071,8ede8a27-3d70-4504-a015-168fa3314109,Transformer,PowerTransformer,T4,XT4S 13.8kV-1kV,111134,BAC_CTG3,BAC,111139,111139_STAR,BAC,XT4S,BAC_XT4S,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279712,8f43e7de-fab8-4b7d-a7c4-ebc7133eb4ea,Transformer,PowerTransformer,3,MR3T 13.8kV-1kV,5214,HCAUTO3,HILLCTRY,5216,HC_STAR3,HILLCTRY,MR3T,HILLCTRY_MR3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279144,8fde777b-c90e-41f6-9a1b-4ec73d408f5f,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,18529,ODSSAEHV1_3,ODEHV,24089,ODEHV1_1,ODEHV,MR1T,ODEHV_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280292,90d377fd-4bd5-43ba-8a2c-d2599de2f9aa,Transformer,PowerTransformer,2,BUT3 13.8kV-1kV,170033,MAR_MARSFOG3,MARSFO,77360,L_MARSFO1_2,MARSFO,BUT3,MARSFO_BUT3,,,,,,,,,,,unmatched,transformer_tertiary_stub
+505119,911774e7-6a6b-4cad-8e25-d4c442eb7d21,Transformer,PowerTransformer,1,647X 14.4kV-1kV,110122,DOW_647X,DOWGEN,110163,DOW_647H,DOWGEN,647X,DOWGEN_647X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279544,9211484f-9d3a-4b6b-9763-0dda074ff30a,Transformer,PowerTransformer,1,MR3T 13.2kV-1kV,29150,ELKTON_3,ELKTN,24064,ELKTN3_1,ELKTN,MR3T,ELKTN_MR3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+438356,929dadc5-6108-43b8-a35c-e9e01c5b2610,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,24993,SARGT2_3,SARRD,24131,SARRD2_1,SARRD,MR2T,SARRD_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+486622,92bd35e2-4da0-442e-bd8f-21e3ba649e91,Transformer,PowerTransformer,1,T3T 13.8kV-1kV,59155,LP_YEL_T1,LPLYH,59154,YHT3STAR,LPLYH,T3T,LPLYH_T3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279029,9313c845-baf2-4ec8-84bd-08e7eb159262,Transformer,PowerTransformer,1,MR2T 13.8kV-1kV,12480,WLEVEE_2T3,WLVEE,24003,WLVEE2_1,WLVEE,MR2T,WLVEE_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279833,945c6364-59ee-46ae-87ef-95d1cf5d5650,Transformer,PowerTransformer,1,MT5L 13.8kV-1kV,170137,BRAU_VHB6CT5,BRAUNIG,5036,BR_STR56,BRAUNIG,MT5L,BRAUNIG_MT5L,,,,,,,,,,,unmatched,transformer_tertiary_stub
+429033,94a9c4c4-8c03-42c4-afe5-7cf6e9ba2d6a,Transformer,PowerTransformer,1,AX1T 13.8kV-1kV,11008,WOLFSS_3,WLFSW,24127,WLFSW_1A,WLFSW,AX1T,WLFSW_AX1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+128759,9508d48d-be7f-45e1-a66d-9033f94e0d2c,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,11926,LIGGETTA1_3,LIGSW,24030,LIGSW1_1,LIGSW,MR1T,LIGSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+719129,9532ce56-c4ae-4bcf-bad9-2aa1da2a13ee,Transformer,PowerTransformer,1,XF1T 13.1kV-1kV,6298,SAPOWER3C,SAPOWER,6485,SAPOWER1C,SAPOWER,XF1T,SAPOWER_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+293004,97ca0f9a-e8fc-4e83-a8ed-9ee824723b53,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49041,WHITOK_A1TER,WO,49144,WHITOK_A1STR,WO,AT1T,WO_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+60303,97f9dbe4-128e-431e-9afd-aa906affe056,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,12512,ALLENSW2_3,ALNSW,24020,ALNSW2_1,ALNSW,MR2T,ALNSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+354811,98903664-679f-4679-8b89-c02614bbe2c1,Transformer,PowerTransformer,A3,AT3T 23kV-1kV,49049,P_H_R__A3TER,PHR,49147,P_H_R__A3STR,PHR,AT3T,PHR_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280109,98a2d93d-9178-4918-bc4b-76335911ad45,Transformer,PowerTransformer,G1,XT3B 13.8kV-1kV,110042,THW_THWGT31,THW,49151,49151_STAR,THW,XT3B,THW_XT3B,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279094,98b86a9c-f236-4bea-aa43-bfc11f16c6cd,Transformer,PowerTransformer,G1,1MP0 34.5kV-13.8kV,110945,SL_1,SL,110941,SL_SL_G1,SL,1MP0,SL_1MP0,,,,,,,,,,,unmatched,transformer_other
+20667,98bed278-7ebf-4d22-9249-3dac2d33226a,Transformer,PowerTransformer,1,11Y 13.8kV-1kV,131242,QALSW_GT2,QALSW,131253,QALSW_11_1KV,QALSW,11Y,QALSW_11Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+339765,990ea9f5-90eb-4ea4-9c7d-0a9b7b595c26,Transformer,PowerTransformer,2,G1NY 13.8kV-1kV,151196,DEC_1Y,DEC,151205,DEC_1_1,DEC,G1NY,DEC_G1NY,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279980,995c4834-d2ed-4fa3-b7b7-6bac33ed248f,Transformer,PowerTransformer,1,1383 13.8kV-1kV,60780,OK1TERT,OKLA,6095,OK1DUM,OKLA,1383,OKLA_1383,,,,,,,,,,,unmatched,transformer_tertiary_stub
+754005,99b25aa4-5eed-4724-81c5-3c31f0c98cf6,Transformer,PowerTransformer,1,MR3T 13.2kV-1kV,24974,FRYSW2,FRYSW,24163,FRYSW1,FRYSW,MR3T,FRYSW_MR3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+124572,99e64080-0cc0-4d46-a3a4-a90a62e2ee05,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,18531,CENTBLUF1_3,CBFSW,24010,CENTBLUF_1,CBFSW,MR1T,CBFSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+34717,9a46285c-a1d8-4e37-a61c-5df75a807c25,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,13424,KILL_SS2__3,KLNSW,24025,KLNSW2_1,KLNSW,MR2T,KLNSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+293180,9aff4f90-05cc-4bfb-b72b-65db611a43a8,Transformer,PowerTransformer,A3,AT3T 23kV-1kV,49043,WHITOK_A3TER,WO,49143,WHITOK_A3STR,WO,AT3T,WO_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279105,9c29cdcd-01a9-46db-9b54-0f64c78fd022,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49059,RTHWOD_A1TER,RTW,49145,RTHWOD_A1STR,RTW,AT1T,RTW_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+411477,9dc25049-1f23-4841-afc2-ba8e9002c98f,Transformer,PowerTransformer,2,T2SC 34.5kV-1kV,134510,HILO_3_5,HI_LONE,134514,HILO_1KV2,HI_LONE,T2SC,HI_LONE_T2SC,,,,,,,,,,,unmatched,transformer_tertiary_stub
+339764,9df73b4a-59f8-4204-b84d-e099abff197a,Transformer,PowerTransformer,2,G1NX 13.8kV-1kV,151195,DEC_1X,DEC,151205,DEC_1_1,DEC,G1NX,DEC_G1NX,,,,,,,,,,,unmatched,transformer_tertiary_stub
+491424,9e9d2115-4f15-482a-8461-eea9bc0a4218,Transformer,PowerTransformer,1,MR1T 13.2kV-1kV,24991,QNLTPT_3,QNLTP,24136,QNLTP1_1,QNLTP,MR1T,QNLTP_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+681484,9f7a1b25-ce25-472a-88ab-e2fc031029e0,Transformer,PowerTransformer,1,MR2T 13.8kV-1kV,25090,TEASW_13_2,TEASW,26090,TEASW_1_2,TEASW,MR2T,TEASW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+429043,9fea57bb-e20e-448a-9372-06368306976c,Transformer,PowerTransformer,2,AX2T 13.8kV-1kV,11075,RIVERTON2_3,RVRSW,24130,RVRSW_1A,RVRSW,AX2T,RVRSW_AX2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280127,a06ab788-1620-4866-965a-7d0eacdbf10d,Transformer,PowerTransformer,2,AT2T 13.2kV-1kV,9081,LYTTON_T2,LYTTON_S,9399,LYTTON2_1KV,LYTTON_S,AT2T,LYTTON_S_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280131,a183a1f8-b428-4e40-bb83-f20f2aa3a295,Transformer,PowerTransformer,3,MR3T 13.8kV-1kV,5374,SKYAUTO3,SKYLINE,5366,SKYSTAR3,SKYLINE,MR3T,SKYLINE_MR3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279098,a2359bd3-220b-4022-b8b6-4b95450a3461,Transformer,PowerTransformer,G1,XT8D 13.8kV-1kV,110095,GBY_GBYGT82,GBY,49117,49117_STAR,GBY,XT8D,GBY_XT8D,,,,,,,,,,,unmatched,transformer_tertiary_stub
+664624,a2435858-4a19-45e6-bddf-06649bac0566,Transformer,PowerTransformer,T1,KT1B 34.5kV-1kV,112872,GSTAR_S2,PHO,112880,112880,PHO,KT1B,PHO_KT1B,,,,,,,,,,,unmatched,transformer_tertiary_stub
+61060,a267c63e-ca89-41e1-9f4d-80821f8bad21,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,3136,LUFKNSS_3,LFKSW,24032,LFKSW7_1,LFKSW,MR1T,LFKSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+465300,a2ce6b12-244d-464a-9901-529377c1a762,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,12288,CARMICHL_3,CMBSW,24135,CARMICHL_1,CMBSW,MR1T,CMBSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+614533,a2daa087-826b-4775-b2f4-d53e054ab1fc,Transformer,PowerTransformer,2,XFT2 13.8kV-1kV,80139,STEWART0B,STEWART,80132,SROADDMYA,STEWART,XFT2,STEWART_XFT2,,,,,,,,,,,unmatched,transformer_tertiary_stub
+828815,a2fb2b41-de1d-45ce-9b38-b91c3e884867,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,24969,WALLEYE1_3,WCRSW,24167,WALLEYE1_T,WCRSW,MR1T,WCRSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+863990,a3f5d7a1-38a1-4170-8cee-367368bf56bd,Transformer,PowerTransformer,2A,XFT2 13.8kV-1kV,80005,FRONTERA0B,FRONTERA,8035,FRONTERA0C,FRONTERA,XFT2,FRONTERA_XFT2,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280138,a41620b1-5162-4442-8634-64201418bf53,Transformer,PowerTransformer,G1,XT4B 13.8kV-1kV,110047,THW_THWGT41,THW,49171,49171_STAR,THW,XT4B,THW_XT4B,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279829,a43e495e-923b-4437-a9a6-ca7174111df1,Transformer,PowerTransformer,1,MT8L 13.8kV-1kV,170140,BRAU_VHB6CT8,BRAUNIG,5037,BR_STR78,BRAUNIG,MT8L,BRAUNIG_MT8L,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280141,a49ff6df-b8f0-479e-b3e3-7f2713f55364,Transformer,PowerTransformer,1,DT1T 12.5kV-1kV,993,BENDAVIS_T1,BNDVS,954,BENDAVIS_1_2,BNDVS,DT1T,BNDVS_DT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280142,a4c42b9f-cd75-431a-b769-7d487e72148a,Transformer,PowerTransformer,2,WT2T 22kV-1kV,966,GIBN_CREK_T2,GIBCRK,959,GIBN_CRK_1_3,GIBCRK,WT2T,GIBCRK_WT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+731940,a4da1ea0-731b-45ff-ac05-e54f1335dfd7,Transformer,PowerTransformer,T2,SU2X 13.8kV-1kV,171093,TIMPP_N3,TIMPP,171098,TIMPP_0_T2,TIMPP,SU2X,TIMPP_SU2X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279233,a4fba5ce-5bb4-4b82-983c-34245b063eb5,Transformer,PowerTransformer,1,CT1T 12.5kV-1kV,974,MCCREE1_T1,MCCREE,9500,MCCREE_1,MCCREE,CT1T,MCCREE_CT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+874778,a521df80-de3b-49d7-9657-467c70fc94a1,Transformer,PowerTransformer,1,XF1T 13.8kV-1kV,85003,N_SHARPE0A,N_SHARPE,85004,N_SHARPE1A,N_SHARPE,XF1T,N_SHARPE_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280144,a5654b5f-3d80-403c-8eb1-6960237e943c,Transformer,PowerTransformer,G1,XT4C 13.8kV-1kV,110048,THW_THWGT42,THW,49171,49171_STAR,THW,XT4C,THW_XT4C,,,,,,,,,,,unmatched,transformer_tertiary_stub
+60815,a5d5f756-dc16-45e1-b348-2681e5616401,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,13420,TEMP_PEC__3,TMPCR,24038,TMPCR1_1,TMPCR,MR1T,TMPCR_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+833411,a6661881-cbf1-43bb-b47e-f51e7eb3b8ab,Transformer,PowerTransformer,1,XF1T 13.09kV-1kV,6785,ASPM0A,ASPM,6157,ASP1DUM,ASPM,XF1T,ASPM_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+307144,a67bf86f-40cc-4c65-849b-f80abb25b48b,Transformer,PowerTransformer,A2,AT2T 23kV-1kV,49019,GRNBYU_A2TER,GBY,49128,GRNBYU_A2STR,GBY,AT2T,GBY_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+413387,a6df3faa-abe5-4c16-bc9f-eca7a6d867ed,Transformer,PowerTransformer,1,1TR1 24.9kV-1kV,5706,24_9,FOWLRTON,5703,1,FOWLRTON,1TR1,FOWLRTON_1TR1,,,,,,,,,,,unmatched,transformer_tertiary_stub
+698658,a70ac02e-9984-4f05-9c11-faf3e3cd3d8e,Transformer,PowerTransformer,1,MR1T 13.2kV-1kV,24200,OLKSWT_3,OLKSW,24199,OLKSW1_1,OLKSW,MR1T,OLKSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+873271,a7740052-d6c2-42bb-9e63-7adde69d7eb6,Transformer,PowerTransformer,1,AT1T 13kV-1kV,8443,ROCKPRT0A,ROCKPORT,8433,RKPTDMY0A,ROCKPORT,AT1T,ROCKPORT_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+312846,a7b8914e-a57a-4903-b9cf-da352ab60893,Transformer,PowerTransformer,2,AT1T 13.2kV-1kV,77340,L_GILLCR1_1Y,GILLCR,777340,L_GILLCR1_1Z,GILLCR,AT1T,GILLCR_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279731,a8e9e69c-9227-4a5a-af37-e9bd277eb31a,Transformer,PowerTransformer,2,AX2T 13.8kV-1kV,11866,EAGLEMNT2_3,EMSES,24066,EMSES2_1,EMSES,AX2T,EMSES_AX2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279603,a946ba66-8060-4d30-a583-da3bd2243723,Transformer,PowerTransformer,1,T1T 13.2kV-1kV,6295,SRC1TERT,REDCREEK,6294,SRC1DUM,REDCREEK,T1T,REDCREEK_T1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+665379,aa065cc8-b7d1-49d3-a32a-a4c852d0530f,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,24984,NORS3,TESSW,24148,NORS2,TESSW,MR2T,TESSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+609337,ab06b1ec-13c6-43c8-8a64-f8099952d16e,Transformer,PowerTransformer,1,T1_L 36kV-1kV,846,LOOKOUT3,LOOKOUT,858,858,LOOKOUT,T1_L,LOOKOUT_T1_L,,,,,,,,,,,unmatched,transformer_tertiary_stub
+95600,ab3a2efb-3dd9-4a8f-b8fa-2f2060bb5873,Transformer,PowerTransformer,1,AT2T 13.2kV-1kV,7822,L_MARION1_2Y,MARION,77178,L_MARION_1Y,MARION,AT2T,MARION_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+718555,abf03473-c524-410e-a7f4-2004cec0e134,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,12078,EX_AUTO1,EXCSW,24155,EXCHANGE1_T,EXCSW,MR1T,EXCSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+503204,ac6acaec-fba5-489b-89aa-c5eca16203f1,Transformer,PowerTransformer,1,AX1T 13.8kV-1kV,11194,QUARRYFLD1_3,QRYSW,24137,QUARRY_1,QRYSW,AX1T,QRYSW_AX1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280433,acf15084-d6d3-40c2-8d45-ef904c83c943,Transformer,PowerTransformer,4,MR4T 13.8kV-1kV,5375,SKYAUTO4,SKYLINE,5367,SKYSTAR4,SKYLINE,MR4T,SKYLINE_MR4T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279254,ad84dc86-f318-4897-a879-237152247a44,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,12431,DESSW1_3,DESSW,24062,DESSW1_1,DESSW,MR1T,DESSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279856,ad8a85bd-9c75-458a-8823-2f2b6f867693,Transformer,PowerTransformer,G1,XT5I 13.8kV-1kV,110057,THW_N6,THW,49173,49173_STAR,THW,XT5I,THW_XT5I,,,,,,,,,,,unmatched,transformer_tertiary_stub
+27505,ae3641e1-19c7-455c-9a18-2544370499d8,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49046,MEADOW_A1TER,MDO,49131,MEADOW_A1STR,MDO,AT1T,MDO_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+60365,aec5f43a-9499-47a7-9925-07e22c07b194,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,17016,FISHRDSS1_3,FSHSW,24024,FSHSW1_1,FSHSW,MR1T,FSHSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+510441,af3c01c4-5b2a-47b7-b14b-f410f365eb63,Transformer,PowerTransformer,T1,T1-Y 34.5kV-1kV,143312,AZURE_S2,AZURE,143314,AZURE_T1,AZURE,T1-Y,AZURE_T1-Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+346073,af4eda3f-a653-4db0-85ad-bef2abb6a74d,Transformer,PowerTransformer,1,MR2T 13.8kV-1kV,24994,HCKSW1_3,HCKSW,24014,HCKSW2_1,HCKSW,MR2T,HCKSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+534354,af71c96c-0024-4622-909e-aa217225d4c7,Transformer,PowerTransformer,T3,XT1Y 13.8kV-1kV,112412,RABBS_N2,RAB,112420,112420,RAB,XT1Y,RAB_XT1Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+61787,afa0a8e1-b276-4e03-af61-8b6d04abc9b9,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,11909,VENUS1_3,VENSW,24042,VENSW2_1,VENSW,MR2T,VENSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279097,b00a9830-d049-479d-af66-de393d9cbbd3,Transformer,PowerTransformer,G1,XT8E 13.8kV-1kV,110094,GBY_GBYGT81,GBY,49117,49117_STAR,GBY,XT8E,GBY_XT8E,,,,,,,,,,,unmatched,transformer_tertiary_stub
+5760702,b0106323-ddfd-489b-9540-72e14334ae14,Transformer,PowerTransformer,3,AT2T 13.2kV-1kV,7853,L_FAYETT1_2Y,FAYETT,77815,1000,FAYETT,AT2T,FAYETT_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279406,b30fdb8b-00d7-4a15-9add-edb7e1ca22e6,Transformer,PowerTransformer,2,GABT 12.5kV-1kV,994,BENDAVIS_T2,BNDVS,953,BENDAVIS_1_1,BNDVS,GABT,BNDVS_GABT,,,,,,,,,,,unmatched,transformer_tertiary_stub
+443802,b36edc62-7482-4d42-ac18-280983967168,Transformer,PowerTransformer,1,AT1T 13.2kV-1kV,77308,L_WINCHE1_1Y,WINCHES,777308,L_WINCHE2_1Y,WINCHES,AT1T,WINCHES_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279711,b3ae0a8c-e1b8-4166-8a2c-0a68d01835ba,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,5213,HCAUTO2,HILLCTRY,5207,HC_STAR2,HILLCTRY,MR2T,HILLCTRY_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+583211,b4190afe-e468-4c62-83c1-ac0031d78225,Transformer,PowerTransformer,1,XF2T 13.8kV-1kV,89612,WHITEPT0B,WHITE_PT,89611,WHTPTDMY0B,WHITE_PT,XF2T,WHITE_PT_XF2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+485829,b48d5708-2819-40ad-9bcd-06e76d817b2f,Transformer,PowerTransformer,1,T3T 13.5kV-1kV,59130,LP_VCKSBRG_T,LPLVK,59131,VKT3STAR,LPLVK,T3T,LPLVK_T3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279573,b5b5bec5-f1b3-4d1f-ac96-c78e5652fd3f,Transformer,PowerTransformer,1,MR2T 13.2kV-1kV,3193,EDGEWOOD_3,EDGWD,24063,EDGWD2_1,EDGWD,MR2T,EDGWD_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279082,b97162a2-c556-4ef3-9a6a-f2544f081923,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,3135,NACOGDSE_3,NCDSE,24086,NCDSE1_1,NCDSE,MR1T,NCDSE_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279611,ba2da533-cc44-4cea-ba7e-38e8814219c5,Transformer,PowerTransformer,1,AT1T 13.2kV-1kV,9329,AUSTROT1,AUSTRO,9397,AUSTRO1_1KV,AUSTRO,AT1T,AUSTRO_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+505446,ba389db7-6cbb-439c-8b2e-59a61410c3cd,Transformer,PowerTransformer,1,T1SC 34.5kV-1kV,134508,HILO_1_5,HI_LONE,134515,HILO_1KV,HI_LONE,T1SC,HI_LONE_T1SC,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280445,bbc2dcc5-922a-469c-9d87-c127d38001ca,Transformer,PowerTransformer,4,AT4T 13.2kV-1kV,77152,L_KENDAL1_4Y,KENDAL,77153,L_KENDAL1_1,KENDAL,AT4T,KENDAL_AT4T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279513,bbcea9a5-557e-4bb5-a0e5-0aed41d312c4,Transformer,PowerTransformer,1,AT1T 13.8kV-1kV,8336,RH1TERT,RIOHONDO,8324,RH1DUM,RIOHONDO,AT1T,RIOHONDO_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+326256,bc05ed4f-ade4-42ce-97c4-dec2abaf1981,Transformer,PowerTransformer,S1,STG1 12.47kV-0.47999999kV,111202,NA_GT2,,111203,NA_ST1,,STG1,NA_STG1,,,,,,,,,,,unmatched,transformer_tertiary_stub
+582375,bc49b98f-fabc-4c16-aa6f-b13b65a9f538,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,24989,MDLNE_13,MDLNE,24141,MDLNE1_2,MDLNE,MR1T,MDLNE_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279330,bd5bd002-14c3-46d5-aab9-37f5da987394,Transformer,PowerTransformer,2,2T 13.8kV-1kV,8181,CC2TERT,COLETO,8165,CC2DUM0A,COLETO,2T,COLETO_2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+842701,bd9336f2-c3d1-4506-8834-f6582ea895cb,Transformer,PowerTransformer,T2,SU3X 13.8kV-1kV,171101,TIMPP_N5,TIMPP,171107,TIMPP_0_T3,TIMPP,SU3X,TIMPP_SU3X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+40888,bdcb9df3-ab7f-472e-be0e-e76d2d74832d,Transformer,PowerTransformer,1,XF9S 18kV-1kV,110146,DOW_DOW_GT96,DOWGEN,110148,DOWGEN_STAR,DOWGEN,XF9S,DOWGEN_XF9S,,,,,,,,,,,unmatched,transformer_tertiary_stub
+320414,be0bb7f9-7010-4bed-918d-0607a3877c41,Transformer,PowerTransformer,3,MR1T 13.2kV-1kV,187557,YUCCADR_3,YUCSW,24008,YUCSW1_1,YUCSW,MR1T,YUCSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+95475,be1d50f0-9db0-4dbc-9d07-ca101b4ee651,Transformer,PowerTransformer,T6,XT6T 13.8kV-1kV,111137,BAC_CTG6,BAC,111140,111140_STAR,BAC,XT6T,BAC_XT6T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+308393,beb4405b-b711-411f-954d-a5f2b6d31c61,Transformer,PowerTransformer,A2,AT2T 23kV-1kV,49083,ADICKS_A2TER,ADK,49183,ADICKS_A2STR,ADK,AT2T,ADK_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+718826,bf5fc26f-88a8-4455-ac53-1ff41acbeb59,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,12079,EX_AUTO2,EXCSW,24156,EXCHANGE2_T,EXCSW,MR2T,EXCSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280090,bfce74dc-cd4e-4a1d-afbf-b3fd77fc74ea,Transformer,PowerTransformer,A5,AT5T 13kV-1kV,49017,GRNBYU_A5TER,GBY,49129,GRNBYU_A5STR,GBY,AT5T,GBY_AT5T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+131918,c0348167-2e3b-4718-a2c1-917862f65c5a,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,12479,WLEVEE_1T3,WLVEE,24002,WLVEE1_1,WLVEE,MR1T,WLVEE_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279896,c03559c8-4495-4718-b7f9-4c6bfaab6366,Transformer,PowerTransformer,G1,XT5H 13.8kV-1kV,110056,THW_N5,THW,49173,49173_STAR,THW,XT5H,THW_XT5H,,,,,,,,,,,unmatched,transformer_tertiary_stub
+41079,c0753d60-c662-4588-af4a-b61264a29611,Transformer,PowerTransformer,1,A4T 14.4kV-1kV,110150,DOW_A3_1,DOW,49194,DOW____A4STR,DOW,A4T,DOW_A4T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279312,c1225af7-9b12-4445-a7ba-0f923dcd9e7a,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,11861,EAGLEMNT1_3,EMSES,24067,EMSES1_1,EMSES,MR1T,EMSES_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+155603,c12aeb11-3662-4511-8667-36dce885cd97,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,11891,DECRDOVA_3,DCSES,24023,DCSES1_1,DCSES,MR1T,DCSES_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279902,c16316af-8cd1-47f3-a438-e799e4cbd31a,Transformer,PowerTransformer,1,WT1T 12.4kV-1kV,965,GIBN_CREK_T1,GIBCRK,980,GIBN_CRK_1_2,GIBCRK,WT1T,GIBCRK_WT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+493690,c2672b71-f09e-46af-8918-65f6a7cc718a,Transformer,PowerTransformer,2,T2T 12.47kV-1kV,110960,BOG_T2T,BOG,110967,BOG_T2,BOG,T2T,BOG_T2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+717099,c3cc935d-8140-48ac-94d0-f6ffaacd857e,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,10051,RANGER1_3,RGRSW,24152,RANGER1_T,RGRSW,MR1T,RGRSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+603094,c3dcd6e9-86ad-419f-adfd-9bd95d91d812,Transformer,PowerTransformer,1,MR2T 13.8kV-1kV,11389,CONSAVVY2_3,CONSW,24144,CONSW_AUTO2,CONSW,MR2T,CONSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+874775,c3ec4158-9f4b-47a1-bcb8-bb9e975fb5ae,Transformer,PowerTransformer,1,XF1T 12.5kV-1kV,8513,STRATTN0A,STRATTON,8525,STRATTN1A,STRATTON,XF1T,STRATTON_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279061,c47a0799-42da-4b8d-89ad-7275c0a93a2d,Transformer,PowerTransformer,1,MR6T 22kV-1kV,120151,TRSES_UNIT6,TRSES,24112,TRSES6_1,TRSES,MR6T,TRSES_MR6T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279706,c47f0782-dbe0-4e6f-9d2f-8c70bb389359,Transformer,PowerTransformer,3,MR3T 13.8kV-1kV,5059,CAGAUTO3,CAGNON,5063,CAGSTAR3,CAGNON,MR3T,CAGNON_MR3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+230499,c4d5f0bb-2346-4d34-abc0-0291050f3b57,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,4000,MDSSW1_3,MDSSW,24011,MDSSW1_1,MDSSW,MR1T,MDSSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+486973,c5091b9f-e3eb-4b0c-8aef-fae1d656cd9a,Transformer,PowerTransformer,1,T1T 13.8kV-1kV,59189,LP_POSEY_T1,LPLPY,59187,PYT1STAR,LPLPY,T1T,LPLPY_T1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+664631,c52c78a1-5739-4150-bad6-e1264724f476,Transformer,PowerTransformer,T3,KT3A 34.5kV-1kV,112876,GSTAR_B2,PHO,112882,112882,PHO,KT3A,PHO_KT3A,,,,,,,,,,,unmatched,transformer_tertiary_stub
+124531,c6b4e5c1-346f-4448-a689-7520a9937dbf,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,18535,SCURCNTY1_3,SCOSW,19750,SCURCNTY1_1,SCOSW,MR1T,SCOSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+379057,c6f8ed73-860a-4362-9c97-02b9d9619a69,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,24996,MOSS2_3,MOSSW,24125,MOSS2_1,MOSSW,MR2T,MOSSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+98584,c75022cf-d8c6-4cd9-84ec-6a9aa37049c1,Transformer,PowerTransformer,1,AX1T 13.8kV-1kV,1162,ANDRCOSO_3,ACSSW,24005,ANDRCOSO_1,ACSSW,AX1T,ACSSW_AX1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+66870,c77d7977-f0cc-4e80-9ade-b598b9a38e9d,Transformer,PowerTransformer,3,AT3T 13.2kV-1kV,77150,L_KENDAL1_3Y,KENDAL,77800,L_KENDAL1_2,KENDAL,AT3T,KENDAL_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+301044,c806d921-3c12-42d3-a6e6-76d16e81604f,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,12404,NORWD_1T3,NORSW,24087,NORSW1_1,NORSW,MR1T,NORSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+534359,c82dff3c-e330-4d62-8077-c7410589fb77,Transformer,PowerTransformer,T8,XT3X 13.8kV-1kV,112415,RABBS_N5,RAB,112423,112423,RAB,XT3X,RAB_XT3X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279922,ca1c51bf-4466-4120-88cd-166d5390942e,Transformer,PowerTransformer,2,T2T 13.2kV-1kV,60769,SRC2TERT,REDCREEK,6768,SRC2DUM,REDCREEK,T2T,REDCREEK_T2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+334275,ca429b44-0e78-4d66-9578-96bb6d45a947,Transformer,PowerTransformer,2,1TR2 12.47kV-1kV,23904,ALIBATE3,ALIBATES,79524,ALIBSTR,ALIBATES,1TR2,ALIBATES_1TR2,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279405,cb02e636-8a2c-47b6-8bc2-3a5b241931eb,Transformer,PowerTransformer,3,MR3T 13.8kV-1kV,11908,VENUS3_3,VENSW,24117,VENSW3_1,VENSW,MR3T,VENSW_MR3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+441597,cb52f361-5ed9-48d5-a654-52fdc8fc699d,Transformer,PowerTransformer,2,AX2T 13.8kV-1kV,11109,SANDLAKE2_3,SLKSW,24134,SANDLK_A_2,SLKSW,AX2T,SLKSW_AX2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279203,cbe76147-b4d3-40d6-a3fd-ee864a2f412e,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49024,JENETA_A1TER,JN,49124,JENETA_A1STR,JN,AT1T,JN_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+363679,cc5205a3-d964-440d-bef4-953821b98913,Transformer,PowerTransformer,A2,AT2T 23kV-1kV,49064,OBRIEN_2ATER,OB,49163,OBRIEN_2ASTR,OB,AT2T,OB_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+77965,ccb66635-75ea-4973-a750-df262fbc0705,Transformer,PowerTransformer,1,16X 13.8kV-1kV,131246,QALSW_STG2,QALSW,131250,QALSW_16_1KV,QALSW,16X,QALSW_16X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280027,ccf30ac1-4bda-4ae2-b0f2-c1cde7f42886,Transformer,PowerTransformer,1,ATAT 24.9kV-1kV,5909,SMIGLT2,SANMIGL,5905,NOTMODMIDPT2,SANMIGL,ATAT,SANMIGL_ATAT,,,,,,,,,,,unmatched,transformer_tertiary_stub
+833435,cd850f9d-cd77-4da8-bdd5-7586bca40964,Transformer,PowerTransformer,1,MR2T 13.8kV-1kV,24963,24966,WILSW,24172,24172,WILSW,MR2T,WILSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+423286,cead0de4-5c5d-48a3-802d-26933b531683,Transformer,PowerTransformer,1,XT1X 18kV-1kV,110821,CVC_CVC_G1,CVC,110828,CVC_TERT,CVC,XT1X,CVC_XT1X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279525,cf37e05c-6efd-47b8-93c8-c3127da7dffe,Transformer,PowerTransformer,1,MR2T 12kV-1kV,1014,MIDLNDE_3,MDLNE,24082,MDLNE1_1,MDLNE,MR2T,MDLNE_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+860281,cf401e3e-cad9-4b11-a9cb-07f3c387a3f6,Transformer,PowerTransformer,1A,XF1T 13.09kV-1kV,80340,CANGREJO0A,CANGREJO,80344,CANGREJO1A,CANGREJO,XF1T,CANGREJO_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+505447,cf71624f-45f9-4308-9dab-e3c7e37e4d6d,Transformer,PowerTransformer,1,T1TC 34.5kV-1kV,134509,HILO_2_5,HI_LONE,134515,HILO_1KV,HI_LONE,T1TC,HI_LONE_T1TC,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279232,cf81999d-bb4b-480d-9141-f6c4eeeb334d,Transformer,PowerTransformer,1,MR2T 13.8kV-1kV,12354,RNRTPL1_3,RENSW,24098,RENSW2_1,RENSW,MR2T,RENSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+368387,cfc6f2a6-99b8-412f-ad3b-cd64303f039e,Transformer,PowerTransformer,1,AX1T 13.2kV-1kV,11760,STNSW1_3,STNSW,24019,STONE_1,STNSW,AX1T,STNSW_AX1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+301043,d039b48a-b3b0-45c4-bad0-fc32c102dc89,Transformer,PowerTransformer,1,MR1T 4kV-1kV,16416,MTCK1_3,MCSES,24081,MCSES1_1,MCSES,MR1T,MCSES_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280039,d070ef84-ec42-449a-ba03-f58bde475e67,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,3129,MARTINLK2_3,MLSES,24084,MLSES2_1,MLSES,MR2T,MLSES_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+664625,d0aeaa01-66c4-4124-b90b-1f310596d29a,Transformer,PowerTransformer,T1,KT1A 34.5kV-1kV,112871,GSTAR_S1,PHO,112880,112880,PHO,KT1A,PHO_KT1A,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279040,d13c41a3-417e-433c-83be-77ff6f95be1e,Transformer,PowerTransformer,1,MR2T 13.2kV-1kV,13436,WACO_W1A_3,WWEST,24119,WWEST2_1,WWEST,MR2T,WWEST_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+429034,d1b510e6-085f-4982-8fce-faa00867bc3c,Transformer,PowerTransformer,2,AX2T 13.8kV-1kV,11007,WOLFSS2_3,WLFSW,24128,WLFSW_2A,WLFSW,AX2T,WLFSW_AX2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279436,d3626f47-3b0a-43cc-91c6-ee407d85c537,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,29872,CNVIL1_3,CNRSW,24057,CNRSW1_1,CNRSW,MR1T,CNRSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279280,d3a75532-7609-479b-a8aa-f9193cde9ea4,Transformer,PowerTransformer,1,MR3T 13.8kV-1kV,12438,FRNY1_3,FORSW,24072,FORSW3_1,FORSW,MR3T,FORSW_MR3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+493692,d3eae56e-8d43-434e-a5ed-387b423410a2,Transformer,PowerTransformer,5,T5S 12.47kV-1kV,110963,BOG_T5S,BOG,110969,BOG_T5,BOG,T5S,BOG_T5S,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279080,d4a67bd3-08a1-42fb-ab38-e7b9ca1cebdf,Transformer,PowerTransformer,1,MR1T 13.2kV-1kV,3115,STRYKER_3,SCSES,24104,SCSES1_1,SCSES,MR1T,SCSES_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+830860,d4f59e2c-ab02-404e-87b5-96e458dbb2aa,Transformer,PowerTransformer,3,MR1T 13.8kV-1kV,18551,PRAIRILND2_3,PRLSW,900656,PRAIRILND__4,PRLSW,MR1T,PRLSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279441,d5b71601-6bcb-4851-9a54-f3ffcf942647,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,12511,ALLENSW1_3,ALNSW,24050,ALNSW1_1,ALNSW,MR1T,ALNSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+579072,d5b7f387-375c-4ddf-980a-be03e885c5d6,Transformer,PowerTransformer,1,138T 13.8kV-1kV,88197,POESTA0A,POESTA,88199,POESTA0B,POESTA,138T,POESTA_138T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279496,d63ebbdc-99b5-422a-94f8-1cc3135c2f8a,Transformer,PowerTransformer,2B,A2BT 23kV-1kV,49007,CEDARP_2BTER,CBY,49105,CEDARP_2ASTR,CBY,A2BT,CBY_A2BT,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279820,d7656cc4-dba8-4a5b-b101-229adcf93958,Transformer,PowerTransformer,1,MR2T 13.8kV-1kV,36997,WHNTY132,WHTNY,244,WHITNYSTR,WHTNY,MR2T,WHTNY_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+345061,d77739af-9d78-4431-9ea8-412206c06d5f,Transformer,PowerTransformer,01,T1L 13.8kV-1kV,170443,CACTSFLT_T2,CFLATS,170447,CACTSFLT_3Y,CFLATS,T1L,CFLATS_T1L,,,,,,,,,,,unmatched,transformer_tertiary_stub
+45021,d9d22cf3-024d-4981-ae17-be563b8acc63,Transformer,PowerTransformer,2,15Y 13.8kV-1kV,131243,QALSW_STG1,QALSW,131249,QALSW_15_1KV,QALSW,15Y,QALSW_15Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+313692,da72065b-4656-45a8-a4f3-4201ba954873,Transformer,PowerTransformer,2,AT2T 13.2kV-1kV,76999,L_NORTMC1_2Y,NORTMC,776998,LNORSTR2,NORTMC,AT2T,NORTMC_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+664627,da974dde-4d33-4ee0-b331-de7bbf5d583b,Transformer,PowerTransformer,T2,KT2B 34.5kV-1kV,112874,GSTAR_B1,PHO,112881,112881,PHO,KT2B,PHO_KT2B,,,,,,,,,,,unmatched,transformer_tertiary_stub
+4112,db070835-92aa-4d07-a8eb-7f598c012df2,Transformer,PowerTransformer,1,XF1T 13.8kV-1kV,12374,ANNASW2_3,ANASW,24043,ANASW1_1,ANASW,XF1T,ANASW_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+232237,db08e4bd-fdda-48bf-a392-2c49c74b21aa,Transformer,PowerTransformer,A3,AT3T 23kV-1kV,49063,OBRIEN_A3TER,OB,49165,OBRIEN_A3STR,OB,AT3T,OB_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279093,db116db9-313c-4754-8488-62f902c8696e,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,3113,MARTINLK1_3,MLSES,24083,MLSES1_1,MLSES,MR1T,MLSES_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+751195,db73eb44-78b8-4087-9d68-7cc22ec5d9af,Transformer,PowerTransformer,1,MR1T 13.2kV-1kV,24162,NST2,MRLSW,24975,NST1,MRLSW,MR1T,MRLSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+748708,dc5b3e45-9db8-4e12-abe4-6937034353ac,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,10056,CATTLEMAN2_3,CATSW,20056,CATTLEMAN4_3,CATSW,MR2T,CATSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+20329,dd2d170f-2959-4de7-8705-594f5914bdad,Transformer,PowerTransformer,1,11X 13.8kV-1kV,131241,QALSW_GT1,QALSW,131253,QALSW_11_1KV,QALSW,11X,QALSW_11X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+510440,df142bec-04c7-4d5e-a90d-4bc7a74fb104,Transformer,PowerTransformer,T1,T1-X 34.5kV-1kV,143311,AZURE_S1,AZURE,143314,AZURE_T1,AZURE,T1-X,AZURE_T1-X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+313491,df388957-8d0a-464d-8bf5-a06449bc3a22,Transformer,PowerTransformer,2,AT2T 13.2kV-1kV,77680,L_CLEASP1_2Y,CLEASP,77682,L_CLEASP1_2Z,CLEASP,AT2T,CLEASP_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+726992,df5c69d7-abad-41ad-9f19-f354c6a452a6,Transformer,PowerTransformer,1,XF1T 13.8kV-1kV,60460,HERON0A,HERON,60111,HERONDUM,HERON,XF1T,HERON_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+334203,dfb8b4ea-a67b-474e-abaa-a8e3c7648a73,Transformer,PowerTransformer,2,1TR2 12.47kV-1kV,23918,TULECNY3,TULECNYN,79525,TULESTR,TULECNYN,1TR2,TULECNYN_1TR2,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279223,e042c23b-1b43-4fdb-aeb9-a857cfb74f44,Transformer,PowerTransformer,1,XF2T 13.8kV-1kV,12373,ANNASW1_3,ANASW,24051,ANASW2_1,ANASW,XF2T,ANASW_XF2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+458030,e073751a-3ec3-4e52-b767-6691926f9844,Transformer,PowerTransformer,T2,XT2S 13.8kV-1kV,111132,BAC_CTG1,BAC,111138,111138,BAC,XT2S,BAC_XT2S,,,,,,,,,,,unmatched,transformer_tertiary_stub
+700693,e133723a-4fc9-40a6-9364-a283912be953,Transformer,PowerTransformer,T2,MPTA 34.5kV-1kV,153532,ELZA_SLR_S1,ELZA_SLR,153534,ELZA_SLR_L1,ELZA_SLR,MPTA,ELZA_SLR_MPTA,,,,,,,,,,,unmatched,transformer_tertiary_stub
+126308,e14b4417-3dc6-4dca-be5d-846a357b3c94,Transformer,PowerTransformer,1,MR3T 13.8kV-1kV,12388,HACKBRY1_3,HKBRY,24026,HKBRY3_1,HKBRY,MR3T,HKBRY_MR3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+828836,e1deb3a9-f502-40b2-bc94-d6cdb82afa81,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,24970,WALLEYE2_3,WCRSW,24168,WALLEYE2_T,WCRSW,MR2T,WCRSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+320678,e29ca805-f9e7-4089-8a0e-fa7670da0667,Transformer,PowerTransformer,3,AT3T 13.2kV-1kV,77075,L_LYTTSP1_3Y,LYTTON_S,77816,L_LYTTSP1_1Y,LYTTON_S,AT3T,LYTTON_S_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279266,e3788800-1252-4561-bf27-d12c43519025,Transformer,PowerTransformer,1,AXFT 13.8kV-1kV,12419,CHILSW1_3,CDHSW,24054,CDHSW2_1,CDHSW,AXFT,CDHSW_AXFT,,,,,,,,,,,unmatched,transformer_tertiary_stub
+118783,e44538fa-2c23-4951-b533-37d679996b8b,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,11876,BENBRK_A_3,BNBSW,24021,BNBSW1_1,BNBSW,MR1T,BNBSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279482,e460b141-69ba-47fe-bbb5-d544501fe3fd,Transformer,PowerTransformer,A5,AT5T 23kV-1kV,49003,BELAIR_A5TER,BI,49125,BELAIR_A5STR,BI,AT5T,BI_AT5T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+443805,e4dcf02e-cb09-4058-a2ab-383c20c75839,Transformer,PowerTransformer,2,AT2T 13.2kV-1kV,77309,L_WINCHE1_2Y,WINCHES,777309,L_WINCHE3_1Y,WINCHES,AT2T,WINCHES_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+325460,e4f283f3-24d2-4dd8-9d5b-98886889281b,Transformer,PowerTransformer,2,AT1T 13.2kV-1kV,7832,L_ZORN__1_1Y,ZORN,777180,L_ZORN__1_1Z,ZORN,AT1T,ZORN_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+763015,e568e142-be4c-46fe-aa4d-14761c841e19,Transformer,PowerTransformer,1,XFT1 36kV-1kV,6163,PAINTCRE0A,PAINTCRE,6160,PC1DUM,PAINTCRE,XFT1,PAINTCRE_XFT1,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279644,e5863ba8-c784-426b-9bec-2b6fdbee5691,Transformer,PowerTransformer,1,BUT1 13.8kV-1kV,170031,MAR_MARSFOG1,MARSFO,77359,L_MARSFO1_1,MARSFO,BUT1,MARSFO_BUT1,,,,,,,,,,,unmatched,transformer_tertiary_stub
+731937,e596c750-7c78-4902-be06-448592a78c57,Transformer,PowerTransformer,T1,SU1X 13.8kV-1kV,171091,TIMPP_N1,TIMPP,171097,TIMPP_0_T1,TIMPP,SU1X,TIMPP_SU1X,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279590,e5d2f67e-38d5-4842-b0a1-624dc182fac4,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,11434,GRHAMSES1_3,GRSES,24073,GRSES1_1,GRSES,MR1T,GRSES_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+664628,e6006a75-7d29-4282-8abe-bab27927461a,Transformer,PowerTransformer,T2,KT2A 34.5kV-1kV,112873,GSTAR_S3,PHO,112881,112881,PHO,KT2A,PHO_KT2A,,,,,,,,,,,unmatched,transformer_tertiary_stub
+603132,e843844f-3d85-4fd2-b07b-06518ee68de8,Transformer,PowerTransformer,2,MR1T 13.8kV-1kV,11386,CONSAVVY1_3,CONSW,24143,CONSW_AUTO1,CONSW,MR1T,CONSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279091,e85660f7-5362-4061-a007-eb37f286cebc,Transformer,PowerTransformer,G1,XT8B 13.8kV-1kV,110096,GBY_GBYGT83,GBY,49118,49118_STAR,GBY,XT8B,GBY_XT8B,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279507,e9677251-01cf-4303-9351-dff14eb55af7,Transformer,PowerTransformer,A2,AT2T 34.5kV-1kV,49060,LEG____A2TER,LEG,49169,49169_STAR,LEG,AT2T,LEG_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+830880,e97c9af5-e013-45e6-858d-fa8df8920ace,Transformer,PowerTransformer,6,MR2T 13.8kV-1kV,18550,PRAIRILND1_3,PRLSW,18511,PRAIRILND__4,PRLSW,MR2T,PRLSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+374207,e9ffb024-8d00-4a4e-ae19-d9b043aeea48,Transformer,PowerTransformer,4,MR4T 13.8kV-1kV,24997,EVRMAN4_3,EVRSW,24124,EVRSW4_1,EVRSW,MR4T,EVRSW_MR4T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+614536,ea3aaa3d-7189-4ac5-9b3a-1d08c6ea323e,Transformer,PowerTransformer,3,XFT3 13.8kV-1kV,80140,STEWART0C,STEWART,80143,SROADDMYB,STEWART,XFT3,STEWART_XFT3,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279499,ea451940-529e-4c84-8167-119a8ef6fba4,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,29048,BOWMAN_A3,BOMSW,24052,BOMSW1_1,BOMSW,MR1T,BOMSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+666947,eb0f7213-3b9f-4a7b-aeba-5a5f0932c813,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,24983,NORS4,TESSW,24147,NORS1,TESSW,MR1T,TESSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280453,eb80da12-2f58-4f58-b06c-87b358e67bdc,Transformer,PowerTransformer,2,MR1T 13.8kV-1kV,13440,SAND3_ONC_3,SNDSW,24107,SNDSW1_1,SNDSW,MR1T,SNDSW_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+652145,ec0ea1f7-5d61-4fed-b620-beb1abbf8edf,Transformer,PowerTransformer,1,MR2T 13.8kV-1kV,24987,LPNSW_13_2,LPNSW,24146,LPNSW_1_2,LPNSW,MR2T,LPNSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+20932,ecc21323-ae5c-4e61-9a6d-253a3c534846,Transformer,PowerTransformer,3,MR2T 13.8kV-1kV,29578,COLLINT_3,CN345,24047,CN3452_1,CN345,MR2T,CN345_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+61266,ed3e426b-0131-4b68-9e1b-0d1928af86e5,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,17017,VALLYSES1_3,VLSES,24040,VLSES1_1,VLSES,MR1T,VLSES_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+352497,edd70501-bf14-4a56-a036-72329f53018f,Transformer,PowerTransformer,A3,AT3T 23kV-1kV,49071,T_H_W__A3TER,THW,49181,T_H_W__A3STR,THW,AT3T,THW_AT3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+14203,f0e575f9-a186-4a8b-9432-420f7a908d92,Transformer,PowerTransformer,12,CT1 18kV-1kV,170134,BRA_AVR1_CT1,BRAUNIG,5474,AVR_STR1,BRAUNIG,CT1,BRAUNIG_CT1,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279927,f1a02bd3-dfd0-4d63-b213-b0ab258c7086,Transformer,PowerTransformer,2,AT2T 13.8kV-1kV,80148,RH2TERT,RIOHONDO,80157,RH2DUM,RIOHONDO,AT2T,RIOHONDO_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+303992,f2033a60-1d66-484c-b303-417324de9e3d,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49076,TOMBAL_A1TER,TB,49176,TOMBAL_A1STR,TB,AT1T,TB_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279928,f29a64b3-5852-488e-9d6f-5d73773bec4b,Transformer,PowerTransformer,G1,XT5E 13.8kV-1kV,110054,THW_N3,THW,49174,49174_STAR,THW,XT5E,THW_XT5E,,,,,,,,,,,unmatched,transformer_tertiary_stub
+318781,f3c04cee-74cf-4d41-934c-f728b7aa63bb,Transformer,PowerTransformer,3,AT2T 13.2kV-1kV,77341,L_GILLCR1_2Y,GILLCR,777341,L_GILLCR1_2Z,GILLCR,AT2T,GILLCR_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+81051,f493e2d3-88f6-4345-b086-8d39c54342a3,Transformer,PowerTransformer,2,16Y 13.8kV-1kV,131246,QALSW_STG2,QALSW,131250,QALSW_16_1KV,QALSW,16Y,QALSW_16Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279934,f4ad0c74-de5f-461e-9a66-d3c28f6ab7ab,Transformer,PowerTransformer,A1,AT1T 23kV-1kV,49005,CEDARP_A1TER,CBY,49106,CEDARP_A1STR,CBY,AT1T,CBY_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+254163,f5362d32-1eb8-4de4-94e3-5595c6d28501,Transformer,PowerTransformer,1,157T 13.2kV-1kV,68003,CLAYTON_A1TE,CLAYTNVL,68019,CLAYTON_1SEC,CLAYTNVL,157T,CLAYTNVL_157T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279299,f61b80d7-0afd-4a64-a423-03e3d9f5f54a,Transformer,PowerTransformer,1,XT1T 13.2kV-1kV,958,GREENV_IN_T1,GN_S_I,987,GREENV_IN_1,GN_S_I,XT1T,GN_S_I_XT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+254162,f643ce1c-8f1f-4077-8d7a-49e5b786698c,Transformer,PowerTransformer,1,162T 13.2kV-1kV,68007,CLAYTON_A2TE,CLAYTNVL,900757,CLAYTON_1SEC,CLAYTNVL,162T,CLAYTNVL_162T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+438337,f64cced1-4db4-42eb-a7a1-069d07f0be86,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,24992,HUTO_2,HUTTO,24132,HOTTO_2,HUTTO,MR2T,HUTTO_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+659627,f685c8e2-f782-4625-8e66-f424ecf07a05,Transformer,PowerTransformer,1,XF1T 12kV-1kV,6011,CHLD0A,CHLD,6027,WC1DUM,CHLD,XF1T,CHLD_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+41078,f693b3fd-1e9a-40bf-9da3-c1b77ed71428,Transformer,PowerTransformer,1,A3T 14.4kV-1kV,110151,DOW_A4_1,DOW,49193,DOW____A3STR,DOW,A3T,DOW_A3T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+121226,f6f406b4-861d-4a90-b669-082359fe557a,Transformer,PowerTransformer,2,MR2T 13.8kV-1kV,11877,BENBRK_B_3,BNBSW,24022,BNBSW2_1,BNBSW,MR2T,BNBSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+534360,f7a12c63-a359-4107-a560-ef720d233b60,Transformer,PowerTransformer,T9,XT3Y 13.8kV-1kV,112416,RABBS_N6,RAB,112423,112423,RAB,XT3Y,RAB_XT3Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+339766,f849fdda-965f-4b8d-8acb-1e0a07780115,Transformer,PowerTransformer,3,G2SX 13.8kV-1kV,151199,DEC_2X,DEC,151206,DEC_2_1,DEC,G2SX,DEC_G2SX,,,,,,,,,,,unmatched,transformer_tertiary_stub
+505120,f8c7f84f-7f3b-4d38-9268-356179a4309d,Transformer,PowerTransformer,1,647Y 14.4kV-1kV,110161,DOW_647Y,DOWGEN,110163,DOW_647H,DOWGEN,647Y,DOWGEN_647Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+61259,fa3ae54c-2a80-442c-97f6-cc4bccf68f5b,Transformer,PowerTransformer,6,X19B 13.8kV-4.1999998kV,110332,NCA_NCARBIG2,NCARBIDE,110333,NCA_NCARBIG6,NCARBIDE,X19B,NCARBIDE_X19B,,,,,,,,,,,unmatched,transformer_other
+277205,fa448a60-7aca-4147-8e20-0bf4e2ae9989,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,5057,CAGAUTO1,CAGNON,5061,CAGSTAR1,CAGNON,MR1T,CAGNON_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279942,fac30598-dc25-4a5f-b64d-cb6de6f8f352,Transformer,PowerTransformer,A2,AT2T 13.2kV-1kV,49210,GENTHW1_01_1,THW,49180,T_H_W__A2STR,THW,AT2T,THW_AT2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+717119,fbb8e6e0-babd-44fc-bb88-7d04bf403350,Transformer,PowerTransformer,1,MR2T 13.8kV-1kV,10052,RANGER2_3,RGRSW,24153,RANGER2_T,RGRSW,MR2T,RGRSW_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279944,fbe0a109-ec0b-49b0-862f-062177af3e37,Transformer,PowerTransformer,G1,XT5C 13.8kV-1kV,110053,THW_N2,THW,49149,49149_STAR,THW,XT5C,THW_XT5C,,,,,,,,,,,unmatched,transformer_tertiary_stub
+280012,fc15d274-bd7f-4bd0-81d2-264a1a0721d6,Transformer,PowerTransformer,A1,AT1T 13kV-1kV,49011,DWNTWN_A1TER,DT,49111,DWNTWN_A1STR,DT,AT1T,DT_AT1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279048,fc77a579-fa3e-4a47-b4cb-78fa43ba72e1,Transformer,PowerTransformer,1,MR2T 13.8kV-1kV,13406,ELM_MOTT_3,ELMOT,24065,ELMOT1_1,ELMOT,MR2T,ELMOT_MR2T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+664630,fcf352ff-47c7-4f3b-a778-f268b9b4a075,Transformer,PowerTransformer,T3,KT3B 34.5kV-1kV,112875,GSTAR_S4,PHO,112882,112882,PHO,KT3B,PHO_KT3B,,,,,,,,,,,unmatched,transformer_tertiary_stub
+339762,fd9a422f-9c1a-4f72-9076-bb4fbb346e2f,Transformer,PowerTransformer,1,G0CX 13.8kV-1kV,151197,DEC_0X,DEC,151204,DEC_0_1,DEC,G0CX,DEC_G0CX,,,,,,,,,,,unmatched,transformer_tertiary_stub
+872349,fd9f90ad-a36c-408c-b18d-bb84c6c92a27,Transformer,PowerTransformer,1,XF1T 13.09kV-1kV,60427,MASN1A,MASN,60454,MASNDUM,MASN,XF1T,MASN_XF1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279285,fda55961-2233-467a-8fe2-6e0c98e28e94,Transformer,PowerTransformer,1,MR1T 13.8kV-1kV,12523,PL_TENNY1_3,PTENN,24095,PTENN1_1,PTENN,MR1T,PTENN_MR1T,,,,,,,,,,,unmatched,transformer_tertiary_stub
+339767,fe8b2f61-9feb-4a8a-8c30-0a0f5a8c6ed5,Transformer,PowerTransformer,3,G2SY 13.8kV-1kV,151200,DEC_2Y,DEC,151206,DEC_2_1,DEC,G2SY,DEC_G2SY,,,,,,,,,,,unmatched,transformer_tertiary_stub
+24399,ff2fd848-9588-4a68-8781-9465f6afdcf4,Transformer,PowerTransformer,1,13Y 13.8kV-1kV,131245,QALSW_GT4,QALSW,131248,QALSW_13_1KV,QALSW,13Y,QALSW_13Y,,,,,,,,,,,unmatched,transformer_tertiary_stub
+279965,ffb24017-d7e2-4ae0-9705-3cf467557ea2,Transformer,PowerTransformer,2,34T3 13.8kV-1kV,170065,LEON__LCPCT3,LEON_CRK,5271,LCPSTR34,LEON_CRK,34T3,LEON_CRK_34T3,,,,,,,,,,,unmatched,transformer_tertiary_stub
+468072,fffda0dd-d7f1-4a46-8a54-b2f9b93fde98,Transformer,PowerTransformer,X3,TR3X 12.47kV-1kV,110477,FORMOSA_3,FORMOSA,111145,FORMOSA_TR3,FORMOSA,TR3X,FORMOSA_TR3X,,,,,,,,,,,unmatched,transformer_tertiary_stub
