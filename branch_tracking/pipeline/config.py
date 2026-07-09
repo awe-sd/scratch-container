@@ -57,3 +57,10 @@ AWDATEID_ANCHOR = (44926, date(2023, 1, 1))  # confirmed by schema exploration
 # --- cache_dampsse_ckt.py:19 ---
 
 CKT_WINDOW_DAYS = 90
+
+# --- build_teid_branchid_map.py:94-99 ---
+
+# Calibrated against the 725 known-correct-but-string-disagreeing 1:1
+# matches -- see build_teid_branchid_map.py docstring point 4.
+FUZZY_MIN_TOP_RATIO = 0.6
+FUZZY_MIN_MARGIN = 0.15
