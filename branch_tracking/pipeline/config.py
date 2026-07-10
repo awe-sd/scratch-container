@@ -1,3 +1,10 @@
+"""Single home for the pipeline's shared paths and per-script constants,
+copied verbatim from the session scripts (source anchors inline above
+each block). Holds the shared REPO_ROOT/DATA_DIR/OUTPUT_DIR layout plus
+each script's tuned thresholds and lookup tables -- per-script DB
+connections and CSV read/write calls stay in their own script wrappers,
+not here.
+"""
 from datetime import date
 from pathlib import Path
 

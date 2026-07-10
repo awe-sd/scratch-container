@@ -1,3 +1,14 @@
+"""Name normalization and name-relation helpers shared across
+mapping.py, dampsse.py, and dates.py.
+
+normalize_name() collapses formatting drift (case, punctuation, stray
+underscores) down to bare alphanumerics and maps placeholder values
+(PLACEHOLDER_NAMES) to None; names_relate(), unit_and_leg(), and
+pick_by_leg() build on that normalized form for substring matching and
+transformer unit/leg extraction. All pandas-facing checks use pd.isna()
+rather than `is None`, since values arriving here have often passed
+through a pandas .apply()/merge that upcasts a Python None into NaN.
+"""
 import re
 
 from .config import PLACEHOLDER_NAMES

@@ -4,8 +4,11 @@ scripts/build_transformer_leg_map.py.
 Pure functions only -- DB loaders, CSV writes, and print/report bookkeeping
 stay in the script wrapper. See that script's module docstring for the
 full rationale (the three leg-pairing cases). No logic here should diverge
-from the original script -- the golden-hash test (tests/test_goldens.py)
-plus tests/test_legs.py are the proof of behavioral equivalence.
+from the original script -- behavioral equivalence rests on verbatim
+extraction from build_transformer_leg_map.py plus tests/test_legs.py.
+This module is NOT covered by the golden byte-identity gate
+(tests/test_goldens.py): its consuming script is DB-dependent and isn't
+among the scripts that gate re-runs.
 """
 import re
 

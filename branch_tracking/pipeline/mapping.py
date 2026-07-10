@@ -5,9 +5,11 @@ Pure functions/passes only -- DB loaders, CSV writes, and print/report
 bookkeeping stay in the script wrapper. See that script's module docstring
 for the full rationale of each resolution tier (opeqcode-exact match,
 exact-duplicate collapse, fuzzy match, high-side + latest-id catch-all).
-No logic here should diverge from the original script -- the golden-hash
-test (tests/test_goldens.py) plus tests/test_mapping.py are the proof of
-behavioral equivalence.
+No logic here should diverge from the original script -- behavioral
+equivalence rests on verbatim extraction from build_teid_branchid_map.py
+plus tests/test_mapping.py. This module is NOT covered by the golden
+byte-identity gate (tests/test_goldens.py): its consuming script is
+DB-dependent and isn't among the scripts that gate re-runs.
 """
 import re
 from difflib import SequenceMatcher
