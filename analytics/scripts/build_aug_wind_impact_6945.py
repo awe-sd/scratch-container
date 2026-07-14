@@ -168,150 +168,82 @@ def main():
         print("BLOCKED: no August had usable data; cannot build plot.")
         return
 
-    # ---------- pick representative week (most recent year with load data) ----------
-    rep_year = None
-    rep_window = None
-    for y in sorted(all_hourly.keys(), reverse=True):
-        w = pick_peak_load_week(y)
-        if w is not None:
-            rep_year, rep_window = y, w
-            break
-    if rep_window is None:
-        # fallback: pick the week (7 days) with highest mean |Panhandle contribution|
-        rep_year = max(all_hourly.keys())
-        rp = all_hourly[rep_year].set_index("hour")
-        daily_pan = rp["Panhandle"].resample("D").mean()
-        # rolling 7-day mean, pick window start with max
-        roll = daily_pan.rolling(7).mean()
-        end_day = roll.idxmax()
-        start_day = end_day - pd.Timedelta(days=6)
-        rep_window = (start_day, end_day + pd.Timedelta(days=1), None)
-        print(f"No cached system-load data for peak-week selection; falling back to "
-              f"highest-mean-Panhandle-contribution week in Aug {rep_year}.")
-
-    rep_start, rep_end, rep_peak_day = rep_window
-    print(f"\nRepresentative time-series week: Aug {rep_year}, "
-          f"{rep_start.date()} .. {rep_end.date()}"
-          + (f" (peak-load day {rep_peak_day.date()})" if rep_peak_day is not None else ""))
-
-    rep_df = all_hourly[rep_year]
-    rep_ts = rep_df[(rep_df["hour"] >= rep_start) & (rep_df["hour"] < rep_end)].sort_values("hour")
-
-    # ---------- build figure ----------
-    fig = make_subplots(
-        rows=2, cols=1,
-        row_heights=[0.42, 0.58],
-        vertical_spacing=0.12,
-        specs=[[{"secondary_y": True}], [{"secondary_y": False}]],
-        subplot_titles=(
-            "Mean & P90 flow contribution by wind region, per August (2021-2025)",
-            f"Representative week -- Aug {rep_year} ({rep_start.date()} to "
-            f"{(rep_end - pd.Timedelta(days=1)).date()}): hourly stacked regional "
-            f"contribution + net Panhandle+West",
-        ),
-    )
-
-    # --- Row 1: grouped bars, mean with p90-based error bar, Panhandle vs West ---
+    # ---------- build figure: Row 1 summary, then one full-month hourly panel
+    #            per August showing ALL hourly data (2021-2025) ----------
     years_present = summary_df.loc[summary_df["status"] == "OK", "year"].tolist()
     sdf = summary_df.set_index("year").loc[years_present]
+    n_yr = len(years_present)
 
+    row_heights = [0.22] + [0.78 / n_yr] * n_yr
+    specs = [[{"secondary_y": True}]] + [[{"secondary_y": False}]] * n_yr
+    titles = ["Mean & P90 flow contribution by wind region, per August (2021-2025)"] + [
+        f"Aug {y} — hourly regional flow contribution ({int(sdf.loc[y, 'n_hours'])} hrs), "
+        "Panhandle loads (+) / West relieves (−) + net" for y in years_present]
+    fig = make_subplots(rows=1 + n_yr, cols=1, row_heights=row_heights,
+                        vertical_spacing=0.045, specs=specs, subplot_titles=titles)
+
+    # --- Row 1: diverging mean bars (Panhandle vs West) + danger-hour line ---
     fig.add_trace(
-        go.Bar(
-            name="Panhandle (loads +)",
-            x=years_present,
-            y=sdf["panhandle_mean_MW"],
-            error_y=dict(
-                type="data",
-                array=(sdf["panhandle_p90_MW"] - sdf["panhandle_mean_MW"]).clip(lower=0),
-                arrayminus=[0] * len(sdf),
-                visible=True,
-            ),
-            marker_color=REGION_COLOR["Panhandle"],
-            showlegend=False,
-            hovertemplate="Aug %{x}<br>Panhandle mean %{y:.1f} MW<extra></extra>",
-        ),
-        row=1, col=1, secondary_y=False,
-    )
+        go.Bar(name="Panhandle mean", x=years_present, y=sdf["panhandle_mean_MW"],
+               error_y=dict(type="data",
+                            array=(sdf["panhandle_p90_MW"] - sdf["panhandle_mean_MW"]).clip(lower=0),
+                            arrayminus=[0] * len(sdf), visible=True),
+               marker_color=REGION_COLOR["Panhandle"], showlegend=False,
+               hovertemplate="Aug %{x}<br>Panhandle mean %{y:.1f} MW<extra></extra>"),
+        row=1, col=1, secondary_y=False)
     fig.add_trace(
-        go.Bar(
-            name="West (relieves -)",
-            x=years_present,
-            y=sdf["west_mean_MW"],
-            error_y=dict(
-                type="data",
-                array=[0] * len(sdf),
-                arrayminus=(sdf["west_mean_MW"] + sdf["west_p90_abs_relief_MW"]).clip(lower=0),
-                visible=True,
-            ),
-            marker_color=REGION_COLOR["West"],
-            showlegend=False,
-            hovertemplate="Aug %{x}<br>West mean %{y:.1f} MW<extra></extra>",
-        ),
-        row=1, col=1, secondary_y=False,
-    )
+        go.Bar(name="West mean", x=years_present, y=sdf["west_mean_MW"],
+               error_y=dict(type="data", array=[0] * len(sdf),
+                            arrayminus=(sdf["west_mean_MW"] + sdf["west_p90_abs_relief_MW"]).clip(lower=0),
+                            visible=True),
+               marker_color=REGION_COLOR["West"], showlegend=False,
+               hovertemplate="Aug %{x}<br>West mean %{y:.1f} MW<extra></extra>"),
+        row=1, col=1, secondary_y=False)
     fig.add_trace(
-        go.Scatter(
-            name="Danger-hour fraction (net>0, right axis)",
-            x=years_present,
-            y=sdf["danger_hour_fraction"],
-            mode="lines+markers",
-            line=dict(color="black", dash="dot"),
-            marker=dict(size=8, symbol="diamond"),
-            hovertemplate="Aug %{x}<br>danger-hour frac %{y:.1%}<extra></extra>",
-        ),
-        row=1, col=1, secondary_y=True,
-    )
-    fig.update_yaxes(
-        title_text="danger-hour fraction", range=[0, 1], tickformat=".0%",
-        showgrid=False, secondary_y=True, row=1, col=1,
-    )
+        go.Scatter(name="Danger-hour fraction (net>0, right axis)", x=years_present,
+                   y=sdf["danger_hour_fraction"], mode="lines+markers",
+                   line=dict(color="black", dash="dot"), marker=dict(size=8, symbol="diamond"),
+                   showlegend=False,
+                   hovertemplate="Aug %{x}<br>danger-hour frac %{y:.1%}<extra></extra>"),
+        row=1, col=1, secondary_y=True)
+    fig.update_yaxes(title_text="danger frac", range=[0, 1], tickformat=".0%",
+                     showgrid=False, secondary_y=True, row=1, col=1)
     fig.add_hline(y=0, line_color="rgba(0,0,0,0.4)", row=1, col=1, secondary_y=False)
-    fig.update_yaxes(title_text="mean flow contribution (MW, dispatched x PSENS)",
-                      row=1, col=1, secondary_y=False)
+    fig.update_yaxes(title_text="mean MW", row=1, col=1, secondary_y=False)
     fig.update_xaxes(title_text="August", type="category", row=1, col=1)
 
-    # --- Row 2: stacked bar of regional contributions over representative week ---
-    for r in REGION_ORDER:
+    # --- Rows 2..: full-month hourly stacked contribution, one row per August ---
+    for i, year in enumerate(years_present):
+        r = 2 + i
+        yp = all_hourly[year].sort_values("hour")
+        for reg in REGION_ORDER:
+            fig.add_trace(
+                go.Bar(name=reg, x=yp["hour"], y=yp[reg], marker_color=REGION_COLOR[reg],
+                       legendgroup=reg, showlegend=(i == 0),
+                       hovertemplate=f"{reg} " + "%{y:.1f} MW<br>%{x|%b %d %H:00}<extra></extra>"),
+                row=r, col=1)
         fig.add_trace(
-            go.Bar(
-                name=r, x=rep_ts["hour"], y=rep_ts[r],
-                marker_color=REGION_COLOR[r],
-                legendgroup=r, showlegend=True,
-                hovertemplate=f"{r}" + " %{y:.1f} MW<br>%{x}<extra></extra>",
-            ),
-            row=2, col=1,
-        )
-    net_rep = rep_ts["Panhandle"] + rep_ts["West"]
-    fig.add_trace(
-        go.Scatter(
-            name="Net Panhandle+West", x=rep_ts["hour"], y=net_rep,
-            mode="lines", line=dict(color="black", width=2),
-        ),
-        row=2, col=1,
-    )
-    fig.add_hline(y=0, line_color="rgba(0,0,0,0.5)", row=2, col=1)
-    fig.update_layout(barmode="relative")
-    fig.update_yaxes(title_text="flow contribution (MW)", row=2, col=1)
-    fig.update_xaxes(title_text="hour", row=2, col=1)
+            go.Scatter(name="Net Panhandle+West", x=yp["hour"], y=yp["Panhandle"] + yp["West"],
+                       mode="lines", line=dict(color="black", width=1.2),
+                       legendgroup="net", showlegend=(i == 0),
+                       hovertemplate="net %{y:.1f} MW<br>%{x|%b %d %H:00}<extra></extra>"),
+            row=r, col=1)
+        fig.add_hline(y=0, line_color="rgba(0,0,0,0.5)", row=r, col=1)
+        fig.update_yaxes(title_text="MW", row=r, col=1)
+    fig.update_xaxes(title_text="hour (Aug)", row=1 + n_yr, col=1)
 
     fig.update_layout(
-        title=dict(
-            text=(
-                "6945 (MGSES->CATSW) -- West vs Panhandle wind flow-impact, "
-                "Augusts 2021-2025<br>"
-                "<sup>contribution = SCED BasePoint (dispatched MW) x PSENS "
-                f"(psenShiftID {PSEN_ID}, Jul-2026 topology); SCED Gen Resource "
-                "dispatch is a 60-day disclosure, so each historical August's "
-                "dispatch is paired with the CURRENT shift-factor structure "
-                "-- a climatology of the West-vs-Panhandle impact pattern, "
-                "not a re-derivation of each year's actual topology.</sup>"
-            ),
-            x=0.02, xanchor="left",
-        ),
-        height=950,
+        barmode="relative",
+        title=dict(text=(
+            "6945 (MGSES→CATSW) — West vs Panhandle wind flow-impact, Augusts 2021-2025"
+            "<br><sup>contribution = SCED BasePoint (dispatched MW) × PSENS "
+            f"(psenShiftID {PSEN_ID}, Jul-2026 topology). ALL hourly data per August "
+            "(one panel per year). SCED Gen Resource dispatch is a 60-day disclosure, so "
+            "each August's dispatch is paired with the CURRENT shift structure — a "
+            "climatology of the impact pattern.</sup>"), x=0.02, xanchor="left"),
+        height=320 + 300 * n_yr,
         legend=dict(orientation="h", yanchor="bottom", y=1.0, x=0),
-        margin=dict(t=140),
-    )
+        margin=dict(t=150))
 
     html_out = OUT / "aug_wind_impact_6945.html"
     fig.write_html(html_out, include_plotlyjs=True, full_html=True)
