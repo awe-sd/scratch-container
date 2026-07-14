@@ -29,6 +29,13 @@ ELEM = 748510
 STATION = "KMAF"            # Midland Regional
 RATING_START = "2025-04-01"  # ratings begin 2025-04-02
 
+# Published temperature-based rating schedule for 6945 (defined emergency
+# 2-hr limit, MVA, per the TO temperature curve). Reference line for both plots.
+DEF_TEMP = [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95,
+            100, 105, 110, 115]
+DEF_LIMIT = [1527, 1505, 1482, 1458, 1435, 1410, 1385, 1360, 1334, 1307, 1280,
+             1251, 1223, 1194, 1163, 1132, 1098, 1065, 1031, 994]
+
 # month -> color: cool in winter, warm in summer (so summer dots read hot)
 MONTH_COLOR = {
     1: "#3b6fb6", 2: "#4c9fc9", 3: "#66c2a5", 4: "#a6d96a", 5: "#d9ef8b",
@@ -133,7 +140,18 @@ def main():
             row=1, col=col)
         trace_month.append(None)
 
-    # month dropdown: All + each month (medians always visible)
+    # published temperature-based rating definition (both panels, always shown)
+    for col in (1, 2):
+        fig.add_trace(
+            go.Scatter(x=DEF_TEMP, y=DEF_LIMIT, mode="lines",
+                       line=dict(color="firebrick", width=2.5, dash="dash"),
+                       name="definition (temp schedule)", legendgroup="def",
+                       showlegend=(col == 1),
+                       hovertemplate="Temp %{x:.0f} °F<br>defined limit %{y:.0f} MVA<extra></extra>"),
+            row=1, col=col)
+        trace_month.append(None)
+
+    # month dropdown: All + each month (medians + definition always visible)
     n = len(trace_month)
     buttons = [dict(label="All months", method="update",
                     args=[{"visible": [True] * n}])]
@@ -179,6 +197,11 @@ def build_binned_plot(med):
         hovertemplate=("Temp ~%{x:.0f} °F<br>median %{y:.0f} MVA"
                        "<br>p10–p90 %{customdata[1]:.0f}–%{customdata[2]:.0f}"
                        "<br>n=%{customdata[0]}<extra></extra>")))
+    fig.add_trace(go.Scatter(
+        x=DEF_TEMP, y=DEF_LIMIT, mode="lines+markers",
+        line=dict(color="firebrick", width=2.5, dash="dash"), marker=dict(size=5),
+        name="definition (temp schedule)",
+        hovertemplate="Temp %{x:.0f} °F<br>defined limit %{y:.0f} MVA<extra></extra>"))
     fig.add_trace(go.Bar(x=med["tc"], y=med["n"], name="hours in bin",
                          marker_color="rgba(150,150,150,0.35)", yaxis="y2",
                          hovertemplate="Temp ~%{x:.0f} °F<br>n=%{y}<extra></extra>"))
