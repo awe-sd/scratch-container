@@ -8,3 +8,6 @@ branch_tracking/output/*.prev
 __pycache__/
 *.pyc
 .venv/
+
+# git worktrees live here (linked worktrees of this repo; not tracked by master)
+.claude/worktrees/
