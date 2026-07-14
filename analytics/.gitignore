@@ -1,0 +1,2 @@
+# one-time DB pulls cached locally — regenerate with scripts/fetch_data.py
+data/*.parquet
