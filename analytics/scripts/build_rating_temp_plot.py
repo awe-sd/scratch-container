@@ -18,6 +18,7 @@ published temp schedule; and 6437_F (KNAPP->SCRCV, teid 823) vs Snyder
 KSNK (Scurry Co, TX) with no schedule supplied.
 """
 import calendar
+import json
 from pathlib import Path
 
 import awconnect
@@ -67,6 +68,41 @@ CONFIGS = [
 
 HOVER = ("<b>%{customdata}</b><br>Temp: %{x:.0f} °F"
          "<br>Emerg 2hr rating: %{y:.0f} MVA<extra></extra>")
+
+# Injected JS: two <select> controls (Year, Month) that filter TOGETHER by
+# restyling per-trace visibility. `meta` gives each trace's (year, month) or a
+# proxy/always flag. Placeholders are string-substituted before writing.
+CONTROLS_JS = """
+<script>
+(function(){
+  var gd=document.getElementById("__DIVID__");
+  if(!gd){return;}
+  var meta=__META__, years=__YEARS__, months=__MONTHS__;
+  var bar=document.createElement("div");
+  bar.style.cssText="margin:10px 0 2px 14px;font-family:sans-serif;font-size:13px;";
+  function mk(lbl,opts){
+    var w=document.createElement("span"); w.style.marginRight="24px";
+    var l=document.createElement("label"); l.textContent=lbl+" "; l.style.fontWeight="bold";
+    var s=document.createElement("select"); s.style.fontSize="13px";
+    opts.forEach(function(o){var op=document.createElement("option");
+      op.value=String(o[0]); op.textContent=o[1]; s.appendChild(op);});
+    w.appendChild(l); w.appendChild(s); bar.appendChild(w); return s;
+  }
+  var yS=mk("Year",years), mS=mk("Month",months);
+  gd.parentNode.insertBefore(bar,gd);
+  function apply(){
+    var yv=yS.value, mv=mS.value;
+    var vis=meta.map(function(o){
+      if(o.t==="always")return true;
+      if(o.t==="proxy")return (mv==="All"||String(o.m)===mv);
+      return (yv==="All"||String(o.y)===yv)&&(mv==="All"||String(o.m)===mv);
+    });
+    Plotly.restyle(gd,{visible:vis});
+  }
+  yS.onchange=apply; mS.onchange=apply;
+})();
+</script>
+"""
 
 
 def fetch(elem, station, temp_start):
@@ -144,23 +180,30 @@ def build(cfg):
     months = sorted(df["month"].unique())
     ym_pairs = sorted(df.groupby(["year", "month"]).groups.keys())
 
-    trace_ym = []          # (year, month) per trace; (None, None) = always-on
-    legend_shown = set()
+    meta = []   # per-trace metadata for the JS Year+Month controls (order matters)
+
+    # data traces: one per (year, month) per panel; legend carried by proxies
     for (yr, m) in ym_pairs:
         for col, mask in ((1, df["onpeak"]), (2, ~df["onpeak"])):
             g = df[(df["year"] == yr) & (df["month"] == m) & mask]
-            show = col == 1 and m not in legend_shown
             fig.add_trace(
                 go.Scattergl(
                     x=g["temp"], y=g["emergencyRatings"], mode="markers",
                     marker=dict(size=5, color=MONTH_COLOR[m], opacity=0.55),
                     name=calendar.month_abbr[m], legendgroup=f"m{m}",
-                    legendrank=m, showlegend=show,
-                    customdata=g["ts"], hovertemplate=HOVER),
+                    showlegend=False, customdata=g["ts"], hovertemplate=HOVER),
                 row=1, col=col)
-            if show:
-                legend_shown.add(m)
-            trace_ym.append((yr, m))
+            meta.append({"t": "data", "y": int(yr), "m": int(m)})
+
+    # proxy legend entries (one per month): stable legend, controlled by month only
+    for m in months:
+        fig.add_trace(
+            go.Scatter(x=[None], y=[None], mode="markers",
+                       marker=dict(size=8, color=MONTH_COLOR[m]),
+                       name=calendar.month_abbr[m], legendgroup=f"m{m}",
+                       legendrank=m, showlegend=True, hoverinfo="skip"),
+            row=1, col=1)
+        meta.append({"t": "proxy", "m": int(m)})
 
     for col, mask in ((1, df["onpeak"]), (2, ~df["onpeak"])):
         ml = median_line(df[mask])
@@ -171,7 +214,7 @@ def build(cfg):
                        legendrank=100, showlegend=(col == 1),
                        hovertemplate="Temp ~%{x:.0f} °F<br>median %{y:.0f} MVA<extra></extra>"),
             row=1, col=col)
-        trace_ym.append((None, None))
+        meta.append({"t": "always"})
 
     if sched:
         for col in (1, 2):
@@ -182,17 +225,7 @@ def build(cfg):
                            legendrank=101, showlegend=(col == 1),
                            hovertemplate="Temp %{x:.0f} °F<br>defined limit %{y:.0f} MVA<extra></extra>"),
                 row=1, col=col)
-            trace_ym.append((None, None))
-
-    n = len(trace_ym)
-    year_buttons = [dict(label="All years", method="update", args=[{"visible": [True] * n}])]
-    for yr in years:
-        vis = [(ty == yr or ty is None) for (ty, tm) in trace_ym]
-        year_buttons.append(dict(label=str(yr), method="update", args=[{"visible": vis}]))
-    month_buttons = [dict(label="All months", method="update", args=[{"visible": [True] * n}])]
-    for m in months:
-        vis = [(tm == m or tm is None) for (ty, tm) in trace_ym]
-        month_buttons.append(dict(label=calendar.month_name[m], method="update", args=[{"visible": vis}]))
+            meta.append({"t": "always"})
 
     for c in (1, 2):
         fig.update_xaxes(title_text=f"{cfg['station_label']} temperature (°F)", row=1, col=c)
@@ -201,24 +234,23 @@ def build(cfg):
         title=dict(text=(
             f"{cfg['elem_label']} emergency 2-hr RT rating vs {cfg['station_label']} temp"
             f"<br><sup>One dot per hour by month, {df.hour.min():%Y-%m-%d}–"
-            f"{df.hour.max():%Y-%m-%d} ({len(df):,} hrs). Year/Month dropdowns filter "
-            "(independently); legend toggles months. Black = median per 5°F.</sup>")),
-        template="plotly_white", width=1250, height=700, margin=dict(t=150),
-        legend=dict(title="month", orientation="v", y=1, x=1.01),
-        updatemenus=[
-            dict(buttons=year_buttons, direction="down", showactive=True,
-                 x=0.0, y=1.16, xanchor="left", yanchor="top"),
-            dict(buttons=month_buttons, direction="down", showactive=True,
-                 x=0.16, y=1.16, xanchor="left", yanchor="top"),
-        ],
-        annotations=list(fig.layout.annotations) + [
-            dict(text="<b>Year</b>", xref="paper", yref="paper", showarrow=False,
-                 x=0.0, y=1.205, xanchor="left", font=dict(size=11, color="gray")),
-            dict(text="<b>Month</b>", xref="paper", yref="paper", showarrow=False,
-                 x=0.16, y=1.205, xanchor="left", font=dict(size=11, color="gray")),
-        ])
+            f"{df.hour.max():%Y-%m-%d} ({len(df):,} hrs). Year + Month filters compose "
+            "(pick a year, then a month); legend toggles months. Black = median per 5°F.</sup>")),
+        template="plotly_white", width=1250, height=700, margin=dict(t=110),
+        legend=dict(title="month", orientation="v", y=1, x=1.01))
+
+    # write with the composing Year+Month JS controls injected
+    div_id = cfg["out"]
+    year_opts = [["All", "All years"]] + [[int(y), str(y)] for y in years]
+    month_opts = [["All", "All months"]] + [[int(m), calendar.month_name[m]] for m in months]
+    html = fig.to_html(include_plotlyjs=True, full_html=True, div_id=div_id)
+    js = (CONTROLS_JS.replace("__DIVID__", div_id)
+                     .replace("__META__", json.dumps(meta))
+                     .replace("__YEARS__", json.dumps(year_opts))
+                     .replace("__MONTHS__", json.dumps(month_opts)))
+    html = html.replace("</body>", js + "</body>")
     out_html = OUT / f"{cfg['out']}.html"
-    fig.write_html(out_html, include_plotlyjs=True)
+    out_html.write_text(html, encoding="utf-8")
     print(f"-> {out_html}")
 
 
