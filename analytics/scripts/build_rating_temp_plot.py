@@ -117,19 +117,29 @@ def main():
         rows=1, cols=2, shared_yaxes=True, horizontal_spacing=0.04,
         subplot_titles=("On-peak (HE 7–22)", "Off-peak (HE 23–6)"))
 
+    df["year"] = df["hour"].dt.year
+    years = sorted(df["year"].unique())
     months = sorted(df["month"].unique())
-    trace_month = []   # month value per trace, or None for medians
-    for m in months:
+    ym_pairs = sorted(df.groupby(["year", "month"]).groups.keys())
+
+    # one dot-trace per (year, month) per panel, so both dropdowns can filter.
+    trace_ym = []      # (year, month) per trace; (None, None) = always-on ref lines
+    legend_shown = set()
+    for (yr, m) in ym_pairs:
         for col, mask in ((1, df["onpeak"]), (2, ~df["onpeak"])):
-            g = df[(df["month"] == m) & mask]
+            g = df[(df["year"] == yr) & (df["month"] == m) & mask]
+            show = col == 1 and m not in legend_shown   # one legend entry per month
             fig.add_trace(
                 go.Scattergl(
                     x=g["temp"], y=g["emergencyRatings"], mode="markers",
                     marker=dict(size=5, color=MONTH_COLOR[m], opacity=0.55),
                     name=calendar.month_abbr[m], legendgroup=f"m{m}",
-                    showlegend=(col == 1), customdata=g["ts"], hovertemplate=HOVER),
+                    legendrank=m, showlegend=show,
+                    customdata=g["ts"], hovertemplate=HOVER),
                 row=1, col=col)
-            trace_month.append(m)
+            if show:
+                legend_shown.add(m)
+            trace_ym.append((yr, m))
 
     for col, mask in ((1, df["onpeak"]), (2, ~df["onpeak"])):
         ml = median_line(df[mask])
@@ -137,10 +147,10 @@ def main():
             go.Scatter(x=ml["tc"], y=ml["median"], mode="lines",
                        line=dict(color="black", width=3),
                        name="median (per 5°F)", legendgroup="median",
-                       showlegend=(col == 1),
+                       legendrank=100, showlegend=(col == 1),
                        hovertemplate="Temp ~%{x:.0f} °F<br>median %{y:.0f} MVA<extra></extra>"),
             row=1, col=col)
-        trace_month.append(None)
+        trace_ym.append((None, None))
 
     # published temperature-based rating definition (both panels, always shown)
     for col in (1, 2):
@@ -148,19 +158,27 @@ def main():
             go.Scatter(x=DEF_TEMP, y=DEF_LIMIT, mode="lines",
                        line=dict(color="firebrick", width=2.5, dash="dash"),
                        name="definition (temp schedule)", legendgroup="def",
-                       showlegend=(col == 1),
+                       legendrank=101, showlegend=(col == 1),
                        hovertemplate="Temp %{x:.0f} °F<br>defined limit %{y:.0f} MVA<extra></extra>"),
             row=1, col=col)
-        trace_month.append(None)
+        trace_ym.append((None, None))
 
-    # month dropdown: All + each month (medians + definition always visible)
-    n = len(trace_month)
-    buttons = [dict(label="All months", method="update",
-                    args=[{"visible": [True] * n}])]
+    # Year + Month dropdowns (medians + definition always visible). The two are
+    # independent selectors: pick a year -> all months of it; pick a month ->
+    # all years of it. Use the legend to further toggle individual months.
+    n = len(trace_ym)
+    year_buttons = [dict(label="All years", method="update",
+                         args=[{"visible": [True] * n}])]
+    for yr in years:
+        vis = [(ty == yr or ty is None) for (ty, tm) in trace_ym]
+        year_buttons.append(dict(label=str(yr), method="update",
+                                 args=[{"visible": vis}]))
+    month_buttons = [dict(label="All months", method="update",
+                          args=[{"visible": [True] * n}])]
     for m in months:
-        vis = [(tm == m or tm is None) for tm in trace_month]
-        buttons.append(dict(label=calendar.month_name[m], method="update",
-                            args=[{"visible": vis}]))
+        vis = [(tm == m or tm is None) for (ty, tm) in trace_ym]
+        month_buttons.append(dict(label=calendar.month_name[m], method="update",
+                                  args=[{"visible": vis}]))
 
     for c in (1, 2):
         fig.update_xaxes(title_text="Midland (KMAF) temperature (°F)", row=1, col=c)
@@ -169,13 +187,22 @@ def main():
         title=dict(text=(
             "6945 (MGSES→CATSW 345kV, teid 748510) emergency 2-hr RT rating vs Midland temp"
             f"<br><sup>One dot per hour by month, {df.hour.min():%Y-%m-%d}–"
-            f"{df.hour.max():%Y-%m-%d} ({len(df):,} hrs). Dropdown filters to a month; "
-            "legend toggles months. Black = median per 5°F.</sup>")),
-        template="plotly_white", width=1250, height=680,
+            f"{df.hour.max():%Y-%m-%d} ({len(df):,} hrs). Year/Month dropdowns filter "
+            "(independently); legend toggles months. Black = median per 5°F.</sup>")),
+        template="plotly_white", width=1250, height=700, margin=dict(t=150),
         legend=dict(title="month", orientation="v", y=1, x=1.01),
-        updatemenus=[dict(buttons=buttons, direction="down", showactive=True,
-                          x=0, y=1.15, xanchor="left", yanchor="top",
-                          pad=dict(l=0, r=0))])
+        updatemenus=[
+            dict(buttons=year_buttons, direction="down", showactive=True,
+                 x=0.0, y=1.16, xanchor="left", yanchor="top"),
+            dict(buttons=month_buttons, direction="down", showactive=True,
+                 x=0.16, y=1.16, xanchor="left", yanchor="top"),
+        ],
+        annotations=list(fig.layout.annotations) + [
+            dict(text="<b>Year</b>", xref="paper", yref="paper", showarrow=False,
+                 x=0.0, y=1.205, xanchor="left", font=dict(size=11, color="gray")),
+            dict(text="<b>Month</b>", xref="paper", yref="paper", showarrow=False,
+                 x=0.16, y=1.205, xanchor="left", font=dict(size=11, color="gray")),
+        ])
     out_html = OUT / "rating_vs_temp_6945.html"
     fig.write_html(out_html, include_plotlyjs=True)
     print(f"-> {out_html}")
