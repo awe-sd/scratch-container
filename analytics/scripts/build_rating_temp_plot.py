@@ -64,6 +64,10 @@ CONFIGS = [
          elem_label="6240_C (SACRC→DPCRK 138kV, teid 214167)",
          station_label="Snyder / Scurry Co (KSNK)", schedule=None,
          out="rating_vs_temp_6240C"),
+    dict(elem=2102, station="KDTO", temp_start="2024-01-01",
+         elem_label="587 (ARGYL→LWSVH 138kV, teid 2102)",
+         station_label="Denton (KDTO)", schedule=None,
+         out="rating_vs_temp_587"),
 ]
 
 HOVER = ("<b>%{customdata}</b><br>Temp: %{x:.0f} °F"
