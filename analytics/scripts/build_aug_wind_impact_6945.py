@@ -174,15 +174,24 @@ def main():
     sdf = summary_df.set_index("year").loc[years_present]
     n_yr = len(years_present)
 
-    row_heights = [0.22] + [0.78 / n_yr] * n_yr
-    specs = [[{"secondary_y": True}]] + [[{"secondary_y": False}]] * n_yr
-    titles = ["Mean & P90 flow contribution by wind region, per August (2021-2025)"] + [
-        f"Aug {y} — hourly regional flow contribution ({int(sdf.loc[y, 'n_hours'])} hrs), "
-        "Panhandle loads (+) / West relieves (−) + net" for y in years_present]
-    fig = make_subplots(rows=1 + n_yr, cols=1, row_heights=row_heights,
-                        vertical_spacing=0.045, specs=specs, subplot_titles=titles)
+    # per-August share of hours net-LOADED (net>0) vs net-RELIEVED (net<0)
+    pct_pos, pct_neg = {}, {}
+    for y in years_present:
+        net = all_hourly[y]["Panhandle"] + all_hourly[y]["West"]
+        pct_pos[y] = float((net > 0).mean())
+        pct_neg[y] = float((net < 0).mean())
 
-    # --- Row 1: diverging mean bars (Panhandle vs West) + danger-hour line ---
+    row_heights = [0.13, 0.13] + [0.74 / n_yr] * n_yr
+    specs = [[{}], [{}]] + [[{}]] * n_yr
+    titles = [
+        "Mean & P90 flow contribution by wind region, per August (2021-2025)",
+        "Share of hours the constraint is net-LOADED (Pan+West > 0) vs net-RELIEVED (< 0)",
+    ] + [f"Aug {y} — hourly regional flow contribution ({int(sdf.loc[y, 'n_hours'])} hrs), "
+         "Panhandle loads (+) / West relieves (−) + net" for y in years_present]
+    fig = make_subplots(rows=2 + n_yr, cols=1, row_heights=row_heights,
+                        vertical_spacing=0.04, specs=specs, subplot_titles=titles)
+
+    # --- Row 1: diverging mean bars (Panhandle vs West) ---
     fig.add_trace(
         go.Bar(name="Panhandle mean", x=years_present, y=sdf["panhandle_mean_MW"],
                error_y=dict(type="data",
@@ -190,7 +199,7 @@ def main():
                             arrayminus=[0] * len(sdf), visible=True),
                marker_color=REGION_COLOR["Panhandle"], showlegend=False,
                hovertemplate="Aug %{x}<br>Panhandle mean %{y:.1f} MW<extra></extra>"),
-        row=1, col=1, secondary_y=False)
+        row=1, col=1)
     fig.add_trace(
         go.Bar(name="West mean", x=years_present, y=sdf["west_mean_MW"],
                error_y=dict(type="data", array=[0] * len(sdf),
@@ -198,23 +207,32 @@ def main():
                             visible=True),
                marker_color=REGION_COLOR["West"], showlegend=False,
                hovertemplate="Aug %{x}<br>West mean %{y:.1f} MW<extra></extra>"),
-        row=1, col=1, secondary_y=False)
-    fig.add_trace(
-        go.Scatter(name="Danger-hour fraction (net>0, right axis)", x=years_present,
-                   y=sdf["danger_hour_fraction"], mode="lines+markers",
-                   line=dict(color="black", dash="dot"), marker=dict(size=8, symbol="diamond"),
-                   showlegend=False,
-                   hovertemplate="Aug %{x}<br>danger-hour frac %{y:.1%}<extra></extra>"),
-        row=1, col=1, secondary_y=True)
-    fig.update_yaxes(title_text="danger frac", range=[0, 1], tickformat=".0%",
-                     showgrid=False, secondary_y=True, row=1, col=1)
-    fig.add_hline(y=0, line_color="rgba(0,0,0,0.4)", row=1, col=1, secondary_y=False)
-    fig.update_yaxes(title_text="mean MW", row=1, col=1, secondary_y=False)
-    fig.update_xaxes(title_text="August", type="category", row=1, col=1)
+        row=1, col=1)
+    fig.add_hline(y=0, line_color="rgba(0,0,0,0.4)", row=1, col=1)
+    fig.update_yaxes(title_text="mean MW", row=1, col=1)
+    fig.update_xaxes(type="category", row=1, col=1)
 
-    # --- Rows 2..: full-month hourly stacked contribution, one row per August ---
+    # --- Row 2: 100%-stacked share of net-loaded vs net-relieved hours ---
+    fig.add_trace(
+        go.Bar(name="net-RELIEVED (net<0)", x=years_present,
+               y=[pct_neg[y] for y in years_present], marker_color=REGION_COLOR["West"],
+               text=[f"{pct_neg[y]:.0%}" for y in years_present], textposition="inside",
+               insidetextanchor="middle",
+               hovertemplate="Aug %{x}<br>net-relieved %{y:.1%} of hours<extra></extra>"),
+        row=2, col=1)
+    fig.add_trace(
+        go.Bar(name="net-LOADED (net>0)", x=years_present,
+               y=[pct_pos[y] for y in years_present], marker_color=REGION_COLOR["Panhandle"],
+               text=[f"{pct_pos[y]:.0%}" for y in years_present], textposition="inside",
+               insidetextanchor="middle",
+               hovertemplate="Aug %{x}<br>net-loaded %{y:.1%} of hours<extra></extra>"),
+        row=2, col=1)
+    fig.update_yaxes(title_text="% of hours", tickformat=".0%", range=[0, 1], row=2, col=1)
+    fig.update_xaxes(title_text="August", type="category", row=2, col=1)
+
+    # --- Rows 3..: full-month hourly stacked contribution, one row per August ---
     for i, year in enumerate(years_present):
-        r = 2 + i
+        r = 3 + i
         yp = all_hourly[year].sort_values("hour")
         for reg in REGION_ORDER:
             fig.add_trace(
@@ -230,7 +248,7 @@ def main():
             row=r, col=1)
         fig.add_hline(y=0, line_color="rgba(0,0,0,0.5)", row=r, col=1)
         fig.update_yaxes(title_text="MW", row=r, col=1)
-    fig.update_xaxes(title_text="hour (Aug)", row=1 + n_yr, col=1)
+    fig.update_xaxes(title_text="hour (Aug)", row=2 + n_yr, col=1)
 
     fig.update_layout(
         barmode="relative",
@@ -241,7 +259,7 @@ def main():
             "(one panel per year). SCED Gen Resource dispatch is a 60-day disclosure, so "
             "each August's dispatch is paired with the CURRENT shift structure — a "
             "climatology of the impact pattern.</sup>"), x=0.02, xanchor="left"),
-        height=320 + 300 * n_yr,
+        height=460 + 300 * n_yr,
         legend=dict(orientation="h", yanchor="bottom", y=1.0, x=0),
         margin=dict(t=150))
 
