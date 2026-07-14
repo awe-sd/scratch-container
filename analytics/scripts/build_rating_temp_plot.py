@@ -94,8 +94,10 @@ def main():
             .sort_values("hour").reset_index(drop=True))
     df["ts"] = df["hour"].dt.strftime("%Y-%m-%d %H:00")
     df["month"] = df["hour"].dt.month
-    df["HE"] = df["hour"].dt.hour + 1                 # hour ending
-    df["onpeak"] = df["HE"].between(7, 21)
+    # classify by the observation's clock hour (what the hover shows):
+    # on-peak = HE 7-22 (clock 07:00-22:59), off-peak = HE 23-6 (clock 23:00-06:59)
+    hod = df["hour"].dt.hour
+    df["onpeak"] = hod.between(7, 22)
     print(f"joined hours: {len(df):,}  on-peak {int(df.onpeak.sum()):,} / "
           f"off-peak {int((~df.onpeak).sum()):,}")
 
@@ -113,7 +115,7 @@ def main():
     # ---- main 2-panel, month-colored plot ----
     fig = make_subplots(
         rows=1, cols=2, shared_yaxes=True, horizontal_spacing=0.04,
-        subplot_titles=("On-peak (HE 7–21)", "Off-peak (HE 1–6, 22–24)"))
+        subplot_titles=("On-peak (HE 7–22)", "Off-peak (HE 23–6)"))
 
     months = sorted(df["month"].unique())
     trace_month = []   # month value per trace, or None for medians
