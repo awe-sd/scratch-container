@@ -181,15 +181,17 @@ def main():
         pct_pos[y] = float((net > 0).mean())
         pct_neg[y] = float((net < 0).mean())
 
-    row_heights = [0.13, 0.13] + [0.74 / n_yr] * n_yr
-    specs = [[{}], [{}]] + [[{}]] * n_yr
+    # top row = two summary panels side by side; each August below = full width
+    row_heights = [0.20] + [0.80 / n_yr] * n_yr
+    specs = [[{}, {}]] + [[{"colspan": 2}, None]] * n_yr
     titles = [
-        "Mean & P90 flow contribution by wind region, per August (2021-2025)",
-        "Share of hours the constraint is net-LOADED (Pan+West > 0) vs net-RELIEVED (< 0)",
+        "Mean & P90 flow contribution by region, per August",
+        "Share of hours net-LOADED (Pan+West>0) vs net-RELIEVED (<0)",
     ] + [f"Aug {y} — hourly regional flow contribution ({int(sdf.loc[y, 'n_hours'])} hrs), "
          "Panhandle loads (+) / West relieves (−) + net" for y in years_present]
-    fig = make_subplots(rows=2 + n_yr, cols=1, row_heights=row_heights,
-                        vertical_spacing=0.04, specs=specs, subplot_titles=titles)
+    fig = make_subplots(rows=1 + n_yr, cols=2, row_heights=row_heights,
+                        column_widths=[0.5, 0.5], horizontal_spacing=0.09,
+                        vertical_spacing=0.05, specs=specs, subplot_titles=titles)
 
     # --- Row 1: diverging mean bars (Panhandle vs West) ---
     fig.add_trace(
@@ -212,27 +214,27 @@ def main():
     fig.update_yaxes(title_text="mean MW", row=1, col=1)
     fig.update_xaxes(type="category", row=1, col=1)
 
-    # --- Row 2: 100%-stacked share of net-loaded vs net-relieved hours ---
+    # --- Row 1 col 2: 100%-stacked share of net-loaded vs net-relieved hours ---
     fig.add_trace(
         go.Bar(name="net-RELIEVED (net<0)", x=years_present,
                y=[pct_neg[y] for y in years_present], marker_color=REGION_COLOR["West"],
                text=[f"{pct_neg[y]:.0%}" for y in years_present], textposition="inside",
                insidetextanchor="middle",
                hovertemplate="Aug %{x}<br>net-relieved %{y:.1%} of hours<extra></extra>"),
-        row=2, col=1)
+        row=1, col=2)
     fig.add_trace(
         go.Bar(name="net-LOADED (net>0)", x=years_present,
                y=[pct_pos[y] for y in years_present], marker_color=REGION_COLOR["Panhandle"],
                text=[f"{pct_pos[y]:.0%}" for y in years_present], textposition="inside",
                insidetextanchor="middle",
                hovertemplate="Aug %{x}<br>net-loaded %{y:.1%} of hours<extra></extra>"),
-        row=2, col=1)
-    fig.update_yaxes(title_text="% of hours", tickformat=".0%", range=[0, 1], row=2, col=1)
-    fig.update_xaxes(title_text="August", type="category", row=2, col=1)
+        row=1, col=2)
+    fig.update_yaxes(title_text="% of hours", tickformat=".0%", range=[0, 1], row=1, col=2)
+    fig.update_xaxes(title_text="August", type="category", row=1, col=2)
 
-    # --- Rows 3..: full-month hourly stacked contribution, one row per August ---
+    # --- Rows 2..: full-month hourly stacked contribution, one row per August ---
     for i, year in enumerate(years_present):
-        r = 3 + i
+        r = 2 + i
         yp = all_hourly[year].sort_values("hour")
         for reg in REGION_ORDER:
             fig.add_trace(
@@ -248,7 +250,7 @@ def main():
             row=r, col=1)
         fig.add_hline(y=0, line_color="rgba(0,0,0,0.5)", row=r, col=1)
         fig.update_yaxes(title_text="MW", row=r, col=1)
-    fig.update_xaxes(title_text="hour (Aug)", row=2 + n_yr, col=1)
+    fig.update_xaxes(title_text="hour (Aug)", row=1 + n_yr, col=1)
 
     fig.update_layout(
         barmode="relative",
@@ -259,7 +261,7 @@ def main():
             "(one panel per year). SCED Gen Resource dispatch is a 60-day disclosure, so "
             "each August's dispatch is paired with the CURRENT shift structure — a "
             "climatology of the impact pattern.</sup>"), x=0.02, xanchor="left"),
-        height=460 + 300 * n_yr,
+        height=380 + 300 * n_yr,
         legend=dict(orientation="h", yanchor="bottom", y=1.0, x=0),
         margin=dict(t=150))
 
