@@ -70,6 +70,18 @@ Analysis / builds:
   line; **composing Year+Month filters** via injected JS `<select>` controls + per-month
   proxy legend traces (plotly's native dropdowns can't AND-compose). 6945 config
   (`_FROZEN_6945`) is intentionally NOT rebuilt — its committed plot must not be overwritten.
+- `build_supply_stack_constraint.py` — **supply stack behind a constraint** from SCED
+  offer curves (`isoErcotScedGenResource.CurveMW/CurvePrice1..15`, cumulative → diffed to
+  incremental tranches). Resources "behind" the constraint = signed shift ≥ threshold on
+  its psenShiftID (`psenShiftView`, `psen*psenShiftSign`). One HTML, two panels: **A** a
+  single SCED interval (ON units, merit order; marginal unit = interior-dispatch unit
+  LSL<BP<HSL, starred + named), **B** average offer stack over a period+HE set (diff per
+  (unit,interval) → pool → 1/N weight → cumsum). RT energy price = `ercotLambda.SystemLambda`
+  drawn as a horizontal ref (renewable offers sit far below it — that gap = shift×shadow-price
+  congestion, not a bug). Config in `CONFIGS` (psenShiftID, threshold, single_ts, period +
+  period_HEs, out). Built: 35055 (SAMSW→VENSW, psen 87025608, 2026-05-05 14:40 + May-2026
+  HE 12–16). No 5-min RT shadow-price table exists (`ftrResult*` are FTR-auction; congHrPrice
+  is hourly).
 - `build_houston_vs_ntx_temp.py` — Houston (KIAH) vs avg North-TX (DFW metro) Aug temps.
 - `build_netload_vs_price.py` — effective net load vs `ercotLambda.SystemLambda` (RT
   energy price), summer 2025.
