@@ -47,7 +47,7 @@ the user to open in VS Code — not a production pipeline.
 
 Exploration (schema discovery, safe to re-run): `explore_market_schema*.py`,
 `explore_shift_factors_schema*.py`, `explore_rating_temp_schema.py`,
-`explore_6437_surry.py`.
+`explore_6437_surry.py`, `explore_thm_35055.py`, `explore_thm_genunit.py`.
 
 Analysis / builds:
 - `analyze_net_load_constraints.py` — rank summer days by peak net load
@@ -82,11 +82,29 @@ Analysis / builds:
   period_HEs, out). Built: 35055 (SAMSW→VENSW, psen 87025608, 2026-05-05 14:40 + May-2026
   HE 12–16). No 5-min RT shadow-price table exists (`ftrResult*` are FTR-auction; congHrPrice
   is hourly).
+- `build_supply_stack_shift_weighted.py` — supply stack with **x = cumulative (offered MW ×
+  signed shift)** = MW of constraint loading (vs raw offered MW). Compares the SAME gen stack
+  (2026-05-05 14:40) under two shift vectors — PRE `75138717` vs POST `87025608` — to isolate a
+  topology change. NON-thermal only (denylist: everything except CLLIG/CCGT*/SCGT*/GS*/NUC/DSL);
+  per-gen-type legend groups (Combined/PVGR/WIND/HYDRO…) with `groupclick='togglegroup'` so you
+  click a type to show/hide. Finding: loading behind 35055 fell −30% (2,570→1,798 MW) post-topology.
+- `analyze_thermal_behind_35055.py` (+ `fetch_thm_35055_vectors.py`, `explore_thm_*.py`) —
+  thermal gens electrically behind 35055 under the current shift; explains the 859→109 footprint
+  collapse between the two shift vectors (same node universe, sensitivity localized meshed→radial);
+  summer-2025 run behavior (gas CCGTs near-baseload, Sandy Creek coal offline) + load correlation.
+- `analyze_thermal_sink_35055_runfreq.py` — sink-side (VENSW/DFW, negative shift) thermal fleet
+  run-frequency for summer 2025 (the relief side; ~11 GW of gas that actually runs).
+- `analyze_july_hot_constraints.py` — ranks July-2026 operating days by **peak net load**
+  (load−wind−solar, RT actuals), then lists every RT-binding constraint on the top-N days
+  (`congHrPrice isomarketid=6, priceTypeID=2, congTypeID=1`), deduped to `elem|contingency`, plus a
+  recurring rollup (`>=2` hot days = August watch-list). Keyed on `awDateID`.
 - `build_houston_vs_ntx_temp.py` — Houston (KIAH) vs avg North-TX (DFW metro) Aug temps.
 - `build_netload_vs_price.py` — effective net load vs `ercotLambda.SystemLambda` (RT
   energy price), summer 2025.
 - `analysis_common.py` — shared loaders: `hourly_net_load()`, `wind_by_region()`,
-  constraint-name parsing, date-window helpers.
+  constraint-name parsing, date-window helpers. **Build/analyze scripts import siblings by
+  same-directory path** (`analysis_common`, `build_supply_stack_constraint`), so the scripts dir
+  is kept flat + prefix-organized (`explore_`/`fetch_`/`analyze_`/`build_`) rather than nested.
 
 ## Key data gotchas (see also the project memory)
 
@@ -98,6 +116,14 @@ Analysis / builds:
   (both Snowflake and SQL Server). Recent months unavailable; historical Augusts are fine.
 - `ercotWindRegionHourly` `isActual=1` rows stop 2026-05-14, but the forecast rows after
   that sum 1:1 to actual ERCOT total wind — safe to use as actuals.
+- **`congHrPrice` is multi-ISO — ALWAYS filter `isomarketid = 6`** or you get PJM/MISO names
+  (Cayuga, Sussex…) mixed in. RT binding = `priceTypeID=2, congTypeID=1`; `Price` = shadow price.
+  Available near-real-time (NOT 60-day lagged like SCED gen). `dt` is tz-aware; key on `awDateID`
+  (`awDate.date`) for a clean ERCOT operating day across load/wind/solar/congestion.
+- Wind/solar actual totals: `windGenAct`/`solarGenAct` `isoZoneID=67` (ERCOT_ALL), `priceTypeID=2`
+  (=RT actual; join `awDate` on `awDateID` for the date). **Net-load peak is the EVENING ramp**
+  (solar → ~0, load still high), NOT the afternoon load peak — e.g. 2026-07-06 peak net load 63.9 GW
+  at HE21 vs peak load 83.2 GW at HE17 (net only 49.6 GW there).
 - Dead/stale: `windGenActByWeatherZone`/`solarGenActByWeatherZone` (stop 2025-01),
   `ercotCongConstRecord`/`ercot_sppCongConstRecord` (notes end 2020).
 - Weather temp history starts ~2022-05.
