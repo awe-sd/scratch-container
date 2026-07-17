@@ -8,8 +8,15 @@ Usage:
       --lat 31.6925 --lon -99.5483 --date 2025-06-01 --out imagery/s2_2025-06-01.png \
       [--buffer-km 1.6] [--window-days 15] [--max-cloud 40]
 
-The chip is a median composite of scenes within +/-window-days of the date (cloud-filtered),
-true color (B04/B03/B02), ~10 m/px. Typical use: quarterly series over a project site.
+  uv run gis-research/scripts/research_tools/cdse.py timelapse \
+      --lat 31.6925 --lon -99.5483 --start 2024-07-01 --end 2026-07-01 \
+      --out-dir imagery/ [--cadence month|dekad] [--buffer-km 1.6] [--max-cloud 40]
+
+`chip` = median composite of scenes within +/-window-days of the date (cloud-filtered),
+true color (B04/B03/B02), ~10 m/px.
+`timelapse` = ONE openEO job computing per-period composites server-side (aggregate_temporal),
+downloaded as netCDF, rendered locally to frame PNGs + an animated timelapse.gif — much
+faster than requesting each date as a separate chip.
 """
 
 from __future__ import annotations
@@ -123,6 +130,86 @@ def chip(lat: float, lon: float, day: str, out: Path,
           f"{buffer_km} km buffer, cloud≤{max_cloud}%")
 
 
+def timelapse(lat: float, lon: float, start: str, end: str, out_dir: Path,
+              cadence: str, buffer_km: float, max_cloud: int) -> None:
+    """One openEO job → per-period median composites (netCDF) → frame PNGs + animated GIF."""
+    period = {"month": "month", "dekad": "dekad"}[cadence]  # dekad = 10-day periods
+    graph = {
+        "process": {
+            "process_graph": {
+                "load": {
+                    "process_id": "load_collection",
+                    "arguments": {
+                        "id": "SENTINEL2_L2A",
+                        "spatial_extent": bbox(lat, lon, buffer_km),
+                        "temporal_extent": [start, end],
+                        "bands": ["B04", "B03", "B02"],
+                        "properties": {"eo:cloud_cover": {"process_graph": {"cc": {
+                            "process_id": "lte",
+                            "arguments": {"x": {"from_parameter": "value"}, "y": max_cloud},
+                            "result": True}}}},
+                    },
+                },
+                "agg": {
+                    "process_id": "aggregate_temporal_period",
+                    "arguments": {"data": {"from_node": "load"}, "period": period,
+                                  "reducer": {"process_graph": {"m": {
+                                      "process_id": "median",
+                                      "arguments": {"data": {"from_parameter": "data"}},
+                                      "result": True}}}},
+                },
+                "save": {
+                    "process_id": "save_result",
+                    "arguments": {"data": {"from_node": "agg"}, "format": "netCDF"},
+                    "result": True,
+                },
+            }
+        }
+    }
+    req = urllib.request.Request(
+        f"{OPENEO_URL}/result",
+        data=json.dumps(graph).encode(),
+        headers={"Content-Type": "application/json",
+                 "Authorization": f"Bearer oidc/CDSE/{get_token()}"},
+    )
+    print(f"requesting {cadence}ly composites {start}..{end} (single openEO job) ...")
+    try:
+        with urllib.request.urlopen(req, timeout=900) as r:
+            data = r.read()
+    except urllib.error.HTTPError as e:
+        sys.exit(f"openEO error {e.code}: {e.read()[:500].decode(errors='replace')}")
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+    nc_path = out_dir / "timelapse_raw.nc"
+    nc_path.write_bytes(data)
+
+    import numpy as np
+    import xarray as xr
+    from PIL import Image, ImageDraw
+
+    ds = xr.open_dataset(nc_path)
+    frames, labels = [], []
+    for i, t in enumerate(ds["t"].values):
+        label = str(t)[:10]
+        rgb = np.stack([ds[b].isel(t=i).values for b in ("B04", "B03", "B02")], axis=-1)
+        if np.all(np.isnan(rgb)):
+            continue  # fully cloud-filtered period
+        img = np.clip(np.nan_to_num(rgb) / 2500.0 * 255.0, 0, 255).astype("uint8")
+        im = Image.fromarray(img).convert("RGB")
+        ImageDraw.Draw(im).rectangle([0, 0, 92, 14], fill=(0, 0, 0))
+        ImageDraw.Draw(im).text((3, 2), label, fill=(255, 255, 0))
+        fp = out_dir / f"s2_{label}.png"
+        im.save(fp)
+        frames.append(im)
+        labels.append(label)
+    if not frames:
+        sys.exit("no usable frames (all periods fully clouded out) — raise --max-cloud or widen range")
+    gif = out_dir / "timelapse.gif"
+    frames[0].save(gif, save_all=True, append_images=frames[1:], duration=700, loop=0)
+    nc_path.unlink()  # raw netCDF is large and regenerable
+    print(f"wrote {len(frames)} frames ({labels[0]} .. {labels[-1]}) + {gif}")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -134,8 +221,20 @@ def main() -> None:
     c.add_argument("--buffer-km", type=float, default=1.6)
     c.add_argument("--window-days", type=int, default=15)
     c.add_argument("--max-cloud", type=int, default=40)
+    t = sub.add_parser("timelapse", help="one-job composite series -> frame PNGs + GIF")
+    t.add_argument("--lat", type=float, required=True)
+    t.add_argument("--lon", type=float, required=True)
+    t.add_argument("--start", required=True, help="YYYY-MM-DD")
+    t.add_argument("--end", required=True, help="YYYY-MM-DD")
+    t.add_argument("--out-dir", type=Path, required=True)
+    t.add_argument("--cadence", choices=["month", "dekad"], default="month")
+    t.add_argument("--buffer-km", type=float, default=1.6)
+    t.add_argument("--max-cloud", type=int, default=40)
     a = ap.parse_args()
-    chip(a.lat, a.lon, a.date, a.out, a.buffer_km, a.window_days, a.max_cloud)
+    if a.cmd == "chip":
+        chip(a.lat, a.lon, a.date, a.out, a.buffer_km, a.window_days, a.max_cloud)
+    else:
+        timelapse(a.lat, a.lon, a.start, a.end, a.out_dir, a.cadence, a.buffer_km, a.max_cloud)
 
 
 if __name__ == "__main__":

@@ -76,10 +76,14 @@ Converge on lat/lon from independent angles; state your method + confidence.
   1. Pull TODAY's chip first.
   2. Raw farmland, no activity → pull ONE chip ~6 months back to confirm, then STOP.
      Verdict `no_activity`; do not scan history looking for nothing.
-  3. Activity visible (clearing/racking/complete) → walk BACK quarterly until the land is
-     undisturbed — brackets `first_activity_seen`.
-  4. Construction ACTIVE now (not yet complete) → also pull **weekly/bi-weekly chips for the
-     last ~2 months** — progress velocity feeds the COD estimate.
+  3. Activity visible (clearing/racking/complete) → ONE `timelapse` job to bracket
+     `first_activity_seen`:
+     `uv run gis-research/scripts/research_tools/cdse.py timelapse --lat <lat> --lon <lon>
+      --start <~2y back> --end <today> --out-dir imagery/ --cadence month`
+     (single openEO job → dated monthly frames + timelapse.gif; far cheaper than per-date chips)
+  4. Construction ACTIVE now (not yet complete) → also `timelapse --cadence dekad` over the
+     last ~2-3 months (10-day frames) — progress velocity feeds the COD estimate.
+  Cloud filter is per-scene, so some frames stay partly cloudy — judge from the clear ones.
 - READ the images yourself (you are multimodal): mottled farmland → graded rectangles =
   clearing; regular dark rows = racking/modules; substation square near POI = late stage.
 - `uv run gis-research/scripts/research_tools/gmaps.py staticmap --lat <lat> --lon <lon>
