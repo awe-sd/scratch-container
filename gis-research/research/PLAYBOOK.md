@@ -46,6 +46,11 @@ County is known. Work it hard — this is where real projects leave paper.
 - School-district (ISD) Ch.313/JETI agreements name the project precisely (comptroller site).
 - TCEQ permits only if fuel type needs them (solar usually none — absence is expected,
   not evidence of paper project).
+- **PUCT Interchange filings search** (https://interchange.puc.texas.gov/search/filings/):
+  search by project LLC / project name. Interconnection agreements between the transmission
+  provider (Oncor, AEP, LCRA, …) and the project LLC are filed here — free primary documents
+  naming parties, POI, and sometimes schedule exhibits. (This is the signed IA itself —
+  primary evidence, unlike queue aggregators.)
 - Output: parcels + acreage + any abatement/permit docs saved to `sources/`.
 
 ## Stage 3 — Site pinpoint
