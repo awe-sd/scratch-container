@@ -8,3 +8,9 @@ branch_tracking/output/*.prev
 __pycache__/
 *.pyc
 .venv/
+
+# never commit real credentials (example.env is the safe template)
+.env
+*.env
+!example.env
+!gis-research/example.env
