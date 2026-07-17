@@ -72,8 +72,14 @@ Converge on lat/lon from independent angles; state your method + confidence.
 
 - `uv run gis-research/scripts/research_tools/cdse.py chip --lat <lat> --lon <lon>
   --date <YYYY-MM-DD> --out imagery/s2_<date>.png` — Sentinel-2 true color, ~3 km box.
-- Pull a quarterly series from queue-entry year (INR prefix: 23INR… = 2023) to today.
-  Tighten to monthly around suspected construction start.
+- **Present-first, early-exit (efficiency rule):**
+  1. Pull TODAY's chip first.
+  2. Raw farmland, no activity → pull ONE chip ~6 months back to confirm, then STOP.
+     Verdict `no_activity`; do not scan history looking for nothing.
+  3. Activity visible (clearing/racking/complete) → walk BACK quarterly until the land is
+     undisturbed — brackets `first_activity_seen`.
+  4. Construction ACTIVE now (not yet complete) → also pull **weekly/bi-weekly chips for the
+     last ~2 months** — progress velocity feeds the COD estimate.
 - READ the images yourself (you are multimodal): mottled farmland → graded rectangles =
   clearing; regular dark rows = racking/modules; substation square near POI = late stage.
 - `uv run gis-research/scripts/research_tools/gmaps.py staticmap --lat <lat> --lon <lon>
