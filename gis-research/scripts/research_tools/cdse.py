@@ -210,6 +210,50 @@ def timelapse(lat: float, lon: float, start: str, end: str, out_dir: Path,
     print(f"wrote {len(frames)} frames ({labels[0]} .. {labels[-1]}) + {gif}")
 
 
+def chips_parallel(lat: float, lon: float, dates: list[str], out_dir: Path,
+                   buffer_km: float, window_days: int, max_cloud: int, workers: int) -> None:
+    """Fetch several crisp chips concurrently (one openEO sync job each)."""
+    import time
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    out_dir.mkdir(parents=True, exist_ok=True)
+    def one(d: str) -> str:
+        for attempt in (1, 2, 3):
+            try:
+                chip(lat, lon, d, out_dir / f"s2_{d}.png", buffer_km, window_days, max_cloud)
+                return d
+            except (SystemExit, Exception) as e:   # transient disconnects happen under concurrency
+                if attempt == 3:
+                    raise RuntimeError(f"{d}: {e}") from e
+                time.sleep(5 * attempt)
+        return d
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        futs = {ex.submit(one, d): d for d in dates}
+        for f in as_completed(futs):
+            try:
+                f.result()
+            except Exception as e:                  # keep the batch alive
+                print(f"FAILED {futs[f]}: {e}")
+
+
+def sheet(img_dir: Path, out: Path, cols: int, thumb: int) -> None:
+    """Contact sheet: grid of labeled thumbnails from s2_*.png — ONE image for agent evals."""
+    from PIL import Image, ImageDraw
+    frames = sorted(p for p in img_dir.glob("s2_*.png")
+                    if "_wide" not in p.stem and "_xwide" not in p.stem)
+    if not frames:
+        sys.exit(f"no s2_*.png frames in {img_dir}")
+    rows = -(-len(frames) // cols)
+    grid = Image.new("RGB", (cols * thumb, rows * (thumb + 14)), (12, 12, 12))
+    d = ImageDraw.Draw(grid)
+    for i, p in enumerate(frames):
+        im = Image.open(p).convert("RGB").resize((thumb, thumb))
+        x, y = (i % cols) * thumb, (i // cols) * (thumb + 14)
+        grid.paste(im, (x, y))
+        d.text((x + 3, y + thumb + 1), p.stem.replace("s2_", ""), fill=(255, 255, 0))
+    grid.save(out)
+    print(f"wrote {out} — {len(frames)} frames, {cols}x{rows} grid, {thumb}px thumbs")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -218,7 +262,7 @@ def main() -> None:
     c.add_argument("--lon", type=float, required=True)
     c.add_argument("--date", required=True, help="YYYY-MM-DD (center of search window)")
     c.add_argument("--out", type=Path, required=True)
-    c.add_argument("--buffer-km", type=float, default=1.6)
+    c.add_argument("--buffer-km", type=float, default=6.0)
     c.add_argument("--window-days", type=int, default=15)
     c.add_argument("--max-cloud", type=int, default=40)
     t = sub.add_parser("timelapse", help="one-job composite series -> frame PNGs + GIF")
@@ -228,13 +272,33 @@ def main() -> None:
     t.add_argument("--end", required=True, help="YYYY-MM-DD")
     t.add_argument("--out-dir", type=Path, required=True)
     t.add_argument("--cadence", choices=["month", "dekad"], default="month")
-    t.add_argument("--buffer-km", type=float, default=1.6)
+    t.add_argument("--buffer-km", type=float, default=6.0,
+                   help="6 km default = xwide view, ~1200px frames (10 m/px)")
     t.add_argument("--max-cloud", type=int, default=40)
+    b = sub.add_parser("chips", help="parallel crisp chips for several dates")
+    b.add_argument("--lat", type=float, required=True)
+    b.add_argument("--lon", type=float, required=True)
+    b.add_argument("--dates", required=True, help="comma-separated YYYY-MM-DD list")
+    b.add_argument("--out-dir", type=Path, required=True)
+    b.add_argument("--buffer-km", type=float, default=6.0)
+    b.add_argument("--window-days", type=int, default=15)
+    b.add_argument("--max-cloud", type=int, default=40)
+    b.add_argument("--workers", type=int, default=4)
+    s = sub.add_parser("sheet", help="contact-sheet grid of s2_*.png for cheap agent evals")
+    s.add_argument("--dir", type=Path, required=True)
+    s.add_argument("--out", type=Path, required=True)
+    s.add_argument("--cols", type=int, default=5)
+    s.add_argument("--thumb", type=int, default=220)
     a = ap.parse_args()
     if a.cmd == "chip":
         chip(a.lat, a.lon, a.date, a.out, a.buffer_km, a.window_days, a.max_cloud)
-    else:
+    elif a.cmd == "timelapse":
         timelapse(a.lat, a.lon, a.start, a.end, a.out_dir, a.cadence, a.buffer_km, a.max_cloud)
+    elif a.cmd == "chips":
+        chips_parallel(a.lat, a.lon, a.dates.split(","), a.out_dir,
+                       a.buffer_km, a.window_days, a.max_cloud, a.workers)
+    else:
+        sheet(a.dir, a.out, a.cols, a.thumb)
 
 
 if __name__ == "__main__":

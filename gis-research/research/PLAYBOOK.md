@@ -84,6 +84,13 @@ Converge on lat/lon from independent angles; state your method + confidence.
   4. Construction ACTIVE now (not yet complete) → also `timelapse --cadence dekad` over the
      last ~2-3 months (10-day frames) — progress velocity feeds the COD estimate.
   Cloud filter is per-scene, so some frames stay partly cloudy — judge from the clear ones.
+- **Context economy:** don't read every frame individually. Build a contact sheet
+  (`cdse.py sheet --dir imagery/ --out imagery/contact_sheet.png`) = one image containing all
+  dated thumbnails; read THAT to spot the transition, then read only the 2-4 decisive frames
+  full-size. All imagery defaults to the 6 km "xwide" view (~1200px, 10 m/px).
+- Fetch several specific dates concurrently with `cdse.py chips --dates d1,d2,… --out-dir
+  imagery/key/` — put the 3-5 frames a human should see (pre / first-activity / latest) in
+  `imagery/key/`; brief.html embeds them. GIF is not used in the human brief.
 - READ the images yourself (you are multimodal): mottled farmland → graded rectangles =
   clearing; regular dark rows = racking/modules; substation square near POI = late stage.
 - `uv run gis-research/scripts/research_tools/gmaps.py staticmap --lat <lat> --lon <lon>
@@ -95,3 +102,16 @@ Converge on lat/lon from independent angles; state your method + confidence.
 Write `dossier.md` + `findings.json` (schema in the spec §5). Verdict real/paper, construction
 stage, independent COD (month precision) + drift risk vs the reported-COD claim. Every
 sentence traceable to stages 1-4 artifacts. Unknowns stay unknown — honesty over coverage.
+
+**Dossier style (a human reviews 50-60 of these):**
+- ≤ 1 page. Bullets, not prose. Most decision-relevant facts first.
+- EVERY claim carries an inline markdown link: local artifact (`[Ch313 app](sources/…pdf)`)
+  or URL. An unlinked claim is an unsupported claim.
+- No restating the identity packet; no methodology narration (log.md has that).
+
+**Deterministic wrap-up (run these, don't hand-write their outputs):**
+1. `uv run gis-research/scripts/research_tools/queue_history.py <INR>` — full milestone/COD-drift
+   timeline from the local parquet (all monthly reports since 2014). Read `timeline.md`; cite the
+   COD-drift history in your assessment.
+2. `uv run gis-research/scripts/research_tools/build_brief.py <INR>` — one-page brief.html.
+3. `uv run gis-research/scripts/research_tools/build_index.py` — refresh the research index.
