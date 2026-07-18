@@ -85,11 +85,33 @@ def build(proj_dir: Path) -> Path:
 <h2>Milestones achieved (latest report)</h2>
 <table><tr><th>Milestone</th><th>Date</th></tr>{mrows}</table>"""
 
+    # contractual schedule from the signed IA (if researched)
+    cs = f.get("contractual_schedule")
+    cs_html = ""
+    if cs:
+        cols = [k for k in cs["milestones"][0] if k != "name"]
+        head = "".join(f"<th>{esc(c.replace('_', ' '))}</th>" for c in cols)
+        rows = "".join("<tr><td>" + esc(m["name"]) + "</td>" +
+                       "".join(f"<td>{esc(m.get(c))}</td>" for c in cols) + "</tr>"
+                       for m in cs["milestones"])
+        docs = " · ".join(f'<a href="{esc(u)}">{esc(Path(u).name)}</a>' for u in cs.get("source_docs", []))
+        cs_html = (f"<h2>Contractual schedule (from the signed IA)</h2>"
+                   f"<table><tr><th>Milestone</th>{head}</tr>{rows}</table>"
+                   f'<div class="small">{esc(cs.get("note",""))}<br>Source: {docs}</div>')
+
     ev_items = []
     for e in con.get("evidence", [])[:4] + cod.get("reasoning_evidence", [])[:3]:
         ev_items.append(f"<li>{esc(e)}</li>")
+
+    # sources grouped: documents (pdf) first, then web captures, then extracts
+    groups = [("Documents", [p for p in src_files if p.suffix == ".pdf"]),
+              ("Web captures", [p for p in src_files if p.suffix in (".html", ".htm")]),
+              ("Extracted pages/images", [p for p in src_files if p.suffix == ".png"]),
+              ("Other", [p for p in src_files if p.suffix not in (".pdf", ".html", ".htm", ".png")])]
     src_items = "".join(
-        f'<li><a href="sources/{esc(p.name)}">{esc(p.name)}</a></li>' for p in src_files)
+        f"<h3 class='small'>{name} ({len(fs)})</h3><ul>" +
+        "".join(f'<li><a href="sources/{esc(p.name)}">{esc(p.name)}</a></li>' for p in fs) + "</ul>"
+        for name, fs in groups if fs)
 
     imgs = "".join(
         f'<figure><a href="{p.relative_to(proj_dir)}"><img src="{p.relative_to(proj_dir)}" loading="lazy"></a>'
@@ -114,9 +136,10 @@ def build(proj_dir: Path) -> Path:
 <div class="card"><div class="k">Land</div><div class="v">{esc(f.get('land_tenure',{}).get('status'))}</div></div>
 </div>
 <h2>Site imagery (Sentinel-2, key dates)</h2><div class="imgs">{imgs}</div>
+{cs_html}
 {cod_hist}
 <h2>Key evidence</h2><ul>{''.join(ev_items)}</ul>
-<h2>Saved sources ({len(src_files)})</h2><ul>{src_items}</ul>
+<h2>Saved sources ({len(src_files)})</h2>{src_items}
 </body></html>"""
     out = proj_dir / "brief.html"
     out.write_text(page)

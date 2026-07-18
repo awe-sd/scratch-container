@@ -103,11 +103,10 @@ Write `dossier.md` + `findings.json` (schema in the spec §5). Verdict real/pape
 stage, independent COD (month precision) + drift risk vs the reported-COD claim. Every
 sentence traceable to stages 1-4 artifacts. Unknowns stay unknown — honesty over coverage.
 
-**Dossier style (a human reviews 50-60 of these):**
-- ≤ 1 page. Bullets, not prose. Most decision-relevant facts first.
-- EVERY claim carries an inline markdown link: local artifact (`[Ch313 app](sources/…pdf)`)
-  or URL. An unlinked claim is an unsupported claim.
-- No restating the identity packet; no methodology narration (log.md has that).
+**Dossier: follow `research/DOSSIER_TEMPLATE.md` EXACTLY** (section order, tables, style).
+Reference example: `research/23INR0086_hanson-solar/dossier.md`. Core rules: ≤ ~60 lines,
+bullets not prose, EVERY claim inline-linked to a `sources/` artifact or URL, no methodology
+narration (log.md has that), one honest "could not determine" section at the end.
 
 **Deterministic wrap-up (run these, don't hand-write their outputs):**
 1. `uv run gis-research/scripts/research_tools/queue_history.py <INR>` — full milestone/COD-drift

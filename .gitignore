@@ -14,3 +14,8 @@ __pycache__/
 *.env
 !example.env
 !gis-research/example.env
+
+# bulk satellite frames are regenerable (cdse.py); keep key frames + contact sheet only
+gis-research/research/*/imagery/*
+!gis-research/research/*/imagery/key/
+!gis-research/research/*/imagery/contact_sheet.png

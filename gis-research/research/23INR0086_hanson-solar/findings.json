@@ -1,0 +1,83 @@
+{
+ "inr": "23INR0086",
+ "project": "Hanson Solar",
+ "researched_at": "2026-07-17",
+ "site": {
+  "lat": 31.695,
+  "lon": -99.5315,
+  "method": "imagery",
+  "confidence": "high"
+ },
+ "parcels": [],
+ "llc_chain": [
+  {
+   "entity": "Cypress Creek Renewables (CCR)",
+   "relation": "developer_owner_operator_of_SPV",
+   "evidence": "PR Newswire 2025-11-19 release 'Cypress Creek Closes Financing for Hanson Solar' names CCR as developer/owner/operator; CCR's own Improvements Map inside the Ch313 filing (sources/2026-07-17_comptroller_ch313_1698-hanson-app-main.pdf, Tab 11) is titled Cypress Creek Renewables / Hanson Solar, LLC; CCR CEO Sarah Slusser quoted on the project"
+  },
+  {
+   "entity": "TIC - The Industrial Company (Kiewit Corporation subsidiary)",
+   "relation": "EPC_contractor",
+   "evidence": "Google Places delivery pin literally named 'TIC Hanson solar' at 6725 FM503, Valera TX; confirmed as EPC by PR Newswire and colemantoday.com coverage"
+  },
+  {
+   "entity": "Meta Platforms",
+   "relation": "offtaker_PPA_counterparty_not_owner",
+   "evidence": "pv-magazine-usa.com 2025-03-03 and PR Newswire 2025-11-19 both describe a Meta PPA/environmental-attribute agreement for this project"
+  }
+ ],
+ "land_tenure": {
+  "status": "leased",
+  "evidence": "Ch313 application Improvements Map (Tab 11) explicitly labels a 'Leased land border' around the project boundary; Tab 9 'Description of Land' answered 'Not Applicable'; Coleman CAD owner-name search for Hanson Solar / Hanson / Cypress Creek / Cypress Creek Renewables returned 0 parcel records in all 4 cases, consistent with parcels remaining on the tax roll under original (unidentified) landowner names"
+ },
+ "construction": {
+  "verdict": "racking",
+  "first_activity_seen": "2025-04-01",
+  "evidence": [
+   "Sentinel-2 wide-frame chip (imagery/s2_2026-07-10_xwide.png) reveals a ~3,000-acre graded/cleared polygon matching the exact shape of Cypress Creek's own Ch313 Improvements Map boundary",
+   "Monthly timelapse (imagery/s2_2024-07-01.png through s2_2026-07-01.png, plus dekad frames to 2026-07-11): site undisturbed through 2025-03-01; a bright graded substation pad appears exactly at the mapped substation location by 2025-04-01 (tight bracket, absent 03-01/present 04-01)",
+   "Grading/clearing expands to ~2/3 of the polygon by 2025-06-01 and to essentially the full footprint by 2025-09-01",
+   "Darker, more uniform rectangular patches consistent with possible racking/panel installation appear from 2026-03-01 onward, but 10m Sentinel-2 resolution cannot confirm this over bare graded soil - no unambiguous full-field panel signature observed through 2026-07-11",
+   "Graded footprint extent is stable across the most recent 6 weeks of frames (2026-06-11 to 2026-07-11), consistent with the site having moved from bulk earthwork into an equipment/electrical-installation phase"
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2027-04-17",
+  "independent": "2027-Q2",
+  "drift_risk": "medium",
+  "reasoning_evidence": [
+   "The reported COD (2027-04-17) is not merely a developer claim: it is the exact Scheduled Commercial Operation Date in Amendment No. 1 to the signed Oncor-Hanson Solar interconnection agreement (PUCT Control No. 35077, filed 2024-08-15) - this confirms the date is contractually grounded, but because the queue's projectCod and the IA schedule likely share a common source, this is NOT independent evidence the date is achievable, only that it is real and not fabricated",
+   "The schedule already slipped once, by about 18 months, between the original IA (2023-09-20, Scheduled COD 2025-10-21) and Amendment No. 1 (2024, Scheduled COD 2027-04-17) - this occurred before construction began, showing the project is not immune to schedule risk",
+   "Independent imagery evidence shows construction progressing broadly in step with the amended schedule: site-wide grading essentially complete by ~2025-09, stable extensive graded footprint through mid-2026, with the contractual In-Service Date (2026-12-03) about 5 months out from the latest clear imagery (2026-07-11)",
+   "As of the latest imagery, panel/racking installation could not be confirmed (resolution limit), leaving the final construction stage unverified with only ~5 months of schedule buffer to the In-Service Date",
+   "Countervailing positive signals: financing closed Nov 2025, EPC (TIC/Kiewit) engaged and construction mobilized, Meta offtake signed, letters of credit posted and increasing per schedule, 3 years of Ch313 Form 772 annual compliance reports filed - all consistent with an active, funded, monitored real project rather than one at elevated risk of cancellation or major delay"
+  ]
+ },
+ "real_project_verdict": "real_active",
+ "negative_searches": 12,
+ "banned_source_violations": 0,
+ "contractual_schedule": {
+  "source_docs": [
+   "sources/2026-07-17_puct_35077-1682_oncor-hanson-solar-IA.pdf",
+   "sources/2026-07-17_puct_35077-1899_oncor-hanson-solar-IA-amend1.pdf"
+  ],
+  "note": "Oncor-Hanson Solar interconnection agreement (PUCT Control No. 35077); Amendment No. 1 filed 2024-08-15. Letters of credit posted with Oncor: $11.3M eff. Nov 2023 rising to $13.4M by Dec 2025.",
+  "milestones": [
+   {
+    "name": "In-Service Date",
+    "original_ia_2023": "2025-05-08",
+    "amendment1_2024": "2026-12-03"
+   },
+   {
+    "name": "Trial Operation",
+    "original_ia_2023": "2025-05-20",
+    "amendment1_2024": "2026-12-17"
+   },
+   {
+    "name": "Scheduled Commercial Operation",
+    "original_ia_2023": "2025-10-21",
+    "amendment1_2024": "2027-04-17"
+   }
+  ]
+ }
+}

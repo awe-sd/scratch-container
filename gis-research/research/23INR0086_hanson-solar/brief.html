@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hanson Solar — research brief</title><style>
+:root{--bg:#fff;--sur:#f6f7f9;--ink:#191c20;--ink2:#555b64;--mut:#899;--line:#e1e5ea;
+--good:#0a7d33;--warn:#b45309;--bad:#b91c1c;--acc:#2563eb}
+@media(prefers-color-scheme:dark){:root{--bg:#14171c;--sur:#1c2027;--ink:#eceff3;
+--ink2:#b3bac4;--mut:#7d8590;--line:#2a2f38;--good:#34d399;--warn:#fbbf24;--bad:#f87171;--acc:#6ea8fe}}
+*{box-sizing:border-box}body{margin:0 auto;max-width:1080px;padding:20px;background:var(--bg);
+color:var(--ink);font:14px/1.45 -apple-system,"Segoe UI",Roboto,sans-serif}
+h1{font-size:19px;margin:0}h2{font-size:13px;text-transform:uppercase;letter-spacing:.05em;
+color:var(--mut);margin:22px 0 8px}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-weight:700;font-size:12px}
+.b-good{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+.b-warn{background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--warn)}
+.b-bad{background:color-mix(in srgb,var(--bad) 15%,transparent);color:var(--bad)}
+.hdr{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.sub{color:var(--ink2);font-size:13px;margin:4px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.card{background:var(--sur);border:1px solid var(--line);border-radius:9px;padding:10px 13px}
+.card .k{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+.card .v{font-weight:650;margin-top:2px}.card .v small{font-weight:400;color:var(--ink2)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:5px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:13px}
+th{color:var(--mut);font-size:11px;text-transform:uppercase}
+.imgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.imgs figure{margin:0}.imgs img{width:100%;border-radius:8px;border:1px solid var(--line)}
+.imgs figcaption{font-size:12px;color:var(--ink2);margin-top:2px}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.small{font-size:12px;color:var(--ink2)}
+</style></head><body>
+<div class="hdr"><h1>Hanson Solar <span class="small">(23INR0086)</span></h1>
+<span class="badge b-good">real_active</span>
+<span class="badge b-warn">COD drift: medium</span></div>
+<div class="sub">researched 2026-07-17 ·
+<a href="https://www.google.com/maps/@31.695,-99.5315,5000m/data=!3m1!1e3" target="_blank">site 31.695, -99.5315</a> (imagery, high conf) ·
+<a href="dossier.md">dossier</a> · <a href="log.md">log</a> · <a href="timeline.md">timeline</a></div>
+<div class="grid">
+<div class="card"><div class="k">Construction</div><div class="v">racking
+<small>since 2025-04-01</small></div></div>
+<div class="card"><div class="k">COD reported → independent</div>
+<div class="v">2027-04-17 → 2027-Q2</div></div>
+<div class="card"><div class="k">Owner chain</div><div class="v">Cypress Creek Renewables (CCR) → TIC - The Industrial Company (Kiewit Corporation subsidiary) → Meta Platforms</div></div>
+<div class="card"><div class="k">Land</div><div class="v">leased</div></div>
+</div>
+<h2>Site imagery (Sentinel-2, key dates)</h2><div class="imgs"><figure><a href="imagery/key/s2_2025-03-01.png"><img src="imagery/key/s2_2025-03-01.png" loading="lazy"></a><figcaption>2025-03-01</figcaption></figure><figure><a href="imagery/key/s2_2025-04-15.png"><img src="imagery/key/s2_2025-04-15.png" loading="lazy"></a><figcaption>2025-04-15</figcaption></figure><figure><a href="imagery/key/s2_2025-09-01.png"><img src="imagery/key/s2_2025-09-01.png" loading="lazy"></a><figcaption>2025-09-01</figcaption></figure><figure><a href="imagery/key/s2_2026-07-10.png"><img src="imagery/key/s2_2026-07-10.png" loading="lazy"></a><figcaption>2026-07-10</figcaption></figure></div>
+<h2>Contractual schedule (from the signed IA)</h2><table><tr><th>Milestone</th><th>original ia 2023</th><th>amendment1 2024</th></tr><tr><td>In-Service Date</td><td>2025-05-08</td><td>2026-12-03</td></tr><tr><td>Trial Operation</td><td>2025-05-20</td><td>2026-12-17</td></tr><tr><td>Scheduled Commercial Operation</td><td>2025-10-21</td><td>2027-04-17</td></tr></table><div class="small">Oncor-Hanson Solar interconnection agreement (PUCT Control No. 35077); Amendment No. 1 filed 2024-08-15. Letters of credit posted with Oncor: $11.3M eff. Nov 2023 rising to $13.4M by Dec 2025.<br>Source: <a href="sources/2026-07-17_puct_35077-1682_oncor-hanson-solar-IA.pdf">2026-07-17_puct_35077-1682_oncor-hanson-solar-IA.pdf</a> · <a href="sources/2026-07-17_puct_35077-1899_oncor-hanson-solar-IA-amend1.pdf">2026-07-17_puct_35077-1899_oncor-hanson-solar-IA-amend1.pdf</a></div>
+
+<h2>Reported-COD drift (queue history, 64 monthly reports since 2021-03-01)</h2>
+<table><tr><th>Reported COD</th><th>Held from</th><th>Until</th></tr><tr><td>2024-05-31</td><td>2021-03-01</td><td>2023-03-01</td></tr><tr><td>2025-10-21</td><td>2023-04-01</td><td>2024-02-01</td></tr><tr><td>2027-01-28</td><td>2024-03-01</td><td>2024-04-01</td></tr><tr><td>2027-04-17</td><td>2024-05-01</td><td>2026-06-01</td></tr></table>
+<h2>Milestones achieved (latest report)</h2>
+<table><tr><th>Milestone</th><th>Date</th></tr><tr><td>Screening started</td><td>2020-10-23</td></tr><tr><td>Screening complete</td><td>2021-02-02</td></tr><tr><td>FIS requested</td><td>2021-03-25</td></tr><tr><td>FIS approved</td><td>2026-03-26</td></tr><tr><td>IA signed</td><td>2023-09-20</td></tr><tr><td>Meets 6.9(1)</td><td>2025-02-12</td></tr></table>
+<h2>Key evidence</h2><ul><li>Sentinel-2 wide-frame chip (imagery/s2_2026-07-10_xwide.png) reveals a ~3,000-acre graded/cleared polygon matching the exact shape of Cypress Creek&#x27;s own Ch313 Improvements Map boundary</li><li>Monthly timelapse (imagery/s2_2024-07-01.png through s2_2026-07-01.png, plus dekad frames to 2026-07-11): site undisturbed through 2025-03-01; a bright graded substation pad appears exactly at the mapped substation location by 2025-04-01 (tight bracket, absent 03-01/present 04-01)</li><li>Grading/clearing expands to ~2/3 of the polygon by 2025-06-01 and to essentially the full footprint by 2025-09-01</li><li>Darker, more uniform rectangular patches consistent with possible racking/panel installation appear from 2026-03-01 onward, but 10m Sentinel-2 resolution cannot confirm this over bare graded soil - no unambiguous full-field panel signature observed through 2026-07-11</li><li>The reported COD (2027-04-17) is not merely a developer claim: it is the exact Scheduled Commercial Operation Date in Amendment No. 1 to the signed Oncor-Hanson Solar interconnection agreement (PUCT Control No. 35077, filed 2024-08-15) - this confirms the date is contractually grounded, but because the queue&#x27;s projectCod and the IA schedule likely share a common source, this is NOT independent evidence the date is achievable, only that it is real and not fabricated</li><li>The schedule already slipped once, by about 18 months, between the original IA (2023-09-20, Scheduled COD 2025-10-21) and Amendment No. 1 (2024, Scheduled COD 2027-04-17) - this occurred before construction began, showing the project is not immune to schedule risk</li><li>Independent imagery evidence shows construction progressing broadly in step with the amended schedule: site-wide grading essentially complete by ~2025-09, stable extensive graded footprint through mid-2026, with the contractual In-Service Date (2026-12-03) about 5 months out from the latest clear imagery (2026-07-11)</li></ul>
+<h2>Saved sources (33)</h2><h3 class='small'>Documents (4)</h3><ul><li><a href="sources/2026-07-17_comptroller_ch313_1698-hanson-app-main.pdf">2026-07-17_comptroller_ch313_1698-hanson-app-main.pdf</a></li><li><a href="sources/2026-07-17_comptroller_ch313_hanson-solar-panther-creek-cisd.pdf">2026-07-17_comptroller_ch313_hanson-solar-panther-creek-cisd.pdf</a></li><li><a href="sources/2026-07-17_puct_35077-1682_oncor-hanson-solar-IA.pdf">2026-07-17_puct_35077-1682_oncor-hanson-solar-IA.pdf</a></li><li><a href="sources/2026-07-17_puct_35077-1899_oncor-hanson-solar-IA-amend1.pdf">2026-07-17_puct_35077-1899_oncor-hanson-solar-IA-amend1.pdf</a></li></ul><h3 class='small'>Web captures (8)</h3><ul><li><a href="sources/2026-07-17_colemancountytexas_business-directory-hanson-solar.html">2026-07-17_colemancountytexas_business-directory-hanson-solar.html</a></li><li><a href="sources/2026-07-17_colemantoday_meta-linked-solar-valera.html">2026-07-17_colemantoday_meta-linked-solar-valera.html</a></li><li><a href="sources/2026-07-17_constructionreviewonline_hanson-solar-construction-start.html">2026-07-17_constructionreviewonline_hanson-solar-construction-start.html</a></li><li><a href="sources/2026-07-17_cypresscreekenergy_hanson-solar-financing-official.html">2026-07-17_cypresscreekenergy_hanson-solar-financing-official.html</a></li><li><a href="sources/2026-07-17_ktxs_hanson-solar-tax-revenue.html">2026-07-17_ktxs_hanson-solar-tax-revenue.html</a></li><li><a href="sources/2026-07-17_prnewswire_cypress-creek-hanson-solar-financing.html">2026-07-17_prnewswire_cypress-creek-hanson-solar-financing.html</a></li><li><a href="sources/2026-07-17_pvmagazine_meta-signs-more-texas-solar.html">2026-07-17_pvmagazine_meta-signs-more-texas-solar.html</a></li><li><a href="sources/2026-07-17_ticus_markets-power.html">2026-07-17_ticus_markets-power.html</a></li></ul><h3 class='small'>Extracted pages/images (21)</h3><ul><li><a href="sources/hanson_app_p2.png">hanson_app_p2.png</a></li><li><a href="sources/hanson_app_p3.png">hanson_app_p3.png</a></li><li><a href="sources/hanson_app_p4.png">hanson_app_p4.png</a></li><li><a href="sources/hanson_app_p5.png">hanson_app_p5.png</a></li><li><a href="sources/hanson_app_p6.png">hanson_app_p6.png</a></li><li><a href="sources/hanson_map_p22.png">hanson_map_p22.png</a></li><li><a href="sources/hanson_map_p23.png">hanson_map_p23.png</a></li><li><a href="sources/hanson_map_p24.png">hanson_map_p24.png</a></li><li><a href="sources/hanson_map_p25.png">hanson_map_p25.png</a></li><li><a href="sources/hanson_map_p26.png">hanson_map_p26.png</a></li><li><a href="sources/hanson_map_p27.png">hanson_map_p27.png</a></li><li><a href="sources/hanson_map_p28.png">hanson_map_p28.png</a></li><li><a href="sources/hanson_map_p29.png">hanson_map_p29.png</a></li><li><a href="sources/hanson_map_p30.png">hanson_map_p30.png</a></li><li><a href="sources/hanson_map_p31.png">hanson_map_p31.png</a></li><li><a href="sources/hanson_map_p32.png">hanson_map_p32.png</a></li><li><a href="sources/hanson_map_p33.png">hanson_map_p33.png</a></li><li><a href="sources/hanson_map_p34.png">hanson_map_p34.png</a></li><li><a href="sources/hanson_map_p35.png">hanson_map_p35.png</a></li><li><a href="sources/hanson_map_p36.png">hanson_map_p36.png</a></li><li><a href="sources/hanson_map_p37.png">hanson_map_p37.png</a></li></ul>
+</body></html>

@@ -1,0 +1,20 @@
+[
+ {
+  "inr": "23INR0086",
+  "project": "Hanson Solar",
+  "dir": "23INR0086_hanson-solar",
+  "researched_at": "2026-07-17",
+  "verdict": "real_active",
+  "construction": "racking",
+  "first_activity_seen": "2025-04-01",
+  "site_lat": 31.695,
+  "site_lon": -99.5315,
+  "site_confidence": "high",
+  "cod_reported": "2027-04-17",
+  "cod_independent": "2027-Q2",
+  "drift_risk": "medium",
+  "queue_cod_changes": 3,
+  "owner_chain": "Cypress Creek Renewables (CCR) > TIC - The Industrial Company (Kiewit Corporation subsidiary) > Meta Platforms",
+  "land_tenure": "leased"
+ }
+]
