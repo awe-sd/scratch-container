@@ -1,0 +1,351 @@
+"""Headless research-agent runner — one INR per invocation via `claude -p` on AWS Bedrock.
+
+Two modes:
+  triage (default) — Sonnet, hard 45-turn cap, follows research/TRIAGE_CHECKLIST.md.
+                     Cheap first pass; ends with deep_scan_recommended y/n.
+  deep             — Opus, follows research/PLAYBOOK.md end-to-end (run only after a
+                     human approves the triage recommendation).
+
+The RUNNER builds the identity packet from the local parquet; the AGENT is blocked from
+reading it (--disallowedTools). Stream events → <project_dir>/run_stream.jsonl; summary +
+budget-violation report → <project_dir>/run_meta.json.
+
+Usage:
+  uv run gis-research/scripts/research_tools/run_agent.py 24INR0201                # triage
+  uv run gis-research/scripts/research_tools/run_agent.py 24INR0201 --mode deep
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+import pandas as pd
+
+BASE = Path(__file__).resolve().parents[2]  # gis-research/
+ROOT = BASE.parent                          # repo/worktree root (agent cwd)
+
+TRIAGE_MODEL = "us.anthropic.claude-sonnet-4-6"
+DEEP_MODEL = "us.anthropic.claude-sonnet-4-6"  # Opus available via --model us.anthropic.claude-opus-4-7
+SMALL_MODEL = "us.anthropic.claude-sonnet-4-6"
+TRIAGE_MAX_TURNS = 60  # checklist goal is ~35 agent turns; API turn count runs ~1.5x that
+DEEP_MAX_TURNS = 120
+MAX_FULLSIZE_IMAGE_READS = {"triage": 4, "deep": 6}  # contact sheet counts as 1 in triage
+# Fresh-token budget (input + cache_creation + output; cache READS excluded — they are the
+# cheap re-reads). Graceful enforcement via budget_hook.py: warn the agent at 80%, order
+# wrap-up at 100%, hard-kill at budget + GRACE_TOKENS. None = uncapped.
+TOKEN_BUDGET = {"triage": 100_000, "deep": 400_000}
+GRACE_TOKENS = 10_000
+
+ALLOWED_TOOLS = "Bash,Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,TodoWrite"
+DISALLOWED_TOOLS = (
+    "Read(./gis-research/data/**),Read(./gis-research/output/**),"
+    "Grep(./gis-research/data/**),Grep(./gis-research/output/**)"
+)
+
+FUEL_LABEL = {("SOL", "PV"): "Solar PV", ("WIN", "WT"): "Wind", ("OTH", "BA"): "Battery/Storage",
+              ("GAS", "CC"): "Gas combined-cycle", ("GAS", "GT"): "Gas turbine",
+              ("GAS", "IC"): "Gas reciprocating", ("GAS", "ST"): "Gas steam",
+              ("NUC", "ST"): "Nuclear steam"}
+
+FUEL_NOTES = {
+    "battery": """Fuel-specific guidance (BATTERY):
+- Site is COMPACT: 10-80 acres even at 1 GW — pale gravel pad + parallel container rows
+  beside a substation. Search 1-km-buffer chips around the POI substation; wide grids
+  scan right past it.
+- Build is fast (~12-18 months): bare ground today can still make a near-term COD.
+- County paper trail is thin (little land) — weight the IA, substation work, and
+  developer PRs over CAD/abatements.""",
+    "thermal": """Fuel-specific guidance (THERMAL):
+- MANDATORY permits: a TCEQ air permit (NSR) must exist — search the TCEQ air-permit
+  database; no air permit = strong paper-project evidence. Also check water supply.
+- "(TEF ...)" in the project name = Texas Energy Fund loan applicant → check the PUCT
+  TEF docket for due-diligence status.
+- Turbine orders (GE/Siemens/Mitsubishi) in PRs = strong reality signal (multi-year lead).
+- Imagery: one industrial site — laydown yard, cranes, turbine hall, cooling structures;
+  multi-year build, usually near pipelines / existing industry.""",
+    "wind": """Fuel-specific guidance (WIND):
+- FAA OE/AAA obstruction filings carry exact turbine coordinates — decisive, search early.
+- Imagery: no single polygon — strings of small turbine pads + new access roads across
+  tens of km. Grid wide; look for pad strings and road networks.""",
+}
+
+
+def fuel_notes(fuel: str, tech: str) -> str:
+    f, t = str(fuel).upper(), str(tech).upper()
+    if t == "BA" or "BATTERY" in f:
+        return FUEL_NOTES["battery"]
+    if f in ("GAS", "NUC", "COA", "BIO") or t in ("CC", "GT", "IC", "ST"):
+        return FUEL_NOTES["thermal"]
+    if t == "WT" or f.startswith("WIN"):
+        return FUEL_NOTES["wind"]
+    return ""  # solar is the PLAYBOOK/checklist default
+
+PACKET = """Identity packet (this is ALL the queue data you get; the reported COD is a CLAIM \
+to verify, never evidence):
+- Project: {project}
+- INR: {inr}
+- Likely SPV/LLC name: {project}, LLC (verify)
+- County: {county}, Texas
+- Capacity: {mw} MW
+- Fuel/technology: {fueltech}
+- POI description: "{poi}"
+- CDR zone: {zone}
+- Reported COD (claim): {cod}
+
+Your assigned project directory (already created): gis-research/research/{dirname}/
+Write ONLY inside it. Do NOT read gis-research/data/ or gis-research/output/.
+Satellite/maps tools load creds from ~/.config/gis-research.env themselves; run them with
+`uv run` from the repo root.
+{fuel_notes}"""
+
+TRIAGE_PROMPT = """You are running a TRIAGE pass on one ERCOT interconnection-queue project. \
+This is a budgeted first look, NOT deep research. Your contract is the checklist below — \
+follow it step by step, in order, within each step's budget. Overrunning budgets or drifting \
+off-list is a failed run even if you find good things. The runner enforces a hard token \
+budget: you get a warning at 80%, a wrap-up order at 100%, and ~10k grace tokens after \
+that before the session is killed — if you overspend early steps, T7 (your output) gets \
+squeezed or lost.
+
+{packet}
+
+THE CHECKLIST (your complete and only instructions):
+
+{checklist}
+
+Begin with T1 now. When T7 is written, reply with the 10 lines of triage.md and stop."""
+
+DEEP_PROMPT = """You are a project research agent. Research ONE ERCOT interconnection-queue \
+project and decide: is it real or paper, and what is a defensible independent COD estimate.
+
+{packet}
+
+Follow gis-research/research/PLAYBOOK.md EXACTLY — all 5 stages in order, all hard rules \
+(banned sources, artifacts-or-didn't-happen, write-as-you-go, log negative evidence, no county \
+centroids, search-tight-present-wide, ≤6 full-size frame reads). The dossier must follow \
+gis-research/research/DOSSIER_TEMPLATE.md exactly; reference example \
+gis-research/research/23INR0086_hanson-solar/dossier.md.
+
+A triage pass may already exist in your project dir (triage_findings.json / triage.md) — \
+read it first and chase its deep_scan_focus threads before anything else.
+
+Findings.json schema: docs/superpowers/specs/2026-07-17-project-research-agent-design.md §5, \
+plus: `project_area` {{acres, source, artifact}} (from abatement/IA/CAD docs — reviewer \
+sanity-checks the imagery footprint with it); `site.map_artifacts` [paths] — the extracted \
+parcel/boundary-map page images (PLAYBOOK rule 4b) the site fix rests on; and \
+`contractual_schedule` if you obtain the signed IA (see the Hanson example) with a \
+`documents` list — one entry per IA document {{doc, signed, financial_security, artifact}}; \
+security amounts often rise with amendments, record them per document.
+
+{budget_line}
+
+When done, run the three deterministic wrap-up commands from PLAYBOOK.md stage 5, then reply \
+with a 10-line summary: verdict, site lat/lon + method, construction stage, independent COD, \
+drift risk, and your 3 most decisive artifacts."""
+
+
+def slugify(name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+
+def identity_packet(inr: str) -> dict:
+    df = pd.read_parquet(BASE / "data" / "ercot_generation_interconnect.parquet")
+    latest = df[df.fileDate == df.fileDate.max()]
+    row = latest[latest.INR == inr]
+    if row.empty:
+        raise SystemExit(f"{inr} not in latest snapshot ({df.fileDate.max().date()})")
+    r = row.iloc[0]
+    fueltech = FUEL_LABEL.get((r.fuel, r.technology), f"{r.fuel}/{r.technology}")
+    return dict(project=r.projectName, inr=inr, county=r.county, mw=r.capacityMw,
+                fueltech=fueltech, poi=r.poiLocation, zone=r.cdrReportingZone,
+                cod=str(r.projectCod)[:10], dirname=f"{inr}_{slugify(r.projectName)}",
+                fuel_notes=fuel_notes(r.fuel, r.technology))
+
+
+def validate(stream_path: Path, mode: str, proj_dir: Path) -> dict:
+    """Post-run budget audit from the stream log. Violations are report-only."""
+    turns = 0
+    image_reads = 0
+    tool_counts: dict[str, int] = {}
+    for line in stream_path.read_text().splitlines():
+        try:
+            ev = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if ev.get("type") != "assistant":
+            continue
+        turns += 1
+        for b in ev.get("message", {}).get("content", []):
+            if b.get("type") == "tool_use":
+                tool_counts[b["name"]] = tool_counts.get(b["name"], 0) + 1
+                if b["name"] == "Read" and str(b.get("input", {}).get("file_path", "")).endswith(".png"):
+                    image_reads += 1
+
+    violations = []
+    if image_reads > MAX_FULLSIZE_IMAGE_READS[mode]:
+        violations.append(f"image_reads {image_reads} > {MAX_FULLSIZE_IMAGE_READS[mode]}")
+    if mode == "triage":
+        tf = proj_dir / "triage_findings.json"
+        if not tf.exists():
+            violations.append("triage_findings.json missing")
+        else:
+            try:
+                d = json.loads(tf.read_text())
+                missing = [k for k in ("signals", "deep_scan_recommended", "cod_first_look") if k not in d]
+                if missing:
+                    violations.append(f"triage_findings.json missing keys: {missing}")
+            except json.JSONDecodeError:
+                violations.append("triage_findings.json invalid JSON")
+    else:
+        for f in ("findings.json", "dossier.md", "log.md"):
+            if not (proj_dir / f).exists():
+                violations.append(f"{f} missing")
+    return {"assistant_turns": turns, "image_reads": image_reads,
+            "tool_counts": tool_counts, "violations": violations}
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("inr")
+    ap.add_argument("--mode", choices=("triage", "deep"), default="triage")
+    ap.add_argument("--model", default=None, help="override the mode's default model")
+    ap.add_argument("--profile", default="read_only")
+    ap.add_argument("--region", default="us-east-1")
+    ap.add_argument("--max-turns", type=int, default=None)
+    ap.add_argument("--token-budget", type=int, default=None,
+                    help="fresh-token kill switch (default: mode's TOKEN_BUDGET)")
+    a = ap.parse_args()
+
+    model = a.model or (TRIAGE_MODEL if a.mode == "triage" else DEEP_MODEL)
+    max_turns = a.max_turns or (TRIAGE_MAX_TURNS if a.mode == "triage" else DEEP_MAX_TURNS)
+    budget = a.token_budget if a.token_budget is not None else TOKEN_BUDGET[a.mode]
+
+    pkt = identity_packet(a.inr)
+    proj_dir = BASE / "research" / pkt["dirname"]
+    for sub in ("sources", "imagery"):
+        (proj_dir / sub).mkdir(parents=True, exist_ok=True)
+
+    packet = PACKET.format(**pkt)
+    if a.mode == "triage":
+        checklist = (BASE / "research" / "TRIAGE_CHECKLIST.md").read_text()
+        prompt = TRIAGE_PROMPT.format(packet=packet, checklist=checklist)
+    else:
+        wrap_at = int(max_turns * 0.8)
+        turn_line = (f"- TURNS: ~{max_turns} turn hard cap; at ~{wrap_at} turns, STOP "
+                     "researching and synthesize what you have.")
+        if budget:
+            budget_line = (
+                "Two hard limits the runner enforces — hit either and you are cut off "
+                f"mid-thought:\n{turn_line}\n"
+                f"- TOKENS: ~{budget:,} fresh-token budget. You get a WARNING at 80% and a "
+                "WRAP-UP ORDER at 100%, then ~10k grace tokens before the session is killed.\n"
+                "When you see the 80% warning, finish the current thread fast and make sure "
+                "findings.json + dossier.md + log.md are written — unwritten findings are lost, "
+                "and a partial dossier beats a truncated one.")
+        else:
+            budget_line = (f"Budget: {turn_line[2:]} A partial dossier beats a truncated one.")
+        prompt = DEEP_PROMPT.format(packet=packet, budget_line=budget_line)
+
+    stream_path = proj_dir / f"run_stream_{a.mode}.jsonl"
+
+    env = os.environ.copy()
+    env.update({
+        "CLAUDE_CODE_USE_BEDROCK": "1",
+        "AWS_PROFILE": a.profile,
+        "AWS_REGION": a.region,
+        "ANTHROPIC_MODEL": model,
+        "ANTHROPIC_SMALL_FAST_MODEL": SMALL_MODEL,
+    })
+
+    cmd = ["claude", "-p", prompt,
+           "--model", model,
+           "--allowedTools", ALLOWED_TOOLS,
+           "--disallowedTools", DISALLOWED_TOOLS,
+           "--output-format", "stream-json", "--verbose",
+           "--max-turns", str(max_turns)]
+
+    # budget plumbing: runner keeps .budget_state.json current; a PostToolUse hook
+    # (budget_hook.py) reads it and feeds the 80% warning / 100% wrap-up order into the
+    # agent's conversation. Markers make each message fire exactly once per run.
+    state_f = proj_dir / ".budget_state.json"
+    for stale in (".budget_warn_sent", ".budget_exhaust_sent"):
+        (proj_dir / stale).unlink(missing_ok=True)
+    state_f.write_text(json.dumps({"spent": 0, "budget": budget}))
+    hook_py = Path(__file__).with_name("budget_hook.py")
+    settings_f = proj_dir / ".budget_settings.json"
+    settings_f.write_text(json.dumps({"hooks": {"PostToolUse": [{"matcher": "*", "hooks": [
+        {"type": "command", "command": f"python3 {hook_py} {proj_dir}"}]}]}}))
+    cmd += ["--settings", str(settings_f)]
+
+    print(f"mode:        {a.mode}")
+    print(f"project dir: {proj_dir}")
+    print(f"stream log:  {stream_path}")
+    grace_note = f" (+{GRACE_TOKENS} grace)" if budget else ""
+    print(f"model:       {model}  max_turns: {max_turns}  token_budget: {budget}{grace_note}")
+
+    # Stream-parse as the agent runs: accumulate fresh tokens (input + cache_creation +
+    # output; cache reads excluded), publish to the hook, hard-kill at budget + grace.
+    spent = 0
+    budget_killed = False
+    proc = subprocess.Popen(cmd, cwd=ROOT, env=env, stdout=subprocess.PIPE,
+                            stderr=subprocess.STDOUT, text=True)
+    with stream_path.open("w") as log:
+        for line in proc.stdout:
+            log.write(line)
+            try:
+                ev = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if ev.get("type") != "assistant":
+                continue
+            u = ev.get("message", {}).get("usage") or {}
+            spent += (u.get("input_tokens", 0) + u.get("cache_creation_input_tokens", 0)
+                      + u.get("output_tokens", 0))
+            if budget:
+                tmp = state_f.with_suffix(".tmp")
+                tmp.write_text(json.dumps({"spent": spent, "budget": budget}))
+                tmp.replace(state_f)  # atomic — the hook may be reading concurrently
+                if spent > budget + GRACE_TOKENS and not budget_killed:
+                    budget_killed = True
+                    print(f"TOKEN BUDGET + GRACE EXCEEDED ({spent:,} > "
+                          f"{budget + GRACE_TOKENS:,}) — killing session")
+                    proc.terminate()
+    rc = proc.wait()
+
+    meta = {"mode": a.mode, "model": model}
+    for line in reversed(stream_path.read_text().splitlines()):
+        try:
+            ev = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if ev.get("type") == "result":
+            meta.update({k: ev.get(k) for k in
+                         ("subtype", "is_error", "duration_ms", "num_turns",
+                          "total_cost_usd", "usage", "session_id")})
+            break
+    meta["audit"] = validate(stream_path, a.mode, proj_dir)
+    meta["fresh_tokens"] = spent
+    meta["token_budget"] = budget
+    if budget_killed:
+        meta["audit"]["violations"].append(f"token budget exceeded: {spent} > {budget} (killed)")
+
+    # max-turns with the required artifacts on disk = usable run, not a failure —
+    # otherwise `triage && deep` chains and run_batch.py misread it as "no output"
+    required = ["triage_findings.json"] if a.mode == "triage" else ["findings.json", "dossier.md"]
+    if rc != 0 and meta.get("subtype") == "error_max_turns" \
+            and all((proj_dir / f).exists() for f in required):
+        print("max-turns hit but required artifacts present — exit 0")
+        rc = 0
+    meta["exit_code"] = rc
+    (proj_dir / f"run_meta_{a.mode}.json").write_text(json.dumps(meta, indent=1))
+    print(json.dumps(meta, indent=1))
+    sys.exit(rc)
+
+
+if __name__ == "__main__":
+    main()

@@ -6,6 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a scratch/sandbox container, not a single-purpose project. There is no one major goal — the user tests different ideas here before branching mature ones out into their own dedicated repos. Expect loosely related, in-progress subfolders (e.g. `branch_tracking/`) rather than one coherent codebase. Don't assume subfolders share dependencies, conventions, or a common architecture unless they clearly do.
 
+## Before compaction: dump context to memory
+
+ALWAYS update the persistent memory files (project status, pending items, decisions made this session) BEFORE the context is compacted — when the user runs `/compact`, when context is getting long, or after any major milestone. Compaction summaries are lossy; memory is the durable record. Do not defer memory updates to "after".
+
 ## Git / credential setup
 
 - `gitaccess.sh` — for use *outside* the Docker agent image. Installs a git credential helper (`~/.local/bin/git-credential-token-vending`) that fetches a fresh token from a token-vending sidecar (`TOKEN_VENDING_URL`, default `http://localhost:8080`) on every git network operation, using `AGENT_ID` and `AGENT_SECRET_FILE`/`AGENT_SECRET`. Source it once per shell: `. ./gitaccess.sh`. Only works over HTTPS remotes (`https://github.com/...`), not `git@github.com:...` SSH URLs.
@@ -24,3 +28,4 @@ Other Appian Way repos (`LocalSkills`, `awconnect`) have been cloned under `/hom
 ## Subprojects
 
 - `branch_tracking/` — in-progress transmission-branch tracking table design (ERCOT / `isomarketid = 6`). See its own `CLAUDE.md` for details specific to that work.
+- `gis-research/` — ERCOT GIS interconnection-queue research + an interactive HTML queue report (`build_queue_report.py`: zone×milestone table + Texas county choropleth, all client-side). See its own `CLAUDE.md` for the data-model gotchas (grain, date-valued milestone columns, exclusion rules, GW). This worktree is `worktree-GIS-research`.

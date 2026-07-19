@@ -26,6 +26,9 @@ import json
 import math
 import os
 import sys
+import tempfile
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -45,18 +48,52 @@ def load_env() -> None:
                 os.environ.setdefault(k.strip(), v.strip())
 
 
+# Cross-process token cache. Every chip/sheet call used to do a fresh password-grant
+# login; with several research agents running concurrently the CDSE identity endpoint
+# rate-limits those logins (HTTP 403) and whole runs lose imagery. One process logs in,
+# everyone reuses the token until it nears expiry (CDSE tokens last ~10 min).
+TOKEN_CACHE = Path(tempfile.gettempdir()) / ".cdse_token_cache.json"
+TOKEN_SLACK_SEC = 60  # refresh this long before expiry
+
+
 def get_token() -> str:
+    try:
+        c = json.loads(TOKEN_CACHE.read_text())
+        if time.time() < c["exp"] - TOKEN_SLACK_SEC:
+            return c["token"]
+    except (OSError, ValueError, KeyError):
+        pass
     load_env()
     user, pw = os.environ.get("CDSE_USERNAME"), os.environ.get("CDSE_PASSWORD")
     if not (user and pw):
         sys.exit(f"CDSE_USERNAME/CDSE_PASSWORD not set (expected in {ENV_FILE})")
-    body = urllib.parse.urlencode({
-        "grant_type": "password", "client_id": "cdse-public",
-        "username": user, "password": pw,
-    }).encode()
-    with urllib.request.urlopen(urllib.request.Request(TOKEN_URL, data=body), timeout=30) as r:
-        tok = json.load(r)
-    return tok["access_token"]
+    # urlencode encodes @ as %40 in username, which CDSE token endpoint rejects; build manually
+    body = (
+        "grant_type=password&client_id=cdse-public"
+        f"&username={user}&password={urllib.parse.quote(pw, safe='')}"
+    ).encode()
+    last_err = None
+    for backoff in (0, 10, 30):  # the 403 here is rate-limiting — wait it out
+        if backoff:
+            time.sleep(backoff)
+        try:
+            with urllib.request.urlopen(urllib.request.Request(TOKEN_URL, data=body),
+                                        timeout=30) as r:
+                tok = json.load(r)
+            break
+        except urllib.error.HTTPError as e:
+            last_err = e
+            if e.code not in (403, 429):
+                raise
+    else:
+        raise last_err
+    token = tok["access_token"]
+    exp = time.time() + tok.get("expires_in", 600)
+    tmp = TOKEN_CACHE.with_suffix(".tmp")
+    tmp.write_text(json.dumps({"token": token, "exp": exp}))
+    os.chmod(tmp, 0o600)
+    tmp.replace(TOKEN_CACHE)  # atomic — other agents may read concurrently
+    return token
 
 
 def bbox(lat: float, lon: float, buffer_km: float) -> dict:

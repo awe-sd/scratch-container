@@ -41,7 +41,7 @@ def main() -> None:
             "drift_risk": d.get("cod_assessment", {}).get("drift_risk"),
             "queue_cod_changes": cod_changes,
             "owner_chain": " > ".join(e.get("entity", "") for e in d.get("llc_chain", [])),
-            "land_tenure": d.get("land_tenure", {}).get("status"),
+            "land_tenure": (d["land_tenure"].get("status") if isinstance(d.get("land_tenure"), dict) else d.get("land_tenure")),
         })
 
     (RESEARCH / "index.json").write_text(json.dumps(rows, indent=1))

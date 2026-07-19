@@ -26,6 +26,8 @@ Researched <date> · site <lat>, <lon> · verdict **<real_active|real_early|pape
 ## 2. Site identification
 
 - Derivation: <method + 1 line> ([artifact](…))
+- **Stated project area: <N> acres** per <abatement/IA/CAD doc> ([artifact](…)) —
+  imagery footprint consistent? <yes/no/unverified>
 - Cross-checks (each linked): <pin / POI text / parcel / map doc / OSM> — agree within <x> km
 - Not obtainable: <e.g. exact POI switch coords (CEII)>
 
@@ -51,13 +53,20 @@ Researched <date> · site <lat>, <lon> · verdict **<real_active|real_early|pape
 - POI per signed IA: <quote fragment> ([IA](sources/…), [Amend 1](sources/…))
 - Equipment (if in IA exhibits): <inverters/MW etc.>
 
+| IA document | Signed | Financial security posted |
+|---|---|---|
+| Original IA ([pdf](sources/…)) | <date> | $<amount> <LC/cash/…> |
+| Amendment 1 ([pdf](sources/…)) | <date> | $<amount> — <changed? why> |
+
+(Security sits IN this table, per document — amounts often rise with amendments; never
+bury it in a footnote.)
+
 | Milestone | Original IA <yr> | Amendment <yr> |
 |---|---|---|
 | In-Service | <date> | <date> |
 | Trial Operation | <date> | <date> |
 | Scheduled COD | <date> | <date> |
 
-- Security posted: <LCs etc.> ([source](…))
 - Queue-history COD drift (from [timeline.md](timeline.md)): <n> changes, <first → latest>
 
 ## 6. Satellite timeline
