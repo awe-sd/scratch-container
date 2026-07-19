@@ -190,7 +190,20 @@ def slug(s: str, n: int = 48) -> str:
 # ---------------------------------------------------------------------------
 BASE = Path(__file__).resolve().parents[2]  # gis-research/
 INDEX_FILE = BASE / "research" / "_reference" / "puct_ia_docket_index.json"
+INR_JOIN_FILE = BASE / "research" / "_reference" / "puct_inr_join.json"
 PAGE_SIZE = 2000
+
+
+def join_items(inr: str) -> list[dict]:
+    """Rung 0: docket items whose PDFs contain this INR (from inr_harvest's join table).
+    Exact string membership — no name matching involved."""
+    if not INR_JOIN_FILE.exists():
+        return []
+    join = json.loads(INR_JOIN_FILE.read_text())
+    out = [{"item": item, "filed": v.get("filed", ""),
+            "description": v.get("description", "")}
+           for item, v in join.items() if inr.upper() in (v.get("inrs") or [])]
+    return sorted(out, key=lambda d: d["item"])
 
 
 def build_index() -> list[dict]:
@@ -303,6 +316,12 @@ def cmd_match(inr: str, out_dir: Path | None, extra_keys: list[str],
     # longest matched key first — a specific name beats a coincidental short stem
     cands.sort(key=lambda x: -x[0])
     cands = [f for _, f in cands]
+    rung0 = join_items(inr)
+    if rung0:
+        print(f"{len(rung0)} filing(s) via INR join table (rung 0 — exact):")
+        for f in rung0:
+            print(f"  {IA_DOCKET}-{f['item']}  {f['filed']}  {f['description'][:100]}")
+        cands = rung0 + [c for c in cands if c["item"] not in {f["item"] for f in rung0}]
     print(f"{len(cands)} candidate filing(s) by exact name match:")
     for f in cands:
         print(f"  {IA_DOCKET}-{f['item']}  {f['filed']}  {f['description'][:120]}")
