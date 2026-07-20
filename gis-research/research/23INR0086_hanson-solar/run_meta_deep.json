@@ -3,14 +3,14 @@
  "model": "us.anthropic.claude-sonnet-4-6",
  "subtype": "success",
  "is_error": false,
- "duration_ms": 820209,
- "num_turns": 100,
- "total_cost_usd": 2.71777575,
+ "duration_ms": 316734,
+ "num_turns": 39,
+ "total_cost_usd": 0.90094635,
  "usage": {
-  "input_tokens": 112,
-  "cache_creation_input_tokens": 112581,
-  "cache_read_input_tokens": 5989970,
-  "output_tokens": 33218,
+  "input_tokens": 1827,
+  "cache_creation_input_tokens": 64841,
+  "cache_read_input_tokens": 1664022,
+  "output_tokens": 10207,
   "server_tool_use": {
    "web_search_requests": 0,
    "web_fetch_requests": 0
@@ -18,26 +18,26 @@
   "service_tier": "standard",
   "cache_creation": {
    "ephemeral_1h_input_tokens": 0,
-   "ephemeral_5m_input_tokens": 112581
+   "ephemeral_5m_input_tokens": 64841
   },
   "inference_geo": "",
   "iterations": [],
   "speed": "standard"
  },
- "session_id": "7cbd908c-4fb4-41ae-ab6d-5395ec1e8400",
+ "session_id": "403458a8-5996-4435-8299-f1cac793a77e",
  "audit": {
-  "assistant_turns": 141,
+  "assistant_turns": 60,
   "image_reads": 0,
   "tool_counts": {
-   "Read": 13,
-   "Glob": 6,
-   "Bash": 72,
-   "Write": 5,
-   "Edit": 3
+   "Read": 16,
+   "Glob": 5,
+   "Bash": 15,
+   "Write": 1,
+   "Edit": 1
   },
   "violations": []
  },
- "fresh_tokens": 304092,
+ "fresh_tokens": 218341,
  "token_budget": 400000,
  "exit_code": 0
 }

@@ -37,6 +37,11 @@ PROGRESS.md is the at-a-glance state (in-flight tracks, relaunch gate, backlog).
 - Key measure = `capacityMw`; project count = distinct `INR`; zone = `cdrReportingZone`
   (null → "Unassigned"); expected COD = `projectCod` (0 nulls in the active latest snapshot).
 - These objects are **SQL Server `AW.dbo` only** — not in Snowflake for the read-only role.
+- **`data/ercot_generation_interconnect.parquet` + `data/ercot_generation_interconnect_view.parquet`
+  are intentionally tracked in git** — the only two exceptions to the "parquet lives on S3,
+  not in git" rule (`.gitignore`'s `gis-research/data/*.parquet`). A fresh clone needs the
+  live queue snapshot on disk to bootstrap `factsheet.py`/`run_agent.py`/the report builder
+  without an S3 pull first; re-commit them after a monthly queue refresh.
 
 ## Report tool
 
@@ -73,7 +78,7 @@ Code (`claude -p`) on **Bedrock**. Full running-system spec:
 **Entry points**
 - `run_agent.py <INR> --mode triage|deep [--model …]` — one project. `--mode triage`
   (default): Sonnet, follows `research/TRIAGE_CHECKLIST.md` (T1–T7 budgeted steps), 60-turn
-  cap, 100k fresh-token budget → `triage_findings.json` + `triage.md` with
+  cap, 120k fresh-token budget → `triage_findings.json` + `triage.md` with
   `deep_scan_recommended`. `--mode deep`: Sonnet (Opus via `--model us.anthropic.claude-opus-4-7`),
   follows `research/PLAYBOOK.md` (5 stages), 120-turn cap, **400k** budget → `findings.json`
   + `dossier.md` + `log.md` (+ `brief.html`). Reads any triage handoff first.
@@ -113,16 +118,46 @@ Code (`claude -p`) on **Bedrock**. Full running-system spec:
   queue claims; divergence = stale queue COD (e.g. Red Egret: queue 2026-08-31, EIA said
   "2027-05, under construction ≤50%" for 7 straight months). Data:
   `data/eia_generator_tx.parquet` (TX slice of **AW.dbo.eiaGenerator** joined w/
-  eiaPlant/eiaEntity/eiaStatus/eiaTechnology; monthly 2022-04→; refresh via awconnect
-  read_only — snapshot query in git history / spv.py docstring) + `data/eia_plant_tx.parquet`
-  (AW.dbo.eia860plant TX, annual, lat/lon). The DB history table has NO county/lat-lon —
-  county for matching comes from the 860M xlsx; plant match = name (dominates) else
-  county+prime-mover+MW≤5%; multiple candidates are LISTED never guessed (--plant-id).
-  Deep wrap-up step 2 runs it; build_brief renders the tables when eia_history.json exists.
+  eiaPlant/eiaEntity/eiaStatus/eiaTechnology; monthly 2022-04→; **refresh via
+  `eia_snapshot.py`** — the snapshot SQL lives there; the slice DOES carry county/lat/lon
+  + `nameplateEnergyCapacity` MWh, fully populated) + `data/eia_plant_tx.parquet`
+  (AW.dbo.eia860plant TX, annual). Plant match = name (dominates) else
+  county(860M xlsx map)+prime-mover+MW≤5%; multiple candidates are LISTED never guessed
+  (--plant-id). Emits **DROPPED_FROM_860M** (unit/plant vanished from newest snapshot =
+  withdrawal/cancellation signal; deterministic key presence, date-vs-date only —
+  `reportDate` is object dtype, string equality silently all-False). Schema verdicts for
+  all ~11 eia* DB tables: `docs/eia_db_reference.md`. Deep wrap-up step 2 runs it;
+  build_brief renders the tables + drop warning card when eia_history.json exists.
+- **Registry resolvers** (SPV leads by fuel; same conventions as puct.py; `resolve` is
+  read-only/agent-safe; every candidate is a LEAD — verify via `puct.py match --key`):
+  `ch313.py resolve <INR>` (Comptroller Ch.313 static 740 rows + JETI API; keys on SCHOOL
+  DISTRICT not county), `faa.py resolve <INR>` (wind OE/AAA per-turbine cases → sponsor,
+  ASN block, turbine centroid; live FAA sources blocked 2026-07: Socrata private + oeaaa
+  shutdown — runs off cached pulls, self-heals on `refresh`), `tceq.py resolve <INR>`
+  (data.texas.gov Central Registry, 5 regional tables, county-routed live SoQL; AIRNSR
+  permit + owner names; same-named facility may be a co-located predecessor).
+- `inr_harvest.py` → `research/_reference/puct_inr_join.json` — THE permanent docket↔INR
+  join: every docket-35077 PDF ≥2018 downloaded once (data/reference/puct_docket_pdfs/),
+  INR strings extracted (1,743 items → 1,201 with INRs, 897 distinct, 22 image-only).
+  Resumable; re-run after monthly queue refresh.
+- `search.py "<query>"` — the ONE search entrypoint (agents must not scrape ddg/bing).
+  Backend ladder: AgentCore Gateway when `AGENTCORE_GATEWAY_URL` is set (admin approval
+  pending) → **OAuth bridge** (headless `claude -p` on the container seat, Haiku +
+  WebSearch only — temporary) → DDG HTML. 7-day cache, 3s throttle, 120/h fleet cap,
+  banned queue-tracker domains suppressed at the tool layer.
 
 **Bedrock env** (set by `run_agent.py`): `CLAUDE_CODE_USE_BEDROCK=1`, `AWS_PROFILE=read_only`,
 `AWS_REGION=us-east-1`, `ANTHROPIC_SMALL_FAST_MODEL=sonnet` (Haiku 403s on this account).
-`WebSearch` is **dead on Bedrock** (Anthropic-API only) — agents fall back to WebFetch.
+`WebSearch` is **dead on Bedrock** (server-side tool, no Bedrock backend) — agents use
+`search.py`, never raw search-engine scraping (log forensics: 7,260 wasted scrapes).
+
+**PIPELINE V2 (spec approved 2026-07-19)**: `docs/superpowers/specs/2026-07-19-pipeline-v2-design.md`
+— factsheet.py deterministic pre-stage, INVERTED gating (triage kills paper; deep = precision
+on real projects, ranked MW × COD-nearness), checkpointed deep stages, domain blocklist.
+Live state: `PROGRESS.md`. Preservation: git = code/JSONs/briefs; S3 mirror =
+**s3://gis-research** us-east-1 (append-only sync, same relative tree, dated parquet
+snapshots) — MinimalReadOnlyUser still needs s3:ListBucket + Get/PutObject on the bucket
+(policy pending with admin, probe 2026-07-19 AccessDenied).
 
 **Budget system** (headless has no stdin, so budgeting is out-of-band). Fresh tokens =
 `input + cache_creation + output` (cache **reads excluded** — they're cheap re-reads).

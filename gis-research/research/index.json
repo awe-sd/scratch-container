@@ -270,6 +270,24 @@
   "land_tenure": null
  },
  {
+  "inr": "21INR0324",
+  "project": null,
+  "dir": "21INR0324_board-creek-wind",
+  "researched_at": null,
+  "verdict": "real_active",
+  "construction": "operating",
+  "first_activity_seen": "2022-09-19",
+  "site_lat": 31.82707,
+  "site_lon": -96.66834,
+  "site_confidence": "high",
+  "cod_reported": "2026-07-01",
+  "cod_independent": "2022-Q4",
+  "drift_risk": "none",
+  "queue_cod_changes": 22,
+  "owner_chain": "",
+  "land_tenure": null
+ },
+ {
   "inr": "21INR0406",
   "project": "Buffalo Creek",
   "dir": "21INR0406_buffalo-creek",
@@ -525,7 +543,7 @@
   "inr": "23INR0086",
   "project": "Hanson Solar",
   "dir": "23INR0086_hanson-solar",
-  "researched_at": "2026-07-17",
+  "researched_at": "2026-07-20",
   "verdict": "real_active",
   "construction": "racking",
   "first_activity_seen": "2025-04-01",
@@ -536,7 +554,7 @@
   "cod_independent": "2027-Q2",
   "drift_risk": "medium",
   "queue_cod_changes": 3,
-  "owner_chain": "Cypress Creek Renewables (CCR) > TIC - The Industrial Company (Kiewit Corporation subsidiary) > Meta Platforms",
+  "owner_chain": "Hanson Solar, LLC > Cypress Creek Renewables (CCR) > TIC - The Industrial Company (Kiewit subsidiary) > Meta Platforms",
   "land_tenure": "leased"
  },
  {

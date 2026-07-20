@@ -1,5 +1,15 @@
 # gis-research — project progress
 
+## PIPELINE V3 BRANCH (2026-07-20) — implementation status
+
+Tasks 1–9/12 done + reviewed (see .superpowers/sdd/progress.md for the authoritative
+ledger + commit SHAs). Running: Task 10 pilot (3 real v2 runs), Task 11 process_v2.html.
+Gate adjudicated: deep_candidate REQUIRES reality signal (447 deep / 316 recheck / 26 kill);
+FS-posted added as signal (user). Task 12 relaunch cohort (user directive):
+SOLAR + FS-posted + iaSigned + queue COD < 2028-03-01, ranked by deep_queue_v2 priority.
+Pending external: S3 admin policy (sync_s3 ready, exit-3 clean); AgentCore gateway
+(search.py OAuth bridge interim).
+
 > Maintained by the main session at each milestone (user order 2026-07-19).
 > Fresh-context resume: read this + `CLAUDE.md` + memory `gis_research_status.md`.
 

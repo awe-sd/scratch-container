@@ -138,3 +138,14 @@ Valera, TX is an unincorporated community in Coleman County, TX — consistent w
 11. Overpass "Fisk" broad bbox query → HTTP 504 timeout (retried narrower, succeeded)
 12. WebSearch "Hanson Solar, LLC" Texas registered agent / OpenCorporates → no entity-specific record found
 Total negative searches logged: 12. Banned-source violations: 0 (interconnection.fyi and cleanview.co surfaced in generic result lists multiple times; never opened/cited/used as evidence).
+
+---
+## D5 WRAP-UP — 2026-07-20
+
+- queue_history.py 23INR0086 → timeline.md refreshed (64 snapshots, 3 COD changes confirmed)
+- eia_history.py 23INR0086 --write → eia_history.json refreshed; EIA plant 67657 'Hanson' / Cypress Creek Renewables; planned COD shifted 2026-09→2027-07 (Sep 2025); status still '(L) Regulatory approvals pending' through 2026-05 (EIA reporting lag behind physical construction)
+- build_brief.py → brief.html regenerated (12 KB, 4 images, 33 sources)
+- build_index.py → index refreshed (130 projects)
+- findings.json updated to full schema: added project_area (3,000 acres), site.map_artifacts, contractual_schedule.documents (per-doc security amounts)
+- EIA divergence noted: queue COD 2027-04-17, EIA says 2027-07 (+1 quarter) — minor, within noise, not a red flag
+- No new sources fetched; all prior deep-scan artifacts intact

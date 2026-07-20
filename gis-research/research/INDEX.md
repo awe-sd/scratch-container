@@ -1,6 +1,6 @@
 # Research index
 
-130 project(s) researched. Programmatic search: `research/index.json`.
+131 project(s) researched. Programmatic search: `research/index.json`.
 
 | INR | Project | Verdict | Constr. | COD rep→ind | Drift | Queue COD Δ | Brief |
 |---|---|---|---|---|---|---|---|
@@ -19,6 +19,7 @@
 | 21INR0221 | Samson Solar 1 | operating | operating | 2026-09-30 → 2022 | low | 23 | [brief](21INR0221_samson-solar-1/brief.html) |
 | 21INR0223 | Tulsita Solar | real_active | substantially_complete | 2026-09-15 → 2026-Q3 | low | 12 | [brief](21INR0223_tulsita-solar/brief.html) |
 | 21INR0263 | Monarch Creek Wind | None | None | 2027-09-17 → None | high | 9 | [brief](21INR0263_monarch-creek-wind/brief.html) |
+| 21INR0324 | None | real_active | operating | 2026-07-01 → 2022-Q4 | none | 22 | [brief](21INR0324_board-creek-wind/brief.html) |
 | 21INR0406 | Buffalo Creek | None | None | None → None | high | 19 | [brief](21INR0406_buffalo-creek/brief.html) |
 | 21INR0428 | Pecan Prairie North | real_early | no_activity | 2027-05-01 → 2028-Q1 | high | 7 | [brief](21INR0428_pecan-prairie-north/brief.html) |
 | 21INR0491 | Samson Solar 3 | real_early | unclear | 2026-09-30 → 2027-Q2 or later | high | 18 | [brief](21INR0491_samson-solar-3/brief.html) |
