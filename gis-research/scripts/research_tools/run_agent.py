@@ -1,8 +1,9 @@
 """Headless research-agent runner — one INR per invocation via `claude -p` on AWS Bedrock.
 
 Two modes:
-  triage (default) — Sonnet, hard 45-turn cap, follows research/TRIAGE_CHECKLIST.md.
-                     Cheap first pass; ends with deep_scan_recommended y/n.
+  triage (default) — Sonnet, hard 45-turn cap, follows research/TRIAGE_CHECKLIST.md
+                     (T1-T5, factsheet-first). Cheap first pass; ends with a verdict:
+                     paper_dismissed | deep_candidate | ambiguous.
   deep             — Opus, follows research/PLAYBOOK.md end-to-end (run only after a
                      human approves the triage recommendation).
 
@@ -39,7 +40,7 @@ MAX_FULLSIZE_IMAGE_READS = {"triage": 4, "deep": 6}  # contact sheet counts as 1
 # Fresh-token budget (input + cache_creation + output; cache READS excluded — they are the
 # cheap re-reads). Graceful enforcement via budget_hook.py: warn the agent at 80%, order
 # wrap-up at 100%, hard-kill at budget + GRACE_TOKENS. None = uncapped.
-TOKEN_BUDGET = {"triage": 100_000, "deep": 400_000}
+TOKEN_BUDGET = {"triage": 40_000, "deep": 400_000}
 GRACE_TOKENS = 10_000
 
 ALLOWED_TOOLS = "Bash,Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,TodoWrite"
@@ -105,12 +106,11 @@ Satellite/maps tools load creds from ~/.config/gis-research.env themselves; run 
 {fuel_notes}"""
 
 TRIAGE_PROMPT = """You are running a TRIAGE pass on one ERCOT interconnection-queue project. \
-This is a budgeted first look, NOT deep research. Your contract is the checklist below — \
-follow it step by step, in order, within each step's budget. Overrunning budgets or drifting \
-off-list is a failed run even if you find good things. The runner enforces a hard token \
-budget: you get a warning at 80%, a wrap-up order at 100%, and ~10k grace tokens after \
-that before the session is killed — if you overspend early steps, T7 (your output) gets \
-squeezed or lost.
+This is a budgeted first look, NOT deep research. Follow research/TRIAGE_CHECKLIST.md \
+(T1–T5). The factsheet is your starting state — contest it, don't rebuild it. Verdict enum: \
+paper_dismissed | deep_candidate | ambiguous. The runner enforces a hard token budget: you \
+get a warning at 80%, a wrap-up order at 100%, and ~10k grace tokens after that before the \
+session is killed — if you overspend early steps, T5 (your output) gets squeezed or lost.
 
 {packet}
 
@@ -118,18 +118,22 @@ THE CHECKLIST (your complete and only instructions):
 
 {checklist}
 
-Begin with T1 now. When T7 is written, reply with the 10 lines of triage.md and stop."""
+Begin with T1 now. When T5 is written, reply with the triage.md summary (verdict, the \
+factors you confirmed/contested, citations) and stop."""
 
 DEEP_PROMPT = """You are a project research agent. Research ONE ERCOT interconnection-queue \
 project and decide: is it real or paper, and what is a defensible independent COD estimate.
 
 {packet}
 
-Follow gis-research/research/PLAYBOOK.md EXACTLY — all 5 stages in order, all hard rules \
+Follow gis-research/research/PLAYBOOK.md EXACTLY — stages D0–D5 in order, all hard rules \
 (banned sources, artifacts-or-didn't-happen, write-as-you-go, log negative evidence, no county \
 centroids, search-tight-present-wide, ≤6 full-size frame reads). The dossier must follow \
 gis-research/research/DOSSIER_TEMPLATE.md exactly; reference example \
 gis-research/research/23INR0086_hanson-solar/dossier.md.
+
+Stage D0 writes the findings.json skeleton FIRST; every stage ends by updating findings.json \
+— a checkpoint hook will interrupt you if you drift past 25 tool calls without persisting.
 
 A triage pass may already exist in your project dir (triage_findings.json / triage.md) — \
 read it first and chase its deep_scan_focus threads before anything else.
@@ -144,7 +148,7 @@ security amounts often rise with amendments, record them per document.
 
 {budget_line}
 
-When done, run the three deterministic wrap-up commands from PLAYBOOK.md stage 5, then reply \
+When done, run the deterministic wrap-up commands from PLAYBOOK.md stage D5, then reply \
 with a 10-line summary: verdict, site lat/lon + method, construction stage, independent COD, \
 drift risk, and your 3 most decisive artifacts."""
 
@@ -219,6 +223,8 @@ def main() -> None:
     ap.add_argument("--max-turns", type=int, default=None)
     ap.add_argument("--token-budget", type=int, default=None,
                     help="fresh-token kill switch (default: mode's TOKEN_BUDGET)")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="print assembled prompt, don't spawn")
     a = ap.parse_args()
 
     model = a.model or (TRIAGE_MODEL if a.mode == "triage" else DEEP_MODEL)
@@ -232,6 +238,10 @@ def main() -> None:
 
     packet = PACKET.format(**pkt)
     if a.mode == "triage":
+        factsheet_path = proj_dir / "factsheet.md"
+        if factsheet_path.exists():
+            packet += ("\n\n== FACTSHEET (deterministic, trust but verify) ==\n"
+                       + factsheet_path.read_text())
         checklist = (BASE / "research" / "TRIAGE_CHECKLIST.md").read_text()
         prompt = TRIAGE_PROMPT.format(packet=packet, checklist=checklist)
     else:
@@ -250,6 +260,10 @@ def main() -> None:
         else:
             budget_line = (f"Budget: {turn_line[2:]} A partial dossier beats a truncated one.")
         prompt = DEEP_PROMPT.format(packet=packet, budget_line=budget_line)
+
+    if a.dry_run:
+        print(prompt)
+        return
 
     stream_path = proj_dir / f"run_stream_{a.mode}.jsonl"
 

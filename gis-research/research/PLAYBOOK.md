@@ -33,6 +33,29 @@ looking for it: your job is independent ground truth.
    has not started or the parcel is unverified — the map is then the only site evidence.
 5. Write ONLY inside your assigned project directory.
 
+## Deep scan v2 — stages (each stage ENDS with a findings.json checkpoint write)
+
+D0 CHECKPOINT ZERO: write findings.json skeleton (every schema key, null values)
+   BEFORE any research. Read factsheet.json/md + triage_findings.json + inventory
+   sources/ — IA PDFs are usually already there (verified_* naming; never cite
+   unverified_* without eyeballing the parties page).
+D1 IA SCHEDULE: extract the milestone-schedule exhibit from each IA document on disk
+   (In-Service / Trial Op / COD dates, financial security) → contractual_schedule
+   (one row per document — amendments change amounts). If no IA on disk, run the
+   systematic ladder (below) once — do not loop.
+D2 SITE + IMAGERY: fix coordinates (factsheet EIA coords are a candidate, not truth);
+   cdse.py chips, ≤6 image reads total; save boundary-map pages → site.map_artifacts.
+D3 GAP-FILL: county records/news for what the factsheet couldn't answer — local tools
+   first (spv.py, ch313/faa/tceq, search.py), web last.
+D4 NARRATIVE: independent COD + drift verdict + confidence; write dossier.md.
+D5 DETERMINISTIC WRAP-UP (in order): queue_history.py <INR> → eia_history.py <INR>
+   --write → build_brief.py <dir> → build_index.py. Then a final findings.json pass.
+
+The detail sections below (Stage 1–5, retained for reference) are what D1–D5 draw on:
+the systematic IA ladder + registry tools + fuel paper trails (Stage 2), site pinpoint
+techniques (Stage 3), CDSE imagery discipline (Stage 4), and the dossier + wrap-up
+specifics (Stage 5).
+
 ## Stage 1 — LLC → parent chain
 
 The LLC is a shell; find who's behind it.
