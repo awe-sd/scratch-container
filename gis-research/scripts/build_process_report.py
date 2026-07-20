@@ -42,6 +42,7 @@ import csv
 import html
 import json
 import re
+import sys
 from pathlib import Path
 
 import pandas as pd
@@ -224,8 +225,12 @@ def scan_factsheet_gate_counts() -> dict:
         try:
             f = json.loads(fp.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
+            print(f"WARNING: corrupt JSON, skipping {fp}", file=sys.stderr)
             continue
         decision = (f.get("gate") or {}).get("decision")
+        if decision not in counts:
+            print(f"WARNING: unknown/missing gate.decision {decision!r} in {fp}, "
+                  f"counting as 'other'", file=sys.stderr)
         counts[decision if decision in counts else "other"] += 1
     counts["total"] = n_total
     return counts

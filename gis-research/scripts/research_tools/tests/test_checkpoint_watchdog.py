@@ -54,6 +54,18 @@ def test_budget_warn_fires_once(tmp_path):
     assert r2.returncode == 0
 
 
+def test_non_dict_stdin_payload_does_not_crash(tmp_path):
+    # PostToolUse stdin is expected to be a JSON object; guard against valid-JSON-but-
+    # not-a-dict payloads (a bare list or number) so payload.get(...) never AttributeErrors.
+    r = subprocess.run([sys.executable, str(HOOK), str(tmp_path)],
+                       input="[1, 2, 3]", capture_output=True, text=True)
+    assert r.returncode == 0 and r.stderr == ""
+
+    r2 = subprocess.run([sys.executable, str(HOOK), str(tmp_path)],
+                        input="42", capture_output=True, text=True)
+    assert r2.returncode == 0 and r2.stderr == ""
+
+
 def test_corrupted_budget_state_falls_through_to_watchdog(tmp_path):
     (tmp_path / ".budget_state.json").write_text("not json")
     fetch = {"tool_name": "WebFetch", "tool_input": {"url": "https://x.example"}}

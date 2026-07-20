@@ -79,8 +79,12 @@ Score axis = **paper risk** (high = paper). All factors deterministic:
 | Absent from EIA entirely with claimed COD <18 months out | 10 |
 
 Reality signals recorded alongside (not scored, listed): EIA status (U)/(V),
-operating-date present, verified IA on disk, FIS approved, registry footprint,
-TPIT reference if known.
+operating-date present, verified IA on disk, FIS approved,
+financial_security_posted (adjudicated 2026-07-20), TPIT reference if known.
+Registry hits (ch313/JETI/FAA) are unverified leads, not a reality signal — they
+suppress the `spv_unresolvable` score factor (a registry hit counts as SPV
+resolved) but do not gate deep scans on their own; a project whose only reality
+claim is an unverified registry hit still routes to the ambiguous/recheck band.
 
 **Gate (as adjudicated by sdalvi 2026-07-20 — supersedes the original draft):**
 

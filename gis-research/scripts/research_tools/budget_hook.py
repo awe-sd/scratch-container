@@ -69,6 +69,8 @@ def main() -> int:
         payload = json.load(sys.stdin) if not sys.stdin.isatty() else {}
     except (json.JSONDecodeError, ValueError):
         payload = {}
+    if not isinstance(payload, dict):
+        payload = {}  # valid JSON but not an object (e.g. a bare list/number) -- no tool_name/tool_input to read
     if payload:
         cp_f = d / ".checkpoint_state.json"
         try:

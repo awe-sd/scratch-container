@@ -1,10 +1,11 @@
 """Headless research-agent runner — one INR per invocation via `claude -p` on AWS Bedrock.
 
 Two modes:
-  triage (default) — Sonnet, hard 45-turn cap, follows research/TRIAGE_CHECKLIST.md
+  triage (default) — Sonnet, hard 60-turn cap, follows research/TRIAGE_CHECKLIST.md
                      (T1-T5, factsheet-first). Cheap first pass; ends with a verdict:
                      paper_dismissed | deep_candidate | ambiguous.
-  deep             — Opus, follows research/PLAYBOOK.md end-to-end (run only after a
+  deep             — Sonnet (Opus available via --model us.anthropic.claude-opus-4-7),
+                     follows research/PLAYBOOK.md end-to-end (run only after a
                      human approves the triage recommendation).
 
 The RUNNER builds the identity packet from the local parquet; the AGENT is blocked from

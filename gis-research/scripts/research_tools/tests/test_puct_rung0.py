@@ -18,3 +18,15 @@ def test_join_items_finds_docket_items(tmp_path, monkeypatch):
 def test_join_items_missing_file(tmp_path, monkeypatch):
     monkeypatch.setattr(puct, "INR_JOIN_FILE", tmp_path / "absent.json")
     assert puct.join_items("23INR0086") == []
+
+
+def test_join_items_sorts_numerically(tmp_path, monkeypatch):
+    # string-sort would put "10" before "2" and "1151" before "2" -- numeric sort is correct
+    join = {"10": {"filed": "1/1/2020", "description": "x", "inrs": ["23INR0086"]},
+            "2": {"filed": "1/1/2019", "description": "x", "inrs": ["23INR0086"]},
+            "1151": {"filed": "1/1/2024", "description": "x", "inrs": ["23INR0086"]}}
+    f = tmp_path / "puct_inr_join.json"
+    f.write_text(json.dumps(join))
+    monkeypatch.setattr(puct, "INR_JOIN_FILE", f)
+    items = puct.join_items("23INR0086")
+    assert [d["item"] for d in items] == ["2", "10", "1151"]

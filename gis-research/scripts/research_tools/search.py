@@ -79,7 +79,11 @@ def _throttle_and_budget() -> None:
                   "(fleet-wide cap). Record as negative evidence and continue without "
                   "this search — do NOT retry in a loop.")
             sys.exit(2)
-        wait = (stamps[-1] + MIN_INTERVAL - now) if stamps else 0
+        # once the sliding hour window is already more than half full, back off to a
+        # 30s interval -- prevents a burst of ~7 concurrent agents from exhausting the
+        # fleet hour-cap in minutes instead of spreading it across the hour
+        min_interval = 30.0 if len(stamps) > MAX_PER_HOUR / 2 else MIN_INTERVAL
+        wait = (stamps[-1] + min_interval - now) if stamps else 0
         if wait > 0:
             time.sleep(wait)
         stamps.append(time.time())

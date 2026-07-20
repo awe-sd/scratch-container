@@ -203,7 +203,16 @@ def join_items(inr: str) -> list[dict]:
     out = [{"item": item, "filed": v.get("filed", ""),
             "description": v.get("description", "")}
            for item, v in join.items() if inr.upper() in (v.get("inrs") or [])]
-    return sorted(out, key=lambda d: d["item"])
+
+    def _item_sort_key(d):
+        # item numbers are docket filing numbers -- sort numerically ("2" before "10"),
+        # falling back to string sort for the rare non-numeric item id
+        try:
+            return (0, int(d["item"]))
+        except (TypeError, ValueError):
+            return (1, str(d["item"]))
+
+    return sorted(out, key=_item_sort_key)
 
 
 def build_index() -> list[dict]:
@@ -307,24 +316,32 @@ def cmd_match(inr: str, out_dir: Path | None, extra_keys: list[str],
     idx = load_index(refresh)
     keys = match_keys(inr, extra_keys)
     print(f"match keys for {inr}: {keys}")
-    cands = []
+    name_cands = []
     for f in idx:
         best = max((len(k) for k in keys if k.lower() in f["description"].lower()),
                    default=0)
         if best:
-            cands.append((best, f))
+            name_cands.append((best, f))
     # longest matched key first — a specific name beats a coincidental short stem
-    cands.sort(key=lambda x: -x[0])
-    cands = [f for _, f in cands]
+    name_cands.sort(key=lambda x: -x[0])
+    name_cands = [f for _, f in name_cands]
+
+    # rung 0 (INR-join-table exact hits) gets its own header/count — it must NOT be
+    # folded into the "exact name match" line below, or a join-table hit gets double
+    # counted/printed as if it were also a name match
     rung0 = join_items(inr)
     if rung0:
         print(f"{len(rung0)} filing(s) via INR join table (rung 0 — exact):")
         for f in rung0:
             print(f"  {IA_DOCKET}-{f['item']}  {f['filed']}  {f['description'][:100]}")
-        cands = rung0 + [c for c in cands if c["item"] not in {f["item"] for f in rung0}]
-    print(f"{len(cands)} candidate filing(s) by exact name match:")
-    for f in cands:
+
+    print(f"{len(name_cands)} candidate filing(s) by exact name match:")
+    for f in name_cands:
         print(f"  {IA_DOCKET}-{f['item']}  {f['filed']}  {f['description'][:120]}")
+
+    # union for download purposes only (rung 0 first, deduped) -- the counts/prints
+    # above stay separate per provenance
+    cands = rung0 + [c for c in name_cands if c["item"] not in {f["item"] for f in rung0}]
     if not cands:
         print("no exact-name candidate. Next systematic step: find the SPV's legal name "
               "(TX SOS / Comptroller / county records), then re-run with "
