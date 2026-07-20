@@ -210,10 +210,14 @@ queue-reported COD <b>{esc(eia.get('queue_reported_cod'))}</b> vs latest EIA pla
         ev_items.append(f"<li>{esc(e)}</li>")
 
     # sources grouped: documents (pdf) first, then web captures, then extracts
-    groups = [("Documents", [p for p in src_files if p.suffix == ".pdf"]),
-              ("Web captures", [p for p in src_files if p.suffix in (".html", ".htm")]),
-              ("Extracted pages/images", [p for p in src_files if p.suffix == ".png"]),
-              ("Other", [p for p in src_files if p.suffix not in (".pdf", ".html", ".htm", ".png")])]
+    # derived views of PDFs (sheet tiles, rendered pages, sheet indexes) and error
+    # bodies are NOT sources — the PDF itself is the source (user rule 2026-07-20)
+    derived = re.compile(r"(_sheet\d+\.png|_sheet_index\.md|_p\d+\.png|\.err\.(xml|txt))$")
+    listed = [p for p in src_files if not derived.search(p.name)]
+    groups = [("Documents", [p for p in listed if p.suffix == ".pdf"]),
+              ("Web captures", [p for p in listed if p.suffix in (".html", ".htm")]),
+              ("Extracted pages/images", [p for p in listed if p.suffix == ".png"]),
+              ("Other", [p for p in listed if p.suffix not in (".pdf", ".html", ".htm", ".png")])]
     src_items = "".join(
         f"<h3 class='small'>{name} ({len(fs)})</h3><ul>" +
         "".join(f'<li><a href="sources/{esc(p.name)}">{esc(p.name)}</a></li>' for p in fs) + "</ul>"
@@ -248,7 +252,7 @@ queue-reported COD <b>{esc(eia.get('queue_reported_cod'))}</b> vs latest EIA pla
 {cod_hist}
 {eia_html}
 <h2>Key evidence</h2><ul>{''.join(ev_items)}</ul>
-<h2>Saved sources ({len(src_files)})</h2>{src_items}
+<h2>Saved sources ({len(listed)})</h2>{src_items}
 </body></html>"""
     out = proj_dir / "brief.html"
     out.write_text(page)
