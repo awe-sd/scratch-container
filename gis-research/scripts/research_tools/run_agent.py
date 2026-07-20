@@ -139,7 +139,7 @@ centroids, search-tight-present-wide, ≤6 full-size frame reads). The dossier m
 {dossier_template_path} exactly; reference example \
 {hanson_example_path}.
 
-Stage D0 writes the findings.json skeleton FIRST; every stage ends by updating findings.json \
+The verdict key is `real_project_verdict` (values real_active|real_early|paper|unclear) — NOT `verdict`, which is the triage schema's key. Stage D0 writes the findings.json skeleton FIRST; every stage ends by updating findings.json \
 — a checkpoint hook will interrupt you if you drift past 25 tool calls without persisting.
 
 A triage pass may already exist in your project dir (triage_findings.json / triage.md) — \
