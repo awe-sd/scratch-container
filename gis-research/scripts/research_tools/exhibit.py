@@ -9,6 +9,11 @@ guessed a site while the answer sat in sources/. This tool makes checking system
   exhibit.py render <pdf> -p 42,141 [--dpi 170]
                                    # -> <pdf_dir>/<pdfstem>_pNN.png  (Read the PNGs!)
   exhibit.py scan <project_dir>    # run list over every sources/*.pdf, print hits
+  exhibit.py sheet <pdf> [--per 4] [--dpi 110]
+                                   # token-efficient full read of a big/scanned PDF:
+                                   # tiles N pages per PNG + writes <stem>_sheet_index.md
+                                   # (tile->pages map, per-page headline, exhibit flags).
+                                   # Read the index first, then ONLY the tiles you need.
 
 Agent usage: run `scan` in D1 for every agreement PDF in sources/, `render` the hits,
 Read each PNG, and record used pages in findings.json `site.map_artifacts`.
@@ -76,6 +81,40 @@ def cmd_scan(proj_dir: Path) -> None:
             print(f"{pdf.name}: unreadable ({e.__class__.__name__})")
 
 
+def cmd_sheet(pdf: Path, per: int, dpi: int) -> None:
+    """Tile pages into composite PNGs (2 cols) + write an .md index for cheap Reads."""
+    import fitz
+    doc = fitz.open(pdf)
+    hits = {n for n, _ in pages_of_interest(pdf)}
+    import io
+    from PIL import Image
+    cols = 2
+    rows = max(1, (per + cols - 1) // cols)
+    lines = [f"# Sheet index — {pdf.name} ({len(doc)} pages, {per}/tile)", ""]
+    tile_no = 0
+    for start in range(0, len(doc), per):
+        tile_no += 1
+        pages = list(range(start, min(start + per, len(doc))))
+        pixes = [doc[p].get_pixmap(dpi=dpi) for p in pages]
+        w, h = max(px.width for px in pixes), max(px.height for px in pixes)
+        canvas = Image.new("RGB", (w * cols, h * rows), "white")
+        for i, px in enumerate(pixes):
+            img = Image.open(io.BytesIO(px.tobytes("png")))
+            canvas.paste(img, ((i % cols) * w, (i // cols) * h))
+        out = pdf.parent / f"{pdf.stem[:52]}_sheet{tile_no:02d}.png"
+        canvas.save(out, optimize=True)
+        lines.append(f"## {out.name} — pages {pages[0]+1}-{pages[-1]+1}")
+        for i, p in enumerate(pages):
+            t = " ".join((doc[p].get_text() or "").split())[:70]
+            flag = "  **<-- exhibit/map candidate**" if (p + 1) in hits else ""
+            pos = f"({'top' if i // cols == 0 else 'row ' + str(i // cols + 1)}-{'left' if i % cols == 0 else 'right'})"
+            lines.append(f"- p{p+1} {pos}: {t or '(no text layer — scanned page)'}{flag}")
+        lines.append("")
+    idx = pdf.parent / f"{pdf.stem[:52]}_sheet_index.md"
+    idx.write_text("\n".join(lines))
+    print(f"{tile_no} sheet(s) + index: {idx.name}")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -86,6 +125,9 @@ def main() -> None:
                     help="comma-separated page numbers (1-based)")
     p2.add_argument("--dpi", type=int, default=170)
     p3 = sub.add_parser("scan");   p3.add_argument("project_dir", type=Path)
+    p4 = sub.add_parser("sheet");  p4.add_argument("pdf", type=Path)
+    p4.add_argument("--per", type=int, default=4, help="pages per composite image")
+    p4.add_argument("--dpi", type=int, default=110)
     a = ap.parse_args()
     if a.cmd == "list":
         cmd_list(a.pdf)
@@ -93,6 +135,8 @@ def main() -> None:
         cmd_render(a.pdf, [int(x) for x in a.pages.split(",")], a.dpi)
     elif a.cmd == "scan":
         cmd_scan(a.project_dir)
+    elif a.cmd == "sheet":
+        cmd_sheet(a.pdf, a.per, a.dpi)
 
 
 if __name__ == "__main__":

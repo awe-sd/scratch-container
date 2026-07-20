@@ -48,7 +48,11 @@ D1 IA SCHEDULE: extract the milestone-schedule exhibit from each IA document on 
    -p N,M`) and READ before you form any site hypothesis. Attachment C-3 / Exhibit B
    style maps carry the site with road names; guessing a location while such a map
    sits in sources/ is an automatic quality failure. Record rendered pages in
-   `site.map_artifacts`.
+   `site.map_artifacts`. DOWNLOAD every linked agreement document (application,
+   agreement, FINDINGS) — a URL in a note is not an artifact. For a big or scanned
+   PDF, do NOT Read it page-by-page: `exhibit.py sheet <pdf>` tiles 4 pages/image +
+   writes an .md index — read the index, then only the tiles you need (~4x fewer
+   tokens).
 D2 SITE + IMAGERY: fix coordinates (factsheet EIA coords are a candidate, not truth);
    cdse.py chips, ≤6 image reads total; save boundary-map pages → site.map_artifacts.
 D3 GAP-FILL: county records/news for what the factsheet couldn't answer — local tools
