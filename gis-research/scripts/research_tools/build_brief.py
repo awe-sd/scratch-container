@@ -84,10 +84,18 @@ def build(proj_dir: Path) -> Path:
     # `if key_dir.exists()` gate then globs an empty dir and drops every real frame,
     # so key first for real, else the flat set. Dated wide frames (s2_YYYY-…) lead —
     # for a no-construction verdict the empty-site wide shot is the evidence to show.
+    def real_png(p: Path) -> bool:
+        # failed downloads get saved with .png names (WMS exception XML, Maps-API
+        # rejection text — Tormes 22INR0437 lesson): require PNG magic + plausible size
+        try:
+            return p.stat().st_size > 2048 and p.open("rb").read(8) == b"\x89PNG\r\n\x1a\n"
+        except OSError:
+            return False
+
     key_dir = proj_dir / "imagery" / "key"
-    frames = sorted(key_dir.glob("s2_*.png"))
+    frames = [p for p in sorted(key_dir.glob("s2_*.png")) if real_png(p)]
     if not frames:
-        flat = sorted((proj_dir / "imagery").glob("s2_*.png"))
+        flat = [p for p in sorted((proj_dir / "imagery").glob("s2_*.png")) if real_png(p)]
         dated = [p for p in flat if p.stem[3:7].isdigit()]
         frames = (dated + [p for p in flat if p not in dated])[:6]
 
@@ -98,10 +106,11 @@ def build(proj_dir: Path) -> Path:
     # reviewer compares this map against the satellite frames below. Prefer the explicit
     # findings pointer; fall back to map-ish page extracts in sources/.
     site_maps = site.get("map_artifacts") or ([site["map_artifact"]] if site.get("map_artifact") else [])
-    maps = [proj_dir / m for m in site_maps if str(m).endswith(".png") and (proj_dir / m).exists()]
+    maps = [proj_dir / m for m in site_maps if str(m).endswith(".png") and real_png(proj_dir / m)]
     if not maps:
         pat = re.compile(r"map|boundary|parcel|improvement|exhibit|footprint", re.I)
-        maps = [p for p in src_files if p.suffix == ".png" and pat.search(p.stem)]
+        maps = [p for p in src_files if p.suffix == ".png" and pat.search(p.stem)
+                and real_png(p)]
     maps_html = ""
     if maps:
         figs = "".join(
