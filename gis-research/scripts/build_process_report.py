@@ -462,9 +462,10 @@ def render_failure_classes(stats: dict, failure_inrs: dict, reconciled: dict) ->
             "example_inr": "25INR0052",
             "fix": ("Deterministic wrap-up (D5: <code>queue_history.py</code> &rarr; "
                     "<code>eia_history.py</code> &rarr; <code>build_brief.py</code> &rarr; "
-                    "<code>build_index.py</code>) runs ONCE, not as an agent-driven "
-                    "retry loop; per-stage turn budgets stop research from eating the "
-                    "turns wrap-up needs."),
+                    "<code>build_index.py</code>) runs ONCE instead of an agent-driven "
+                    "rebuild loop; a checkpoint watchdog (PostToolUse) counts tool calls "
+                    "since the last <code>findings.json</code> write and injects a warning "
+                    "turn past 25, forcing a checkpoint before the turn cap is reached."),
         },
         {
             "title": "Search-engine HTML scraping",
