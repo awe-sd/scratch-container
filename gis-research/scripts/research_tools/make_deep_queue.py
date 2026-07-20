@@ -16,7 +16,10 @@ Usage:
 Reads every research/<INR>_*/factsheet.json (written by factsheet.py --all), keeps
 gate.decision == "deep_candidate", sorts by gate.priority desc, and writes
 research/_reference/deep_queue_v2.csv — the ranked, gate-filtered user-review artifact
-for the deep-scan relaunch decision.
+for the deep-scan relaunch decision. ALSO writes research/_reference/triage_recheck_v2.txt
+— every "ambiguous" INR plus any "paper_kill" INR whose triage_findings.json (v1) has
+deep_scan_recommended=true (a v1/v2 conflict the user routed to a triage-v2 re-check),
+one INR per line.
   uv run gis-research/scripts/research_tools/make_deep_queue.py --v2
 """
 
@@ -32,6 +35,7 @@ import pandas as pd
 
 BASE = Path(__file__).resolve().parents[2]  # gis-research/
 DEEP_SCAN_COST = 4.64  # $/scan, Sonnet deep mean (see gis-research/CLAUDE.md)
+RECHECK_COST = 0.35  # $/project, triage-v2 re-check (user-set 2026-07-20)
 
 
 def _months_to_cod(queue_cod: str | None, generated: str) -> float | None:
@@ -45,9 +49,11 @@ def _months_to_cod(queue_cod: str | None, generated: str) -> float | None:
     return round((dt.date(cy, cm, cd) - dt.date(gy, gm, gd)).days / 30.4, 2)
 
 
-def build_v2(out_path: Path) -> None:
+def build_v2(csv_path: Path, recheck_path: Path) -> None:
     rows = []
-    n_total = 0
+    ambiguous = []       # (inr, project, mw)
+    conflicts = []       # (inr, project, mw) -- paper_kill but v1 triage flagged deep_scan
+    n_total = n_paper_kill = 0
     for fp in sorted(BASE.glob("research/*/factsheet.json")):
         if fp.parent.name.startswith("_"):
             continue
@@ -57,19 +63,35 @@ def build_v2(out_path: Path) -> None:
         except json.JSONDecodeError:
             continue
         g = f.get("gate") or {}
-        if g.get("decision") != "deep_candidate":
-            continue
-        already = (fp.parent / "findings.json").exists()
-        rows.append({
-            "inr": f.get("inr"),
-            "project": f.get("project"),
-            "mw": f.get("capacity_mw"),
-            "months_to_cod": _months_to_cod(f.get("queue_cod"), f.get("generated")),
-            "paper_score": f.get("paper_score"),
-            "decision": g.get("decision"),
-            "priority": g.get("priority"),
-            "already_deep_scanned": already,
-        })
+        decision = g.get("decision")
+        inr = f.get("inr")
+        project = f.get("project")
+        mw = f.get("capacity_mw") or 0.0
+
+        if decision == "deep_candidate":
+            already = (fp.parent / "findings.json").exists()
+            rows.append({
+                "inr": inr,
+                "project": project,
+                "mw": f.get("capacity_mw"),
+                "months_to_cod": _months_to_cod(f.get("queue_cod"), f.get("generated")),
+                "paper_score": f.get("paper_score"),
+                "decision": decision,
+                "priority": g.get("priority"),
+                "already_deep_scanned": already,
+            })
+        elif decision == "ambiguous":
+            ambiguous.append((inr, project, mw))
+        elif decision == "paper_kill":
+            n_paper_kill += 1
+            tf = fp.parent / "triage_findings.json"
+            if tf.exists():
+                try:
+                    t = json.loads(tf.read_text())
+                except json.JSONDecodeError:
+                    t = {}
+                if t.get("deep_scan_recommended"):
+                    conflicts.append((inr, project, mw))
 
     rows.sort(key=lambda r: (r["priority"] if r["priority"] is not None else -1), reverse=True)
     for i, r in enumerate(rows, start=1):
@@ -77,8 +99,8 @@ def build_v2(out_path: Path) -> None:
 
     cols = ["rank", "inr", "project", "mw", "months_to_cod", "paper_score",
             "decision", "priority", "already_deep_scanned"]
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(out_path, "w", newline="", encoding="utf-8") as fh:
+    csv_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(csv_path, "w", newline="", encoding="utf-8") as fh:
         w = csvmod.DictWriter(fh, fieldnames=cols)
         w.writeheader()
         for r in rows:
@@ -98,7 +120,29 @@ def build_v2(out_path: Path) -> None:
     print(f"totals: {len(rows)} deep_candidate, {total_mw_not_scanned:.1f} MW not yet scanned")
     print(f"estimated spend to clear not-yet-scanned rows: "
           f"{len(not_scanned)} x ${DEEP_SCAN_COST} = ${len(not_scanned) * DEEP_SCAN_COST:.2f}")
-    print(f"wrote {out_path}")
+    print(f"wrote {csv_path}")
+
+    # --- triage_recheck_v2.txt: ambiguous verdicts + v1/v2 paper_kill conflicts ---
+    ambiguous.sort(key=lambda t: t[0])
+    conflicts.sort(key=lambda t: t[0])
+    recheck_path.parent.mkdir(parents=True, exist_ok=True)
+    lines = ["# triage-recheck queue v2 -- ambiguous gate() verdicts + v1/v2 paper_kill "
+             "conflicts (v1 triage flagged deep_scan_recommended, v2 gate says paper_kill)",
+             "#   uv run gis-research/scripts/research_tools/run_batch.py --name recheck-1 "
+             f"--mode triage --inrs-file {recheck_path} --concurrency 3"]
+    lines += [f"{inr}  # ambiguous  {mw:7.1f} MW  {project}"
+              for inr, project, mw in ambiguous]
+    lines += [f"{inr}  # paper_kill v1-conflict (v1 deep_scan_recommended=true)  "
+              f"{mw:7.1f} MW  {project}"
+              for inr, project, mw in conflicts]
+    recheck_path.write_text("\n".join(lines) + "\n")
+
+    n_recheck = len(ambiguous) + len(conflicts)
+    print(f"\ntriage recheck: {len(ambiguous)} ambiguous + {len(conflicts)} paper_kill "
+          f"v1-conflicts (of {n_paper_kill} paper_kill total) = {n_recheck} to re-check")
+    print(f"estimated recheck spend: {n_recheck} x ${RECHECK_COST} = "
+          f"${n_recheck * RECHECK_COST:.2f}")
+    print(f"wrote {recheck_path}")
 
 
 def main() -> None:
@@ -106,14 +150,19 @@ def main() -> None:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--min-mw", type=float, default=None)
     ap.add_argument("--out", default=None)
+    ap.add_argument("--recheck-out", default=None,
+                    help="--v2 only: override the triage_recheck_v2.txt path")
     ap.add_argument("--v2", action="store_true",
                     help="pipeline-v2 mode: rank factsheet.json deep_candidates by "
-                         "gate.priority -> research/_reference/deep_queue_v2.csv")
+                         "gate.priority -> research/_reference/deep_queue_v2.csv "
+                         "(+ triage_recheck_v2.txt for ambiguous/conflict INRs)")
     a = ap.parse_args()
 
     if a.v2:
         out = Path(a.out) if a.out else BASE / "research" / "_reference" / "deep_queue_v2.csv"
-        build_v2(out)
+        recheck_out = (Path(a.recheck_out) if a.recheck_out
+                       else BASE / "research" / "_reference" / "triage_recheck_v2.txt")
+        build_v2(out, recheck_out)
         return
 
     df = pd.read_parquet(BASE / "data" / "ercot_generation_interconnect.parquet")

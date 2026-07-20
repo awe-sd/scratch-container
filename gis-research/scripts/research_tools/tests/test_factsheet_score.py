@@ -51,3 +51,21 @@ def test_gate_ambiguous_middle():
     mid = dict(REAL, reality_signals=[], months_to_cod=30.0, capacity_mw=80.0)
     g = gate(score(mid)[0], mid)
     assert g["decision"] == "ambiguous"
+
+
+def test_gate_no_signal_near_cod_is_ambiguous():
+    # user-adjudicated 2026-07-20: bare months_to_cod<18 / mw>=200 no longer
+    # create deep_candidate on their own -- reality_signals is now required.
+    facts = dict(REAL, reality_signals=[], months_to_cod=2.0, capacity_mw=500.0)
+    g = gate(score(facts)[0], facts)
+    assert g["decision"] == "ambiguous" and g["priority"] is None
+
+
+def test_gate_zeus_style_low_score_no_signal_is_ambiguous():
+    # Zeus Mitchell ground truth: score 20 (well under the paper_kill line) with
+    # no reality signals must land ambiguous, not deep_candidate or paper_kill.
+    facts = dict(REAL, reality_signals=[], months_to_cod=2.0, capacity_mw=310.0)
+    g = gate(20, facts)
+    assert g["decision"] == "ambiguous"
+    assert g["decision"] != "paper_kill"
+    assert g["priority"] is None

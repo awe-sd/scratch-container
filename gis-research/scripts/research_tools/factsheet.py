@@ -1,11 +1,14 @@
 """Deterministic per-project fact sheet + paper score — pipeline v2 stage 0.
 
 Assembles everything answerable locally (queue, EIA, SPV, registries, IA join table)
-into factsheet.json/.md and computes a PAPER SCORE 0-100 (high = paper). Gate:
+into factsheet.json/.md and computes a PAPER SCORE 0-100 (high = paper). Gate
+(user-adjudicated 2026-07-20 — see .superpowers/sdd/task-7-report.md):
   paper_score >= 50                          -> paper_kill (triage dismisses, no deep)
-  < 50 and (reality signal or COD<18mo or MW>=200) -> deep_candidate,
+  < 50 and reality_signals non-empty         -> deep_candidate,
                                                 priority = MW * 1/max(months_to_cod, 1)
   otherwise                                  -> ambiguous (triage judgment)
+COD<18mo / MW>=200 no longer create deep_candidate on their own — they remain only
+inside the priority number (so a signal-backed project near COD still ranks higher).
 Triage may adjust the score +/-15 ONLY with a cited source (recorded in
 triage_findings.json.score_adjustment). No LLM in this tool. Spec:
 docs/superpowers/specs/2026-07-19-pipeline-v2-design.md
@@ -74,13 +77,13 @@ def gate(paper_score: int, f: dict) -> dict:
     if paper_score >= 50:
         return {"decision": "paper_kill", "priority": None,
                 "reason": f"paper_score {paper_score} >= 50"}
-    real = bool(f.get("reality_signals")) or (mtc is not None and mtc < 18) or mw >= 200
-    if real:
+    if f.get("reality_signals"):
         pri = round(mw * (1.0 / max(mtc if mtc is not None else 24.0, 1.0)), 2)
         return {"decision": "deep_candidate", "priority": pri,
-                "reason": "reality signal / near COD / large MW"}
+                "reason": "reality signal"}
     return {"decision": "ambiguous", "priority": None,
-            "reason": f"paper_score {paper_score} < 50 but no reality trigger"}
+            "reason": f"paper_score {paper_score} < 50 but no reality signal "
+                      "(near-COD/large-MW alone no longer trigger deep_candidate)"}
 
 
 def _quarters_between(ym_a: str, ym_b: str) -> float:
@@ -110,6 +113,8 @@ def facts_from_parts(queue: dict, eia_status: str, eia_payload: dict | None,
         signals.append("verified_ia_on_disk")
     if queue.get("fis_approved"):
         signals.append("fis_approved")
+    if queue.get("financial_security_posted"):
+        signals.append("financial_security_posted")
     return {
         "cod_slips": queue.get("cod_slips", 0),
         "eia_cod_delta_quarters": delta_q,
@@ -266,6 +271,7 @@ def build(inr: str, ctx: dict) -> dict:
         "queue_age_years": queue_age_years,
         "synced": bool(pd.notna(r.get("approvedForSynchronization"))),
         "queue_cod_ym": queue_cod[:7] if queue_cod else None,
+        "financial_security_posted": milestones["financial_security"] == "Yes",
     }
 
     eia_status, eia_payload = eh.resolve(inr, ctx["gen"], ctx["county_map"], ctx["queue_latest"])
@@ -416,7 +422,7 @@ def _print_report(res: dict) -> None:
           f"join_items={res['ia']['join_items']}")
 
 
-def run_all(ctx: dict, limit: int | None) -> None:
+def run_all(ctx: dict, limit: int | None, force: bool = False) -> None:
     # inrs is drawn straight from queue_latest, so build()'s "not in latest snapshot"
     # SystemExit can never fire here — every INR iterated is by construction present.
     inrs = sorted(ctx["queue_latest"].INR.unique())
@@ -428,7 +434,7 @@ def run_all(ctx: dict, limit: int | None) -> None:
         if not hits:
             continue
         fs_path = hits[0] / "factsheet.json"
-        if fs_path.exists() and fs_path.stat().st_mtime > ctx["parquet_mtime"]:
+        if not force and fs_path.exists() and fs_path.stat().st_mtime > ctx["parquet_mtime"]:
             n_skip += 1
             continue
         res = build(inr, ctx)
@@ -453,6 +459,9 @@ def main() -> None:
                     help="build for every triaged project (has a research/<INR>_* dir) in the "
                          "latest queue snapshot; always writes (resumable)")
     ap.add_argument("--limit", type=int, default=None, help="cap projects built in --all mode")
+    ap.add_argument("--force", action="store_true",
+                    help="--all mode: ignore the mtime-based up-to-date skip and rebuild "
+                         "every project's factsheet (e.g. after a gate()/score() change)")
     a = ap.parse_args()
 
     if not a.inr and not a.all:
@@ -461,7 +470,7 @@ def main() -> None:
     ctx = load_ctx()
 
     if a.all:
-        run_all(ctx, a.limit)
+        run_all(ctx, a.limit, force=a.force)
         return
 
     res = build(a.inr, ctx)
