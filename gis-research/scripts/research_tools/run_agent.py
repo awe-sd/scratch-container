@@ -33,7 +33,7 @@ BASE = Path(__file__).resolve().parents[2]  # gis-research/
 ROOT = BASE.parent                          # repo/worktree root (agent cwd)
 
 TRIAGE_MODEL = "us.anthropic.claude-sonnet-4-6"
-DEEP_MODEL = "us.anthropic.claude-sonnet-4-6"  # Opus available via --model us.anthropic.claude-opus-4-7
+DEEP_MODEL = "us.anthropic.claude-sonnet-5"  # user-enabled 2026-07-20 (probe OK); Opus via --model us.anthropic.claude-opus-4-7
 SMALL_MODEL = "us.anthropic.claude-sonnet-4-6"
 TRIAGE_MAX_TURNS = 60  # v2 checklist goal is ~15 agent turns; cap left unchanged as headroom
 DEEP_MAX_TURNS = 120
