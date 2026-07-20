@@ -56,6 +56,49 @@ TOKEN_CACHE = Path(tempfile.gettempdir()) / ".cdse_token_cache.json"
 TOKEN_SLACK_SEC = 60  # refresh this long before expiry
 
 
+PROCESSING_LOCK = Path(tempfile.gettempdir()) / ".cdse_processing.lock"
+PROCESSING_RETRIES = (15, 45, 120)  # 503/RemoteDisconnected = account PU throttling
+
+
+def _openeo_result(graph: dict, timeout: int) -> bytes:
+    """ONE openEO processing request at a time, fleet-wide (flock held for the whole
+    request), with backoff on capacity errors. Rationale: CDSE throttles the account's
+    processing units — 8 concurrent agents each firing sync /result calls produced
+    connection drops and 45-retry death spirals (Hoyte 23INR0235, 2026-07-20).
+    Serialized, each chip takes ~15-40s and the quota is never exhausted."""
+    import fcntl
+    PROCESSING_LOCK.touch(exist_ok=True)
+    with PROCESSING_LOCK.open("r+") as slot:
+        fcntl.flock(slot, fcntl.LOCK_EX)  # queue here until the fleet slot frees
+        for backoff in (*PROCESSING_RETRIES, None):
+            req = urllib.request.Request(
+                f"{OPENEO_URL}/result",
+                data=json.dumps(graph).encode(),
+                headers={"Content-Type": "application/json",
+                         "Authorization": f"Bearer oidc/CDSE/{get_token()}"},
+            )
+            try:
+                with urllib.request.urlopen(req, timeout=timeout) as r:
+                    return r.read()
+            except urllib.error.HTTPError as e:
+                if e.code in (429, 503) or e.code >= 500:
+                    if backoff is None:
+                        sys.exit(f"CDSE CAPACITY: openEO {e.code} after retries — do NOT "
+                                 "loop; log as negative evidence, move on, imagery "
+                                 "backfill will retry later.")
+                    print(f"  [openEO {e.code} — capacity backoff {backoff}s]", file=sys.stderr)
+                    time.sleep(backoff)
+                    continue
+                sys.exit(f"openEO error {e.code}: {e.read()[:500].decode(errors='replace')}")
+            except (ConnectionError, OSError) as e:  # RemoteDisconnected et al.
+                if backoff is None:
+                    sys.exit(f"CDSE CAPACITY: {e.__class__.__name__} after retries — do "
+                             "NOT loop; log as negative evidence and move on.")
+                print(f"  [{e.__class__.__name__} — capacity backoff {backoff}s]", file=sys.stderr)
+                time.sleep(backoff)
+    raise RuntimeError("unreachable")
+
+
 def get_token() -> str:
     try:
         c = json.loads(TOKEN_CACHE.read_text())
@@ -102,8 +145,76 @@ def bbox(lat: float, lon: float, buffer_km: float) -> dict:
     return {"west": lon - dlon, "south": lat - dlat, "east": lon + dlon, "north": lat + dlat}
 
 
+STAC_URL = "https://earth-search.aws.element84.com/v1/search"
+
+
+def _chip_via_aws(lat: float, lon: float, day: str, out: Path,
+                  buffer_km: float, window_days: int, max_cloud: int) -> bool:
+    """Quota-free chip from the public AWS Open Data Sentinel-2 L2A COGs
+    (s3://sentinel-cogs via Earth Search STAC). No auth, no PU limits, parallel-safe
+    — the CDSE free tier (2 concurrent / 12 req/min / 10k PU/mo) cannot serve an
+    agent fleet (2026-07-20 lesson). Returns False on miss so the caller can fall
+    back to openEO."""
+    import urllib.request as _rq
+    d = Date.fromisoformat(day)
+    t0, t1 = d - timedelta(days=window_days), d + timedelta(days=window_days)
+    body = json.dumps({
+        "collections": ["sentinel-2-l2a"],
+        "intersects": {"type": "Point", "coordinates": [lon, lat]},
+        "datetime": f"{t0}T00:00:00Z/{t1}T23:59:59Z",
+        "query": {"eo:cloud_cover": {"lt": max_cloud}},
+        "sort": [{"field": "properties.eo:cloud_cover", "direction": "asc"}],
+        "limit": 4}).encode()
+    try:
+        req = _rq.Request(STAC_URL, data=body, headers={"Content-Type": "application/json"})
+        with _rq.urlopen(req, timeout=45) as r:
+            items = json.loads(r.read()).get("features", [])
+    except Exception as e:
+        print(f"  [earth-search failed: {e.__class__.__name__} — openEO fallback]",
+              file=sys.stderr)
+        return False
+    if not items:
+        print(f"  [no AWS scene ≤{max_cloud}% cloud in {t0}..{t1} — openEO fallback]",
+              file=sys.stderr)
+        return False
+    item = items[0]
+    import numpy as np
+    import rasterio
+    from rasterio.warp import transform as rio_transform
+    from rasterio.windows import from_bounds
+    half = buffer_km * 1000.0
+    layers = []
+    try:
+        for band in ("red", "green", "blue"):
+            href = item["assets"][band]["href"]
+            with rasterio.open(href) as ds:
+                (x,), (y,) = rio_transform("EPSG:4326", ds.crs, [lon], [lat])
+                win = from_bounds(x - half, y - half, x + half, y + half, ds.transform)
+                px = min(int(win.width), 1400)
+                layers.append(ds.read(1, window=win, out_shape=(px, px),
+                                      boundless=True, fill_value=0))
+    except Exception as e:
+        print(f"  [COG read failed: {e.__class__.__name__} — openEO fallback]",
+              file=sys.stderr)
+        return False
+    rgb = np.stack(layers, axis=-1).astype("float32")
+    img = np.clip(rgb / 2500.0 * 255.0, 0, 255).astype("uint8")
+    from PIL import Image
+    out.parent.mkdir(parents=True, exist_ok=True)
+    Image.fromarray(img).save(out)
+    scene = item["id"]
+    dt = item["properties"]["datetime"][:10]
+    cc = round(item["properties"]["eo:cloud_cover"], 1)
+    print(f"wrote {out} ({out.stat().st_size/1024:.0f} KB) — AWS COG scene {scene} "
+          f"{dt} (cloud {cc}%), {buffer_km} km buffer  [single best scene, not a "
+          f"median composite]")
+    return True
+
+
 def chip(lat: float, lon: float, day: str, out: Path,
          buffer_km: float, window_days: int, max_cloud: int) -> None:
+    if _chip_via_aws(lat, lon, day, out, buffer_km, window_days, max_cloud):
+        return
     d = Date.fromisoformat(day)
     t0, t1 = d - timedelta(days=window_days), d + timedelta(days=window_days)
     graph = {
@@ -148,17 +259,7 @@ def chip(lat: float, lon: float, day: str, out: Path,
             }
         }
     }
-    req = urllib.request.Request(
-        f"{OPENEO_URL}/result",
-        data=json.dumps(graph).encode(),
-        headers={"Content-Type": "application/json",
-                 "Authorization": f"Bearer oidc/CDSE/{get_token()}"},
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=300) as r:
-            data = r.read()
-    except urllib.error.HTTPError as e:
-        sys.exit(f"openEO error {e.code}: {e.read()[:500].decode(errors='replace')}")
+    data = _openeo_result(graph, timeout=300)
     if data[:4] != b"\x89PNG":
         sys.exit(f"unexpected response (not PNG): {data[:200]!r}")
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -203,18 +304,8 @@ def timelapse(lat: float, lon: float, start: str, end: str, out_dir: Path,
             }
         }
     }
-    req = urllib.request.Request(
-        f"{OPENEO_URL}/result",
-        data=json.dumps(graph).encode(),
-        headers={"Content-Type": "application/json",
-                 "Authorization": f"Bearer oidc/CDSE/{get_token()}"},
-    )
     print(f"requesting {cadence}ly composites {start}..{end} (single openEO job) ...")
-    try:
-        with urllib.request.urlopen(req, timeout=900) as r:
-            data = r.read()
-    except urllib.error.HTTPError as e:
-        sys.exit(f"openEO error {e.code}: {e.read()[:500].decode(errors='replace')}")
+    data = _openeo_result(graph, timeout=900)
 
     out_dir.mkdir(parents=True, exist_ok=True)
     nc_path = out_dir / "timelapse_raw.nc"
