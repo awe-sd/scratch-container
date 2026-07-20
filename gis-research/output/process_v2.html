@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gis-research Pipeline v2 — Process &amp; Failure Report</title>
+<style>
+  :root {
+    --bg: #ffffff; --surface: #f7f8fa; --ink: #1a1d21; --ink-2: #545a63;
+    --muted: #8a919c; --line: #e2e6ec; --accent: #2563eb; --accent-soft: #eef3ff;
+    --kill: #fdecea; --kill-line: #c0392b; --deep: #eaf5ec; --deep-line: #1e8449;
+    --amb: #fff8e6; --amb-line: #b7791f; --badge-bg: #e6f6ea; --badge-ink: #1e8449;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171c; --surface: #1c2027; --ink: #eceff3; --ink-2: #b3bac4;
+      --muted: #7d8590; --line: #2a2f38; --accent: #6ea8fe; --accent-soft: #1e2633;
+      --kill: #3a1f1e; --kill-line: #e57373; --deep: #1c2e20; --deep-line: #6fcf7d;
+      --amb: #332a13; --amb-line: #e0b04a; --badge-bg: #16301d; --badge-ink: #6fcf7d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0 auto; padding: 24px; max-width: 1180px; background: var(--bg); color: var(--ink);
+    font: 14px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  h1 { font-size: 21px; margin: 0 0 2px; }
+  h2 { font-size: 16px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 22px; }
+  h2:first-of-type { border-top: none; padding-top: 0; }
+  h3 { font-size: 14px; margin: 18px 0 8px; }
+  .sub { color: var(--ink-2); font-size: 13px; margin-bottom: 6px; }
+  code { background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+    padding: 1px 5px; font-size: 12.5px; }
+  .muted { color: var(--muted); }
+
+  /* pipeline diagram -- pure HTML/CSS, no JS */
+  .pipeline { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 18px 0 6px; }
+  .pbox { background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    padding: 12px 16px; text-align: center; font-weight: 600; font-size: 13px; }
+  .gatebox { border: 2px solid var(--accent); color: var(--accent); }
+  .ptag { font-weight: 400; color: var(--muted); font-size: 11.5px; }
+  .parrow { font-size: 20px; color: var(--muted); }
+  .parrow.down { font-size: 13px; }
+  .branches { display: flex; gap: 22px; align-items: flex-start; flex-wrap: wrap; }
+  .branch { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 220px; }
+  .pcond { font-size: 11.5px; color: var(--muted); text-align: center; }
+  .outcome { width: 100%; }
+  .outcome.kill { background: var(--kill); border-color: var(--kill-line); }
+  .outcome.deep { background: var(--deep); border-color: var(--deep-line); }
+  .outcome.ambiguous, .outcome.recheck { background: var(--amb); border-color: var(--amb-line); }
+  .footnote { color: var(--muted); font-size: 12px; margin-top: 14px; }
+
+  /* step cards (T1-T5 / D0-D5) */
+  .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px; margin-top: 10px; }
+  .step-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    padding: 12px 14px; }
+  .step-marker { display: inline-block; background: var(--accent); color: #fff;
+    border-radius: 6px; padding: 1px 8px; font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+  .step-label { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .step-body { font-size: 12.5px; color: var(--ink-2); }
+
+  /* before/after */
+  table.before-after, table.pilot-table { border-collapse: collapse; width: 100%;
+    font-variant-numeric: tabular-nums; margin-top: 10px; }
+  table.before-after th, table.before-after td,
+  table.pilot-table th, table.pilot-table td {
+    border-bottom: 1px solid var(--line); padding: 7px 12px; text-align: left; font-size: 13px; }
+  table.before-after thead th, table.pilot-table thead th { background: var(--surface); }
+  td.metric { color: var(--ink-2); }
+  td.v1val { font-weight: 600; }
+  td.v2val.pending { color: var(--muted); font-style: italic; }
+  .pending-note { margin-top: 10px; }
+  .raw-pilot { white-space: pre-wrap; font-size: 12px; background: var(--surface);
+    border: 1px solid var(--line); border-radius: 8px; padding: 12px; max-height: 480px; overflow: auto; }
+
+  /* failure-class panel */
+  .fail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 14px; margin-top: 10px; }
+  .fail-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 16px; }
+  .fail-head { display: flex; justify-content: space-between; align-items: center; }
+  .fail-head h3 { margin: 0; }
+  .badge { background: var(--badge-bg); color: var(--badge-ink); font-size: 11px;
+    font-weight: 700; letter-spacing: .03em; border-radius: 20px; padding: 3px 10px; }
+  .fail-measured { font-size: 12.5px; margin: 8px 0; }
+  .fail-example summary { cursor: pointer; font-size: 12.5px; color: var(--accent); }
+  .fail-narrative { font-size: 11.5px; font-family: ui-monospace, Menlo, Consolas, monospace;
+    color: var(--ink-2); background: var(--bg); border: 1px solid var(--line); border-radius: 6px;
+    padding: 8px 10px; margin-top: 6px; word-break: break-word; }
+  .fail-fix { font-size: 12.5px; margin-top: 10px; }
+
+  ul.corpus-stats { margin: 10px 0 0; padding-left: 18px; }
+  ul.corpus-stats li { margin-bottom: 6px; font-size: 13px; }
+
+  details > summary { cursor: pointer; }
+</style>
+</head>
+<body>
+  <h1>gis-research Pipeline v2 — Process &amp; Failure Report</h1>
+  <div class="sub">How the ERCOT GIS interconnection-queue research agents work, and what the
+    v1 log-forensics run (943 runs, 57,865 tool calls) measured about how they failed.</div>
+
+  <h2>1. Pipeline</h2>
+  
+    <div class="pipeline">
+      <div class="pbox">Queue project<br><span class="ptag">779 triaged (v1)</span></div>
+      <div class="parrow">&rarr;</div>
+      <div class="pbox">factsheet.py<br><span class="ptag">deterministic paper_score</span></div>
+      <div class="parrow">&rarr;</div>
+      <div class="pbox gatebox">gate()</div>
+      <div class="branches">
+        <div class="branch">
+          <div class="pcond">score &ge; 50</div>
+          <div class="parrow down">&darr;</div>
+          <div class="pbox outcome kill">paper_kill<br><b>26</b></div>
+        </div>
+        <div class="branch">
+          <div class="pcond">score &lt; 50 + reality signal</div>
+          <div class="parrow down">&darr;</div>
+          <div class="pbox outcome deep">deep_candidate<br><b>447</b>
+            <br><span class="ptag">ranked MW &times; COD-nearness</span></div>
+          <div class="parrow down">&darr;</div>
+          <div class="pbox">Deep scan D0&ndash;D5</div>
+        </div>
+        <div class="branch">
+          <div class="pcond">else</div>
+          <div class="parrow down">&darr;</div>
+          <div class="pbox outcome ambiguous">ambiguous<br><b>306</b></div>
+          <div class="parrow down">+ 10 v1-conflict &darr;</div>
+          <div class="pbox outcome recheck">triage-v2 recheck<br><b>316</b></div>
+          <div class="parrow down">&darr;</div>
+          <div class="pbox">Triage T1&ndash;T5</div>
+        </div>
+      </div>
+    </div>
+    <div class="footnote">
+      779 projects scanned by factsheet.py &rarr; 26 paper_kill
+      (score &ge; 50) + 447 deep_candidate + 306 ambiguous
+      (10 of the paper_kill projects conflict with a v1
+      deep_scan_recommended=true triage, added to the 316-project
+      triage-v2 recheck queue). Counts: research/_reference/deep_queue_v2.csv,
+      research/_reference/triage_recheck_v2.txt, and a read-only scan of
+      research/*/factsheet.json at build time.
+    </div>
+
+  <h2>2. Triage (T1&ndash;T5)</h2>
+  <div class="sub">Verbatim from <code>research/TRIAGE_CHECKLIST.md</code>, parsed at build time.</div>
+  <div class="step-grid">
+      <div class="step-card triage">
+        <div class="step-marker">T1</div>
+        <div class="step-label">READ</div>
+        <div class="step-body">the factsheet. List (internally) its 2–3 weakest facts — the ones that, if wrong, flip the verdict.</div>
+      </div>
+
+      <div class="step-card triage">
+        <div class="step-marker">T2</div>
+        <div class="step-label">IDENTITY SANITY:</div>
+        <div class="step-body">do SPV/EIA/registry candidates cohere (same entity family, same county, compatible size)? Contradictions are findings — record them.</div>
+      </div>
+
+      <div class="step-card triage">
+        <div class="step-marker">T3</div>
+        <div class="step-label">CONTEST THE SCORE</div>
+        <div class="step-body">with at most 10 targeted web checks aimed at the weakest facts: cancellation/suspension news, financing/PPA announcements, developer project page, county news. Use `search.py &quot;&lt;query&gt;&quot;` (never scrape search engines; the PUCT portal and SEC are blocked — puct.py/spv.py are the doors). An empty result is negative evidence: record it, move on.</div>
+      </div>
+
+      <div class="step-card triage">
+        <div class="step-marker">T4</div>
+        <div class="step-label">VERDICT:</div>
+        <div class="step-body">`paper_dismissed` | `deep_candidate` | `ambiguous`, consistent with the gate unless you adjust the score. You may adjust ±15 points MAX and ONLY with a cited source (URL + one-line quote/paraphrase in `score_adjustment.citation`).</div>
+      </div>
+
+      <div class="step-card triage">
+        <div class="step-marker">T5</div>
+        <div class="step-label">WRITE</div>
+        <div class="step-body">`triage_findings.json` (all prior schema fields PLUS `score_adjustment {delta, citation}`) and `triage.md` (≤40 lines: verdict, the factors you confirmed/contested, citations). Files on disk are all that survives.</div>
+      </div></div>
+
+  <h2>3. Deep scan (D0&ndash;D5)</h2>
+  <div class="sub">Verbatim from <code>research/PLAYBOOK.md</code> &sect; Deep scan v2, parsed at build time.</div>
+  <div class="step-grid">
+      <div class="step-card deep">
+        <div class="step-marker">D0</div>
+        <div class="step-label">CHECKPOINT ZERO:</div>
+        <div class="step-body">write findings.json skeleton (every schema key, null values) BEFORE any research. Read factsheet.json/md + triage_findings.json + inventory sources/ — IA PDFs are usually already there (verified_* naming; never cite unverified_* without eyeballing the parties page).</div>
+      </div>
+
+      <div class="step-card deep">
+        <div class="step-marker">D1</div>
+        <div class="step-label">IA SCHEDULE:</div>
+        <div class="step-body">extract the milestone-schedule exhibit from each IA document on disk (In-Service / Trial Op / COD dates, financial security) → contractual_schedule (one row per document — amendments change amounts). If no IA on disk, run the systematic ladder (below) once — do not loop.</div>
+      </div>
+
+      <div class="step-card deep">
+        <div class="step-marker">D2</div>
+        <div class="step-label">SITE + IMAGERY:</div>
+        <div class="step-body">fix coordinates (factsheet EIA coords are a candidate, not truth); cdse.py chips, ≤6 image reads total; save boundary-map pages → site.map_artifacts.</div>
+      </div>
+
+      <div class="step-card deep">
+        <div class="step-marker">D3</div>
+        <div class="step-label">GAP-FILL:</div>
+        <div class="step-body">county records/news for what the factsheet couldn&#x27;t answer — local tools first (spv.py, ch313/faa/tceq, search.py), web last.</div>
+      </div>
+
+      <div class="step-card deep">
+        <div class="step-marker">D4</div>
+        <div class="step-label">NARRATIVE:</div>
+        <div class="step-body">independent COD + drift verdict + confidence; write dossier.md.</div>
+      </div>
+
+      <div class="step-card deep">
+        <div class="step-marker">D5</div>
+        <div class="step-label">DETERMINISTIC WRAP-UP</div>
+        <div class="step-body">(in order): queue_history.py &lt;INR&gt; → eia_history.py &lt;INR&gt; --write → build_brief.py &lt;dir&gt; → build_index.py. Then a final findings.json pass.</div>
+      </div></div>
+
+  <h2>4. Before / after</h2>
+  
+    <table class="before-after">
+      <thead><tr><th>Metric</th><th>v1 measured (N=943 runs)</th><th>v2 pilot</th></tr></thead>
+      <tbody><tr><td class="metric">Triage &mdash; mean cost / run</td><td class="v1val">$0.95</td><td class="v2val pending">pilot in progress</td></tr>
+<tr><td class="metric">Triage &mdash; median turns / run</td><td class="v1val">42</td><td class="v2val pending">pilot in progress</td></tr>
+<tr><td class="metric">Triage &mdash; success rate</td><td class="v1val">761/779 (97.7%)</td><td class="v2val pending">pilot in progress</td></tr>
+<tr><td class="metric">Deep &mdash; mean cost / run</td><td class="v1val">$4.26</td><td class="v2val pending">pilot in progress</td></tr>
+<tr><td class="metric">Deep &mdash; median turns / run</td><td class="v1val">121</td><td class="v2val pending">pilot in progress</td></tr>
+<tr><td class="metric">Deep &mdash; success rate</td><td class="v1val">107/164 (65.2%)</td><td class="v2val pending">pilot in progress</td></tr>
+<tr><td class="metric">Web-research share of all tool calls</td><td class="v1val">51.3%</td><td class="v2val pending">pilot in progress</td></tr>
+<tr><td class="metric">PUCT portal WebFetch fail rate</td><td class="v1val">3,010/3,011 (100%)</td><td class="v2val pending">pilot in progress</td></tr>
+<tr><td class="metric">Search-engine HTML scraping share of all calls</td><td class="v1val">12.5%</td><td class="v2val pending">pilot in progress</td></tr>
+<tr><td class="metric">Non-success runs (of 943)</td><td class="v1val">75 (33 budget-kill / 28 max-turns / 14 hard-kill)</td><td class="v2val pending">pilot in progress</td></tr>
+<tr><td class="metric">Runs that lost ALL work (no findings/dossier/triage output)</td><td class="v1val">39/75</td><td class="v2val pending">pilot in progress</td></tr></tbody>
+    </table>
+    
+    <p class="muted pending-note">Pilot report not found yet
+      (<code>docs/analysis/*-pilot.md</code>). A 3-project pilot (1 ambiguous triage +
+      2 deep, incl. the Hanson regression) may be running concurrently with this build.
+      Re-run <code>uv run gis-research/scripts/build_process_report.py</code> after it
+      lands to populate the v2 column above.</p>
+
+  <h2>5. Where v1 agents failed</h2>
+  <div class="fail-grid">
+      <div class="fail-card">
+        <div class="fail-head">
+          <h3>Dead-domain retry storms</h3>
+          <span class="badge">ADDRESSED</span>
+        </div>
+        <div class="fail-measured">3,011 WebFetch calls to the PUCT Interchange portal, 3,010 of them (100.0%) HTTP 402 &mdash; plus SEC EDGAR failing 100.0% across 1,196 calls. Worst single-run loop: 26 consecutive curls, run <code>27INR0536</code>.</div>
+        <details class="fail-example">
+          <summary>Real example: <code>27INR0536</code>
+            (deep, terminal state <code>max_turns</code>)</summary>
+          <div class="fail-narrative">Bash:curl:interchange.puc.texas.gov &gt; Bash:curl:interchange.puc.texas.gov &gt; Bash:curl:interchange.puc.texas.gov &gt; Bash:curl:interchange.puc.texas.gov &gt; Bash:curl:interchange.puc.texas.gov &gt; Bash:curl:interchange.puc.texas.gov &gt; Bash:curl:interchange.puc.texas.gov &gt; Bash:curl:interchange.puc.texas.gov &gt; Bash:curl:interchange.puc.texas.gov &gt; Bash:curl:interchange.puc.texas.gov</div>
+        </details>
+        <div class="fail-fix"><b>v2 fix:</b> <code>puct.py match</code> / <code>spv.py resolve</code> replace raw WebFetch/curl with the local docket index + on-disk IA PDFs; a domain blocklist blocks direct agent fetches to <code>interchange.puc.texas.gov</code> and <code>efts.sec.gov</code> outright (PLAYBOOK Stage 2 systematic ladder).</div>
+      </div>
+
+      <div class="fail-card">
+        <div class="fail-head">
+          <h3>Budget-kill work loss</h3>
+          <span class="badge">ADDRESSED</span>
+        </div>
+        <div class="fail-measured">33 token-budget kills (30 deep / 3 triage), 23 of them wrote no <code>findings.json</code>/<code>dossier.md</code> at all. Median wall-clock to death: 12.4 min vs 5.2 min for a successful run.</div>
+        <details class="fail-example">
+          <summary>Real example: <code>25INR0591</code>
+            (deep, terminal state <code>budget_kill</code>)</summary>
+          <div class="fail-narrative">Write:log.md &gt; Bash:cat &gt; Edit:log.md &gt; Bash:curl:zeusred.com &gt; Bash:gmaps.py:places &gt; Bash:gmaps.py:places &gt; Agent:Agent &gt; ToolSearch:ToolSearch &gt; WebFetch:interchange.puc.texas.gov/searc &gt; WebFetch:interchange.puc.texas.gov/searc</div>
+        </details>
+        <div class="fail-fix"><b>v2 fix:</b> Checkpointed deep stages: D0 writes the full <code>findings.json</code> skeleton BEFORE any research begins, and each stage (D1&ndash;D5) ends with a checkpoint write &mdash; a budget-kill now loses at most one stage's work, never all of it.</div>
+      </div>
+
+      <div class="fail-card">
+        <div class="fail-head">
+          <h3>Max-turns exhaustion</h3>
+          <span class="badge">ADDRESSED</span>
+        </div>
+        <div class="fail-measured">28 runs (22 deep / 6 triage) hit the SDK turn cap. Last 10 tool calls of these runs: 18 stage0_queue, 66 other, 37 wrapup, 52 imagery, 107 web_research &mdash; still researching or re-running wrap-up scripts, not finishing.</div>
+        <details class="fail-example">
+          <summary>Real example: <code>25INR0052</code>
+            (deep, terminal state <code>max_turns</code>)</summary>
+          <div class="fail-narrative">Bash:cat &gt; Write:dossier.md &gt; Write:findings.json &gt; Bash:queue_history.py &gt; Bash:build_brief.py &gt; Bash:python3 &gt; Bash:build_brief.py &gt; Edit:findings.json &gt; Bash:build_brief.py &gt; Bash:build_brief.py</div>
+        </details>
+        <div class="fail-fix"><b>v2 fix:</b> Deterministic wrap-up (D5: <code>queue_history.py</code> &rarr; <code>eia_history.py</code> &rarr; <code>build_brief.py</code> &rarr; <code>build_index.py</code>) runs ONCE, not as an agent-driven retry loop; per-stage turn budgets stop research from eating the turns wrap-up needs.</div>
+      </div>
+
+      <div class="fail-card">
+        <div class="fail-head">
+          <h3>Search-engine HTML scraping</h3>
+          <span class="badge">ADDRESSED</span>
+        </div>
+        <div class="fail-measured">7,260 WebFetch calls to html.duckduckgo.com / www.bing.com / search.yahoo.com search-result pages (28.0% of all WebFetch, 12.5% of all 57,865 tool calls) &mdash; done in place of a search tool.</div>
+        <details class="fail-example">
+          <summary>Real example: <code>22INR0203</code>
+            (triage, terminal state <code>hung_hardkilled</code>)</summary>
+          <div class="fail-narrative">WebFetch:comptroller.texas.gov/economy/d &gt; WebFetch:comptroller.texas.gov/economy/d &gt; Edit:log.md &gt; WebFetch:www.bing.com/search &gt; WebFetch:www.bing.com/search &gt; WebFetch:www.bing.com/search &gt; WebFetch:www.bing.com/search &gt; Edit:log.md &gt; Write:triage_findings.json &gt; Write:triage.md</div>
+        </details>
+        <div class="fail-fix"><b>v2 fix:</b> <code>search.py "&lt;query&gt;"</code> is the one search entrypoint (AgentCore Gateway &rarr; OAuth bridge &rarr; DDG HTML ladder, 7-day cache, banned queue-tracker domains suppressed at the tool layer) &mdash; agents are blocked from scraping search engines directly.</div>
+      </div></div>
+
+  <h2>6. Corpus stats</h2>
+  
+    <ul class="corpus-stats">
+      <li><b>943</b> runs mined (779 triage + 164 deep) &mdash; <b>57,865</b> tool calls</li>
+      <li><b>25,892</b> WebFetch calls (13,371 deep / 12,521 triage)</li>
+      <li>363 stuck-loop episodes across 209 runs</li>
+      <li>v1 total spend &asymp; <b>$1,393</b>
+        (deep $660, triage $732)</li>
+      <li>Current corpus: <b>779</b> factsheets &rarr;
+        <b>447</b> deep_candidate / <b>26</b> paper_kill /
+        <b>316</b> triage-v2 recheck</li>
+      <li>Deep queue not yet scanned: <b>334</b> projects,
+        49,381 MW &mdash; est. spend to clear
+        <b>$1,549.76</b> (334 &times; $4.64/scan)</li>
+      <li>Triage-v2 recheck queue: <b>316</b> projects &mdash;
+        est. spend <b>$110.60</b>
+        (316 &times; $0.35/project)</li>
+    </ul>
+
+  <div class="footnote" style="margin-top:28px;">
+    Generated by <code>gis-research/scripts/build_process_report.py</code> from committed data;
+    re-run to refresh (idempotent overwrite of <code>output/process_v2.html</code>).
+  </div>
+</body>
+</html>
