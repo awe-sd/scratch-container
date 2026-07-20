@@ -182,6 +182,7 @@ def validate(stream_path: Path, mode: str, proj_dir: Path) -> dict:
     turns = 0
     image_reads = 0
     tool_counts: dict[str, int] = {}
+    seen_msg_ids: set[str] = set()
     for line in stream_path.read_text().splitlines():
         try:
             ev = json.loads(line)
@@ -189,7 +190,17 @@ def validate(stream_path: Path, mode: str, proj_dir: Path) -> dict:
             continue
         if ev.get("type") != "assistant":
             continue
-        turns += 1
+        # The CLI streams one JSONL line PER CONTENT BLOCK (thinking/text/tool_use), all
+        # sharing one message.id and the SAME cumulative usage snapshot for that logical
+        # turn — count each distinct message.id once, or turns/fresh_tokens balloon by the
+        # blocks-per-turn factor (pilot 2026-07-20 evidence: a single ~32k-token turn with
+        # 4 content blocks was counted as 128k). tool_counts/image_reads are unaffected
+        # (each tool_use block appears on exactly one line) so they still iterate every line.
+        msg_id = ev.get("message", {}).get("id")
+        if not msg_id or msg_id not in seen_msg_ids:
+            if msg_id:
+                seen_msg_ids.add(msg_id)
+            turns += 1
         for b in ev.get("message", {}).get("content", []):
             if b.get("type") == "tool_use":
                 tool_counts[b["name"]] = tool_counts.get(b["name"], 0) + 1
@@ -331,8 +342,15 @@ def main() -> None:
 
     # Stream-parse as the agent runs: accumulate fresh tokens (input + cache_creation +
     # output; cache reads excluded), publish to the hook, hard-kill at budget + grace.
+    # NOTE: the CLI streams one JSONL line PER CONTENT BLOCK of a turn (thinking/text/
+    # tool_use), all sharing one message.id and the same cumulative usage snapshot — sum
+    # each distinct message.id's usage ONCE, or a single turn's real spend gets multiplied
+    # by however many content blocks it had (pilot 2026-07-20: a real ~32k-token/$0.12 turn
+    # was counted as 128k+ and falsely killed the run). Every line is still logged/scanned
+    # below; only the usage-sum is deduplicated.
     spent = 0
     budget_killed = False
+    seen_msg_ids: set[str] = set()
     proc = subprocess.Popen(cmd, cwd=ROOT, env=env, stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT, text=True)
     with stream_path.open("w") as log:
@@ -344,6 +362,11 @@ def main() -> None:
                 continue
             if ev.get("type") != "assistant":
                 continue
+            msg_id = ev.get("message", {}).get("id")
+            if msg_id and msg_id in seen_msg_ids:
+                continue  # same logical turn as an earlier content-block line — already summed
+            if msg_id:
+                seen_msg_ids.add(msg_id)
             u = ev.get("message", {}).get("usage") or {}
             spent += (u.get("input_tokens", 0) + u.get("cache_creation_input_tokens", 0)
                       + u.get("output_tokens", 0))
