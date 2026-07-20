@@ -540,6 +540,24 @@
   "land_tenure": null
  },
  {
+  "inr": "23INR0070",
+  "project": "Chillingham Solar",
+  "dir": "23INR0070_chillingham-solar",
+  "researched_at": null,
+  "verdict": null,
+  "construction": null,
+  "first_activity_seen": null,
+  "site_lat": 31.006,
+  "site_lon": -97.262,
+  "site_confidence": "low",
+  "cod_reported": "2026-08-31",
+  "cod_independent": null,
+  "drift_risk": "high",
+  "queue_cod_changes": 15,
+  "owner_chain": "",
+  "land_tenure": null
+ },
+ {
   "inr": "23INR0086",
   "project": "Hanson Solar",
   "dir": "23INR0086_hanson-solar",

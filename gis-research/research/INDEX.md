@@ -1,6 +1,6 @@
 # Research index
 
-131 project(s) researched. Programmatic search: `research/index.json`.
+132 project(s) researched. Programmatic search: `research/index.json`.
 
 | INR | Project | Verdict | Constr. | COD rep→ind | Drift | Queue COD Δ | Brief |
 |---|---|---|---|---|---|---|---|
@@ -34,6 +34,7 @@
 | 23INR0056 | Caliche Mound Solar | None | None | None → None | None | 5 | [brief](23INR0056_caliche-mound-solar/brief.html) |
 | 23INR0057 | Duffy Solar | None | None | None → None | high | 3 | [brief](23INR0057_duffy-solar/brief.html) |
 | 23INR0059 | Briggs Solar | None | None | None → None | medium | 3 | [brief](23INR0059_briggs-solar/brief.html) |
+| 23INR0070 | Chillingham Solar | None | None | 2026-08-31 → None | high | 15 | [brief](23INR0070_chillingham-solar/brief.html) |
 | 23INR0086 | Hanson Solar | real_active | racking | 2027-04-17 → 2027-Q2 | medium | 3 | [brief](23INR0086_hanson-solar/brief.html) |
 | 23INR0140 | Seine BESS | real_early | no_imagery | None → None | high | 3 | [brief](23INR0140_seine-bess/brief.html) |
 | 23INR0171 | Goodalta Solar | real_early | no_activity | 2027-09-20 → 2029-Q2 or later | high | 5 | [brief](23INR0171_goodalta-solar/brief.html) |
