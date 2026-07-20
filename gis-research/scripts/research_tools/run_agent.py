@@ -40,8 +40,10 @@ MAX_FULLSIZE_IMAGE_READS = {"triage": 4, "deep": 6}  # contact sheet counts as 1
 # Fresh-token budget (input + cache_creation + output; cache READS excluded — they are the
 # cheap re-reads). Graceful enforcement via budget_hook.py: warn the agent at 80%, order
 # wrap-up at 100%, hard-kill at budget + GRACE_TOKENS. None = uncapped.
-# cold-start cache write is ~60k+; the cap stops runaway work, not boot cost — pilot 2026-07-20 evidence
-TOKEN_BUDGET = {"triage": 80_000, "deep": 400_000}
+# cold-start cache-write is ~63k; the cap stops runaway work, not boot cost — pilot 2026-07-20
+# evidence (40k and 80k both died to legitimate T1-T3 work on an ambiguous project before a
+# verdict was written). Cost stays ~$0.40/run either way since cap != spend.
+TOKEN_BUDGET = {"triage": 120_000, "deep": 400_000}
 GRACE_TOKENS = 10_000
 # v2 triage_findings.json verdict enum (TRIAGE_CHECKLIST.md T4); validate() also accepts
 # the v1 `deep_scan_recommended` bool for back-compat with the 774 pre-v2 triage files.
@@ -110,7 +112,7 @@ Satellite/maps tools load creds from ~/.config/gis-research.env themselves; run 
 {fuel_notes}"""
 
 TRIAGE_PROMPT = """You are running a TRIAGE pass on one ERCOT interconnection-queue project. \
-This is a budgeted first look, NOT deep research. Follow research/TRIAGE_CHECKLIST.md \
+This is a budgeted first look, NOT deep research. Follow {checklist_path} \
 (T1–T5). The factsheet is your starting state — contest it, don't rebuild it. Verdict enum: \
 paper_dismissed | deep_candidate | ambiguous. The runner enforces a hard token budget: you \
 get a warning at 80%, a wrap-up order at 100%, and ~10k grace tokens after that before the \
@@ -130,11 +132,11 @@ project and decide: is it real or paper, and what is a defensible independent CO
 
 {packet}
 
-Follow gis-research/research/PLAYBOOK.md EXACTLY — stages D0–D5 in order, all hard rules \
+Follow {playbook_path} EXACTLY — stages D0–D5 in order, all hard rules \
 (banned sources, artifacts-or-didn't-happen, write-as-you-go, log negative evidence, no county \
 centroids, search-tight-present-wide, ≤6 full-size frame reads). The dossier must follow \
-gis-research/research/DOSSIER_TEMPLATE.md exactly; reference example \
-gis-research/research/23INR0086_hanson-solar/dossier.md.
+{dossier_template_path} exactly; reference example \
+{hanson_example_path}.
 
 Stage D0 writes the findings.json skeleton FIRST; every stage ends by updating findings.json \
 — a checkpoint hook will interrupt you if you drift past 25 tool calls without persisting.
@@ -248,13 +250,21 @@ def main() -> None:
             (proj_dir / sub).mkdir(parents=True, exist_ok=True)
 
     packet = PACKET.format(**pkt)
+    # Absolute paths (not relative-looking ones) — a relative path here caused the agent to
+    # guess the wrong repo root and burn ~10 Glob/find tool calls hunting for the file before
+    # every deep run (pilot 2026-07-20 evidence, both deep pilots identically).
+    checklist_path = (BASE / "research" / "TRIAGE_CHECKLIST.md").resolve()
+    playbook_path = (BASE / "research" / "PLAYBOOK.md").resolve()
+    dossier_template_path = (BASE / "research" / "DOSSIER_TEMPLATE.md").resolve()
+    hanson_example_path = (BASE / "research" / "23INR0086_hanson-solar" / "dossier.md").resolve()
     if a.mode == "triage":
         factsheet_path = proj_dir / "factsheet.md"
         if factsheet_path.exists():
             packet += ("\n\n== FACTSHEET (deterministic, trust but verify) ==\n"
                        + factsheet_path.read_text())
-        checklist = (BASE / "research" / "TRIAGE_CHECKLIST.md").read_text()
-        prompt = TRIAGE_PROMPT.format(packet=packet, checklist=checklist)
+        checklist = checklist_path.read_text()
+        prompt = TRIAGE_PROMPT.format(packet=packet, checklist=checklist,
+                                       checklist_path=checklist_path)
     else:
         wrap_at = int(max_turns * 0.8)
         turn_line = (f"- TURNS: ~{max_turns} turn hard cap; at ~{wrap_at} turns, STOP "
@@ -270,7 +280,10 @@ def main() -> None:
                 "and a partial dossier beats a truncated one.")
         else:
             budget_line = (f"Budget: {turn_line[2:]} A partial dossier beats a truncated one.")
-        prompt = DEEP_PROMPT.format(packet=packet, budget_line=budget_line)
+        prompt = DEEP_PROMPT.format(packet=packet, budget_line=budget_line,
+                                     playbook_path=playbook_path,
+                                     dossier_template_path=dossier_template_path,
+                                     hanson_example_path=hanson_example_path)
 
     if a.dry_run:
         print(prompt)
