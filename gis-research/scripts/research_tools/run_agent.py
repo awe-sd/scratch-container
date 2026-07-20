@@ -40,7 +40,8 @@ MAX_FULLSIZE_IMAGE_READS = {"triage": 4, "deep": 6}  # contact sheet counts as 1
 # Fresh-token budget (input + cache_creation + output; cache READS excluded — they are the
 # cheap re-reads). Graceful enforcement via budget_hook.py: warn the agent at 80%, order
 # wrap-up at 100%, hard-kill at budget + GRACE_TOKENS. None = uncapped.
-TOKEN_BUDGET = {"triage": 40_000, "deep": 400_000}
+# cold-start cache write is ~60k+; the cap stops runaway work, not boot cost — pilot 2026-07-20 evidence
+TOKEN_BUDGET = {"triage": 80_000, "deep": 400_000}
 GRACE_TOKENS = 10_000
 # v2 triage_findings.json verdict enum (TRIAGE_CHECKLIST.md T4); validate() also accepts
 # the v1 `deep_scan_recommended` bool for back-compat with the 774 pre-v2 triage files.
