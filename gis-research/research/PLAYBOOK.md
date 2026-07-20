@@ -43,6 +43,12 @@ D1 IA SCHEDULE: extract the milestone-schedule exhibit from each IA document on 
    (In-Service / Trial Op / COD dates, financial security) → contractual_schedule
    (one row per document — amendments change amounts). If no IA on disk, run the
    systematic ladder (below) once — do not loop.
+   MANDATORY: `uv run gis-research/scripts/research_tools/exhibit.py scan <proj_dir>`
+   — every agreement PDF's map/exhibit pages get rendered (`exhibit.py render <pdf>
+   -p N,M`) and READ before you form any site hypothesis. Attachment C-3 / Exhibit B
+   style maps carry the site with road names; guessing a location while such a map
+   sits in sources/ is an automatic quality failure. Record rendered pages in
+   `site.map_artifacts`.
 D2 SITE + IMAGERY: fix coordinates (factsheet EIA coords are a candidate, not truth);
    cdse.py chips, ≤6 image reads total; save boundary-map pages → site.map_artifacts.
 D3 GAP-FILL: county records/news for what the factsheet couldn't answer — local tools
