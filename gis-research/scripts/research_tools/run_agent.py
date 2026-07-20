@@ -277,9 +277,12 @@ def main() -> None:
         (proj_dir / stale).unlink(missing_ok=True)
     state_f.write_text(json.dumps({"spent": 0, "budget": budget}))
     hook_py = Path(__file__).with_name("budget_hook.py")
+    blocklist_py = Path(__file__).with_name("blocklist_hook.py")
     settings_f = proj_dir / ".budget_settings.json"
     settings_f.write_text(json.dumps({"hooks": {"PostToolUse": [{"matcher": "*", "hooks": [
-        {"type": "command", "command": f"python3 {hook_py} {proj_dir}"}]}]}}))
+        {"type": "command", "command": f"python3 {hook_py} {proj_dir}"}]}],
+        "PreToolUse": [{"matcher": "WebFetch|Bash", "hooks": [
+            {"type": "command", "command": f"python3 {blocklist_py}"}]}]}}))
     cmd += ["--settings", str(settings_f)]
 
     print(f"mode:        {a.mode}")
