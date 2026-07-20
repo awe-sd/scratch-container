@@ -32,3 +32,37 @@ def test_budget_logic_unbroken_without_stdin(tmp_path):
     r = subprocess.run([sys.executable, str(HOOK), str(tmp_path)],
                        input="", capture_output=True, text=True)
     assert r.returncode == 2 and "BUDGET WARNING" in r.stderr
+
+
+def test_budget_exhaust_fires_once(tmp_path):
+    (tmp_path / ".budget_state.json").write_text(json.dumps({"spent": 120, "budget": 100}))
+    r1 = subprocess.run([sys.executable, str(HOOK), str(tmp_path)],
+                        input="", capture_output=True, text=True)
+    assert r1.returncode == 2 and "BUDGET EXHAUSTED" in r1.stderr
+    r2 = subprocess.run([sys.executable, str(HOOK), str(tmp_path)],
+                        input="", capture_output=True, text=True)
+    assert r2.returncode == 0
+
+
+def test_budget_warn_fires_once(tmp_path):
+    (tmp_path / ".budget_state.json").write_text(json.dumps({"spent": 90, "budget": 100}))
+    r1 = subprocess.run([sys.executable, str(HOOK), str(tmp_path)],
+                        input="", capture_output=True, text=True)
+    assert r1.returncode == 2 and "BUDGET WARNING" in r1.stderr
+    r2 = subprocess.run([sys.executable, str(HOOK), str(tmp_path)],
+                        input="", capture_output=True, text=True)
+    assert r2.returncode == 0
+
+
+def test_corrupted_budget_state_falls_through_to_watchdog(tmp_path):
+    (tmp_path / ".budget_state.json").write_text("not json")
+    fetch = {"tool_name": "WebFetch", "tool_input": {"url": "https://x.example"}}
+    seen_stderr = []
+    for _ in range(25):
+        r = run_hook(tmp_path, fetch)
+        assert r.returncode == 0
+        seen_stderr.append(r.stderr)
+    r = run_hook(tmp_path, fetch)   # 26th
+    assert r.returncode == 2 and "CHECKPOINT" in r.stderr
+    seen_stderr.append(r.stderr)
+    assert all("BUDGET" not in s for s in seen_stderr)

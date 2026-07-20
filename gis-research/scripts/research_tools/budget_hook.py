@@ -41,6 +41,8 @@ def main() -> int:
 
             if spent >= budget and not exhaust_marker.exists():
                 exhaust_marker.write_text(str(spent))
+                if not warn_marker.exists():
+                    warn_marker.write_text(str(spent))
                 budget_msg = (
                     f"BUDGET EXHAUSTED: {spent:,}/{budget:,} fresh tokens. STOP researching NOW. "
                     "Write your output files immediately with what you already have "
