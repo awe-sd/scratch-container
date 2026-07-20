@@ -219,7 +219,21 @@ def resolve(inr, gen, county_map, queue_latest, plant_id=None):
     pid, _, why = cands[0]
     if not (gen.plantId == pid).any():  # e.g. a wrong/typo'd --plant-id
         return "not_in_eia", {"inr": inr, "project": str(r.projectName)}
-    return "ok", build_record(inr, r, gen, pid, why)
+    rec = build_record(inr, r, gen, pid, why)
+    # False-positive guard (Space City 21INR0341 lesson, 2026-07-20): a county+MW
+    # fallback match to an OPERATING plant, while the queue project has never been
+    # approved for sync, is almost certainly a DIFFERENT project that happens to
+    # share county/size (e.g. Red Tailed Hawk vs Space City). Name matches and
+    # explicit --plant-id are exempt.
+    if not plant_id and why.startswith("county+prime-mover+MW"):
+        last_status = (rec.get("status_history") or [{}])[-1].get("value") or ""
+        synced = pd.notna(getattr(r, "approvedForSynchronization", None))
+        if last_status.startswith("(OP") and not synced:
+            return "ambiguous", {"inr": inr, "project": str(r.projectName),
+                                 "candidates": [(pid, rec["plant_name"], why +
+                                  " — OPERATING plant vs never-synced queue project: "
+                                  "likely a different project; confirm with --plant-id")]}
+    return "ok", rec
 
 
 def main() -> None:
