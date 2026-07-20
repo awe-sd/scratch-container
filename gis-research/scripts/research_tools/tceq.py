@@ -157,8 +157,8 @@ GEN_WORDS = ["POWER", "ENERGY", "GENERAT", "ELECTRIC", "COGEN", "TURBINE", "PEAK
 
 
 def _query(dsid: str, county: str, tokens: list[str], cols=("reg_ent_name",
-           "princ_legal_name"), limit: int = 200) -> list[dict]:
-    where = "starts_with(program_code, 'AIR')"
+           "princ_legal_name"), limit: int = 200, program: str = "AIR") -> list[dict]:
+    where = f"starts_with(program_code, '{program}')"
     if tokens:
         ors = " OR ".join(f"upper({c}) like '%{t}%'" for t in tokens for c in cols)
         where += f" AND ({ors})"
@@ -167,7 +167,8 @@ def _query(dsid: str, county: str, tokens: list[str], cols=("reg_ent_name",
     return r.json()
 
 
-def resolve(inr: str | None, county: str | None, keyword: str | None) -> int:
+def resolve(inr: str | None, county: str | None, keyword: str | None,
+            program: str = "AIR") -> int:
     if inr:
         r = _queue_row(inr)
         county = str(r.county or "").strip()
@@ -185,9 +186,9 @@ def resolve(inr: str | None, county: str | None, keyword: str | None) -> int:
     print(f"provenance: data.texas.gov {region} table {dsid}; routing via {prov}; "
           f"queried {dt.date.today()}. tokens={tokens or '(none — all AIR entities)'}")
 
-    rows = _query(dsid, county, tokens)
+    rows = _query(dsid, county, tokens, program=program)
     if not rows:
-        rows = _query(dsid, county, GEN_WORDS, cols=("reg_ent_name",))
+        rows = _query(dsid, county, GEN_WORDS, cols=("reg_ent_name",), program=program)
         print(f"  (no '{'/'.join(tokens) or '<name>'}' hit; showing generation-type "
               f"AIR facilities in {county} County — POWER/ENERGY/ELECTRIC/...)")
     if not rows:
@@ -238,13 +239,19 @@ def main() -> None:
     p.add_argument("inr", nargs="?", default=None)
     p.add_argument("--county", default=None, help="county (no INR)")
     p.add_argument("--keyword", default=None, help="name tokens to match (with --county)")
+    p.add_argument("--storm", action="store_true",
+                   help="search construction-STORMWATER NOIs instead of air permits: "
+                        "EVERY >1-acre construction site files one (names the EPC, site "
+                        "address, start date) — THE construction-started proof for solar "
+                        "(Cachena/Clear Fork lesson 2026-07-20)")
     a = ap.parse_args()
     if a.cmd == "refresh":
         refresh()
     elif a.cmd == "resolve":
         if not (a.inr or a.county):
             raise SystemExit("resolve needs an INR or --county")
-        sys.exit(resolve(a.inr, a.county, a.keyword))
+        sys.exit(resolve(a.inr, a.county, a.keyword,
+                         program="STORM" if a.storm else "AIR"))
 
 
 if __name__ == "__main__":

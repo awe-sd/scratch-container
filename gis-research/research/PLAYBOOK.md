@@ -57,6 +57,11 @@ D2 SITE + IMAGERY: fix coordinates (factsheet EIA coords are a candidate, not tr
    cdse.py chips, ≤6 image reads total; save boundary-map pages → site.map_artifacts.
 D3 GAP-FILL: county records/news for what the factsheet couldn't answer — local tools
    first (spv.py, ch313/faa/tceq, search.py), web last.
+   CONSTRUCTION-STARTED PROOF (all fuels, esp. solar): `tceq.py resolve --county <co>
+   --keyword <name> --storm` — construction-stormwater NOIs name the EPC, the site
+   address, and the coverage start date; an ACTIVE NOI = dirt moving (Cachena/Clear
+   Fork: Hanwha Q Cells EPC + '10046 US Hwy 87 E' + Aug-2025 start, where no Ch.313
+   existed). Search BOTH the queue name and the public/SPV names.
 D4 NARRATIVE: independent COD + drift verdict + confidence; write dossier.md.
 D5 DETERMINISTIC WRAP-UP (in order): queue_history.py <INR> → eia_history.py <INR>
    --write → build_brief.py <dir> → build_index.py. Then a final findings.json pass.
