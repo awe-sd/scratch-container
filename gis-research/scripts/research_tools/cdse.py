@@ -56,21 +56,61 @@ TOKEN_CACHE = Path(tempfile.gettempdir()) / ".cdse_token_cache.json"
 TOKEN_SLACK_SEC = 60  # refresh this long before expiry
 
 
-PROCESSING_LOCK = Path(tempfile.gettempdir()) / ".cdse_processing.lock"
-PROCESSING_RETRIES = (15, 45, 120)  # 503/RemoteDisconnected = account PU throttling
+PROCESSING_RETRIES = (15, 45, 120)
+# CDSE free tier (documentation.dataspace.copernicus.eu/Quotas.html, verified
+# 2026-07-20): 2 concurrent requests, 12 requests/minute, 10k PU/month. Violating the
+# first two gets the account connection-dropped (the 2026-07-20 fleet incident — at
+# 314/10,000 PU, so it was rate enforcement, not quota). The limiter below makes any
+# number of agents self-queue into compliance: 2 fleet-wide slots + a shared 12/min
+# window. Agents just call chip/timelapse; queueing is automatic.
+_SLOT_FILES = [Path(tempfile.gettempdir()) / f".cdse_slot{i}.lock" for i in (0, 1)]
+_RATE_FILE = Path(tempfile.gettempdir()) / ".cdse_rate.json"
+_MAX_PER_MIN = 10  # stay under the documented 12/min with margin
+
+
+def _acquire_slot():
+    """Block until one of the 2 fleet-wide CDSE slots is free; return (fh, unlock)."""
+    import fcntl
+    while True:
+        for sf in _SLOT_FILES:
+            sf.touch(exist_ok=True)
+            fh = sf.open("r+")
+            try:
+                fcntl.flock(fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                return fh
+            except OSError:
+                fh.close()
+        time.sleep(2)
+
+
+def _rate_gate() -> None:
+    """Shared 12/min budget (kept at 10/min): sleep until a request token frees."""
+    import fcntl
+    _RATE_FILE.touch(exist_ok=True)
+    while True:
+        with _RATE_FILE.open("r+") as fh:
+            fcntl.flock(fh, fcntl.LOCK_EX)
+            try:
+                stamps = json.loads(fh.read() or "[]")
+            except ValueError:
+                stamps = []
+            now = time.time()
+            stamps = [t for t in stamps if now - t < 60]
+            if len(stamps) < _MAX_PER_MIN:
+                stamps.append(now)
+                fh.seek(0), fh.truncate(), fh.write(json.dumps(stamps))
+                return
+            wait = 61 - (now - stamps[0])
+        time.sleep(max(wait, 1))
 
 
 def _openeo_result(graph: dict, timeout: int) -> bytes:
-    """ONE openEO processing request at a time, fleet-wide (flock held for the whole
-    request), with backoff on capacity errors. Rationale: CDSE throttles the account's
-    processing units — 8 concurrent agents each firing sync /result calls produced
-    connection drops and 45-retry death spirals (Hoyte 23INR0235, 2026-07-20).
-    Serialized, each chip takes ~15-40s and the quota is never exhausted."""
-    import fcntl
-    PROCESSING_LOCK.touch(exist_ok=True)
-    with PROCESSING_LOCK.open("r+") as slot:
-        fcntl.flock(slot, fcntl.LOCK_EX)  # queue here until the fleet slot frees
+    """openEO sync processing within CDSE free-tier limits (see above), with backoff
+    on residual capacity errors."""
+    slot = _acquire_slot()
+    try:
         for backoff in (*PROCESSING_RETRIES, None):
+            _rate_gate()
             req = urllib.request.Request(
                 f"{OPENEO_URL}/result",
                 data=json.dumps(graph).encode(),
@@ -96,6 +136,8 @@ def _openeo_result(graph: dict, timeout: int) -> bytes:
                              "NOT loop; log as negative evidence and move on.")
                 print(f"  [{e.__class__.__name__} — capacity backoff {backoff}s]", file=sys.stderr)
                 time.sleep(backoff)
+    finally:
+        slot.close()  # flock released the moment processing ends, not at process exit
     raise RuntimeError("unreachable")
 
 
@@ -145,76 +187,10 @@ def bbox(lat: float, lon: float, buffer_km: float) -> dict:
     return {"west": lon - dlon, "south": lat - dlat, "east": lon + dlon, "north": lat + dlat}
 
 
-STAC_URL = "https://earth-search.aws.element84.com/v1/search"
-
-
-def _chip_via_aws(lat: float, lon: float, day: str, out: Path,
-                  buffer_km: float, window_days: int, max_cloud: int) -> bool:
-    """Quota-free chip from the public AWS Open Data Sentinel-2 L2A COGs
-    (s3://sentinel-cogs via Earth Search STAC). No auth, no PU limits, parallel-safe
-    — the CDSE free tier (2 concurrent / 12 req/min / 10k PU/mo) cannot serve an
-    agent fleet (2026-07-20 lesson). Returns False on miss so the caller can fall
-    back to openEO."""
-    import urllib.request as _rq
-    d = Date.fromisoformat(day)
-    t0, t1 = d - timedelta(days=window_days), d + timedelta(days=window_days)
-    body = json.dumps({
-        "collections": ["sentinel-2-l2a"],
-        "intersects": {"type": "Point", "coordinates": [lon, lat]},
-        "datetime": f"{t0}T00:00:00Z/{t1}T23:59:59Z",
-        "query": {"eo:cloud_cover": {"lt": max_cloud}},
-        "sort": [{"field": "properties.eo:cloud_cover", "direction": "asc"}],
-        "limit": 4}).encode()
-    try:
-        req = _rq.Request(STAC_URL, data=body, headers={"Content-Type": "application/json"})
-        with _rq.urlopen(req, timeout=45) as r:
-            items = json.loads(r.read()).get("features", [])
-    except Exception as e:
-        print(f"  [earth-search failed: {e.__class__.__name__} — openEO fallback]",
-              file=sys.stderr)
-        return False
-    if not items:
-        print(f"  [no AWS scene ≤{max_cloud}% cloud in {t0}..{t1} — openEO fallback]",
-              file=sys.stderr)
-        return False
-    item = items[0]
-    import numpy as np
-    import rasterio
-    from rasterio.warp import transform as rio_transform
-    from rasterio.windows import from_bounds
-    half = buffer_km * 1000.0
-    layers = []
-    try:
-        for band in ("red", "green", "blue"):
-            href = item["assets"][band]["href"]
-            with rasterio.open(href) as ds:
-                (x,), (y,) = rio_transform("EPSG:4326", ds.crs, [lon], [lat])
-                win = from_bounds(x - half, y - half, x + half, y + half, ds.transform)
-                px = min(int(win.width), 1400)
-                layers.append(ds.read(1, window=win, out_shape=(px, px),
-                                      boundless=True, fill_value=0))
-    except Exception as e:
-        print(f"  [COG read failed: {e.__class__.__name__} — openEO fallback]",
-              file=sys.stderr)
-        return False
-    rgb = np.stack(layers, axis=-1).astype("float32")
-    img = np.clip(rgb / 2500.0 * 255.0, 0, 255).astype("uint8")
-    from PIL import Image
-    out.parent.mkdir(parents=True, exist_ok=True)
-    Image.fromarray(img).save(out)
-    scene = item["id"]
-    dt = item["properties"]["datetime"][:10]
-    cc = round(item["properties"]["eo:cloud_cover"], 1)
-    print(f"wrote {out} ({out.stat().st_size/1024:.0f} KB) — AWS COG scene {scene} "
-          f"{dt} (cloud {cc}%), {buffer_km} km buffer  [single best scene, not a "
-          f"median composite]")
-    return True
-
-
 def chip(lat: float, lon: float, day: str, out: Path,
          buffer_km: float, window_days: int, max_cloud: int) -> None:
-    if _chip_via_aws(lat, lon, day, out, buffer_km, window_days, max_cloud):
-        return
+    # NOTE: for plain chips prefer `s2aws.py chip` (quota-free AWS Open Data);
+    # cdse.py = median composites/timelapse via openEO, rate-limited to free tier.
     d = Date.fromisoformat(day)
     t0, t1 = d - timedelta(days=window_days), d + timedelta(days=window_days)
     graph = {

@@ -54,7 +54,12 @@ D1 IA SCHEDULE: extract the milestone-schedule exhibit from each IA document on 
    writes an .md index — read the index, then only the tiles you need (~4x fewer
    tokens).
 D2 SITE + IMAGERY: fix coordinates (factsheet EIA coords are a candidate, not truth);
-   cdse.py chips, ≤6 image reads total; save boundary-map pages → site.map_artifacts.
+   ≤6 image reads total; save boundary-map pages → site.map_artifacts.
+   CHIPS: `s2aws.py chip` is PRIMARY (AWS Open Data COGs — no quota, parallel-safe,
+   single best scene, provenance line names the scene). `cdse.py chip/timelapse` only
+   when you need MEDIAN COMPOSITES or a GIF — it self-queues to CDSE's free-tier
+   limits (2 fleet slots, 10/min) and may block; a "CDSE CAPACITY" exit is negative
+   evidence, never retry-loop it.
 D3 GAP-FILL: county records/news for what the factsheet couldn't answer — local tools
    first (spv.py, ch313/faa/tceq, search.py), web last.
    CONSTRUCTION-STARTED PROOF (all fuels, esp. solar): `tceq.py resolve --county <co>
