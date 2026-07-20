@@ -202,14 +202,20 @@ def _registry_hits(tool: str, project: str, county: str | None, ctx: dict) -> li
 # ---- build ------------------------------------------------------------------
 
 def build(inr: str, ctx: dict) -> dict:
-    """Assemble the factsheet payload for one INR from preloaded ctx (see load_ctx)."""
+    """Assemble the factsheet payload for one INR from preloaded ctx (see load_ctx).
+    Operates on the LATEST queue snapshot only — a project absent from it (delisted/
+    cancelled) gets no factsheet; a stale historical row would feed a wrong COD/status
+    into score/gate and leak a non-enum 'not_in_queue' into eia.status."""
     hist = ctx["hist"]
     proj_hist = hist[hist.INR == inr].sort_values("fileDate")
     if proj_hist.empty:
         raise SystemExit(f"INR {inr!r} not found in the queue parquet")
 
     latest_rows = ctx["queue_latest"][ctx["queue_latest"].INR == inr]
-    r = latest_rows.iloc[0] if not latest_rows.empty else proj_hist.iloc[-1]
+    if latest_rows.empty:
+        raise SystemExit(f"{inr} not in latest queue snapshot — project delisted/cancelled; "
+                          "no factsheet")
+    r = latest_rows.iloc[0]
 
     def _d(col):
         v = r.get(col) if col in r else None
@@ -411,6 +417,8 @@ def _print_report(res: dict) -> None:
 
 
 def run_all(ctx: dict, limit: int | None) -> None:
+    # inrs is drawn straight from queue_latest, so build()'s "not in latest snapshot"
+    # SystemExit can never fire here — every INR iterated is by construction present.
     inrs = sorted(ctx["queue_latest"].INR.unique())
     n_built = n_skip = n_kill = n_deep = n_amb = 0
     for inr in inrs:
