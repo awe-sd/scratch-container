@@ -151,6 +151,10 @@ Code (`claude -p`) on **Bedrock**. Full running-system spec:
 `WebSearch` is **dead on Bedrock** (server-side tool, no Bedrock backend) — agents use
 `search.py`, never raw search-engine scraping (log forensics: 7,260 wasted scrapes).
 
+**RE-RUN POLICY (user, 2026-07-20): every user-ordered re-run/refresh gets
+`--token-budget 1000000`** and a `sources/REFRESH_DIRECTIVE.md` with pre-computed
+systematic leads (spv/ch313/eia/storm/rung-0) before launch.
+
 **PIPELINE V2 (spec approved 2026-07-19)**: `docs/superpowers/specs/2026-07-19-pipeline-v2-design.md`
 — factsheet.py deterministic pre-stage, INVERTED gating (triage kills paper; deep = precision
 on real projects, ranked MW × COD-nearness), checkpointed deep stages, domain blocklist.
