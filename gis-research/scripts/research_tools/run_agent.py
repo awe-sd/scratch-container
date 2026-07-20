@@ -34,7 +34,7 @@ ROOT = BASE.parent                          # repo/worktree root (agent cwd)
 TRIAGE_MODEL = "us.anthropic.claude-sonnet-4-6"
 DEEP_MODEL = "us.anthropic.claude-sonnet-4-6"  # Opus available via --model us.anthropic.claude-opus-4-7
 SMALL_MODEL = "us.anthropic.claude-sonnet-4-6"
-TRIAGE_MAX_TURNS = 60  # checklist goal is ~35 agent turns; API turn count runs ~1.5x that
+TRIAGE_MAX_TURNS = 60  # v2 checklist goal is ~15 agent turns; cap left unchanged as headroom
 DEEP_MAX_TURNS = 120
 MAX_FULLSIZE_IMAGE_READS = {"triage": 4, "deep": 6}  # contact sheet counts as 1 in triage
 # Fresh-token budget (input + cache_creation + output; cache READS excluded — they are the
@@ -42,6 +42,9 @@ MAX_FULLSIZE_IMAGE_READS = {"triage": 4, "deep": 6}  # contact sheet counts as 1
 # wrap-up at 100%, hard-kill at budget + GRACE_TOKENS. None = uncapped.
 TOKEN_BUDGET = {"triage": 40_000, "deep": 400_000}
 GRACE_TOKENS = 10_000
+# v2 triage_findings.json verdict enum (TRIAGE_CHECKLIST.md T4); validate() also accepts
+# the v1 `deep_scan_recommended` bool for back-compat with the 774 pre-v2 triage files.
+VERDICT_ENUM = {"paper_dismissed", "deep_candidate", "ambiguous"}
 
 ALLOWED_TOOLS = "Bash,Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,TodoWrite"
 DISALLOWED_TOOLS = (
@@ -200,9 +203,15 @@ def validate(stream_path: Path, mode: str, proj_dir: Path) -> dict:
         else:
             try:
                 d = json.loads(tf.read_text())
-                missing = [k for k in ("signals", "deep_scan_recommended", "cod_first_look") if k not in d]
-                if missing:
-                    violations.append(f"triage_findings.json missing keys: {missing}")
+                sa = d.get("score_adjustment")
+                v2_ok = d.get("verdict") in VERDICT_ENUM and (
+                    sa is None or {"delta", "citation"} <= set(sa))
+                v1_ok = isinstance(d.get("deep_scan_recommended"), bool)
+                if not (v2_ok or v1_ok):
+                    violations.append(
+                        "triage_findings.json matches neither v2 schema (verdict in "
+                        f"{sorted(VERDICT_ENUM)} + valid score_adjustment) nor v1 "
+                        "(deep_scan_recommended bool)")
             except json.JSONDecodeError:
                 violations.append("triage_findings.json invalid JSON")
     else:
@@ -233,8 +242,9 @@ def main() -> None:
 
     pkt = identity_packet(a.inr)
     proj_dir = BASE / "research" / pkt["dirname"]
-    for sub in ("sources", "imagery"):
-        (proj_dir / sub).mkdir(parents=True, exist_ok=True)
+    if not a.dry_run:
+        for sub in ("sources", "imagery"):
+            (proj_dir / sub).mkdir(parents=True, exist_ok=True)
 
     packet = PACKET.format(**pkt)
     if a.mode == "triage":

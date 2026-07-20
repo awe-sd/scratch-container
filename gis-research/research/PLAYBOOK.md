@@ -88,9 +88,11 @@ County is known. Work it hard — this is where real projects leave paper.
   iaSigned date is self-reported and often stale — never use dates as a join key.
   THE SYSTEMATIC LADDER (stop at the first rung that yields CONFIRMED/PROBABLE):
   1. `uv run gis-research/scripts/research_tools/puct.py match <INR> --dir <sources/>`
-     — local docket index, exact name keys (queue + triage spv_name/developer),
-     verification by INR-in-PDF (CONFIRMED) or county+MW-in-PDF (PROBABLE). Files it
-     can't verify get an `unverified_` prefix — never cite those without eyeballing the
+     — automatically checks the INR join table first (rung 0 — exact match, from
+     `inr_harvest.py`'s docket↔INR index) before falling back to name keys — local
+     docket index, exact name keys (queue + triage spv_name/developer), verification
+     by INR-in-PDF (CONFIRMED) or county+MW-in-PDF (PROBABLE). Files it can't verify
+     get an `unverified_` prefix — never cite those without eyeballing the
      parties/POI page yourself.
   2. SPV discovery, then re-match: FIRST `spv.py resolve <INR>` (systematic: EIA-860M
      entity/coords/status + PUCT docket-index parties — local + instant; the bulk table
