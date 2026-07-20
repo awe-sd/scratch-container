@@ -42,3 +42,4 @@ gis-research/research/**/*.ZIP
 gis-research/research/**/*.parquet
 gis-research/research/**/*.doc
 gis-research/research/**/*.tmp.*
+gis-research/data/reference/*.parquet
