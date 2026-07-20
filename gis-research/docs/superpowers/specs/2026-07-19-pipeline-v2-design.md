@@ -82,14 +82,22 @@ Reality signals recorded alongside (not scored, listed): EIA status (U)/(V),
 operating-date present, verified IA on disk, FIS approved, registry footprint,
 TPIT reference if known.
 
-**Gate:**
+**Gate (as adjudicated by sdalvi 2026-07-20 — supersedes the original draft):**
 
 ```
-paper_score ≥ 50                        → triage verdict target: paper/dismissed
-paper_score < 50 AND (reality signal    → deep-scan candidate,
-  OR claimed COD < 18mo OR MW ≥ 200)      priority = MW × COD-nearness
-otherwise                               → triage judgment (ambiguous middle)
+paper_score ≥ 50                        → paper_kill
+paper_score < 50 AND ≥1 reality signal  → deep_candidate,
+                                          priority = MW × COD-nearness
+otherwise                               → ambiguous → triage-v2 LLM decides
 ```
+
+Rationale (Task 7 evidence): the original draft's bare `COD<18mo OR MW≥200`
+triggers gated 89% of the corpus deep; v1 agent verdicts agreed with the
+reality-signal cohort 79% but with the bare-trigger cohort only 25%. The
+bare triggers survive only inside the priority number. Additionally,
+paper_kill projects whose v1 triage recommended deep (10 conflicts) are
+routed to the triage-v2 re-check list (`triage_recheck_v2.txt`) rather than
+dismissed unseen.
 
 Triage agent may adjust the score **±15 max, only with a cited source**; the
 adjustment and citation are recorded in `triage_findings.json.score_adjustment`.
