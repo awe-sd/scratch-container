@@ -1,0 +1,35 @@
+{
+  "inr": "24INR0491",
+  "project": "Gunnar BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 26.2542,
+    "lon": -98.1553,
+    "method": "POI name match: 'CLOSNER4A 138kV' -> Closner colonia, Edinburg, Hidalgo County TX (Nominatim)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE Sentinel-2 credentials expired (HTTP 401); no imagery retrieved. No construction start date reported in ERCOT queue. Zero web presence."
+  },
+  "cod_first_look": {
+    "reported": "2026-08-31",
+    "plausible": false,
+    "why": "COD drifted twice already (2024-09 -> 2025-12 -> 2026-08); no construction start/end dates in queue; zero web/news presence; 6 weeks to reported COD with no construction signal is implausible"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF retrieval from PUCT Interchange (iaSigned=2023-09-22 confirmed; portal blocked during triage) — extract parties, developer identity, and milestone schedule exhibit",
+    "Developer identity: no LLC or parent company name found anywhere; IA parties page is the highest-yield source",
+    "Imagery: CDSE credentials need refresh (HTTP 401); retry chip fetch at lat=26.2542 lon=-98.1553 with valid creds to confirm whether bare-ground prep or containers visible",
+    "COD slip risk: 3 COD values in 41 months, capacity resized twice (203->150->154.75 MW), meets-all-6.9 only Oct 2025 — project may slip again or withdraw"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,28 @@
+{
+  "inr": "26INR0453",
+  "project": "Cannibal Draw Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-04-10",
+    "plausible": true,
+    "why": "IA signed Jan 2025 + 6.9(1) met Feb 2025; ~3 year runway to Apr 2028 is tight but feasible for BESS if procurement moves quickly"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange authenticated search: FilingParty='Cannibal Draw Storage' — IA exists (signed 2025-01-17) but PDF not retrieved; extract parties, POI page, milestone schedule",
+    "Identify developer/sponsor behind the LLC — no public footprint found; TX SOS business entity search for 'Cannibal Draw Storage LLC'",
+    "Locate Sand Bluff 345 kV substation coordinates (ERCOT bus 59902) to enable imagery — check ERCOT transmission planning shapefiles or EIA-860 substation data",
+    "FIS approved and 'meets all 6.9' milestones not yet achieved — monitor for queue advancement",
+    "JETI abatement registry check for Glasscock County once developer identity confirmed"
+  ],
+  "turns_used": 28
+}

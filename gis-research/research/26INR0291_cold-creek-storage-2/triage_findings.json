@@ -1,0 +1,27 @@
+{
+  "inr": "26INR0291",
+  "project": "Cold Creek Storage 2",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-28",
+    "plausible": true,
+    "why": "IA signed Apr-2025 with 37-month runway; COD already slipped once (~17 mo); FIS not yet approved adds uncertainty but 2028 is achievable if FIS clears soon"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA found (signed 2025-04-23) but PDF not retrievable — pull from PUCT interchange with authenticated session; extract parties, POI, and milestone-schedule exhibit",
+    "FIS approval not yet logged — check ERCOT GIS for FIS status update beyond Jun-2026 snapshot",
+    "Developer identity unknown — no LLC name confirmed, no news/PR surfaced; TX SOS search for 'Cold Creek Storage 2 LLC' may resolve developer",
+    "Substation coords for Big Hill #76003 / Twin Buttes #76009 not found — resolve via ERCOT transmission map or AEP CIS data, then run imagery chip around the tap point"
+  ],
+  "turns_used": 28
+}

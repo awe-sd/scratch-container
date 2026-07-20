@@ -1,0 +1,28 @@
+{
+  "inr": "24INR0303",
+  "project": "Erika Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-06-30",
+    "plausible": true,
+    "why": "IA signed Oct-2023, all 6.9 milestones complete Oct-2025, ~20 months to COD is tight but consistent with active developer; 3-year total COD slip warrants monitoring"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT docket 35077 — fetch original IA (item 1691) and Amendment No. 2 (item 2197, ~Jul-2025): extract milestone schedule exhibit and POI map to pin site coordinates",
+    "Identify parent company / developer behind Erika Solar LLC / Kaufman Solar LLC (no public developer page found)",
+    "Verify 'Healy Switching Station' as POI alias and resolve coordinates for imagery run",
+    "Check Erika BESS (27INR0531) IA filings for shared site map or developer identity",
+    "Run imagery once site coordinates obtained from IA exhibit"
+  ],
+  "turns_used": 22
+}

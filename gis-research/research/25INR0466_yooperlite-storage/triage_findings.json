@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0466",
+  "project": "Yooperlite Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.9736,
+    "lon": -97.8596,
+    "method": "web search — developer sources cite 'near Poolville, Wise County TX'",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE 401 (no credentials); no gmaps pin; no IA with site map; town-level candidate only"
+  },
+  "cod_first_look": {
+    "reported": "2028-05-31",
+    "plausible": true,
+    "why": "FIS only approved 2025-05-19; no IA yet; 2× COD slip already; 2028 gives ~30 months from FIS which is tight but possible if IA signed in 2026"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "IA chase: PUCT Interchange was 402-blocked; retry with browser session or alternative endpoint for BT Yooperlite Storage / Belltown Power IA filing",
+    "Precise site: substation 580 Westbrook Switch coords not found; Oncor transmission map or EIA-860 substation dataset may resolve to <1 km",
+    "Developer track record: Belltown Group Limited/Belltown Power Texas 2 LLC — check other Texas BESS projects in ERCOT queue for completion history",
+    "JETI: post-2022 project; check Wise County appraisal district CAD for any exemption application under HB5/JETI once registry is searchable"
+  ],
+  "turns_used": 28
+}

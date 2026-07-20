@@ -1,0 +1,36 @@
+{
+  "inr": "22INR0437",
+  "project": "TORMES SOLAR",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.134,
+    "lon": -96.710,
+    "method": "press description: ~2 miles SE of Barry, Navarro County TX",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "STARTED — groundbreaking confirmed by press 2026-05-19; road use agreement with Navarro County 2026-02-09; imagery not obtained (CDSE 401)",
+    "evidence": "Matrix Renewables / SOLV Energy announced groundbreaking ceremony on 2026-05-19; road use agreement Feb 2026 pre-construction"
+  },
+  "cod_first_look": {
+    "reported": "2027-03-31",
+    "plausible": true,
+    "why": "IA signed Apr 2024, construction started May 2026, ~10 months to COD is tight but feasible for utility-scale solar with SOLV Energy EPC"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Retrieve PUCT IA PDF (docket search via authenticated session) — Amendment No. 1 filed 2024-12-12 may contain revised milestone schedule; original IA milestone schedule not seen",
+    "CDSE imagery: CDSE creds returning 401, fix credentials then run 3×3 grid near Barry SE (32.134,-96.710) to confirm construction extent post-groundbreaking May 2026",
+    "LLC name mismatch: identity packet guessed 'TORMES SOLAR, LLC' but legal entity is 'BDPU Solar Tormes LLC' (Matrix Renewables subsidiary) — verify with TX SOS",
+    "Confirm POI tap: '345kV 1906 Venus - 68091 Navarro' — check Oncor transmission upgrade status; NORTH zone 345kV taps can be schedule-constrained",
+    "Meets all 6.9 still open — only 6.9(1) met as of Feb 2025; find what sub-requirements remain outstanding"
+  ],
+  "turns_used": 22
+}

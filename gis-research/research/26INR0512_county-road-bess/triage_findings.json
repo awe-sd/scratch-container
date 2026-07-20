@@ -1,0 +1,27 @@
+{
+  "inr": "26INR0512",
+  "project": "County Road BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-08-26",
+    "plausible": true,
+    "why": "IA signed Jan 2025, energization approved Jan 2026, sync approved Apr 2026 — milestones are far advanced; 6 COD slips over ~7 months but trajectory is converging"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate CNTYRDS (County Road Sub, Bus #38047) substation coordinates — ERCOT network model files or TNMP GIS data — then run imagery pass",
+    "Retrieve IA PDF from PUCT Interchange (portal was 402-blocked in triage) to extract milestone schedule and developer/off-taker identity",
+    "Identify developer/LLC behind 'County Road BESS, LLC' via TX Secretary of State business search",
+    "Check ERCOT SCED/settlement point mapping for bus 38047 to confirm substation is active and locate nearby gen units"
+  ],
+  "turns_used": 28
+}

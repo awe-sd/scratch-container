@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0489",
+  "project": "Ranchero BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.15,
+    "lon": -100.93,
+    "method": "POI name (Noelke locality, Irion/Crockett Co border)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE 401 (credentials not configured); no imagery obtained"
+  },
+  "cod_first_look": {
+    "reported": "2028-04-30",
+    "plausible": true,
+    "why": "FIS not yet approved; two COD slips (~18 mo total); 2028 gives ~2 yr from now — tight but possible if FIS resolves soon"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Verify Noelke 345kV substation precise coordinates via ERCOT substation shapefile or EIA dataset — current site candidate is low-confidence locality pin",
+    "Attempt CDSE imagery once credentials are configured — no site signal obtained this pass",
+    "Identify parent/developer behind Ranchero Battery Facility, LLC (DE-incorporated, single project) — check TX SOS or DE SOS for members/managers",
+    "Monitor FIS approval: FIS requested 2024-04-03, still pending; IA is the next gate before COD becomes credible",
+    "Re-check PUCT Interchange when portal is accessible — 402 blocked entire T4 pass"
+  ],
+  "turns_used": 25
+}

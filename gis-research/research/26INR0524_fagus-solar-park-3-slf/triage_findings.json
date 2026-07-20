@@ -1,0 +1,28 @@
+{
+  "inr": "26INR0524",
+  "project": "Fagus Solar Park 3 SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-05-19",
+    "plausible": true,
+    "why": "FIS only approved 2026-06-23 (~13 months before claimed COD); no construction milestones yet; COD has already slipped ~13 months from original 2026-04-01 target — aggressive but not impossible if solar build starts promptly"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Anomalous milestone dates: IA signed 2019-02-21 and screening complete 2018-07-06 predate the INR (first report 2024-06-01) — investigate whether this is a re-entry/successor to an earlier cancelled project and find the predecessor INR",
+    "PUCT Interchange IA filing: portal blocked during triage; direct search needed for IA filed ~2019 (or amended/transferred) and for any post-FIS approval interconnection-service amendment",
+    "Developer identity: zero web presence for 'Fagus Solar' — TX SOS entity search for 'Fagus Solar Park 3 SLF LLC' to confirm existence, registered agent, and parent entity",
+    "Tesla 345 kV substation exact location: resolve POI coords via ERCOT network model files or transmission maps, then run imagery to establish site candidate",
+    "FIS approved 2026-06-23 is very recent — check if any NTP or notice-to-proceed has been filed since then"
+  ],
+  "turns_used": 28
+}

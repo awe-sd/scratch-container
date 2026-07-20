@@ -1,0 +1,28 @@
+{
+  "inr": "25INR0229",
+  "project": "OCI Cobb Creek Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": true,
+    "why": "IA signed Jul-2024, 6.9(1) met Jun-2025; 5 COD slips over 3 years; 18-month runway to 2027-12-31 is tight but not impossible if construction starts in early 2027"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA document retrieval via PUCT Interchange (portal requires session auth — try direct docket lookup or authenticated browser session); extract parties, POI details, and milestone schedule exhibit",
+    "Site location: resolve tap point on 345kV Venus–Sam Southwest line through Hill County using ERCOT transmission line GIS or county appraisal district permit records",
+    "Imagery: once site candidate established, run 3×3 chip grid to check for clearing, grading, or panel installation",
+    "Developer identity: OCI entity unclear — no web footprint; check Texas SOS for 'OCI Cobb Creek Solar LLC' and parent company; OCI may be OCI Solar Power (Korean-owned US developer) — confirm",
+    "JETI/property tax: search Hill County CAD for large land parcels with new ag-exemption removals or permits filed 2024–2026"
+  ],
+  "turns_used": 22
+}

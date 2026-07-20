@@ -1,0 +1,133 @@
+{
+  "inr": "26INR0621",
+  "project": "Juno 3 Solar",
+  "research_date": "2026-07-19",
+  "verdict": "real_active",
+  "verdict_confidence": "high",
+  "verdict_rationale": "IA signed 2025-07-01, financial security + NTP provided; satellite imagery confirms active construction since ~Nov 2025 with substantial racking installed as of Dec 2025 and continuing through Jun 2026; developer has operating Juno I+II (300 MW) at same site since 2021.",
+
+  "site": {
+    "lat": 32.749,
+    "lon": -101.625,
+    "method": "OSM relation 14474033 (operating Juno I+II plant center 32.779N, 101.625W) + imagery-derived shift south for new expansion footprint",
+    "confidence": "high",
+    "notes": "Existing operating plant at 32.765–32.792N, 101.598–101.652W (OSM). Juno 3 expansion visible in imagery south of this footprint, centered ~32.749N. Substation construction (Buck Canyon 345kV) at approx 32.735N, 101.635W."
+  },
+
+  "construction": {
+    "stage": "racking",
+    "first_activity_seen": "2025-11",
+    "first_activity_confidence": "medium",
+    "first_activity_bracket": ["2025-10-15", "2025-12-15"],
+    "latest_observation": "2026-06",
+    "notes": "Jan 2025 and Oct 2025: no activity south of operating plant. Dec 2025: substantial racking/module sections visible across multiple rectangular blocks. Jun 2026: additional sections complete, substation yard active. Bifacial tracker row pattern visible. Bright substation pad (Buck Canyon 345kV under construction) visible at lower-left of Jun 2026 frame."
+  },
+
+  "imagery_timeline": [
+    {"date": "2025-01-15", "observation": "undisturbed terrain south of operating plant", "frame": "imagery/s2_2025-01-15.png"},
+    {"date": "2025-10-15", "observation": "undisturbed terrain south of operating plant — no construction", "frame": "imagery/s2_2025-10-15.png"},
+    {"date": "2025-12-15", "observation": "active construction — multiple module/racking block sections installed; substation yard emerging", "frame": "imagery/key/s2_2025-12-15_construction_active.png"},
+    {"date": "2026-06", "observation": "further progress — more module sections, substation active, substantial footprint visible", "frame": "imagery/key/s2_2026-06_substantially_complete.png"}
+  ],
+
+  "ownership": {
+    "spv": "Juno 3 Solar, LLC (presumed; name from queue projectName)",
+    "developer": "SE Juno, LLC (operator of predecessor Juno I+II at same site; 21INR0026/21INR0501 confirmed commercial operation 2021)",
+    "interconnecting_facility": "Juno Solar 3",
+    "epc": null,
+    "offtaker": null,
+    "developer_confidence": "medium",
+    "developer_source": "ERCOT GIS queue data (interconnectingFacility field); no independent confirmation via TX SOS or SEC"
+  },
+
+  "land": {
+    "tenure": "unknown",
+    "cad_parcels": "not retrieved — Borden CAD portal dynamic/inaccessible via WebFetch",
+    "abatements": "none found — Ch.313 expired 2022, JETI portal not searchable; consistent with 2025/2026 queue entry"
+  },
+
+  "project_area": {
+    "acres": null,
+    "source": "not obtained — CAD/IA inaccessible",
+    "artifact": null,
+    "imagery_estimate": "500 MW solar ~2,000–3,500 acres; Dec 2025 frame suggests 5+ km footprint spanning ~3 km N-S beyond operating plant"
+  },
+
+  "interconnection": {
+    "poi": "#59916 Buck Canyon 345kV",
+    "poi_status": "new/planned substation — not in OSM; construction visible in Jun 2026 imagery at approx 32.735N, 101.635W",
+    "ia_signed": "2025-07-01",
+    "financial_security_ntp": true,
+    "fis_approved": false,
+    "ia_pdf_retrieved": false,
+    "ia_pdf_source": "PUCT Interchange 402-blocked"
+  },
+
+  "contractual_schedule": {
+    "reported_cod": "2027-11-30",
+    "cod_drift_changes": 0,
+    "cod_held_since": "2025-03-01",
+    "documents": []
+  },
+
+  "cod_assessment": {
+    "independent_estimate": "2027-Q4",
+    "drift_risk": "med",
+    "drift_risk_rationale": "Construction started Nov 2025 — ~25 months to reported COD 2027-11-30. Pace is fast but feasible for a developer (SE Juno) with prior experience at this site. Key risk: FIS not yet approved; Buck Canyon 345kV substation under construction — if substation slips, interconnection delays cascade. Positive: NTP already issued, developer track record at site, 500 MW with bifacial trackers follows established layout.",
+    "notes": [
+      "COD has not drifted in 16 months of queue history — held 2027-11-30 since first report 2025-03-01",
+      "Construction started ~Nov 2025; 25 months to COD is tight but not unrealistic given developer experience at site",
+      "FIS not approved is a risk — if FIS requires transmission upgrades, timeline could slip to 2028-Q1",
+      "Buck Canyon 345kV substation visible under construction Jun 2026 — consistent with 2027 COD timeline",
+      "Antila Solar (27INR0500, same POI, NTP also provided) is a second 500 MW project at same POI — may indicate shared substation build"
+    ]
+  },
+
+  "signals": {
+    "ia_found": false,
+    "ia_signed_in_queue": true,
+    "financial_security_ntp_provided": true,
+    "construction_visible": true,
+    "developer_track_record": true,
+    "abatement_found": false,
+    "news_found": false
+  },
+
+  "sources": [
+    {
+      "type": "queue_parquet",
+      "description": "ERCOT GIS queue parquet — 26INR0621 full row, financialSecurityAndNoticeToProceedProvided=Yes",
+      "artifact": "gis-research/data/ercot_generation_interconnect.parquet"
+    },
+    {
+      "type": "queue_history",
+      "description": "COD drift timeline from queue_history.py",
+      "artifact": "gis-research/research/26INR0621_juno-3-solar/timeline.md"
+    },
+    {
+      "type": "osm",
+      "description": "Existing Juno Solar I+II plant location (relation 14474033) — operator=SE Juno LLC, 300 MW, start_date=2021-06, center 32.779N 101.625W",
+      "url": "https://overpass-api.de/api/interpreter?data=[out:json];relation[\"name\"~\"Juno+Solar\"](32.6,-102.0,33.0,-101.2);out+geom;"
+    },
+    {
+      "type": "satellite",
+      "description": "Sentinel-2 chip 2025-01-15 — pre-construction baseline",
+      "artifact": "gis-research/research/26INR0621_juno-3-solar/imagery/key/s2_2025-01-15_pre_construction.png"
+    },
+    {
+      "type": "satellite",
+      "description": "Sentinel-2 chip 2025-10-15 — pre-construction, undisturbed",
+      "artifact": "gis-research/research/26INR0621_juno-3-solar/imagery/key/s2_2025-10-15_pre_construction.png"
+    },
+    {
+      "type": "satellite",
+      "description": "Sentinel-2 chip 2025-12-15 — first activity: substantial racking/modules installed, substation yard emerging",
+      "artifact": "gis-research/research/26INR0621_juno-3-solar/imagery/key/s2_2025-12-15_construction_active.png"
+    },
+    {
+      "type": "satellite",
+      "description": "Sentinel-2 chip 2026-06 — further construction progress, substation active",
+      "artifact": "gis-research/research/26INR0621_juno-3-solar/imagery/key/s2_2026-06_substantially_complete.png"
+    }
+  ]
+}

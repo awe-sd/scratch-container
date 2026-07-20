@@ -1,0 +1,93 @@
+{
+ "inr": "20INR0236",
+ "generated": "2026-07-20",
+ "project": "New Hickory Solar",
+ "county": "Jackson",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 209.15,
+ "queue_cod": "2026-10-26",
+ "milestones": {
+  "screeningStudyComplete": "2019-04-19",
+  "fisApproved": "2024-06-30",
+  "iaSigned": "2020-06-30",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 12,
+ "eia": {
+  "status": "ok",
+  "plant_id": 69507,
+  "entity": "New Hickory Solar LLC",
+  "planned_cod": "2026-08",
+  "cod_delta_quarters": -0.7,
+  "dropped_scope": null,
+  "coords": [
+   29.06975,
+   -96.8782
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "New Hickory Solar LLC",
+    "detail": "plant=New Hickory Solar 206.0MW (V) Under construction, more than 50 per @29.06975,-96.8782 planned=2026-08"
+   },
+   {
+    "source": "puct-index",
+    "entity": "New Hickory Solar LLC",
+    "detail": "Seventh Amendment to Generation Interconnection Agreement by and between CPS Energy and New Hickory Solar LLC "
+   },
+   {
+    "source": "puct-index",
+    "entity": "New Hickory Solar LLC",
+    "detail": "Eighth Amendment to the Generation Interconnection Agreement between CPS Energy and New Hickory Solar LLC"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": [
+   {
+    "program": "Ch.313",
+    "applicant": "New Hickory Solar LLC f/k/a Old Hickory Solar LLC",
+    "district": "Edna ISD",
+    "score": 17
+   }
+  ]
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_under_construction",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 40,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 20,
+   "detail": "12 COD slips"
+  },
+  {
+   "factor": "no_verified_ia",
+   "points": 10,
+   "detail": "iaSigned claimed but no IA found on disk or in the docket join table"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 64.95,
+  "reason": "reality signal"
+ }
+}

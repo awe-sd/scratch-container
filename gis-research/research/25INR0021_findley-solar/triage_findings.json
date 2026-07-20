@@ -1,0 +1,33 @@
+{
+  "inr": "25INR0021",
+  "project": "Findley Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.6552,
+    "lon": -96.7889,
+    "method": "POI community — Prairie Hill, Limestone County (OSM Nominatim); tap line runs Prairie Hill #107 → Ben Hur #99",
+    "confidence": "low"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-01-01",
+    "plausible": true,
+    "why": "FIS not yet approved as of 2026-06; project slipped 3 years already (2025→2028); EIA filing shows 2027-12-31 — barely plausible if FIS clears soon"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Identify exact parcel via Limestone County CAD — search owner 'Gransolar' or 'Adon Texas Sixteen' or 'Findley' to get a real site pin before ordering imagery",
+    "Verify developer entity: confirm whether 'Adon Texas Sixteen LLC' and 'Gransolar Texas Sixteen, LLC' are the same (TX SOS name-change history)",
+    "PUCT Interchange manual search: try FilingParty='Gransolar' or 'Adon Texas Sixteen' — FIS not approved per queue, but a TSR or preliminary agreement might exist",
+    "FIS status: project has been waiting for FIS approval since 2022-05-24 — over 4 years — confirm whether study is pending, stalled, or withdrawn",
+    "CDSE credentials need refresh before imagery can run"
+  ],
+  "turns_used": 28
+}

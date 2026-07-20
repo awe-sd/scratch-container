@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0126",
+  "project": "High Noon Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.178,
+    "lon": -97.258,
+    "method": "POI substation town name — Covington, Hill County TX (444 Covington substation anchor)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery blocked (401 auth failure); no contact sheet produced; no construction start date in queue data"
+  },
+  "cod_first_look": {
+    "reported": "2028-05-09",
+    "plausible": true,
+    "why": "IA signed 2024-05-08, 6.9(1) met 2025-02-12; 2028 COD is ~3.5 yrs post-IA which is stretched but plausible given 4 prior COD slips and FIS still unapproved"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF not retrieved (PUCT portal blocked) — try PUCT Interchange directly or ERCOT GMOC for IA schedule exhibit and POI exact coordinates",
+    "LLC name discrepancy: queue lists 'High Noon Storage' but aggregators show 'High Noon Solar Project, LLC' — confirm legal entity and parent company via TX SOS search",
+    "FIS never approved despite IA signed in May 2024 — flag as development risk; check if FIS is still pending or was waived",
+    "CDSE imagery blocked this session — re-run cdse.py chip around 32.178/-97.258 with fresh credentials to check for pad clearance or container rows",
+    "Yates substation (445) location not pinned — triangulate with Covington to find transmission tap midpoint for tighter imagery target"
+  ],
+  "turns_used": 28
+}

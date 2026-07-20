@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0319",
+  "project": "Northington Solar",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.20,
+    "lon": -96.27,
+    "method": "POI line inference — El Campo (#8102) substation, El Campo TX city center; no pin or abatement map available",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth failed (401/403); no imagery obtained; queue reports no construction-start date"
+  },
+  "cod_first_look": {
+    "reported": "2027-11-30",
+    "plausible": true,
+    "why": "IA signed Oct 2024; 3 prior COD slips (2025→2026→2027-07→2027-11); FIS not yet approved; 16 months to COD is tight but not impossible if FIS clears soon"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF from PUCT Interchange — retrieve milestone-schedule exhibit (PUCT was 402-blocked during triage; try direct PUCT search or ERCOT Nodal Protocol filing search)",
+    "Developer/parent company identification — LLC is DE-domiciled with TX registration 2023-07-14 (file# 0805142190); no parent surfaced; Texas SOS business search may resolve",
+    "Imagery at actual site — CDSE creds need refresh; once working, run 3×3 grid centered on El Campo substation line corridor to look for cleared land / racking",
+    "FIS status — FIS requested Feb 2023 but not yet approved; ~3.5 years pending is unusual; worth checking ERCOT GIS study queue for hold reasons",
+    "Capacity trim from 129.81→125.9 MW in 2026-05 — minor but may reflect revised IA scope; check IA amendment if one exists in PUCT"
+  ],
+  "turns_used": 28
+}

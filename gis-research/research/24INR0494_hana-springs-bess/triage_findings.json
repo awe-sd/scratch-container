@@ -1,0 +1,34 @@
+{
+  "inr": "24INR0494",
+  "project": "Hana Springs BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.0845,
+    "lon": -98.1837,
+    "method": "OSM Overpass substation lookup matched to POI '7064 LAMPASAS 138KV'",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "2km-buffer chip (2026-07-01) around Lampasas substation shows established town fabric; no BESS pad, container rows, or ground disturbance visible"
+  },
+  "cod_first_look": {
+    "reported": "2028-05-15",
+    "plausible": false,
+    "why": "3 COD slips over 4 years; no FIS approval and no IA after ~44 months; no construction visible; paper project signals"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange was inaccessible (402) — retry IA search when portal is reachable; any IA filing would substantially change the signal score",
+    "Developer identity unknown — if IA surfaces, pull parties page to identify developer and check their track record",
+    "Imagery at tighter buffer (1km) around exact substation footprint could confirm no cleared land nearby"
+  ],
+  "turns_used": 28
+}

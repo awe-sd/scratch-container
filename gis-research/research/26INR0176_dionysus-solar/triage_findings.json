@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0176",
+  "project": "Dionysus Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.395,
+    "lon": -95.474,
+    "method": "POI line tap — Latexo, TX is nearest named place to ERCOT substation 6732 (Latexo 138kV); actual site unknown within county",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery not acquired — credentials not configured; no other construction signals found"
+  },
+  "cod_first_look": {
+    "reported": "2027-03-11",
+    "plausible": false,
+    "why": "FIS not approved, no IA signed after 3 years in queue; COD drifted twice; ~8 months to claimed COD with no construction milestones"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange search for IA filing by 'Dionysus Solar' or 'Dionysus Solar LLC' — portal was 402-blocked during triage",
+    "Houston County Commissioners Court minutes 2025-03-11: Cameron Morgan discussed tax abatement — identify developer/company, check for JETI application in Latexo ISD or Crockett ISD",
+    "Companion project 26INR0177 (Dionysus Storage, 77 MW battery) — likely same developer/site; check its queue history and any shared IA",
+    "Configure CDSE credentials and run imagery at Latexo-area coordinates once true site is narrowed"
+  ],
+  "turns_used": 22
+}

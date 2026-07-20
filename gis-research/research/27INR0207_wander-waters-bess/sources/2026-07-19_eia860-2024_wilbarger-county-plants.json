@@ -1,0 +1,74 @@
+[
+  {
+    "plant_code": 58372,
+    "plant_name": "Blue Summit Wind LLC",
+    "county": "Wilbarger",
+    "state": "TX",
+    "latitude": 34.292913,
+    "longitude": -99.367734
+  },
+  {
+    "plant_code": 60338,
+    "plant_name": "Electra Wind Farm",
+    "county": "Wilbarger",
+    "state": "TX",
+    "latitude": 34.102943,
+    "longitude": -99.118746
+  },
+  {
+    "plant_code": 60690,
+    "plant_name": "Blue Summit Storage, LLC",
+    "county": "Wilbarger",
+    "state": "TX",
+    "latitude": 34.299,
+    "longitude": -99.399
+  },
+  {
+    "plant_code": 61970,
+    "plant_name": "Blue Summit II Wind",
+    "county": "Wilbarger",
+    "state": "TX",
+    "latitude": 34.225882,
+    "longitude": -99.477986
+  },
+  {
+    "plant_code": 62356,
+    "plant_name": "Lockett Windfarm",
+    "county": "Wilbarger",
+    "state": "TX",
+    "latitude": 34.072251,
+    "longitude": -99.264676
+  },
+  {
+    "plant_code": 64149,
+    "plant_name": "Western Trail Wind, LLC",
+    "county": "Wilbarger",
+    "state": "TX",
+    "latitude": 33.85245,
+    "longitude": -99.06509
+  },
+  {
+    "plant_code": 67934,
+    "plant_name": "Vernon Solar and Storage",
+    "county": "Wilbarger",
+    "state": "TX",
+    "latitude": 34.109631,
+    "longitude": -99.296915
+  },
+  {
+    "plant_code": 68456,
+    "plant_name": "Blue Summit II Storage",
+    "county": "Wilbarger",
+    "state": "TX",
+    "latitude": 34.291934,
+    "longitude": -99.367758
+  },
+  {
+    "plant_code": 68765,
+    "plant_name": "Hutcherson Solar",
+    "county": "Wilbarger",
+    "state": "TX",
+    "latitude": 34.02533,
+    "longitude": -99.26568
+  }
+]

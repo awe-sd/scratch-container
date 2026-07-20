@@ -1,0 +1,27 @@
+{
+  "inr": "18INR0064",
+  "project": "Silver Star repower",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-07-01",
+    "plausible": true,
+    "why": "IA signed 2018, approved-for-sync 2020-07-28 — partial commissioning consistent with aggregator 'Commissioned' label; 32 COD slips but milestones are real"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA document: signed 2018-10-16 per ERCOT queue — retrieve from PUCT Interchange (try direct docket search by INR or 'Silver Star I Power Partners') to get POI coordinates and milestone schedule",
+    "Approved-for-sync 2020-07-28 with no commercial-op: clarify whether turbines are already online under a partial approval or still waiting — check ERCOT Nodal Portal / CDR operational data",
+    "Flat Creek 138kV substation coordinates: resolve via ERCOT transmission map or OpenInfraMap to enable satellite imagery of turbine pads for the repower",
+    "FAA OE/AAA obstruction filings under Silver Star I Power Partners LLC: decisive turbine coordinates for a wind repower"
+  ],
+  "turns_used": 22
+}

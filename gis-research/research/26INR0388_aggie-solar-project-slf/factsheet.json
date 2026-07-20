@@ -1,0 +1,59 @@
+{
+ "inr": "26INR0388",
+ "generated": "2026-07-20",
+ "project": "Aggie Solar Project SLF",
+ "county": "Reeves",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 103.7,
+ "queue_cod": "2027-11-30",
+ "milestones": {
+  "screeningStudyComplete": "2024-04-29",
+  "fisApproved": "2025-07-03",
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "ok",
+  "plant_id": 62415,
+  "entity": "RWE Clean Energy",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   31.4308,
+   -103.7289
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "RWE Clean Energy",
+    "detail": "plant=West of the Pecos Solar 100.0MW (OP) Operating @31.4308,-103.7289 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "fis_approved"
+ ],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 6.33,
+  "reason": "reality signal"
+ }
+}

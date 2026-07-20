@@ -1,0 +1,30 @@
+{
+  "inr": "22INR0202",
+  "project": "Delilah Solar 1",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": {
+    "verdict": "OPERATIONAL",
+    "evidence": "Invenergy press release + DDG snippet: commercial operations commenced 2025-02-13; WEC Energy Group press release confirms 300 MW operational, $459M investment, Honda/Tesla VPPAs."
+  },
+  "cod_first_look": {
+    "reported": "2026-09-30",
+    "plausible": false,
+    "why": "Queue record is stale — project COD'd 2025-02-13 per Invenergy; ERCOT has not yet updated queue to show approvedForCommercialOperation"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm ERCOT queue row not yet closed (approvedForCommercialOperation still null despite 2025-02-13 COD) — verify against latest GIS snapshot",
+    "Retrieve Invenergy press release (invenergy.com/news/invenergy-developed-delilah-i-solar-reaches-commercial-operations-in-texas) for exact COD date and any POI confirmation",
+    "Pull PUCT IA filing (signed 2020-12-22) for POI/milestone schedule and any amendments — useful if tracking Samson & Delilah companion projects",
+    "Check 22INR0203 (Delilah Solar 2) as companion project from same portfolio"
+  ],
+  "turns_used": 18
+}

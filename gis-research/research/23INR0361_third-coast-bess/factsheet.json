@@ -1,0 +1,81 @@
+{
+ "inr": "23INR0361",
+ "generated": "2026-07-20",
+ "project": "Third Coast BESS",
+ "county": "Jackson",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 102.82,
+ "queue_cod": "2027-06-15",
+ "milestones": {
+  "screeningStudyComplete": "2021-11-16",
+  "fisApproved": "2024-12-02",
+  "iaSigned": "2023-05-17",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 9,
+ "eia": {
+  "status": "ok",
+  "plant_id": 67667,
+  "entity": "Cypress Creek Renewables",
+  "planned_cod": "2027-11",
+  "cod_delta_quarters": 1.7,
+  "dropped_scope": null,
+  "coords": [
+   28.85233,
+   -96.55642
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Cypress Creek Renewables",
+    "detail": "plant=Third Coast BESS, LLC 100.0MW (T) Regulatory approvals received. Not u @28.85233,-96.55642 planned=2027-11"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Third Coast BESS LLC",
+    "detail": "ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN AEP TEXAS INC. AND Third Coast BESS LLC (Third Coa"
+   },
+   {
+    "source": "puct-index",
+    "entity": "THIRD COAST BESS LLC",
+    "detail": "FIRST AMENDED AND RESTATED ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN AEP TEXAS INC. AND THIR"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 2,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 28,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 18,
+   "detail": "9 COD slips"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 9.47,
+  "reason": "reality signal"
+ }
+}

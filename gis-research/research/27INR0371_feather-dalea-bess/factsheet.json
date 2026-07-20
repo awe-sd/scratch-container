@@ -1,0 +1,56 @@
+{
+ "inr": "27INR0371",
+ "generated": "2026-07-20",
+ "project": "Feather Dalea BESS",
+ "county": "Glasscock",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 200.0,
+ "queue_cod": "2027-07-02",
+ "milestones": {
+  "screeningStudyComplete": "2024-12-09",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 0,
+ "eia": {
+  "status": "ok",
+  "plant_id": 67917,
+  "entity": "Samsung Solar Energy 2, LLC",
+  "planned_cod": "2026-12",
+  "cod_delta_quarters": -2.3,
+  "dropped_scope": null,
+  "coords": [
+   31.87157,
+   -101.7384
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Samsung C&T Renewables, LLC",
+    "detail": "plant=Champaign BESS, LLC 202.7MW (P) Planned for installation, but regula @31.87157,-101.7384 planned=2026-12"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 0 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

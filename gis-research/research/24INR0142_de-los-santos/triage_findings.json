@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0142",
+  "project": "De Los Santos",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.71,
+    "lon": -100.39,
+    "method": "POI substation — Sunglow Substation 138kV, ~6 mi east of Eagle Pass, built by LCRA; also serves Fort Duncan BESS (Recurrent Energy)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE satellite auth failed (401); no imagery retrieved"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": false,
+    "why": "No IA, no FIS approval after 4 years in queue — two prior COD slips (2024-03 → 2024-12 → 2027-12); BESS builds are fast once IA is signed but no IA is in hand"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA search for 'BRP De Los Santos BESS LLC' — developer identified, IA status unknown (PUCT blocked during triage)",
+    "BRP entity research — parent developer unknown; clarify if BRP Energy / BRP Renewables and assess portfolio track record",
+    "Sunglow Substation exact coordinates — Fort Duncan BESS is collocated; tight chip of that substation footprint to locate potential pad cleared for De Los Santos",
+    "FIS approval status — requested 2022-04-18, never approved in 51 snapshots; check if FIS is pending, withdrawn, or in dispute",
+    "CDSE credentials — fix auth so imagery can be run against Sunglow Substation site candidate"
+  ],
+  "turns_used": 27
+}

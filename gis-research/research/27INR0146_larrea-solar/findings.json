@@ -1,0 +1,96 @@
+{
+  "inr": "27INR0146",
+  "project": "Larrea Solar",
+  "researched_at": "2026-07-19",
+  "real_project_verdict": "real_early",
+
+  "site": {
+    "lat": 31.038,
+    "lon": -102.55,
+    "method": "cluster anchor — Greasewood II gen. substation at 31.037, -102.488 (OSM); Larrea taps Bakerfield-Solstice 345kV CKT#1 through same corridor; no delivery pin, parcel, or news photo confirms specific Larrea footprint",
+    "confidence": "low"
+  },
+
+  "llc_chain": [
+    {
+      "entity": "Greasewood IV LLC",
+      "relation": "SPV",
+      "evidence": "TX Comptroller franchise API (data.texas.gov record 32086686162): GREASEWOOD IV LLC, Active, SOS 0804761122, chartered 2022-10-07, 111 Congress Ave Ste 1055 Austin TX — same address as Greasewood II LLC and Greasewood III LLC, confirming Ashtrom Renewable Energy Austin office. No 'Larrea Solar LLC' entity exists in TX records."
+    },
+    {
+      "entity": "Ashtrom Renewable Energy",
+      "relation": "developer_owner",
+      "evidence": "Developer website (sources/ashtrom_larrea_page.md) explicitly names Larrea Solar as part of Ashtrom's Greasewood cluster in Pecos County TX; Greasewood II LLC / Greasewood III LLC at same address are Ashtrom's earlier Pecos County projects (Greasewood I 255MW operational, Tierra Bonita 306MWac COD Oct 2024)."
+    }
+  ],
+
+  "parcels": [],
+
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Pecos CAD portal is JS-only (no owner search extractable). No Ch.312/JETI abatement found. Ashtrom historically leases land for Greasewood cluster projects."
+  },
+
+  "project_area": {
+    "acres": null,
+    "source": "not found — no IA, no abatement, no CAD parcel obtained",
+    "artifact": null,
+    "note": "225 MWac solar ≈ ~1,000-1,400 acres typical. Pecos CAD JS-only; PUCT Interchange blocked 402."
+  },
+
+  "construction": {
+    "verdict": "no_activity",
+    "first_activity_seen": null,
+    "evidence": [
+      "Triage grid (2026-07-01, 7-tile ~6×6 km around 31.038,-102.493): only existing Greasewood I / Tierra Bonita operational arrays visible; no new clearing or grading.",
+      "Developer's own website (sources/ashtrom_larrea_page.md, fetched 2026-07-18) describes project as 'early planning and development stage — initial activities underway, including site evaluation.'",
+      "Queue history (25 monthly snapshots through Jun 2026): FIS not approved, IA not signed, no construction-start milestone recorded."
+    ]
+  },
+
+  "contractual_schedule": {
+    "documents": [],
+    "note": "No IA found. PUCT Interchange returns 402 for all search attempts. IA not yet signed per queue history."
+  },
+
+  "cod_assessment": {
+    "reported": "2027-09-18",
+    "independent": "2030-Q1",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "FIS not approved as of Jun 2026 (queue history, 25 snapshots through Jun 2026, fisApproved = —). FIS study typically ~12 months; approval earliest late 2026, more likely 2027.",
+      "IA negotiations typically 6–12 months after FIS → IA signing realistically 2027–2028. No IA signed and none found on PUCT Interchange (blocked 402).",
+      "~225 MWac solar build takes 18–24 months after IA + financial close. Earliest realistic construction start: mid-2028.",
+      "Whitethorn benchmark (same developer Ashtrom, same county Pecos, 150 MWac): construction started 2025, COD target 2029 per developer website. Whitethorn was already in 'advanced development' when Larrea was in 'early planning' — Larrea cannot COD before Whitethorn.",
+      "COD 2027-09-18 requires FIS by Q3 2026 (possible but not yet done), IA within 3 months, construction start Q4 2026, and 12-month build — this sequence is not achievable.",
+      "COD has held at 2027-09-18 since first report (Jun 2024, 25 snapshots unchanged) — the date was never updated even as milestones were missed, suggesting it is a placeholder, not a real contractual date.",
+      "No PPA announcement, no financing close, no EPC engaged — typical preconditions for a real construction schedule are all absent."
+    ]
+  },
+
+  "negative_searches": 18,
+  "banned_source_violations": 0,
+
+  "sources_summary": [
+    {
+      "artifact": "sources/2026-07-19_txcomptroller_greasewood-iv-entity.json",
+      "description": "TX Comptroller franchise record confirming Greasewood IV LLC as Larrea Solar SPV"
+    },
+    {
+      "artifact": "sources/2026-07-19_osm_substations-pecos.json",
+      "description": "OSM substation and 345kV line data placing POI substations in Pecos County corridor"
+    },
+    {
+      "artifact": "sources/ashtrom_larrea_page.md",
+      "description": "Ashtrom developer website confirming early planning status and Greasewood cluster membership"
+    },
+    {
+      "artifact": "imagery/contact_sheet.png",
+      "description": "Sentinel-2 3x3 grid contact sheet 2026-07-01 around 31.038,-102.493 — no new construction"
+    },
+    {
+      "artifact": "timeline.md",
+      "description": "Queue history: 25 snapshots, 0 COD changes, FIS/IA not signed"
+    }
+  ]
+}

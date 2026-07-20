@@ -1,0 +1,114 @@
+{
+  "inr": "27INR0434",
+  "project": "Lyra Solar",
+  "research_date": "2026-07-19",
+  "site": {
+    "lat": 32.7222,
+    "lon": -101.6385,
+    "method": "OSM Overpass: companion 'Borden County BESS' (EIA 66804) at 32.7223,-101.6385 next to WETT Long Draw Substation (32.7211,-101.6330); Lyra Solar array expected within ~3 km NE",
+    "confidence": "medium",
+    "notes": "Sat image shows completed solar array NE ~32.75-32.77, -101.61; delivery-pin blocked (429); PUCT IA PDF blocked (402). Site is in the Borden County Long Draw WETT 345kV cluster.",
+    "cross_checks": [
+      "Overpass: WETT Long Draw Substation (345kV) at 32.7211, -101.6330",
+      "Overpass: BoCo BESS (Borden County BESS EIA 66804) at 32.7223, -101.6385 — confirmed companion project same POI cluster",
+      "PUCT Case 59183: 'Muleshoe to Lyra Solar and Lyra BESS 345kV transmission lines in Borden County'",
+      "Sentinel-2 chip 2026-07-01: completed solar array visible NE of Long Draw substation cluster"
+    ]
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Lyra Solar, LLC (presumed)",
+      "role": "SPV",
+      "evidence": "Project developer listed as 'Juno Solar 4' in ERCOT queue; LLC name confirmed as 'Lyra Solar, LLC' by convention (not confirmed via TX SOS — portal auth-required)"
+    },
+    {
+      "entity": "ENGIE North America (probable)",
+      "role": "developer/owner",
+      "evidence": "Naming-series inference: ENGIE Long Draw Solar LLC (18INR0055, operating 2021) confirmed via HASI 8-K/A 2021-03-17; Juno Solar Phase I/II (21INR0026/0501) same Borden County WETT cluster; astronomical naming (Juno, Lyra, Antila, Draco, Caesar) consistent with ENGIE TX portfolio. No direct primary source linking ENGIE to 27INR0434 found."
+    }
+  ],
+  "land_tenure": {"status": "unknown", "note": "CAD owner search blocked; no abatement found"},
+  "abatements": [],
+  "interconnection": {
+    "poi": "345kV MULESHOE (#59922) — ERCOT bus name for WETT Long Draw Substation complex (32.72, -101.63), Borden County",
+    "ia_signed_date": "2025-07-01",
+    "ia_document": "IA confirmed via ERCOT queue milestone (iaSigned=2025-07-01); PUCT PDF not retrieved (402 blocked). PUCT Case 59183 (WETT CCN amendment): 'Muleshoe to Lyra Solar and Lyra BESS 345kV transmission lines in Borden County', filed 2026-01-07"
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Interconnection Agreement (queue-confirmed)",
+        "signed": "2025-07-01",
+        "financial_security": "unknown (PUCT PDF blocked)",
+        "artifact": "Queue milestone iaSigned=2025-07-01 (no PDF retrieved)"
+      }
+    ],
+    "scheduled_cod": "2027-09-15",
+    "in_service": null,
+    "trial_operation": null
+  },
+  "project_area": {
+    "acres": null,
+    "source": "not found — PUCT IA PDF blocked (402), no abatement application found, Borden CAD owner search blocked",
+    "artifact": null,
+    "note": "500 MW solar at ~5 acres/MW typical = ~2,500 acres estimate; satellite imagery shows large multi-km array consistent with this scale"
+  },
+  "construction": {
+    "verdict": "unclear",
+    "stage": "pre_construction_or_clearing",
+    "first_activity_seen": null,
+    "latest_observation": "2026-07-01",
+    "notes": "Sentinel-2 chip 2026-07-01 shows completed solar array NE of Long Draw substation cluster — this is likely the EXISTING Juno Solar Phase I/II (313 MW operating 2021) rather than the new Lyra Solar. No new grading or clearing activity specifically attributable to Lyra Solar observed. CDSE credentials expired; only one chip retrieved.",
+    "imagery_artifacts": [
+      "imagery/s2_2026-07-01_center.png"
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-09-15",
+    "independent_estimate": "2027-Q4 to 2028-Q2",
+    "drift_risk": "medium-high",
+    "rationale": [
+      "IA signed 2025-07-01; COD 2027-09-15 = 26.5 months — aggressive for 500 MW solar",
+      "FIS not achieved as of 2026-06 snapshot (atypical: IA signed without FIS approved)",
+      "0 COD drift in 16 snapshots (2025-03 to 2026-06) — consistent but short track record",
+      "PUCT transmission CCN filed 2026-01 (Case 59183) shows active development",
+      "No visible construction activity in Jul 2026 imagery (CDSE credentials expired; can't definitively confirm no-activity)",
+      "COD claim unchanged at 2027-09-15 across all 16 snapshots = nominal stability",
+      "Risk factors: FIS gap, ~26 month aggressive timeline for 500 MW, WETT transmission line not yet constructed",
+      "Comparable: Hanson Solar (23INR0086, 396 MW) had financing closed + EPC on site by Jul 2026 with 2027-Q2 COD — Lyra Solar has no confirmed financing or EPC"
+    ]
+  },
+  "real_project_verdict": "real_early",
+  "verdict_confidence": "medium",
+  "verdict_rationale": "IA executed Jul 2025; PUCT transmission CCN filed Jan 2026; companion Lyra BESS (26INR0636) has separate IA; developer series (Juno Solar 1-4 + Lyra + Antila + Draco) shows a multi-project ENGIE-probable portfolio with proven operating assets (Juno I/II/LongDraw already operational in same cluster). No construction observed yet, but Lyra Storage COD is 2026-11-12 (imminent) suggesting the infrastructure cluster is well-advanced. Paper project is very unlikely given IA, PUCT CCN, and companion projects; but construction not confirmed to have started as of Jul 2026.",
+  "companion_projects": [
+    {
+      "inr": "26INR0636",
+      "name": "Lyra Storage",
+      "capacity_mw": 500,
+      "fuel": "Battery",
+      "ia_signed": "2025-08-13",
+      "cod": "2026-11-12",
+      "note": "Lyra BESS companion; same PUCT Case 59183 filing"
+    },
+    {
+      "inr": "26INR0621",
+      "name": "Juno 3 Solar",
+      "capacity_mw": 500,
+      "fuel": "Solar",
+      "ia_signed": "2025-07-01",
+      "cod": "2027-11-30",
+      "note": "Same developer portfolio, same IA date as Lyra Solar"
+    },
+    {
+      "inr": "27INR0500",
+      "name": "Antila Solar",
+      "capacity_mw": 500,
+      "fuel": "Solar",
+      "ia_signed": "2025-08-13",
+      "cod": "2027-11-30",
+      "note": "Same developer portfolio, same IA date as Lyra Storage"
+    }
+  ]
+}

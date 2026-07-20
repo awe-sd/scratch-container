@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0567",
+  "project": "Wolf Hollow III",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.44,
+    "lon": -97.84,
+    "method": "existing Wolf Hollow I/II plant footprint + POI 'Mitchell Bend 345KV' in Hood County near Granbury TX",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery 401 unauthorized; no construction signals from any other source"
+  },
+  "cod_first_look": {
+    "reported": "2027-05-31",
+    "plausible": false,
+    "why": "COD slipped twice (18 months each time: 2024-11 → 2026-05 → 2027-05); no IA signed, no FIS approved, no milestones beyond screening after 3+ years — aggressive timeline for a gas turbine with no permits found"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "TCEQ air permit (NSR) search: mandatory for gas turbine — no permit found yet; absence = paper-project signal",
+    "PUCT Interchange: portal blocked (402) during triage — run authenticated search for FilingParty='Wolf Hollow III' and Description='Wolf Hollow'",
+    "Developer/LLC identity: 'Wolf Hollow III, LLC' not confirmed; existing plant is NRG/GenOn asset — check whether this is NRG expansion or new entrant",
+    "Texas SOS business entity search for 'Wolf Hollow III, LLC' registration",
+    "CDSE imagery at 32.44N/97.84W once creds restored: check for laydown yard, turbine delivery, or site prep at existing plant footprint"
+  ],
+  "turns_used": 28
+}

@@ -1,0 +1,126 @@
+{
+ "inr": "26INR0467",
+ "project": "Basketflower Storage",
+ "first_seen_in_reports": "2024-06-01",
+ "last_seen_in_reports": "2026-06-01",
+ "snapshots": 22,
+ "milestones": [
+  {
+   "milestone": "Screening started",
+   "achieved": "2024-10-29",
+   "first_in_report": "2024-10-01"
+  },
+  {
+   "milestone": "Screening complete",
+   "achieved": "2025-01-14",
+   "first_in_report": "2025-01-01"
+  },
+  {
+   "milestone": "FIS requested",
+   "achieved": "2024-10-25",
+   "first_in_report": "2024-10-01"
+  },
+  {
+   "milestone": "FIS approved",
+   "achieved": "2026-03-26",
+   "first_in_report": "2026-03-01"
+  },
+  {
+   "milestone": "IA signed",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Meets 6.9(1)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Meets all 6.9",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Construction start (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Construction end (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Approved for energization",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Approved for synchronization",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Commercial operation approved",
+   "achieved": null,
+   "first_in_report": null
+  }
+ ],
+ "reported_cod_history": [
+  {
+   "value": null,
+   "from": "2024-06-01",
+   "to": "2024-06-01"
+  },
+  {
+   "value": "2026-03-15",
+   "from": "2024-10-01",
+   "to": "2024-10-01"
+  },
+  {
+   "value": "2026-12-31",
+   "from": "2024-11-01",
+   "to": "2024-11-01"
+  },
+  {
+   "value": "2027-12-31",
+   "from": "2024-12-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 75.09,
+   "from": "2024-06-01",
+   "to": "2024-11-01"
+  },
+  {
+   "value": 92.0,
+   "from": "2024-12-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "study_phase_history": [
+  {
+   "value": null,
+   "from": "2024-06-01",
+   "to": "2024-06-01"
+  },
+  {
+   "value": "SS Started, FIS Started, No IA",
+   "from": "2024-10-01",
+   "to": "2024-12-01"
+  },
+  {
+   "value": "SS Completed, FIS Started, No IA",
+   "from": "2025-01-01",
+   "to": "2026-02-01"
+  },
+  {
+   "value": "SS Completed, FIS Completed, No IA",
+   "from": "2026-03-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "financial_security_latest": "No"
+}

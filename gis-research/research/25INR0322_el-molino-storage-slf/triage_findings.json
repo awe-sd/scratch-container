@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0322",
+  "project": "El Molino Storage SLF",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 27.4286,
+    "lon": -98.8382,
+    "method": "POI-substation (Bruni 138kV, ERCOT node 8297)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth failed (401); no imagery retrieved"
+  },
+  "cod_first_look": {
+    "reported": "2027-09-01",
+    "plausible": false,
+    "why": "FIS not approved after 3+ years in queue; IA not signed; COD already slipped 26 months; no construction milestones achieved"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm LLC entity name: 'El Molino Solar, LLC' vs 'El Molino Storage SLF, LLC' — TX SOS search to find registered developer",
+    "PUCT Interchange IA search once portal access available — project stuck at FIS-not-approved, IA absent may mean deeper development risk",
+    "Imagery at Bruni substation area once CDSE creds restored — battery site could still be bare ground pre-construction",
+    "Comp context: Guajillo Energy Storage (200MW, baywa-re) and Seven Flags (100MW) are active BESS in same county — confirms area is viable for storage"
+  ],
+  "turns_used": 22
+}

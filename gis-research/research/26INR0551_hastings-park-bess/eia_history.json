@@ -1,0 +1,59 @@
+{
+ "inr": "26INR0551",
+ "plant_id": 68583,
+ "plant_name": "Rock N' Roll",
+ "entity": "Lydian Energy",
+ "matched_by": "county+prime-mover+MW within 5% (250 vs 256.34)",
+ "first_report": "2025-01-01",
+ "last_report": "2026-05-01",
+ "planned_cod_history": [
+  {
+   "value": "2025-05",
+   "from": "2025-01-01",
+   "to": "2025-01-01"
+  },
+  {
+   "value": "2027-05",
+   "from": "2025-02-01",
+   "to": "2025-12-01"
+  },
+  {
+   "value": "2027-10",
+   "from": "2026-01-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 250.0,
+   "from": "2025-01-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "status_history": [
+  {
+   "value": "(L) Regulatory approvals pending. Not under construction",
+   "from": "2025-01-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "queue_reported_cod": "2027-09-15",
+ "energy_capacity_mwh_history": [
+  {
+   "value": null,
+   "from": "2025-01-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "operating_date_history": [
+  {
+   "value": null,
+   "from": "2025-01-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "eia_county": "Brazoria",
+ "eia_lat": 29.29937,
+ "eia_lon": -95.42218,
+ "dropped_from_860m": null
+}

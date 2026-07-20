@@ -1,0 +1,26 @@
+{
+  "inr": "27INR0562",
+  "project": "Frizzle BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-10-18",
+    "plausible": false,
+    "why": "Pre-IA as of 2026-06; FIS not yet approved; ~16 months to COD with no IA is implausible for a 181 MW BESS"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Identify parent developer behind Frizzle BESS LLC SPV (1501 S Mopac Ste 220 Austin) — track sibling INRs at same address to find sponsor",
+    "Locate TNSLVRLEAF substation coordinates via ERCOT MIS or TNMP maps to enable imagery",
+    "Monitor FIS approval and IA filing — those are the next gates that would justify upgrading scan priority"
+  ],
+  "turns_used": 28
+}

@@ -1,0 +1,26 @@
+{
+  "inr": "27INR0618",
+  "project": "Prairie Point Energy Storage I",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": false,
+    "why": "Only FIS requested + screening just started (2026-05); no IA, no developer news, no abatement — ~18 months to COD is implausible at this stage"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Geolocate RAMHORNH substation via ERCOT transmission GIS or Oncor utility filings to unlock imagery",
+    "Identify developer/parent behind 'Prairie Point LLC' — sister project 27INR0619 shares same LLC, parallel filing may surface sponsor",
+    "Monitor for IA filing — project has no interconnection agreement; triage again once IA is signed"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,106 @@
+{
+  "inr": "20INR0129",
+  "project": "Foxtrot Wind",
+  "researched_at": "2026-07-19",
+  "site": {
+    "lat": 28.6220,
+    "lon": -97.9376,
+    "method": "EIA Form 860 2025ER plant coordinates (Helena Wind plant 63738) corroborated by 72 OSM turbine nodes at centroid 28.622/-97.938 and Sentinel-2 imagery",
+    "confidence": "high"
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Foxtrot Wind, LLC",
+      "relation": "SPV / IA signatory",
+      "evidence": "ERCOT queue 20INR0129 lists IA signed 2020-05-05 under Foxtrot Wind LLC; triage identified Lincoln Clean as developer from queue records"
+    },
+    {
+      "entity": "Helena Wind, LLC",
+      "relation": "operating entity (EIA 860 utility name)",
+      "evidence": "EIA Form 860 2025ER — Helena Wind LLC (plant 63738) is the registered utility for the 268.2 MW operating wind farm at 28.622, -97.938 Bee County TX; GLEIF LEI 549300KY6HKK0GECYX39 shows HQ 401 N Michigan Ave Chicago IL (Lincoln Clean / Ørsted address)"
+    },
+    {
+      "entity": "Lincoln Clean Energy LLC",
+      "relation": "developer (likely)",
+      "evidence": "Triage source (ERCOT queue records); GLEIF Chicago HQ for Helena Wind LLC consistent with Lincoln Clean Energy's 401 N Michigan Ave Chicago address"
+    },
+    {
+      "entity": "Ørsted A/S",
+      "relation": "ultimate parent (likely)",
+      "evidence": "Ørsted acquired Lincoln Clean Energy in 2018; Lincoln Clean Energy develops and operates wind projects under Ørsted umbrella in ERCOT"
+    }
+  ],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "PUCT Interchange HTTP 402; Bee County CAD HTTP 404; no IA or CAD parcels retrieved"
+  },
+  "construction": {
+    "verdict": "operating",
+    "first_activity_seen": "pre-2022-06",
+    "evidence": [
+      "EIA Form 860 2025 Early Release (sources/2026-07-19_eia860_2025er_bee-county-wind.txt): Helena Wind 268.2 MW, status OP, operating month June 2022 — exact capacity match to Foxtrot Wind 20INR0129",
+      "72 OSM wind turbine nodes (sources/2026-07-19_osm-overpass_bee-county-wind-turbines.txt) at centroid 28.622N, -97.938W confirm physical turbine installation",
+      "Sentinel-2 2026-07-01 chip (imagery/s2_28.62_-97.94_2026-07-01.png): turbines visible as white dots across landscape with access road network consistent with 180-turbine operational wind farm",
+      "ERCOT queue milestone: approved-for-synchronization 2022-03-09 — consistent with EIA operating date June 2022"
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2026-08-31",
+    "independent": "2022-Q2",
+    "drift_risk": "not applicable",
+    "reasoning_evidence": [
+      "EIA Form 860 2025ER records Helena Wind (268.2 MW, exact match) as operating since June 2022 — 4+ years before reported COD of 2026-08-31",
+      "45 COD changes over 8 years (2020-05-01 through 2026-08-31): COD rolling monthly since early 2022 with zero construction start/end dates ever reported — classic stale-open queue entry pattern",
+      "ERCOT approved-for-synchronization 2022-03-09 but no approved-for-commercial-operation date: consistent with project operating under Helena Wind LLC without Foxtrot Wind LLC ever formally closing its queue entry",
+      "Reported COD of 2026-08-31 is a queue artifact with no physical meaning — turbines installed and generating since 2022"
+    ]
+  },
+  "real_project_verdict": "operating",
+  "negative_searches": 14,
+  "banned_source_violations": 0,
+  "project_area": {
+    "acres": null,
+    "source": "not obtained — PUCT Interchange HTTP 402, Bee County CAD HTTP 404, FAA OE shutdown",
+    "artifact": null
+  },
+  "contractual_schedule": {
+    "source_docs": [],
+    "note": "PUCT Interchange returned HTTP 402 Payment Required on all queries. IA PDF (signed 2020-05-05, AEP Tango 345kV POI) not retrieved. EIA 860 confirms final grid connection via South Texas Electric Coop at 345kV. 180 Vestas V150-4.2 turbines.",
+    "documents": [
+      {
+        "doc": "Original Interconnection Agreement (AEP Texas / Foxtrot Wind LLC)",
+        "signed": "2020-05-05",
+        "financial_security": "unknown — PUCT Interchange HTTP 402",
+        "artifact": null
+      }
+    ],
+    "milestones": []
+  },
+  "key_artifacts": [
+    {
+      "type": "EIA Form 860 2025 Early Release",
+      "path": "sources/2026-07-19_eia860_2025er_bee-county-wind.txt",
+      "url": "https://www.eia.gov/electricity/data/eia860/xls/eia8602025ER.zip",
+      "significance": "Helena Wind 268.2 MW operating June 2022 — exact capacity + county match; decisive operating-status evidence"
+    },
+    {
+      "type": "OSM wind turbine nodes",
+      "path": "sources/2026-07-19_osm-overpass_bee-county-wind-turbines.txt",
+      "url": "https://overpass-api.de/api/interpreter",
+      "significance": "72 turbine nodes at lat 28.622 lon -97.938 confirm physical installation"
+    },
+    {
+      "type": "GLEIF LEI registry — Helena Wind LLC",
+      "path": "sources/2026-07-19_gleif_helena-wind-llc.txt",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter[entity.names]=helena+wind",
+      "significance": "Helena Wind LLC HQ 401 N Michigan Ave Chicago IL — Lincoln Clean / Ørsted address, links operating entity to developer"
+    },
+    {
+      "type": "Sentinel-2 satellite imagery",
+      "path": "imagery/s2_28.62_-97.94_2026-07-01.png",
+      "url": null,
+      "significance": "2026-07-01 chip shows turbines and access roads — operating wind farm confirmed"
+    }
+  ]
+}

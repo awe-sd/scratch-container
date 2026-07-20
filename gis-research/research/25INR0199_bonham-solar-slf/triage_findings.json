@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0199",
+  "project": "Bonham Solar SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.60,
+    "lon": -96.51,
+    "method": "POI line midpoint (MEXIA 138kV ↔ GROESBECK_SE1 138kV)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth not configured; imagery not retrieved"
+  },
+  "cod_first_look": {
+    "reported": "2027-04-06",
+    "plausible": true,
+    "why": "IA signed Aug 2024, Meets 6.9(1) May 2025, FIS approved Jun 2026 — ~10 month runway to Apr 2027 is tight but not impossible for solar; 3 prior COD slips suggest schedule pressure"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2024-08-07 but PDF not retrieved — PUCT Interchange portal (needs session auth); pull IA to confirm parties, POI, and milestone schedule",
+    "No developer/sponsor identified — TX SOS entity search for 'Bonham Solar SLF LLC' may surface parent (AES, Lightsource, etc.) and unlock news/permit trail",
+    "Imagery blocked by missing CDSE creds — once configured, run 3×3 grid around 31.60N/-96.51W; FIS approved Jun 2026 means construction could start soon",
+    "FIS approved only Jun 2026 and COD is Apr 2027 — verify whether NTP/construction-start date has been recorded in latest queue snapshot"
+  ],
+  "turns_used": 28
+}

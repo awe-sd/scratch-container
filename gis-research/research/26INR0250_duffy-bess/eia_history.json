@@ -1,0 +1,54 @@
+{
+ "inr": "26INR0250",
+ "plant_id": 69295,
+ "plant_name": "Duffy BESS",
+ "entity": "Duffy Energy Storage LLC",
+ "matched_by": "name match",
+ "first_report": "2025-10-01",
+ "last_report": "2026-05-01",
+ "planned_cod_history": [
+  {
+   "value": "2026-12",
+   "from": "2025-10-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 235.9,
+   "from": "2025-10-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "status_history": [
+  {
+   "value": "(P) Planned for installation, but regulatory approvals not initiated",
+   "from": "2025-10-01",
+   "to": "2026-01-01"
+  },
+  {
+   "value": "(U) Under construction, less than or equal to 50 percent complete",
+   "from": "2026-02-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "queue_reported_cod": "2026-12-31",
+ "energy_capacity_mwh_history": [
+  {
+   "value": null,
+   "from": "2025-10-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "operating_date_history": [
+  {
+   "value": null,
+   "from": "2025-10-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "eia_county": "Matagorda",
+ "eia_lat": 28.85459,
+ "eia_lon": -96.08606,
+ "dropped_from_860m": null
+}

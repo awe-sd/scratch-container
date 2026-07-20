@@ -1,0 +1,36 @@
+{
+  "inr": "23INR0231",
+  "project": "Hoke Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.27,
+    "lon": -97.77,
+    "method": "POI infrastructure — named Nixon substation (tap 138kV 7595 Deer Creek – 7621 Nixon)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown — CDSE auth blocked",
+    "evidence": "AUI Partners portfolio page lists Hoke Solar & BESS as EPC contract (123 MWdc/132 MWh); law firm post states 'construction in the coming weeks' (undated). No satellite imagery obtained due to CDSE 401 credential failure."
+  },
+  "cod_first_look": {
+    "reported": "2027-05-08",
+    "plausible": true,
+    "why": "8 COD slips over 4 years but EPC contract signed and AUI page says 2026 completion; 2027 target is plausible if construction recently started"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "CDSE credentials — fix auth and run imagery at Nixon TX (29.27, -97.77) with a 2024 baseline to check for panel installation",
+    "AUI Partners page confirms EPC contract and 2026 completion target — verify with PUCT Interchange IA filing (portal was blocked, not absent)",
+    "Cole Schotz Facebook post mentions construction imminent — find date of that post to anchor construction timeline",
+    "Developer Nexus Renewable Power — search for financing close / tax equity announcement which would confirm real execution",
+    "FIS never approved in queue despite IA signed 2022 — verify if FIS was waived or is still outstanding"
+  ],
+  "turns_used": 22
+}

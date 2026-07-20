@@ -1,0 +1,54 @@
+{
+ "inr": "25INR0046",
+ "plant_id": 66391,
+ "plant_name": "Ash Creek BESS",
+ "entity": "ACTX BESS Project LLC",
+ "matched_by": "county+prime-mover+MW within 5% (306 vs 306.26)",
+ "first_report": "2023-03-01",
+ "last_report": "2026-05-01",
+ "planned_cod_history": [
+  {
+   "value": "2025-05",
+   "from": "2023-03-01",
+   "to": "2024-04-01"
+  },
+  {
+   "value": "2028-03",
+   "from": "2024-05-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 306.0,
+   "from": "2023-03-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "status_history": [
+  {
+   "value": "(P) Planned for installation, but regulatory approvals not initiated",
+   "from": "2023-03-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "queue_reported_cod": "2028-04-01",
+ "energy_capacity_mwh_history": [
+  {
+   "value": null,
+   "from": "2023-03-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "operating_date_history": [
+  {
+   "value": null,
+   "from": "2023-03-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "eia_county": "Hill",
+ "eia_lat": 31.90022,
+ "eia_lon": -97.01642,
+ "dropped_from_860m": null
+}

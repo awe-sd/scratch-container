@@ -1,0 +1,68 @@
+{
+  "inr": "27INR0578",
+  "project": "Trailblazer Solar",
+  "researched_at": "2026-07-19",
+  "site": {
+    "lat": null,
+    "lon": null,
+    "method": "could_not_determine",
+    "confidence": "none",
+    "notes": "No delivery pin (GMaps rate-limited), no parcel (CAD unavailable), no news article. POI 'Sweetwater East Switch 345 kV' east of Sweetwater TX (32.47N, 100.41W); exact switch coordinates not in public OSM or ERCOT open data."
+  },
+  "parcels": [],
+  "project_area": {
+    "acres": null,
+    "source": "not_found",
+    "artifact": null
+  },
+  "llc_chain": [
+    {
+      "entity": "Trailblazer Solar, LLC",
+      "role": "SPV (presumed)",
+      "evidence": "Queue identity packet only — TX Comptroller entity search unavailable via WebFetch (POST redirect); no PR, SEC, or web presence found in any search"
+    }
+  ],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "No CAD parcel records found (nolancad.org DNS failure); no tax abatement, IA, or county records found"
+  },
+  "construction": {
+    "verdict": "no_activity",
+    "first_activity_seen": null,
+    "evidence": [
+      "S2 chip 2026-07-01 centered 32.44N 100.30W (imagery/s2_2026-07-01_center.png): undisturbed West Texas rangeland, no graded polygon, no racking",
+      "S2 chip 2026-07-01 centered on Sweetwater city 32.47N 100.41W (imagery/s2_2026-07-01_sweetwater.png): undisturbed farmland and city, no solar signature",
+      "S2 chip 2026-07-01 centered 32.50N 100.22W along I-20 NE corridor (imagery/s2_2026-07-01_northeast.png): undisturbed rangeland along highway, no clearing",
+      "Queue state consistent with no activity: FIS not approved, IA not signed as of 2026-06-01"
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-12-12",
+    "independent": "2029-Q1",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "IA not yet signed as of 2026-06-01 (most recent snapshot). Typical AEP Texas IA execution takes 3-12 months after FIS approval.",
+      "FIS not yet approved as of 2026-06-01. ERCOT FIS studies for solar take 6-18 months in the current congested queue.",
+      "Minimum critical path: FIS approved Q4 2026 (optimistic) → IA signed Q1 2027 → procurement + construction 18-24 months for 323 MW → COD Q3-Q4 2028 at earliest.",
+      "Reported COD 2027-12-12 is only 17.5 months from 2026-07-19 — physically impossible without IA already signed and construction underway.",
+      "No developer, EPC, PPA, or financing identified — zero external signals of project maturity or commitment.",
+      "COD has not drifted because project is too new (4 snapshots only); zero-drift is uninformative at this stage."
+    ]
+  },
+  "real_project_verdict": "unclear",
+  "negative_searches": 35,
+  "banned_source_violations": 0,
+  "contractual_schedule": {
+    "documents": [],
+    "milestones": [
+      {"name": "Screening started", "queue_state": "2026-03-18"},
+      {"name": "Screening complete", "queue_state": "2026-06-15"},
+      {"name": "FIS requested", "queue_state": "2026-03-11"},
+      {"name": "FIS approved", "queue_state": "not yet"},
+      {"name": "IA signed", "queue_state": "not yet"},
+      {"name": "Financial security", "queue_state": "not yet"},
+      {"name": "Reported COD", "queue_state": "2027-12-12"}
+    ],
+    "note": "IA not yet signed. No PUCT filing found (Interchange 402 — login required). No IA documents accessible."
+  }
+}

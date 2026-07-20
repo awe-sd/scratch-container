@@ -1,0 +1,36 @@
+{
+  "inr": "26INR0033",
+  "project": "Fairway Storage",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.7241,
+    "lon": -96.1552,
+    "method": "POI inference — 'FAIRFIELD' substation name → Fairfield TX (county seat)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "not assessed",
+    "evidence": "CDSE credentials returned 401/403 on all chip attempts; no imagery obtained"
+  },
+  "cod_first_look": {
+    "reported": "2027-09-24",
+    "plausible": true,
+    "why": "IA signed Aug 2025, meets 6.9(1) Mar 2026; ~14 months to Sep 2027 COD is tight but within BESS build window; credible developer (Nofar/Qcells)"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT IA doc 35077_2254_1537453 — extract milestone-schedule exhibit (NTP, construction, energization dates); portal was 402-blocked during triage",
+    "Refresh CDSE credentials then run tight chips around Fairfield TX substation to check for site prep",
+    "Confirm precise substation coordinates for 'Oncor 196 FAIRFIELD 138kV' via ERCOT transmission map or Oncor GIS",
+    "Check JETI (HB5) registry for Freestone County — not web-searchable during triage but worth a direct lookup",
+    "Verify Qcells press release content (us.qcells.com returned 404) via energy-storage.news article for COD/financing details"
+  ],
+  "turns_used": 28
+}

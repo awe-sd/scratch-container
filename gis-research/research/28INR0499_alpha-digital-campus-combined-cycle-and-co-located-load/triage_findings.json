@@ -1,0 +1,27 @@
+{
+  "inr": "28INR0499",
+  "project": "Alpha Digital Campus Combined-cycle and Co-located Load",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": false,
+    "why": "Entered queue April 2026, no milestones beyond initial intake; gas CC requires TCEQ air permit + multi-year construction; 18-month COD from queue entry is implausible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "TCEQ air permit search for any NSR/permit for 'Alpha Digital Campus' in Reeves County — absence would confirm paper project",
+    "Texas SOS entity search for 'Alpha Digital Campus' LLC to surface developer/sponsor identity",
+    "PUCT Interchange authenticated search for any IA or preliminary agreement filing",
+    "Locate TNCOWPEN 345kV substation coordinates via ERCOT network data to enable imagery once a real site candidate is confirmed"
+  ],
+  "turns_used": 22
+}

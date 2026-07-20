@@ -1,0 +1,28 @@
+{
+  "inr": "23INR0091",
+  "project": "Cascade Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-01-15",
+    "plausible": true,
+    "why": "IA signed Apr-2023, FIS approved Sep-2025, all 6.9 met Oct-2025; COD slipped 10x from 2023 to 2028 — current date is plausible given late FIS but aggressive for a developer with thin track record"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA document — IA signed 2023-04-17 but PDF/schedule exhibit not retrieved (portal requires auth); check amendment filings for any CEII-redacted schedule",
+    "SAVANAH 345 kV substation (ERCOT bus 43180) coordinates — needed to anchor site candidate and enable imagery; try ERCOT TPG or OpenInfraMap",
+    "Cascade Solar Energy LLC parent/backer — SF address suggests institutional developer; identify fund or parent to assess financial standing behind capacity reshuffles (254→113→171 MW)",
+    "Capacity volatility deep-dive — MW changed 6 times (250→254→204→254→175→113→171); understand whether scope reductions reflect permitting/financing constraints or modeling revisions",
+    "Construction milestone watch — no start/end dates yet; project meets all 6.9 as of Oct-2025 and COD is 2028-01-15, so construction should be imminent or already started; check recent GIS snapshots"
+  ],
+  "turns_used": 18
+}

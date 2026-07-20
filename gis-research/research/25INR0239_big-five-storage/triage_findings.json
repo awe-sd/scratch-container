@@ -1,0 +1,27 @@
+{
+  "inr": "25INR0239",
+  "project": "Big Five Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-01-15",
+    "plausible": true,
+    "why": "4 COD slips over 3 years (2.5-yr total drift); reported construction start 2027-07 gives ~18-month build window, consistent with BESS timeline, but no IA or FIS approval yet makes 2028 optimistic"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange: search when portal accessible — FilingParty and Description for 'Big Five Storage'; IA may exist but wasn't reachable via triage portal (402 error)",
+    "Substation location: resolve 'Redgtss' (bus 5784) and 'Nedina' (bus 8380) coordinates via ERCOT nodal model or AEP Texas GIS — needed to enable imagery",
+    "Developer/LLC identity: TX SOS SOSDirect was down; retry search for 'Big Five Storage LLC' to find parent developer and any portfolio context",
+    "FIS approval status: FIS requested 2023-05-22 but no approval date in queue — confirm whether FIS study is complete or still pending before IA can execute"
+  ],
+  "turns_used": 28
+}

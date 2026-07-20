@@ -1,0 +1,35 @@
+{
+  "inr": "17INR0053",
+  "project": "HHGT repower Horse13+CallD",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.214,
+    "lon": -100.057,
+    "method": "web search — Horse Hollow Wind Energy Center (NextEra), Taylor/Nolan County TX",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "likely already online",
+    "evidence": "approvedForSynchronization 2021-09-10 in queue data; ercotqueue.com lists as 'Currently Commissioned; build-chance 100%'; IA signed 2009-06-26 (legacy facility). CDSE credentials expired so imagery not confirmed."
+  },
+  "cod_first_look": {
+    "reported": "2026-12-31",
+    "plausible": false,
+    "why": "approvedForSynchronization 2021-09-10 strongly suggests already operational; reported COD is likely a stale queue artifact"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm online/commercial status: check ERCOT CDR or SCED name for Horse13/17INR0053 to verify it is generating",
+    "Twin INR 17INR0052 (same 44 MW NextEra repower, same county) — clarify whether both are commissioned or one is the surviving queue entry",
+    "CDSE credentials expired — refresh before any imagery attempt at Horse Hollow ~32.214, -100.057",
+    "PUCT Interchange blocked (402) — try from a different network to find the 2009-era IA docket and confirm the repower schedule"
+  ],
+  "turns_used": 22
+}

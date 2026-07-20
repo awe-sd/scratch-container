@@ -1,0 +1,36 @@
+{
+  "inr": "27INR0173",
+  "project": "Trenno BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.449,
+    "lon": -97.527,
+    "method": "POI substation name 'Godley 138kV' geocoded to town of Godley, TX",
+    "confidence": "low — town center only, no parcel or pad identified"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials not configured (401); no gmaps pins; no satellite imagery obtained"
+  },
+  "cod_first_look": {
+    "reported": "2027-09-13",
+    "plausible": true,
+    "why": "IA signed Aug 2025; 13 months to Sep 2027 is tight-to-plausible for BESS (12-18 month build); FIS not yet approved is the main risk"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Retrieve IA PDF from PUCT Interchange (filing party = JSB1 LLC, ~Sep 2025) — milestone schedule exhibit needed",
+    "Configure CDSE credentials and run tight imagery chips around Godley substation to check for gravel pad / container rows",
+    "Identify exact tap location on 138kV Godley-Carmichael line to refine site candidate off town-center",
+    "Verify JSB1 LLC registration (Texas SOS) and any parent/sponsor entity for financial depth signal",
+    "FIS approval still pending — monitor for FIS approved date as key go/no-go gate"
+  ],
+  "turns_used": 28
+}

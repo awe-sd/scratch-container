@@ -1,0 +1,28 @@
+{
+  "inr": "22INR0262",
+  "project": "Sequoia II Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-11-21",
+    "plausible": false,
+    "why": "No construction start date in queue, FIS approved only 2026-03-16, 4 prior COD slips — 4 months to COD from FIS approval with no construction reported is very tight"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate Reata 345kV substation coordinates (ERCOT bus 68051) to establish a site candidate — try ERCOT transmission planning docs or AEP Texas GIS",
+    "Pull PUCT Interchange IA filing (signed 2023-08-29) — extract milestone schedule exhibit to see contractual COD and any CEII status",
+    "Search TX Secretary of State for 'Sequoia II Solar LLC' or related entities to identify developer/owner",
+    "Run imagery once site candidate is pinned — project has IA + all 6.9 milestones, so construction may have started recently",
+    "Check Callahan County CAD for any land records or permit activity tied to a large solar installation"
+  ],
+  "turns_used": 22
+}

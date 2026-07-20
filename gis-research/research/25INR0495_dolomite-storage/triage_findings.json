@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0495",
+  "project": "Dolomite Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.47,
+    "lon": -96.76,
+    "method": "POI name inference — queue lists 'Rockett 69kV'; Rockett community ~32.47N 96.76W near Waxahachie, Ellis County",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "No imagery obtained — CDSE credentials not configured. No construction milestones in queue. No site photos or news found."
+  },
+  "cod_first_look": {
+    "reported": "2026-12-01",
+    "plausible": false,
+    "why": "No IA signed, FIS not approved after 3 years in queue — 5-month runway to Dec 2026 COD is implausible at this milestone stage"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Verify developer: BT Wilson Storage LLC — search TX SOS for entity, any parent company or parent developer",
+    "PUCT Interchange direct search when portal accessible — look for IA or FIS filings under 'BT Wilson' not 'Dolomite Storage'",
+    "Configure CDSE credentials and run imagery at 32.47N, 96.76W (Rockett substation area) to confirm no site prep",
+    "Ellis CAD parcel search near Rockett substation for any recent transfers to BT Wilson or Dolomite Storage LLC"
+  ],
+  "turns_used": 28
+}

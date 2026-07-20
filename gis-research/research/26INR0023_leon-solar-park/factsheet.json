@@ -1,0 +1,76 @@
+{
+ "inr": "26INR0023",
+ "generated": "2026-07-20",
+ "project": "Leon Solar Park",
+ "county": "Leon",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 210.11,
+ "queue_cod": "2026-07-01",
+ "milestones": {
+  "screeningStudyComplete": "2022-12-13",
+  "fisApproved": "2025-09-09",
+  "iaSigned": "2024-05-21",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 0,
+ "eia": {
+  "status": "ok",
+  "plant_id": 61532,
+  "entity": "Cypress Creek Renewables",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   33.16114,
+   -96.23974
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Ferrovial Energy US",
+    "detail": "plant=Misae Solar IV LLC 209.0MW (TS) Construction complete, but not yet  @31.44307,-95.75183 planned=2026-07"
+   },
+   {
+    "source": "puct-index",
+    "entity": "MISAE SOLAR IV, LLC",
+    "detail": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and MISAE SOLAR IV, "
+   },
+   {
+    "source": "puct-index",
+    "entity": "Misae Solar IV LLC",
+    "detail": "Amendment No. 1 to the Standard Generation Interconnection Agreement between Oncor Electric Delivery Company L"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Misae Solar IV, LLC",
+    "detail": "Amendment No. 2 to the Standard Generation Interconnection Agreement between Oncor Electric Delivery Company L"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 3,
+  "join_items": 3
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 210.11,
+  "reason": "reality signal"
+ }
+}

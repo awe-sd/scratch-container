@@ -1,0 +1,206 @@
+{
+ "inr": "21INR0240",
+ "project": "La Casa Wind",
+ "first_seen_in_reports": "2019-01-01",
+ "last_seen_in_reports": "2026-06-01",
+ "snapshots": 90,
+ "milestones": [
+  {
+   "milestone": "Screening started",
+   "achieved": "2018-12-28",
+   "first_in_report": "2019-01-01"
+  },
+  {
+   "milestone": "Screening complete",
+   "achieved": "2019-03-12",
+   "first_in_report": "2019-03-01"
+  },
+  {
+   "milestone": "FIS requested",
+   "achieved": "2018-12-29",
+   "first_in_report": "2019-03-01"
+  },
+  {
+   "milestone": "FIS approved",
+   "achieved": "2023-09-22",
+   "first_in_report": "2021-07-01"
+  },
+  {
+   "milestone": "IA signed",
+   "achieved": "2023-09-07",
+   "first_in_report": "2023-09-01"
+  },
+  {
+   "milestone": "Meets 6.9(1)",
+   "achieved": "2024-01-04",
+   "first_in_report": "2024-01-01"
+  },
+  {
+   "milestone": "Meets all 6.9",
+   "achieved": "2024-04-29",
+   "first_in_report": "2024-04-01"
+  },
+  {
+   "milestone": "Construction start (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Construction end (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Approved for energization",
+   "achieved": "2025-10-31",
+   "first_in_report": "2025-10-01"
+  },
+  {
+   "milestone": "Approved for synchronization",
+   "achieved": "2025-11-14",
+   "first_in_report": "2025-11-01"
+  },
+  {
+   "milestone": "Commercial operation approved",
+   "achieved": null,
+   "first_in_report": null
+  }
+ ],
+ "reported_cod_history": [
+  {
+   "value": "2021-12-15",
+   "from": "2019-01-01",
+   "to": "2020-02-01"
+  },
+  {
+   "value": "2022-12-15",
+   "from": "2020-03-01",
+   "to": "2022-05-01"
+  },
+  {
+   "value": "2023-12-31",
+   "from": "2022-06-01",
+   "to": "2023-02-01"
+  },
+  {
+   "value": "2024-12-31",
+   "from": "2023-03-01",
+   "to": "2023-10-01"
+  },
+  {
+   "value": "2025-06-10",
+   "from": "2023-11-01",
+   "to": "2024-01-01"
+  },
+  {
+   "value": "2025-03-11",
+   "from": "2024-02-01",
+   "to": "2024-02-01"
+  },
+  {
+   "value": "2025-03-22",
+   "from": "2024-03-01",
+   "to": "2024-09-01"
+  },
+  {
+   "value": "2025-06-30",
+   "from": "2024-10-01",
+   "to": "2025-03-01"
+  },
+  {
+   "value": "2026-03-15",
+   "from": "2025-04-01",
+   "to": "2025-08-01"
+  },
+  {
+   "value": "2026-03-16",
+   "from": "2025-09-01",
+   "to": "2026-02-01"
+  },
+  {
+   "value": "2026-05-15",
+   "from": "2026-03-01",
+   "to": "2026-04-01"
+  },
+  {
+   "value": "2026-07-31",
+   "from": "2026-05-01",
+   "to": "2026-05-01"
+  },
+  {
+   "value": "2026-08-15",
+   "from": "2026-06-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 200.2,
+   "from": "2019-01-01",
+   "to": "2019-01-01"
+  },
+  {
+   "value": 201.0,
+   "from": "2019-02-01",
+   "to": "2022-05-01"
+  },
+  {
+   "value": 148.78,
+   "from": "2022-06-01",
+   "to": "2023-05-01"
+  },
+  {
+   "value": 147.72,
+   "from": "2023-06-01",
+   "to": "2023-06-01"
+  },
+  {
+   "value": 148.33,
+   "from": "2023-07-01",
+   "to": "2023-12-01"
+  },
+  {
+   "value": 148.4,
+   "from": "2024-01-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "study_phase_history": [
+  {
+   "value": "SS Started, FIS Started, No IA",
+   "from": "2019-01-01",
+   "to": "2019-02-01"
+  },
+  {
+   "value": "SS Completed, FIS Started, No IA",
+   "from": "2019-03-01",
+   "to": "2021-06-01"
+  },
+  {
+   "value": "SS Completed, FIS Completed, No IA",
+   "from": "2021-07-01",
+   "to": "2022-07-01"
+  },
+  {
+   "value": "SS Completed, FIS Started, No IA",
+   "from": "2022-08-01",
+   "to": "2022-08-01"
+  },
+  {
+   "value": "SS Completed, FIS Completed, No IA",
+   "from": "2022-09-01",
+   "to": "2023-02-01"
+  },
+  {
+   "value": "SS Completed, FIS Started, No IA",
+   "from": "2023-03-01",
+   "to": "2023-08-01"
+  },
+  {
+   "value": "SS Completed, FIS Completed, IA",
+   "from": "2023-09-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "financial_security_latest": "Yes"
+}

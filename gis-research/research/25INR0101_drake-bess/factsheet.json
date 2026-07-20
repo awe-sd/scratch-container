@@ -1,0 +1,72 @@
+{
+ "inr": "25INR0101",
+ "generated": "2026-07-20",
+ "project": "Drake BESS",
+ "county": "Collin",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 257.3,
+ "queue_cod": "2027-01-29",
+ "milestones": {
+  "screeningStudyComplete": "2022-08-29",
+  "fisApproved": "2025-06-18",
+  "iaSigned": "2025-05-06",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 5,
+ "eia": {
+  "status": "ok",
+  "plant_id": 69681,
+  "entity": "Mallard Energy Storage, LLC",
+  "planned_cod": "2026-06",
+  "cod_delta_quarters": -2.3,
+  "dropped_scope": null,
+  "coords": [
+   33.06427,
+   -96.45051
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Mallard Energy Storage, LLC",
+    "detail": "plant=Mallard Energy Storage 250.0MW (U) Under construction, less than or equ @33.06427,-96.45051 planned=2026-06"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 2,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "eia_under_construction",
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 20,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 10,
+   "detail": "5 COD slips"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 40.52,
+  "reason": "reality signal"
+ }
+}

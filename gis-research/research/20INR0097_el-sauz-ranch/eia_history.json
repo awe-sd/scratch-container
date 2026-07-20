@@ -1,0 +1,149 @@
+{
+ "inr": "20INR0097",
+ "plant_id": 65760,
+ "plant_name": "El Sauz Ranch Wind, LLC",
+ "entity": "El Sauz Ranch Wind, LLC",
+ "matched_by": "name match",
+ "first_report": "2022-07-01",
+ "last_report": "2026-05-01",
+ "planned_cod_history": [
+  {
+   "value": "2022-12",
+   "from": "2022-07-01",
+   "to": "2022-09-01"
+  },
+  {
+   "value": "2023-05",
+   "from": "2023-01-01",
+   "to": "2023-03-01"
+  },
+  {
+   "value": "2023-06",
+   "from": "2023-04-01",
+   "to": "2023-05-01"
+  },
+  {
+   "value": "2023-09",
+   "from": "2023-06-01",
+   "to": "2023-07-01"
+  },
+  {
+   "value": "2023-10",
+   "from": "2023-08-01",
+   "to": "2023-08-01"
+  },
+  {
+   "value": "2023-11",
+   "from": "2023-09-01",
+   "to": "2023-09-01"
+  },
+  {
+   "value": "2023-12",
+   "from": "2023-10-01",
+   "to": "2023-10-01"
+  },
+  {
+   "value": "2024-03",
+   "from": "2023-11-01",
+   "to": "2024-01-01"
+  },
+  {
+   "value": "2024-04",
+   "from": "2024-02-01",
+   "to": "2024-02-01"
+  },
+  {
+   "value": "2024-06",
+   "from": "2024-03-01",
+   "to": "2024-04-01"
+  },
+  {
+   "value": "2024-07",
+   "from": "2024-05-01",
+   "to": "2024-05-01"
+  },
+  {
+   "value": "2024-08",
+   "from": "2024-06-01",
+   "to": "2024-06-01"
+  },
+  {
+   "value": "2024-09",
+   "from": "2024-07-01",
+   "to": "2024-07-01"
+  },
+  {
+   "value": "2024-11",
+   "from": "2024-08-01",
+   "to": "2024-10-01"
+  },
+  {
+   "value": "2025-01",
+   "from": "2024-11-01",
+   "to": "2024-12-01"
+  },
+  {
+   "value": null,
+   "from": "2025-01-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 301.0,
+   "from": "2022-07-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "status_history": [
+  {
+   "value": "(P) Planned for installation, but regulatory approvals not initiated",
+   "from": "2022-07-01",
+   "to": "2022-07-01"
+  },
+  {
+   "value": "(U) Under construction, less than or equal to 50 percent complete",
+   "from": "2022-08-01",
+   "to": "2022-09-01"
+  },
+  {
+   "value": "(V) Under construction, more than 50 percent complete",
+   "from": "2023-01-01",
+   "to": "2024-11-01"
+  },
+  {
+   "value": "(TS) Construction complete, but not yet in commercial operation",
+   "from": "2024-12-01",
+   "to": "2024-12-01"
+  },
+  {
+   "value": "(OP) Operating",
+   "from": "2025-01-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "queue_reported_cod": "2026-08-02",
+ "energy_capacity_mwh_history": [
+  {
+   "value": null,
+   "from": "2022-07-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "operating_date_history": [
+  {
+   "value": null,
+   "from": "2022-07-01",
+   "to": "2024-12-01"
+  },
+  {
+   "value": "2025-01",
+   "from": "2025-01-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "eia_county": "Willacy",
+ "eia_lat": 26.50088,
+ "eia_lon": -97.59906,
+ "dropped_from_860m": null
+}

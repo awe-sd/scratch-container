@@ -1,0 +1,15 @@
+Source: AES Corp Q3 2025 10-Q (filed 2025-11-04), Accession 0000874761-25-000084
+URL: https://www.sec.gov/Archives/edgar/data/874761/000087476125000084/aes-20250930.htm
+Period: 9 months ended 2025-09-30
+
+KEY EXCERPT:
+
+"During the third quarter of 2025, AES Renewable Holdings completed buyouts of tax equity
+partners at Buffalo Gap I, Buffalo Gap II, and Buffalo Gap III, resulting in a decrease to
+NCI of $28 million and a decrease to additional paid-in capital of $42 million."
+
+SIGNIFICANCE:
+- AES consolidated 100% ownership of all three Buffalo Gap wind farms in Q3 2025 (Jul–Sep 2025)
+- Tax equity buyout is a standard pre-repower step — existing tax equity must be cleared
+  before the repowering project can use new tax credits (ITC/PTC)
+- Clears the capital structure for the repower; HASI preferred equity followed in Dec 2025

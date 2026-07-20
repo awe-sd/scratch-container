@@ -1,0 +1,67 @@
+{
+ "inr": "25INR0029",
+ "generated": "2026-07-20",
+ "project": "Whistle Solar",
+ "county": "Navarro",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 56.3,
+ "queue_cod": "2028-05-15",
+ "milestones": {
+  "screeningStudyComplete": "2022-02-18",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ok",
+  "plant_id": 67785,
+  "entity": "Gransolar Texas Nineteen LLC",
+  "planned_cod": "2028-05",
+  "cod_delta_quarters": 0.0,
+  "dropped_scope": null,
+  "coords": [
+   31.985,
+   -96.43658
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Gransolar Texas Nineteen LLC",
+    "detail": "plant=Whistle Solar 56.3MW (L) Regulatory approvals pending. Not un @31.985,-96.43658 planned=2028-05"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [],
+ "paper_score": 16,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 16 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

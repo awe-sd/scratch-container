@@ -1,0 +1,79 @@
+{
+  "inr": "25INR0421",
+  "project": "Aldrin 138 BESS",
+  "researched_at": "2026-07-19",
+  "site": {
+    "lat": 29.45902,
+    "lon": -95.25754,
+    "method": "POI substation coords from OSM Overpass API (North Alvin Substation, TNMP 138kV, OSM way 174401064); developer site confirms \"directly next to an electrical substation\"",
+    "confidence": "high"
+  },
+  "project_area": {
+    "acres": 12,
+    "source": "Developer website aldrinenergystorage.com: 'less than 12 acres of privately owned land'",
+    "artifact": "sources/2026-07-19_aldrinenergystorage-com_home.html"
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Aldrin Energy Storage LLC",
+      "relation": "SPV",
+      "evidence": "TX Comptroller ACTIVE, DE formation 2022-12-19, SoS file 0804862187, Co-CEO Juan Suarez (Albuquerque NM); sources/2026-07-19_tx-comptroller_aldrin-energy-storage.html"
+    },
+    {
+      "entity": "Vesper Energy",
+      "relation": "developer/parent",
+      "evidence": "Aldrin site footer: '© 2025 Vesper Energy'; Co-CEO Juan Suarez named on both entities (Comptroller + Vesper about page); sources/2026-07-19_aldrinenergystorage-com_home.html + sources/2026-07-19_vesperenergy-com_about.html"
+    },
+    {
+      "entity": "Magnetar Capital",
+      "relation": "majority_equity_owner",
+      "evidence": "Vesper Energy about page: 'Magnetar Capital acquired the company in 2020, prompting rebrand to Vesper Energy'; sources/2026-07-19_vesperenergy-com_about-full.html"
+    },
+    {
+      "entity": "GCM Grosvenor",
+      "relation": "equity_investor",
+      "evidence": "Vesper Energy about page: 'GCM Grosvenor joined as an equity owner in 2023'; sources/2026-07-19_vesperenergy-com_about-full.html"
+    }
+  ],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Developer site states 'privately owned land' — could be leased or purchased. No CAD parcel hit under Aldrin; CAD portal requires JS rendering and no results were retrievable. No county deed or abatement doc found."
+  },
+  "construction": {
+    "verdict": "no_activity",
+    "first_activity_seen": null,
+    "evidence": [
+      "imagery/s2_29.459_95.258_2026-07-01_500m.png — North Alvin substation visible, adjacent land cleared/disturbed but NO BESS container rows or gravel pad visible as of 2026-07-01",
+      "imagery/s2_29.459_95.258_2026-07-01_2km.png — wider context, no activity",
+      "imagery/s2_29.459_95.258_2025-11-01_2km.png — Nov 2025 comparison, same state"
+    ]
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "IA (original, signed 2024-04-18 per ERCOT queue record)",
+        "signed": "2024-04-18",
+        "financial_security": "unknown — PUCT Interchange portal requires JS; IA PDF not retrieved",
+        "artifact": null
+      }
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-07-01",
+    "independent": "2028-Q2",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "COD drifted twice: 2025-07-15 → 2026-03-01 → 2027-07-01 (~24 months total slip in ~2 years); sources: timeline.md",
+      "No construction visible in imagery as of 2026-07-01 — 12 months remain to reported COD; BESS build takes 12-18 months; almost no margin",
+      "'Meets all 6.9' (NTP gate) NOT achieved as of 2026-06 queue report — NTP may not yet be issued",
+      "IA signed Apr 2024 + FIS Aug 2025 — financial security and NTP gate unclear (IA PDF not retrieved)",
+      "Developer site (last published Jul 2025) still says 'could be operational as soon as end of 2025' — outdated, suggests project is behind its own public messaging",
+      "207 MW BESS with no visible construction in Jul 2026 cannot plausibly complete by Jul 2027 — a 12-18 month build with NTP status uncertain suggests at minimum 2027 slip, independent estimate 2028-Q2",
+      "Pattern from other Vesper BESS projects: Juniper Creek (CA) 200 MW target COD end-2025 still in dev as of 2025"
+    ]
+  },
+  "real_project_verdict": "real_early",
+  "negative_searches": 12,
+  "banned_source_violations": 0
+}

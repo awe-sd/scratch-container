@@ -1,0 +1,60 @@
+Source: ERCOT Transmission Project Information Tracking (TPIT) XLSX
+File: CIM_Jul_ML2_1_07212026_Electrical_Bus_to_Hub_List.zip (DocID 1250353235)
+Retrieved: 2026-07-19
+
+=== TPIT 6719A — Twelvemile Substation Addition (Circuit 1) ===
+Project #: 6719A
+Project Name: Twelvemile Substation Addition
+Description: Cuts into first circuit
+From Substation: Bakersfield
+To Substation: Schneeman Draw
+Status: In-Service
+ISD (L column, Excel date 45807): 2025-05-30
+TSP: LCRATSC (contact: Dylan Preas, dylan.preas@LCRA.org, 512-578-4514)
+Voltage kV: 345
+Counties: Pecos (column S), Crockett (column T)
+Tier: 4
+Buses: 7053, 76008, 76015
+RPG#: 6719
+
+=== TPIT 6719B — Twelvemile Substation Addition (Circuit 2) ===
+Project #: 6719B
+Project Name: Twelvemile Substation Addition
+Description: Cuts into the second circuit
+From Substation: Bakersfield
+To Substation: Schneeman Draw
+Status: Planned
+ISD (M column, Excel date 45825): ~2025-06-17
+TSP: LCRATSC
+Voltage kV: 345
+Counties: Pecos, Crockett
+Tier: 4
+Buses: 7053, 76008, 76015
+
+=== TPIT 20RPG018 — Upgrade Bakersfield to Schneeman Draw ===
+Description: Upgrade Bakersfield - Cedar Canyon - Noelke - Schneeman Draw as part of the 
+Permian Basin Reliability plan (project L15)
+Also related: Bakersfield_SchneemanDraw_Transmission_Line_Upgrade
+"Upgrade substation equipment at Bakersfield, Cedar Canyon, Twelvemile, Noelke, Single Tree, 
+and Schneeman Draw to support the upgrade of the STEC 345-kV double circuit line from 
+Bakersfield to Schneeman Draw. Transmission line scope will be performed by STEC."
+Buses: 7053, 76002, 76004, 76005, 76008, 76015
+
+=== Relevance to 25INR0451 ===
+Bus 76008 = Twelvemile 345kV = POI per ERCOT queue for 25INR0451 "Tres Rios Ranch BESS"
+The POI substation was added to the STEC 345kV Bakersfield-Schneeman Draw double-circuit line
+Circuit 1 confirmed in-service as of 2025-05-30 — POI infrastructure is real and operational
+
+=== STEC 345kV Line Geographic Context ===
+- Bakersfield TX (Pecos County): 30.8913,-102.2979
+- AEP Texas North Co. 345kV line route: 30.9762,-102.2891 to 31.0472,-100.5431
+  passes through Pecos → Crockett → Schleicher counties (reverse-geocoded)
+- Twelvemile substation in Pecos + Crockett counties (per TPIT)
+- BESS project site per queue: Upton County (north of this line, ~20-30 km)
+- North McCamey substation (31.1536,-102.2232) is in Upton County
+
+=== Source: HIFLD Electric Substations / Transmission Lines ===
+HIFLD 345kV segments confirmed in area:
+- Sharyland LP 345kV: 31.1536,-102.2232 → 31.8339,-102.3261 (through Upton Co)
+- AEP Texas North Co. 345kV: 31.0472,-100.5431 → 30.9762,-102.2891 (Bakersfield-Schneeman Draw route)
+- AEP Texas North Co. 345kV: 30.9762,-102.2891 → 31.1536,-102.2232 (to North McCamey, Upton Co)

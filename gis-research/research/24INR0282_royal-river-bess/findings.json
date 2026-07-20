@@ -1,0 +1,95 @@
+{
+  "inr": "24INR0282",
+  "project": "Royal River BESS",
+  "researched_date": "2026-07-19",
+  "real_project_verdict": "real_early",
+  "verdict_reason": "Clearway Energy Group SPV confirmed via TX SOS shared officers (Craig Cornelius/Jennifer Hein); IA signed 2023-12-15, FIS approved 2025-10-09 — real developer, real queue commitments; no construction confirmed yet",
+
+  "site": {
+    "lat": 29.2268,
+    "lon": -95.4288,
+    "method": "OSM Overpass API — CenterPoint Energy Angleton 138kV substation (node 244479862); BESS expected on adjacent parcel within ~1 km",
+    "confidence": "medium",
+    "cross_checks": "POI 'Tap 138kV 42110 Angleton – 43381 West Columbia' consistent with CenterPoint Angleton substation at 29.2268, -95.4288; West Columbia terminus at 29.1568, -95.6576 (OSM 336964607). No parcel or delivery-pin cross-check obtained.",
+    "not_obtainable": "Exact BESS pad coordinates — IA exhibit not retrieved (PUCT 402-blocked), CAD portal JS-blocked; triage chips were at wrong city-center proxy"
+  },
+
+  "llc_chain": [
+    {
+      "entity": "Royal River LLC",
+      "relation": "subsidiary_of",
+      "evidence": "TX Comptroller taxpayer 32087259811; President Craig Cornelius, Secretary Jennifer Hein — same individuals as Clearway Energy Group LLC officers; formed DE 2022-11-21; registered agent Capitol Corporate Services, Austin TX",
+      "artifact": "sources/2026-07-19_txcomptroller_royal-river-llc.json"
+    },
+    {
+      "entity": "Clearway Energy Group LLC",
+      "relation": "parent",
+      "evidence": "TX Comptroller taxpayer 32067634686; Craig Cornelius = CEO/President; Jennifer Hein = Secretary; same shared officers as Royal River LLC; 300 Carnegie Center Dr Ste 300, Princeton NJ 08540",
+      "artifact": "sources/2026-07-19_txcomptroller_clearway-energy-group-llc.json"
+    }
+  ],
+
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Brazoria CAD portal (esearch.brazoriacad.org) requires JavaScript form submission; automated owner search returned 404. No abatement agreement found (expected — Ch.313 expired 2022, JETI not yet public). No parcel for Royal River LLC found."
+  },
+
+  "project_area": {
+    "acres": null,
+    "source": "not obtained — CAD portal JS-blocked, IA exhibit not retrieved",
+    "artifact": null
+  },
+
+  "interconnection": {
+    "ia_signed": "2023-12-15",
+    "ia_signed_source": "ERCOT queue data (timeline.md) — IA document not retrieved (PUCT Interchange portal 402-blocked in all attempts across two sessions)",
+    "fis_approved": "2025-10-09",
+    "poi": "Tap 138kV 42110 Angleton - 43381 West Columbia",
+    "financial_security": null
+  },
+
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Original IA",
+        "signed": "2023-12-15",
+        "financial_security": null,
+        "artifact": null,
+        "note": "Date from ERCOT queue data; document not retrieved — PUCT Interchange portal 402-blocked"
+      }
+    ]
+  },
+
+  "construction": {
+    "verdict": "no_activity",
+    "stage": "pre_construction",
+    "first_activity_seen": null,
+    "evidence": [
+      "imagery/angleton_center_2026-06.png — ~70% cloud-covered, city-center proxy (29.1694, -95.4319), no BESS pad visible",
+      "imagery/angleton_center_2026-07.png — ~70% cloud-covered, city-center proxy, no activity",
+      "Both chips at wrong location (correct substation at 29.2268, -95.4288); imagery not usable for stage verdict",
+      "No construction start in ERCOT queue data; no Clearway press release for Royal River"
+    ]
+  },
+
+  "cod_assessment": {
+    "reported": "2027-06-30",
+    "independent_estimate": "2027-Q3",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "3 prior COD drifts totaling ~30 months slippage: 2024-12-01 → 2025-11-28 → 2027-01-11 → 2027-06-30",
+      "No construction start date in ERCOT queue data as of 2026-06-01 snapshot",
+      "No press release or groundbreaking announcement from Clearway for this project",
+      "BESS build time ~12-18 months: needs groundbreaking by ~2026-Q1 to hit 2027-06-30 — window likely missed",
+      "Comparable Clearway TX BESS (Pine Forest ~85 MW): construction started Oct 2024, online Feb 2026 (~16 months)"
+    ]
+  },
+
+  "queue_history_summary": {
+    "first_appearance": "2023-02-01",
+    "snapshot_count": 41,
+    "cod_drift_count": 3,
+    "milestones_achieved": ["screening_started", "screening_complete", "fis_requested", "fis_approved", "ia_signed"],
+    "milestones_pending": ["meets_6_9_1", "meets_all_6_9", "construction_start", "energization", "synchronization", "commercial_operation"]
+  }
+}

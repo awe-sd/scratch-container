@@ -1,0 +1,65 @@
+{
+ "inr": "25INR0232",
+ "generated": "2026-07-20",
+ "project": "Isaac Solar",
+ "county": "Matagorda",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 50.73,
+ "queue_cod": "2026-12-31",
+ "milestones": {
+  "screeningStudyComplete": "2023-02-03",
+  "fisApproved": "2025-12-18",
+  "iaSigned": "2023-10-18",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 4,
+ "eia": {
+  "status": "ok",
+  "plant_id": 68380,
+  "entity": "Industrial Bravo Project, LLC",
+  "planned_cod": "2026-11",
+  "cod_delta_quarters": -0.3,
+  "dropped_scope": null,
+  "coords": [
+   28.79722,
+   -95.93717
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Industrial Bravo Project, LLC",
+    "detail": "plant=Isaac Solar 51.4MW (T) Regulatory approvals received. Not u @28.79722,-95.93717 planned=2026-11"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 3
+ },
+ "reality_signals": [
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 8,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 8,
+   "detail": "4 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 9.41,
+  "reason": "reality signal"
+ }
+}

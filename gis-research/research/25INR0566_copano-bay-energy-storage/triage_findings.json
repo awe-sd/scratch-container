@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0566",
+  "project": "Copano Bay Energy Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.24,
+    "lon": -95.57,
+    "method": "POI substation — Nash 138kV (ERCOT #42980), city of Brazoria",
+    "confidence": "low — substation location estimated; no pin or abatement map to anchor"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "5 Sentinel-2 chips (2026-07-01, 2km buffer) around Nash substation: flat agricultural/forested terrain, no gravel pads, container rows, or cleared site visible"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": false,
+    "why": "FIS not yet approved (queue since Oct 2023), no IA signed, 3 prior COD slips; 18 months to target with zero construction milestones logged is extremely tight"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Developer Hexagon Energy was selling its ~2 GW ERCOT BESS portfolio — confirm whether Copano Bay was sold/transferred, which changes execution risk",
+    "PUCT Interchange was inaccessible (402) — retry to find IA or FIS study filings",
+    "Confirm Nash substation exact coordinates via ERCOT transmission map or OpenInfraMap to tighten site candidate before deeper imagery work",
+    "Check ERCOT TPIT/FIS study queue to see where this project stands in the FIS backlog"
+  ],
+  "turns_used": 28
+}

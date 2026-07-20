@@ -1,0 +1,80 @@
+{
+  "inr": "23INR0502",
+  "project": "Adelite Storage",
+  "researched_at": "2026-07-19",
+  "real_project_verdict": "real_early",
+  "site": {
+    "lat": 30.62,
+    "lon": -97.2111,
+    "method": "POI description (Thorndale North 138kV) + OSM Overpass API confirmed substation coordinates",
+    "confidence": "high for POI; BESS pad location within ~1 km unresolved"
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Adelite Storage Project LLC",
+      "relation": "SPV",
+      "evidence": "Developer DDG search (sources/t3_web_sweep.md); infrasure.ai plant/69004"
+    },
+    {
+      "entity": "Acciona Energy USA Global, LLC",
+      "relation": "developer_owner",
+      "evidence": "infrasure.ai confirms Acciona Energy USA Global LLC as developer/owner; triage DDG search"
+    }
+  ],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Milam CAD esearch.milamad.org and county clerk milam.tx.publicsearch.us both require JavaScript — WebFetch returned no data. 0 parcels confirmed or denied. BESS projects typically lease land; absence of CAD hits is expected and not disqualifying."
+  },
+  "project_area": {
+    "acres": null,
+    "source": null,
+    "artifact": null,
+    "note": "IA PDF inaccessible (PUCT Interchange HTTP 402); CAD portal JS-only; for 231 MW BESS expected ~20-60 acres"
+  },
+  "construction": {
+    "verdict": "no_activity",
+    "first_activity_seen": null,
+    "evidence": [
+      "10 Sentinel-2 chips across 5 offset positions around Thorndale North Substation (30.6200, -97.2111) on 2025-07-01 and 2026-07-01 — all show undisturbed agricultural/pasture land; no graded pad, no container rows, no construction equipment visible",
+      "2025 vs 2026 3-km overview chips: identical land cover, confirming no construction started in that 12-month window",
+      "0.5-km tight chip on substation (s2_2026-07-01_substation.png): no BESS pad adjacent to substation"
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-06-28",
+    "independent": "2027-Q4 to 2028-Q2",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "No construction activity visible as of Jul 2026; reported COD is 2027-06-28 (~11 months away) but BESS build typically requires 12-18 months from groundbreaking — structurally impossible to meet from current pre-construction state",
+      "5 prior COD slips totaling +3 years (2024-06 → 2027-06); project has been in queue since 2022 without achieving any construction milestones or Meets-6.9 criteria",
+      "No financing close found (no NTP press release, no FERC EQR wholesale contracts, Acciona.com inaccessible)",
+      "No EPC contractor named publicly; no offtaker/PPA disclosed",
+      "Positive signals: IA signed Aug 2024, FIS approved May 2024, Acciona is established global IPP with operational track record in US renewables, ~$313M estimated project cost is within Acciona's typical project scale",
+      "Base case: construction starts H2 2026; 12-18 month build yields COD 2027-Q4 to 2028-Q2"
+    ]
+  },
+  "contractual_schedule": {
+    "source_docs": [],
+    "note": "PUCT Interchange portal returned HTTP 402 on all retrieval attempts — IA PDF not obtained. IA existence confirmed by queue milestone iaSigned=2024-08-27. Financial security amount and schedule exhibits unknown.",
+    "milestones": [
+      {
+        "name": "IA signed",
+        "queue_reported": "2024-08-27"
+      },
+      {
+        "name": "Scheduled COD (queue)",
+        "queue_reported": "2027-06-28"
+      }
+    ]
+  },
+  "negative_searches": 18,
+  "banned_source_violations": 0,
+  "cod_drift_history": {
+    "changes": 5,
+    "first_cod": "2024-06-01",
+    "latest_cod": "2027-06-28",
+    "total_slip_months": 37,
+    "artifact": "timeline.md"
+  }
+}

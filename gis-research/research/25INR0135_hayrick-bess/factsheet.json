@@ -1,0 +1,64 @@
+{
+ "inr": "25INR0135",
+ "generated": "2026-07-20",
+ "project": "Hayrick BESS",
+ "county": "Coke",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 113.9,
+ "queue_cod": "2028-03-15",
+ "milestones": {
+  "screeningStudyComplete": "2022-11-11",
+  "fisApproved": "2025-12-15",
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ok",
+  "plant_id": 67779,
+  "entity": "Gransolar Texas Five LLC",
+  "planned_cod": "2028-03",
+  "cod_delta_quarters": 0.0,
+  "dropped_scope": null,
+  "coords": [
+   32.02291,
+   -100.2926
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Gransolar Texas Five LLC",
+    "detail": "plant=Hayrick BESS 113.9MW (L) Regulatory approvals pending. Not un @32.02291,-100.2926 planned=2028-03"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "fis_approved"
+ ],
+ "paper_score": 6,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 5.73,
+  "reason": "reality signal"
+ }
+}

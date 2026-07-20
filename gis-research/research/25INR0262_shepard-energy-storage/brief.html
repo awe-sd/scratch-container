@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shepard Energy Storage — research brief</title><style>
+:root{--bg:#fff;--sur:#f6f7f9;--ink:#191c20;--ink2:#555b64;--mut:#899;--line:#e1e5ea;
+--good:#0a7d33;--warn:#b45309;--bad:#b91c1c;--acc:#2563eb}
+@media(prefers-color-scheme:dark){:root{--bg:#14171c;--sur:#1c2027;--ink:#eceff3;
+--ink2:#b3bac4;--mut:#7d8590;--line:#2a2f38;--good:#34d399;--warn:#fbbf24;--bad:#f87171;--acc:#6ea8fe}}
+*{box-sizing:border-box}body{margin:0 auto;max-width:1080px;padding:20px;background:var(--bg);
+color:var(--ink);font:14px/1.45 -apple-system,"Segoe UI",Roboto,sans-serif}
+h1{font-size:19px;margin:0}h2{font-size:13px;text-transform:uppercase;letter-spacing:.05em;
+color:var(--mut);margin:22px 0 8px}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-weight:700;font-size:12px}
+.b-good{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+.b-warn{background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--warn)}
+.b-bad{background:color-mix(in srgb,var(--bad) 15%,transparent);color:var(--bad)}
+.hdr{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.sub{color:var(--ink2);font-size:13px;margin:4px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.card{background:var(--sur);border:1px solid var(--line);border-radius:9px;padding:10px 13px}
+.card .k{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+.card .v{font-weight:650;margin-top:2px}.card .v small{font-weight:400;color:var(--ink2)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:5px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:13px}
+th{color:var(--mut);font-size:11px;text-transform:uppercase}
+.imgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.imgs figure{margin:0}.imgs img{width:100%;border-radius:8px;border:1px solid var(--line)}
+.imgs figcaption{font-size:12px;color:var(--ink2);margin-top:2px}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.small{font-size:12px;color:var(--ink2)}
+</style></head><body>
+<div class="hdr"><h1>Shepard Energy Storage <span class="small">(25INR0262)</span></h1>
+<span class="badge b-warn">real_early</span>
+<span class="badge b-warn">COD drift: med</span></div>
+<div class="sub">researched 2026-07-19 ·
+<a href="https://www.google.com/maps/@29.512,-95.01,5000m/data=!3m1!1e3" target="_blank">site 29.512, -95.01</a> (POI bus names + OSM anchor, medium conf) ·
+<a href="dossier.md">dossier</a> · <a href="log.md">log</a> · <a href="timeline.md">timeline</a></div>
+<div class="grid">
+<div class="card"><div class="k">Construction</div><div class="v">no_activity
+<small>since —</small></div></div>
+<div class="card"><div class="k">COD reported → independent</div>
+<div class="v">2027-07-01 → 2027-Q3 to 2028-Q1</div></div>
+<div class="card"><div class="k">Owner chain</div><div class="v">Shepard Energy Storage LLC → Vesper Energy Development LLC → Magnetar Capital → GCM Grosvenor</div></div>
+<div class="card"><div class="k">Land</div><div class="v">leased</div></div>
+<div class="card"><div class="k">Project area (per docs)</div><div class="v">&lt;15 acres <small>Project website shepardenergystorage.com: &#x27;less than 15 acres of privately owned land&#x27;</small></div></div>
+</div>
+
+<h2>Site imagery (Sentinel-2, key dates)</h2><div class="imgs"><figure><a href="imagery/s2_2026-03-01.png"><img src="imagery/s2_2026-03-01.png" loading="lazy"></a><figcaption>2026-03-01</figcaption></figure><figure><a href="imagery/s2_2026-07-01.png"><img src="imagery/s2_2026-07-01.png" loading="lazy"></a><figcaption>2026-07-01</figcaption></figure><figure><a href="imagery/s2_tight_center.png"><img src="imagery/s2_tight_center.png" loading="lazy"></a><figcaption>tight_center</figcaption></figure><figure><a href="imagery/s2_tight_hiddenlakes_east.png"><img src="imagery/s2_tight_hiddenlakes_east.png" loading="lazy"></a><figcaption>tight_hiddenlakes_east</figcaption></figure><figure><a href="imagery/s2_tight_phr.png"><img src="imagery/s2_tight_phr.png" loading="lazy"></a><figcaption>tight_phr</figcaption></figure><figure><a href="imagery/s2_tight_phr_mid.png"><img src="imagery/s2_tight_phr_mid.png" loading="lazy"></a><figcaption>tight_phr_mid</figcaption></figure></div>
+<h2>Interconnection agreement — signed, security, schedule</h2><div class="small">IA signed 2024-01-17 (CenterPoint/ERCOT); PUCT Interchange returns HTTP 402 — PDF not retrieved; no schedule exhibits available. Financial security posted per queue but dollar amount unknown.</div>
+
+<h2>Reported-COD drift (queue history, 43 monthly reports since 2022-12-01)</h2>
+<table><tr><th>Reported COD</th><th>Held from</th><th>Until</th></tr><tr><td>2025-07-09</td><td>2022-12-01</td><td>2024-04-01</td></tr><tr><td>2025-07-15</td><td>2024-05-01</td><td>2024-05-01</td></tr><tr><td>2025-09-22</td><td>2024-06-01</td><td>2024-09-01</td></tr><tr><td>2026-12-31</td><td>2024-10-01</td><td>2024-12-01</td></tr><tr><td>2027-03-31</td><td>2025-01-01</td><td>2025-02-01</td></tr><tr><td>2027-07-01</td><td>2025-03-01</td><td>2026-06-01</td></tr></table>
+<h2>Milestones achieved (latest report)</h2>
+<table><tr><th>Milestone</th><th>Date</th></tr><tr><td>Screening started</td><td>2022-12-15</td></tr><tr><td>Screening complete</td><td>2023-03-11</td></tr><tr><td>FIS requested</td><td>2022-12-09</td></tr><tr><td>FIS approved</td><td>2026-03-19</td></tr><tr><td>IA signed</td><td>2024-01-17</td></tr><tr><td>Meets 6.9(1)</td><td>2025-02-12</td></tr></table>
+
+<h2>EIA-860M second source — plant 'Zeya', entity GDF Suez North America</h2>
+<div class="small">matched by county+prime-mover+MW within 5% (250 vs 256.79) · reports 2022-08-01 → 2026-05-01 ·
+queue-reported COD <b>2027-07-01</b> vs latest EIA planned COD <b>2026-09</b> · <a href="https://www.google.com/maps/@29.38876,-94.94793,5000m/data=!3m1!1e3" target="_blank">EIA site 29.38876, -94.94793</a> (Galveston Co)</div>
+
+<table><tr><th>EIA planned COD</th><th>Held from</th><th>Until</th></tr><tr><td>2024-04</td><td>2022-08-01</td><td>2023-01-01</td></tr><tr><td>2024-12</td><td>2023-02-01</td><td>2024-11-01</td></tr><tr><td>2026-01</td><td>2024-12-01</td><td>2025-09-01</td></tr><tr><td>2026-02</td><td>2025-10-01</td><td>2026-01-01</td></tr><tr><td>2026-06</td><td>2026-02-01</td><td>2026-03-01</td></tr><tr><td>2026-09</td><td>2026-04-01</td><td>2026-05-01</td></tr></table>
+
+<table><tr><th>EIA status</th><th>From</th><th>Until</th></tr><tr><td>(L) Regulatory approvals pending. Not under construction</td><td>2022-08-01</td><td>2023-12-01</td></tr><tr><td>(U) Under construction, less than or equal to 50 percent complete</td><td>2024-01-01</td><td>2026-05-01</td></tr></table>
+<h2>Key evidence</h2><ul><li>Sentinel-2 wide frame 2026-03-01 (6km, imagery/s2_2026-03-01.png): dense suburban League City; no BESS pad, gravel clearing, or container rows visible in the Hidden Lakes area</li><li>Tight 2km chips at 29.494/-95.003, 29.490/-94.985, 29.510/-95.005 (2026-03-01): no BESS signature at any of the three candidate locations surrounding PHR and Hidden Lakes</li><li>ERCOT queue: no construction start date reported as of 2026-06-01 snapshot</li><li>No construction permits found (Galveston County portal inaccessible); no press releases or groundbreaking announcements from Vesper Energy</li><li>All major contractual gates are cleared: IA signed 2024-01-17, FIS approved 2026-03-19, financial security posted (queue 2026-06-01), 6.9(1) met 2025-02-12 — project is contractually committed and not at abandonment risk</li><li>No construction start date reported in queue as of 2026-06-01; no imagery evidence of groundbreak through 2026-03; 12-18 month BESS build requires groundbreak no later than Q3-2026 to hit 2027-07-01, leaving zero schedule buffer</li><li>Historical COD drift of ~2yr (2025-07-09 original → 2027-07-01 current across 6 changes) shows the schedule has already slipped once; now stable 16 months at 2027-07-01, suggesting developer is not further pushing the date</li></ul>
+<h2>Saved sources (3)</h2><h3 class='small'>Documents (1)</h3><ul><li><a href="sources/2026-07-19_puct_35077-1744_sgia-sheppard-energy-storage-tnmp.pdf">2026-07-19_puct_35077-1744_sgia-sheppard-energy-storage-tnmp.pdf</a></li></ul><h3 class='small'>Web captures (2)</h3><ul><li><a href="sources/2026-07-19_shepardenergystorage.com_faqs.html">2026-07-19_shepardenergystorage.com_faqs.html</a></li><li><a href="sources/2026-07-19_shepardenergystorage.com_homepage.html">2026-07-19_shepardenergystorage.com_homepage.html</a></li></ul>
+</body></html>

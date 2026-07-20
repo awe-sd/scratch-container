@@ -1,0 +1,57 @@
+{
+ "inr": "27INR0085",
+ "generated": "2026-07-20",
+ "project": "Eagle Claw Energy Center",
+ "county": "Grimes",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 204.58,
+ "queue_cod": "2028-03-31",
+ "milestones": {
+  "screeningStudyComplete": "2024-01-10",
+  "fisApproved": "2024-10-30",
+  "iaSigned": "2025-09-15",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "puct-index",
+    "entity": "Eagle Claw Energy Center, LLC \u2013 Eagle Claw Energy Center",
+    "detail": "ERCOT Standard Generation Interconnection Agreement (SGIA) between CenterPoint Energy Houston Electric, LLC an"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 10.03,
+  "reason": "reality signal"
+ }
+}

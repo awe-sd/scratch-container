@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0498",
+  "project": "Buckaroo BESS",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.745,
+    "lon": -97.885,
+    "method": "POI description: Tap 138kV BROCK(487) — inferred Brock community, Parker County TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery unavailable (401/403 auth failure); no other construction signals found"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-08",
+    "plausible": false,
+    "why": "FIS not yet approved, IA not signed; 18 months to COD from now with no IA is extremely tight for BESS; one prior COD slip (Oct-2026 → Dec-2027)"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Fix CDSE auth and run imagery at Brock substation area — BESS site may already be visible as gravel pad near substation",
+    "PUCT Interchange: search for IA or GIA filing under 'Buckaroo BESS' or 'Weatherford BESS' once portal accessible",
+    "Verify developer identity: 'Weatherford BESS LLC' (aggregator sourced) — check TX SOS entity search",
+    "COD is implausible without IA; monitor FIS approval date as the leading indicator"
+  ],
+  "turns_used": 28
+}

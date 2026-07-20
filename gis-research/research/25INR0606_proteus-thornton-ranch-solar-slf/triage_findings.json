@@ -1,0 +1,27 @@
+{
+  "inr": "25INR0606",
+  "project": "Proteus Thornton Ranch Solar SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-20",
+    "plausible": true,
+    "why": "COD drifted twice (2026 → 2027 → 2028); no IA yet; 2028 target allows ~2yr for FIS+IA+construction but is tight for a project still awaiting FIS approval"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate TNSTAGHORN1 138kV substation coordinates to enable imagery — try ERCOT transmission planning maps or HIFLD dataset",
+    "Verify developer Proteus Power identity and LLC registration (Thornton Ranch Solar, LLC) in Texas SOS",
+    "Re-attempt PUCT Interchange when authenticated — search FilingParty=Thornton Ranch Solar for any IA or SIS filings",
+    "Check companion project 25INR0607 (Thornton Ranch Storage SLF) for correlated IA or abatement filings"
+  ],
+  "turns_used": 22
+}

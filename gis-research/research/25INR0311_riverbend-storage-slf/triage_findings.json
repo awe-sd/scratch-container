@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0311",
+  "project": "RIVERBEND STORAGE SLF",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.40,
+    "lon": -97.15,
+    "method": "POI inference — estimated midpoint on 345kV line between Tradinghouse (#3405, McLennan Co) and Temple Pecan Creek (#3412, Bell Co) substations",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery tool returned 401 (auth not configured); no chips obtained"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": true,
+    "why": "FIS approved 2024-07-23; no IA yet; 4 COD slips (~2 yrs drift); 2027-12-31 is tight but achievable if IA signed soon given 12-18 month battery build time"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "IA filing: Riverbend Renewables LLC still pre-IA as of 2026-06 — check PUCT Interchange with authenticated session for any GIA filing under 'Riverbend' or 'Riverbend Renewables'",
+    "Developer identity: Riverbend Renewables LLC has no web footprint — Texas SOS SOSDirect lookup may resolve principals and parent company",
+    "Imagery: CDSE creds needed; once configured, run 1-km buffer chips around confirmed substation tap location (Falls/McLennan/Bell county border area ~31.40N, 97.15W)",
+    "Capacity = 0.0 MW anomaly: verify whether this is a queue placeholder or reflects an unresolved FIS output — check if a MW figure appears in the IA once filed"
+  ],
+  "turns_used": 22
+}

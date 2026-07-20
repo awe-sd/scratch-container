@@ -1,0 +1,28 @@
+{
+  "inr": "25INR0018",
+  "project": "Yellow Cat Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-04-01",
+    "plausible": true,
+    "why": "IA signed Jul-2024, all 6.9 milestones met Jan-2026, no construction dates yet — 2027-Q2 COD is tight but possible if NTP is imminent; 34-month total COD slip history increases miss risk"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2024-07-09 but PUCT Interchange blocked (402) — retrieve IA PDF to extract POI coordinates, schedule exhibit, and milestone schedule for COD plausibility check",
+    "FAA OE/AAA turbine filings for Navarro County — system was in shutdown mode during triage; retry to get exact turbine pad coordinates for imagery targeting",
+    "Developer/sponsor identity unknown — no web signal, no LLC registration found; check TX SOS business search for 'Yellow Cat Wind LLC', and check any parent company behind this project",
+    "No construction start date in queue data despite all 6.9 met Jan-2026 — verify via IA NTP clause whether notice to proceed has been issued",
+    "Capacity reduced 300→262 MW (Mar-2025) — may indicate layout revision; IA amendment possible, worth checking for updated POI or turbine count"
+  ],
+  "turns_used": 28
+}

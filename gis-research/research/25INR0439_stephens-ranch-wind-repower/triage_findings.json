@@ -1,0 +1,27 @@
+{
+  "inr": "25INR0439",
+  "project": "Stephens Ranch Wind Repower",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-10-01",
+    "plausible": true,
+    "why": "FIS not yet approved; 2 prior COD slips; no IA signed — 2027-10 is optimistic but not impossible for a small 12.4 MW repower of existing site"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Resolve site coordinates: USGS USWTDB Borden County filter (eerscmap.usgs.gov/uswtdb) or FAA OE/AAA county search when portal is back online — existing turbine pads are the only reliable anchor for a repower",
+    "PUCT Interchange: search FilingParty and Description for 'Stephens Ranch Wind' when session-auth is available — no IA visible yet, but FIS was requested May 2023 so study may be complete",
+    "Capacity downscale (392 MW → 12.4 MW in Apr 2024): clarify whether this is a partial repower of select turbines or a project restructuring — the large drop is unusual and may indicate only a handful of turbines",
+    "Developer/owner identification: Texas SOS entity search for 'Stephens Ranch Wind Repower LLC' to confirm registered agent and parent company"
+  ],
+  "turns_used": 28
+}

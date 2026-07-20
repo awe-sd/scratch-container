@@ -1,0 +1,84 @@
+{
+  "inr": "26INR0019",
+  "project": "HyFuels Green Lake Solar",
+  "researched_at": "2026-07-19",
+  "site": {
+    "lat": 28.76,
+    "lon": -96.83,
+    "method": "bearing_calc+map_alignment",
+    "confidence": "med",
+    "notes": "Application states '~10 miles NW of Port Lavaca'; vicinity and parcel maps in Ch.313 App 1925 (Tab 11) show site near Victoria/Calhoun county line. Best candidate 28.76N,-96.83W from 315° bearing + map road alignment. No delivery pin or parcel coords obtained."
+  },
+  "parcels": [],
+  "llc_chain": [
+    {"entity": "HyFuels Green Lake Solar LLC", "relation": "applicant_spv", "evidence": "Ch.313 App 1925 / agmt; DE LLC formed 2022-04-21; TX franchise active; registered agent Cogency Global Inc., 1601 Elm St Ste 4360, Dallas TX 75201"},
+    {"entity": "HyFuels Holdings LLC", "relation": "manager_parent_of", "evidence": "Ch.313 agreement Article X.1 — applicant contact Orlando Puig, Project Manager, HyFuels Holdings LLC, 277 Broadway Suite 1606, New York NY 10007 (opuig@bnbenewables.com)"},
+    {"entity": "BNB Renewable Energy Holdings LLC", "relation": "ultimate_parent_of", "evidence": "bnbrenewables.com homepage (sources/2026-07-19_bnbrenewables_homepage.html); same 277 Broadway NY 10007 address; Ch.313 Tab 5 names 'BNB Renewable Energy Holdings LLC' as manager/parent; contact jnicholas@bnbrenewables.com (Jonathan Nicholas, Managing Partner per Form 772-2023)"},
+    {"entity": "BNB Renewable Energy Holdings LLC", "relation": "developer_track_record", "evidence": "Founded 2004; 1,000+ MW developed; operating projects incl. Bull Creek Wind (181 MW), Long Draw Solar (225 MW Borden Co), Lamesa Solar (102 MW), Mesquite Creek Wind (211 MW Dawson Co); partners incl. GE, Engie, Sumitomo, Southern Co."}
+  ],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Ch.313 Tab 9 = 'Not applicable' (land not claimed as qualified property). No CAD parcels found under HyFuels/BNB (esearch.calhouncad.org portal required JS session token). Existing property described as 'houses, barns, Oil & Gas Wells' — land leased likely; not confirmed."
+  },
+  "project_area": {
+    "acres": null,
+    "source": "Not stated in application text; application mentions 994,280 PV panels + 116 inverters for 400 MW ac. A 400 MW ac solar project typically requires ~2,000-3,000 acres. Maps show irregular L-shaped polygon.",
+    "artifact": "imagery/ch313_map_page27.png"
+  },
+  "construction": {
+    "verdict": "no_activity",
+    "first_activity_seen": null,
+    "evidence": [
+      "imagery/s2_2026-02-01_xwide.png — undisturbed agricultural land (bare fallow fields, coastal plain), zero construction activity, 12km × 12km frame at 28.74N,-96.87W",
+      "imagery/s2_2026-02-01_28.76_-96.80.png — same observation at 28.76N,-96.80W",
+      "Application Tab 4: 'Construction of the Project is anticipated to begin in January 2027 with completion by December 2027' — no_activity is expected at this stage"
+    ]
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Ch.313 Application 1925 (HyFuels Green Lake Solar LLC / Calhoun County ISD)",
+        "signed": "2022-11-14",
+        "financial_security": null,
+        "artifact": "sources/2026-07-19_comptroller_ch313_1925-hyfuels-green-lake-solar-app.pdf",
+        "notes": "Application fee $75,000 paid. First full tax year 2028. Application approved by ISD board 2022-11-14."
+      },
+      {
+        "doc": "Ch.313 Agreement 1925 (Value Limitation Agreement, Calhoun County ISD / HyFuels Green Lake Solar LLC)",
+        "signed": "2022-11-14",
+        "financial_security": null,
+        "artifact": "sources/2026-07-19_comptroller_ch313_1925-hyfuels-green-lake-solar-agmt.pdf",
+        "notes": "Tax limitation amount: $30M (statutory minimum per §313.054). Qualifying Time Period: 2026-01-01 – 2027-12-31. Tax Limitation Period: 2028-01-01 – 2037-12-31. Min qualified investment: $30,000,000. No financial security amount stated (Ch.313 agreements do not carry LC-style security like PUCT IAs)."
+      }
+    ],
+    "milestone_table": [
+      {"milestone": "Qualifying Time Period start", "date": "2026-01-01", "source": "Agreement §2.3.C"},
+      {"milestone": "Qualifying Time Period end", "date": "2027-12-31", "source": "Agreement §2.3.C"},
+      {"milestone": "Construction start (stated)", "date": "2027-01-01", "source": "Application Tab 4"},
+      {"milestone": "Construction end / Commercial Operation (stated)", "date": "2027-12-31", "source": "Application Tab 4"},
+      {"milestone": "Tax Limitation Period start (first full tax year)", "date": "2028-01-01", "source": "Agreement §2.3.D"}
+    ]
+  },
+  "sibling_projects": [
+    {"inr": null, "app": "1926", "name": "HyFuels Green Lake LLC", "notes": "Battery storage companion, same Calhoun County ISD, signed 2022-12-20"},
+    {"inr": "26INR0028", "app": "1927", "name": "HyFuels Green Lake Wind LLC / HyFuels Calhoun Solar", "notes": "Wind or additional solar; 26INR0028 = 301.82 MW SOL in Victoria County SOUTH zone — possibly the wind app recharacterized as solar or a separate Victoria Co project"}
+  ],
+  "cod_assessment": {
+    "reported": "2027-12-01",
+    "independent": "2028-Q2",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "No IA signed as of 2026-06-01 (FIS requested 2023-06-13, not yet approved — 3+ years waiting). No IA = no contractual transmission date, no milestone clock running.",
+      "Construction per application: Jan 2027 – Dec 2027. A 347 MW solar project takes 12-18 months to build. Jan 2027 construction start → earliest realistic COD mid-2028.",
+      "One prior COD slip already in record: 2026-10-01 → 2027-12-01 (14 months), before IA or FIS approval.",
+      "Capacity nearly tripled from entry (120.6 → 347 MW) while still pre-FIS — scope unclear, could grow further or shrink, adds schedule uncertainty.",
+      "No construction milestones achieved. No financing confirmed. No EPC announcement found.",
+      "Ch.313 qualifying time period ends 2027-12-31 — strong incentive to maintain stated COD but 347 MW in 11 months from ground-break is aggressive.",
+      "BNB Renewables has track record of completed projects (Long Draw, Lamesa etc.) — developer is real and capable, mitigating paper-project risk.",
+      "Best case: FIS approved late 2026, IA executed early 2027, construction start mid-2027 → COD late 2028. Base case: 2028-Q2. High-drift scenario: 2029."
+    ]
+  },
+  "real_project_verdict": "real_early",
+  "negative_searches": 12,
+  "banned_source_violations": 0
+}

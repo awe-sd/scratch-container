@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0353",
+  "project": "Marshall Spring Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 30.35,
+    "lon": -98.88,
+    "method": "web-sweep: opposition site describes SH-16 N / Lower Crabapple Rd / Country Creek Ln / Old Willow Rd, Gillespie County; centroid estimated",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown — imagery blocked",
+    "evidence": "CDSE auth failed (401/403); opposition site (as of triage date) describes project as 'planned/proposed' with no permits or construction start mentioned"
+  },
+  "cod_first_look": {
+    "reported": "2026-07-01",
+    "plausible": false,
+    "why": "COD already passed; no construction-start milestone, no FIS approved, no 6.9 milestones; opposition site says pre-construction/proposal stage"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2025-12-26 — retrieve IA PDF from PUCT Interchange (requires browser session; portal blocked during triage) to extract milestone schedule and POI station details",
+    "Refresh CDSE credentials and run imagery at SH-16 N / Lower Crabapple Rd centroid (~30.35N, 98.88W) to check for any ground disturbance",
+    "Verify developer: AMPYR Energy linked by community opposition site — confirm via Texas SOS LLC registration for 'Marshall Springs Solar, LLC'",
+    "COD slipped past without commercial operation — check whether ERCOT has flagged a suspension or termination notice post-2026-06-01",
+    "JETI abatement check for Gillespie County (Ch.313 expired; JETI is the live program) — no hit found during triage, worth direct registry query"
+  ],
+  "turns_used": 24
+}

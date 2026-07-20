@@ -1,0 +1,9 @@
+{
+  "note": "Overpass API query — unnamed 138kV substations near POI '684 SPRING 138kV'",
+  "query": "bbox 33.3,-97.7,33.9,-96.5 power=substation voltage=138000",
+  "candidates": [
+    { "lat": 33.5497209, "lon": -97.1801476, "voltage": "138000", "name": "(unnamed)" },
+    { "lat": 33.549617,  "lon": -97.1795355, "voltage": "138000", "name": "(unnamed)" }
+  ],
+  "interpretation": "Two nodes 6m apart at 33.5497,-97.1801 — same compound, matches triage OSM candidate for POI '684 SPRING 138kV'. Medium confidence (no OSM name attribute)."
+}

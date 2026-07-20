@@ -1,0 +1,77 @@
+{
+  "inr": "27INR0398",
+  "project": "Bravo BESS",
+  "research_date": "2026-07-19",
+  "verdict": "real_early",
+  "construction_stage": "no_activity",
+  "site": {
+    "lat": 27.3276,
+    "lon": -99.4116,
+    "method": "POI substation lookup — Cenizo Substation 345kV confirmed OSM way 451971746, Census geocoder Webb County",
+    "confidence": "high",
+    "notes": "OCI Energy's website lists Bravo as Zapata County but Census geocoder places Cenizo Substation firmly in Webb County. The battery site may be near the Webb/Zapata county line; no parcel data accessible to confirm."
+  },
+  "ownership": {
+    "spv": "Bravo BESS LLC (Delaware foreign LLC, TX file #0805720787, incorporated 2024-09-24)",
+    "related_entity": "OCI San Antonio Bravo BESS LLC (same date, same type, same registered office)",
+    "developer": "OCI Energy (formerly OCI Solar Power, rebranded July 2024)",
+    "parent_chain": "OCI Holdings (Korean global conglomerate) → OCI Enterprises Inc. (US) → OCI Energy (San Antonio, TX, est. 2012)",
+    "epc": "unknown",
+    "offtaker": "unknown",
+    "financing": "OCI Energy active BESS financier (ING construction financing Sep 2025 for unnamed TX BESS; Greenprint Capital $130M tax equity Jun 2026 for Alamo City BESS). Bravo BESS financing status not confirmed separately.",
+    "sources": [
+      "sources/2026-07-19_ocienergy_ownership_summary.txt",
+      "sources/2026-07-19_ocienergy_projects_summary.txt"
+    ]
+  },
+  "land": {
+    "tenure": "unknown",
+    "abatements": "None found for Webb County. Triage found $88M Zapata County Bravo BESS abatement — separate sub-project or imprecise county attribution. Ch.313 expired 2022; no JETI application found for this INR.",
+    "cad": "Webb County CAD portal not accessible (domain parked / SSL error). No parcel data obtained.",
+    "project_area": {
+      "acres": null,
+      "source": "not obtained — no IA, no CAD, no abatement doc accessible",
+      "artifact": null
+    }
+  },
+  "interconnection": {
+    "ia_found": false,
+    "ia_signed_date": null,
+    "poi_confirmed": "Tap 345kV CENIZO7A (OSM way 451971746, 27.3276N 99.4116W, ETT-operated) → TIEMPO7A. TIEMPO not in OSM; exact POI switch coords CEII.",
+    "contractual_schedule": {
+      "documents": []
+    },
+    "milestone_status": {
+      "screening_started": "2024-11-26",
+      "screening_complete": "2025-02-18",
+      "fis_requested": "2024-11-21",
+      "fis_approved": null,
+      "ia_signed": null
+    }
+  },
+  "imagery": {
+    "verdict": "no_activity",
+    "frames": [
+      {
+        "date": "2026-07-01",
+        "observation": "Cenizo Substation visible (white rectangle); surrounding land undisturbed South Texas brushland. No grading, no gravel pad, no container rows.",
+        "artifact": "imagery/s2_2026-07-01_2km.png",
+        "buffer_km": 2
+      },
+      {
+        "date": "2026-01-01",
+        "observation": "Same undisturbed landscape — seasonal color variation only. No construction activity.",
+        "artifact": "imagery/s2_2026-01-01_2km.png",
+        "buffer_km": 2
+      }
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-12-12",
+    "independent_estimate": "2029-Q1",
+    "drift_risk": "high",
+    "rationale": "FIS approval pending (requested Nov 2024, not yet approved as of Jun 2026 — 19+ months elapsed without approval). No IA signed. BESS build is 12-18 months once construction starts, but IA + land + permits must come first. Minimum path: FIS approval (6-12 months?) + IA execution (3-6 months) + procurement/construction (12-18 months) = 21-36 months from today → earliest realistic COD late-2028, more likely 2029. COD drift: only 4-day shift so far (2027-12-08 → 2027-12-12) but project has never cleared a single post-screening gate.",
+    "cod_drift_history": "1 change: 2027-12-08 (Nov-Dec 2024) → 2027-12-12 (Jan 2025 → Jun 2026). Unusually stable but project is early-stage with no gates to force drift yet.",
+    "real_or_paper": "real_early — developer (OCI Energy) is a credible active BESS developer with financed projects under construction; LLC incorporated 2024 with proper TX foreign registration; substation POI real infrastructure. But no IA, no site activity, FIS pending 19+ months."
+  }
+}

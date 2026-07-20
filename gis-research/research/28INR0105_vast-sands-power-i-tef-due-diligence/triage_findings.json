@@ -1,0 +1,29 @@
+{
+  "inr": "28INR0105",
+  "project": "Vast Sands Power I (TEF Due Diligence)",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-01",
+    "plausible": true,
+    "why": "IA signed Oct-2025; 6.9(1) met Feb-2026; 2028 COD gives ~2.5 yrs to build, tight but not impossible for gas if permits in hand"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT docket 59182 (IA + milestone schedule) — portal was blocked (402), need direct access to extract milestone schedule and confirm parties/TEF context",
+    "TCEQ NSR air permit search for 'Permian Power I LLC' or 'Vast Sands Power I' — mandatory for gas; no permit = strong paper-project evidence",
+    "Texas Energy Fund loan status — project name includes '(TEF Due Diligence)'; find PUCT TEF docket (separate from IA docket 59182) to assess loan application stage",
+    "Developer/sponsor identification — 'Permian Power I LLC' is the SPV; parent company unknown; check TX SOS entity search",
+    "Site pinning — Wolf Switch 345kV location in Ward County; search OpenInfraMap or ERCOT transmission GIS for Wolf Switch coordinates to enable imagery run",
+    "FIS approved status — IA signed without FIS approved (unusual); confirm whether FIS approval is pending or waived"
+  ],
+  "turns_used": 22
+}

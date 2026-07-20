@@ -1,0 +1,36 @@
+{
+  "inr": "27INR0554",
+  "project": "Texas Sun Solar",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.01,
+    "lon": -96.49,
+    "method": "POI inference — Cordele Substation described as ~3.5 miles SE of Ganado TX; project grid-connects at Cordele Sub bus 5524",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no activity",
+    "evidence": "2 of 9 planned chips acquired (CDSE connection failures on 7); both show agricultural/rural land with no panels, grading, or staging; consistent with pre-construction stage"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-18",
+    "plausible": false,
+    "why": "FIS not yet approved as of 2026-06-01; IA not signed; 18 months to COD requires IA execution + full construction in a very compressed window — highly optimistic"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "FIS approval date when it lands — triggers IA negotiation clock",
+    "Pigg Grounds LLC parent chain — Phoenix-based LLC filed Dec 2023, no visible track record; identify whether a recognized developer is behind it",
+    "PUCT Interchange filings when IA is executed — current T4 portal was blocked (402), retry when IA status changes",
+    "Jackson County CAD parcel search by Pigg Grounds LLC — will confirm site location if land is optioned/acquired",
+    "JETI application — post-2022 projects may have filed; retry TX Comptroller JETI portal directly"
+  ],
+  "turns_used": 22
+}

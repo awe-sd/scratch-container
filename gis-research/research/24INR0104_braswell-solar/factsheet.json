@@ -1,0 +1,72 @@
+{
+ "inr": "24INR0104",
+ "generated": "2026-07-20",
+ "project": "Braswell Solar",
+ "county": "McLennan",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 42.6,
+ "queue_cod": "2028-03-15",
+ "milestones": {
+  "screeningStudyComplete": "2021-11-18",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 4,
+ "eia": {
+  "status": "ok",
+  "plant_id": 67772,
+  "entity": "Gransolar Texas Nine LLC",
+  "planned_cod": "2028-03",
+  "cod_delta_quarters": 0.0,
+  "dropped_scope": null,
+  "coords": [
+   31.34904,
+   -97.21786
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Gransolar Texas Nine LLC",
+    "detail": "plant=Braswell Solar 44.2MW (L) Regulatory approvals pending. Not un @31.34904,-97.21786 planned=2028-03"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [],
+ "paper_score": 28,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 8,
+   "detail": "4 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 28 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

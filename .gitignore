@@ -15,7 +15,30 @@ __pycache__/
 !example.env
 !gis-research/example.env
 
-# bulk satellite frames are regenerable (cdse.py); keep key frames + contact sheet only
-gis-research/research/*/imagery/*
-!gis-research/research/*/imagery/key/
-!gis-research/research/*/imagery/contact_sheet.png
+# gis-research binaries live on S3 (sync_s3.py), not in git
+gis-research/research/*/sources/*.pdf
+gis-research/research/*/imagery/
+gis-research/research/*/imagery_grid/
+gis-research/research/*/run_stream*.jsonl
+gis-research/data/*.parquet
+gis-research/data/reference/puct_docket_pdfs/
+gis-research/data/reference/*.xlsx
+gis-research/data/reference/search_cache/
+!gis-research/research/*/transcripts/*.jsonl.gz
+
+# binary safety net -- source/imagery dir naming has drifted beyond the patterns
+# above (imagery_chips/, chips_grid/, img/, nested sources/*/*.pdf, root-level
+# contact_sheet.png, sources/*.xlsx, sources/*.zip); catch these anywhere under
+# gis-research/research regardless of location or extension case
+gis-research/research/**/*.pdf
+gis-research/research/**/*.PDF
+gis-research/research/**/*.png
+gis-research/research/**/*.jpg
+gis-research/research/**/*.jpeg
+gis-research/research/**/*.JPG
+gis-research/research/**/*.xlsx
+gis-research/research/**/*.zip
+gis-research/research/**/*.ZIP
+gis-research/research/**/*.parquet
+gis-research/research/**/*.doc
+gis-research/research/**/*.tmp.*

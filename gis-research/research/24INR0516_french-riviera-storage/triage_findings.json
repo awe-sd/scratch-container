@@ -1,0 +1,32 @@
+{
+  "inr": "24INR0516",
+  "project": "French Riviera Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 27.4765,
+    "lon": -97.6929,
+    "method": "POI substation — Riviera Substation 69kV, Riviera TX (Kleberg County)",
+    "confidence": "low"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-01",
+    "plausible": true,
+    "why": "COD already slipped 3.5 years once (2024-12 → 2028-05); no IA, no construction milestones — 2028 COD requires IA and groundbreak within ~12 months, tight but not impossible for BESS"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Doral LLC developer page (doral-llc.com) — confirm project details and any financing announcement",
+    "PUCT Interchange authenticated search — confirm no IA filed under 'French Riviera Storage' or 'Arana Creek Battery Storage' or 'Doral'",
+    "CDSE imagery when credentials available — Riviera Substation 69kV area (27.4765°N, 97.6929°W, buffer 2 km) to check for any grading or pad work",
+    "Kleberg County Appraisal District — check for any permit or land transaction under Doral / French Riviera Storage LLC"
+  ],
+  "turns_used": 28
+}

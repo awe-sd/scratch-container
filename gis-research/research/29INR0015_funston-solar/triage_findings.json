@@ -1,0 +1,35 @@
+{
+  "inr": "29INR0015",
+  "project": "Funston Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.784,
+    "lon": -99.670,
+    "method": "EIA Form 860 lat (32.784 via FutureGrid reference); lon estimated from community name + POI geography (Phantom Hill circuit, Jones County)",
+    "confidence": "low-medium"
+  },
+  "construction": {
+    "verdict": "possible — partial signal",
+    "evidence": "chip_r1_cm1 (32.814N 99.700W, Jun 2026) shows rectangular row pattern in lower-left consistent with panel arrays; center/south grid rows not retrieved due to auth expiry — site center may be ~0.03deg south of confirmed chips"
+  },
+  "cod_first_look": {
+    "reported": "2027-07-01",
+    "plausible": true,
+    "why": "IA signed Oct 2024, all 6.9 milestones met Jan 2026, developer is NextEra (tier-1 executer); one EIA/third-party source lists Nov 2026 COD which would be aggressive but possible signal site activity is underway"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Re-image center/south grid rows (lat 32.784 and 32.754) with fresh CDSE auth — auth expired mid-grid; possible panel rows visible at edge suggest active construction",
+    "PUCT Interchange IA filing (iaSigned=2024-10-23 confirmed in queue) — retrieve milestone-schedule exhibit and COD commitment; portal returned 402 during triage",
+    "EIA Form 860 exact coordinates for plant 67359 — lon not retrieved; needed to pin imagery precisely",
+    "Developer confirmation: ESI Energy / NextEra — check NextEra investor pipeline disclosure or press release for Funston Solar COD target and MW"
+  ],
+  "turns_used": 28
+}

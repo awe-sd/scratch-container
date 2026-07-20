@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0270",
+  "project": "Harryoung Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 26.22,
+    "lon": -97.82,
+    "method": "POI infrastructure — 'Tap 8319 Rio Hondo - South Santa Rosa 138kV'; substation approx 4 miles west of Primera TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "not visible",
+    "evidence": "2 Sentinel-2 chips (2026-07-01 ±15d) at 26.19/-97.82 and 26.19/-97.85 show active agricultural fields, no panels, no grading. 7 chips failed due to CDSE auth expiry."
+  },
+  "cod_first_look": {
+    "reported": "2028-05-15",
+    "plausible": false,
+    "why": "No FIS approval, no IA, no construction start after 3.5 years in queue; COD already slipped once (2027→2028); 2028 COD requires IA + construction within ~18 months with no visible site prep"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange: search for 'Gransolar' or 'Harryoung' — portal was 402-blocked during triage, IA may exist",
+    "Developer 'Gransolar Texas Four LLC' parent company — Gransolar is a Spanish EPC firm; verify if US entity is active or shell",
+    "Re-run imagery with valid CDSE credentials across full 3x3 grid centered on substation; current chips cover only SW quadrant",
+    "gem.wiki/Harryoung_PV_and_BESS_solar_farm — 403 during triage, may have capacity/location details"
+  ],
+  "turns_used": 22
+}

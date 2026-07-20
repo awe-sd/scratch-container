@@ -1,0 +1,76 @@
+{
+ "inr": "24INR0505",
+ "generated": "2026-07-20",
+ "project": "Corralitos Wind 1",
+ "county": "Zapata",
+ "fuel": "WIN",
+ "technology": "WT",
+ "capacity_mw": 196.1,
+ "queue_cod": "2027-12-01",
+ "milestones": {
+  "screeningStudyComplete": "2023-04-28",
+  "fisApproved": null,
+  "iaSigned": "2025-06-19",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ok",
+  "plant_id": 63101,
+  "entity": "GDF Suez North America",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   26.69842,
+   -99.05745
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Engie North America",
+    "detail": "plant=Las Lomas Wind Project 201.6MW (OP) Operating @26.69842,-99.05745 planned="
+   },
+   {
+    "source": "puct-index",
+    "entity": "LAS CRESTAS WIND ENERGY, LLC",
+    "detail": "ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN ELECTRIC TRANSMISSION TEXAS, LLC AND LAS CRESTAS W"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "faa",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "verified_ia_on_disk",
+  "financial_security_posted"
+ ],
+ "paper_score": 16,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 11.95,
+  "reason": "reality signal"
+ }
+}

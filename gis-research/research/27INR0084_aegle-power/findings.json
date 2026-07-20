@@ -1,0 +1,95 @@
+{
+ "inr": "27INR0084",
+ "project": "Aegle Power",
+ "researched_at": "2026-07-18",
+ "site": {
+  "lat": 26.21636,
+  "lon": -97.62806,
+  "method": "TCEQ_permit_lat_long",
+  "confidence": "high",
+  "address": "24684 FM 1595, Harlingen, TX 78550",
+  "evidence": "Form PI-1 of the 2012 TCEQ Air Preconstruction Permit application (submitted 2012-03-15) states lat 26 12 58.9 N, lon 97 37 41.02 W, street address 24684 FM 1595 Harlingen 78550; independently corroborated by GEM Wiki (26.216361, -97.62806, sourced to EIA-860M) and by PR Newswire 2013-05-14 placing the plant in the Harlingen Industrial Park"
+ },
+ "project_area": {
+  "acres": null,
+  "source": "not_disclosed",
+  "artifact": "sources/2026-07-18_epa_lapaloma_ghg_permit_app.pdf",
+  "note": "The 2012 permit plot plan (page 15) shows a rectangular tract of open farmland ~2100 ft x 800 ft but does not state a numeric acreage. The 3000-ft impact circle on the area map (page 16) is the closest quantitative figure. No abatement or IA on file to cross-check."
+ },
+ "parcels": [],
+ "llc_chain": [
+  {
+   "entity": "Aegle Power, LLC (TX SOS 0804910188)",
+   "relation": "current_queue_applicant_SPV",
+   "evidence": "TX SOS domestic LLC filed 2023-02-02, principal address 7229 Jument Dr Austin TX 78738; named as TEF App-162 applicant in the PUCT 2024-09-04 denial press release (sources/2026-07-18_puct_TEF_denial_pressrelease.pdf) and in Utility Dive coverage (sources/2026-07-18_utilitydive_puct-aegle.html)"
+  },
+  {
+   "entity": "Kathleen Smith",
+   "relation": "Managing_Partner_CEO_of_Aegle",
+   "evidence": "Utility Dive names Smith as Aegle Managing Partner/CEO and reports she pled guilty in 2017 to embezzling a significant amount of money from Chase Power per the US Attorney SDTX; legislators publicly described her as an energy executive who was publicly convicted of fraud in our state (sources/2026-07-18_utilitydive_puct-aegle.html, sources/2026-07-18_powermag_major_project_rejected.html)"
+  },
+  {
+   "entity": "La Paloma Energy Center, LLC (TX SOS 5108003)",
+   "relation": "historical_2012_2015_permit_holder_same_site",
+   "evidence": "Form PI-1 of the 2012 TCEQ/EPA air permit application names La Paloma Energy Center LLC as applicant, Plano TX 75093, contact Gary Neus EVP at coronado-ventures.com (sources/2026-07-18_epa_lapaloma_ghg_permit_app.pdf p.7)"
+  },
+  {
+   "entity": "Coronado Power Ventures LLC + Bechtel (EPC: Becon Construction)",
+   "relation": "original_2013_announced_developer_and_EPC",
+   "evidence": "PR Newswire 2013-05-14 (sources/2026-07-18_prnewswire_new-harlingen-power-plant-original-announcement.html) and Business Facilities coverage (sources/2026-07-18_businessfacilities_harlingen-plant.html) both name Coronado Power Ventures and Bechtel as developers with Becon Construction as EPC; GEM Wiki lists Coronado Power Ventures LLC as unit owner (sources/2026-07-18_gemwiki_lapaloma-energy-center.html)"
+  },
+  {
+   "entity": "NextEra Energy",
+   "relation": "NOT_a_party_falsely_listed",
+   "evidence": "PUCT press release: NextEra Energy notified the PUCT this week that it is not a party to the loan application (sources/2026-07-18_puct_TEF_denial_pressrelease.pdf); Utility Dive: NextEra told the PUCT its name was submitted without our knowledge as part of a July application seeking funding"
+  }
+ ],
+ "land_tenure": {
+  "status": "unknown",
+  "evidence": "Cameron CAD portal search was blocked in triage; no abatement or IA on file to cross-check. The 2012 permit's plot plan implies the site was leased or optioned but does not state tenure."
+ },
+ "construction": {
+  "verdict": "no_activity",
+  "first_activity_seen": null,
+  "evidence": [
+   "Sentinel-2 tight chip (1.5 km buffer) at 26.2164, -97.6281 on 2020-01-15 shows agricultural fields with irrigation ditches, no industrial construction (imagery/s2_2020-01_tight.png)",
+   "Sentinel-2 tight chip on 2026-07-01 shows the same tract still in agricultural use, some fields fallow/tilled, no laydown yard, no cranes, no turbine hall, no cooling structures, no substation pad (imagery/s2_2026-07_tight.png)",
+   "Sentinel-2 wide 6 km chip on 2026-07-01 confirms the surrounding area is farmland between Harlingen and San Benito with no industrial CCGT footprint anywhere near the coordinates (imagery/s2_2026-07-01.png)",
+   "GEM Wiki, sourcing EIA-860M, records the 1,282 MW unit CC1 at these coordinates as Shelved and a companion 771 MW unit CC_set as Cancelled (sources/2026-07-18_gemwiki_lapaloma-energy-center.html)",
+   "13 years have elapsed since the planned 2013 construction start and 11 years since the planned 2015 COD in the original TCEQ permit application; nothing has been built"
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2027-07-30",
+  "independent": "no_credible_COD_paper_project",
+  "drift_risk": "n/a",
+  "reasoning_evidence": [
+   "The 2027-07-30 reported COD is a queue field with no contractual grounding: no signed Interconnection Agreement is on file (iaSigned null across all 24 monthly snapshots), no financial security has been posted with ERCOT (financialSecurityAndNoticeToProceedProvided = No), and the FIS has been requested but not approved for 24 months",
+   "The PUCT TEF loan (App-162) was denied 2024-09-04 for failing due-diligence, with the denial not subject to motions for rehearing or appeal (sources/2026-07-18_puct_TEF_denial_pressrelease.pdf)",
+   "Aegle CEO Kathleen Smith's 2017 embezzlement conviction (Chase Power, SDTX) and the fraud-adjacent misuse of NextEra's name make a lender-backed FID for a 1.5 GW project essentially impossible in the near term",
+   "The same physical site was permitted in 2012 under a different LLC (La Paloma Energy Center LLC / Coronado Power Ventures) for 637-735 MW with a planned COD of 2015-10-01; construction never began and both historical units are recorded as Shelved/Cancelled per EIA-860M",
+   "Aegle's current 1,536 MW claim is roughly double the 637-735 MW that was actually permitted at TCEQ in 2012; any credible restart would require a new or amended TCEQ NSR permit - no such active permit found under the Aegle Power name",
+   "13 years of ground truth via Sentinel-2 shows the FM 1595 tract has never been developed and remains agricultural in the latest 2026-07 imagery"
+  ]
+ },
+ "real_project_verdict": "paper",
+ "negative_searches": 6,
+ "banned_source_violations": 0,
+ "contractual_schedule": {
+  "source_docs": [],
+  "note": "NO signed IA on file. PUCT Interchange returned HTTP 402 in triage; no IA filing surfaced under Aegle Power in Brave search. The only permit-like document on file for this site is the historical 2012 TCEQ/EPA GHG PSD air permit application under a different LLC (La Paloma Energy Center LLC / Coronado Power Ventures), for a smaller 637-735 MW plant, with a planned 2015 COD that was never achieved.",
+  "documents": [],
+  "milestones": [
+   {
+    "name": "Construction start (historical 2012 permit)",
+    "original_permit_2012": "2013-06-01",
+    "aegle_claim_2024": "not_stated"
+   },
+   {
+    "name": "Scheduled COD",
+    "original_permit_2012": "2015-10-01",
+    "aegle_claim_2024": "2027-07-30"
+   }
+  ]
+ }
+}

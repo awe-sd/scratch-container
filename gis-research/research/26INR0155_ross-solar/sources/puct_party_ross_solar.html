@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta http-equiv="x-ua-compatible" content="IE=Edge">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta http-equiv="expires" content="0">
+    <meta name="title" content="Interchange Search">
+    <meta name="description" content="Public Utility Commission of Texas Interchange Search">
+    <meta name="keywords" content="Austin, Texas, Public Utility Commission, PUC, PUCT, Interchange">
+    
+    <title>Interchange - Search</title>
+    <link rel="icon" href="/favicon.ico" />
+    <link href="/Content/css?v=_J--WzTqgXpBySvpm_jS9qSnupz7IjYmM-KNORJAzpw1" rel="stylesheet"/>
+
+    <link href="/Content/themes/base/css?v=i7BOC3S3137TEzZVBFmOebNbXdz0DQAHpplKmp0vqfc1" rel="stylesheet"/>
+
+    <link href="/Content/themes/base/datepicker.css" rel="stylesheet"/>
+
+    <script src="/bundles/modernizr?v=inCVuEFe6J4Q07A0AcRsbJic_UE5MwpRMNGcOtk94TE1"></script>
+
+    <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-21943797-4', 'texas.gov');
+ga('send', 'pageview');
+</script>
+
+</head>
+<body>
+    
+    <a href="#main" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="bodyWrapper">
+        <header class="hidden-xs navbar navbar-fixed-top" role="navigation">
+            <a href="https://www.puc.texas.gov/"><img src="/Content/images/logoSeal.png" style="height: 136px; padding-left: 7px; padding-top: 7px; position: relative; float: left;" /></a>
+            <div style="height: 144px; background-color: #3f51b5; padding-left: 155px; padding-top: 25px;">
+                <span style="color: white; font-size: xx-large; font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif">Public Utility Commission of Texas</span><br/>
+                <span style="color: white; font-size: x-large; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Interchange Filing Search</span>
+            </div>
+        </header>
+        <header class="visible-xs navbar navbar-fixed-top" role="navigation">
+            <div class="container-fluid" style="height: 80px; background-color: #3f51b5; padding-top: 20px; padding-left: 10px;">
+                <span class="smallHeader">Public Utility Commission of Texas</span>
+            </div>
+        </header>
+        
+
+
+
+    <div id="main" role="main" class="container body-content">
+        <noscript>
+    <br/>
+    <br />
+    <div class="row"> 
+        <div class="col-md-12">
+            <div class="alert alert-warning" role="alert">
+                <div class="row">
+                    <div class="col-md-1">
+                        <img src='/Content/images/Warning-Message.png' alt="triangle with exclamation mark." style="vertical-align: middle;" />
+                    </div>
+                    <div class="col-md-11">
+                        This page requires JavaScript to be enabled. Either your browser does not support
+                        JavaScript or you have disabled it. Please enable it or use a browser that can support it.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</noscript>
+        <div class="layoutHeader"> 
+            <br /><h1></h1>
+        </div>
+        <br />
+        <div id="layoutToolbar" class="hidden-xs toolbar">
+            <ul class="nav nav-pills" role="menu">
+                <li role="menuitem"><a class="btn" href="/"><em class="fa fa-search"></em> Filing Search</a></li>
+                <li role="menuitem"><a class="btn" href="/search/daily/"><em class="fa fa-calendar"></em> Daily Filing Search</a></li>
+                <li role="menuitem"><a class="btn" href="https://www.puc.texas.gov/industry/filings/Default.aspx" target="_blank"><em class="fa fa-question"></em> Learn More</a></li>
+                <li role="menuitem"><a class="btn" href="https://portal.puc.texas.gov/portal/" target="_blank"><em class="fa fa-bell-o"></em> Filing Notification System</a></li>
+                <li role="menuitem"><a class="btn" href="https://interchange.puc.texas.gov/filer" target="_blank"><em class="fa fa-file-text-o"></em> PUC Interchange Filer</a></li>
+            </ul>
+        </div>
+        <div id="layoutToolbar" class="visible-xs toolbar">
+            <ul class="nav nav-pills" role="menu">
+                <li class="dropdown">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><em class="fa fa-bars fa-2x"></em></a>
+                    <ul class="dropdown-menu">
+                        <li role="menuitem"><a href="/"><em class="fa fa-search"></em> Filing Search</a></li>
+                        <li role="menuitem"><a href="/search/daily/"><em class="fa fa-calendar"></em> Daily Filing Search</a></li>
+                        <li role="menuitem"><a href="https://www.puc.texas.gov/industry/filings/Default.aspx"><em class="fa fa-question"></em> Learn More</a></li>
+                        <li role="menuitem"><a href="https://portal.puc.texas.gov/portal/"><em class="fa fa-bell-o"></em> Filing Notification System</a></li>
+                        <li role="menuitem"><a href="https://interchange.puc.texas.gov/filer"><em class="fa fa-file-text-o"></em> PUC Interchange Filer</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <br />
+        
+
+
+<form action="/search/search/" id="searchForm" method="get"><div class="validation-summary-errors&#32;text-danger" data-valmsg-summary="true"><ul><li>No search criteria specified. Please enter at least one item to search on.</li>
+</ul></div>    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="UtilityType">Utility Type</label>
+                        <a id="test" role="button" class="helpPopover" tabindex="0" data-placement="bottom" data-toggle="popover" data-trigger="focus"
+                           data-content="Filter results by Utility Type." aria-label="Utility Type field help.">
+                            <span class="fa fa-question-circle-o" aria-hidden="true"></span>
+                        </a>
+                        <select class="form-control" id="UtilityType" name="UtilityType"><option value="A">All</option>
+<option value="E">Electric</option>
+<option value="W">Water</option>
+<option value="T">Telephone</option>
+<option value="O">Others</option>
+</select>
+                    </div>
+                    <div id="controlNumberGroup" class="form-group">
+                        <label class="control-label" for="ControlNumber">Control Number</label>
+                        <a role="button" class="helpPopover" tabindex="0" data-placement="bottom" data-toggle="popover" data-trigger="focus"
+                           data-content="Get Filings for the specified Control Number (Docket Number)." aria-label="Control Number field help.">
+                            <span class="fa fa-question-circle-o" aria-hidden="true"></span>
+                        </a>
+                        <input autocomplete="off" class="form-control" data-val="true" data-val-number="The&#32;field&#32;Control&#32;Number&#32;must&#32;be&#32;a&#32;number." data-val-range="The&#32;field&#32;Control&#32;Number&#32;must&#32;be&#32;between&#32;0&#32;and&#32;2147483647." data-val-range-max="2147483647" data-val-range-min="0" id="ControlNumber" name="ControlNumber" placeholder="Control&#32;Number" type="text" value="" />
+                    </div>
+                    <div id="itemNumberGroup" class="form-group">
+                        <label class="control-label" for="ItemNumber">Item Number</label>
+                        <a role="button" class="helpPopover" tabindex="0" data-placement="bottom" data-toggle="popover" data-trigger="focus"
+                           data-content="Get Filings for the specified Control Number and Item Number(s)." aria-label="Item Number field help.">
+                            <span class="fa fa-question-circle-o" aria-hidden="true"></span>
+                        </a>
+                        <br />
+                        <select aria-label="Comparison&#32;Operator" class="form-control" data-val="true" data-val-required="The&#32;ItemMatch&#32;field&#32;is&#32;required." id="ItemMatch" name="ItemMatch" style="display:&#32;inline;&#32;max-width:&#32;154px;"><option value="1">Equal to ( = )</option>
+<option value="2">Less than ( &lt; )</option>
+<option value="3">Greater than ( &gt; )</option>
+</select>
+                        <input autocomplete="off" class="form-control" data-val="true" data-val-number="The&#32;field&#32;Item&#32;Number&#32;must&#32;be&#32;a&#32;number." data-val-range="The&#32;field&#32;Item&#32;Number&#32;must&#32;be&#32;between&#32;0&#32;and&#32;2147483647." data-val-range-max="2147483647" data-val-range-min="0" id="ItemNumber" name="ItemNumber" placeholder="Item&#32;Number" style="display:&#32;inline;&#32;max-width:&#32;120px;" type="text" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="CCN_REG_NUM">CCN/Registration Number</label>
+                        <a role="button" class="helpPopover" tabindex="0" data-placement="bottom" data-toggle="popover" data-trigger="focus"
+                           data-content="Filter results by CCN/Registration Number." aria-label="CCN/Registration Number field help.">
+                            <span class="fa fa-question-circle-o" aria-hidden="true"></span>
+                        </a>
+                        <input autocomplete="off" class="form-control" id="CCN_REG_NUM" name="CCN_REG_NUM" placeholder="CCN/Registration&#32;Number" type="text" value="" />
+                    </div>
+                </div>
+                <div id="miscGroup" class="col-md-6">
+                    <div id="utilityNameGroup" class="form-group">
+                        <label class="control-label" for="UtilityName">Utility Name</label>
+                        <a role="button" class="helpPopover" tabindex="0" data-placement="bottom" data-toggle="popover" data-trigger="focus"
+                           data-content="Filter results by Utility Name." aria-label="Utility Name field help.">
+                            <span class="fa fa-question-circle-o" aria-hidden="true"></span>
+                        </a>
+                        <input autocomplete="off" class="form-control" id="UtilityName" name="UtilityName" placeholder="Utility&#32;Name" type="text" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="FilingParty">Filing Party</label>
+                        <a role="button" class="helpPopover" tabindex="0" data-placement="bottom" data-toggle="popover" data-trigger="focus"
+                           data-content="Filter results by Filing Party." aria-label="Filing Party field help.">
+                            <span class="fa fa-question-circle-o" aria-hidden="true"></span>
+                        </a>
+                        <input autocomplete="off" class="form-control" id="FilingParty" name="FilingParty" placeholder="Filing&#32;Party" type="text" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="DocumentType">Item Type</label>
+                        <a role="button" class="helpPopover" tabindex="0" data-placement="bottom" data-toggle="popover" data-trigger="focus"
+                           data-content="Filter results by Item (Document) Type." aria-label="Item Type field help.">
+                            <span class="fa fa-question-circle-o" aria-hidden="true"></span>
+                        </a>
+                        <select class="form-control" id="DocumentType" name="DocumentType"><option value="ALL">All</option>
+<option value="ADMN">ADMIN. MTG. TRANSCRIPT</option>
+<option value="BR&#32;&#32;">BRIEFS</option>
+<option value="CIT&#32;">CITATION</option>
+<option value="COM&#32;">COMMENTS</option>
+<option value="CONF">CONFIDENTIAL INFORMATION</option>
+<option value="EX&#32;&#32;">EXHIBITS</option>
+<option value="FOMT">F.O. MTG. TRANSCRIPT</option>
+<option value="HSPM">HIGHLY SENSITIVE PROTECTED MATERIAL</option>
+<option value="LTRS">LETTERS</option>
+<option value="MAPS">MAPS (ARCHIVES)</option>
+<option value="MISC">MISCELLANEOUS</option>
+<option value="PC&#32;&#32;">PUBLIC COMMENTS</option>
+<option value="PL&#32;&#32;">PLEADINGS</option>
+<option value="PM&#32;&#32;">PROTECTED MATERIAL</option>
+<option value="PRJ&#32;">PROJECT</option>
+<option value="REG&#32;">REGISTRATIONS</option>
+<option value="RFI&#32;">REQUEST FOR INFORMATION</option>
+<option value="TARF">TARIFF</option>
+<option value="TEST">TESTIMONY</option>
+<option value="TRAN">TRANSCRIPTS</option>
+</select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="DateFiledFrom">Date Filed From</label>
+                        <a role="button" class="helpPopover" tabindex="0" data-placement="bottom" data-toggle="popover" data-trigger="focus"
+                           data-content="Filter results by the filing date range." aria-label="Date Filed From field help.">
+                            <span class="fa fa-question-circle-o" aria-hidden="true"></span>
+                        </a>
+                        <input class="form-control&#32;datecontrol" data-val="true" data-val-date="The&#32;field&#32;Date&#32;Filed&#32;From&#32;must&#32;be&#32;a&#32;date." id="DateFiledFrom" name="DateFiledFrom" type="date" value="" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="DateFiledTo">Date Filed To</label>
+                        <a role="button" class="helpPopover" tabindex="0" data-placement="bottom" data-toggle="popover" data-trigger="focus"
+                           data-content="Filter results by the filing date range." aria-label="Date Filed To field help.">
+                            <span class="fa fa-question-circle-o" aria-hidden="true"></span>
+                        </a>
+                        <input class="form-control&#32;datecontrol" data-val="true" data-val-date="The&#32;field&#32;Date&#32;Filed&#32;To&#32;must&#32;be&#32;a&#32;date." id="DateFiledTo" name="DateFiledTo" type="date" value="" />
+                    </div>
+                </div>
+            </div>
+            <div id="caseStyleRow" class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label" for="Description">Case Style</label>
+                        <a role="button" class="helpPopover" tabindex="0" data-placement="bottom" data-toggle="popover" data-trigger="focus"
+                           data-content="Filter results by the Case Style (Docket Description) by entering some key words." aria-label="Case Style field help.">
+                            <span class="fa fa-question-circle-o" aria-hidden="true"></span>
+                        </a>
+                        <input autocomplete="off" class="form-control" id="Description" name="Description" placeholder="Case&#32;Style" style="max-width:&#32;670px" type="text" value="" />
+                    </div>
+                </div>
+            </div>
+            <div id="filingDescriptionRow" class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label" for="FilingDescription">Filing Description</label>
+                        <a role="button" class="helpPopover" tabindex="0" data-placement="bottom" data-toggle="popover" data-trigger="focus"
+                           data-content="Filter results by the Filing Description by entering some key words." aria-label="Filing Description field help.">
+                            <span class="fa fa-question-circle-o" aria-hidden="true"></span>
+                        </a>
+                        <input autocomplete="off" class="form-control" id="FilingDescription" name="FilingDescription" placeholder="Filing&#32;Description" style="max-width:&#32;670px" type="text" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <br />
+                        <button id="searchButton" type="submit" class="btn btn-default btn-primary">Search</button>
+                        <span id="loadingSpinner" style="display: none;" class="fa fa-spin"><i class="fa fa-spinner fa-3x"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+			
+		
+            <div class="alert alert-info alert-dismissible" role="alert">
+                <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+                <h3>Instructions</h3>
+                <p>
+                    You may search by any of the criteria on this page.
+                </p>
+                <p>
+                    The easiest way to find a filing is to enter the Control Number, if known.
+                </p>
+                <p>
+                    If you do not know the control number, you may search by Case Style (the Docket Description),
+                    as well as any of the other criteria such as Utility Type, Utility Name, Filing Party, Item Type, and the date range.
+                </p>
+                <p>
+                    Once you've selected your criteria, click the Search button to view results.
+                </p>
+                
+            </div>
+
+        </div>
+    </div>
+</form>
+
+    </div>
+    </div>
+    <footer class="hidden-print">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-sm-5">
+                    <h5>Public Utility Commission of Texas</h5>
+                    <address>
+                        1701 N. Congress Ave.<br />
+                        PO Box 13326 <br />
+                        Austin, TX 78711-3326
+                    </address>
+                    <address>
+                        <div>
+                            <a href="tel://1-512-936-7000"><span class="fa fa-phone"></span><abbr title="Phone"></abbr> &nbsp; 512-936-7000</a>
+                        </div>
+                        <div>
+                            <a href="https://www.puc.texas.gov/agency/about/contact/Default.aspx"><span class="fa fa-at"></span> &nbsp; Contact Us</a>
+                        </div>
+                    </address>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <h5>AGENCY INFO</h5>
+                    <ul class="list-unstyled">
+                        <li><a title="Site Policies" href="http://www.puc.texas.gov/agency/about/policies/Default.aspx">Site Policies</a></li>
+                        <li><a title="Sitemap" href="http://www.puc.texas.gov/agency/Sitemap.aspx">Sitemap</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <h5>OTHER GOVERNMENT RESOURCES</h5>
+                    <ul class="list-unstyled">
+                        <li><a title="Report Fraud, Waste or Abuse" href="http://sao.fraud.state.tx.us/">Report Fraud, Waste or Abuse</a></li>
+                        <li><a title="Texas Homeland Security" href="http://governor.state.tx.us/homeland">Texas Homeland Security</a></li>
+                        <li><a title="Ready.gov" href="http://www.ready.gov/">Ready.gov</a></li>
+                        <li><a title="Texas Online" href="http://texas.gov">Texas.gov</a></li>
+                        <li><a title="Texas Veterans" href="https://veterans.portal.texas.gov/">Texas Veterans</a></li>
+                        <li><a title="TRAIL" href="https://www.tsl.state.tx.us/trail/index.html">TRAIL</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <nav>
+                        <ul class="list-inline list-unstyled">
+                            <li>
+                                <a href="http://www.puc.texas.gov/agency/calendar/GetCalendarRss.aspx" title="" aria-label="PUC Calendar RSS Feed">
+                                    <span class="fa fa-rss-square fa-2x"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www.facebook.com/pages/Public-Utility-Commission-of-Texas/207063229365425" title="" aria-label="Facebook">
+                                    <span class="fa fa-facebook-square fa-2x"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/PUCTx" title="" aria-label="Twitter">
+                                    <span class="fa fa-twitter-square fa-2x"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <span>Copyright &copy; 2026 Public Utility Commission of Texas</span><br />
+                    <span>Version 2.2.11.0</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/bundles/jquery?v=235DeCRyc2KKtm5-u-WowaGmWHU3ft44y448NxHpMf41"></script>
+
+    
+    <script src="/bundles/bootstrap?v=7k-mK_Lw6GRA4MkvIrgrWipUHc3KUDohIwN2DDpspCI1"></script>
+
+    <script src="/bundles/jqueryui?v=hw6jcrpF2LibSX_LeceAnPEcB9rROmvBBgAybQbkxRw1"></script>
+
+    <script src="/bundles/jqueryval?v=LrAZb_GsdYxwaNya0KRkergsGqN8vM0cwGeAR9hjPZI1"></script>
+
+
+    <script type="text/javascript">
+        var $buoop = { notify: { e: 10, f: -4, o: -4, s: -2, c: -4 }, insecure: true, unsupported: true, api: 5 };
+
+        function $buo_f() {
+            var e = document.createElement("script");
+            e.src = "https://browser-update.org/update.min.js";
+            document.body.appendChild(e);
+        };
+
+        try {
+            document.addEventListener("DOMContentLoaded", $buo_f, false);
+        } catch (e) {
+            window.attachEvent("onload", $buo_f);
+        }
+        
+        if (!Modernizr.inputtypes.date) {
+            $(function () {
+                $(".datecontrol").datepicker();
+            });
+        }
+    </script>
+
+    
+    <script type="text/javascript">
+        $(document).ready(
+            function () {
+                $("#searchButton").click(
+                    function () {
+                        $("#loadingSpinner").show();
+                    }
+                );
+
+                $('.helpPopover').popover();
+
+                $('#ControlNumber').on('input', function () {
+                    if ($(this).val() === null || $(this).val() === '') {
+                        $('#utilityNameGroup :input').prop('disabled', false);
+                        $('#caseStyleRow :input').prop('disabled', false);
+                    } else {
+                        $('#utilityNameGroup :input').val(null);
+                        $('#utilityNameGroup :input').prop('disabled', true);
+                        $('#caseStyleRow :input').val(null);
+                        $('#caseStyleRow :input').prop('disabled', true);
+                    }
+                });
+
+
+            }
+        );
+    </script>
+
+</body>
+</html>

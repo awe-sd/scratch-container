@@ -1,0 +1,35 @@
+{
+  "inr": "23INR0603",
+  "project": "Damon BESS 2",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.2894,
+    "lon": -95.7369,
+    "method": "town-of-Damon proxy (POI=DA substation, no confirmed substation coords)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery API returned 401 Unauthorized; no chips retrieved; no other visual evidence obtained"
+  },
+  "cod_first_look": {
+    "reported": "2027-08-21",
+    "plausible": true,
+    "why": "IA signed 2023-10, 4 prior COD slips (~3 yr cumulative drift), current target 2027-08 is plausible but slippage pattern is concerning"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA exists (signed 2023-10-06) but PDF not retrieved — fetch from PUCT Interchange when portal accessible; extract parties, POI page, and milestone-schedule exhibit",
+    "Developer identity unknown — zero press releases or LLC registration hits; deep scan should try TX SOS entity search for 'Damon BESS 2 LLC'",
+    "Imagery blocked this run (CDSE 401) — re-run with valid credentials; site is compact BESS beside Damon substation, use 1-km buffer centered precisely on the DA substation footprint",
+    "No construction or screening milestones after IA — verify whether FIS process has started or project is stalled pre-study"
+  ],
+  "turns_used": 23
+}

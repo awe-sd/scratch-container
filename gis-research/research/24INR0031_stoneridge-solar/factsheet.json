@@ -1,0 +1,104 @@
+{
+ "inr": "24INR0031",
+ "generated": "2026-07-20",
+ "project": "Stoneridge Solar",
+ "county": "Milam",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 201.6,
+ "queue_cod": "2026-12-31",
+ "milestones": {
+  "screeningStudyComplete": "2022-01-03",
+  "fisApproved": "2024-05-21",
+  "iaSigned": "2023-05-15",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 6,
+ "eia": {
+  "status": "ok",
+  "plant_id": 69027,
+  "entity": "RWE Clean Energy",
+  "planned_cod": "2026-06",
+  "cod_delta_quarters": -2.0,
+  "dropped_scope": null,
+  "coords": [
+   30.56945,
+   -97.11043
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Yaupon Solar, LLC",
+    "detail": "plant=Yaupon Solar Project (Hybrid) 200.0MW (V) Under construction, more than 50 per @31.0444,-96.8514 planned=2026-09"
+   },
+   {
+    "source": "eia860m/Planned",
+    "entity": "Cattlemen Solar Park II LLC",
+    "detail": "plant=Cattlemen Solar II 200.0MW (TS) Construction complete, but not yet  @31.08356,-96.85732 planned=2026-10"
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Ben Milam Solar 1 LLC",
+    "detail": "plant=Orion I Solar Project 200.0MW (OP) Operating @30.99651,-97.00151 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "RWE Clean Energy",
+    "detail": "plant=Stoneridge Solar, LLC 100.0MW (OP) Operating @30.56945,-97.11043 planned="
+   },
+   {
+    "source": "puct-index",
+    "entity": "Stoneridge Solar, LLC",
+    "detail": "Interconnection agreement between Oncor Electric Delivery Company LLC and Stoneridge Solar, LLC"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Stoneridge Solar, LLC",
+    "detail": "Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Stoneridge Solar, LLC (St"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Stoneridge Solar, LLC",
+    "detail": "Amended and Restated Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": [
+   {
+    "program": "Ch.313",
+    "applicant": "Stoneridge Solar, LLC f/k/a Ben Milam Solar 5 LLC",
+    "district": "Thorndale ISD",
+    "score": 16
+   }
+  ]
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 3,
+  "join_items": 4
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 12,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 12,
+   "detail": "6 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 37.4,
+  "reason": "reality signal"
+ }
+}

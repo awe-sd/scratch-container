@@ -1,0 +1,35 @@
+{
+  "inr": "23INR0181",
+  "project": "Starling Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.50,
+    "lon": -97.45,
+    "method": "POI substation inference — ERCOT node 7245 'Gonzales' city-center estimate",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "not visible / inconclusive",
+    "evidence": "4/9 chips fetched (CDSE 403 rate-limit). Cloud-heavy imagery, no BESS container rows or fresh gravel pad detected. Chip 01 (29.47N,-97.45W) shows small structured facility (possible existing substation). Northern grid strip not covered."
+  },
+  "cod_first_look": {
+    "reported": "2027-05-15",
+    "plausible": true,
+    "why": "IA signed Aug-2023, meets 6.9(1) Feb-2025, no construction start recorded — 2027-05 is achievable but tight given 6 prior COD slips; project has strong queue credentials (IA+6.9(1)) but no visible ground activity"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA exists (iaSigned=2023-08-03) but PUCT Interchange blocked during triage — retrieve IA PDF via alternate access to confirm milestone schedule and counterparty (developer name unknown)",
+    "Developer identity unknown after web sweep; try Texas SOS entity search for 'Starling Storage LLC' and any parent company",
+    "Imagery incomplete (5/9 grid cells missing, heavy cloud) — retry northern strip chips at lower cloud threshold and with a 2023/2024 baseline date to establish pre-construction baseline",
+    "No construction activity detected — confirm whether project has actually broken ground given COD 2027-05 is <12 months out for a BESS that needs ~12-18 months of construction"
+  ],
+  "turns_used": 28
+}

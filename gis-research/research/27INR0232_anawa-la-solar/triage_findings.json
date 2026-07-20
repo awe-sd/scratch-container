@@ -1,0 +1,28 @@
+{
+  "inr": "27INR0232",
+  "project": "Anawa La Solar",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-08-31",
+    "plausible": false,
+    "why": "No IA signed in queue as of 2026-06-01; FIS not yet approved; ~14 months to claimed COD is implausible without executed IA"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA claim discrepancy: Fractal sale listing claims 'secured IAs' but queue shows iaSigned=null — verify via PUCT Interchange with authenticated session (FilingParty='EIA Properties' or 'Anawa La Solar')",
+    "Teaser PDF (binary): render Anawa-La-PVS-Teaser-2025.pdf to extract site map, parcel number, or coordinates — this is the fastest path to a site candidate for imagery",
+    "Companion project 27INR0233 (Anawa La BESS) shares developer and county — check if BESS queue record has more milestone data or different IA status",
+    "EIA Properties Ltd developer profile: search TX SOS for principals, any other solar projects in Hidalgo County that could share the site or give location proxy",
+    "LISTON substation (bus 8394) geolocation via ERCOT network model / OpenInfraMap to narrow site to substation proximity for imagery"
+  ],
+  "turns_used": 28
+}

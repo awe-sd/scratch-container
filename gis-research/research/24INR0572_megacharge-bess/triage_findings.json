@@ -1,0 +1,35 @@
+{
+  "inr": "24INR0572",
+  "project": "Megacharge BESS",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 26.1811,
+    "lon": -97.7233,
+    "method": "OSM substation lookup — POI '8320 WEST HARLINGEN 69kV' resolved to way 504130009",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials not configured; no imagery retrieved"
+  },
+  "cod_first_look": {
+    "reported": "2027-07-01",
+    "plausible": false,
+    "why": "No IA, no FIS approval, 3-year COD slip already; 12 months to COD with zero milestones beyond screening is not credible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Configure CDSE credentials and pull imagery at 26.1811,-97.7233 to check for BESS pad construction adjacent to West Harlingen substation",
+    "PUCT Interchange manual search for SMT Harlingen III LLC — requires browser session (402 blocked); check for IA filing or FERC QF notice",
+    "Investigate SMT Harlingen parent company — Harlingen II (10MW, operating) suggests real operator; identify corporate parent to gauge commitment to 110MW scale-up",
+    "Cameron CAD parcel search at or near West Harlingen substation for any recent land acquisition by SMT Harlingen or Megacharge entity"
+  ],
+  "turns_used": 28
+}

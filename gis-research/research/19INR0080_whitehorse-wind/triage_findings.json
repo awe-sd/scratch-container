@@ -1,0 +1,28 @@
+{
+  "inr": "19INR0080",
+  "project": "Whitehorse Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-12-31",
+    "plausible": false,
+    "why": "13 COD slips over 8 years; approved-for-sync Dec 2019 but never reached COD; no construction milestones ever set; extremely unlikely to COD within 6 months"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2018-12-05 confirmed in queue data — retrieve PUCT IA filing (docket search via authenticated session) for parties, POI coords, and milestone schedule",
+    "FAA OE/AAA obstruction filings: wind project with exact INR since 2018 — search DroneZone/FAA obstruction database for turbine coords in Fisher County (decisive for site location)",
+    "TX SOS business search: 'Whitehorse Wind LLC' registration and registered agent → developer identity",
+    "Ch.313 Fisher County: project predates 2022 cutoff — check Comptroller agreements list with authenticated access or direct download",
+    "Approved-for-sync Dec 2019 but zero commercial operation after 7 years — investigate whether project is permanently stalled, withdrawn-but-not-cancelled, or under new ownership"
+  ],
+  "turns_used": 22
+}

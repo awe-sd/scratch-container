@@ -1,0 +1,67 @@
+{
+ "inr": "21INR0324",
+ "generated": "2026-07-20",
+ "project": "Board Creek Wind",
+ "county": "Navarro",
+ "fuel": "WIN",
+ "technology": "WT",
+ "capacity_mw": 299.2,
+ "queue_cod": "2026-07-01",
+ "milestones": {
+  "screeningStudyComplete": "2019-07-22",
+  "fisApproved": "2022-04-26",
+  "iaSigned": "2021-08-19",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 22,
+ "eia": {
+  "status": "ok",
+  "plant_id": 65306,
+  "entity": "Limestone Wind Project, LLC",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   31.85346,
+   -96.62446
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Limestone Wind Project, LLC",
+    "detail": "plant=Limestone Wind Project 299.2MW (OP) Operating @31.85346,-96.62446 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "faa",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 20,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 20,
+   "detail": "22 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 299.2,
+  "reason": "reality signal"
+ }
+}

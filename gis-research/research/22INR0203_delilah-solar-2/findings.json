@@ -1,0 +1,44 @@
+{
+  "inr": "22INR0203",
+  "project": "Delilah Solar 2",
+  "researched_at": "2026-07-19",
+  "site": {
+    "lat": null,
+    "lon": null,
+    "method": "not_determined",
+    "confidence": "low",
+    "notes": "gmaps.py returned 429 (rate-limited); Lamar CAD owner search returned 404; POI 345 kV TTRSW 11688 not resolved to coords; no PUCT IA obtained (PUCT interchange returned 402). County: Lamar, TX — Paris area NE Texas ~140 mi NE of Dallas."
+  },
+  "parcels": [],
+  "llc_chain": [
+    {"entity": "Delilah Solar 2, LLC", "relation": "SPV", "evidence": "ERCOT queue INR 22INR0203 party"},
+    {"entity": "Invenergy LLC", "relation": "developer/owner", "evidence": "sources/2026-07-19_prnewswire_wec-delilah-i-acquisition.html — sibling Delilah I confirmed Invenergy developer; 5-phase Samson & Delilah portfolio"},
+    {"entity": "WEC Energy Group / WEC Infrastructure LLC", "relation": "likely_investor (confirmed 90% stake in sibling Delilah I; not yet announced for Delilah 2)", "evidence": "sources/2026-07-19_prnewswire_wec-delilah-i-acquisition.html"}
+  ],
+  "land_tenure": {"status": "unknown", "evidence": "CAD search failed (404); no deed records found"},
+  "construction": {
+    "verdict": "substantially_complete",
+    "first_activity_seen": null,
+    "evidence": ["timeline.md — approved_for_energization 2024-10-29; approved_for_synchronization 2025-01-13; no commercial operation as of 2026-06 snapshot"],
+    "notes": "Approved for synchronization Jan 2025 strongly implies physical plant is built and energized. No satellite imagery obtained (site not pinned). No ERCOT construction start/end dates filed."
+  },
+  "cod_assessment": {
+    "reported": "2026-09-30",
+    "independent": "2026-Q4",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "timeline.md: 11 COD changes since first report 2019-05 (2022-12-31 → 2026-09-30); pattern of persistent slippage",
+      "Approved for synchronization 2025-01-13 but no commercial operation approved in 6 subsequent monthly snapshots through 2026-06",
+      "Sibling Delilah I (22INR0202) also experienced multi-year drift before reaching COD",
+      "No PUCT IA obtained to verify contractual schedule"
+    ]
+  },
+  "real_project_verdict": "real_active",
+  "project_area": {"acres": null, "source": "not_determined", "artifact": null},
+  "contractual_schedule": {
+    "documents": [],
+    "notes": "PUCT interchange search returned HTTP 402; no IA documents retrieved. IA signed date per ERCOT queue: 2020-12-22."
+  },
+  "negative_searches": 8,
+  "banned_source_violations": 0
+}

@@ -1,0 +1,67 @@
+{
+ "inr": "24INR0131",
+ "generated": "2026-07-20",
+ "project": "Zelus BESS",
+ "county": "Zapata",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 201.03,
+ "queue_cod": "2027-12-01",
+ "milestones": {
+  "screeningStudyComplete": "2022-03-16",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "ok",
+  "plant_id": 68350,
+  "entity": "Bravo ESS LLC",
+  "planned_cod": "2027-07",
+  "cod_delta_quarters": -1.7,
+  "dropped_scope": null,
+  "coords": [
+   27.28504,
+   -99.41187
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Bravo ESS LLC",
+    "detail": "plant=Bravo ESS 200.0MW (P) Planned for installation, but regula @27.28504,-99.41187 planned=2027-07"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [],
+ "paper_score": 20,
+ "score_factors": [
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 20 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

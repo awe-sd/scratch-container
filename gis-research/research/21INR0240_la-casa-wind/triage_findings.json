@@ -1,0 +1,36 @@
+{
+  "inr": "21INR0240",
+  "project": "La Casa Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": null
+  },
+  "site_candidate": {
+    "lat": 32.79,
+    "lon": -98.93,
+    "method": "POI-derived — '138kV Breckenridge' substation in POI description, Stephens County",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE token auth blocked (401/403); no imagery obtained; queue shows approved-for-sync 2025-11-14 but construction_start/end not reported in GIS data"
+  },
+  "cod_first_look": {
+    "reported": "2026-08-15",
+    "plausible": true,
+    "why": "IA signed 2023-09, approved-for-energization 2025-10, approved-for-sync 2025-11 — all pre-COD milestones complete; 12 prior COD slips but latest is imminent; plausible but track record suggests further risk"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA filing (iaSigned=2023-09-07 confirmed in queue) — retrieve milestone schedule exhibit and POI/parties page to get exact site coordinates and developer identity",
+    "FAA OE/AAA obstruction filings for Stephens County wind turbines — will yield exact turbine coordinates and confirm construction status",
+    "Imagery: site candidate is low-confidence (POI-only); FAA coords needed before running CDSE chips; run wide Stephens County sweep once CDSE creds restored",
+    "Developer identity: no LLC name confirmed, no news found — check TX SOS entity search for 'La Casa Wind LLC' and any parent company",
+    "COD 2026-08-15 is 4 weeks out with no commercial operation approval yet — confirm whether final energization steps are complete"
+  ],
+  "turns_used": 28
+}

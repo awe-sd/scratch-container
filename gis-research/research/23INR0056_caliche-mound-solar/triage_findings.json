@@ -1,0 +1,27 @@
+{
+  "inr": "23INR0056",
+  "project": "Caliche Mound Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-10-26",
+    "plausible": true,
+    "why": "IA signed 2023-10, meets 6.9(1) 2025-02, but COD has drifted 5 times (>4.5 years slip since 2020); 2027 is plausible but history suggests further risk"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA retrieved from PUCT control #35077 (Oncor filing 2023-10-26) — PUCT portal blocked during triage; pull IA PDF for milestone schedule and POI coordinates",
+    "Locate AJSwope / Windmill 345kV substations to establish site candidate, then run Sentinel-2 imagery",
+    "Verify developer: Tierra Blanco Solar LLC appeared on aggregators only — check TX SOS registration and FERC eQueueing for parent company",
+    "JETI registry not searched (budget exhausted) — check Deaf Smith County for post-2022 JETI application"
+  ],
+  "turns_used": 22
+}

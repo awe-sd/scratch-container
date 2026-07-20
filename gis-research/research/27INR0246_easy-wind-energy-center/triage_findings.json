@@ -1,0 +1,27 @@
+{
+  "inr": "27INR0246",
+  "project": "Easy Wind Energy Center",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": false,
+    "why": "No FIS approval, no IA, no construction milestones — 18 months to COD from this stage is extremely aggressive for a 241 MW wind project"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Big Hill (#76003) and Schneeman Draw (#76005) 345kV substations to establish site polygon — ERCOT transmission planning maps or OpenInfraMap",
+    "FAA OE/AAA obstruction filings search for Schleicher County wind turbines — decisive for exact turbine coordinates once FIS/IA materializes",
+    "TX SOS business entity search for 'Easy Wind Energy Center LLC' to identify developer/sponsor",
+    "PUCT Interchange filing search (direct portal session) once IA is signed — project is pre-IA today"
+  ],
+  "turns_used": 22
+}

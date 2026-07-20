@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0257",
+  "project": "Double A Storage SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.8377,
+    "lon": -97.0808,
+    "method": "POI substation inference — 'Schroeder' substation near Schroeder TX (Victoria/Goliad border)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials not configured (401); no imagery obtained"
+  },
+  "cod_first_look": {
+    "reported": "2028-05-31",
+    "plausible": false,
+    "why": "No IA signed, no FIS approved, capacity dropped to 0.0 MW in Apr 2025 — project shows signs of stall or amendment; COD slip from 2027 to 2028 already occurred"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Capacity anomaly: 132.4 MW → 0.0 MW in Apr 2025 — check if amendment filed or project rescoped",
+    "PUCT Interchange needs authenticated session — check for IA or FIS filing under 'Double A Storage'",
+    "CDSE imagery: configure credentials and run 3x3 grid at 28.8377N -97.0808W buffer-km 2 around Schroeder substation",
+    "Developer identity unknown — no LLC registration or news surfaced; Texas SOS search warranted"
+  ],
+  "turns_used": 28
+}

@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0394",
+  "project": "Timber Cove Storage SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.724,
+    "lon": -96.165,
+    "method": "county-seat proxy (Fairfield TX); POI bus names not georeferenced",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery unavailable (HTTP 401); no pin or IA map to anchor a tight chip"
+  },
+  "cod_first_look": {
+    "reported": "2027-04-01",
+    "plausible": true,
+    "why": "FIS only requested, no approval yet — 2027-04-01 is optimistic but BESS builds fast; ~6-month slip from original COD already absorbed"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Winkler 138 kV substation coordinates via ERCOT transmission map or Oncor planning docs to get a real site candidate for imagery",
+    "PUCT Interchange manual search (portal blocked in triage) for IA filings under 'Timber Cove Storage SLF' — FIS may have advanced",
+    "Fix CDSE credentials (HTTP 401) then run tight 1-km chip at substation once located",
+    "Texas SOS business entity search for 'Timber Cove Storage SLF LLC' to identify developer/sponsor"
+  ],
+  "turns_used": 28
+}

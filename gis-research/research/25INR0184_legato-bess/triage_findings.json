@@ -1,0 +1,32 @@
+{
+  "inr": "25INR0184",
+  "project": "Legato BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.3693,
+    "lon": -97.9059,
+    "method": "Nominatim geocode of Crafton, TX (POI town center — not confirmed substation location)",
+    "confidence": "low"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-04-24",
+    "plausible": true,
+    "why": "FIS approved 2024-09-12, IA not yet signed; ~3.5 years to COD is tight but achievable if IA executes in 2026"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange blocked (402) — manual search for IA filing under 'Legato BESS' or 'Crafton' needed",
+    "Developer identity unknown — no public web presence; TX SOS entity search for 'Legato BESS LLC' would confirm sponsor",
+    "CDSE creds not configured — imagery at Crafton Substation (33.37,-97.91) still unrun; substation pad check is the priority chip",
+    "COD slipped 3 years (2025-07 → 2028-04) when FIS approved — watch for IA execution to confirm project is advancing"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,37 @@
+{
+  "inr": "23INR0140",
+  "project": "Seine BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.987,
+    "lon": -99.723,
+    "method": "Foard County seat (Crowell TX) as POI proxy — Edith Clarke 345kV substation not resolved via OSM/Nominatim",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials absent — no imagery acquired. No construction start milestone in queue history. No news/PR articles about site activity."
+  },
+  "cod_first_look": {
+    "reported": "2027-10-01",
+    "plausible": true,
+    "why": "IA signed Dec 2024, 6.9(1) cleared Mar 2026, Ch.312 abatement active — real development momentum, but 17 months to COD with no construction start milestone or imagery evidence yet"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF (PUCT docket 35077, doc 35077_1999_1446261) — retrieve milestone schedule exhibit; PUCT Interchange requires session cookies, try direct curl or browser fetch",
+    "Edith Clarke 345kV substation exact coordinates — resolve via ERCOT transmission map or ETT facilities list to anchor imagery search",
+    "Foard County commissioners court minutes Apr–May 2026 — confirm abatement approval, extract any site description or legal description with coordinates",
+    "BRP Energy parent company — Texas SOS or SEC EDGAR lookup for BRP Seine BESS LLC / BRP Energy; confirm developer track record",
+    "Imagery at confirmed substation coords with CDSE credentials — battery pad should be compact (<50 acres) directly beside substation; if no construction visible, flag as speculative",
+    "FIS approved milestone absent from queue — verify if waived or still outstanding (would be a red flag for 2027 COD)"
+  ],
+  "turns_used": 26
+}

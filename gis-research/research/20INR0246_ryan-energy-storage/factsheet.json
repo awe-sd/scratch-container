@@ -1,0 +1,76 @@
+{
+ "inr": "20INR0246",
+ "generated": "2026-07-20",
+ "project": "Ryan Energy Storage",
+ "county": "Coryell",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 51.6,
+ "queue_cod": "2026-12-12",
+ "milestones": {
+  "screeningStudyComplete": "2019-04-05",
+  "fisApproved": "2025-09-16",
+  "iaSigned": "2021-02-18",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 5,
+ "eia": {
+  "status": "ok",
+  "plant_id": 69770,
+  "entity": "Ryan Storage LLC",
+  "planned_cod": "2027-02",
+  "cod_delta_quarters": 0.7,
+  "dropped_scope": null,
+  "coords": [
+   31.53576,
+   -97.79874
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Ryan Storage LLC",
+    "detail": "plant=Ryan Storage 50.0MW (U) Under construction, less than or equ @31.53576,-97.79874 planned=2027-02"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_under_construction",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 30,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 10,
+   "detail": "5 COD slips"
+  },
+  {
+   "factor": "no_verified_ia",
+   "points": 10,
+   "detail": "iaSigned claimed but no IA found on disk or in the docket join table"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 10.82,
+  "reason": "reality signal"
+ }
+}

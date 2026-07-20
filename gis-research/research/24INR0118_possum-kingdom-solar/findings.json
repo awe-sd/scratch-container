@@ -1,0 +1,149 @@
+{
+  "inr": "24INR0118",
+  "project": "Possum Kingdom Solar",
+  "researched": "2026-07-19",
+  "verdict": "real_early",
+  "confidence": "low",
+  "verdict_rationale": "IA signed 2025-07-25, FIS approved 2025-03-18, Meets 6.9(1) achieved 2026-06-09, and a companion BESS project (24INR0375, PK Solar LLC) at same POI confirm real regulatory intent; however zero web/news presence, no developer identity, no satellite imagery, and no site-pinpoint limit confidence to 'real_early'",
+
+  "developer": {
+    "spv": "PK Solar, LLC",
+    "parent": null,
+    "epc": null,
+    "offtaker": null,
+    "financing": null,
+    "notes": "LLC confirmed from ERCOT GIS Jun-2026 report. 'PK Solar' yields zero web results — identity of parent developer unknown. Same LLC also owns companion 24INR0375 Possum Kingdom BESS (200.86 MW battery, IA signed 2025-07-30, same POI).",
+    "evidence": [
+      {
+        "claim": "SPV name PK Solar, LLC; project name Possum Kingdom Solar; county Jack; 262.22 MW Solar PV",
+        "artifact": "sources/2026-07-19_ercot-gis-jun2026_pk-solar-rows.csv"
+      }
+    ]
+  },
+
+  "site": {
+    "lat": null,
+    "lon": null,
+    "method": "not_resolved",
+    "confidence": "none",
+    "notes": "No delivery pin (gmaps 429 rate-limited), no parcel via CAD (form-based portal inaccessible), no IA PDF (PUCT 402), no satellite imagery (CDSE 401, Google Static Maps 403). POI anchor: Willow Creek Switch (bus 1421) confirmed at 33.0562°N, 97.9103°W in Wise County on Jack/Wise border; Jacksboro substation (bus 1429) at 33.2772°N, 98.1068°W in Jack County. Project site is a tap on the Willow Creek–Thomas Price 345kV line segment traversing eastern Jack County — search zone ~33.0-33.3°N, 98.0-98.4°W.",
+    "poi_anchor": {
+      "willow_creek_switch_lat": 33.0562,
+      "willow_creek_switch_lon": -97.9103,
+      "willow_creek_county": "Wise County (near Jack County eastern boundary)",
+      "source": "sources/2026-07-19_osm-overpass_jack-county-substations.json"
+    },
+    "cross_checks": []
+  },
+
+  "project_area": {
+    "acres": null,
+    "source": "not_found",
+    "artifact": null,
+    "notes": "No IA PDF, no CAD parcels, no abatement application retrieved. 262 MW solar expected ~1,000-1,500 acres at typical utility-scale density."
+  },
+
+  "land": {
+    "tenure": "unknown",
+    "abatements": [],
+    "cad_parcels": [],
+    "notes": "No Ch.313/JETI expected (post-2022 project; program expired Sept 2023). CAD portal inaccessible (form-based). No county records retrieved."
+  },
+
+  "interconnection": {
+    "poi": "Tap 345kV 1421 Willow Creek Switch – 11523 Thomas Price",
+    "tsp": "Oncor",
+    "ia_signed": "2025-07-25",
+    "ia_pdf_retrieved": false,
+    "ia_pdf_note": "PUCT interchange.puc.texas.gov returns HTTP 402 on all search attempts",
+    "financial_security": null,
+    "contractual_schedule": {
+      "documents": [
+        {
+          "doc": "Original IA",
+          "signed": "2025-07-25",
+          "financial_security": null,
+          "artifact": null,
+          "notes": "IA confirmed via ERCOT queue milestone; PDF not retrieved from PUCT (HTTP 402)"
+        }
+      ],
+      "in_service_date": null,
+      "trial_operation_date": null,
+      "scheduled_cod": null,
+      "source_note": "Schedule exhibit not obtained (IA PDF inaccessible)"
+    }
+  },
+
+  "queue_history": {
+    "first_report": "2022-05-01",
+    "total_snapshots": 50,
+    "cod_drifts": 3,
+    "cod_history": [
+      {"cod": "2024-11-22", "held_from": "2022-05-01", "held_until": "2023-05-01"},
+      {"cod": "2026-05-08", "held_from": "2023-06-01", "held_until": "2023-08-01"},
+      {"cod": "2026-10-30", "held_from": "2023-09-01", "held_until": "2024-06-01"},
+      {"cod": "2027-10-29", "held_from": "2024-07-01", "held_until": "2026-06-01"}
+    ],
+    "milestones": {
+      "screening_started": "2021-09-13",
+      "screening_complete": "2021-11-29",
+      "fis_requested": "2022-05-23",
+      "fis_approved": "2025-03-18",
+      "ia_signed": "2025-07-25",
+      "meets_6_9_1": "2026-06-09",
+      "meets_all_6_9": null,
+      "construction_start_reported": "2025-05-01",
+      "construction_end_reported": "2026-05-08",
+      "approved_energization": null,
+      "approved_synchronization": null,
+      "commercial_operation_approved": null
+    },
+    "artifact": "timeline.md"
+  },
+
+  "satellite": {
+    "imagery_obtained": false,
+    "reason": "CDSE credentials returning 401 Unauthorized; Google Static Maps API not enabled (403). No imagery available.",
+    "construction_stage": "unknown",
+    "first_activity_seen": null,
+    "verdict": "unknown"
+  },
+
+  "cod_assessment": {
+    "reported_cod": "2027-10-29",
+    "independent_estimate": "2028-Q3",
+    "drift_risk": "high",
+    "rationale": [
+      "4 reported-COD changes over 4 years (slipped from 2024-11 to 2027-10 = ~35 months of drift already)",
+      "Reported construction-end date 2026-05-08 has passed with zero energization milestones achieved — schedule already running late",
+      "IA signed late (2025-07-25) but appeared in queue only 2026-04-01 — data-entry lag suggests administrative slowness",
+      "Meets 6.9(1) achieved 2026-06-09 is the most recent positive signal; 'Meets all 6.9' still open",
+      "No construction activity confirmed (no imagery available); developer identity unknown means no external corroboration",
+      "262 MW solar typical build: 18-24 months post-IA; IA July 2025 → earliest realistic COD is mid-2027, but history of slippage implies 2028 more probable",
+      "Companion BESS project (24INR0375) has same COD 2027-10-29 and same construction-end date — both appear to be on a shared schedule that is already past"
+    ]
+  },
+
+  "could_not_determine": [
+    "Developer / parent company identity (PK Solar LLC is non-searchable)",
+    "IA PDF content — parties, schedule exhibit, financial security amount (PUCT 402)",
+    "Site lat/lon — no pin, no parcel, no imagery available",
+    "Project acreage",
+    "Construction activity status — no imagery obtained",
+    "EPC, PPA offtaker, financing",
+    "CAD parcel ownership"
+  ],
+
+  "comparable_projects": [
+    {
+      "inr": "24INR0094",
+      "name": "Dovetail Solar 1",
+      "llc": "Hecate Energy Dovetail Solar 1 LLC",
+      "poi": "Tap 345 KV 1421 Willow Creek - 60515 Clear Crossing Ckt 2",
+      "county": "Jack",
+      "mw": 666.1,
+      "status": "FIS Started, No IA",
+      "note": "Co-POI project; Hecate Energy at same 345kV bus confirms Willow Creek as accessible, high-capacity POI"
+    }
+  ]
+}

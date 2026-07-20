@@ -1,0 +1,23 @@
+{
+  "source": "ERCOT Transmission Project Information Tracking (TPIT) July 2026",
+  "url": "https://www.ercot.com/files/docs/2022/03/02/ERCOT-July-Ad-Hoc-TPIT-No-Cost-071326-UPDATE.xlsx",
+  "downloaded": "2026-07-19",
+  "artifact": "sources/2026-07-13_ercot_TPIT.xlsx",
+  "sheet": "CompletedTPIT071326NoCost",
+  "row": 199,
+  "data": {
+    "ercot_project_number": 80508,
+    "title": "Kilby: Construct New 345 kV Station",
+    "description": "Interconnect Quantum Solar to the new Kilby 345 kV station on the Clear Crossing to Pendulo 345 kV line",
+    "status": "In-Service",
+    "comment": "IN-SERVICE",
+    "terminal_from": "Kilby",
+    "associated_projects": "TP2023844",
+    "transmission_owner": "ETT",
+    "county": "Haskell",
+    "ercot_node_ids": "60089, 60507, 60514, 145568",
+    "in_service_date": "2026-01-27",
+    "kv": 345,
+    "companion_project": 80509
+  }
+}

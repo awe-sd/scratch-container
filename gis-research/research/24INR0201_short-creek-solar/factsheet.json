@@ -1,0 +1,65 @@
+{
+ "inr": "24INR0201",
+ "generated": "2026-07-20",
+ "project": "Short Creek Solar",
+ "county": "Wichita",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 627.81,
+ "queue_cod": "2027-12-17",
+ "milestones": {
+  "screeningStudyComplete": "2022-04-18",
+  "fisApproved": null,
+  "iaSigned": "2024-10-02",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "ok",
+  "plant_id": 68479,
+  "entity": "Wichita Solar I, LLC",
+  "planned_cod": "2028-03",
+  "cod_delta_quarters": 1.0,
+  "dropped_scope": null,
+  "coords": [
+   34.01762,
+   -98.8013
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Wichita Solar I, LLC",
+    "detail": "plant=Short Creek Solar 606.4MW (L) Regulatory approvals pending. Not un @34.01762,-98.8013 planned=2028-03"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 2,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "financial_security_posted"
+ ],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 37.06,
+  "reason": "reality signal"
+ }
+}

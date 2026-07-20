@@ -1,0 +1,59 @@
+{
+ "inr": "28INR0074",
+ "generated": "2026-07-20",
+ "project": "Massey Storage",
+ "county": "Harris",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 102.86,
+ "queue_cod": "2028-01-03",
+ "milestones": {
+  "screeningStudyComplete": "2024-10-25",
+  "fisApproved": "2025-12-12",
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 0,
+ "eia": {
+  "status": "ok",
+  "plant_id": 69393,
+  "entity": "Pamela Heights I Energy Center LLC",
+  "planned_cod": "2027-01",
+  "cod_delta_quarters": -4.0,
+  "dropped_scope": null,
+  "coords": [
+   29.64534,
+   -95.45021
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Pamela Heights I Energy Center LLC",
+    "detail": "plant=Pamela Heights I Energy Center 100.0MW (U) Under construction, less than or equ @29.64534,-95.45021 planned=2027-01"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_under_construction",
+  "fis_approved"
+ ],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 5.88,
+  "reason": "reality signal"
+ }
+}

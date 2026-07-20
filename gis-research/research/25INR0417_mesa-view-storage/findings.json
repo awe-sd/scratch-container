@@ -1,0 +1,65 @@
+{
+  "inr": "25INR0417",
+  "project": "Mesa View Storage",
+  "research_date": "2026-07-19",
+  "real_project_verdict": "unclear",
+  "verdict_confidence": "low",
+  "verdict_rationale": "Queue milestones are real (IA signed Sep 2024, NTP issued ~Mar 2026, FIS approved Jun 2026) but developer is anonymous, no financing or construction found, and satellite imagery was blocked. Structurally a real queue entry; construction stage unverified.",
+
+  "llc_chain": [
+    {"entity": "Mesa View Storage, LLC", "role": "SPV / interconnecting facility"},
+    {"entity": "Unknown parent", "role": "developer — 0 SEC filings, 0 TX Comptroller hits, no web presence"}
+  ],
+
+  "site": {
+    "lat": 31.22,
+    "lon": -102.22,
+    "method": "POI text inference: KINGMTSW (#842) = King Mountain Switch West 345 kV substation near King Mountain Wind Farm (Wikipedia 31.2378°N, 102.2378°W); EIA-860 cluster of Upton County BESS/solar at 31.21–31.26, −102.12 to −102.32. Best estimate near KINGMTSW midpoint.",
+    "confidence": "low",
+    "artifact": null
+  },
+
+  "project_area": {
+    "acres": null,
+    "source": "Not determined — IA doc not retrieved; 0 CAD parcels; no abatement",
+    "artifact": null
+  },
+
+  "construction": {
+    "stage": "unknown",
+    "first_activity_seen": null,
+    "latest_observation_date": null,
+    "evidence": [
+      "CDSE Sentinel-2 auth blocked on both triage (2026-07-18) and deep-scan (2026-07-19) — account locked for concurrent sessions",
+      "No construction start or end reported in any of 39 ERCOT queue snapshots through Jun 2026",
+      "NTP issued ~Mar 2026 but no construction start reported 3+ months later"
+    ]
+  },
+
+  "cod_assessment": {
+    "reported_cod": "2027-07-15",
+    "independent_estimate": "2028-Q1",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "6 COD slips since Apr 2023 entry: 2025-05 → 2026-05 → 2026-10 → 2027-01 → 2027-06 → 2027-07",
+      "FIS only approved 2026-06-11 — 5 weeks before research date; typically enables IA amendment with updated schedule",
+      "No construction start in any snapshot through Jun 2026; NTP issued ~Mar 2026 but no site activity reported",
+      "Developer/parent unknown; no financing announced; no EPC identified — weaker readiness signals"
+    ]
+  },
+
+  "contractual_schedule": {
+    "note": "IA signed 2024-09-09; PUCT Interchange requires JavaScript — control number and schedule exhibits not retrieved. Financial security + NTP first reported in Mar 2026 queue snapshot.",
+    "documents": [
+      {
+        "doc": "Interconnection Agreement (original)",
+        "signed": "2024-09-09",
+        "financial_security": "Not determined",
+        "artifact": null
+      }
+    ],
+    "milestones": []
+  },
+
+  "sources": []
+}

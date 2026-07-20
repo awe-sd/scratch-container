@@ -1,0 +1,29 @@
+{
+  "inr": "28INR0459",
+  "project": "Kilby1 Part 4 Large Block Simple Cycle",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-04-20",
+    "plausible": false,
+    "why": "FIS not yet approved, IA not signed; 950 MW gas turbine with ~2-yr build time needs IA + permits soon — COD <2 yrs out looks aggressive"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "TCEQ NSR air permit search for 'Kilby' in Reeves County — mandatory signal; no permit = strong paper-project evidence",
+    "PUCT Interchange accessible session: search FilingParty='Kilby1 Part 4' and Description='Kilby' — portal blocked (402) during triage",
+    "LLC registration: TxSOS search for 'Kilby1 Part 4 Large Block Simple Cycle LLC' — blocked during triage",
+    "Turbine equipment order (GE/Siemens/MHPS): any procurement PR would be strong reality signal for 950 MW CT",
+    "Solstice Substation precise coords: once found, run imagery to check laydown yard / site prep near POI",
+    "Phased project context: find Parts 1-3 INRs in queue — if earlier phases have IA/construction, Part 4 credibility rises"
+  ],
+  "turns_used": 28
+}

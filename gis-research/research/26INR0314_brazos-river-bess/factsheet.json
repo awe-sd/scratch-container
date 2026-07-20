@@ -1,0 +1,75 @@
+{
+ "inr": "26INR0314",
+ "generated": "2026-07-20",
+ "project": "Brazos River BESS",
+ "county": "Brazoria",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 180.36,
+ "queue_cod": "2027-10-30",
+ "milestones": {
+  "screeningStudyComplete": "2024-01-01",
+  "fisApproved": "2024-11-04",
+  "iaSigned": "2025-05-24",
+  "financial_security": "No"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "ok",
+  "plant_id": 68814,
+  "entity": "Nexus Renewables U.S. Inc.",
+  "planned_cod": "2028-11",
+  "cod_delta_quarters": 4.3,
+  "dropped_scope": null,
+  "coords": [
+   29.15041,
+   -95.62124
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Nexus Renewables U.S. Inc.",
+    "detail": "plant=Brazos River BESS LLC 180.0MW (P) Planned for installation, but regula @29.15041,-95.62124 planned=2028-11"
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Longbow BESS, LLC",
+    "detail": "plant=Longbow BESS, LLC 174.0MW (OP) Operating @29.2816,-95.29553 planned="
+   },
+   {
+    "source": "puct-index",
+    "entity": "Brazos River BESS LLC",
+    "detail": "ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT Between Brazos River BESS LLC and Texas-New Mexico Power C"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved"
+ ],
+ "paper_score": 15,
+ "score_factors": [
+  {
+   "factor": "eia_cod_divergence",
+   "points": 15,
+   "detail": "EIA planned COD 4.3 quarters after queue COD"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 11.74,
+  "reason": "reality signal"
+ }
+}

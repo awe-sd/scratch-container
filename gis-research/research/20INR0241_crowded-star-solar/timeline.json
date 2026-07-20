@@ -1,0 +1,216 @@
+{
+ "inr": "20INR0241",
+ "project": "Crowded Star Solar",
+ "first_seen_in_reports": "2019-05-01",
+ "last_seen_in_reports": "2026-06-01",
+ "snapshots": 86,
+ "milestones": [
+  {
+   "milestone": "Screening started",
+   "achieved": "2019-01-21",
+   "first_in_report": "2019-05-01"
+  },
+  {
+   "milestone": "Screening complete",
+   "achieved": "2019-04-19",
+   "first_in_report": "2019-05-01"
+  },
+  {
+   "milestone": "FIS requested",
+   "achieved": "2019-05-22",
+   "first_in_report": "2019-05-01"
+  },
+  {
+   "milestone": "FIS approved",
+   "achieved": "2024-11-05",
+   "first_in_report": "2020-05-01"
+  },
+  {
+   "milestone": "IA signed",
+   "achieved": "2023-07-27",
+   "first_in_report": "2019-06-01"
+  },
+  {
+   "milestone": "Meets 6.9(1)",
+   "achieved": "2021-12-01",
+   "first_in_report": "2021-12-01"
+  },
+  {
+   "milestone": "Meets all 6.9",
+   "achieved": "2025-07-24",
+   "first_in_report": "2025-08-01"
+  },
+  {
+   "milestone": "Construction start (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Construction end (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Approved for energization",
+   "achieved": "2026-04-22",
+   "first_in_report": "2026-04-01"
+  },
+  {
+   "milestone": "Approved for synchronization",
+   "achieved": "2026-05-28",
+   "first_in_report": "2026-05-01"
+  },
+  {
+   "milestone": "Commercial operation approved",
+   "achieved": null,
+   "first_in_report": null
+  }
+ ],
+ "reported_cod_history": [
+  {
+   "value": "2021-07-02",
+   "from": "2019-05-01",
+   "to": "2020-07-01"
+  },
+  {
+   "value": "2022-12-15",
+   "from": "2020-08-01",
+   "to": "2020-10-01"
+  },
+  {
+   "value": "2023-06-30",
+   "from": "2020-11-01",
+   "to": "2021-03-01"
+  },
+  {
+   "value": "2023-10-23",
+   "from": "2021-04-01",
+   "to": "2021-09-01"
+  },
+  {
+   "value": "2023-10-03",
+   "from": "2021-10-01",
+   "to": "2022-02-01"
+  },
+  {
+   "value": "2024-10-03",
+   "from": "2022-03-01",
+   "to": "2023-02-01"
+  },
+  {
+   "value": "2025-12-31",
+   "from": "2023-03-01",
+   "to": "2023-07-01"
+  },
+  {
+   "value": "2026-01-26",
+   "from": "2023-08-01",
+   "to": "2024-04-01"
+  },
+  {
+   "value": "2025-12-31",
+   "from": "2024-05-01",
+   "to": "2024-11-01"
+  },
+  {
+   "value": "2026-03-10",
+   "from": "2024-12-01",
+   "to": "2025-07-01"
+  },
+  {
+   "value": "2026-06-20",
+   "from": "2025-08-01",
+   "to": "2025-11-01"
+  },
+  {
+   "value": "2026-07-08",
+   "from": "2025-12-01",
+   "to": "2026-02-01"
+  },
+  {
+   "value": "2026-07-31",
+   "from": "2026-03-01",
+   "to": "2026-03-01"
+  },
+  {
+   "value": "2026-08-17",
+   "from": "2026-04-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 400.0,
+   "from": "2019-05-01",
+   "to": "2020-06-01"
+  },
+  {
+   "value": 215.0,
+   "from": "2020-07-01",
+   "to": "2021-01-01"
+  },
+  {
+   "value": 217.6,
+   "from": "2021-02-01",
+   "to": "2023-07-01"
+  },
+  {
+   "value": 218.34,
+   "from": "2023-08-01",
+   "to": "2024-04-01"
+  },
+  {
+   "value": 218.79,
+   "from": "2024-05-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "study_phase_history": [
+  {
+   "value": "SS Completed, FIS Started, No IA",
+   "from": "2019-05-01",
+   "to": "2019-05-01"
+  },
+  {
+   "value": "SS Completed, FIS Started, IA",
+   "from": "2019-06-01",
+   "to": "2019-07-01"
+  },
+  {
+   "value": "SS Completed, FIS Started, No IA",
+   "from": "2019-08-01",
+   "to": "2019-11-01"
+  },
+  {
+   "value": "SS Completed, FIS Started, IA",
+   "from": "2019-12-01",
+   "to": "2020-04-01"
+  },
+  {
+   "value": "SS Completed, FIS Completed, IA",
+   "from": "2020-05-01",
+   "to": "2020-08-01"
+  },
+  {
+   "value": "SS Completed, FIS Started, IA",
+   "from": "2020-09-01",
+   "to": "2021-10-01"
+  },
+  {
+   "value": "SS Completed, FIS Completed, IA",
+   "from": "2021-11-01",
+   "to": "2022-07-01"
+  },
+  {
+   "value": "SS Completed, FIS Started, IA",
+   "from": "2022-08-01",
+   "to": "2024-10-01"
+  },
+  {
+   "value": "SS Completed, FIS Completed, IA",
+   "from": "2024-11-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "financial_security_latest": "Yes"
+}

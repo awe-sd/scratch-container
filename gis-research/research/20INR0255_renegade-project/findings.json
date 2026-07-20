@@ -1,0 +1,136 @@
+{
+  "inr": "20INR0255",
+  "project": "Renegade Project",
+  "aka": "Dawn Solar",
+  "research_date": "2026-07-19",
+  "verdict": "real_early",
+  "verdict_confidence": "medium",
+  "verdict_basis": "IA signed 2021-01-04; Ch.313 agreement executed 2020-11-23 with Hereford ISD; queue reports construction-start 2026-03-01; BPF project page lists as 'in progress'",
+  "site": {
+    "lat": 34.38,
+    "lon": -102.40,
+    "method": "Ch.313 land description: Block K-14/Block 3 sections straddling US Hwy 60, County Road 12 on east — proxy centroid; no GPS coords in any document",
+    "confidence": "low",
+    "county": "Deaf Smith",
+    "state": "TX",
+    "grid_zone": "PANHANDLE"
+  },
+  "project_area": {
+    "acres": 3100,
+    "source": "Estimated sum of 16 tracts in Ch.313 App 1422 Exhibit 2 (Qualified Investment Land)",
+    "artifact": "sources/2026-07-19_comptroller_ch313_1422_renegade_agreement.pdf"
+  },
+  "capacity_mw_ac": 515.66,
+  "capacity_mw_dc": 650,
+  "fuel": "Solar",
+  "technology": "PV",
+  "poi": "Tap 345kV 23910 Windmill - 23906 AJ Swope",
+  "tsp": "Xcel Energy / SPS (Southwestern Public Service Company)",
+  "construction": {
+    "verdict": "reported_started",
+    "construction_start_reported": "2026-03-01",
+    "construction_end_reported": "2027-12-09",
+    "imagery_captured": false,
+    "imagery_note": "CDSE account blocked (403 on OAuth token) throughout session; one chip at Hereford center captured (farmland, no construction visible at proxy centroid)"
+  },
+  "cod": {
+    "reported": "2027-12-16",
+    "independent_estimate": "2028-Q1",
+    "drift_risk": "medium",
+    "drift_reason": "11 COD slips over 6 years (2021-12 to 2027-12); construction-start milestone now set for first time; no financing or PPA close announced; site not confirmed by imagery"
+  },
+  "entities": {
+    "spv": "Renegade Renewables, LLC d/b/a Dawn Solar",
+    "spv_tin": "32061841139",
+    "queue_name": "Renegade Project",
+    "developer_investor": "Blue Planet Funding",
+    "developer_address_ch313": "311 West 43rd Street, 12th Floor, New York, NY 10036",
+    "developer_address_current": "788 NE 23rd St, Suite 2201, Miami, FL 33137",
+    "developer_principals": [
+      {"name": "Kevin Adler", "title": "CEO", "background": "Founder Sol-Wind ($450M), Merrill Lynch, Morgan Stanley, NYU Law Tax"},
+      {"name": "Allen Funk", "title": "COO / Agreement signatory", "background": "CFO Bright Power, COO Sol-Wind, Harvard MBA"},
+      {"name": "David Mitchell", "title": "CFO", "email": "dmitchell@blueplanetfunding.com"}
+    ],
+    "managing_member": "Sean Purdy",
+    "managing_member_entity": "Everett Jones, LLC",
+    "managing_member_address": "136 Market Street, Sunbury, PA 17801",
+    "epc": "Mortenson Construction",
+    "epc_evidence": "Ch.313 App 1422 Exhibit 3 map title block (Dec 2018); unconfirmed for current build",
+    "school_district": "Hereford Independent School District"
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Ch.313 agreement with Hereford ISD",
+        "signed": "2020-11-23",
+        "financial_security": null,
+        "artifact": "sources/2026-07-19_comptroller_ch313_1422_renegade_agreement.pdf"
+      },
+      {
+        "doc": "Interconnection Agreement (IA)",
+        "signed": "2021-01-04",
+        "financial_security": null,
+        "artifact": null,
+        "note": "PUCT Interchange returned 402 from this environment; IA document not retrieved"
+      }
+    ],
+    "ia_milestones_not_retrieved": true
+  },
+  "milestones": {
+    "screening_started": "2019-02-26",
+    "screening_complete": "2019-05-17",
+    "fis_requested": "2019-02-07",
+    "fis_approved": null,
+    "ia_signed": "2021-01-04",
+    "meets_section691": "2024-04-30",
+    "meets_all_section69": null,
+    "construction_start_reported": "2026-03-01",
+    "cod_reported": "2027-12-16"
+  },
+  "ch313": {
+    "app_number": 1422,
+    "filed": "2019-08-26",
+    "certificate_issued": "2020-02-07",
+    "agreement_executed": "2020-11-23",
+    "qualifying_investment_minimum": 30000000,
+    "tax_limitation_period": "2022-01-01 to 2031-12-31",
+    "final_termination": "2036-12-31",
+    "reinvestment_zone": "Deaf Smith-Renegade Reinvestment Zone",
+    "zone_created": "2018-12-11"
+  },
+  "technical": {
+    "modules": 1950994,
+    "tracker_type": "single-axis",
+    "inverters": 690,
+    "inverter_mw_ac": 5.93,
+    "blocks": 138,
+    "collection_voltage_kv": 34.5,
+    "poi_voltage_kv": 345
+  },
+  "land": {
+    "key_surveys": [
+      "Block K-14, Tap RR Co. Survey (Sections 5, 6, 7, 8, 17, 18)",
+      "Block 3, AB&M Survey (Sections 17, 18, 24, 25)",
+      "W.A. Hunt Preemption Survey, Abstract 537",
+      "M.H. Cahill Preemption Survey, Abstract 535"
+    ],
+    "landmarks": [
+      "U.S. Highway 60 (southern boundary)",
+      "County Road 12 (east side)",
+      "County Road CC (interior north-south)"
+    ],
+    "gps_coords_in_docs": false
+  },
+  "news_and_press": {
+    "press_releases_found": 0,
+    "ppa_announced": false,
+    "financing_announced": false,
+    "bpf_website_listing": "https://www.blueplanetfunding.com/projects — listed as 'Dawn Solar, 683 MW, Deaf Smith County TX, in progress'"
+  },
+  "sources": [
+    "sources/2026-07-19_comptroller_ch313_1422_renegade_agreement.pdf",
+    "sources/2026-07-19_comptroller_ch313_1422_renegade_app.pdf",
+    "sources/2026-07-19_blueplanetfunding_dawn-solar-project-page.html",
+    "sources/2026-07-19_puct_45622_2_sps_transmission_study.pdf"
+  ]
+}

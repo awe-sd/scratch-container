@@ -1,0 +1,59 @@
+{
+ "inr": "25INR0498",
+ "generated": "2026-07-20",
+ "project": "Stegall Storage",
+ "county": "Robertson",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 50.47,
+ "queue_cod": "2027-05-30",
+ "milestones": {
+  "screeningStudyComplete": "2023-11-06",
+  "fisApproved": "2025-08-06",
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "ok",
+  "plant_id": 65694,
+  "entity": "Key Capture Energy",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   30.88142,
+   -96.62542
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Key Capture Energy",
+    "detail": "plant=TX11 Republic Road Storage 50.0MW (OP) Operating @30.88142,-96.62542 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "fis_approved"
+ ],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 4.89,
+  "reason": "reality signal"
+ }
+}

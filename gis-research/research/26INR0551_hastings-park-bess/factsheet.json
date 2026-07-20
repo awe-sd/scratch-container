@@ -1,0 +1,64 @@
+{
+ "inr": "26INR0551",
+ "generated": "2026-07-20",
+ "project": "Hastings Park BESS",
+ "county": "Brazoria",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 256.34,
+ "queue_cod": "2027-09-15",
+ "milestones": {
+  "screeningStudyComplete": "2024-11-01",
+  "fisApproved": "2025-03-21",
+  "iaSigned": "2025-08-13",
+  "financial_security": "No"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "ok",
+  "plant_id": 68583,
+  "entity": "Lydian Energy",
+  "planned_cod": "2027-10",
+  "cod_delta_quarters": 0.3,
+  "dropped_scope": null,
+  "coords": [
+   29.29937,
+   -95.42218
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Lydian Energy",
+    "detail": "plant=Rock N' Roll 250.0MW (L) Regulatory approvals pending. Not un @29.29937,-95.42218 planned=2027-10"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Brazos Roots BESS, LLC",
+    "detail": "ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT Between Brazos Roots BESS, LLC and Texas-New Mexico Power "
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved"
+ ],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 18.47,
+  "reason": "reality signal"
+ }
+}

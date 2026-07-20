@@ -1,0 +1,99 @@
+{
+  "inr": "22INR0301",
+  "project": "Fortuna Wind",
+  "researched": "2026-07-19",
+  "verdict": "real_early",
+  "confidence": "medium",
+  "developer": {
+    "spv": "RWE Clean Energy Development, LLC",
+    "parent": "RWE AG",
+    "evidence": "sources/t3_web_sweep.md"
+  },
+  "site": {
+    "lat": null,
+    "lon": null,
+    "method": "could_not_determine",
+    "confidence": "none",
+    "notes": "No site pin found (Google Maps 429 rate-limited; FAA OE/AAA portal unavailable during triage; no county CAD hits under LLC/developer; no news/groundbreaking). POI tap on Jacksboro-West Denton 345kV line within Jack County. Jack County centroid excluded per playbook. Site unknown pending FAA OE filing retrieval."
+  },
+  "construction": {
+    "stage": "no_activity",
+    "first_activity_seen": null,
+    "latest_observation": "2026-07-01",
+    "imagery_verdict": "Zero construction activity across 8 Sentinel-2 chips covering full Jack County extent (2026-07-01). No turbine pads, no access road strings, no grading, no substation expansion. COD already passed 2026-07-01 with no ground evidence.",
+    "uswtdb_check": "0 turbines in FIPS 48237 (Jack County) — confirms no operational wind farm"
+  },
+  "poi": {
+    "description": "Tap 345kV 1429 Jacksboro - 1730 WKrum",
+    "transmission_line": "Jacksboro - West Denton 345kV",
+    "jacksboro_substation": {"lat": 33.2772, "lon": -98.1065, "source": "OpenStreetMap Overpass"},
+    "notes": "Line runs from Jacksboro Substation (33.2772N, -98.1065W) east toward West Denton/Krum. Tap point location within Jack County unknown without IA exhibit."
+  },
+  "cod_assessment": {
+    "reported": "2026-07-01",
+    "reported_already_past": true,
+    "independent_estimate": "2028-Q4",
+    "drift_risk": "high",
+    "rationale": [
+      "COD slipped 4 times over 3.5 years (2022-12-20 → 2023-12-15 → 2025-12-31 → 2026-07-01)",
+      "Reported COD 2026-07-01 now past; no construction milestones achieved",
+      "IA signed 2024-08-08, FIS 2024-05-09 — interconnection paperwork done but no NTP",
+      "No FAA OE/AAA turbine obstruction filings (portal unavailable; triage tried)",
+      "No tax abatement (Ch.312/313/JETI) found for Jack County — absence consistent with pre-construction",
+      "8-chip Sentinel-2 survey July 2026 shows zero ground disturbance county-wide",
+      "295.3 MW wind farm requires ~18-36 months construction once mobilized",
+      "Independent estimate: construction start needed by late 2026 to hit 2028 COD; absent evidence of NTP, 2028-Q4 is optimistic floor"
+    ]
+  },
+  "signals": {
+    "ia_found": true,
+    "ia_date": "2024-08-08",
+    "fis_approved": "2024-05-09",
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false,
+    "construction_milestones": false,
+    "faa_oe_checked": false,
+    "faa_oe_note": "FAA OE/AAA portal unavailable (government shutdown notice during triage; 404 in deep scan)"
+  },
+  "project_area": {
+    "acres": null,
+    "source": "not_found",
+    "artifact": null,
+    "notes": "No abatement application, IA exhibit, or CAD acreage found. No JETI/Ch313 agreement in Jack County."
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Standard Generation Interconnection Agreement (Oncor / RWE Clean Energy Development)",
+        "signed": "2024-08-08",
+        "financial_security": "unknown — PUCT portal JS-only, document not retrieved",
+        "artifact": null,
+        "notes": "Filed with PUCT 2024-08-29; PUCT control number unknown; PDF not retrieved"
+      }
+    ],
+    "milestones_from_ia": {
+      "note": "IA milestone schedule not retrieved — PUCT interchange requires JS browser"
+    }
+  },
+  "queue_history": {
+    "cod_changes": 4,
+    "first_cod": "2022-12-20",
+    "latest_cod": "2026-07-01",
+    "drift_years": 3.5,
+    "in_queue_since": "2021-01-01",
+    "snapshots": 66,
+    "capacity_mw_current": 295.3
+  },
+  "imagery_files": [
+    "imagery/s2_2026-07-01_far_NW.png",
+    "imagery/s2_2026-07-01_NW.png",
+    "imagery/s2_2026-07-01_N.png",
+    "imagery/s2_2026-07-01_NE.png",
+    "imagery/s2_2026-07-01_W.png",
+    "imagery/s2_2026-07-01_center.png",
+    "imagery/s2_2026-07-01_jacksboro.png",
+    "imagery/contact_sheet_v2.png"
+  ]
+}

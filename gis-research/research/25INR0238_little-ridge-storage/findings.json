@@ -1,0 +1,115 @@
+{
+  "inr": "25INR0238",
+  "project_name": "Little Ridge Storage",
+  "county": "Collin",
+  "state": "TX",
+  "fuel": "Battery",
+  "capacity_mw": 252.0,
+  "cdr_zone": "NORTH",
+  "reported_cod": "2027-09-01",
+  "researched_date": "2026-07-19",
+
+  "verdict": "paper",
+  "verdict_confidence": "high",
+  "verdict_reason": "No IA signed after 3+ years in queue; FIS never approved; COD drifted 27 months; zero construction visible in satellite imagery Oct 2025 – Jul 2026 at confirmed POI site",
+
+  "construction_stage": "no_activity",
+  "first_activity_date": null,
+
+  "site": {
+    "lat": 33.0691,
+    "lon": -96.4510,
+    "method": "OSM Nominatim — hamlet 'Little Ridge' = Ray Olinger Power Station locality, Collin County TX; adjacent 138kV substation 0.1km away = likely Olinger (818) tap",
+    "confidence": "high",
+    "google_maps_url": "https://www.google.com/maps/@33.0691,-96.4510,5000m/data=!3m1!1e3",
+    "artifacts": [
+      "sources/2026-07-19_osm-nominatim_olinger-substation-location.json",
+      "sources/2026-07-19_osm-overpass_substations-near-olinger.json"
+    ]
+  },
+
+  "project_area": {
+    "acres": null,
+    "source": "not determinable — no IA, no abatement doc, no CAD parcel",
+    "artifact": null
+  },
+
+  "developer_chain": [
+    {
+      "entity": "Little Ridge Storage, LLC",
+      "role": "SPV",
+      "evidence": "queue record (identity packet only)",
+      "verified": false
+    },
+    {
+      "entity": "TX BESS B LLC",
+      "role": "possible developer",
+      "evidence": "infrasure.ai + ercotqueue.com (BANNED sources — unverifiable)",
+      "verified": false
+    }
+  ],
+
+  "financing": {
+    "status": "none_found",
+    "notes": "No PPA, lender, EPC, or press release found in any independent source"
+  },
+
+  "county_records": {
+    "cad_parcels": "0 — portal returned 403; no owner-name query possible",
+    "abatements": "none found — Collin County Comptroller SB1340 DB not queryable via WebFetch; no web evidence",
+    "commissioner_court": "no mention found — eagenda portal 403; no web evidence"
+  },
+
+  "interconnection": {
+    "ia_signed": false,
+    "ia_signed_date": null,
+    "fis_approved": false,
+    "fis_requested_date": "2023-04-25",
+    "puct_docket": null,
+    "financial_security": null,
+    "notes": "No IA ever signed; project stuck before FIS approval milestone across 38 monthly snapshots"
+  },
+
+  "contractual_schedule": {
+    "documents": []
+  },
+
+  "queue_history": {
+    "first_report": "2023-05-01",
+    "snapshot_count": 38,
+    "cod_changes": 2,
+    "cod_history": [
+      {"cod": "2025-06-01", "held_from": "2023-05-01", "held_until": "2023-11-01"},
+      {"cod": "2025-12-11", "held_from": "2023-12-01", "held_until": "2026-03-01"},
+      {"cod": "2027-09-01", "held_from": "2026-04-01", "held_until": "2026-06-01"}
+    ],
+    "total_drift_months": 27,
+    "artifact": "timeline.md"
+  },
+
+  "satellite_timeline": [
+    {
+      "date": "2025-10",
+      "observation": "no_activity — Ray Olinger plant + undisturbed surroundings; no BESS pad or construction",
+      "artifact": "imagery/key/s2_2025-10-01.png",
+      "cloud_pct": 5
+    },
+    {
+      "date": "2026-04",
+      "observation": "no_activity — same footprint; no clearing or construction",
+      "artifact": "imagery/key/s2_2026-04-01.png",
+      "cloud_pct": 5
+    },
+    {
+      "date": "2026-07",
+      "observation": "no_activity — partial cloud cover; no construction visible in clear areas",
+      "artifact": "imagery/s2_2026-07-01_2km.png",
+      "cloud_pct": 40
+    }
+  ],
+
+  "independent_cod_estimate": "not_credible",
+  "independent_cod_note": "Cannot make a credible 2027-09-01 COD: no IA, no FIS approval, no construction after 3+ years. Even if construction started Jul 2026, 12-18 month BESS build → earliest 2027-Q4/2028-Q1 at absolute best, assuming rapid IA execution. Most likely: further slip or cancellation.",
+  "cod_drift_risk": "high",
+  "cod_drift_reason": "No IA signed; FIS not approved; 27-month prior drift; zero ground activity visible through Jul 2026"
+}

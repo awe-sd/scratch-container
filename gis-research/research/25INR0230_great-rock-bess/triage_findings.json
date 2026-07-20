@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0230",
+  "project": "Great Rock BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.474,
+    "lon": -96.425,
+    "method": "POI infrastructure inference — 'Tap 345kV 46020 Limestone' near Jewett, Leon County TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE 401 — no imagery obtained; no pins or ground-truth to assess"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-20",
+    "plausible": true,
+    "why": "IA signed 2024-08-23; construction start reported 2026-10-20; 14-month build window to 2027-12-20 is tight but typical for BESS; 7 prior COD slips (earliest claim was 2025-05-31) suggest schedule risk"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA document — portal blocked (402) during triage; IA signed 2024-08-23 is confirmed in queue data but actual schedule exhibit not retrieved",
+    "CDSE imagery — configure credentials and run 3x3 grid at ~31.474N, -96.425W around Limestone substation; construction window opens 2026-10; check recent dates (2026-06/07) for site prep activity",
+    "Developer identity — Black Mountain Energy Storage II; search for corporate filings, Texas SOS registration, and parent company to assess track record and capital backing",
+    "FIS never approved (still null) despite IA signed — verify whether this is a data gap or a genuine milestone gap that signals interconnection risk",
+    "No abatement/JETI found — post-2022 project so Ch.313 expired; JETI registry not accessible; check Leon County CAD for any property filings under Great Rock BESS LLC or Black Mountain"
+  ],
+  "turns_used": 22
+}

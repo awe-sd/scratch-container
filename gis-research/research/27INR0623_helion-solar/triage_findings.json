@@ -1,0 +1,28 @@
+{
+  "inr": "27INR0623",
+  "project": "Helion Solar",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-10-22",
+    "plausible": false,
+    "why": "Only in queue 2 months; FIS requested but not approved; IA not signed; 15-month COD from now with no milestones beyond screening start is extremely optimistic"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Geolocate GALVANI 345kV substation to establish a site candidate for imagery — check ERCOT nodal network model or PUCT transmission maps",
+    "Identify developer/sponsor behind Helion Solar LLC via TX SOS direct entity search (SOSDirect) — no web presence found during triage",
+    "Re-run PUCT Interchange search with authenticated session once portal access is available — may surface IA filing or project registration",
+    "Re-run gmaps.py once rate limit clears to check for any delivery pins",
+    "Revisit when project reaches FIS approval or IA signing — current milestone gap makes deep scan low-value"
+  ],
+  "turns_used": 22
+}

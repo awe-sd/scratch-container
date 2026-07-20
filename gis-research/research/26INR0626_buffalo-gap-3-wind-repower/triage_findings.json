@@ -1,0 +1,36 @@
+{
+  "inr": "26INR0626",
+  "project": "Buffalo Gap 3 Wind Repower",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.47,
+    "lon": -100.12,
+    "method": "general knowledge estimate (Trent/SE Merkel, Taylor County) — no authoritative pin; gmaps blocked",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "INCONCLUSIVE — independent construction reporting confirmed (AES/KTXS: decommissioning complete June 2026, foundation installation underway), but satellite grid did not cover confirmed turbine footprint",
+    "evidence": "KTXS news June 2026: old turbines removed, new foundation installation active. AES project page: construction phase late 2025-2026. Imagery grid returned agricultural terrain with no turbine pads visible — likely displaced from true site."
+  },
+  "cod_first_look": {
+    "reported": "2027-02-01",
+    "plausible": true,
+    "why": "AES confirmed operations start 2027; construction phase 2025-2026 per official sources; all 6.9 gates cleared May 2026; 1-month COD slip (Dec→Feb) is minor for a project of this scale."
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate precise Buffalo Gap 3 turbine footprint via USGS Wind Turbine Database or FAA OE/AAA filings (decisive turbine coordinates) — then rerun imagery at verified center",
+    "Verify IA status: 2005-02-28 date is the original BG3 IA; determine if a new repower IA was filed with PUCT (PUCT portal was 402-blocked during triage)",
+    "AES fact sheet PDF at aes.com/sites/vault/files/2026-01/Buffalo Gap Repower Fact Sheet.pdf — extract turbine type, exact capacity breakdown per phase (BG1/BG2/BG3), milestone dates",
+    "Confirm LLC registration: 'Buffalo Gap Wind Farm 3, LLC' vs 'Buffalo Gap 3 Wind Repower, LLC' — queue trackers show former; verify via TX SOS",
+    "Construction confirmation imagery: use verified coordinates + look for turbine pad strings and road networks across wider area (23,000-acre site)"
+  ],
+  "turns_used": 28
+}

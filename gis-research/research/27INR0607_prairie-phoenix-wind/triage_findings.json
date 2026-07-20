@@ -1,0 +1,36 @@
+{
+  "inr": "27INR0607",
+  "project": "Prairie Phoenix Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.54,
+    "lon": -96.83,
+    "method": "web: ENGIE Prairie Hill Wind Farm near Mart TX (McLennan+Limestone counties), confirmed by local news and developer website prairiehillwind.com",
+    "confidence": "high"
+  },
+  "construction": {
+    "verdict": "active demolition of predecessor turbines confirmed by news; new construction not yet confirmed by imagery (CDSE creds 401)",
+    "evidence": "kwtx.com reported crews removing old turbines near Mart TX as of early 2026; ENGIE presented repower plans to Limestone County Commissioners Jan 2026"
+  },
+  "cod_first_look": {
+    "reported": "2027-09-01",
+    "plausible": true,
+    "why": "ENGIE's own stated COD ~Sep 30 2027; repower of operational site (no greenfield permitting); old turbine demolition underway early 2026 leaves ~18 months for new build — tight but plausible for established developer on known site"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "CDSE imagery: retry with valid credentials — demolition/new-pad activity at ~31.54N/-96.83W should be visible; compare 2025 baseline vs 2026",
+    "FAA OE/AAA: search 'Prairie Hill' + McLennan/Limestone TX for new turbine obstruction filings — gives exact pad coordinates and turbine model",
+    "PUCT Interchange: IA not yet signed per queue (FIS still pending); watch for new IA filing under 'Prairie Phoenix Wind' or 'ENGIE'",
+    "Abatement: check whether original Prairie Hill Ch.313 agreement (school district: likely Mart ISD or Groesbeck ISD) covers the repowered units or requires new JETI filing",
+    "prairiehillwind.com: developer project page likely has contractor, turbine model, and timeline details — fetch full page"
+  ],
+  "turns_used": 28
+}

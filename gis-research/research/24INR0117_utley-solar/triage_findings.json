@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0117",
+  "project": "Utley Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.87,
+    "lon": -96.28,
+    "method": "POI infrastructure (Big Brown Switch 345kV, Freestone Co.)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "2 of 9 Sentinel-2 chips acquired (Jul 2026); rural/agricultural/wooded landscape at POI-derived candidate; no cleared land, no panel rows, no staging visible"
+  },
+  "cod_first_look": {
+    "reported": "2028-05-11",
+    "plausible": true,
+    "why": "IA signed Dec 2025; 4 prior COD slips (2024→2025→2025→2027→2028); 2028 COD is ~29 months post-IA, tight but plausible if construction starts 2026; no FIS yet is a risk factor"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2025-12-18 — retrieve IA PDF from PUCT Interchange (portal blocked via WebFetch; needs authenticated session) to confirm POI, schedule exhibit, and milestone dates",
+    "FIS not yet approved despite IA signed — unusual sequencing; verify whether FIS is pending or waived; check ERCOT GIS queue for ginrStudyPhase",
+    "Developer Palmera Solar Development LLC — confirm identity, parent company, and other projects in portfolio; no direct registration search succeeded",
+    "Site location unconfirmed — no pin found; Big Brown Switch is a plausible POI anchor but actual solar field parcel unknown; search Freestone County appraisal district for Palmera/Utley land purchases",
+    "Imagery incomplete (7/9 chips failed CDSE API); re-run full 3x3 grid + baseline (2023) once CDSE connection restored"
+  ],
+  "turns_used": 26
+}

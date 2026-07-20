@@ -1,0 +1,20 @@
+{
+ "mode": "deep",
+ "model": "us.anthropic.claude-sonnet-4-6",
+ "audit": {
+  "assistant_turns": 23,
+  "image_reads": 1,
+  "tool_counts": {
+   "Read": 12,
+   "Glob": 1
+  },
+  "violations": [
+   "findings.json missing",
+   "dossier.md missing",
+   "token budget exceeded: 437627 > 400000 (killed)"
+  ]
+ },
+ "fresh_tokens": 437627,
+ "token_budget": 400000,
+ "exit_code": 143
+}

@@ -1,0 +1,27 @@
+{
+  "inr": "27INR0399",
+  "project": "Resaca Oasis Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-09-20",
+    "plausible": true,
+    "why": "IA signed 2025-05-22, FIS approved 2025-10-10, COD stable across all 19 snapshots — 14-month build window from now is tight but not impossible for BESS"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate Stillman Substation 138 kV coordinates via ERCOT transmission maps or AEP Texas interconnection data — required to unlock imagery",
+    "Retrieve IA PDF via PUCT Interchange (current 402 may be transient; IA signed 2025-05-22 so document exists) — extract milestone schedule exhibit",
+    "Identify Red River Clean Energy corporate background and portfolio — no developer website or press found; check TX SOS for Resaca Oasis Storage LLC members/managers",
+    "Imagery at Stillman Substation site once located — BESS site may already be under pad construction given 14-month COD window"
+  ],
+  "turns_used": 28
+}

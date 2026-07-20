@@ -1,0 +1,53 @@
+{
+ "inr": "26INR0615",
+ "generated": "2026-07-20",
+ "project": "Bell County Morgan Storage",
+ "county": "Bell",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 256.27,
+ "queue_cod": "2028-04-01",
+ "milestones": {
+  "screeningStudyComplete": "2025-02-18",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Five Wells Solar Center, LLC",
+    "detail": "plant=Five Wells Solar Center - Hybrid 262.5MW (OP) Operating @30.99865,-97.25902 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 0 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

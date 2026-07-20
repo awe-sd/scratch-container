@@ -1,0 +1,36 @@
+{
+  "inr": "27INR0147",
+  "project": "Paloma Energy Center",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.63,
+    "lon": -96.37,
+    "method": "T3 reinvestment zone application — 'north of HWY 90A, NE of Rock Island, Colorado County'",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unconfirmed — possible early grading",
+    "evidence": "June 2026 Sentinel-2 shows linear striping consistent with ground disturbance in upper-left AOI; no panel arrays visible; cloud partial; T3 community source says 'just now beginning construction' as of July 2026"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": false,
+    "why": "FIS not approved after 18 months in queue, no IA executed; typical ERCOT timeline needs ~12-18 months post-IA for construction + commissioning, making 2027-12-31 very tight"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Ch.312 reinvestment zone hearing was 2026-07-13 — retrieve Colorado County Commissioners Court minutes or application PDF for exact parcel/acreage map to nail site coords",
+    "Harrison Street Development LLC — verify developer identity and portfolio; confirm if this is Harrison Street Real Assets (Chicago-based PE) or another entity",
+    "PUCT Interchange IA search needs authenticated session — check if IA filed or pending; queue tracker says No IA but community source says construction underway (contradiction to resolve)",
+    "Refine satellite imagery: better site coords from Ch.312 docs would allow tighter chip; pull 2026-07 or later date to confirm/deny active construction",
+    "BESS component (50 MW) not in ERCOT GIS queue record — confirm if separately queued or bundled"
+  ],
+  "turns_used": 22
+}

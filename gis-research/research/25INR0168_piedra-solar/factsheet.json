@@ -1,0 +1,77 @@
+{
+ "inr": "25INR0168",
+ "generated": "2026-07-20",
+ "project": "Piedra Solar",
+ "county": "Freestone",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 281.7,
+ "queue_cod": "2026-12-22",
+ "milestones": {
+  "screeningStudyComplete": "2022-11-30",
+  "fisApproved": "2025-09-17",
+  "iaSigned": "2024-07-02",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ok",
+  "plant_id": 69496,
+  "entity": "Piedra Solar, LLC",
+  "planned_cod": "2026-12",
+  "cod_delta_quarters": 0.0,
+  "dropped_scope": null,
+  "coords": [
+   31.64899,
+   -96.34517
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Piedra Solar, LLC",
+    "detail": "plant=Piedra Solar 280.0MW (U) Under construction, less than or equ @31.64899,-96.34517 planned=2026-12"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Piedra Solar, LLC",
+    "detail": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Piedra Solar, LL"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Piedra Solar, LLC",
+    "detail": "Amendment No. 1 to the Standard Generation Interconnection Agreement between Oncor Electric Delivery Company L"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 2,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "eia_under_construction",
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 6,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 55.24,
+  "reason": "reality signal"
+ }
+}

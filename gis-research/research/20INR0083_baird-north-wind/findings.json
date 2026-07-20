@@ -1,0 +1,152 @@
+{
+  "inr": "20INR0083",
+  "project": "Baird North Wind",
+  "aka": "Mesquite Sky Wind",
+  "research_date": "2026-07-19",
+  "verdict": "real_active",
+  "verdict_rationale": "Project (BMP Wind LLC = Mesquite Sky) achieved commercial operations in December 2021 / January 2022. Confirmed by Clearway Energy SEC 10-K (FY2021 and FY2025). Imagery shows pre-construction (June 2020), active construction (June 2021), and fully operational wind farm (July 2026). ERCOT queue entry is an orphaned stale record — never received commercial-operation-approved milestone despite being fully operational for 4+ years.",
+
+  "site": {
+    "lat": 32.4538,
+    "lon": -99.4474,
+    "method": "thewindpower.net Mesquite Sky listing (alternate project name) + Clearway SEC filings confirm Callahan County, TX",
+    "confidence": "high",
+    "cross_checks": "SEC 10-K: Callahan County, TX. Imagery shows wind farm footprint at this location. Triage-confirmed."
+  },
+
+  "ownership_chain": [
+    {
+      "entity": "BMP Wind LLC",
+      "role": "ERCOT queue project company / wind project operating entity",
+      "evidence_url": "sources/2020-12-22_sec_clearway_ex10-3_mesquite-sky-mipa-original.htm",
+      "note": "Named 'Project Company' in original MIPA; this is the entity in the ERCOT GIS queue as 20INR0083"
+    },
+    {
+      "entity": "Mesquite Sky TE Holdco LLC",
+      "role": "Tax equity fund holding BMP Wind LLC",
+      "evidence_url": "sources/2020-12-22_sec_clearway_ex10-3_mesquite-sky-mipa-original.htm"
+    },
+    {
+      "entity": "Mesquite Sky Holding LLC",
+      "role": "Parent holding company; sold 50.01% Class B interests",
+      "evidence_url": "sources/2022-01-18_sec_clearway_8k_mesquite-sky-mipa-amend1.htm"
+    },
+    {
+      "entity": "Clearway Renew LLC",
+      "role": "Seller / original developer (subsidiary of Clearway Energy Group LLC)",
+      "evidence_url": "sources/2022-01-18_sec_clearway_8k_mesquite-sky-mipa-amend1.htm"
+    },
+    {
+      "entity": "Lighthouse Renewable Class A LLC / Lighthouse Renewable Holdco 2 LLC",
+      "role": "Buyer / current Class B interest owner (subsidiary of Clearway Energy, Inc.)",
+      "evidence_url": "sources/2022-01-18_sec_clearway_8k_mesquite-sky-mipa-amend1.htm"
+    },
+    {
+      "entity": "Clearway Energy, Inc. (NYSE: CWEN)",
+      "role": "Publicly traded parent; 50% economic interest in operating project",
+      "evidence_url": "sources/2022-02-28_sec_clearway_10k_2021_cwen.htm"
+    }
+  ],
+
+  "land": {
+    "tenure": "leased (wind turbine lease agreements typical for utility-scale Texas wind)",
+    "county": "Callahan",
+    "state": "TX",
+    "cad_search": "Callahan CAD portal renders via JS — static fetch returned no data; owner-name search for BMP Wind / Mesquite Sky returned 404",
+    "abatement": "not confirmed — Ch.313 was eligible (pre-2022); portal inaccessible"
+  },
+
+  "project_area": {
+    "acres": null,
+    "source": "Not obtained — CAD portal JS-rendered; PUCT paywalled",
+    "artifact": null,
+    "note": "At 340 MW / 23 turbines with typical ~1-2 MW/acre wind density, project area likely 2,000-5,000+ acres across Callahan County. Imagery shows turbine strings spanning ~12 km east-west."
+  },
+
+  "interconnection": {
+    "poi_ercot": "68008 Latimer 345kV",
+    "ia_signed": "2019-05-31",
+    "ia_source": "ERCOT queue data (queue milestone); PUCT portal paywalled",
+    "ia_content": "not obtained",
+    "financial_security": null
+  },
+
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Interconnection Agreement (signed 2019-05-31)",
+        "signed": "2019-05-31",
+        "financial_security": null,
+        "artifact": null,
+        "note": "Existence confirmed via ERCOT queue data; content not retrieved (PUCT paywalled)"
+      },
+      {
+        "doc": "Membership Interest Purchase Agreement (MIPA) — Original",
+        "signed": "2020-12-21",
+        "financial_security": null,
+        "artifact": "sources/2020-12-22_sec_clearway_ex10-3_mesquite-sky-mipa-original.htm",
+        "note": "BMP Wind LLC named as Project Company; 345 MW project in Callahan County, TX"
+      },
+      {
+        "doc": "First Amendment to MIPA",
+        "signed": "2021-12-17",
+        "financial_security": "$62M (Class B purchase price) + $2.4M (Class A)",
+        "artifact": "sources/2022-01-18_sec_clearway_8k_mesquite-sky-mipa-amend1.htm",
+        "note": "Purchase price amended; turbine-count adjustment clause; Class B acquisition closed 2021-12-17"
+      }
+    ],
+    "milestone_schedule": {
+      "note": "IA milestone schedule exhibit not obtained (PUCT paywalled). COD milestone from SEC filings only.",
+      "cod_per_ia": "not obtained",
+      "actual_cod_partial": "2021-12-17 (14/23 turbines, 295 MW)",
+      "actual_cod_full": "2022-01",
+      "source": "sources/2022-02-28_sec_clearway_10k_2021_cwen.htm"
+    }
+  },
+
+  "construction": {
+    "stage": "operating",
+    "first_activity_seen": "~2021-03 (March 2021 — faint road traces visible in monthly timelapse contact sheet; full activity by 2021-05/06)",
+    "completed": "2022-01",
+    "turbine_count": 23,
+    "capacity_mw": 340,
+    "turbine_mw_each": 14.8,
+    "ppa_tenor": "2033-2036 (12-year weighted average, various counterparties)",
+    "imagery_verdict": "operating",
+    "imagery_frames": [
+      {"date": "2020-06", "observation": "pre-construction, undisturbed farmland", "frame": "imagery/key/s2_2020-06_preconstruction.png"},
+      {"date": "2021-03", "observation": "first faint road traces appearing (contact sheet)", "frame": "imagery/contact_sheet.png"},
+      {"date": "2021-06", "observation": "active construction — full access road network + ~20 turbine pads visible, orange disturbed soil", "frame": "imagery/key/s2_2021-06_construction-active.png"},
+      {"date": "2021-08 to 2021-11", "observation": "network complete, turbines being installed (contact sheet)", "frame": "imagery/contact_sheet.png"},
+      {"date": "2026-07", "observation": "operational wind farm — mature road network, turbine bases visible, no disturbance", "frame": "imagery/key/s2_2026-07_operational.png"}
+    ]
+  },
+
+  "ercot_queue_status": {
+    "approved_for_energization": "2021-08-09",
+    "approved_for_synchronization": "2021-08-20",
+    "commercial_operation_approved": null,
+    "reported_cod": "2026-12-31",
+    "cod_drift_changes": 12,
+    "cod_drift_first": "2020-12-15",
+    "cod_drift_latest": "2026-12-31",
+    "assessment": "ORPHANED/STALE RECORD — Project physically operational since January 2022 per Clearway Energy SEC filings, but ERCOT never issued commercial-operation-approved milestone. Queue entry appears administratively stalled. The 2026-12-31 COD is a queue artifact, not a real construction target."
+  },
+
+  "independent_cod": {
+    "estimate": "2022-Q1",
+    "basis": "SEC filing (Clearway 10-K FY2021): 14/23 turbines operational Dec 2021, remaining 45 MW operational January 2022. Full project COD = January 2022.",
+    "drift_risk": "not_applicable",
+    "drift_risk_note": "Project is already fully operational. Reported COD of 2026-12-31 is a queue administrative artifact, not a construction risk."
+  },
+
+  "sources": [
+    {"file": "sources/2022-01-18_sec_clearway_8k_mesquite-sky-mipa-amend1.htm", "type": "SEC 8-K", "url": "https://www.sec.gov/Archives/edgar/data/1567683/000110465922004681/tm222995d1_8k.htm", "key_fact": "First Amendment to MIPA; 345 MW Mesquite Sky project, Callahan County TX; BMP Wind LLC is project entity"},
+    {"file": "sources/2020-12-22_sec_clearway_ex10-3_mesquite-sky-mipa-original.htm", "type": "SEC filing exhibit", "url": "https://www.sec.gov/Archives/edgar/data/1567683/000110465920138636/tm2039055d1_ex10-3.htm", "key_fact": "MIPA original: BMP Wind LLC named as Project Company"},
+    {"file": "sources/2022-02-28_sec_clearway_10k_2021_cwen.htm", "type": "SEC 10-K FY2021", "url": "https://www.sec.gov/Archives/edgar/data/1567683/000156768322000006/cwen-20211231.htm", "key_fact": "340 MW project achieved commercial operations December 2021; 45 MW operational January 2022; PPAs through 2033-2036"},
+    {"file": "sources/2026-02-24_sec_clearway_10k_2025_cwen.htm", "type": "SEC 10-K FY2025", "url": "https://www.sec.gov/Archives/edgar/data/1567683/000162828026010952/cwen-20251231.htm", "key_fact": "Mesquite Sky still in Clearway operating portfolio as of Dec 31, 2025 — 340 MW, 50% ownership"},
+    {"file": "imagery/key/s2_2020-06_preconstruction.png", "type": "Sentinel-2 imagery", "key_fact": "Pre-construction baseline, June 2020"},
+    {"file": "imagery/key/s2_2021-06_construction-active.png", "type": "Sentinel-2 imagery", "key_fact": "Active construction visible, June 2021"},
+    {"file": "imagery/key/s2_2026-07_operational.png", "type": "Sentinel-2 imagery", "key_fact": "Operational wind farm, July 2026"}
+  ]
+}

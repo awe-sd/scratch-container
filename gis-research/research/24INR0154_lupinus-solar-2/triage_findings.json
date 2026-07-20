@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0154",
+  "project": "Lupinus Solar 2",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.20,
+    "lon": -95.20,
+    "method": "POI community (Hagansport, Franklin County TX) — no pin, no IA map",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE 401/403 — imagery blocked; no construction milestones in queue; site candidate low-confidence"
+  },
+  "cod_first_look": {
+    "reported": "2027-04-03",
+    "plausible": true,
+    "why": "3 prior slips but IA signed 2025-03, FIS 2026-03, meets all 6.9 as of 2026-04 — pipeline is advancing; 9-month runway to COD is tight but not implausible"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate exact site parcel — try Franklin County Appraisal District + Hagansport lat/lon refinement before imagery",
+    "CDSE credentials need refresh — re-run 3x3 grid once creds restored; site candidate is county-level only",
+    "IA signed 2025-03-04 — pull PDF from PUCT interchange (portal was 402 this pass); extract milestone schedule and POI bus coords",
+    "Sunraycer Assets I LLC parent — check EIA Form 860 filing for project address/parcel and any paired battery queue entry",
+    "No Ch.313/JETI found — expected for post-2022, but check Franklin County ISD for any PILOT agreement"
+  ],
+  "turns_used": 22
+}

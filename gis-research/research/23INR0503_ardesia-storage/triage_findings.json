@@ -1,0 +1,36 @@
+{
+  "inr": "23INR0503",
+  "project": "Ardesia Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.95389,
+    "lon": -97.665449,
+    "method": "Caldwell County Ch.312 abatement hearing (Commissioners Court Feb/Mar 2023) — coordinates explicitly listed in meeting record",
+    "confidence": "high"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery blocked (HTTP 401); no construction milestone in queue history; no visual confirmation possible this pass"
+  },
+  "cod_first_look": {
+    "reported": "2027-06-25",
+    "plausible": true,
+    "why": "COD slipped 3 years (2024→2027); no IA yet; battery build is 12-18 months — 2027 is achievable only if IA executes in ~2026 H1"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA search — portal blocked during triage (requires browser session); project has no IA milestone but abatement was approved, so IA may exist under a slightly different filing-party name",
+    "Imagery at 29.95389, -97.665449 (2-km buffer) — site pinned from county record but construction status completely unknown; needs CDSE credentials",
+    "Developer identity — 'Ardesia Storage Project LLC' is the SPV; one source named Acciona as parent but unverified; confirm parent and check their broader TX BESS pipeline",
+    "Caldwell County CAD parcel at coords — verify land control and any recent permits",
+    "Ch.312 abatement final approval status — tabled at Feb 2023 meeting, rescheduled to Mar 28, 2023; confirm whether it passed and was executed"
+  ],
+  "turns_used": 22
+}

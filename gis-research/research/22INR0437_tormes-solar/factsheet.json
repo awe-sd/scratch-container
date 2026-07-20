@@ -1,0 +1,78 @@
+{
+ "inr": "22INR0437",
+ "generated": "2026-07-20",
+ "project": "TORMES SOLAR",
+ "county": "Navarro",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 356.6,
+ "queue_cod": "2027-03-31",
+ "milestones": {
+  "screeningStudyComplete": "2021-01-12",
+  "fisApproved": "2026-06-23",
+  "iaSigned": "2024-04-10",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "puct-index",
+    "entity": "BDPU Solar Tormes LLC",
+    "detail": "Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and BDPU Solar Tormes LLC (To"
+   },
+   {
+    "source": "puct-index",
+    "entity": "BDPU Solar Tormes LLC",
+    "detail": "Amendment No. 1 to the Standard Generation Interconnection Agreement between Oncor Electric Delivery Company L"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 2,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 26,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 42.66,
+  "reason": "reality signal"
+ }
+}

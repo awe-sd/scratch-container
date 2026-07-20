@@ -1,0 +1,27 @@
+{
+  "inr": "28INR0155",
+  "project": "Coke BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-04-10",
+    "plausible": true,
+    "why": "COD held stable 21 months; FIS not yet approved as of Jun-2026 leaves ~24 months for IA+construction — tight but achievable for BESS if FIS clears soon"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Divide Switchyard (ERCOT node 76090) precise coordinates via ERCOT transmission map or OpenInfraMap — enables imagery",
+    "PUCT Interchange browser search: FilingParty='Coke BESS' and Description contains '28INR0155' — IA may exist and be the first real signal",
+    "Texas SOS entity search for 'Coke BESS LLC' to surface developer/parent company — no developer name found in triage",
+    "FIS approval watch: if FIS approves in next 1-2 monthly snapshots, project advances to IA phase and warrants escalation"
+  ],
+  "turns_used": 22
+}

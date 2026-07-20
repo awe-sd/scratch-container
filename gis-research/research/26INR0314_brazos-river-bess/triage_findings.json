@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0314",
+  "project": "Brazos River BESS",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.1694,
+    "lon": -95.4319,
+    "method": "POI substation name — Angleton TNP 138kV tap",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "not visible",
+    "evidence": "3x3 Sentinel-2 contact sheet at 2026-07-01 around Angleton TNP shows ~60% cloud cover; clear tiles show agricultural/suburban terrain with no BESS pad, container rows, or gravel clearing"
+  },
+  "cod_first_look": {
+    "reported": "2027-10-30",
+    "plausible": true,
+    "why": "IA signed 2025-05-24, 2 COD slips of 10 months total, PGC registration filed 2025 — pre-construction milestones on track for late-2027 COD; no construction started yet so timeline is tight but not broken"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange Control #58080 and IA filing — portal blocked at triage, download IA PDF to get milestone schedule exhibit and confirm POI exact coords",
+    "Imagery re-run with clearer date window (winter/spring) and tighter buffer (~1 km) around Angleton TNP substation to rule out construction start",
+    "Developer Nexus Renewables U.S. Inc. — no press releases or financing found; check SEC/FERC filings or foreign parent for project status signal",
+    "Exact substation location — West Colombia vs Angleton TNP are ~20 km apart; confirm which parcel hosts the BESS pad using IA map or CAD"
+  ],
+  "turns_used": 28
+}

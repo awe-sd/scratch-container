@@ -1,0 +1,35 @@
+{
+  "inr": "24INR0136",
+  "project": "Eagle Springs Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.37,
+    "lon": -95.73,
+    "method": "POI substation inference — 'Tap Lake Creek Substation / Enloe Switching Station 138 kV Line'; Enloe TX coords from general reference",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery unavailable (401 auth failure); no construction milestones in queue data; no visual evidence obtained"
+  },
+  "cod_first_look": {
+    "reported": "2026-12-31",
+    "plausible": false,
+    "why": "3 prior COD slips; no construction milestones logged; 5.5 months to COD with zero construction start recorded — very unlikely for a BESS project even at 34 MW"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2024-04-17 but PUCT Interchange blocked (402) — try authenticated session for IA PDF and milestone-schedule exhibit",
+    "LLC name ambiguity: 'Eagle Springs Storage LLC' vs 'Eagle Springs Solar LLC' (aggregator discrepancy) — run TX SOS entity search to identify developer/parent company",
+    "CDSE credentials expired — refresh and run 1-km chips around Enloe TX 33.37°N 95.73°W to check for BESS pad/grading activity",
+    "Capacity halved (61→34 MW) and COD slipped 3x — check if a companion solar INR exists (aggregator showed 33 MW solar + 55 MW battery, suggesting possible prior combined filing)"
+  ],
+  "turns_used": 27
+}

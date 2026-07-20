@@ -1,0 +1,62 @@
+{
+ "inr": "26INR0519",
+ "generated": "2026-07-20",
+ "project": "Sky Global West Houston",
+ "county": "Austin",
+ "fuel": "GAS",
+ "technology": "IC",
+ "capacity_mw": 324.58,
+ "queue_cod": "2027-06-01",
+ "milestones": {
+  "screeningStudyComplete": "2024-10-04",
+  "fisApproved": "2025-03-12",
+  "iaSigned": "2025-03-25",
+  "financial_security": "No"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "puct-index",
+    "entity": "Sky Global Power Two, LLC \u2013 Sky Global West Houston",
+    "detail": "ERCOT Standard Generation Interconnection Agreement (SGIA) between CenterPoint Energy Houston Electric, LLC an"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "tceq",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved"
+ ],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 31.24,
+  "reason": "reality signal"
+ }
+}

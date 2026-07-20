@@ -1,0 +1,31 @@
+{
+  "inr": "25INR0341",
+  "project": "Rosebud Storage SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.0759,
+    "lon": -97.1150,
+    "method": "OSM Overpass: 'Barclay Substation' matches POI '67 BAGGINS - 69 BARCLAY 69kV tap'",
+    "confidence": "medium"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-01-15",
+    "plausible": false,
+    "why": "IA not signed, capacity collapsed 89.1→0.0 MW in 2024-08 and held there 22 months — project likely dormant or restructured"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Resolve the 89.1→0.0 MW capacity collapse: check if this INR was split, transferred, or is being held as a placeholder",
+    "Imagery at Barclay Substation (31.0759, -97.1150) once CDSE creds are restored — battery site would be compact gravel pad beside substation",
+    "PUCT Interchange search with alternate developer/parent company names once developer is identified"
+  ],
+  "turns_used": 28
+}

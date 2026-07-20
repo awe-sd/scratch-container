@@ -1,0 +1,66 @@
+{
+ "inr": "26INR0155",
+ "project": "Ross Solar",
+ "researched_at": "2026-07-18",
+ "site": {
+  "lat": null,
+  "lon": null,
+  "method": "unresolved",
+  "confidence": "none",
+  "note": "No defensible site pin. Playbook rule 4 (no county centroids) applied. PUCT/CAD/gmaps/news/OpenInfraMap threads all dry-holed; POI facility 'Static' is not a public ERCOT/CCN transmission asset and could not be geolocated."
+ },
+ "parcels": [],
+ "llc_chain": [
+  {
+   "entity": "S&S Renewables, LLC",
+   "relation": "interconnecting_entity_for_SPV",
+   "evidence": "Named as Interconnecting Entity in ERCOT GIS queue snapshots (identity packet); confirmed via interconnection.fyi/project/ercot-26inr0155 (secondary reference only, not evidentiary); registered with TX Comptroller as taxpayer 32087260116, mailing zip 97008 = Beaverton, OR (sources/2026-07-18_comptroller_ss_renewables.json)"
+  },
+  {
+   "entity": "Ross Solar, LLC",
+   "relation": "presumed_SPV",
+   "evidence": "Standard naming convention for ERCOT queue SPVs; TX Comptroller franchise-tax registry returned NO entity for 'Ross Solar' or 'Ross Solar, LLC' (sources/2026-07-18_comptroller_search_ross_solar.json, sources/2026-07-18_comptroller_search_ross_solar_llc.json) — LLC either unregistered in TX or filed under a different name"
+  }
+ ],
+ "land_tenure": {
+  "status": "unknown",
+  "evidence": "Refugio CAD portal (refugiocad.org) blocks server-side owner search (SearchTableV2 API returns 500 without JS session); no parcels obtainable. No TX Ch.313/JETI abatement filed (Ch.313 expired 2022 before project entered queue in 2023-07; JETI portal not searchable via WebFetch)."
+ },
+ "construction": {
+  "verdict": "no_activity",
+  "first_activity_seen": null,
+  "evidence": [
+   "No satellite imagery pulled — no defensible site candidate to center chips on (playbook hard rule 4 prohibits county centroids); a 60x60 km Refugio-County-wide grid at 2 km buffer would exceed the ≤6-frame budget",
+   "Queue-milestone evidence stands in for imagery: no financialSecurityAndNoticeToProceedProvided (still 'No'), no construction start reported through 2026-06 snapshot (timeline.md)",
+   "No developer press releases, financing announcements, EPC coverage, or drone/news photos found in 3 rounds of Bing/DDG queries"
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2027-07-31",
+  "independent": "unknown",
+  "drift_risk": "high",
+  "reasoning_evidence": [
+   "IA signed 2024-06-27 (queue), but no PUCT filing under any variant of Ross Solar / S&S Renewables (0 records in FilingParty + Case Style searches) — IA text and schedule exhibit not obtainable; reported COD is unanchored to any independent contractual document we can read",
+   "FIS approval date NEVER populated across all 36 monthly snapshots (2023-07 → 2026-06); IA signed without visible FIS approval is an unusual milestone ordering that suggests either a data anomaly or unresolved study issues (queue milestones are independent gates per gis-research/CLAUDE.md, so this is possible but unusual)",
+   "financialSecurityAndNoticeToProceedProvided = 'No' — a real, funded construction project of this scale (1,025.57 MW = ~5,000-9,000 acres of solar) would typically have LCs posted with the TSP well before construction; absence is a paper-project signal",
+   "Developer (S&S Renewables) has minimal public footprint: no portfolio, no news coverage, no other ERCOT-queue projects found under this LLC name — inconsistent with a developer capable of executing a 1 GW+ solar project on a 3-year timeline",
+   "POI target '8676 Static' does not correspond to any public ERCOT/CCN transmission facility (PUCT case-style + FilingDescription searches for 'Static Substation'/'Static Switch' return 0 records; not on AEP Texas' Angstrom-Grissom CCN alignment in docket 51912) — the tap facility appears to be unbuilt, adding routing uncertainty",
+   "Reported COD stability (held at 2027-07-31 since Oct 2023) is a weak positive signal — the project has not been actively re-slipped — but this can also reflect low developer engagement rather than schedule realism"
+  ]
+ },
+ "real_project_verdict": "paper",
+ "negative_searches": 16,
+ "banned_source_violations": 0,
+ "project_area": {
+  "acres": null,
+  "source": null,
+  "artifact": null,
+  "note": "No abatement/IA/CAD document obtained; per rule-of-thumb 1,025.57 MW solar ≈ 5,000-9,000 acres would be required but this is a derivation, not evidence"
+ },
+ "contractual_schedule": {
+  "source_docs": [],
+  "note": "No signed IA obtained from PUCT Interchange (0 records for Ross Solar / S&S Renewables under FilingParty or Case Style; the AEP Texas Angstrom-related CCN dockets 50726/51912/52656 are transmission-only and name no generator IEs). AEP Texas Central IAs for generation interconnections are not routinely filed at PUCT. Reported IA signature date (2024-06-27) is from ERCOT queue only.",
+  "documents": [],
+  "milestones": []
+ }
+}

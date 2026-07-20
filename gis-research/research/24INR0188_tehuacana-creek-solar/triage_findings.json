@@ -1,0 +1,28 @@
+{
+  "inr": "24INR0188",
+  "project": "Tehuacana Creek Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-05-18",
+    "plausible": true,
+    "why": "IA signed Nov 2024, all 6.9 cleared Apr 2026; ~13-month runway to COD is tight but not impossible for 505 MW solar — however 7 prior COD slips (3+ years of drift) make on-time delivery unlikely"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA filing (iaSigned 2024-11-25) — retrieve PDF, extract milestone schedule exhibit and POI/parties page to pin site location and confirm COD obligations",
+    "Site location — POI 'Tap 345kV 3381 Big Brown – 68091 Navarro circuit' narrows to Navarro County corridor; deep scan should geolocate tap point via ERCOT transmission maps or FAA/state permit filings to enable imagery",
+    "Developer identity — zero web presence found; deep scan should check TX SOS entity search for 'Tehuacana Creek Solar LLC' and any related parent/developer entities",
+    "Capacity downsizing story — 838.5 MW → 505.43 MW cut mid-2024 coincides with FIS approval delay; IA/FIS documents may explain scope change",
+    "Ch.313 / JETI — Navarro County school district abatement likely attempted given project scale; TX Comptroller authenticated portal or direct NISD contact needed"
+  ],
+  "turns_used": 22
+}

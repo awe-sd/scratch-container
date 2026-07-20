@@ -1,0 +1,34 @@
+{
+  "inr": "24INR0381",
+  "project": "Alexandrite Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 26.26,
+    "lon": -97.83,
+    "method": "POI substation name — 'Santa Rosa (S_SNROSA4A) 138kV' resolves to Santa Rosa city, Cameron County TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials not configured; no imagery retrieved"
+  },
+  "cod_first_look": {
+    "reported": "2026-12-10",
+    "plausible": false,
+    "why": "No IA signed, no FIS approved, no 6.9 milestones after 4 years in queue — COD in ~5 months is implausible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Configure CDSE credentials and run imagery around Santa Rosa substation (lat 26.26, lon -97.83, buffer 1-2 km) — battery site is compact and triage was blind",
+    "PUCT Interchange retry when portal is accessible — search FilingParty='Alexandrite Storage' for IA; absence would confirm paper-project status",
+    "Identify developer/parent company via TX SOS entity search for 'Alexandrite Storage LLC' — no developer surfaced during web sweep"
+  ],
+  "turns_used": 28
+}

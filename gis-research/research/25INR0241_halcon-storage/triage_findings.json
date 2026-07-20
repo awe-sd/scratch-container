@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0241",
+  "project": "Halcon Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 26.56,
+    "lon": -99.15,
+    "method": "POI inference — 138kV line 'Central Lopeno – Falcon Dam', Starr County",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery unavailable (401 Unauthorized); no pins or news confirmed construction activity"
+  },
+  "cod_first_look": {
+    "reported": "2028-05-15",
+    "plausible": true,
+    "why": "COD slipped ~3 years (from 2025-06-01); no IA, no FIS approval — 2028 is optimistic but not impossible if FIS granted soon"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "FIS approval status — key gate; FIS requested 2023-04-24 but no approval date in queue data",
+    "Developer identity — TX BESS A LLC; confirm parent company and portfolio for credibility signal",
+    "PUCT Interchange filing search for IA or TSA once portal access is available",
+    "Imagery around Central Lopeno substation (approx 26.89°N, -99.11°W) and Falcon Dam (26.56°N, -99.15°W) once CDSE creds restored",
+    "JETI registry check once accessible — Starr County is economically distressed, incentive plausible"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,28 @@
+{
+  "inr": "25INR0382",
+  "project": "HappyDogSolar",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-08-04",
+    "plausible": true,
+    "why": "IA signed Dec 2024, FIS approved Jan 2025; ~2.5 yr runway to reported COD is tight but not impossible for 85 MW solar; 3 prior COD slips suggest developer history of drift"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange: IA PDF exists (iaSigned 2024-12-16) but portal blocked during triage — retrieve parties, POI page, and milestone schedule exhibit",
+    "Hog Creek Switch (ERCOT node 3704) geolocation: identify substation coordinates to anchor site candidate for imagery",
+    "JETI registry: Milam County post-2022 solar abatement applications — project may have filed under a different entity name",
+    "TX SOS entity search: 'HappyDogSolar LLC' or variants — no web footprint found, developer identity unknown",
+    "Developer ID: zero web presence is unusual for an IA-signed project; deep scan should try parent company, EPC, or landowner PUCT filings"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,22 @@
+Source: ERCOT GIS queue parquet (gis-research/data/ercot_generation_interconnect.parquet)
+Date retrieved: 2026-07-19
+Latest fileDate: 2026-06-01
+
+Great Rock Energy Hub - all projects at Leon County location:
+
+1. 25INR0230 Great Rock BESS | OTH/BA | 300.9 MW | COD 2027-12-20 | "SS Completed, FIS Started, IA"
+   POI: Tap 345kV 46020 Limestone - 967 Gibbon Creek Ckt 18
+   iaSigned: 2024-08-23 | constructionStart: 2026-10-20 | constructionEnd: 2027-12-20
+
+2. 25INR0513 Kahla Storage | OTH/BA | 200.9 MW | COD 2028-12-29 | "SS Completed, FIS Started, No IA"
+   POI: Tap 345kV 46020 Limestone 967 Gibbons Creek Circuit 50
+
+3. 30INR0091 BM Great Rock Energy Center | GAS/CC | 1,981.2 MW | COD 2029-05-15 | "SS Completed, FIS Started, No IA"
+   POI: Tap <345kV> <967> <GIBN_CREK_5> - <46020> <LIMEST_POI_5> Ckt<18> and <345kV> <79007> <YELLOW WOLF> - <46020> <LIMEST_POI_5> Ckt<50>
+
+4. 29INR0366 BM Great Rock Energy Center II | Gas | 990.6 MW | COD: None | NaN POI
+   (early stage, no study results)
+
+Key insight: "LIMEST_POI_5" = new 345kV tap to be built at Great Rock site
+All "BM" prefixed projects = Black Mountain Energy Storage developer
+Pecan Prairie Solar (21INR0371/0428) uses "Yellow Wolf" bus 79007 at ~31.05-31.14N, -96.22-96.26W

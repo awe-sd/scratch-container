@@ -1,0 +1,49 @@
+{
+ "inr": "25INR0018",
+ "plant_id": 69588,
+ "plant_name": "Yellow Cat Wind, LLC",
+ "entity": "RWE Clean Energy",
+ "matched_by": "name match",
+ "first_report": "2026-01-01",
+ "last_report": "2026-05-01",
+ "planned_cod_history": [
+  {
+   "value": "2026-12",
+   "from": "2026-01-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 270.0,
+   "from": "2026-01-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "status_history": [
+  {
+   "value": "(V) Under construction, more than 50 percent complete",
+   "from": "2026-01-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "queue_reported_cod": "2027-04-01",
+ "energy_capacity_mwh_history": [
+  {
+   "value": null,
+   "from": "2026-01-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "operating_date_history": [
+  {
+   "value": null,
+   "from": "2026-01-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "eia_county": "Navarro",
+ "eia_lat": 32.07,
+ "eia_lon": -96.83,
+ "dropped_from_860m": null
+}

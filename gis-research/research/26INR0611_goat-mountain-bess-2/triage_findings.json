@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0611",
+  "project": "Goat Mountain BESS 2",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.9519,
+    "lon": -100.7914,
+    "method": "EJmap coordinates for Goat Wind LP existing wind plant (same developer/county); BESS likely co-locates on adjacent pad",
+    "confidence": "low-medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery blocked (401 Unauthorized); no other visual evidence found"
+  },
+  "cod_first_look": {
+    "reported": "2027-06-01",
+    "plausible": false,
+    "why": "No IA, no FIS approval, no construction dates — project is pre-IA; 18-month minimum from IA execution makes Jun 2027 structurally impossible absent a near-term IA signing"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm whether sibling project 26INR0589 (Goat Mountain BESS, 201 MW) has an IA — if so, 26INR0611 may piggyback or share siting; 26INR0589 is the more credible build",
+    "PUCT Interchange browser search for 'Goat Wind' or 'Goat Mountain' — could reveal IA or CPCN filings not reachable via scraping",
+    "CDSE imagery fix (credential setup) and re-run at existing Goat Wind LP substation coordinates to confirm pad availability for BESS co-location",
+    "Monitor FIS approval milestone — if it appears in a future GIS report, upgrade to watchlist"
+  ],
+  "turns_used": 22
+}

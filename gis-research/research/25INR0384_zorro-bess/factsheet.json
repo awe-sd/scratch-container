@@ -1,0 +1,65 @@
+{
+ "inr": "25INR0384",
+ "generated": "2026-07-20",
+ "project": "Zorro BESS ",
+ "county": "Van Zandt",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 153.69,
+ "queue_cod": "2027-08-31",
+ "milestones": {
+  "screeningStudyComplete": "2023-06-19",
+  "fisApproved": "2024-05-21",
+  "iaSigned": "2025-03-28",
+  "financial_security": "No"
+ },
+ "cod_slips": 6,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": false,
+  "candidates": []
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "fis_approved"
+ ],
+ "paper_score": 32,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 12,
+   "detail": "6 COD slips"
+  },
+  {
+   "factor": "spv_unresolvable",
+   "points": 10,
+   "detail": "no SPV via spv.py or any registry"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 11.48,
+  "reason": "reality signal"
+ }
+}

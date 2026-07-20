@@ -1,0 +1,97 @@
+{
+ "inr": "23INR0421",
+ "generated": "2026-07-20",
+ "project": "Bee Branch IA",
+ "county": "Robertson",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 203.75,
+ "queue_cod": "2027-06-01",
+ "milestones": {
+  "screeningStudyComplete": "2022-02-11",
+  "fisApproved": "2026-06-11",
+  "iaSigned": "2026-03-13",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ambiguous",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Tidwell Prairie IIA LLC",
+    "detail": "plant=Tidwell Prairie II 200.0MW (V) Under construction, more than 50 per @31.10306,-96.66494 planned=2026-08"
+   },
+   {
+    "source": "eia860m/Planned",
+    "entity": "Barton Branch IA LLC",
+    "detail": "plant=Barton Branch IA 200.0MW (U) Under construction, less than or equ @31.10306,-96.66494 planned=2026-11"
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Tidwell Prairie",
+    "detail": "plant=Tidwell Prairie Storage 1 200.0MW (OP) Operating @31.09828,-96.66368 planned="
+   },
+   {
+    "source": "puct-index",
+    "entity": "Bee Branch IA LLC",
+    "detail": "ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT Between Bee Branch IA LLC and Texas-New Mexico Power Compa"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Bee Branch IA LLC",
+    "detail": "ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT Between Bee Branch IA LLC and Texas-New Mexico Power Compa"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 36,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  },
+  {
+   "factor": "no_verified_ia",
+   "points": 10,
+   "detail": "iaSigned claimed but no IA found on disk or in the docket join table"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 19.61,
+  "reason": "reality signal"
+ }
+}

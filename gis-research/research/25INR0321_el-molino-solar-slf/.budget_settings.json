@@ -1,0 +1,1 @@
+{"hooks": {"PostToolUse": [{"matcher": "*", "hooks": [{"type": "command", "command": "python3 /workspaces/scratch-workspace/.claude/worktrees/GIS-research/gis-research/scripts/research_tools/budget_hook.py /workspaces/scratch-workspace/.claude/worktrees/GIS-research/gis-research/research/25INR0321_el-molino-solar-slf"}]}]}}

@@ -1,0 +1,127 @@
+{
+  "inr": "25INR0420",
+  "project": "Houston BESS",
+  "research_date": "2026-07-19",
+  "verdict": "real_active",
+  "construction_stage": "active",
+  "first_activity_seen": "2025-04",
+  "first_activity_source": "Irby Construction project page (groundbreaking April/May 2025)",
+
+  "site": {
+    "lat": 29.9112,
+    "lon": -95.3215,
+    "method": "POI substation — Lauder 138kV; OSM Overpass geometry centroid",
+    "confidence": "medium",
+    "notes": "POI is a tap on Lauder–Rittenhouse 138kV line; exact pad not confirmed; BESS likely adjacent to Lauder substation or along line corridor. Rittenhouse substation at 29.8636, -95.3794."
+  },
+
+  "project_area": {
+    "acres": null,
+    "source": "Not found — no IA, abatement, or CAD parcel recovered; HCAD blocked (403); urban Harris County BESS expected 10–40 acres",
+    "artifact": null
+  },
+
+  "developer_chain": [
+    {
+      "entity": "Houston BESS, LLC",
+      "role": "queue applicant / SPV",
+      "evidence": "ERCOT queue filing (identity packet)"
+    },
+    {
+      "entity": "SMT Houston IV",
+      "role": "project operating name",
+      "evidence": "sources/2026-07-19_irby_smt-houston-iv-project.md"
+    },
+    {
+      "entity": "SMT Energy (Boulder, CO)",
+      "role": "developer/owner",
+      "evidence": "https://www.smtenergy.com/"
+    },
+    {
+      "entity": "Irby Construction",
+      "role": "EPC",
+      "evidence": "sources/2026-07-19_irby_smt-houston-iv-project.md"
+    },
+    {
+      "entity": "CenterPoint Energy",
+      "role": "transmission host / partner",
+      "evidence": "sources/2026-07-19_irby_smt-houston-iv-project.md"
+    }
+  ],
+
+  "financing": {
+    "amount_usd": 135000000,
+    "close_date": "2025-02-26",
+    "lenders": ["KeyBank", "SUSI Partners", "UBS", "Goldman Sachs Renewable Power"],
+    "source": "sources/infrasure_project_page.md + sources/2026-07-19_infrasure_project_page_deep.md"
+  },
+
+  "capacity": {
+    "queue_mw": 227.9,
+    "actual_mw": 160,
+    "actual_mwh": 320,
+    "note": "Queue MW (227.9) never updated after project was rescoped to 160 MW/320 MWh per all press, financing, and EPC sources"
+  },
+
+  "interconnection": {
+    "ia_signed": false,
+    "ia_date": null,
+    "ia_source": null,
+    "ia_note": "No IA found in PUCT Interchange (portal 402 throughout); queue confirms IA not signed as of 2026-06 snapshot; project in Facility Study phase after 40 months",
+    "poi": "Tap 138 kV LAUDER (#46002) - RITTENHOUSE (#46282) ckt 95"
+  },
+
+  "contractual_schedule": {
+    "documents": []
+  },
+
+  "cod_reported": "2027-08-01",
+  "cod_independent": "2027-Q2/Q3",
+  "cod_drift_risk": "high",
+  "cod_drift_reason": "IA not signed after 40 months; 3 prior slips totaling ~23 months drift; Jun 2026 Irby/infrasure COD target already passed without queue approval; MW rescoped downward",
+
+  "cod_history": [
+    {"cod": "2025-09-29", "first_seen": "2023-03-01", "last_seen": "2024-10-01"},
+    {"cod": "2026-06-15", "first_seen": "2024-11-01", "last_seen": "2025-08-01"},
+    {"cod": "2026-12-15", "first_seen": "2025-09-01", "last_seen": "2026-01-01"},
+    {"cod": "2027-08-01", "first_seen": "2026-02-01", "last_seen": "2026-06-01"}
+  ],
+
+  "imagery": {
+    "verdict": "no_activity_confirmed_at_orbit",
+    "note": "Dense urban Houston suburb; BESS 10-40 acre footprint below reliable Sentinel-2 detection in this mosaic. 9 tiles covered (Lauder+Rittenhouse corridors); no industrial gravel pad identified. Urban absence is indeterminate, does NOT contradict press-confirmed active construction.",
+    "frames": [
+      {"date": "2025-01-01", "label": "pre-construction baseline", "path": "imagery/s2_2025-01-01_lauder_pre.png"},
+      {"date": "2026-06-01", "label": "latest — tight 1km Lauder", "path": "imagery/key/s2_2026-06-01_lauder_tight_1km.png"},
+      {"date": "2026-07-01", "label": "latest — Jul 2026 1km Lauder", "path": "imagery/key/s2_2026-07_lauder_tight.png"}
+    ]
+  },
+
+  "key_evidence": [
+    {
+      "type": "financing",
+      "description": "$135M construction financing closed Feb 26, 2025",
+      "artifact": "sources/2026-07-19_infrasure_project_page_deep.md"
+    },
+    {
+      "type": "epc_confirmation",
+      "description": "Irby Construction project page names SMT Houston IV BESS, 160 MW/320 MWh, COD June 2026, EPC=Irby, client=SMT Energy+CenterPoint",
+      "artifact": "sources/2026-07-19_irby_smt-houston-iv-project.md"
+    },
+    {
+      "type": "groundbreaking",
+      "description": "Groundbreaking April/May 2025 — Irby Construction + SMT Energy + CenterPoint Energy",
+      "artifact": "sources/2026-07-19_infrasure_project_page_deep.md"
+    }
+  ],
+
+  "negative_evidence": [
+    {"source": "PUCT Interchange", "query": "SMT Houston IV; Houston BESS", "result": "HTTP 402 — blocked throughout; no IA recovered"},
+    {"source": "HCAD owner search", "query": "Houston BESS; SMT Houston", "result": "HTTP 403 — blocked"},
+    {"source": "Harris County abatement/JETI", "query": "Houston BESS; SMT Houston IV", "result": "Ch.313 expired 2023; no JETI portal found; no abatement expected for 2023 queue entry"},
+    {"source": "Sentinel-2 imagery corridor", "query": "9 tiles covering Lauder–Rittenhouse corridor", "result": "No BESS pad identified; urban area indeterminate"},
+    {"source": "TX Comptroller entity search", "query": "Houston BESS; SMT Houston", "result": "JS SPA — no data returned via fetch"},
+    {"source": "Google Maps Places", "query": "Houston BESS; SMT Houston IV battery storage", "result": "HTTP 429 throughout"},
+    {"source": "SMT Energy website portfolio", "query": "Project listing", "result": "Template placeholders only; no real project data"}
+  ]
+}

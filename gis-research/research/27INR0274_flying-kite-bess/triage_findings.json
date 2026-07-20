@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0274",
+  "project": "Flying Kite Bess",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.94,
+    "lon": -99.84,
+    "method": "POI town centroid — La Pryor, Zavala County (\"Tap 138kV La Pryor #8008 - Poblano #8009\")",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery blocked (no real credentials loaded in gis-research.env); no other visual signal available"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-30",
+    "plausible": true,
+    "why": "FIS requested 2024-07 but not yet approved; ~18 months to COD is tight but not impossible for BESS if FIS clears soon"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA filing — portal returned 402 during triage (session-cookie required); try with authenticated session for FilingParty='Flying Kite Bess LLC'",
+    "Actual La Pryor substation coordinates — use AEP Texas transmission map or OpenInfraMap to pin the 138kV substation pad precisely, then run 1km-buffer imagery",
+    "Imagery with valid CDSE credentials — site is a tight BESS pad beside the substation; 1km buffer at confirmed coords will settle construction status",
+    "Developer identity — no LLC registration or news found; TX SOS SOSDirect search for 'Flying Kite Bess' (paywalled, $1 query) may reveal parent company"
+  ],
+  "turns_used": 22
+}

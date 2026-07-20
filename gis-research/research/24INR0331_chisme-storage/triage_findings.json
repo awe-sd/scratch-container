@@ -1,0 +1,28 @@
+{
+  "inr": "24INR0331",
+  "project": "Chisme Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-04-13",
+    "plausible": false,
+    "why": "IA not yet signed per queue; FIS only just approved 2026-06-23; 10-month runway to COD with no IA is implausible for a 150 MW BESS"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT filing 35077: draft/proposed SGIA referenced in T3 snippet — fetch PDF to confirm IA execution status, parties, and milestone schedule (PUCT 402 blocked this triage)",
+    "Blue Heron Solar developer track record: only 2 ERCOT projects, both active/unbuilt — assess developer credibility and whether Red River Solar (Mills County) has progressed to construction",
+    "Companion project 24INR0333 Chisme Solar: shared developer/POI — cross-check both queues for coordinated milestones or shared IA",
+    "Substation coordinate lookup via ERCOT transmission planning docs or county GIS to enable site imagery (Brown Switch / Buckhorn Switch 345kV)",
+    "JETI registry via TX Comptroller direct contact or any published JETI applicant list — BH filed Mill County abatement Oct 2025, may have filed JETI for Chisme"
+  ],
+  "turns_used": 25
+}

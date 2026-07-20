@@ -1,0 +1,64 @@
+{
+ "inr": "24INR0567",
+ "generated": "2026-07-20",
+ "project": "Wolf Hollow III",
+ "county": "Hood",
+ "fuel": "GAS",
+ "technology": "GT",
+ "capacity_mw": 306.32,
+ "queue_cod": "2027-05-31",
+ "milestones": {
+  "screeningStudyComplete": "2023-09-01",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "ok",
+  "plant_id": 59812,
+  "entity": "Exelon Power",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   32.33768,
+   -97.73461
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Constellation Power, Inc",
+    "detail": "plant=Wolf Hollow II 720.0MW (OP) Operating @32.33768,-97.73461 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "tceq",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_operating_date"
+ ],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 29.57,
+  "reason": "reality signal"
+ }
+}

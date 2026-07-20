@@ -1,0 +1,27 @@
+{
+  "inr": "26INR0474",
+  "project": "Sorghum BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": true,
+    "why": "IA signed Jan 2025; 18-24 month BESS build puts COD at mid-to-late 2027 — plausible but tight given no 6.9 gates cleared and one year of COD slip already"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange blocked (402) — retry via direct docket search or alternative access to find IA and milestone schedule",
+    "Blue Substation #44060 location not resolved — query ERCOT transmission GIS or AEP/CenterPoint facility maps to get coordinates for imagery targeting",
+    "No developer or LLC public presence — Texas SOS entity search for 'Sorghum BESS LLC' to confirm registrant and developer identity",
+    "6.9 gates unmet — check latest ERCOT GIS report for any update past 2026-06 snapshot; project may be stalled pre-NTP"
+  ],
+  "turns_used": 28
+}

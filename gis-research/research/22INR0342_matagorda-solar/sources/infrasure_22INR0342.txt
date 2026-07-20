@@ -1,0 +1,9 @@
+Source: infrasure.ai/project/ercot-22inr0342-matagorda-solar
+Fetched: 2026-07-19
+
+Developer: Leeward Renewable Energy Development, LLC
+Project: Matagorda Solar, 101 MW solar PV
+ERCOT queue ID: ERCOT-22INR0342
+County: Matagorda, TX
+Entered queue: 2020-05-01
+Proposed COD: 2027-08-25

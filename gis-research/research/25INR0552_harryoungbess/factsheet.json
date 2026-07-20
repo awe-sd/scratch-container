@@ -1,0 +1,64 @@
+{
+ "inr": "25INR0552",
+ "generated": "2026-07-20",
+ "project": "HarryoungBESS",
+ "county": "Cameron",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 190.01,
+ "queue_cod": "2028-05-15",
+ "milestones": {
+  "screeningStudyComplete": "2023-12-19",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "ok",
+  "plant_id": 59118,
+  "entity": "Cameron Wind 1 LLC",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   26.19528,
+   -97.46611
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Gransolar Texas Four LLC",
+    "detail": "plant=Harryoung PV and BESS 190.0MW (L) Regulatory approvals pending. Not un @26.27603,-97.63249 planned=2028-05"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_operating_date"
+ ],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 8.68,
+  "reason": "reality signal"
+ }
+}

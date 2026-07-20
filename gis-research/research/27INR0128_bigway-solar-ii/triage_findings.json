@@ -1,0 +1,28 @@
+{
+  "inr": "27INR0128",
+  "project": "Bigway Solar II",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": true,
+    "why": "IA signed Feb 2025, meets 6.9(1) Mar 2025, COD pulled forward twice from 2029; 2.5-yr runway from IA to COD is tight but not impossible for NextEra-scale developer with abatement in place"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT control 35077 IA schedule exhibit — portal was 402-blocked during triage; retrieve via direct PDF guess or authenticated session",
+    "King County abatement PDF (Jan 2026 Second Amendment) — SSL cert mismatch blocked retrieval; abatement terms and project MW confirmation",
+    "Cottonwood (#59904) substation location — needed to anchor imagery; try ERCOT transmission topology files or OpenInfraMap for GPS coords",
+    "Stetson Renewables Holdings — clarify relationship to NextEra; may be the development entity vs. asset-holding entity",
+    "Companion project 27INR0127 Bigway Solar I (same IA entity, same county) — joint or independent build? Check if shared POI impacts COD"
+  ],
+  "turns_used": 18
+}

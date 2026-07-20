@@ -1,0 +1,28 @@
+{
+  "inr": "23INR0487",
+  "project": "Brightside Solar Alt POI",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-08-14",
+    "plausible": false,
+    "why": "No construction milestones logged, no FIS, no developer activity found — COD 4 weeks out is implausible without any construction start date"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Resolve anomalous IA date (2020-06-11 for a 23INR project) — likely predecessor project or alt-POI split; find the original INR and its IA document",
+    "Locate Charter Substation 138kV (node 8156) in Live Oak County — this is the only site candidate; get coordinates, then run imagery",
+    "Identify developer/owner — no company behind 'Brightside Solar' surfaced; TX SOS entity search and FERC eLibrary may yield it",
+    "PUCT Interchange IA filing — portal was blocked during triage; IA exists per queue data, find and pull the schedule exhibit",
+    "Check if Ch.313 abatement was filed pre-2022 given IA signed in 2020 — Live Oak County ISD records"
+  ],
+  "turns_used": 22
+}

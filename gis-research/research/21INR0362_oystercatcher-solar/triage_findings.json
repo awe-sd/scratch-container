@@ -1,0 +1,28 @@
+{
+  "inr": "21INR0362",
+  "project": "Oystercatcher Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-12-28",
+    "plausible": false,
+    "why": "8 COD slips over 5.5 years, no construction dates in queue, COD 5 months out with zero construction signal"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA retrieval — iaSigned 2021-08-20 confirmed in queue; fetch the actual IA document for POI coords, developer name, and milestone schedule",
+    "Developer/owner identification — zero web presence; TX SOS entity search for 'Oystercatcher Solar LLC' to find parent company",
+    "Site location — POI is Venus 345kV tap; use CAD parcel search in Ellis County for solar lease/option parcels near Venus, TX",
+    "Ch.313/JETI abatement check — Ellis County ISDs (Ennis, Midlothian, Waxahachie area); post-2022 may use JETI",
+    "FIS approved Nov 2025 after 6yr wait + all 6.9 milestones Jan 2026 — project is formally qualified; COD slip history warrants construction-start confirmation"
+  ],
+  "turns_used": 18
+}

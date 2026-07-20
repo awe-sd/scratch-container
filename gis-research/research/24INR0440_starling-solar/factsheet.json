@@ -1,0 +1,71 @@
+{
+ "inr": "24INR0440",
+ "generated": "2026-07-20",
+ "project": "Starling Solar",
+ "county": "Gonzales",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 140.6,
+ "queue_cod": "2028-01-28",
+ "milestones": {
+  "screeningStudyComplete": "2022-12-28",
+  "fisApproved": null,
+  "iaSigned": "2026-02-17",
+  "financial_security": "No"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "puct-index",
+    "entity": "Starling Solar, LLC",
+    "detail": "ERCOT Standard Generation Interconnection Agreement between LCRA TSC and Starling Solar, LLC"
+   },
+   {
+    "source": "puct-index",
+    "entity": "STARLING SOLAR, LLC",
+    "detail": "FIRST AMENDMENT TO THE AMENDED AND RESTATED ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN LCRA T"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "verified_ia_on_disk"
+ ],
+ "paper_score": 16,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 7.67,
+  "reason": "reality signal"
+ }
+}

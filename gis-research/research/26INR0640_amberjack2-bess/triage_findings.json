@@ -1,0 +1,27 @@
+{
+  "inr": "26INR0640",
+  "project": "Amberjack2 BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-04-03",
+    "plausible": true,
+    "why": "COD has already slipped twice (+16 months) with no IA; 2028 requires FIS+IA+build in ~24 months, feasible for BESS but developer must accelerate soon"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Kingfisher 345kV substation coordinates (AEP La Palma–Kingfisher CPCN docket at PUCT) to enable imagery",
+    "Monitor PUCT Interchange for IA filing under Hunt Energy Network or Amberjack2 BESS LLC — no IA = hard blocker",
+    "Confirm SPV entity name via Texas SOS business search (Amberjack2 BESS LLC not verified)",
+    "Hunt Energy Network has operating BESS fleet in ERCOT — check if HEN has disclosed Amberjack2 in any investor/press releases as a near-term development"
+  ],
+  "turns_used": 28
+}

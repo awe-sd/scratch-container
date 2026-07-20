@@ -1,0 +1,124 @@
+{
+ "inr": "26INR0512",
+ "generated": "2026-07-20",
+ "project": "County Road BESS",
+ "county": "Reeves",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 9.9,
+ "queue_cod": "2026-08-26",
+ "milestones": {
+  "screeningStudyComplete": null,
+  "fisApproved": null,
+  "iaSigned": "2025-01-01",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 6,
+ "eia": {
+  "status": "ok",
+  "plant_id": 69422,
+  "entity": "County Rd Infra LLC",
+  "planned_cod": "2026-06",
+  "cod_delta_quarters": -0.7,
+  "dropped_scope": null,
+  "coords": [
+   31.40078,
+   -103.4944
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Elm St Infra LLC",
+    "detail": "plant=Elm Street BESS 9.9MW (TS) Construction complete, but not yet  @31.42753,-103.4994 planned=2026-06"
+   },
+   {
+    "source": "eia860m/Planned",
+    "entity": "County Rd Infra LLC",
+    "detail": "plant=County Road BESS 9.9MW (TS) Construction complete, but not yet  @31.40078,-103.4944 planned=2026-06"
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Key Capture Energy",
+    "detail": "plant=TX7 Flat Top 9.9MW (OP) Operating @31.19791,-103.3607 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Flower Valley",
+    "detail": "plant=Flower Valley I 9.9MW (OP) Operating @31.19728,-103.3618 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "HEN Infrastructure, L.L.C.",
+    "detail": "plant=Cedarville (TX) 9.9MW (OP) Operating @31.51411,-103.4524 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "HEN Infrastructure, L.L.C.",
+    "detail": "plant=Coyote Springs (TX) 9.9MW (OP) Operating @31.39471,-103.6303 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "HEN Infrastructure, L.L.C.",
+    "detail": "plant=Faulkner 9.9MW (OP) Operating @31.26238,-103.7949 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "HEN Infrastructure, L.L.C.",
+    "detail": "plant=Saddleback 9.9MW (OP) Operating @31.33288,-103.4984 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "HEN Infrastructure, L.L.C.",
+    "detail": "plant=Toyah Power Station 10.4MW (OP) Operating @31.11391,-103.6655 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "HEN Infrastructure, L.L.C.",
+    "detail": "plant=Sandlake 9.9MW (OP) Operating @31.50879,-103.6175 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Matta Power Station LLC",
+    "detail": "plant=Matta Power Station 10.0MW (OP) Operating @31.04003,-103.6526 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "On Energy Storage",
+    "detail": "plant=North Pecos Clean Energy Center (BESS) 10.1MW (OP) Operating @31.42246,-103.5091 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "financial_security_posted"
+ ],
+ "paper_score": 22,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 12,
+   "detail": "6 COD slips"
+  },
+  {
+   "factor": "no_verified_ia",
+   "points": 10,
+   "detail": "iaSigned claimed but no IA found on disk or in the docket join table"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 8.11,
+  "reason": "reality signal"
+ }
+}

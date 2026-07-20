@@ -1,0 +1,34 @@
+{
+  "inr": "26INR0388",
+  "project": "Aggie Solar Project SLF",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.396675,
+    "lon": -103.625278,
+    "method": "POI coords from identity packet (Coyote Springs Substation 138kV)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "no activity observed",
+    "evidence": "Center chip (31.3967,-103.6253) 2026-06-15: dry scrub terrain, rectangular agricultural plots only, no solar arrays or grading visible. Partial coverage — 2/9 grid chips obtained due to CDSE auth failures."
+  },
+  "cod_first_look": {
+    "reported": "2027-11-30",
+    "plausible": true,
+    "why": "FIS approved 2025-07-03; no IA yet; COD has slipped twice (12 months total); 2027-11-30 requires IA + construction in ~17 months from today — tight but not impossible if IA is imminent"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "IA status: FIS approved Jul 2025 — check if IA has been executed since (would be the key catalyst); PUCT Interchange was blocked at triage, worth a manual portal check",
+    "Developer identity: zero web presence found; TX SOS lookup for 'Aggie Solar Project SLF LLC' to confirm developer and any parent company",
+    "Imagery retry: CDSE auth recovered — rerun full 3×3 grid + a 2023/2024 baseline to confirm bare ground vs. any recent site prep"
+  ],
+  "turns_used": 22
+}

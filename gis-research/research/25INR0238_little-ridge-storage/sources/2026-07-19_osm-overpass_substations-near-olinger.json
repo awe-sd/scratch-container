@@ -1,0 +1,20 @@
+{
+  "query": "Overpass API: substations within 15km of 33.0692,-96.4509",
+  "retrieved": "2026-07-19",
+  "url": "https://overpass-api.de/api/interpreter",
+  "adjacent_138kV_substation": {
+    "osm_id": 283611943,
+    "distance_km": 0.1,
+    "lat": 33.068108,
+    "lon": -96.4515338,
+    "tags": {"frequency": "60", "location": "outdoor", "power": "substation", "substation": "transmission", "voltage": "138000"},
+    "notes": "0.1km from Ray Olinger Power Station - highly likely the 'Olinger (818)' 138kV tap point in the POI description"
+  },
+  "farmersville_substation": {
+    "osm_id": 171694579,
+    "distance_km": null,
+    "tags": {"name": "Farmersville Substation", "operator": "Oncor", "power": "substation", "substation": "transmission", "voltage": "345000"},
+    "notes": "Oncor 345kV - not the 138kV Swindell-Olinger line"
+  },
+  "notes": "No substation named 'Swindell' found in OSM. The 'Swindell (812)' substation is likely a Garland Power & Light internal designation not in OSM."
+}

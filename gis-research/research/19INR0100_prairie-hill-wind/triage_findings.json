@@ -1,0 +1,36 @@
+{
+  "inr": "19INR0100",
+  "project": "Prairie Hill Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.54,
+    "lon": -96.83,
+    "method": "news articles (KWTX) — near Mart, TX, Limestone+McLennan counties",
+    "confidence": "high"
+  },
+  "construction": {
+    "verdict": "REPOWERING CONFIRMED BY NEWS — imagery blocked",
+    "evidence": "KWTX 2026-02-06 and 2026-03-31: ENGIE demolishing 100 turbines (~Feb 2026), replacing with 63 new units; ~6mo demo + ~1yr install; active as of triage date"
+  },
+  "cod_first_look": {
+    "reported": "2027-09-30",
+    "plausible": true,
+    "why": "COD is for REPOWERED project; original 300MW farm online Dec 2020; repower started Feb 2026, ~18mo timeline puts completion Q3-Q4 2027"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA for repower — search authenticated session for docket with Prairie Hill Wind 2024-2026 filing",
+    "Exact turbine layout for new 63-turbine array — FAA OE/AAA filings likely filed 2024-2025",
+    "CDSE imagery (fix credentials): active decommissioning + foundation work should be visible June-July 2026",
+    "Confirm counties: news says Limestone+McLennan, queue says McLennan only — check legal boundary",
+    "ENGIE repower financing / PPA counterparty if relevant"
+  ],
+  "turns_used": 28
+}

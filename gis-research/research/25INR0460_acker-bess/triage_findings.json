@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0460",
+  "project": "Acker BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 34.51,
+    "lon": -102.07,
+    "method": "Estimated: 4 mi SE of Nazareth TX per DDG snippet for Ogallala substation; not GPS-confirmed",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "No construction observed",
+    "evidence": "9 Sentinel-2 chips 2025-03 to 2026-06 at estimated POI location show only agricultural fields; no gravel pad, no container rows, no substation build activity. Site coordinates unconfirmed so null result is ambiguous."
+  },
+  "cod_first_look": {
+    "reported": "2028-04-17",
+    "plausible": true,
+    "why": "IA signed 2025-04-21; 3 prior COD slips (33 months total drift); ~35 months to reported COD gives just enough time for a BESS build if construction starts soon"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Retrieve IA PDF from PUCT Docket 35077 (doc 35077_2136_1499463.PDF) — extract milestone schedule exhibit to validate 2028 COD and check for NTP/construction-start commitment date",
+    "Confirm Ogallala 345 kV substation exact coordinates via Oncor transmission maps or OpenStreetMap power infrastructure — current imagery was run at estimated coords with low confidence",
+    "Re-run imagery at confirmed substation coords with tighter 1-km buffer to detect BESS pad adjacent to substation",
+    "Check PUCT for any IA amendment filings under Docket 35077 post-2025-05 that may update the schedule"
+  ],
+  "turns_used": 22
+}

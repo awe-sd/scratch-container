@@ -1,0 +1,72 @@
+{
+ "inr": "24INR0459",
+ "generated": "2026-07-20",
+ "project": "Exodus BESS",
+ "county": "Caldwell",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 201.36,
+ "queue_cod": "2027-12-01",
+ "milestones": {
+  "screeningStudyComplete": "2023-10-05",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 4,
+ "eia": {
+  "status": "ok",
+  "plant_id": 69641,
+  "entity": "Metro BESS LLC",
+  "planned_cod": "2030-12",
+  "cod_delta_quarters": 12.0,
+  "dropped_scope": null,
+  "coords": [
+   30.00324,
+   -97.67794
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Metro BESS LLC",
+    "detail": "plant=Metro BESS 200.0MW (P) Planned for installation, but regula @30.00324,-97.67794 planned=2030-12"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [],
+ "paper_score": 33,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 8,
+   "detail": "4 COD slips"
+  },
+  {
+   "factor": "eia_cod_divergence",
+   "points": 15,
+   "detail": "EIA planned COD 12.0 quarters after queue COD"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 33 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

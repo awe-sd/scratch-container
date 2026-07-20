@@ -1,0 +1,28 @@
+{
+  "inr": "24INR0326",
+  "project": "Blarney Solar",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-10-01",
+    "plausible": true,
+    "why": "IA signed Apr 2024; ~3yr COD slip from 2024; county abatement approved Mar 2026 signals active development, but no FIS approved and no construction started milestones"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF not retrieved (PUCT interchange 402-blocked) — deep scan should pull Control 35077 Item 1817 for milestone schedule and POI coordinates",
+    "Developer is Cobra Industrial Activities (Spanish group) via Sligsol LLC — verify corporate structure and other TX projects for track record",
+    "Hopkins County abatement approved March 2026 (~$87M improvements) — pull commissioner meeting minutes/PDF for site parcel and exact location",
+    "No FIS approved milestone despite IA signed — flag as schedule risk; deep scan should check ERCOT study queue position",
+    "No site coordinates found — gmaps.py was rate-limited in T2; retry in deep scan to get delivery pin and enable imagery"
+  ],
+  "turns_used": 22
+}

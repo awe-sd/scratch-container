@@ -1,0 +1,124 @@
+{
+  "inr": "24INR0291",
+  "project": "Rubicon Alpha Wind",
+  "researched": "2026-07-19",
+  "verdict": "real_early",
+  "construction_stage": "no_activity",
+  "developer": {
+    "llc": "Throckmorton Wind, LLC",
+    "parent": "NextEra Energy Resources",
+    "evidence": "TX Comptroller franchise-tax: taxpayerId 32102915082, mailing 700 Universe Blvd C/O PSX/JB, Juno Beach FL 33408 (NextEra HQ); President Matthew Roskot, officers Anthony Pedroni, Christopher Zajic et al. — all NextEra employees",
+    "artifact": "sources/2026-07-19_txcomptroller_throckmorton-wind-llc.json"
+  },
+  "site": {
+    "lat": null,
+    "lon": null,
+    "method": "could_not_determine",
+    "confidence": "none",
+    "notes": "FAA OE portal shutdown; Google Places API daily quota exhausted; Haskell CAD JS-rendered owner search blocked; no delivery pin found. POI is Pendulo 345kV bus (60507) in Haskell County. Monarch Creek Wind (different project) confirmed at ~33.21N,-99.46W in same county. County-level estimate only: ~33.1-33.2N, -99.4 to -99.7W."
+  },
+  "project_area": {
+    "acres": null,
+    "source": "not_found",
+    "artifact": null,
+    "notes": "No abatement application found (Ch.313 expired post-2022); no IA PDF retrieved (PUCT interchange JS-rendered/blocked); no CAD parcels under LLC name."
+  },
+  "interconnection": {
+    "ia_signed": "2024-05-08",
+    "poi": "60507 pendulo7A 345kV (Pendulo 345kV substation, Haskell County)",
+    "poi_history": "POI changed Nov 2025 from 'Tap 345kV 60791 Perigee – 6235 Abilene Mulberry Creek' to '60507 pendulo7A 345kV'",
+    "tsp": "Electric Transmission Texas (ETT/AEP)",
+    "ia_pdf": null,
+    "ia_pdf_note": "PUCT interchange requires JS; direct PDF not retrieved. Triage reference to control 35077 was a different (2007) docket."
+  },
+  "contractual_schedule": {
+    "documents": [],
+    "note": "IA PDF not retrieved. Schedule data from queue parquet only."
+  },
+  "queue_history": {
+    "in_queue_since": "2022-04-01",
+    "snapshots": 51,
+    "cod_drift": [
+      {"cod": "2024-08-30", "held_from": "2022-04-01", "until": "2023-07-01"},
+      {"cod": "2027-07-01", "held_from": "2023-08-01", "until": "2025-05-01"},
+      {"cod": "2027-07-31", "held_from": "2025-06-01", "until": "2026-06-01"}
+    ],
+    "milestones": {
+      "screening_complete": "2022-08-06",
+      "fis_approved": "2026-03-13",
+      "ia_signed": "2024-05-08",
+      "meets_691": "2025-02-13",
+      "meets_all_69": "2026-04-30",
+      "construction_start": null,
+      "construction_end": null,
+      "energization": null,
+      "synchronization": null,
+      "commercial_operation": null
+    },
+    "capacity_mw_now": 222.6,
+    "artifact": "timeline.md"
+  },
+  "imagery": {
+    "verdict": "no_activity",
+    "first_activity_date": null,
+    "frames": [
+      {
+        "date": "2026-07-01",
+        "location": "33.21,-99.46 (Monarch Creek area, NE Haskell County)",
+        "observation": "Monarch Creek Wind turbines visible; no Rubicon Alpha Wind site identified",
+        "artifact": "imagery/s2_test_monarch_2026-07-01.png"
+      },
+      {
+        "date": "2026-07-01",
+        "location": "33.17,-99.73 (Haskell town center)",
+        "observation": "Town of Haskell visible; undisturbed farmland surrounding area; no wind turbine construction",
+        "artifact": "imagery/s2_candidate2_33.17_-99.73.png"
+      }
+    ],
+    "notes": "Could not pinpoint Rubicon Alpha Wind site precisely (FAA/GMaps blocked). Imagery of likely county areas shows no wind turbine construction. Project has no construction milestones in queue data, consistent with no_activity."
+  },
+  "cod_assessment": {
+    "reported_cod": "2027-07-31",
+    "independent_estimate": "2028-Q2",
+    "drift_risk": "high",
+    "rationale": "No construction started 14 months after IA signing (May 2024 to Jul 2026). Wind project construction typically takes 18-24 months from ground-break. To meet 2027-07-31 COD, construction would need to start by ~Sep 2026 and proceed without delays — extremely tight. Two prior slips (3+ years in queue). NextEra is a credible developer but the timeline is aggressive given zero ground activity. Independent estimate pushes to 2028-Q2 as the more realistic target."
+  },
+  "negative_evidence": [
+    {
+      "source": "FAA OE/AAA portal",
+      "query": "Haskell County wind turbine filings",
+      "date": "2026-07-19",
+      "result": "Portal under government shutdown; no data accessible"
+    },
+    {
+      "source": "Google Maps Places API",
+      "query": "Rubicon Alpha Wind / Throckmorton Wind construction site",
+      "date": "2026-07-19",
+      "result": "Daily quota exhausted (100/day limit); no pin found"
+    },
+    {
+      "source": "PUCT Interchange",
+      "query": "Control 35077 / filing party Throckmorton Wind",
+      "date": "2026-07-19",
+      "result": "Control 35077 is a different 2007 docket; party-name search requires JavaScript rendering; IA PDF not retrieved"
+    },
+    {
+      "source": "Haskell County CAD",
+      "query": "Owner name: Throckmorton Wind",
+      "date": "2026-07-19",
+      "result": "JS-rendered search, API endpoint 404; no parcels found"
+    },
+    {
+      "source": "TX Comptroller Ch.313",
+      "query": "Throckmorton Wind / Rubicon Alpha Wind abatement",
+      "date": "2026-07-19",
+      "result": "None found — expected (Ch.313 expired Dec 2022; no post-2022 agreements possible)"
+    },
+    {
+      "source": "Overpass API (OSM power infrastructure)",
+      "query": "Substations in Haskell/Jones/Throckmorton county area",
+      "date": "2026-07-19",
+      "result": "406/504 errors; no Pendulo substation location obtained"
+    }
+  ]
+}

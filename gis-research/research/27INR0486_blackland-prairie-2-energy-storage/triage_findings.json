@@ -1,0 +1,36 @@
+{
+  "inr": "27INR0486",
+  "project": "Blackland Prairie 2 Energy Storage",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 30.2511,
+    "lon": -97.4892,
+    "method": "POI infrastructure — Austrop 138kV substation (LCRA), OSM way/127245722, Travis County east of Austin (Hornsby Bend area)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery 401 Unauthorized — no chips retrieved; site candidate identified but visual check not possible"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": true,
+    "why": "COD slipped once (+6 mo to 2027-12-01); FIS requested but not approved; IA not signed; Phase 1 (same POI, Austin Energy contract) is ahead — Phase 2 depends on Phase 1 proceeding. 18-month build window from late 2026 IA could just fit 2027-12 but is tight."
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Phase 1 (27INR0485 or similar INR) IA status — Phase 2 COD is contingent on Phase 1; find Phase 1's milestone state",
+    "Austin Energy tolling agreement (City Council 2025-07-24) — confirm whether it covers Phase 2 or only Phase 1; contract text is the key credibility anchor",
+    "PUCT Interchange IA filings for Balcones Ridge Resiliency II LLC — portal blocked at triage; retry with direct session access",
+    "CDSE imagery at Austrop substation (30.2511, -97.4892, buffer 1 km) — BESS pads are small, need tight chip; credentials needed",
+    "Texas SOS / Jupiter Power parent — confirm Balcones Ridge Resiliency II LLC is active and Jupiter Power is the ultimate parent; check Tempus Power claim"
+  ],
+  "turns_used": 28
+}

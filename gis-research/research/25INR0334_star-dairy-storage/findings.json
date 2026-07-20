@@ -1,0 +1,103 @@
+{
+  "inr": "25INR0334",
+  "project": "Star Dairy Storage",
+  "research_date": "2026-07-19",
+  "verdict": "real_early",
+  "verdict_confidence": "medium",
+  "verdict_rationale": "IA signed 2024-12-09, $14.85M LC posted, same developer executed Liberty Energy TX in Sept 2025; site unconfirmed via imagery (CDSE creds expired) but POI switch infrastructure grounded in signed documents",
+
+  "site": {
+    "lat": 33.4676,
+    "lon": -95.3724,
+    "method": "OSM 345kV line junction: Monticello-Paris 345kV line (Oncor) shares a node at this coordinate; IA confirms Forgotten City Switch will be adjacent to generator substation on this line in Lamar County TX",
+    "confidence": "medium",
+    "cross_checks": [
+      "OSM Monticello-Paris 345kV two-segment junction at 33.4676,-95.3724",
+      "IA Exhibit C: POI at Forgotten City Switch on Woodard Switch - Paris Switch 345kV line, Lamar County",
+      "Triage candidate (Woodard Cemetery anchor) 33.461,-95.367 is 1.2 km SE — consistent with same area"
+    ],
+    "not_obtainable": "Exact switch lat/lon (CEII-redacted in Exhibit C); Forgotten City community not in OSM/GNIS"
+  },
+
+  "project_area": {
+    "acres": null,
+    "source": "Not found — no abatement, no CAD parcel. BESS site expected 10-40 acres",
+    "artifact": null
+  },
+
+  "construction": {
+    "stage": "unknown",
+    "first_activity_seen": null,
+    "imagery_note": "CDSE credentials expired during deep scan; no satellite imagery obtained. Stage cannot be confirmed."
+  },
+
+  "ownership": {
+    "spv": "Star Dairy Solar LLC",
+    "developer": "X-Elio (Spanish; US HQ 1255 23rd St NW Suite 300, Washington DC 20037)",
+    "developer_contact": "Xavier Tyler (xavier.tyler@X-Elio.com); Kerri Neary (Country Manager, signed IA)",
+    "epc": null,
+    "offtaker": null,
+    "financing": "No announcement found",
+    "track_record": "X-Elio commissioned Liberty Energy Project (72MW solar + 60MW storage, Dayton TX, Harris County) Sept 2025 — first US project"
+  },
+
+  "land": {
+    "tenure": "unknown",
+    "abatement": null,
+    "cad_parcels": "0 hits under Star Dairy (CAD portal unreachable; expected pre-construction)"
+  },
+
+  "interconnection": {
+    "ia_signed": "2024-12-09",
+    "ia_control_number": "35077-2026",
+    "tsp": "Oncor Electric Delivery Company LLC",
+    "poi_description": "Forgotten City Switch on Woodard Switch - Paris Switch 345kV line, Lamar County TX",
+    "delivery_voltage_kv": 345,
+    "equipment": "60x Power Electronics PCSM FP4200M storage inverters, 204.93 MW; co-located with 34x Power Electronics HEM FS4200M solar inverters (25INR0164, 125.61 MW)",
+    "fis_approved": false
+  },
+
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Original IA",
+        "signed": "2024-12-09",
+        "financial_security": "$14,850,285 LC effective on or before 2024-12-06",
+        "artifact": "sources/2026-07-19_puct_35077-2026_oncor-star-dairy-solar-storage-IA.pdf"
+      }
+    ],
+    "in_service_date": "2026-12-03",
+    "trial_operation_date": "2026-12-13",
+    "scheduled_commercial_operation_date": "2027-04-03"
+  },
+
+  "cod_assessment": {
+    "reported_cod": "2027-07-12",
+    "contractual_cod": "2027-04-03",
+    "independent_estimate": "2027-Q3",
+    "drift_risk": "high",
+    "drift_rationale": "FIS never approved; no construction evidence; In-Service deadline (2026-12-03) is 5 months away with no visible groundwork; queue COD already 3 months beyond IA contractual; 4 prior COD drifts (16-month total slip from original 2026-03-23); no PPA or financing announced",
+    "cod_drift_history": [
+      {"cod": "2026-03-23", "from": "2023-04-01"},
+      {"cod": "2026-04-21", "from": "2023-05-01"},
+      {"cod": "2026-09-14", "from": "2023-08-01"},
+      {"cod": "2027-04-03", "from": "2025-05-01"},
+      {"cod": "2027-07-12", "from": "2026-05-01"}
+    ]
+  },
+
+  "sources": [
+    {
+      "artifact": "sources/2026-07-19_puct_35077-2026_oncor-star-dairy-solar-storage-IA.pdf",
+      "type": "IA",
+      "url": "https://interchange.puc.texas.gov/Documents/35077_2026_1453244.PDF",
+      "date": "2026-07-19"
+    },
+    {
+      "artifact": "sources/2026-07-19_puct_35077-2026_filing-page.html",
+      "type": "PUCT filing page",
+      "url": "https://interchange.puc.texas.gov/search/documents/?controlNumber=35077&itemNumber=2026",
+      "date": "2026-07-19"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+ "inr": "28INR0156",
+ "generated": "2026-07-20",
+ "project": "Chimney Rock BESS",
+ "county": "Taylor",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 156.0,
+ "queue_cod": "2028-04-10",
+ "milestones": {
+  "screeningStudyComplete": "2025-05-12",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 0,
+ "eia": {
+  "status": "ok",
+  "plant_id": 68667,
+  "entity": "RIC Development, LLC",
+  "planned_cod": "2028-04",
+  "cod_delta_quarters": 0.0,
+  "dropped_scope": null,
+  "coords": [
+   32.38749,
+   -99.84846
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "RIC Development, LLC",
+    "detail": "plant=Chimney Rock BESS 156.0MW (P) Planned for installation, but regula @32.38749,-99.84846 planned=2028-04"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 0 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

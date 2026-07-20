@@ -1,0 +1,72 @@
+{
+ "inr": "26INR0033",
+ "generated": "2026-07-20",
+ "project": "Fairway Storage",
+ "county": "Freestone",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 120.3,
+ "queue_cod": "2027-09-24",
+ "milestones": {
+  "screeningStudyComplete": "2023-02-04",
+  "fisApproved": null,
+  "iaSigned": "2025-08-11",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 5,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "puct-index",
+    "entity": "Fairway Storage, LLC",
+    "detail": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Fairway Storage,"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "financial_security_posted"
+ ],
+ "paper_score": 30,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 10,
+   "detail": "5 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 8.48,
+  "reason": "reality signal"
+ }
+}

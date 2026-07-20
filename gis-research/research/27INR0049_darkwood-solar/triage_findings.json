@@ -1,0 +1,36 @@
+{
+  "inr": "27INR0049",
+  "project": "Darkwood Solar",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.97,
+    "lon": -98.47,
+    "method": "community post (Facebook) — Evan Ranch, near CR 328/CR 343 between Proctor and HWY 36",
+    "confidence": "low — no map/plat/pin to anchor; Proctor Lake area may not be exact parcel"
+  },
+  "construction": {
+    "verdict": "unconfirmed — text signal only",
+    "evidence": "Facebook post (Erath County Stop Solar Farms group) states construction has begun on Evan Ranch; 2026-06 Sentinel-2 chip returned no valid composite (black frame), 2024 baseline shows farmland with no solar prep"
+  },
+  "cod_first_look": {
+    "reported": "2027-09-20",
+    "plausible": true,
+    "why": "IA signed Nov 2025, FIS approved Jul 2025, construction reportedly started — ~22 months to COD is tight but achievable for 151 MW solar with BESS; one prior COD slip of ~8 months noted"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA confirmed to exist (Oncor/PUCT case ~35077, Nov 2025) but PDF not retrieved — download IA to extract milestone schedule and CEII-flagged construction dates",
+    "Construction signal from Facebook text not confirmed by imagery — re-attempt imagery with corrected parcel coords (try USGS USPVDB viewer or county appraisal district for Evan Ranch parcel centroid)",
+    "Developer: Mustang Creek Solar LLC (Austin TX) — research parent/equity sponsor, financing, and whether BESS (150 MW companion) has its own INR",
+    "No JETI/Ch.313 abatement found — check Comanche ISD records and Comanche County Appraisal District for any active tax agreement",
+    "gmaps.py blocked by rate limit — retry for delivery pins once quota resets"
+  ],
+  "turns_used": 22
+}

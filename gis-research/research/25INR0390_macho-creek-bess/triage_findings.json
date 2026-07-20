@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0390",
+  "project": "Macho Creek BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 26.375,
+    "lon": -98.820,
+    "method": "POI substation name 'RIO GRANDE CITY 138kV' mapped to county seat coordinates",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "not assessed",
+    "evidence": "CDSE auth (401/403) blocked all 9 grid chips; no imagery obtained"
+  },
+  "cod_first_look": {
+    "reported": "2027-05-31",
+    "plausible": false,
+    "why": "FIS not approved after 3 years in queue, no IA signed, no construction milestones — insufficient progress for 12-month COD"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Fix CDSE credentials (gis-research.env 401/403) then run imagery grid around Rio Grande City 138kV substation — BESS site will be compact, look for pale gravel pad + container rows within 1 km of the substation",
+    "PUCT Interchange was blocked (402) — retry from a browser session for IA filings under 'Macho Creek BESS'",
+    "Developer identity unknown — search Texas SOS entity 'Macho Creek BESS LLC' to find sponsor and any parallel projects that might share resources with this queue entry",
+    "COD is implausible at 2027-05-31 without FIS approval; monitor FIS milestone in next monthly queue drop as the single key signal for re-scoring"
+  ],
+  "turns_used": 28
+}

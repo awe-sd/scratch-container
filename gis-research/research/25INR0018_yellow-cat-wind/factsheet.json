@@ -1,0 +1,87 @@
+{
+ "inr": "25INR0018",
+ "generated": "2026-07-20",
+ "project": "Yellow Cat Wind",
+ "county": "Navarro",
+ "fuel": "WIN",
+ "technology": "WT",
+ "capacity_mw": 262.0,
+ "queue_cod": "2027-04-01",
+ "milestones": {
+  "screeningStudyComplete": "2021-11-05",
+  "fisApproved": "2025-12-09",
+  "iaSigned": "2024-07-09",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 5,
+ "eia": {
+  "status": "ok",
+  "plant_id": 69588,
+  "entity": "RWE Clean Energy",
+  "planned_cod": "2026-12",
+  "cod_delta_quarters": -1.3,
+  "dropped_scope": null,
+  "coords": [
+   32.07,
+   -96.83
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "RWE Clean Energy",
+    "detail": "plant=Yellow Cat Wind, LLC 270.0MW (V) Under construction, more than 50 per @32.07,-96.83 planned=2026-12"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Steelhead Wind 2, LLC",
+    "detail": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Steelhead Wind 2"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Steelhead Wind 2, LLC",
+    "detail": "Amendment No. 1 to the Standard Generation Interconnection Agreement between Oncor Electric Delivery Company L"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Yellow Cat Wind, LLC",
+    "detail": "Amendment No. 3 to the Standard Generation Interconnection Agreement between Oncor Electric Delivery Company L"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "faa",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 3,
+  "join_items": 3
+ },
+ "reality_signals": [
+  "eia_under_construction",
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 20,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 10,
+   "detail": "5 COD slips"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 31.23,
+  "reason": "reality signal"
+ }
+}

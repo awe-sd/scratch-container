@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0501",
+  "project": "Longday Solar SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "abatement_signal": true,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.31,
+    "lon": -100.42,
+    "method": "POI substation reference (Brackettville town center proxy)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no activity",
+    "evidence": "3x3 Sentinel-2 grid (Jun 2026) around Brackettville center shows undisturbed ranch/scrubland; no panel rows, no graded land, no construction signatures anywhere in 9-tile sweep. Site candidate confidence is low — actual parcel could be elsewhere in Kinney County."
+  },
+  "cod_first_look": {
+    "reported": "2027-12-15",
+    "plausible": false,
+    "why": "FIS not approved after 3 years in queue; no IA; COD has drifted 3x already; new/small developer with no resolved projects — December 2027 COD requires an IA and NTP in the next few months, which is not credible given current milestone state"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Kinney County Reinvestment Zone No. 4 document (kinneyco.civicweb.net/document/84190) — confirms county engagement, retrieve abatement terms and parcel/acreage description which would pin the site",
+    "FIS status — if FIS is ever approved, project advances meaningfully; watch queue for fisApproved date",
+    "Developer identity — Longday Solar LLC, Corpus Christi TX, filed Apr 2023; no parent company found; deep scan should check TX SoS for organizer/registered agent to identify developer lineage",
+    "Re-image with correct site coords once parcel is located via abatement document"
+  ],
+  "turns_used": 28
+}

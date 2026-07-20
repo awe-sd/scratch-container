@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0175",
+  "project": "Concho Pearl Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.5138,
+    "lon": -100.5980,
+    "method": "POI substation — Twin Buttes Substation located via OpenStreetMap/Overpass; BESS expected within ~1 km",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery unavailable (401 — credentials not configured); no construction milestones in queue; no visual evidence possible this pass"
+  },
+  "cod_first_look": {
+    "reported": "2028-01-09",
+    "plausible": true,
+    "why": "IA signed Jul 2024; 3 prior COD slips (original 2025-07 → 2028-01); FIS not approved; ~18-month build window from IA is consistent with 2028 COD if construction starts 2026"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF retrieval — PUCT Interchange was 402/CAPTCHA blocked; IA signed 2024-07-22 so the filing exists; try authenticated PUCT session or alternate PUCT search URL to extract parties (developer identity), POI confirmation, and milestone schedule exhibit",
+    "Developer identity — zero web presence found; LLC registration search via TX SOS (search.sos.state.tx.us) to identify parent company / developer",
+    "Imagery at Twin Buttes Substation (31.5138, -100.5980) — configure CDSE credentials, run 3×3 chip grid, check for bare-ground pad or container rows adjacent to the substation",
+    "FIS status — FIS requested 2022-12-07 but not approved as of latest snapshot; understand whether FIS approval is gating construction start and what the current study status is"
+  ],
+  "turns_used": 28
+}

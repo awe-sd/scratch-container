@@ -1,0 +1,87 @@
+{
+  "inr": "26INR0425",
+  "project": "Twinwood Solar 1",
+  "researched": "2026-07-19",
+  "verdict": "real_early",
+  "verdict_confidence": "medium",
+  "verdict_note": "IA signed Nov 2025 and 6.9(1) achieved May 2026 confirm project passed key queue milestones. FIS not yet approved. No construction visible in Jan/Jun 2026 imagery. Zero public developer identity.",
+  "developer": {
+    "spv": "Twinwood Solar 1, LLC",
+    "parent": null,
+    "parent_evidence": null,
+    "epc": null,
+    "offtaker": null
+  },
+  "site": {
+    "lat": 29.80,
+    "lon": -95.94,
+    "method": "geographic_inference",
+    "confidence": "low",
+    "note": "Derived from OSM 'Twinwood Parkway' at ~29.74-29.76N, -95.93-95.96W in Fort Bend County + queue county = Waller → estimated centroid ~3 km north of parkway at Waller/Fort Bend border. No parcel data, no delivery pin, no IA confirmed.",
+    "cross_checks": []
+  },
+  "project_area": {
+    "acres": null,
+    "source": null,
+    "artifact": null,
+    "note": "Not obtained — CAD portals JS-only, IA not retrieved (PUCT 402 block)"
+  },
+  "construction": {
+    "stage": "no_activity",
+    "first_activity_seen": null,
+    "latest_frame": "2026-06-01",
+    "imagery_artifacts": [
+      "imagery/s2_2026-01-15_north.png",
+      "imagery/s2_2026-01-15_se.png",
+      "imagery/s2_2026-01-15_sw.png",
+      "imagery/s2_2026-01-15_nne.png",
+      "imagery/s2_2026-06-01_center.png"
+    ],
+    "note": "5 chips covering ~15 km swath of Waller/Fort Bend border. No solar grading, modules, or substation pad visible in any frame."
+  },
+  "cod": {
+    "reported": "2027-10-27",
+    "independent_estimate": "2028-Q3",
+    "drift_risk": "high",
+    "drift_note": "FIS not yet approved as of Jun 2026; no construction; ~16 months to reported COD. 358 MW solar ~1,500 acres typically requires 18-24 months from NTP to COD. Absent FIS approval and NTP, reported COD is not achievable. 1 prior drift already (5→10 mo, Oct 2024)."
+  },
+  "queue_milestones": {
+    "ia_signed": "2025-11-07",
+    "meets_691": "2026-05-26",
+    "fis_approved": null,
+    "meets_all_69": null
+  },
+  "contractual_schedule": {
+    "note": "IA exists (signed 2025-11-07, CenterPoint TSP) but PDF not retrieved — PUCT Interchange returned HTTP 402 on all access attempts",
+    "documents": [
+      {
+        "doc": "Interconnection Agreement (Twinwood Solar 1 / CenterPoint)",
+        "signed": "2025-11-07",
+        "financial_security": null,
+        "artifact": null,
+        "note": "Exists per ERCOT queue data (iaSigned=2025-11-07); PUCT Control Number not determined; PDF not retrieved"
+      }
+    ]
+  },
+  "land": {
+    "tenure": "unknown",
+    "abatements": [],
+    "cad_parcels": [],
+    "cad_note": "Waller CAD and Fort Bend CAD portals are JS-only; no parcel data retrieved for owner 'Twinwood Solar'"
+  },
+  "sources": [],
+  "negative_evidence": [
+    "PUCT Interchange: HTTP 402 on all URL variants — IA PDF not retrievable",
+    "gmaps.py: HTTP 429 rate-limit on all delivery-pin searches",
+    "Bing search: all queries return only PUCT interchange pages unrelated to Twinwood",
+    "Google search: blocked",
+    "TX Comptroller entity search: JS-only form, no results returned",
+    "TX SOS SOSDirect: paid account required ($1/query)",
+    "Waller County CAD: JS-only portal, no API",
+    "Fort Bend CAD: 404 on API endpoints",
+    "Waller County commissioner minutes: scanned PDFs, not text-searchable",
+    "Ch.313/JETI: no agreements found for Waller County or Twinwood Solar (normal for post-2022 project)",
+    "OSM: FULSHR and TWINWD substations not yet mapped (planned infrastructure)",
+    "CDSE imagery: 5 chips obtained then 401/403 rate-block; no solar activity in any frame"
+  ]
+}

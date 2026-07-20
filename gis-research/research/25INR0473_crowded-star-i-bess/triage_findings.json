@@ -1,0 +1,27 @@
+{
+  "inr": "25INR0473",
+  "project": "Crowded Star I BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-07-09",
+    "plausible": true,
+    "why": "IA signed 2025-12-01; ~18 months to COD is tight but within BESS build range; however 4 prior slips (24 months total drift) suggest further delay likely"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA filed PUCT Interchange Dec 2025 — retrieve PDF, extract POI/site map and milestone schedule (CEII may redact)",
+    "Open Sky substation (ERCOT node 68014) coords — unlock imagery; cdse.py sheet once pin established",
+    "Developer identity — 'Crowded Star I BESS LLC' unconfirmed; TX SOS entity search + any parent company",
+    "gmaps.py places retry when API quota resets — project + county + 'battery storage' queries"
+  ],
+  "turns_used": 22
+}

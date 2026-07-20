@@ -1,0 +1,37 @@
+{
+  "inr": "24INR0038",
+  "project": "Jaguar Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.575,
+    "lon": -96.956,
+    "method": "POI description (345kV Tradinghouse SES) + OSM anchor at Hallsburg TX (~2.5mi south)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth failed (401); no imagery retrieved. Companion BESS project at same POI is Phase I complete (2025-04-02) confirming site is active — but solar field itself unverified."
+  },
+  "cod_first_look": {
+    "reported": "2027-12-11",
+    "plausible": true,
+    "why": "4 COD slips over 3+ years (orig 2024-04-30); all 6.9 criteria met 2024-01-23; no construction started in queue; companion BESS Phase I complete 2025-04 at same site suggests developer is active and capable but solar lagging"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT IA document retrieval (docket 53385 or solar-specific docket) — PUCT Interchange blocked (402) during triage; extract milestone schedule exhibit",
+    "Pin/precise site coords — gmaps.py returned 429 during triage; re-run to confirm Tradinghouse site anchor and detect any grading/panel activity",
+    "CDSE imagery — credentials returned 401; fix auth and run 3x3 grid at 31.575/-96.956; BESS site active, check whether solar field prep visible",
+    "Chapter 313 Axtell ISD No. 1688 — plausible from T3 web data but not confirmed from primary TX Comptroller source; verify applicant name (solar vs BESS)",
+    "FIS status anomaly — IA signed 2022-09-12 without FIS approval; check whether FIS was waived or pending amendment in ERCOT queue filings",
+    "Road Use Agreement McLennan County Mar 2026 — solar-specific; suggests landowner/access work in progress; obtain minutes or agreement text"
+  ],
+  "turns_used": 28
+}

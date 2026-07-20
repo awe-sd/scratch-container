@@ -1,0 +1,26 @@
+{
+  "inr": "27INR0261",
+  "project": "Tipperary Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-03-15",
+    "plausible": true,
+    "why": "FIS not yet approved; no IA signed; 2028 COD requires FIS + IA + construction in ~18 months — tight but not impossible for a 60 MW project"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate AEP Live Oak 69kV substation coordinates to enable imagery — check EIA-860 or OpenStreetMap for substation pin",
+    "FIS approval status: FIS requested 2024-05-17 but not yet approved as of 2026-06 — query ERCOT FIS report or PUCT docket for study outcome",
+    "Developer identity unknown — no LLC registration, no news. Try TX SOS entity search for 'Tipperary Solar' or parent company lookup via ERCOT contact records"
+  ],
+  "turns_used": 22
+}

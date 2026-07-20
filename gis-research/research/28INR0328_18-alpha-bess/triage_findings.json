@@ -1,0 +1,35 @@
+{
+  "inr": "28INR0328",
+  "project": "18-ALPHA BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.488,
+    "lon": -97.165,
+    "method": "POI description — Valley View Substation 138kV (Bus 691), town centroid used",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "2026-06-01 chip: heavy cloud cover (~70% occlusion); visible rural farmland + highway; no gravel pad or BESS container rows in clear areas. No baseline chip available (2025/2024 returned 403)."
+  },
+  "cod_first_look": {
+    "reported": "2028-02-01",
+    "plausible": true,
+    "why": "COD held stable since entry (Apr 2025); FIS not yet approved so ~2.5yr runway is feasible if study proceeds normally, but no construction signal and no IA reduces confidence"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange: search for IA filing when portal access restored — no IA signed yet, worth monitoring",
+    "Imagery: retry 2025/2024 baseline chips (403 this pass) and try clear-sky date window to confirm no site activity",
+    "Developer identity: 'Alpha' naming convention may link to a portfolio developer — search TX SOS / SEC for '18-ALPHA BESS LLC' when accessible",
+    "FIS approval: project is pre-FIS; flag for re-triage once FIS approved milestone appears in queue"
+  ],
+  "turns_used": 22
+}

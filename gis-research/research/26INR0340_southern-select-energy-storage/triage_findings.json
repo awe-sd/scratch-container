@@ -1,0 +1,36 @@
+{
+  "inr": "26INR0340",
+  "project": "SOUTHERN SELECT ENERGY STORAGE",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.3897,
+    "lon": -94.9499,
+    "method": "POI_substation_OSM — Heights Substation (TNMP, OSM way 338794655) matched to bus TNHEIGHTS_1 near Texas City",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials unavailable; no imagery acquired. No pins or news to corroborate site activity."
+  },
+  "cod_first_look": {
+    "reported": "2027-05-24",
+    "plausible": true,
+    "why": "IA signed 2025-05-09, FIS approved 2026-04-20; ~11 months to COD is tight but feasible for BESS if construction underway; no construction milestones reported yet raises risk of further slip"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA exists (signed 2025-05-09) but PUCT Interchange portal was 402-blocked — retrieve IA PDF for milestone schedule exhibit to assess contractual COD vs. reported",
+    "Capacity halved from 404.3 MW to 204.76 MW (2025-10) — investigate reason: scope reduction, offtake change, or interconnection constraint",
+    "Site candidate at Heights Substation (29.3897, -94.9499) plausible but unverified — run imagery with valid CDSE credentials to check for BESS pad/containers",
+    "Zero web presence for LLC or developer — run TX SOS lookup and OpenCorporates to identify parent company and track record",
+    "No construction milestones reported as of 2026-06 snapshot; COD 11 months out — construction should be visible or imminent; imagery is the key signal"
+  ],
+  "turns_used": 28
+}

@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0627",
+  "project": "Champion Wind Repower",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.40,
+    "lon": -100.64,
+    "method": "web search — EJmap + The Wind Power listings for original Champion Wind Farm",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE 401 auth failure; no imagery obtained. T3 web results mention 'construction beginning 2024' but this is unverified in imagery."
+  },
+  "cod_first_look": {
+    "reported": "2026-08-01",
+    "plausible": true,
+    "why": "Approved for synchronization Jan 2025; RWE/Rivian PPA signed Oct 2024; 0.31 MW delta on existing ~127 MW farm suggests minor scope; Aug 2026 COD is a 3rd slip (from Dec 2024 → May 2025 → Aug 2026) but all milestones done"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Control No. 35077 — IA filing blocked (402) during triage; retrieve IA document for milestone schedule and parties",
+    "RWE Clean Energy developer confirmed — search rwe.com newsroom for Champion Wind Repower press releases, COD announcements, and PPA details with Rivian",
+    "Imagery at 32.40N -100.64W once CDSE creds restored — repower construction signal expected (new turbine bases, crane pads) vs existing turbine strings",
+    "JETI registry check for Nolan County — post-2022 repower may have JETI incentive application",
+    "Confirm LLC entity: 'Champion Wind Repower LLC' vs 'Champion Wind Farm LLC' (Airtricity origin) — Texas SOS search"
+  ],
+  "turns_used": 26
+}

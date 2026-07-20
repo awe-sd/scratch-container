@@ -1,0 +1,91 @@
+{
+ "inr": "24INR0188",
+ "generated": "2026-07-20",
+ "project": "Tehuacana Creek Solar",
+ "county": "Navarro",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 505.43,
+ "queue_cod": "2027-05-18",
+ "milestones": {
+  "screeningStudyComplete": "2022-03-10",
+  "fisApproved": "2026-06-16",
+  "iaSigned": "2024-11-25",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 7,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Solar Proponent LLC",
+    "detail": "plant=Tehuacana Creek Solar 836.8MW (L) Regulatory approvals pending. Not un @31.91406,-96.41347 planned=2026-10"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Tehuacana Creek Solar LLC",
+    "detail": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Tehuacana Creek "
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": [
+   {
+    "program": "Ch.313",
+    "applicant": "Tehuacana Creek Solar, LLC",
+    "district": "Corsicana ISD",
+    "score": 21
+   },
+   {
+    "program": "Ch.313",
+    "applicant": "Tehuacana Creek Solar, LLC",
+    "district": "Wortham ISD",
+    "score": 21
+   }
+  ]
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 34,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 14,
+   "detail": "7 COD slips"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 50.9,
+  "reason": "reality signal"
+ }
+}

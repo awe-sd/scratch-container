@@ -1,0 +1,101 @@
+{
+  "inr": "25INR0046",
+  "project": "Blue Skies BESS",
+  "research_date": "2026-07-19",
+  "verdict": "real_early",
+  "construction_stage": "unclear",
+  "site": {
+    "lat": 31.8750,
+    "lon": -96.8750,
+    "method": "abatement site map + Ash Creek parcel estimate; project star on Hill County abatement map (p.2) placed NW of Hubbard TX; parcel 121422 in eastern Hill County near County Road 2423 per abatement doc; medium confidence",
+    "confidence": "medium",
+    "artifact": "sources/2026-07-19_hillcounty_hubbard-energy-storage-II-30day.pdf"
+  },
+  "project_area": {
+    "acres": 10,
+    "source": "Hill County Commissioners Court tax abatement notice Aug 2024, p.1: 'Approximately 10 acres of land located in Eastern Hill County within Malone ISD'",
+    "artifact": "sources/2026-07-19_hillcounty_hubbard-energy-storage-II-30day.pdf"
+  },
+  "ownership": {
+    "spv_ercot": "ACTX BESS Project LLC",
+    "spv_county": "Hubbard Energy Storage II, LLC",
+    "developer": "NextEra Energy Resources",
+    "developer_evidence": "700 Universe Blvd, Juno Beach FL 33408 = NextEra Energy Resources HQ; this address appears as applicant address in Hill County abatement filing",
+    "epc": null,
+    "offtaker": null
+  },
+  "financing": {
+    "status": "not confirmed publicly",
+    "capital_investment_usd": 115000000,
+    "source": "Hill County abatement notice: 'Capital investment is estimated to be over $115,000,000'"
+  },
+  "land": {
+    "tenure": "leased",
+    "parcels": ["121422"],
+    "parcel_description": "PT OF NAVARRO CO SCH LAND A-673 TR 1 152.00 AC",
+    "abatement": {
+      "type": "Ch312 Tax Abatement",
+      "zone": "Hill County Reinvestment Zone 018",
+      "isd": "Malone ISD",
+      "notice_date": "2026-08-27",
+      "artifact": "sources/2026-07-19_hillcounty_hubbard-energy-storage-II-30day.pdf"
+    }
+  },
+  "interconnection": {
+    "ia_signed": "2024-06-20",
+    "poi": "68090 SAM SW 345kV",
+    "tsp": "Lone Star Transmission (SAM Switch on Central A-to-Navarro 345kV CREZ line, Hill County)",
+    "tsp_source": "PUCT Docket 51016 (SAM Switch-to-Hubbard Wind 345kV line in Hill County)",
+    "fis_approved": null,
+    "fis_requested": "2022-04-15",
+    "meets_691": "2025-02-12"
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "IA signed 2024-06-20 (ERCOT queue data); full document not retrieved — PUCT search for all LLC name variants returned 0 hits",
+        "signed": "2024-06-20",
+        "financial_security": null,
+        "artifact": null
+      }
+    ]
+  },
+  "cod": {
+    "reported": "2028-04-01",
+    "independent_estimate": "2028-Q3",
+    "drift_risk": "high",
+    "drift_reason": "4 COD slips over 4 years (2024-05 → 2025-03 → 2027-12 → 2028-04); FIS still not approved despite FIS requested 2022; 'Meets all 6.9' not yet achieved"
+  },
+  "imagery": {
+    "stage": "unclear",
+    "latest_chip": "imagery/s2_2026-07-01_structure_2km.png",
+    "observation": "2km chip at candidate location shows dark rectangular blocks in regular rows consistent with BESS container array; coordinates of chip not confirmed against parcel; no clear graded pad boundary visible at this resolution",
+    "first_activity_seen": null
+  },
+  "cod_drift_history": [
+    {"cod": "2024-05-15", "held_from": "2022-04-01", "until": "2023-06-01"},
+    {"cod": "2025-03-15", "held_from": "2023-07-01", "until": "2024-02-01"},
+    {"cod": "2027-12-31", "held_from": "2024-03-01", "until": "2026-02-01"},
+    {"cod": "2028-04-01", "held_from": "2026-03-01", "until": "2026-06-01"}
+  ],
+  "sources": [
+    {
+      "file": "sources/2026-07-19_hillcounty_hubbard-energy-storage-II-30day.pdf",
+      "type": "county_abatement_notice",
+      "description": "Hill County Commissioners Court 30-day notice for Hubbard Energy Storage II LLC tax abatement, Aug 2024 — names NextEra address, parcel 121422, 10 acres, $115M investment"
+    },
+    {
+      "file": "sources/2026-07-19_puct_51016-2_lonestartx-samswitch-ccn.pdf",
+      "type": "puct_ccn",
+      "description": "PUCT Docket 51016 — Lone Star Transmission SAM Switch 345kV line in Hill County; confirms SAM Switch location near Hubbard TX"
+    }
+  ],
+  "negative_evidence": [
+    "PUCT Interchange: 0 IA filings under Blue Skies BESS, ACTX BESS, Hubbard Energy Storage, Ash Creek BESS",
+    "TX COA: No 'Blue Skies BESS LLC' registration; 'ACTX BESS Project LLC' registered zip 85254 Scottsdale AZ",
+    "Web/news: 0 press releases or news articles for ACTX BESS or Blue Skies BESS",
+    "SEC EDGAR: 0 hits for Blue Skies BESS",
+    "Hill CAD direct API: unavailable (session-auth required); parcel 121422 owner not confirmed independently",
+    "FIS approval: blank in 51 monthly snapshots through Jun 2026"
+  ]
+}

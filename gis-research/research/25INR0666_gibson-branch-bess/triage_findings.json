@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0666",
+  "project": "GIBSON BRANCH BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.08451,
+    "lon": -98.18371,
+    "method": "POI substation name matched to Mapcarta coordinates for Lampasas Substation 138kV",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE satellite imagery auth failed (401); no chips fetched"
+  },
+  "cod_first_look": {
+    "reported": "2028-01-15",
+    "plausible": true,
+    "why": "COD drifted once (from 2025-12-20 to 2028-01-15 in Aug 2024); FIS not yet approved as of Jun 2026; no IA; 2028 is achievable if IA executes in late 2026 given 12-18 month BESS build but remains speculative"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange search for IA filing once portal is accessible — no IA is the biggest risk factor",
+    "Identify parent developer behind the Delaware LLC (800 N King St is a registered-agent address, not an operating company) — critical for assessing developer track record",
+    "CDSE imagery at Lampasas Substation coords once CDSE credentials are refreshed — BESS site prep may be visible",
+    "Lampasas Dispatch Record article on 4 county BESS projects — verify which developer(s) behind Gibson Branch vs Thomas Cameron (NTP holder)"
+  ],
+  "turns_used": 22
+}

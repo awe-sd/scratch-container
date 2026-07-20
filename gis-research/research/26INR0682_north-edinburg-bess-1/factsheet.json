@@ -1,0 +1,120 @@
+{
+ "inr": "26INR0682",
+ "generated": "2026-07-20",
+ "project": "North Edinburg BESS 1",
+ "county": "Hidalgo",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 9.99,
+ "queue_cod": "2026-08-07",
+ "milestones": {
+  "screeningStudyComplete": null,
+  "fisApproved": null,
+  "iaSigned": "2025-06-10",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 6,
+ "eia": {
+  "status": "ok",
+  "plant_id": 69253,
+  "entity": "Edinburg ESS Assets LLC",
+  "planned_cod": "2026-06",
+  "cod_delta_quarters": -0.7,
+  "dropped_scope": null,
+  "coords": [
+   26.34719,
+   -98.18844
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Edinburg ESS Assets LLC",
+    "detail": "plant=North Edinburg BESS 1 10.0MW (V) Under construction, more than 50 per @26.34719,-98.18844 planned=2026-06"
+   },
+   {
+    "source": "eia860m/Planned",
+    "entity": "Marubeni Power International, Inc.",
+    "detail": "plant=Palmview BESS 9.9MW (V) Under construction, more than 50 per @26.23833,-98.36946 planned=2026-06"
+   },
+   {
+    "source": "eia860m/Planned",
+    "entity": "Marubeni Power International, Inc.",
+    "detail": "plant=SE Edinburg BESS 9.9MW (V) Under construction, more than 50 per @26.28827,-98.14674 planned=2026-06"
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "HEN Infrastructure, L.L.C.",
+    "detail": "plant=Val Verde 9.9MW (OP) Operating @26.23415,-98.07985 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "SMT Mercedes LLC",
+    "detail": "plant=SMT Mercedes LLC 10.0MW (OP) Operating @26.2305,-97.91256 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "SMT Mission LLC",
+    "detail": "plant=SMT Mission LLC 10.0MW (OP) Operating @26.18943,-98.32293 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "SMT Alamo LLC",
+    "detail": "plant=SMT Alamo LLC 10.0MW (OP) Operating @26.23068,-98.11404 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "SMT Elsa LLC",
+    "detail": "plant=SMT Elsa LLC 10.0MW (OP) Operating @26.2961,-98.0096 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Prologis Logistics Services Incorporated BESS",
+    "detail": "plant=Citrus City BESS 9.9MW (OP) Operating @26.32162,-98.35149 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Regis Monte Cristo LLC",
+    "detail": "plant=Regis Monte Cristo LLC 9.9MW (OP) Operating @26.36037,-98.31517 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "SMT Mission II LLC",
+    "detail": "plant=SME Mission II BESS 10.0MW (OP) Operating @26.16812,-98.32448 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_under_construction",
+  "financial_security_posted"
+ ],
+ "paper_score": 22,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 12,
+   "detail": "6 COD slips"
+  },
+  {
+   "factor": "no_verified_ia",
+   "points": 10,
+   "detail": "iaSigned claimed but no IA found on disk or in the docket join table"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 9.99,
+  "reason": "reality signal"
+ }
+}

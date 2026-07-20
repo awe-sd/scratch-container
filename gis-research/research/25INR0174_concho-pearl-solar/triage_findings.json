@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0174",
+  "project": "Concho Pearl Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.5174,
+    "lon": -99.8065,
+    "method": "POI infrastructure: Amos Creek substation near Paint Rock TX (LCRA TSC 345kV T424/T551)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown — imagery blocked (CDSE 401)",
+    "evidence": "EPC signed 2026-01-14 with The Ryan Company; target completion Oct 2027; no satellite confirmation obtained"
+  },
+  "cod_first_look": {
+    "reported": "2028-01-09",
+    "plausible": true,
+    "why": "EPC signed Jan 2026 targeting Oct 2027; IA signed Jul 2024; 3 prior COD slips but EPC execution is a strong real-execution signal — 2028 COD buffer is consistent with Oct 2027 completion + energization lag"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Fetch PUCT 35077/1888 IA PDF with authenticated session — extract POI exhibit, milestone schedule, and parties page",
+    "Obtain CDSE imagery with valid creds — center 31.5174/-99.8065, compare current vs 2023-2024 baseline to confirm/deny ground disturbance",
+    "Retrieve Ch.312 abatement agreement from Concho County Commissioners Court (Nov 2025 hearing) — extract appraised value, schedule, and acreage to confirm site boundaries",
+    "Verify Concord New Energy Group (0182.HK) HK exchange filings for capex commitments and project-level financing disclosures",
+    "Linked project: 25INR0175 (Concho Pearl Storage, 162.4 MW BESS) shares POI and IA — joint site, may share abatement"
+  ],
+  "turns_used": 25
+}

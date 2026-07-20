@@ -1,0 +1,70 @@
+{
+ "inr": "15INR0064b",
+ "generated": "2026-07-20",
+ "project": "Harald (BearKat Wind B)",
+ "county": "Glasscock",
+ "fuel": "WIN",
+ "technology": "WT",
+ "capacity_mw": 162.1,
+ "queue_cod": "2026-12-03",
+ "milestones": {
+  "screeningStudyComplete": "2014-01-27",
+  "fisApproved": "2017-09-27",
+  "iaSigned": "2018-05-30",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 62,
+ "eia": {
+  "status": "ok",
+  "plant_id": 63342,
+  "entity": "McCrae Wind Energy II, LLC",
+  "planned_cod": "2026-06",
+  "cod_delta_quarters": -2.0,
+  "dropped_scope": null,
+  "coords": [
+   31.75404,
+   -101.6752
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "McCrae Wind Energy II, LLC",
+    "detail": "plant=McCrae Wind Energy II 162.1MW (TS) Construction complete, but not yet  @31.75404,-101.6752 planned=2026-06"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "faa",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 30,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 20,
+   "detail": "62 COD slips"
+  },
+  {
+   "factor": "no_verified_ia",
+   "points": 10,
+   "detail": "iaSigned claimed but no IA found on disk or in the docket join table"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 36.26,
+  "reason": "reality signal"
+ }
+}

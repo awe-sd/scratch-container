@@ -1,0 +1,36 @@
+{
+  "inr": "26INR0215",
+  "project": "JackGard BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.278,
+    "lon": -98.107,
+    "method": "POI substation — Jacksboro 345kV, OSM node 1824477237, ~5 mi NE of Jacksboro TX along SH-59",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery 401 auth failure; no contact sheet produced; no pins; no news with construction references"
+  },
+  "cod_first_look": {
+    "reported": "2028-04-17",
+    "plausible": true,
+    "why": "IA signed Jun 2025 (Oncor, PUCT 35077); ~2 yr from IA to COD is tight-but-possible for BESS; 5 prior COD slips over 2 years are a caution flag"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Control No. 35077 — retrieve IA PDF: confirm parties, POI, milestone schedule (not in this session due to 402 on all interchange.puc.texas.gov paths)",
+    "Queue iaSigned gap — queue through 2026-06-01 shows no iaSigned date despite reported IA execution 2025-06-19; verify whether queue data lag or different entity",
+    "Ch.312 abatement — confirm whether 'Jack County Energy Storage, LLC' (reinvestment zone approved 2025-06-09, ~$165M) is same project as JackGard BESS LLC or a different BESS",
+    "CDSE imagery — reauthenticate and pull current + 2023-era baseline chips at Jacksboro 345kV substation (33.278, -98.107, buffer 1-2 km) to check pad prep or container rows",
+    "Parent/sponsor identification — Austin address (5900 Balcones Dr) is a registered-agent hub; trace ownership of JackGard BESS LLC via TX SOS or OpenCorporates"
+  ],
+  "turns_used": 22
+}

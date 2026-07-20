@@ -1,0 +1,92 @@
+{
+ "inr": "22INR0202",
+ "generated": "2026-07-20",
+ "project": "Delilah Solar 1",
+ "county": "Lamar",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 300.0,
+ "queue_cod": "2026-09-30",
+ "milestones": {
+  "screeningStudyComplete": "2019-01-03",
+  "fisApproved": "2020-06-09",
+  "iaSigned": "2020-12-22",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 12,
+ "eia": {
+  "status": "ambiguous",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "puct-index",
+    "entity": "Delilah Solar 1",
+    "detail": "Interconnection Agreement between Oncor Electric Delivery Company LLC and Delilah Solar 1"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Delilah Solar Energy LLC",
+    "detail": "Amendment No. 2 to the Standard Generation Interconnection Agreement between Oncor Electric Delivery Company L"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": [
+   {
+    "program": "Ch.313",
+    "applicant": "Delilah Solar Energy, LLC",
+    "district": "Prairiland ISD",
+    "score": 13
+   },
+   {
+    "program": "Ch.313",
+    "applicant": "Delilah Solar Energy II, LLC",
+    "district": "Rivercrest ISD",
+    "score": 13
+   },
+   {
+    "program": "Ch.313",
+    "applicant": "Delilah Solar Energy, LLC",
+    "district": "Rivercrest ISD",
+    "score": 13
+   }
+  ]
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 3,
+  "join_items": 3
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 30,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 20,
+   "detail": "12 COD slips"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 126.58,
+  "reason": "reality signal"
+ }
+}

@@ -1,0 +1,105 @@
+{
+  "inr": "23INR0637",
+  "project": "Goodnight Wind II",
+  "researched_at": "2026-07-19",
+  "site": {
+    "lat": 34.937162,
+    "lon": -101.4339,
+    "method": "EIA Form 860M (May 2026) — primary regulatory filing by project owner FGE Goodnight II LLC",
+    "confidence": "high",
+    "notes": "EIA Plant ID 69403. Sister project Goodnight I (Plant 59246) at 35.093889, -101.3261 — operating April 2024. Phase II coordinate is at Palo Duro Canyon escarpment edge; turbine array likely extends north onto flat plateau.",
+    "artifact": "sources/2026-07-19_eia860m_may2026_goodnight-wind-ii.xlsx"
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "FGE Goodnight II, LLC",
+      "relation": "SPV",
+      "evidence": "Ch.313 Amendment 3 (Comptroller App 1507) names FGE Goodnight II LLC, TX Taxpayer ID 32064194957",
+      "artifact": "sources/2026-07-19_comptroller_ch313_1507-fge-goodnight-ii-amend3.pdf"
+    },
+    {
+      "entity": "FGE Power LLC",
+      "relation": "original_developer",
+      "evidence": "PR Newswire 2022-07-18: FGE Power LLC (Austin TX, Emerson G. Farrell Founder/Chairman) sold 100% ownership to Omega Energia",
+      "artifact": "sources/2026-07-19_prnewswire_fge-goodnight-sale-to-omega.html"
+    },
+    {
+      "entity": "Omega Energia / Serena Energia",
+      "relation": "current_owner",
+      "evidence": "Acquired 100% July 18 2022. Omega rebranded as Serena Energia (srna.co). Contacts in Amendment 3: Giulia Ribeiro (Legal, Serena) giulia.ribeiro@srna.co; Andrea Sztajn (CFO, Serena)",
+      "artifact": "sources/2026-07-19_prnewswire_fge-goodnight-sale-to-omega.html"
+    }
+  ],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Armstrong CAD owner search portal blocked (JS-driven; direct URL attempts returned 404). Abatement agreement confirms project footprint is in Armstrong County but no parcel IDs or lease/deed records retrieved."
+  },
+  "project_area": {
+    "acres": null,
+    "source": "Not retrieved — Armstrong CAD portal inaccessible; original Ch.313 agreement (App 1507) returned HTTP 403 Access Denied",
+    "artifact": null
+  },
+  "construction": {
+    "verdict": "clearing",
+    "first_activity_seen": null,
+    "evidence": [
+      "EIA Form 860M (May 2026): Status '(U) Under construction, less than or equal to 50 percent complete' — primary regulatory filing",
+      "sources/2026-07-19_eia860m_may2026_goodnight-wind-ii.xlsx",
+      "imagery/s2_2026-06-15.png — Phase II EIA coordinate at canyon edge; flat plateau terrain visible to north but no turbine pads clearly visible at 6km resolution in this frame",
+      "CDSE auth failed mid-session (HTTP 401) — additional plateau chips not obtained"
+    ]
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Ch.313 Agreement App 1507 — Original (Claude ISD / FGE Goodnight II LLC)",
+        "signed": "2020-12-10",
+        "financial_security": null,
+        "artifact": null,
+        "notes": "Original agreement PDF returned HTTP 403 Access Denied — terms not readable"
+      },
+      {
+        "doc": "Amendment 1 to App 1507",
+        "signed": "2023-03-20",
+        "financial_security": null,
+        "artifact": null,
+        "notes": "Not retrieved separately"
+      },
+      {
+        "doc": "Amendment 2 to App 1507",
+        "signed": "2024-10-21",
+        "financial_security": null,
+        "artifact": null,
+        "notes": "Not retrieved separately"
+      },
+      {
+        "doc": "Amendment 3 to App 1507 (Claude ISD / FGE Goodnight II LLC)",
+        "signed": "2026-03-24",
+        "financial_security": null,
+        "artifact": "sources/2026-07-19_comptroller_ch313_1507-fge-goodnight-ii-amend3.pdf",
+        "notes": "Pushes Tax Limitation Period START to Jan 1 2028 (first complete year after commercial operations). Tax limitation: 2028-2037 ($20M appraisal cap). Implies COD in 2027."
+      }
+    ],
+    "key_milestone": "Tax Limitation Period starts January 1, 2028 → commercial operations must precede this date, implying 2027 COD",
+    "ia_date_note": "IA signed date in ERCOT queue shows 2019-08-18 — predates 23INR0637 by ~4 years. Triage flagged this anomaly. Not resolved — possibly legacy/grandfathered IA from predecessor filing or data artifact."
+  },
+  "cod_assessment": {
+    "reported": "2027-06-06",
+    "independent": "2027-Q3",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "7 COD slips over 3.5 years (2023-12-30 → 2027-06-06); consistent rightward drift pattern",
+      "Ch.313 Amendment 3 (March 2026) extended Tax Limitation Period start to Jan 1 2028 — owner themselves de-risked a 2028 start, signaling schedule is tight",
+      "EIA 860M May 2026: 'Under construction ≤50% complete' for Planned Operation May 2027 — aggressive 12-month completion timeline",
+      "FIS approved only 2026-06-15; no construction start/end milestones in ERCOT queue as of June 2026",
+      "Sister Phase I (Goodnight I) needed 2+ years from queue entry to COD (April 2024 operating); Phase II on compressed timeline",
+      "No procurement announcements, turbine delivery news, or EPC contract visible as of research date",
+      "sources/2026-07-19_comptroller_ch313_1507-fge-goodnight-ii-amend3.pdf",
+      "sources/2026-07-19_eia860m_may2026_goodnight-wind-ii.xlsx"
+    ]
+  },
+  "real_project_verdict": "real_active",
+  "negative_searches": 12,
+  "banned_source_violations": 0
+}

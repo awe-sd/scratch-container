@@ -1,0 +1,28 @@
+{
+  "inr": "24INR0302",
+  "project": "Pintail Pass BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-07-24",
+    "plausible": true,
+    "why": "Energization approved 2026-02-10 + sync approved 2026-03-25 — all ERCOT late-stage gates cleared; COD is 6 days out from triage; 9 prior slips but trajectory has accelerated in 2026"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Geolocate ANGSTROM 345kV substation (bus 8249, San Patricio County) — needed for imagery; try ERCOT NOM data, AEP Texas transmission maps, or TCEQ/PUCT CCN filings",
+    "Retrieve IA document from PUCT interchange (iaSigned=2023-05-16 in queue record) — search by Pintail Pass BESS LLC + date range 2023-04-01 to 2023-06-30",
+    "Identify developer/sponsor — no name surfaced in web sweep; try TX SOS entity search for 'Pintail Pass BESS' + check ACP/SEIA project databases",
+    "Run satellite imagery once substation geolocated — BESS is compact, Angstrom is a 345kV node likely near industrial/coastal load center (Ingleside LNG corridor likely)",
+    "Verify COD slip pattern — 9 slips from 2024-06-01 to 2026-07-24; project is in final approach with sync approval but no commercial operation yet; 6-day window is extremely tight"
+  ],
+  "turns_used": 32
+}

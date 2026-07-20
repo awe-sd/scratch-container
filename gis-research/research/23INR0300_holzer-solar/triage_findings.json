@@ -1,0 +1,27 @@
+{
+  "inr": "23INR0300",
+  "project": "Holzer Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-11-16",
+    "plausible": true,
+    "why": "Approved for energization 2026-06-11; no construction dates logged but all pre-construction milestones met (IA 2022, FIS 2025, all 6.9 met 2025-10); 12 prior COD slips but trajectory is now approaching final gates"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF not retrieved (PUCT portal 402-blocked) — try PUCT Interchange via authenticated session or direct docket search for parties/schedule exhibit",
+    "Developer Greater Bryant G Solar LLC has no public web presence — Texas SOS entity lookup to confirm registration, parent company, and principals",
+    "Sloan Switch 138kV substation coordinates unknown — geolocate via ERCOT transmission maps or EIA-860 to anchor imagery search",
+    "No construction dates reported in queue despite energization approval — imagery at confirmed site could confirm pre-energization activity or flag paper-project risk"
+  ],
+  "turns_used": 22
+}

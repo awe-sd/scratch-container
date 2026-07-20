@@ -1,0 +1,79 @@
+{
+ "inr": "22INR0262",
+ "generated": "2026-07-20",
+ "project": "Sequoia II Solar",
+ "county": "Callahan",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 417.47,
+ "queue_cod": "2026-11-21",
+ "milestones": {
+  "screeningStudyComplete": "2020-04-08",
+  "fisApproved": "2026-03-16",
+  "iaSigned": "2023-08-29",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 4,
+ "eia": {
+  "status": "ok",
+  "plant_id": 69272,
+  "entity": "Enbridge Solar (Sequoia II), LLC",
+  "planned_cod": "2026-12",
+  "cod_delta_quarters": 0.3,
+  "dropped_scope": null,
+  "coords": [
+   32.34108,
+   -99.17308
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Enbridge Solar (Sequoia II), LLC",
+    "detail": "plant=Enbridge Solar (Sequoia II) 415.0MW (V) Under construction, more than 50 per @32.34108,-99.17308 planned=2026-12"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": [
+   {
+    "program": "Ch.313",
+    "applicant": "Enbridge Solar (Sequoia I), LLC f/k/a Enbridge Solar (Endorado), LLC f/k/a Eldorado Solar Project, LLC",
+    "district": "Baird ISD",
+    "score": 7
+   }
+  ]
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "eia_under_construction",
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 18,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 8,
+   "detail": "4 COD slips"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 102.32,
+  "reason": "reality signal"
+ }
+}

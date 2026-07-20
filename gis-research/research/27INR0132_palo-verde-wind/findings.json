@@ -1,0 +1,139 @@
+{
+  "inr": "27INR0132",
+  "project": "Palo Verde Wind",
+  "researched_at": "2026-07-19",
+  "real_project_verdict": "real_early",
+  "confidence": "high",
+  "verdict_basis": "Signed LGIA (ERCOT SGIA) between AEP Texas and RWE Clean Energy Development LLC dated 2025-12-19 with $32M financial security; 67 Vestas V136 turbines specified; pre-construction confirmed by imagery.",
+
+  "site": {
+    "lat": 28.099,
+    "lon": -97.437,
+    "method": "IA Exhibit C: 'approximately 6 miles NE of Sinton, TX' — NE bearing from Sinton (28.038°N, -97.507°W)",
+    "confidence": "medium",
+    "notes": "Canopy 345kV Station (new AEP tap, not in OSM) is POI. FAA OE portal down (gov shutdown); turbine pad coordinates not retrieved. Steel Dynamics/Sinton 345kV node (28.057°N, -97.446°W) likely near tap."
+  },
+
+  "llc_chain": [
+    {
+      "entity": "Palo Verde Wind, LLC (SPV — unverified; IA party = RWE Clean Energy Development, LLC)",
+      "relation": "likely_SPV",
+      "evidence": "identity packet; SPV name not confirmed in IA"
+    },
+    {
+      "entity": "RWE Clean Energy Development, LLC",
+      "relation": "developer_owner_IA_counterparty",
+      "evidence": "sources/2026-01-15_puct35077_palo-verde-wind-IA.pdf; address 1401 E 6th St Suite 400, Austin TX 78702; signatory Piotr Wiczkowski"
+    },
+    {
+      "entity": "RWE AG",
+      "relation": "ultimate_parent_implied",
+      "evidence": "public knowledge; not independently verified in this research"
+    }
+  ],
+
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "San Patricio County CAD portal not accessible; no abatement, no easement filings retrieved. Likely leased ranchland (typical for South TX wind) but not confirmed."
+  },
+
+  "poi": {
+    "description": "Palo Verde Substation (Generator, 345/34.5kV) → ~0.25 mile 345kV GIF → Canopy 345kV Station (new AEP tap) on Grissom–Lon C Hill 345kV line",
+    "poi_substation": "Canopy 345kV Station (new AEP build)",
+    "upstream_substations": ["Grissom 345kV (bus 8624)", "Lon C Hill 345kV (bus 8455)"],
+    "lon_hill_osm_coords": "27.8439°N, -97.6156°W",
+    "source": "sources/2026-01-15_puct35077_palo-verde-wind-IA.pdf Exhibit C and C-1"
+  },
+
+  "project_area": {
+    "acres": null,
+    "source": "not found — no CAD parcels, no abatement application retrieved",
+    "artifact": null,
+    "notes": "67 Vestas V136 turbines; typical 297 MW wind = 15,000–25,000 acres lease footprint"
+  },
+
+  "turbines": {
+    "count": 67,
+    "model": "Vestas V136",
+    "mw_each": 4.44,
+    "total_mw_bus": 297.5,
+    "total_mw_poi": 296.7,
+    "source": "sources/2026-01-15_puct35077_palo-verde-wind-IA.pdf Exhibit C"
+  },
+
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "ERCOT Standard Generation Interconnection Agreement (original)",
+        "signed": "2025-12-19",
+        "filed_puct": "2026-01-15",
+        "financial_security": "$32,000,000 total ($20M initial within 10 biz days of TSP execution + $12M within 1 year of execution date)",
+        "artifact": "sources/2026-01-15_puct35077_palo-verde-wind-IA.pdf"
+      }
+    ],
+    "schedule_clock": "43 months from first security installment posting date",
+    "schedule_details": {
+      "in_service_date": "36 months from first security installment",
+      "trial_operation": "37 months from first security installment",
+      "commercial_operation": "43 months from first security installment"
+    },
+    "first_security_estimate": "~2026-01 (IA executed 2025-12-19; first $20M due within 10 biz days of TSP execution)",
+    "contractual_cod_estimate": "~2029-Q3 (43 months from ~Jan 2026)",
+    "note": "Contractual schedule is a maximum framing. Reported COD 2027-09-02 is 24 months inside this maximum — achievable only with very aggressive execution."
+  },
+
+  "construction": {
+    "verdict": "no_activity",
+    "first_activity_seen": null,
+    "imagery_date": "2026-07-01",
+    "chips_reviewed": 14,
+    "area_km2_covered": "~200 km² search grid (±0.15° lat/lon from ~28.099°N, -97.437°W)",
+    "observation": "All chips: undisturbed agricultural/ranch land. No grading, no turbine pads, no access roads, no laydown yards.",
+    "verdict_note": "Pre-construction consistent with IA signed 7 months ago."
+  },
+
+  "cod_assessment": {
+    "reported": "2027-09-02",
+    "independent": "2028-Q4 to 2029-Q3",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "No construction activity visible in Jul 2026 imagery — zero physical progress 7 months post-IA-signing",
+      "FIS not yet approved as of Jun 2026 queue snapshot — atypical gate order; grid deliverability uncertainty remains",
+      "Contractual schedule baseline (43 months from security posting ~Jan 2026) = ~Aug 2029 maximum",
+      "Reported COD 2027-09-02 requires construction mobilization by Q3 2026 at latest for 67-turbine project — no evidence of imminent start",
+      "RWE is active ERCOT developer (Papalote Creek Wind Farm nearby); financial capacity not in doubt",
+      "Independent estimate: best-case 2028-Q4 (RWE executes fast post-mobilization); base case 2029-Q2–Q3",
+      "Drift risk HIGH: no construction, FIS pending, reported COD 24 months inside contractual maximum, 0 queue COD changes mask real schedule pressure"
+    ]
+  },
+
+  "queue_history": {
+    "snapshots": 27,
+    "first_snapshot": "2024-04-01",
+    "cod_changes": 0,
+    "ia_signed": "2025-12-19",
+    "fis_approved": null,
+    "capacity_changes": [
+      {"mw": 301.5, "from": "2024-04-01", "to": "2025-10-01"},
+      {"mw": 297.5, "from": "2025-11-01", "to": "2026-06-01"}
+    ]
+  },
+
+  "negative_searches": 18,
+  "banned_source_violations": 0,
+
+  "negative_evidence": [
+    "FAA OE/AAA portal down (government shutdown) — turbine coordinates not retrieved",
+    "TX Comptroller entity search redirects to JS-only page — no scrape possible",
+    "PUCT Interchange parameterized searches return 402; document retrieved via direct item URL",
+    "San Patricio County CAD portal inaccessible — no parcel records retrieved",
+    "No abatement/JETI filing found (expected: 2024-vintage project, post-2022 JETI era)",
+    "No developer press releases or news articles found",
+    "No Google Places pin for Palo Verde Wind site (pre-construction expected)",
+    "Canopy 345kV Station not in OSM or HIFLD (new AEP build)",
+    "Exact turbine pad coordinates not determined (FAA portal down)",
+    "SEC EDGAR: 0 filings mentioning 'Palo Verde Wind' (private LLC, expected)",
+    "Overpass/OSM: no Grissom 345kV substation in San Patricio area (likely CEII-protected designation or absent from OSM)",
+    "RWE project pages: no Palo Verde Wind entry on RWE.com (pre-announcement stage)"
+  ]
+}

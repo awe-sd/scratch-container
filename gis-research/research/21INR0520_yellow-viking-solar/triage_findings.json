@@ -1,0 +1,35 @@
+{
+  "inr": "21INR0520",
+  "project": "Yellow Viking Solar",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.298,
+    "lon": -97.790,
+    "method": "POI anchor (Comanche Peak 345kV tap per queue data)",
+    "confidence": "low — interconnection point, not field center; actual site likely south near Glen Rose"
+  },
+  "construction": {
+    "verdict": "no activity detected",
+    "evidence": "3x3 Sentinel-2 contact sheet (2026-07-01) around POI shows no panel arrays or grading; consistent with pre-construction status per GEM Wiki and no construction milestones in ERCOT queue"
+  },
+  "cod_first_look": {
+    "reported": "2027-07-13",
+    "plausible": true,
+    "why": "$689M construction-to-term financing closed Feb 2026; 17 months to COD is tight but feasible if construction starts soon; 3x prior COD slips do create doubt"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate actual site parcel (Somervell CAD or Lydian Energy press release map) and re-run imagery over correct coordinates — POI-anchored grid likely missed the field",
+    "Retrieve PUCT Interchange IA via alternate party names: Lydian Energy, Yellow Viking Development One LLC, European Energy",
+    "Retrieve hcnews.com abatement termination article to understand reason (voluntary withdrawal vs. default) and timeline relative to Lydian acquisition",
+    "Confirm financing close date (Feb 2026) vs. construction notice to proceed — check if EPC contract / NTP announcement surfaced after financing"
+  ],
+  "turns_used": 28
+}

@@ -1,0 +1,134 @@
+{
+  "inr": "24INR0038",
+  "project": "Jaguar Solar",
+  "research_date": "2026-07-19",
+  "stage": "deep",
+
+  "site": {
+    "lat": 31.5754,
+    "lon": -96.9636,
+    "method": "Tradinghouse Substation OSM Way 172472755 node 1833781546 — confirmed coordinates",
+    "confidence": "medium",
+    "notes": "Tradinghouse Substation confirmed at 31.5754137, -96.9636137 (OSM API verified). Ch.313 places project in Axtell ISD (northeast of Waco ~31.66N, 97.13W) which is a different McLennan County location. Axtell ISD coordinates would shift estimate north/west. No direct site address found. The tap is on the 345kV line between Tradinghouse SES (station 13405) and Sam Switch (station 68090) — project site is somewhere along that corridor.",
+    "alternate_estimate": {
+      "lat": 31.663,
+      "lon": -97.135,
+      "method": "Axtell TX centroid (Axtell ISD location)",
+      "confidence": "low",
+      "notes": "Axtell TX is northeast of Waco; Ch.313 applicant is Axtell ISD; Tomas de la Vega survey location unknown precisely"
+    }
+  },
+
+  "infrastructure": {
+    "tradinghouse_substation": {
+      "osm_way": "W172472755",
+      "osm_node": "1833781546",
+      "lat": 31.5754137,
+      "lon": -96.9636137,
+      "voltage": "345kV / 138kV",
+      "type": "transmission substation",
+      "source": "OpenStreetMap API /api/0.6/node/1833781546"
+    },
+    "sam_switch": {
+      "county": "Hill County, TX",
+      "road": "Hill County Road 3165",
+      "voltage": "345kV",
+      "owner": "Lone Star Transmission",
+      "notes": "Sam Switch is in Hill County, NOT McLennan County. It is a 345kV switching station off Hill County Road 3165. No OSM/Nominatim result found — no confirmed coordinates.",
+      "source": "Web search results citing county road reference"
+    },
+    "tap_description": "Tap 345kV 13405 Tradinghouse SES - 68090 Sam Switch",
+    "tap_notes": "The 345kV transmission line runs from Tradinghouse SES (McLennan County) north/northwest to Sam Switch (Hill County). The ERCOT EIR 'Venus Switch to Sam Switch' PDF (Dec 2024) covers a related 38-mile Oncor line in the same corridor."
+  },
+
+  "developer": {
+    "entity": "PP Jaguar Solar LLC (formerly SP-Jaguar Solar LLC, renamed Sep 2024)",
+    "parent": "Perfect Power LLC",
+    "ceo": "Anthony Maselli, White Plains NY",
+    "pe_sponsor": "SER Capital Partners (Rahul Advani)",
+    "possible_partner": "Enbridge (mentioned in infrasure.ai Nov 2024 — unverified from primary)",
+    "tx_sos_file": "0804302034",
+    "tx_taxpayer": "32081793179",
+    "registered_agent_address": "251 Little Falls Drive, Wilmington DE 19808 (CSC)"
+  },
+
+  "project_specs": {
+    "capacity_mw_ac": 300.87,
+    "ch313_mw_ac_solar": 157,
+    "ch313_mw_ac_bess": 25,
+    "investment": "$160.4M",
+    "ch313_limitation": "$15M/yr M&O",
+    "acreage": 1938.54,
+    "parcels": 4,
+    "survey": "Tomas de la Vega",
+    "county": "McLennan County, TX",
+    "isd": "Axtell ISD",
+    "ch313_app_number": 1688,
+    "parcel_breakdown": [
+      {"survey": "TOMAS DE LA VEGA", "acres": 625.0},
+      {"survey": "TOMAS DE LA VEGA", "acres": 469.0},
+      {"survey": "TOMAS DE LA VEGA", "acres": 485.14},
+      {"survey": "TOMAS DE LA VEGA", "acres": 359.40}
+    ]
+  },
+
+  "ia_and_queue": {
+    "ia_signed": "2022-09-12",
+    "ia_counterparty": "Oncor",
+    "ia_amendment": "Fourth Amendment dated June 3, 2025",
+    "fis_approved": null,
+    "fis_anomaly": "IA executed 2022-09-12 but FIS never approved — unusual; waiver or pending amendment unknown",
+    "meets_all_69": "2024-01-23",
+    "cod_history": [
+      {"as_of": "2024-04-30", "reported_cod": "2023-03-01"},
+      {"as_of": "2025-06-30", "reported_cod": "2024-04-01"},
+      {"as_of": "2026-06-01", "reported_cod": "2024-11-01"},
+      {"as_of": "2027-02-11", "reported_cod": "2025-10-01"},
+      {"as_of": "2027-12-11", "reported_cod": "2026-06-01"}
+    ],
+    "cod_current": "2027-12-11",
+    "cod_slip_years": 3.6,
+    "puct_portal": "BLOCKED (HTTP 402) — manual access needed; docket possibly 53385"
+  },
+
+  "companion_bess": {
+    "name": "Jaguar BESS",
+    "poi": "Same POI (Tradinghouse SES / Sam Switch tap)",
+    "financing": "$270M financed Jan 2024",
+    "phase1_complete": "2025-04-02",
+    "significance": "Confirms developer is active and capable at site; BESS Phase I complete while solar COD still 2027"
+  },
+
+  "county_signals": {
+    "road_use_agreement": {
+      "date": "2026-03-03",
+      "event": "McLennan County Commissioners Court agenda item: Road Use Agreement with PP Jaguar Solar LLC (solar-specific)",
+      "significance": "Active development signal — active site access negotiation as of March 2026"
+    }
+  },
+
+  "construction": {
+    "verdict": "unknown",
+    "cdse_imagery": "BLOCKED (HTTP 401 auth failure during triage)",
+    "gmaps_pins": "No delivery pins found (HTTP 429 during triage; manual search returned no results)",
+    "assessment": "BESS Phase I complete at same POI (Apr 2025); RUA executed Mar 2026; solar field itself unverified"
+  },
+
+  "sources_found": [
+    "Ch.313 Application #1688 (Axtell ISD) — TX Comptroller PDFs: 1688-jaguar-app.pdf, 1688-jaguar-agmt.pdf, 1688-jaguar-amendagmt1.pdf (downloaded to sources/)",
+    "OSM Way W172472755 (Tradinghouse Substation) — coordinates confirmed via API",
+    "ERCOT EIR Oncor Venus Switch to Sam Switch project (Dec 2024) — Sam Switch routing context",
+    "infrasure.ai Jaguar Solar project page (Nov 2024) — LLC chain + Enbridge mention",
+    "SER Capital Partners portfolio — confirmed PE sponsor",
+    "McLennan County Commissioners Court agenda Mar 2026 — RUA signal"
+  ],
+
+  "pending": [
+    "PUCT IA document — docket 53385 or similar; Fourth Amendment June 2025 contains milestone schedule exhibit",
+    "Sam Switch precise coordinates — Hill County Road 3165 area; no lat/lon confirmed",
+    "Tomas de la Vega survey precise location in McLennan County — needed for true site centroid",
+    "CDSE Sentinel-2 imagery at 31.5754/-96.9636 — auth fix needed",
+    "Ch.313 PDF text extraction — downloaded but unread; likely contains legal description with precise parcel location",
+    "FIS anomaly resolution — IA without FIS unusual; check ERCOT queue amendment filings"
+  ]
+}

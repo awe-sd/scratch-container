@@ -1,0 +1,71 @@
+{
+ "inr": "24INR0339",
+ "generated": "2026-07-20",
+ "project": "Mystic Springs Renewable Energy Solar SLF",
+ "county": "Kaufman",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 258.83,
+ "queue_cod": "2028-03-31",
+ "milestones": {
+  "screeningStudyComplete": "2022-08-06",
+  "fisApproved": "2025-04-17",
+  "iaSigned": "2025-10-30",
+  "financial_security": "No"
+ },
+ "cod_slips": 4,
+ "eia": {
+  "status": "ok",
+  "plant_id": 66905,
+  "entity": "Ables Springs Solar, LLC",
+  "planned_cod": "2026-06",
+  "cod_delta_quarters": -7.0,
+  "dropped_scope": null,
+  "coords": [
+   32.81957,
+   -96.18484
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Vesper Energy Development LLC",
+    "detail": "plant=Mystic Springs Renewable Energy (Hybrid) 250.0MW (P) Planned for installation, but regula @32.82126,-96.19042 planned=2028-03"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Mystic Spring Renewable Energy, LLC",
+    "detail": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Mystic Spring Re"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "verified_ia_on_disk",
+  "fis_approved"
+ ],
+ "paper_score": 8,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 8,
+   "detail": "4 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 12.69,
+  "reason": "reality signal"
+ }
+}

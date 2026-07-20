@@ -1,0 +1,27 @@
+{
+  "inr": "24INR0617",
+  "project": "Serrano Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": false,
+    "why": "No IA, no FIS approval, COD slipped 3 years already; 18 months to reported COD with no study milestones completed makes 2027 implausible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate GANSO 138kV substation coordinates (site 8267, Maverick County) to enable imagery — try ERCOT network model XML/CIM download or PUCT transmission map",
+    "Confirm developer identity: Maverick ESS LLC vs RIC Development LLC — check TX SOS for both, look for parent/parent-of-parent with active portfolio",
+    "Search PUCT Interchange directly (portal requires browser session) for any IA or FIS study filings under Serrano Storage or Maverick ESS",
+    "Check if gmaps.py rate-limit clears and re-run T2 for delivery pins"
+  ],
+  "turns_used": 26
+}

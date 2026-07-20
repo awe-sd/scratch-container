@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0615",
+  "project": "Bell County Morgan Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.0897,
+    "lon": -97.7343,
+    "method": "POI substation name (Trimmier Substation) → Trimmier Rd centroid via Nominatim",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "not visible",
+    "evidence": "1/9 CDSE chips returned (auth failure on 8); chip at 31.1197/-97.7643 shows suburban residential/highway interchange, no BESS pad"
+  },
+  "cod_first_look": {
+    "reported": "2028-04-01",
+    "plausible": true,
+    "why": "Pre-FIS-approval stage with 18-month COD slip already recorded; 2028 COD is aggressive but not impossible if FIS approved soon and IA signed in 2026"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Verify FIS approval in next queue snapshot — project stalled at FIS requested since Nov 2024",
+    "TX SOS entity search for 'Bell County Morgan Storage LLC' to surface developer/sponsor",
+    "Fix CDSE credentials then run full 3×3 chip grid around Trimmier Substation to rule out construction",
+    "PUCT Interchange re-check once IA is signed — no filing yet but project may advance"
+  ],
+  "turns_used": 28
+}

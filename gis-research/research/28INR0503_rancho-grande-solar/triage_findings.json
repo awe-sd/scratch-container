@@ -1,0 +1,27 @@
+{
+  "inr": "28INR0503",
+  "project": "Rancho Grande Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-09",
+    "plausible": true,
+    "why": "~2yr from FIS request (2026-03-27) is tight but not impossible; no IA yet so COD is speculative"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Tiempo 345 kV Substation #80224 coordinates (ERCOT transmission shapefile or AEP Texas maps) to enable imagery",
+    "PUCT Interchange search via authenticated session for IA filing once project advances",
+    "JETI registry check once project files for incentives",
+    "Developer/sponsor identity — nothing surfaced in T3; TX SOS LLC lookup for 'Rancho Grande Solar, LLC'"
+  ],
+  "turns_used": 24
+}

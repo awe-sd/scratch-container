@@ -1,0 +1,35 @@
+{
+  "inr": "23INR0244",
+  "project": "Tiger Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.583,
+    "lon": -99.685,
+    "method": "POI infrastructure (Phantom Hill 345kV substation, Jones County near Anson TX)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "not visible in available imagery",
+    "evidence": "2 of 9 planned chips retrieved (CDSE API instability); southern chips show agriculture + lake, no panels or earthwork; center/north rows covering substation vicinity all failed — coverage insufficient to clear"
+  },
+  "cod_first_look": {
+    "reported": "2027-06-30",
+    "plausible": true,
+    "why": "NextEra-backed project with IA signed Oct 2024, FIS approved Dec 2025, full 6.9 met Jan 2026 — all pre-construction gates cleared; 12-month build window tight for 250 MW but achievable; COD has drifted 3× (orig 2023) so further slip is plausible"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Docket 58405 (Lone Star Transmission CCN amendment for dedicated 345-kV spur) — retrieve IA and milestone schedule; interchange.puc.texas.gov was 402-blocked during triage, needs authenticated access",
+    "Retry Sentinel-2 imagery centered on Phantom Hill substation coords (~32.58°N, 99.68°W) — 7/9 chips failed on CDSE during triage; if any site prep/panels visible, recenter and pull baseline 2-year comparison",
+    "Confirm precise site boundary — no land records or parcel data found; Vaca Del Sol LLC / NextEra may have filed with Jones County Appraisal District or Texas SOS",
+    "JETI registry — no Ch.313/JETI hit found; worth one targeted search at comptroller.texas.gov for Jones County post-2023 applications"
+  ],
+  "turns_used": 26
+}

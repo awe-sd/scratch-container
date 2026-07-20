@@ -1,0 +1,70 @@
+{
+ "inr": "26INR0116",
+ "generated": "2026-07-20",
+ "project": "Falcon Zapata Storage 138",
+ "county": "Zapata",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 200.79,
+ "queue_cod": "2028-03-11",
+ "milestones": {
+  "screeningStudyComplete": "2023-08-11",
+  "fisApproved": null,
+  "iaSigned": "2026-02-03",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "ok",
+  "plant_id": 64322,
+  "entity": "GDF Suez North America",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   26.93267,
+   -99.23371
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Bravo ESS LLC",
+    "detail": "plant=Bravo ESS 200.0MW (P) Planned for installation, but regula @27.28504,-99.41187 planned=2027-07"
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Engie North America",
+    "detail": "plant=Zapata 19.8MW (OP) Operating @26.93267,-99.23371 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "financial_security_posted"
+ ],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 10.17,
+  "reason": "reality signal"
+ }
+}

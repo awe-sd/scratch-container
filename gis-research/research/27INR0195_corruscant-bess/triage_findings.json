@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0195",
+  "project": "CORRUSCANT BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.66,
+    "lon": -100.79,
+    "method": "POI infrastructure (59904 COTTONWOOD 345kV, Dickens County) — same line confirmed in adjacent Donegal Solar triage",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown — CDSE 401 blocked all imagery",
+    "evidence": "cdse.py returned HTTP 401 on all chip attempts; no frames retrieved; prior Donegal triage (same vicinity, Jun 2026) showed undeveloped rangeland"
+  },
+  "cod_first_look": {
+    "reported": "2027-04-18",
+    "plausible": false,
+    "why": "No IA signed, no FIS approved, no 6.9 milestones as of Jun 2026 — 10-month runway to Apr 2027 COD is implausible without imminent IA execution"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange IA search once portal access restored — no IA in queue history but worth verifying no out-of-band filing exists",
+    "CDSE imagery when credentials refreshed — site candidate is plausible but unconfirmed; battery pad would be very compact",
+    "Developer identity still unknown — no web presence under either spelling (Corruscant/Coruscant); TX SOS lookup if portal access available",
+    "Capacity step-ups (337→401→418 MW) suggest active development team; watch for FIS approval in 2026 monthly reports"
+  ],
+  "turns_used": 28
+}

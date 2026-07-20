@@ -1,0 +1,84 @@
+{
+  "inr": "26INR0269",
+  "project": "Moccasin Solar",
+  "public_name": "Swenson Ranch Solar",
+  "researched_at": "2026-07-18",
+  "site": {
+    "lat": 33.021,
+    "lon": -100.0217,
+    "method": "ia_text_plus_imagery",
+    "confidence": "medium",
+    "derivation_notes": "IA Exhibit C: 'approximately 14 miles SE of Aspermont, TX' → initial calc 32.9911,-100.0552; graded blocks in Jul 2026 S2 frame located ~3 km NE of initial estimate → revised centroid 33.0210,-100.0217; no parcel or Places pin confirmation available"
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Swenson Solar LLC",
+      "relation": "SPV_generator",
+      "evidence": "Named as Generator party in signed ETT IA (PUCT Control 35077, sources/2026-07-18_puct_35077_swenson-solar-IA.pdf, Exhibit D)"
+    },
+    {
+      "entity": "ENGIE IR Holdings LLC / ENGIE North America",
+      "relation": "developer_owner_parent",
+      "evidence": "IA Exhibit D bank wire instructions: payable to 'ENGIE IR HOLDINGS LLC' at Bank of America Dallas; admin contact Eric Tarantino address is ENGIE NA Houston HQ (1 South Wacker Dr is public ENGIE NA address); PV-Tech Oct 2025 names ENGIE as developer of 'Swenson Ranch Solar' (sources/2026-07-18_pvtech_meta-engie-600mw-ppa.html)"
+    },
+    {
+      "entity": "Meta Platforms",
+      "relation": "PPA_offtaker",
+      "evidence": "PV-Tech Oct 27 2025 article: 'ENGIE and Meta sign 600 MW PPA for Swenson Ranch Solar, Stonewall County, $900M, 2027 COD' (sources/2026-07-18_pvtech_meta-engie-600mw-ppa.html)"
+    }
+  ],
+  "land_tenure": {
+    "status": "leased",
+    "evidence": "KTXS-TV April 2025 article describes ~5,000 acres in western Stonewall County; no purchase mentions; Stonewall CAD has no online portal — parcels not confirmed under LLC name (sources/2026-07-18_ktxs_stonewall-swenson-solar.html)"
+  },
+  "project_area": {
+    "acres": 5000,
+    "source": "KTXS-TV April 2025 article ('approximately 5,000 acres')",
+    "artifact": "sources/2026-07-18_ktxs_stonewall-swenson-solar.html"
+  },
+  "construction": {
+    "verdict": "clearing",
+    "first_activity_seen": "between 2026-01 and 2026-07",
+    "evidence": [
+      "Sentinel-2 10m/px frame 2024-12-27 (0.07% cloud): undisturbed ranchland/brush, no activity (imagery/key/s2_2024-12-27_10mpx.png)",
+      "Sentinel-2 10m/px frame 2025-03-22 (0% cloud): no activity (imagery/key/s2_2025-03-22_10mpx.png)",
+      "Sentinel-2 10m/px frame 2025-08-24 (19.4% cloud): inconclusive due to cloud cover (imagery/key/s2_2025-08-24_10mpx.png)",
+      "Sentinel-2 10m/px frame 2026-01-21 (0% cloud): clear frame shows no visible grading activity at revised centroid (imagery/key/s2_2026-01-21_10mpx.png)",
+      "Sentinel-2 10m/px frame 2026-07-10 (0.07% cloud): large rectangular cleared/graded blocks with organized road grid, multi-km footprint, sharp edges consistent with utility-scale solar earthwork (imagery/key/s2_2026-07-10_10mpx.png; activity detail: imagery/key/s2_2026-07-10_activity_2x.png)"
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-07-06",
+    "independent": "2027-Q4 to 2028-Q1",
+    "drift_risk": "medium",
+    "reasoning_evidence": [
+      "As of Jul 2026 the site is in earthwork/clearing stage; road grid established, rectangular pads being graded; no racking or electrical work visible at 10 m/px resolution",
+      "From earthwork-start (~Q1–Q2 2026) to COD for a 600 MW solar project typically requires 18–24 months (civil, foundations, racking, collection, substation, commissioning); reported 2027-07-06 implies ~14–16 months — aggressive but feasible with strong developer execution",
+      "IA Exhibit B gives relative schedule: In-Service +26 months, COD +28 months from conditions precedent satisfaction; 'Meets all 6.9' date is 2026-04-21 (likely the final gate) → if anchored there, contractual COD = ~Aug 2028; if anchored to IA execution (Sep 2024), contractual COD = ~Jan 2027 — this ambiguity is material",
+      "Queue-history: 2 reported-COD changes (2027-07-06 → 2027-06-01 → 2027-07-06), capacity downscaled 25% in Aug 2025 (809.6 → 603.59 MW) — project resized mid-development",
+      "Positive signals: ENGIE developer, Meta PPA signed ($900M scale), $23M financial security posted, Stonewall County 10-yr abatement approved April 2025, FIS approved Jan 2026, meets all 6.9 milestones April 2026",
+      "Risk factors: EPC not identified, no NTP/financing-close announcement, IA relative schedule anchor ambiguous, 25% capacity downsize may indicate design changes that affect schedule"
+    ]
+  },
+  "real_project_verdict": "real_active",
+  "negative_searches": 6,
+  "banned_source_violations": 0,
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "ETT–Swenson Solar Interconnection Agreement (original)",
+        "signed": "2024-09-04",
+        "financial_security": "$23,000,000",
+        "artifact": "sources/2026-07-18_puct_35077_swenson-solar-IA.pdf"
+      }
+    ],
+    "poi": "Cascabel Station (new ETT station) tapping the 345 kV Kirchhoff (Bus# 60707) to Clear Crossing (Bus# 60515) line",
+    "milestones_relative": [
+      {"name": "In-Service Date", "offset_months_from_conditions_precedent": 26},
+      {"name": "Trial Operation", "offset_months_from_conditions_precedent": 27},
+      {"name": "Scheduled Commercial Operation", "offset_months_from_conditions_precedent": 28}
+    ],
+    "milestone_anchor_note": "Absolute dates depend on conditions precedent satisfaction date; 'Meets all 6.9' = 2026-04-21 (likely final gate) implies contractual COD ~Aug 2028; IA execution date (2024-09-04) as alternative anchor implies ~Jan 2027"
+  }
+}

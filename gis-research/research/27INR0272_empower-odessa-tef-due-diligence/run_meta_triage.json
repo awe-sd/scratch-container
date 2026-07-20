@@ -1,0 +1,22 @@
+{
+ "mode": "triage",
+ "model": "us.anthropic.claude-sonnet-4-6",
+ "audit": {
+  "assistant_turns": 58,
+  "image_reads": 0,
+  "tool_counts": {
+   "Bash": 15,
+   "Read": 1,
+   "Write": 2,
+   "ToolSearch": 1,
+   "Edit": 6,
+   "WebFetch": 17
+  },
+  "violations": [
+   "token budget exceeded: 121714 > 100000 (killed)"
+  ]
+ },
+ "fresh_tokens": 121714,
+ "token_budget": 100000,
+ "exit_code": 143
+}

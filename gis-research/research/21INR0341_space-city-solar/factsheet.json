@@ -1,0 +1,81 @@
+{
+ "inr": "21INR0341",
+ "generated": "2026-07-20",
+ "project": "Space City Solar",
+ "county": "Wharton",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 366.0,
+ "queue_cod": "2027-06-01",
+ "milestones": {
+  "screeningStudyComplete": "2020-03-06",
+  "fisApproved": null,
+  "iaSigned": "2025-12-11",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 6,
+ "eia": {
+  "status": "ok",
+  "plant_id": 66157,
+  "entity": "Anchor Wind LLC",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   29.15923,
+   -96.14157
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Acciona Energy USA Global, LLC",
+    "detail": "plant=Red Tailed Hawk Solar LLC 360.0MW (OP) Operating @29.15923,-96.14157 planned="
+   },
+   {
+    "source": "puct-index",
+    "entity": "Apollo Solar Ranch, LLC",
+    "detail": "ERCOT Standard Generation Interconnection Agreement (SGIA) and Amendment One between CenterPoint Energy Housto"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "verified_ia_on_disk",
+  "financial_security_posted"
+ ],
+ "paper_score": 32,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 12,
+   "detail": "6 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 35.23,
+  "reason": "reality signal"
+ }
+}

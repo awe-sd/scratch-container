@@ -1,0 +1,34 @@
+{
+  "inr": "26INR0222",
+  "project": "GOTHAM BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 27.66,
+    "lon": -97.76,
+    "method": "POI infrastructure — Driscoll Substation (OSM W490190235), ~3 mi south of Driscoll TX, Nueces County",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth failed (403); no imagery retrieved. No construction milestones in queue data. No web signal of groundbreaking."
+  },
+  "cod_first_look": {
+    "reported": "2027-03-17",
+    "plausible": false,
+    "why": "FIS not yet approved as of 2026-06, IA not signed — typical timeline from FIS approval to COD is 18-24 months, making Mar 2027 extremely tight; COD already slipped once by ~14 months"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange: search for AEU Battery Project IV LLC filings once portal access restored — IA may have been filed recently given FIS request date 2024-06-17",
+    "CDSE imagery: fix CDSE credentials (403 auth failure), then run contact sheet at 27.66N 97.76W with 2km buffer to check substation pad activity",
+    "Developer identity: identify AEU parent company via TX SOS manager/member filings at 3300 N I-35 Austin or 17350 SH-249 Houston — may reveal experienced developer vs shell"
+  ],
+  "turns_used": 22
+}

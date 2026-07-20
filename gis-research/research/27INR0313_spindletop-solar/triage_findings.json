@@ -1,0 +1,28 @@
+{
+  "inr": "27INR0313",
+  "project": "Spindletop Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-29",
+    "plausible": true,
+    "why": "IA signed 2025-12-29, meets 6.9(1) 2026-03-25, FIS not yet approved; ~18 months to COD is plausible but aggressive given FIS gap"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate IA document via PUCT Interchange (portal was 402-blocked during triage) — extract POI/parties/milestone schedule",
+    "Identify Stryker substation (node 3109) coordinates to establish site search box for imagery",
+    "Resolve developer/LLC identity — gmaps rate-limited and web search blocked; try Texas SOS direct or PUCT party name on IA",
+    "FIS not yet approved despite IA signed — check if FIS study is in progress or waived; this gap affects COD plausibility",
+    "Run Sentinel-2 imagery once site candidate established from IA map or substation corridor"
+  ],
+  "turns_used": 22
+}

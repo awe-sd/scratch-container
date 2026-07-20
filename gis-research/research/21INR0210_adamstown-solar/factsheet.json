@@ -1,0 +1,83 @@
+{
+ "inr": "21INR0210",
+ "generated": "2026-07-20",
+ "project": "Adamstown Solar",
+ "county": "Wilbarger",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 250.88,
+ "queue_cod": "2027-08-31",
+ "milestones": {
+  "screeningStudyComplete": "2019-02-04",
+  "fisApproved": "2026-02-25",
+  "iaSigned": "2024-12-04",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 7,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "puct-index",
+    "entity": "Adamstown Solar & Storage / Adams Creek Solar Project, LLC",
+    "detail": "Interconnection Agreement between Oncor Electric Delivery Company and Adamstown Solar & Storage / Adams Creek "
+   },
+   {
+    "source": "puct-index",
+    "entity": "Adams Creek Solar Project, LLC",
+    "detail": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Adams Creek Sola"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Adams Creek Solar Project, LLC",
+    "detail": "Amendment No. 1 to the Standard Generation Interconnection Agreement between Oncor Electric Delivery Company L"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 3,
+  "join_items": 3
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 34,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 14,
+   "detail": "7 COD slips"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 18.74,
+  "reason": "reality signal"
+ }
+}

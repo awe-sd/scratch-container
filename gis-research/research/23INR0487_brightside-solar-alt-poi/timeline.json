@@ -1,0 +1,96 @@
+{
+ "inr": "23INR0487",
+ "project": "Brightside Solar Alt POI",
+ "first_seen_in_reports": "2024-08-01",
+ "last_seen_in_reports": "2026-06-01",
+ "snapshots": 23,
+ "milestones": [
+  {
+   "milestone": "Screening started",
+   "achieved": "2022-05-16",
+   "first_in_report": "2024-08-01"
+  },
+  {
+   "milestone": "Screening complete",
+   "achieved": "2022-08-05",
+   "first_in_report": "2024-08-01"
+  },
+  {
+   "milestone": "FIS requested",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "FIS approved",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "IA signed",
+   "achieved": "2020-06-11",
+   "first_in_report": "2024-08-01"
+  },
+  {
+   "milestone": "Meets 6.9(1)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Meets all 6.9",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Construction start (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Construction end (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Approved for energization",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Approved for synchronization",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Commercial operation approved",
+   "achieved": null,
+   "first_in_report": null
+  }
+ ],
+ "reported_cod_history": [
+  {
+   "value": "2025-08-14",
+   "from": "2024-08-01",
+   "to": "2025-08-01"
+  },
+  {
+   "value": "2026-08-14",
+   "from": "2025-09-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 50.0,
+   "from": "2024-08-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "study_phase_history": [
+  {
+   "value": "SS Completed, FIS Not Started, IA",
+   "from": "2024-08-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "financial_security_latest": "Yes"
+}

@@ -1,0 +1,27 @@
+{
+  "inr": "28INR0340",
+  "project": "Corralitos Wind 4",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-31",
+    "plausible": false,
+    "why": "No IA signed, FIS not yet approved as of 2026-06; typical IA→COD path needs 2+ years, making May 2028 extremely tight from current queue position"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Verify PUCT Doc 35077_2172 (ETT IA) — confirm whether it covers Wind 3, Wind 4, or both; PUCT portal required",
+    "Resolve Tiempo/Cenizo/Del Sol substation coordinates via ERCOT GIS or FERC TADS to enable imagery",
+    "Check sibling project 28INR0339 (Corralitos Wind 3) IA status — if Wind 3 has IA, Wind 4 may be bundled or follow-on",
+    "FAA OE/AAA obstruction filings under Las Crestas Wind Energy for turbine coordinate confirmation"
+  ],
+  "turns_used": 22
+}

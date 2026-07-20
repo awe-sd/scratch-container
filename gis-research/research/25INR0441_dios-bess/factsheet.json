@@ -1,0 +1,65 @@
+{
+ "inr": "25INR0441",
+ "generated": "2026-07-20",
+ "project": "Dios BESS",
+ "county": "Jackson",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 201.08,
+ "queue_cod": "2027-12-31",
+ "milestones": {
+  "screeningStudyComplete": "2023-08-11",
+  "fisApproved": "2025-12-02",
+  "iaSigned": "2025-04-03",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "ok",
+  "plant_id": 67918,
+  "entity": "Samsung Solar Energy 2, LLC",
+  "planned_cod": "2027-03",
+  "cod_delta_quarters": -3.0,
+  "dropped_scope": null,
+  "coords": [
+   29.013,
+   -96.5051
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Samsung C&T Renewables, LLC",
+    "detail": "plant=Dios BESS, LLC 201.6MW (P) Planned for installation, but regula @29.013,-96.5051 planned=2027-03"
+   },
+   {
+    "source": "puct-index",
+    "entity": "DIOS BESS, LLC",
+    "detail": "ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN AEP TEXAS INC. AND DIOS BESS, LLC (Dios BESS Proje"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 11.56,
+  "reason": "reality signal"
+ }
+}

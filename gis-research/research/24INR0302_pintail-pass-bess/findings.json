@@ -1,0 +1,78 @@
+{
+  "inr": "24INR0302",
+  "project": "Pintail Pass BESS",
+  "researched_at": "2026-07-19",
+  "site": {
+    "lat": 28.04441,
+    "lon": -97.43821,
+    "method": "osm_substation_polygon_centroid",
+    "confidence": "high",
+    "derivation_note": "OSM way 1089997597 — Angstrom Substation, AEP operator, 345kV switching, start_date 2022; 9-node polygon centroid via OSM API. POI field '8249 ANGSTROM 345KV' matches exactly."
+  },
+  "parcels": [],
+  "project_area": {
+    "acres": null,
+    "source": "not_obtainable",
+    "artifact": null,
+    "note": "CAD portal JS-only; no IA document retrieved; imagery footprint ~10-15 acres (consistent with 207 MW BESS spec)"
+  },
+  "llc_chain": [
+    {
+      "entity": "Pintail Pass BESS, LLC",
+      "relation": "SPV",
+      "evidence": "ERCOT Jun 2026 GIS xlsx (interconnectingFacility field)"
+    },
+    {
+      "entity": "Black Mountain Energy Storage",
+      "relation": "developer/originator",
+      "evidence": "ERCOT parquet 2022-04-01 record (interconnectingFacility=BLACK MOUNTAIN ENERGY STORAGE); bmenergystorage.com"
+    },
+    {
+      "entity": "Black Mountain",
+      "relation": "parent_of_BMES",
+      "evidence": "bmenergystorage.com About page — 'created by parent company Black Mountain (blackmtn.com)'"
+    },
+    {
+      "entity": "EEC Pintail",
+      "relation": "unknown_intermediate_holder",
+      "evidence": "ERCOT parquet 2023-10-01 record (interconnectingFacility=EEC Pintail); identity unresolved"
+    }
+  ],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "CAD portal inaccessible (JS SPA); no deed or lease document found"
+  },
+  "construction": {
+    "verdict": "substantially_complete",
+    "first_activity_seen": null,
+    "evidence": [
+      "imagery/key/s2_2026-07-01_1km.png",
+      "imagery/key/s2_2026-07-01_xwide.png"
+    ],
+    "observation_note": "2026-07-01 Sentinel-2: pale gravel pad ~10-15 acres + white structures (container rows) at Angstrom substation location. No historical comparison available (CDSE auth failed)."
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Interconnection Agreement (not retrieved)",
+        "signed": "2023-05-16",
+        "financial_security": "Yes (amount unknown — PUCT Interchange blocked HTTP 402)",
+        "artifact": null
+      }
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2026-07-24",
+    "independent": "2026-Q3",
+    "drift_risk": "med",
+    "reasoning_evidence": [
+      "All ERCOT gates cleared: energization 2026-02-10, synchronization 2026-03-25, financialSecurity=Yes, meetsAllSection69=2024-11-01",
+      "10 reported-COD changes over 2 years (2024-06-01 to 2026-07-24); most recent slip was June 9 to July 24 (6 weeks)",
+      "Site visually substantially complete as of 2026-07-01 imagery",
+      "5-day window from research date is extremely tight — another brief slip (days/weeks) is plausible but outside-Q3 risk is low"
+    ]
+  },
+  "real_project_verdict": "real_active",
+  "negative_searches": 12,
+  "banned_source_violations": 0
+}

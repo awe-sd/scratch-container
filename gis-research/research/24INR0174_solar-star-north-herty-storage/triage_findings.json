@@ -1,0 +1,35 @@
+{
+  "inr": "24INR0174",
+  "project": "Solar Star North Herty Storage",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.38,
+    "lon": -94.69,
+    "method": "POI substation inference — Redland Switch 138 kV described as ~3.8 mi NE of Lufkin TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery auth failed (401); no imagery retrieved"
+  },
+  "cod_first_look": {
+    "reported": "2027-08-25",
+    "plausible": false,
+    "why": "FIS never approved after 4 years in queue; no IA signed; COD already drifted twice; 16 months to claimed COD with no construction milestones achieved"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "County economic development grant (revised Sep 2024, $80M) — obtain full Lufkin Daily News article and grant agreement to confirm site address and any project schedule commitments",
+    "LLC registration (San Jose TX principal) — check TX SOS for parent entity or principals; no developer identity established",
+    "Imagery when CDSE creds restored — battery site near Redland Switch substation; 1-km buffer chip to confirm pad prep vs bare ground",
+    "PUCT interchange when portal accessible — verify IA status; queue shows none but portal unreachable this session"
+  ],
+  "turns_used": 28
+}

@@ -1,0 +1,34 @@
+{
+  "inr": "25INR0530",
+  "project": "Indigo Storage 4",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.615,
+    "lon": -100.526,
+    "method": "POI substation name (Claytonville) geocoded via OSM Nominatim",
+    "confidence": "low — substation area only, exact pad location unknown"
+  },
+  "construction": {
+    "verdict": "no activity",
+    "evidence": "Contact sheet Mar/Jun 2026 at 2km buffer centered on Claytonville substation shows undisturbed rangeland; no gravel pad, container rows, or substation expansion visible"
+  },
+  "cod_first_look": {
+    "reported": "2027-09-17",
+    "plausible": false,
+    "why": "FIS not yet approved as of Jun 2026; IA unsigned; 15-month COD drift already observed; no construction signal — 2027-09 COD would require IA + groundbreak within ~6 months"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange portal was 402-blocked — try again or use authenticated session to check for IA filing under 'Indigo Storage 4' or 'Innovative Solar 245'",
+    "ISS developer portfolio: search ERCOT queue for other 'Innovative Solar' or 'Indigo Storage' INRs to understand if this is a serial-developer pattern or one-off",
+    "Pin search was rate-limited (gmaps 429) — retry T2 to confirm no physical address registered"
+  ],
+  "turns_used": 28
+}

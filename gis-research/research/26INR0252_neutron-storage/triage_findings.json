@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0252",
+  "project": "Neutron Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.642,
+    "lon": -97.128,
+    "method": "POI substation name (Trading House 345kV) mapped to approximate area",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "Single Sentinel-2 chip 2026-06-01 at Trading House area shows agricultural/rural land, no gravel pad, no container rows, no substation expansion visible at approximate location."
+  },
+  "cod_first_look": {
+    "reported": "2028-04-29",
+    "plausible": true,
+    "why": "IA signed 2025-12-05 + FIS approved 2025-05-16 — advanced milestone gates cleared; 3 COD drifts (2026→2027→2028) suggest execution delays but project is live in queue."
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2025-12-05 per queue data but PUCT Interchange portal returned 402 during triage — retry PDF download to get parties, POI, and milestone-schedule exhibit",
+    "Exact substation coordinates needed: Trading House 345kV (node 13405) — pull ERCOT transmission map or EIA dataset to pin the BESS pad candidate, then re-run imagery at true location",
+    "Zero web presence for developer — SEC EDGAR / TX SOS search for 'Neutron Storage LLC' to identify developer and track their other projects",
+    "JETI registry load-failed during triage — retry applications.php to confirm no McLennan County battery abatement exists"
+  ],
+  "turns_used": 28
+}

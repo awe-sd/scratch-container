@@ -1,0 +1,26 @@
+{
+  "inr": "24INR0532",
+  "project": "Timber Cove Solar SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-04-01",
+    "plausible": false,
+    "why": "No FIS approved, no IA signed after 3 years in queue; 3rd-party aggregator rates 4% build chance"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "If priority changes: verify Freestone Solar LLC parentage via TX SOS to identify actual developer",
+    "PUCT Interchange was fully blocked (402) — check manually for any late-2024/2025 IA filings",
+    "POI is Pin Oak 138kV substation near Fairfield TX — could anchor a site search if developer ever identified"
+  ],
+  "turns_used": 22
+}

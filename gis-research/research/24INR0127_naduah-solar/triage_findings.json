@@ -1,0 +1,35 @@
+{
+  "inr": "24INR0127",
+  "project": "Naduah Solar",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.70,
+    "lon": -96.58,
+    "method": "POI substation community centroid (Ben Hur, Limestone County) — no pin, no IA map",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no activity",
+    "evidence": "2 of 9 Sentinel-2 chips at Ben Hur community (2026-07-01) show undisturbed agricultural/pasture land; 7 chips failed due to CDSE connectivity; no solar array or construction disturbance visible in available imagery"
+  },
+  "cod_first_look": {
+    "reported": "2027-10-15",
+    "plausible": false,
+    "why": "3 COD slips over 4 years (+3yr total), no milestones beyond FIS-requested (2022), no IA, capacity shrank 181→77.6 MW — 2027 COD would require IA + FIS + construction all in ~15 months with no visible site prep"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm developer identity: verify 'Gransolar Texas Fifteen LLC' via TX SOS — check if entity is active and has any permits or land lease filings in Limestone County",
+    "PUCT Interchange search was 402-blocked in this run — retry with authenticated session or Interchange MCP tool for any IA or Docket filings under 'Gransolar' or 'Naduah Solar'",
+    "Site precision: Ben Hur substation exact coordinates unknown — deep pass should geolocate the 69kV tap on OpenInfraMap or ERCOT Transmission Map to narrow the search area before any imagery run",
+    "If IA filing found, pull milestone-schedule exhibit for NTP and energization dates as reality check on 2027 COD claim"
+  ],
+  "turns_used": 28
+}

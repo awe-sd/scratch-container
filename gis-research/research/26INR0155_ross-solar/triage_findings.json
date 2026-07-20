@@ -1,0 +1,28 @@
+{
+  "inr": "26INR0155",
+  "project": "Ross Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-07-31",
+    "plausible": true,
+    "why": "IA signed 2024-06-27 (~3 yrs to COD); no construction milestones yet; 1 GW+ project; feasible but tight without FIS approval visible"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2024-06-27 but PUCT Interchange portal was blocked (402) — retry IA PDF fetch for parties/POI page and milestone schedule exhibit",
+    "Developer S&S Renewables, LLC has minimal public presence — check TX SOS entity search and ERCOT queue filings for contact/parent company",
+    "FIS approved date absent in queue despite IA signed — check if this is a data anomaly or genuine missing milestone (unusual order)",
+    "POI 'Angstrom – Static' 345kV: Angstrom is in San Patricio County; Static substation location unknown — geolocate Static to nail site candidate for imagery",
+    "No JETI abatement found — worth one more try via TX Comptroller direct search once portal accessible"
+  ],
+  "turns_used": 22
+}

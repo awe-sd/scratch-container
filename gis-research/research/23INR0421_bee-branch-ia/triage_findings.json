@@ -1,0 +1,33 @@
+{
+  "inr": "23INR0421",
+  "project": "Bee Branch IA",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.17,
+    "lon": -96.65,
+    "method": "POI string parse — 'Twin Oak 3400' interpreted as Twin Oaks 345kV substation near Bremond TX",
+    "confidence": "low"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-06-01",
+    "plausible": true,
+    "why": "IA signed 2026-03-13, FIS approved 2026-06-11; 12 months to COD is tight but within BESS norms; no construction milestones yet logged"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA PDF — retrieve milestone schedule exhibit (portal was 402-blocked this pass)",
+    "Confirm site coordinates via IA exhibit map or PUCT TEF docket before running imagery",
+    "Imagery at confirmed site once CDSE creds are configured — BESS compact footprint, look for gravel pad + container rows near Twin Oaks substation",
+    "Developer identity — no LLC or sponsor surfaced in web sweep; try TX SOS business search for 'Bee Branch IA LLC'",
+    "JETI abatement check for Robertson County post-2022 filings"
+  ],
+  "turns_used": 28
+}

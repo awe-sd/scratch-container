@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0578",
+  "project": "Forest Creek Wind Repower",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.08,
+    "lon": -101.45,
+    "method": "existing-wind-farm-location (repower of Forest Creek Wind Farm, Glasscock County TX)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE 401 — no imagery obtained this triage. Queue shows approved-for-energization 2025-07-28 and approved-for-synchronization 2025-08-27, suggesting physical construction likely complete or nearly complete."
+  },
+  "cod_first_look": {
+    "reported": "2026-08-15",
+    "plausible": true,
+    "why": "IA signed, energization approved 2025-07-28, sync approved 2025-08-27 — commercial operation step is the remaining gate; 2026-08 is plausible but 11+ months post-sync approval seems slow for a repower"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "COD lag: sync-approved 2025-08-27 but COD still 2026-08-15 — nearly 12 months gap; check ERCOT settlement/testing hold or meter dispute",
+    "IA date anomaly: iaSigned=2005-11-17 predates this INR; find the amended/restated IA for the repower under PUCT interchange (try 'Forest Creek Wind Farm' or 'RWE' as alternate filing party)",
+    "FAA OE/AAA filings for exact turbine coordinates: ~44 GE Vernova 2.8 MW-127m turbines; search oeaaa.faa.gov for Glasscock County TX obstruction evals filed 2024-2025",
+    "Imagery: CDSE creds not configured — re-run T6 with working credentials at existing Forest Creek site (~32.08N, -101.45W); check for turbine removal/replacement activity vs baseline 2022-2023",
+    "JETI Act registry: post-2022 project, possible Jobs/Energy/Technology/Innovation Act abatement — check comptroller JETI registry for Glasscock County RWE filings"
+  ],
+  "turns_used": 22
+}

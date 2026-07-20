@@ -1,0 +1,28 @@
+{
+  "inr": "23INR0561",
+  "project": "Cascabel Wind 2",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": true,
+    "why": "IA signed May 2025, Meets 6.9(1) Sep 2025 — ~30 months to COD is tight but feasible; 3x COD slippage is a warning flag"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF retrieval — PUCT Interchange was 402-blocked during triage; IA signed 2025-05-23 per ERCOT records, extract milestone schedule and POI confirmation",
+    "Rapido Substation location — new ETT 345 kV substation with no public coordinates yet; ERCOT transmission planning filings or ETT PUCT docket may have maps",
+    "FAA OE turbine filings — portal showed shutdown notice during triage; try alternative FAA search endpoint or USGS Wind Turbine Database for Zapata County pins",
+    "Vaquero Wind Energy LLC parent co — no parent identified; TX SOS lookup + FERC eLibrary for any affiliated developer with track record",
+    "Cascabel Wind cluster — developer has 4 similar projects in same county (Cascabel 1, Cascabel 2, Corralitos 1+); check if shared IA, shared POI, or phased build"
+  ],
+  "turns_used": 22
+}

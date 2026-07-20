@@ -1,0 +1,41 @@
+{
+  "inr": "24INR0153",
+  "project": "Lupinus Storage 1",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.12,
+    "lon": -95.05,
+    "method": "knowledge-estimate: eastern Franklin County near 345kV Monticello-Woodard corridor",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "ACTIVE — confirmed by multiple sources",
+    "evidence": "Groundbreaking March 17, 2026 per infrasure.ai; $901M financing closed May 14, 2026; multiple sources cite construction began late 2025. Imagery blocked (CDSE 401) so no visual confirmation."
+  },
+  "cod_first_look": {
+    "reported": "2027-09-13",
+    "plausible": true,
+    "why": "Groundbreaking Mar 2026, 18-month BESS build schedule consistent with late 2027 COD; BESS construction target Q1 2027 per one source implies COD Q3 2027 — aligns with the reported date."
+  },
+  "developer": "Sunraycer Renewables",
+  "spv": "Lupinus Solar LLC / Lupinus BESS LLC",
+  "ia_reference": "PUCT Control No. 35077 (Oncor + Lupinus Solar LLC, signed 2025-06-26; Amendment No. 1 filed 2026-02-12). Covers both 24INR0150 (solar) and 24INR0153 (storage).",
+  "offtake": "Google long-term PPA",
+  "battery_supplier": "Canadian Solar e-STORAGE",
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT 35077 IA milestone schedule exhibit — PUCT portal blocked during triage; retrieve PDF to confirm contractual COD and construction milestones",
+    "Precise site GPS — gmaps blocked (429), CDSE auth failed; obtain pin and run tight imagery to confirm construction footprint and progress",
+    "ercotqueue.com shows 4% build chance citing 'No IA' — this is stale pre-2025; verify queue milestone status has been updated to reflect signed IA",
+    "ERCOT queue missing FIS-approved and IA-signed milestones despite confirmed IA — check if milestones were recorded in a later snapshot or filed under the solar INR (24INR0150)",
+    "Amendment No. 1 to IA (Feb 2026) — retrieve to check if milestone schedule or POI changed"
+  ],
+  "turns_used": 22
+}

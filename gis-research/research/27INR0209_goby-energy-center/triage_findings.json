@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0209",
+  "project": "Goby Energy Center",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.496,
+    "lon": -95.535,
+    "method": "POI description: tap 138kV line Karsten–Thompsons corridor midpoint; Karsten substation near Arcola TX (Fort Bend/Brazoria border)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "3x3 Sentinel-2 contact sheet (2026-07-01) over Karsten-Thompsons corridor shows dense suburban/agricultural land use; no pale gravel pad, no container-row arrays, no substation construction activity. Site candidate confidence is low — BESS may be outside scanned grid."
+  },
+  "cod_first_look": {
+    "reported": "2027-09-30",
+    "plausible": false,
+    "why": "No IA signed, FIS not yet approved as of 2026-06. Battery builds take 12-18 months from IA; IA likely still months away, making 2027-09-30 COD implausible absent a very fast IA close."
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange was blocked (402) — retry with session cookie to check for any IA or filing by Goby Energy Center LLC",
+    "gmaps.py rate-limited — retry T2 to locate any delivery pin near Karsten or Thompsons substation",
+    "If IA surfaces: extract milestone schedule exhibit to re-evaluate COD plausibility",
+    "Developer identity: 301 N Lake Ave Ste 950, Pasadena CA — identify parent company or principal (no track record found)"
+  ],
+  "turns_used": 28
+}

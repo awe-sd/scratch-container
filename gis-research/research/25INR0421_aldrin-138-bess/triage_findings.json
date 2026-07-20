@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0421",
+  "project": "Aldrin 138 BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.44,
+    "lon": -95.24,
+    "method": "POI substation area estimate (North Alvin TNMP 138kV, no exact coords found)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "not visible",
+    "evidence": "1 Sentinel-2 chip at ~29.44,-95.24 (2026-07-01); suburban Alvin area, no BESS pad or container rows; likely off-target — substation exact location unresolved"
+  },
+  "cod_first_look": {
+    "reported": "2027-07-01",
+    "plausible": true,
+    "why": "IA signed Apr-2024, FIS approved Aug-2025; 2 prior COD slips (~24 mo total drift); no construction milestones yet; 12 months remain — tight but not impossible if permitting is done"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Resolve exact North Alvin TNMP substation coords via EIA/ERCOT transmission maps, then re-run tight BESS imagery search",
+    "Pull PUCT Interchange IA PDF (filing party: Aldrin 138 BESS or Aldrin Energy Storage) — extract milestone schedule to assess construction-start deadline",
+    "Confirm developer: 'Aldrin Energy Storage LLC' — check TX SoS entity search for registration date, registered agent, parent company",
+    "Meets all 6.9 not achieved — clarify whether this blocks NTP under the IA or is just a queue reporting lag"
+  ],
+  "turns_used": 28
+}

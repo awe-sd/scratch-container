@@ -1,0 +1,28 @@
+{
+ "inr": "22INR0274",
+ "project": "Crowded Star Solar II",
+ "triage_date": "2026-07-18",
+ "signals": {
+   "ia_found": true,
+   "abatement_found": false,
+   "pins_found": 0,
+   "news_found": false,
+   "construction_visible": false
+ },
+ "site_candidate": null,
+ "construction": null,
+ "cod_first_look": {
+   "reported": "2026-09-01",
+   "plausible": false,
+   "why": "10 COD slips over 5 years; most recent drift was to Dec 2026 just last month before reverting to Sep; ApprovedForEnergization Jun 2026 but no construction start reported — Sep 2026 COD appears optimistic"
+ },
+ "deep_scan_recommended": true,
+ "deep_scan_focus": [
+   "IA signed 2023-07-27 — fetch PUCT Interchange Agreement to extract milestone schedule and contractual COD",
+   "ApprovedForEnergization 2026-06-22 with no construction start in GIS — verify whether this is a pre-energization approval or reporting lag",
+   "Identify developer/sponsor via PUCT filing party (no name surfaced in triage)",
+   "Run imagery over POI corridor (Claytonville–Phantom Hill 345kV, Jones County) to check for site clearing or panel installation",
+   "Check JETI/Ch.313 abatement for Jones County (IA signed 2023 — may have filed pre-cutoff)"
+ ],
+ "turns_used": 14
+}

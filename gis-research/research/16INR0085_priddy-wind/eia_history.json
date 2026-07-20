@@ -1,0 +1,49 @@
+{
+ "inr": "16INR0085",
+ "plant_id": 64165,
+ "plant_name": "Priddy Wind Project",
+ "entity": "GDF Suez North America",
+ "matched_by": "name match",
+ "first_report": "2022-04-01",
+ "last_report": "2026-05-01",
+ "planned_cod_history": [
+  {
+   "value": null,
+   "from": "2022-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 302.4,
+   "from": "2022-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "status_history": [
+  {
+   "value": "(OP) Operating",
+   "from": "2022-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "queue_reported_cod": "2026-12-31",
+ "energy_capacity_mwh_history": [
+  {
+   "value": null,
+   "from": "2022-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "operating_date_history": [
+  {
+   "value": "2022-01",
+   "from": "2022-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "eia_county": "Mills",
+ "eia_lat": 31.5481,
+ "eia_lon": -98.49491,
+ "dropped_from_860m": null
+}

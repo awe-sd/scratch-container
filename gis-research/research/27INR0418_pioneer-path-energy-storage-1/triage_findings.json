@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0418",
+  "project": "Pioneer Path Energy Storage 1",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.15,
+    "lon": -96.72,
+    "method": "POI name inference — 'TWIN OAK' in Robertson County matches Twin Oaks Power Plant area near Bremond TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials not configured; no imagery acquired"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": true,
+    "why": "Screening complete Mar-2025, FIS requested but not yet approved — ~30 months to COD is aggressive but not impossible for a battery project if IA moves in 2025-2026"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Configure CDSE credentials and run imagery at Twin Oaks area (~31.15N, -96.72W) — battery site would be a compact gravel pad beside the substation",
+    "Retry PUCT Interchange when portal is accessible — search FilingParty='Pioneer Path Energy Storage' for IA filing",
+    "Search TX Secretary of State for 'Pioneer Path Energy Storage 1 LLC' to identify developer/parent company",
+    "FIS approval status: not yet approved as of Jun-2026 — watch queue for milestone update before committing deep-scan resources"
+  ],
+  "turns_used": 28
+}

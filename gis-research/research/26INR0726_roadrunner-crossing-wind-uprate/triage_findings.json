@@ -1,0 +1,36 @@
+{
+  "inr": "26INR0726",
+  "project": "Roadrunner Crossing Wind (Uprate)",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.30,
+    "lon": -98.85,
+    "method": "POI substation inference — Reata 345kV, western Eastland County; existing 256 MW NextEra wind farm spans Eastland/Callahan counties",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials not configured; imagery could not be acquired; gmaps also rate-limited"
+  },
+  "cod_first_look": {
+    "reported": "2027-06-30",
+    "plausible": true,
+    "why": "FIS approved June 2026; IA exists (Third Amended SGIA, Nov 2024); 3 COD slips in 7 months but all milestones consistent with 12-18 month remaining timeline; small uprate to operational NextEra asset reduces execution risk"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT IA ControlNumber=35077 — fetch Third Amended SGIA parties/POI page and milestone schedule exhibit (PUCT portal blocked at 402 during triage)",
+    "FAA OE/AAA obstruction filings for new uprate turbines — exact coordinates, hub heights; decisive for site location",
+    "Confirm developer parent: NextEra Energy Resources (via JETI snippet) — check FPL/NEER project registry",
+    "Imagery at confirmed turbine coordinates once FAA filings retrieved — check for new turbine pads alongside existing farm",
+    "Capacity reduction 3.3→2.7 MW (Apr 2026) — understand why; may indicate scope change or interconnection constraint"
+  ],
+  "turns_used": 28
+}

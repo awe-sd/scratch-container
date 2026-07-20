@@ -1,0 +1,67 @@
+{
+ "inr": "25INR0082",
+ "generated": "2026-07-20",
+ "project": "Reis Solar ",
+ "county": "Atascosa",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 105.48,
+ "queue_cod": "2027-08-03",
+ "milestones": {
+  "screeningStudyComplete": "2022-08-29",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "ok",
+  "plant_id": 67564,
+  "entity": "Greenalia Solar Power Reis, LLC",
+  "planned_cod": "2029-05",
+  "cod_delta_quarters": 7.0,
+  "dropped_scope": null,
+  "coords": [
+   28.65276,
+   -98.45369
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Greenalia Solar Power Reis, LLC",
+    "detail": "plant=Reis Solar Park 105.5MW (T) Regulatory approvals received. Not u @28.65276,-98.45369 planned=2029-05"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [],
+ "paper_score": 25,
+ "score_factors": [
+  {
+   "factor": "eia_cod_divergence",
+   "points": 15,
+   "detail": "EIA planned COD 7.0 quarters after queue COD"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 25 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

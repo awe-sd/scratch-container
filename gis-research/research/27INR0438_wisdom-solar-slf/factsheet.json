@@ -1,0 +1,59 @@
+{
+ "inr": "27INR0438",
+ "generated": "2026-07-20",
+ "project": "Wisdom Solar SLF",
+ "county": "Pecos",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 299.37,
+ "queue_cod": "2027-10-06",
+ "milestones": {
+  "screeningStudyComplete": "2025-04-18",
+  "fisApproved": "2025-10-09",
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 0,
+ "eia": {
+  "status": "ok",
+  "plant_id": 67006,
+  "entity": "Greasewood II LLC",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   31.10409,
+   -102.6063
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Greasewood II LLC",
+    "detail": "plant=Greasewood II LLC 306.0MW (OP) Operating @31.10409,-102.6063 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "fis_approved"
+ ],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 20.55,
+  "reason": "reality signal"
+ }
+}

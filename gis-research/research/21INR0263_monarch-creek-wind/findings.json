@@ -1,0 +1,92 @@
+{
+  "inr": "21INR0263",
+  "project": "Monarch Creek Wind",
+  "researched": "2026-07-19",
+  "verdict": "real_active",
+  "construction_stage": "clearing",
+  "site": {
+    "lat": 33.20938,
+    "lon": -99.46218,
+    "method": "FAA OE/AAA turbine obstruction filings — centroid of 86 filed turbine positions (2024-WTW-8086 through 2024-WTW-8171)",
+    "confidence": "high",
+    "county_primary": "Throckmorton",
+    "county_secondary": "Haskell",
+    "map_url": "https://www.google.com/maps/@33.20938,-99.46218,5000m/data=!3m1!1e3"
+  },
+  "ownership": {
+    "spv": "Monarch Creek Wind, LLC (TX reg: 0804576895; formerly King Creek Wind Farm 3 LLC)",
+    "developer": "EDF Renewables",
+    "developer_contacts": "Matthew McCluskey (VP), Todd Eagleston (Project Dev Mgr)",
+    "epc": "unknown",
+    "offtaker": "unknown",
+    "financing_status": "unknown — no press release found"
+  },
+  "project_area": {
+    "acres": null,
+    "source": "Ch.313 application states 58 × 6.0 MW turbines = 350 MW gross; actual acreage not extracted from map image. FAA filings span bbox ~12 km E-W × ~6 km N-S across Throckmorton/Haskell county line.",
+    "artifact": "sources/2026-07-19_faa_oe_aaa_turbine-filings.json"
+  },
+  "interconnection": {
+    "puct_cn": "35077",
+    "tsp": "Oncor Electric Delivery Co LLC",
+    "poi": "Coody Crossing Switch 345kV (per queue; Oncor network)",
+    "ia_documents": [
+      {"doc": "Original IA (Item 1138)", "signed": "2020-08-24", "financial_security": "unknown — PUCT portal blocked (402)", "artifact": null},
+      {"doc": "Amended & Restated SGIA (Item 1877)", "signed": "unknown", "financial_security": "unknown", "artifact": null},
+      {"doc": "Amendment No. 2 (Item 2355)", "signed": "unknown", "financial_security": "unknown", "artifact": null}
+    ]
+  },
+  "contractual_schedule": {
+    "source": "PUCT portal blocked; schedule dates not retrieved",
+    "documents": [
+      {"doc": "Original IA (PUCT 35077 Item 1138)", "signed": "2020-08-24", "financial_security": "not retrieved", "artifact": null},
+      {"doc": "Amended & Restated SGIA (Item 1877)", "signed": "unknown", "financial_security": "not retrieved", "artifact": null},
+      {"doc": "Amendment No. 2 (Item 2355)", "signed": "unknown", "financial_security": "not retrieved", "artifact": null}
+    ]
+  },
+  "queue_milestones": {
+    "ia_signed": "2020-08-24",
+    "fis_approved": "2025-11-05",
+    "meets_691": "2025-12-22",
+    "meets_all_69": "2026-01-26",
+    "construction_start_reported": null,
+    "construction_end_reported": null,
+    "cod_drift_count": 9,
+    "cod_first": "2021-10-01",
+    "cod_latest": "2027-09-17"
+  },
+  "faa_oe_filings": {
+    "asn_range": "2024-WTW-8086-OE to 2024-WTW-8171-OE",
+    "filed": "2024-08-05",
+    "determination": "No Hazard",
+    "count": 86,
+    "primary_turbines": 66,
+    "alternate_positions": 20,
+    "agl_height_ft": 599,
+    "counties": {"Throckmorton": 49, "Haskell": 37},
+    "artifact": "sources/2026-07-19_faa_oe_aaa_turbine-filings.json"
+  },
+  "abatement": {
+    "type": "Ch.313",
+    "comptroller_id": "1807",
+    "applicant": "King Creek Wind Farm 3 LLC (→ Monarch Creek Wind LLC)",
+    "school_district": "Throckmorton CISD",
+    "signed": "2022-12",
+    "amendments": ["2025-03", "2025-08"],
+    "turbines_in_app": "58 × 6.0 MW = 350 MW",
+    "value_limitation_start": "2028-01-01",
+    "qualifying_period_start": "2026-01-01"
+  },
+  "imagery": [
+    {"date": "2024-07", "observation": "undisturbed rangeland/farmland — no wind pads", "frame": "imagery/key/s2_2024-07-01_baseline.png"},
+    {"date": "2026-01", "observation": "undisturbed — no pads visible, construction not yet started", "frame": "imagery/key/s2_2026-01-01.png"},
+    {"date": "2026-06", "observation": "active construction — extensive graded turbine pads + access road network across project footprint, both Throckmorton and Haskell portions", "frame": "imagery/key/s2_2026-06-15_latest.png"}
+  ],
+  "construction_first_activity": "2026-Q1/Q2 (between 2026-01 and 2026-06)",
+  "cod_assessment": {
+    "reported": "2027-09-17",
+    "independent_estimate": "2027-Q4",
+    "drift_risk": "high",
+    "reasoning": "Civil works (pads + roads) visible as of 2026-06 but no tower erection visible at 10m/px. Typical wind farm civil-to-COD timeline is 12-18 months. First pads appeared sometime between 2026-01 and 2026-06, putting COD no earlier than Q1 2027 if pace is aggressive and more likely Q3-Q4 2027 or slipping to 2028. 9 prior COD slips (6-year total drift) indicate chronic schedule pressure. PUCT IA schedule not retrieved (portal blocked). Ch.313 value limitation starting Jan 2028 creates incentive to achieve COD before that date but is not a hard constraint."
+  }
+}

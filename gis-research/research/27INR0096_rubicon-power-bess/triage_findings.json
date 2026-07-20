@@ -1,0 +1,34 @@
+{
+  "inr": "27INR0096",
+  "project": "Rubicon Power BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.038,
+    "lon": -95.696,
+    "method": "OSM nominatim geocode of FM 524, Brazoria County (road centerline, not confirmed substation pad)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "not visible",
+    "evidence": "2 of 9 CDSE chips returned (auth failures); both chips dated 2026-06-01 heavily cloud-obscured; agricultural/rural land in clear patches, no gravel pad or BESS container rows visible"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": false,
+    "why": "No IA, no FIS approval after 2.5 years in queue; 4 COD slips (2027→2025→2026→2026→2027); ercotqueue.com estimates 5% build probability; 18-month BESS construction window would require IA + NTP by mid-2026, which has not occurred"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange blocked by 402 — retry with authenticated session to check if any IA filing exists under alternate name (Rubicon Power LLC vs Rubicon Power BESS LLC)",
+    "Identify the actual TNMP FM524 138kV substation parcel via ERCOT GIS or TNMP public maps to get precise lat/lon for a cloud-free imagery re-run",
+    "Confirm developer identity — Rubicon Power LLC shows no web presence, no parent company; TX SOS entity lookup needed to verify registration and principal names"
+  ],
+  "turns_used": 28
+}

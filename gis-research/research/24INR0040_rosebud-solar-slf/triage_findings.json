@@ -1,0 +1,28 @@
+{
+  "inr": "24INR0040",
+  "project": "Rosebud Solar SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-01-15",
+    "plausible": true,
+    "why": "FIS approved Oct 2025; no IA yet; 2028 COD requires IA + construction in ~2 yrs — tight but not impossible with named developer (X-Elio) and signed PPAs (Cisco 50 MW, Biogen 23 MW)"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange: search for IA or GIM filing under 'X-Elio' or 'Rosebud Solar SLF LLC' — Interchange was 402-blocked during triage",
+    "Substation geolocation: pin BAGGINS / BARCLAY 69kV substations in ERCOT network map to establish site candidate for imagery",
+    "X-Elio corporate: confirm SPV entity name (Rosebud Solar SLF LLC vs Rosebud Solar LLC) via TX SOS; verify Cisco/Biogen PPA source",
+    "JETI registry: check TX Comptroller JETI for Falls County solar post-2022 with X-Elio or Rosebud as applicant",
+    "Imagery: once site candidate established, run cdse.py at 2025-2026 dates to check for ground-clearing / panel installation activity"
+  ],
+  "turns_used": 25
+}

@@ -1,0 +1,27 @@
+{
+  "inr": "26INR0156",
+  "project": "Ross Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-07-31",
+    "plausible": true,
+    "why": "IA signed Jun 2024; ~38 months to COD is tight but not implausible for a BESS; no construction milestones yet, so execution risk is real"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF not retrieved — PUCT Interchange blocked from this env; pull milestone schedule and POI exact coordinates from IA",
+    "S&S Renewables LLC profile is thin — verify developer track record and capitalization via TX SOS or Pitchbook",
+    "Static substation (#8676) location unknown — resolve via AEP CREZ maps or ERCOT transmission GIS to anchor site candidate for imagery",
+    "No construction milestones and no news signals — verify queue status is still active and not quietly withdrawn"
+  ],
+  "turns_used": 22
+}

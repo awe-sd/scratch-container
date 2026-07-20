@@ -1,0 +1,121 @@
+{
+ "inr": "21INR0349",
+ "project": "Pearl Crescent Solar",
+ "first_seen_in_reports": "2019-10-01",
+ "last_seen_in_reports": "2026-06-01",
+ "snapshots": 81,
+ "milestones": [
+  {
+   "milestone": "Screening started",
+   "achieved": "2019-05-31",
+   "first_in_report": "2019-10-01"
+  },
+  {
+   "milestone": "Screening complete",
+   "achieved": "2019-08-26",
+   "first_in_report": "2019-10-01"
+  },
+  {
+   "milestone": "FIS requested",
+   "achieved": "2019-09-30",
+   "first_in_report": "2019-10-01"
+  },
+  {
+   "milestone": "FIS approved",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "IA signed",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Meets 6.9(1)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Meets all 6.9",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Construction start (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Construction end (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Approved for energization",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Approved for synchronization",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Commercial operation approved",
+   "achieved": null,
+   "first_in_report": null
+  }
+ ],
+ "reported_cod_history": [
+  {
+   "value": "2021-12-20",
+   "from": "2019-10-01",
+   "to": "2019-12-01"
+  },
+  {
+   "value": "2021-06-30",
+   "from": "2020-01-01",
+   "to": "2020-03-01"
+  },
+  {
+   "value": "2021-12-15",
+   "from": "2020-04-01",
+   "to": "2020-09-01"
+  },
+  {
+   "value": "2022-12-15",
+   "from": "2020-10-01",
+   "to": "2021-06-01"
+  },
+  {
+   "value": "2023-06-15",
+   "from": "2021-07-01",
+   "to": "2022-04-01"
+  },
+  {
+   "value": "2025-12-08",
+   "from": "2022-05-01",
+   "to": "2024-05-01"
+  },
+  {
+   "value": "2026-12-08",
+   "from": "2024-06-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 208.35,
+   "from": "2019-10-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "study_phase_history": [
+  {
+   "value": "SS Completed, FIS Started, No IA",
+   "from": "2019-10-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "financial_security_latest": "No"
+}

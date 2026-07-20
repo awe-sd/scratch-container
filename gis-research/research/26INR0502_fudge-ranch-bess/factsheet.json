@@ -1,0 +1,59 @@
+{
+ "inr": "26INR0502",
+ "generated": "2026-07-20",
+ "project": "Fudge Ranch BESS",
+ "county": "Kaufman",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 104.0,
+ "queue_cod": "2027-06-30",
+ "milestones": {
+  "screeningStudyComplete": "2024-07-11",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Ables Springs Solar, LLC",
+    "detail": "plant=Ables Springs Solar & Storage 100.0MW (OP) Operating @32.81957,-96.18484 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 10 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

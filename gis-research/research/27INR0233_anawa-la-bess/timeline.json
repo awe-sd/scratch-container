@@ -1,0 +1,96 @@
+{
+ "inr": "27INR0233",
+ "project": "Anawa La BESS",
+ "first_seen_in_reports": "2024-04-01",
+ "last_seen_in_reports": "2026-06-01",
+ "snapshots": 27,
+ "milestones": [
+  {
+   "milestone": "Screening started",
+   "achieved": "2024-03-22",
+   "first_in_report": "2024-04-01"
+  },
+  {
+   "milestone": "Screening complete",
+   "achieved": "2024-06-19",
+   "first_in_report": "2024-06-01"
+  },
+  {
+   "milestone": "FIS requested",
+   "achieved": "2024-04-15",
+   "first_in_report": "2025-04-01"
+  },
+  {
+   "milestone": "FIS approved",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "IA signed",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Meets 6.9(1)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Meets all 6.9",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Construction start (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Construction end (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Approved for energization",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Approved for synchronization",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Commercial operation approved",
+   "achieved": null,
+   "first_in_report": null
+  }
+ ],
+ "reported_cod_history": [
+  {
+   "value": "2027-08-31",
+   "from": "2024-04-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 103.7,
+   "from": "2024-04-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "study_phase_history": [
+  {
+   "value": "SS Started, FIS Started, No IA",
+   "from": "2024-04-01",
+   "to": "2024-05-01"
+  },
+  {
+   "value": "SS Completed, FIS Started, No IA",
+   "from": "2024-06-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "financial_security_latest": "No"
+}

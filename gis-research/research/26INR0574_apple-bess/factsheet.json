@@ -1,0 +1,85 @@
+{
+ "inr": "26INR0574",
+ "generated": "2026-07-20",
+ "project": "Apple BESS",
+ "county": "Ector",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 9.9,
+ "queue_cod": "2026-10-05",
+ "milestones": {
+  "screeningStudyComplete": null,
+  "fisApproved": null,
+  "iaSigned": "2025-04-03",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "ok",
+  "plant_id": 69318,
+  "entity": "Apple Infra, LLC",
+  "planned_cod": "2026-06",
+  "cod_delta_quarters": -1.3,
+  "dropped_scope": null,
+  "coords": [
+   31.6757,
+   -102.3638
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Apple Infra, LLC",
+    "detail": "plant=Apple BESS 9.9MW (U) Under construction, less than or equ @31.6757,-102.3638 planned=2026-06"
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Engie North America",
+    "detail": "plant=Odessa 9.9MW (OP) Operating @31.87131,-102.3984 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "HEN Infrastructure, L.L.C.",
+    "detail": "plant=Judkins BESS 9.9MW (OP) Operating @31.71559,-102.5981 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Westover ESS Assets, LLC",
+    "detail": "plant=Westover BESS 10.0MW (OP) Operating @31.83553,-102.4435 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Prologis Logistics Services Incorporated BESS",
+    "detail": "plant=Non-PLD US-El Paso - BSSAT004 9.9MW (OP) Operating @31.84039,-102.7264 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_under_construction",
+  "financial_security_posted"
+ ],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "no_verified_ia",
+   "points": 10,
+   "detail": "iaSigned claimed but no IA found on disk or in the docket join table"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 3.91,
+  "reason": "reality signal"
+ }
+}

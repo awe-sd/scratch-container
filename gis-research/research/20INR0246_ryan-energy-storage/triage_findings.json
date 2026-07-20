@@ -1,0 +1,36 @@
+{
+  "inr": "20INR0246",
+  "project": "Ryan Energy Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.618,
+    "lon": -97.800,
+    "method": "POI name 'TNPancake 69kV' matched to Pancake community, Coryell County TX (Wikipedia coords)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth failed (401); no imagery obtained. No construction start/end dates in queue data."
+  },
+  "cod_first_look": {
+    "reported": "2026-12-12",
+    "plausible": false,
+    "why": "5 COD slips over 7 years; FIS only approved 2025-09; construction not yet started per queue; 6-month window to COD is extremely tight for battery build"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF: iaSigned=2021-02-18 confirmed in queue but PUCT Interchange portal returned 402 — retrieve IA to confirm POI substation, milestone schedule, and developer identity",
+    "Fix CDSE credentials (401) then run imagery at 31.618,-97.800 (TNPancake/Pancake community) to check for cleared ground or container pads",
+    "Developer ID: zero web footprint for 'Ryan Energy Storage' — check TX SOS entity search directly for 'Ryan Energy Storage LLC' to identify parent/developer",
+    "FIS approval: 2025-09-16 is very recent — pull FIS study results or any ERCOT GINR status updates to see if scope or POI changed",
+    "COD credibility: was 2027-03-31 for 12 months then jumped back to 2026-12-12 in Jul-2025 — unusual pull-in; check for any amendment or restatement"
+  ],
+  "turns_used": 28
+}

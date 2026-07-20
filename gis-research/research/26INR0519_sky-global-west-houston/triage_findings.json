@@ -1,0 +1,36 @@
+{
+  "inr": "26INR0519",
+  "project": "Sky Global West Houston",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.636,
+    "lon": -96.065,
+    "method": "POI inference — 'Gebhardt - Wallis' 138kV circuit → Wallis TX towncentre",
+    "confidence": "low-medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth blocked (401); no imagery inspected. No other construction evidence found."
+  },
+  "cod_first_look": {
+    "reported": "2027-06-01",
+    "plausible": true,
+    "why": "IA signed Mar-2025; TCEQ AQSEGU filings active including revised final config; developer has prior commissioned project (Sky Global Power One, 2016); 2yr build window for IC-engine plant is tight but feasible"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "TCEQ air permit status — locate current AQSEGU registration number and approval date; design changed from 6×GE LM6000 to 16 IC engines, confirm final config is permitted",
+    "Site coordinates — TCEQ RN/facility record or county appraisal district parcel to pin exact site; needed to enable imagery",
+    "PUCT Interchange IA PDF — confirmed signed 2025-03-25, retrieve to check milestone schedule and any CEII redactions",
+    "Imagery — once site pinned, check current date + 2023 baseline for laydown yard / construction activity",
+    "Equipment orders — IC engine (likely Jenbacher/INNIO or Wärtsilä) lead time 18-24 months; any procurement filings or press would confirm build reality"
+  ],
+  "turns_used": 22
+}

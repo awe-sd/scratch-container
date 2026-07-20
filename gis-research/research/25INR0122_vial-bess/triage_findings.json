@@ -1,0 +1,28 @@
+{
+  "inr": "25INR0122",
+  "project": "Vial BESS",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-09-15",
+    "plausible": true,
+    "why": "IA signed Aug 2025, 6.9(1) met Aug 2025 — 25 months to COD is achievable for BESS if construction starts soon; 4 prior COD slips reduce confidence"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate Pecan Street 3352 138kV substation in Hill County via ERCOT nodal model or ONCOR transmission maps to establish a site candidate for imagery",
+    "Pull IA from PUCT Interchange via authenticated session — iaSigned=2025-08-04 is confirmed in queue but PDF not retrieved; need milestone schedule exhibit",
+    "Identify developer/parent entity behind 'Vial BESS LLC' — no web presence found; check TX SOS SOSDirect, SEC EDGAR, or LinkedIn for registered agent / sponsor",
+    "Run imagery once site candidate is established — BESS is compact, construction window is open (IA signed 11 months ago)",
+    "Check JETI registry via authenticated TX Comptroller access for Hill County BESS applications post-2022"
+  ],
+  "turns_used": 22
+}

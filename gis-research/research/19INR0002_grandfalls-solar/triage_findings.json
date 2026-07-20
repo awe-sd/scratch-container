@@ -1,0 +1,35 @@
+{
+  "inr": "19INR0002",
+  "project": "Grandfalls Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.05,
+    "lon": -101.93,
+    "method": "POI infrastructure inferred — King Mountain Station 345kV, Upton County TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth failed (401); no imagery obtained. Queue shows ApprovedForEnergization 2026-06-24, which strongly implies site work is complete or near-complete."
+  },
+  "cod_first_look": {
+    "reported": "2026-11-25",
+    "plausible": true,
+    "why": "Energization approved 2026-06-24; all 6.9 milestones met 2026-01; IA signed 2025-01; ~5 month gap to COD is tight but credible"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF via PUCT Interchange (iaSigned=2025-01-23 confirmed in queue) — retrieve parties, POI, and milestone schedule exhibit",
+    "Imagery: CDSE 401 needs credential fix; once working, 3×3 grid at ~31.05,-101.93 to confirm panel installation given energization approval",
+    "Developer/owner ID: no web presence found — try TX SOS entity search for 'Grandfalls Solar LLC'; check ERCOT project contacts in GIS report",
+    "Precise site coordinates: King Mountain Station is the POI but project may be 1-10 miles away — IA map exhibit or aerial search needed"
+  ],
+  "turns_used": 28
+}

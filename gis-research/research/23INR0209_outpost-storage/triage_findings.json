@@ -1,0 +1,34 @@
+{
+  "inr": "23INR0209",
+  "project": "Outpost Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 27.817449,
+    "lon": -99.012893,
+    "method": "gmaps POI hit — ETT Lobo Substation matches POI description '345kV 80219 Lobo'",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "3x3 Sentinel-2 grid (June 2026, buffer 2km) around Lobo substation shows undisturbed scrubland; no gravel pad, no container rows, no cleared staging area"
+  },
+  "cod_first_look": {
+    "reported": "2028-03-01",
+    "plausible": false,
+    "why": "No IA signed after 5+ years in queue (FIS never approved); COD has slipped ~5 years already; no construction signal"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Webb County tax abatement agreement — secondary source cited one exists; pull commissioners court minutes or county appraisal district records to confirm/date it",
+    "PUCT Interchange — portal blocked during triage; check filings under 'Hecate Energy' or 'ETT' for any IA or FIS study correspondence",
+    "Lobo substation capacity — POI is on 345kV ETT line; check if substation has available capacity headroom for a 508 MW injection"
+  ],
+  "turns_used": 22
+}

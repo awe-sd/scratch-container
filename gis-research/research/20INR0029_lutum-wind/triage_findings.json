@@ -1,0 +1,27 @@
+{
+  "inr": "20INR0029",
+  "project": "Lutum Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-07-01",
+    "plausible": false,
+    "why": "5 COD slips over 9 years, FIS still not approved after 8 years in queue, no IA signed — 2027 COD implausible without a step-change in progress"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Verify RWE as developer via primary source (RWE portfolio page or PUCT filing when accessible)",
+    "PUCT Interchange re-check when portal accessible — search FilingParty=RWE + Description=Lutum to find any IA or study filings",
+    "FAA OE/AAA direct portal search by county/state for Clay County TX wind turbines — may unlock turbine coordinates if site siting has begun",
+    "Ch.313 / JETI abatement check via TX Comptroller direct download when accessible — project entered queue 2020, could have filed before Ch.313 expiry (2022)"
+  ],
+  "turns_used": 22
+}

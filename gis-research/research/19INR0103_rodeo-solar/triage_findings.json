@@ -1,0 +1,28 @@
+{
+  "inr": "19INR0103",
+  "project": "Rodeo Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-11-30",
+    "plausible": false,
+    "why": "10 COD slips over 7 years; no construction start reported; queue shows no energization milestones"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2019-08-20 per queue — retrieve IA PDF from PUCT Interchange (currently blocked via web) for POI coordinates and milestone schedule",
+    "Resolve 'Nelson Switch 138kV 11273' in Andrews County to lat/lon, then run imagery to check for any site prep or construction",
+    "Identify developer/owner: no web presence found, no LLC registration surfaced — Texas SOS search needed",
+    "Check Ch.313 abatement: Andrews ISD is likely applicant school district; search comptroller pre-2022 records",
+    "COD 2026-11-30 implausible given no construction signal — assess whether project is dormant or stalled"
+  ],
+  "turns_used": 18
+}

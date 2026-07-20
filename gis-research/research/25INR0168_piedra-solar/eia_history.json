@@ -1,0 +1,49 @@
+{
+ "inr": "25INR0168",
+ "plant_id": 69496,
+ "plant_name": "Piedra Solar",
+ "entity": "Piedra Solar, LLC",
+ "matched_by": "name match",
+ "first_report": "2025-12-01",
+ "last_report": "2026-05-01",
+ "planned_cod_history": [
+  {
+   "value": "2026-12",
+   "from": "2025-12-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 280.0,
+   "from": "2025-12-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "status_history": [
+  {
+   "value": "(U) Under construction, less than or equal to 50 percent complete",
+   "from": "2025-12-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "queue_reported_cod": "2026-12-22",
+ "energy_capacity_mwh_history": [
+  {
+   "value": null,
+   "from": "2025-12-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "operating_date_history": [
+  {
+   "value": null,
+   "from": "2025-12-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "eia_county": "Freestone",
+ "eia_lat": 31.64899,
+ "eia_lon": -96.34517,
+ "dropped_from_860m": null
+}

@@ -1,0 +1,28 @@
+{
+  "inr": "26INR0143",
+  "project": "Santa Garcias Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-30",
+    "plausible": true,
+    "why": "IA signed 2025-12-31, FIS not yet approved; 2028 COD is ~2.5 yrs out from IA — tight but possible if FIS clears promptly; original 2026 target slipped significantly"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Retrieve PUCT Interchange IA filing (authenticated session required) — extract parties/developer, POI exhibit, and milestone schedule",
+    "Geolocate Alazan substation (bus 8515) to establish 138kV tap corridor in Kleberg County — enables site candidate and imagery pass",
+    "TX SOS entity lookup: 'Santa Garcias Solar, LLC' — confirm developer/sponsor, registered agent, and parent company",
+    "FIS approval status: not yet granted as of latest snapshot — monitor for approval or check if study is in progress",
+    "JETI/Ch.312 abatement check once developer identity confirmed — Kleberg County ISD would be the applicant"
+  ],
+  "turns_used": 22
+}

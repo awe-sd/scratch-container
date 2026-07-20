@@ -1,0 +1,33 @@
+{
+  "inr": "24INR0106",
+  "project": "Payne Battlecreek",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.82,
+    "lon": -96.77,
+    "method": "news article — '~526 acres SE of Hubbard TX' (Lakelander 2023-05-18)",
+    "confidence": "medium"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-08-25",
+    "plausible": true,
+    "why": "IA signed 2024-02-23; FIS still pending; 3-yr COD slip history; 2027-08 is tight but not impossible if FIS clears in 2026"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange controlNumber=35077 item=1761 — fetch IA PDF directly; extract parties, POI, and milestone schedule exhibit",
+    "CDSE imagery at lat=31.82 lon=-96.77 (SE of Hubbard TX) — check for panel installation or grading activity; credentials need refresh",
+    "Ch312 abatement id=000009767 Hill County — confirm whether executed agreement exists or was superseded by Ch381/JETI; TX Comptroller JS-rendered pages require direct browser access",
+    "FIS status — 24INR0106 has IA but no FIS approved; confirm current study phase and any ERCOT scoping letters in queue",
+    "Gransolar parent company — TX reg #0804159078 in Irving TX; no parent surfaced; check Spain/EU solar developer registries (GranSolar brand)"
+  ],
+  "turns_used": 28
+}

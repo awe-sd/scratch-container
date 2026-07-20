@@ -1,0 +1,28 @@
+{
+  "inr": "27INR0434",
+  "project": "Lyra Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-09-15",
+    "plausible": true,
+    "why": "IA signed 2025-07-01, no COD drift in 16 months; PUCT CCN filing for transmission line Jan 2026 shows active development; ~26 months to COD from IA is tight but not implausible for 500 MW solar"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Retrieve PUCT Case 59183 (WETT CCN) filings — milestone schedule exhibit and parties page; check for CEII redaction of construction dates",
+    "Identify developer parent company behind 'Juno Solar 4' — no LLC registration or corporate parent surfaced in T3",
+    "Locate Muleshoe (#59922) 345kV substation precise coordinates to enable imagery — substation may be in Borden County (not city of Muleshoe in Bailey County)",
+    "Verify 'Lyra BESS' companion project in queue (separate INR?) — co-located BESS suggests more committed developer",
+    "Check FIS approval status — IA signed without FIS approved is an unusual flag worth examining"
+  ],
+  "turns_used": 22
+}

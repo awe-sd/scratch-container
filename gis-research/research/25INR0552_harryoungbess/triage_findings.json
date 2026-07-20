@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0552",
+  "project": "HarryoungBESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 26.2354,
+    "lon": -97.5819,
+    "method": "POI name 'Rio Hondo sub 138kV' → Rio Hondo town center (Nominatim); actual substation not geolocated",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "Single Sentinel-2 chip 2026-06-01 at Rio Hondo city center — heavy cloud, agricultural land only; substation not confirmed in frame"
+  },
+  "cod_first_look": {
+    "reported": "2028-05-15",
+    "plausible": true,
+    "why": "FIS not yet approved; 2-year slip already baked in; ~2yr remaining gives marginal but theoretically achievable window if FIS clears soon"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate exact Rio Hondo 138kV substation coordinates (EIA-860, ERCOT network map, OpenInfraMap) and re-run imagery on tight 1 km buffer",
+    "PUCT Interchange IA search for 'Gransolar Texas' — portal returned 402 during triage, worth a manual or browser-based check",
+    "Confirm whether Pathward/NADBank $146.5M Cameron County BESS financing (abladvisor.com snippet) covers this specific INR or a different Gransolar project",
+    "Gransolar Texas Four LLC — Texas SOS entity search to confirm registrant/developer identity and any related entities"
+  ],
+  "turns_used": 28
+}

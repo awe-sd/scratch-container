@@ -1,0 +1,35 @@
+{
+  "inr": "16INR0081",
+  "project": "Mesteno Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 26.46,
+    "lon": -98.73,
+    "method": "text description — Del Sol 345kV substation ~7 miles NE of Rio Grande City, Starr County",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "likely already operational",
+    "evidence": "Multiple sources confirm COD ~2019-12-31 under Duke Energy Renewables; project sold to InfraRed Capital Partners as '202 MW operational'; now listed under Deriva Energy. ERCOT GIS shows approved-for-sync 2019-12-12 but no approvedForCommercialOperation date, explaining phantom queue entry. CDSE creds blocked so no satellite confirmation."
+  },
+  "cod_first_look": {
+    "reported": "2026-09-01",
+    "plausible": false,
+    "why": "30 COD slips across 12 years; project almost certainly online since Dec 2019 per press coverage; GIS entry appears to be a stale/orphan queue record for an already-operational plant"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm whether 16INR0081 is a legacy stale entry (original Duke/InfraRed ~2019 plant) vs. a NEW Mesteno Wind project under Deriva Energy with 590.5-ft tall towers — web mentions Deriva's 'fourth Starr County wind facility' which may be a new INR",
+    "Retrieve PUCT Interchange IA (2018-04-25 signed) to confirm capacity and POI, and check for any amendment filings under Deriva or new developer",
+    "Fix CDSE credentials and run imagery over 26.46°N 98.73°W to confirm turbine strings are already present",
+    "Check ERCOT SCED/GenUnit for a unit named 'Mesteno' to confirm operational status definitively"
+  ],
+  "turns_used": 28
+}

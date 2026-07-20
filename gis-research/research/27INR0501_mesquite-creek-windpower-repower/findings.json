@@ -1,0 +1,88 @@
+{
+  "inr": "27INR0501",
+  "project": "Mesquite Creek Windpower Repower",
+  "research_date": "2026-07-19",
+  "verdict": "real_early",
+  "verdict_confidence": "medium",
+  "verdict_rationale": "Known operating wind farm (118 GE 1.7-100 turbines, Dawson County, commissioned ~2015). Repower is a real project on real land but is pre-IA stage with no construction activity visible. No FAA filings, no abatement, no developer PR found — consistent with early development, not paper.",
+  "developer_chain": {
+    "spv": "Mesquite Creek Wind LLC",
+    "developer": "unknown — original farm: Duke Energy Renewables / Perennial Power (BNB Renewables developer); repower entity unconfirmed",
+    "epc": null,
+    "offtaker": null,
+    "financing": "not closed"
+  },
+  "site": {
+    "lat": 32.700,
+    "lon": -101.741,
+    "method": "EIA-860M wind turbine database + Wikimapia turbine pin for existing Mesquite Creek Wind Farm; repower is of the same site",
+    "confidence": "high",
+    "cross_checks": "POI 'Long Draw 345 kV' consistent with ~8 mi from Lamesa TX; Dawson/Borden County boundary matches queue county = Dawson",
+    "artifact": null
+  },
+  "project_area": {
+    "acres": null,
+    "source": "not found — no CAD, IA, or abatement document retrieved",
+    "artifact": null,
+    "note": "Existing 118-turbine array spans ~20-30 km² across Dawson/Borden County boundary; repower footprint approximately same"
+  },
+  "construction": {
+    "verdict": "no_activity",
+    "stage": "pre-construction",
+    "first_activity_seen": null,
+    "evidence": "Sentinel-2 chips Jan 2026 and Jul 2026 both show undisturbed operating turbine array; no pad prep, no turbine removal, no new roads"
+  },
+  "imagery": [
+    {
+      "date": "2026-01-01",
+      "observation": "Existing turbine array (118 white dots) on agricultural land; undisturbed; no construction",
+      "frame": "imagery/s2_2026-01-01.png"
+    },
+    {
+      "date": "2026-07-01",
+      "observation": "Same — undisturbed operating farm; no change vs Jan 2026",
+      "frame": "imagery/s2_2026-07-01.png"
+    }
+  ],
+  "land_tenure": {
+    "type": "leased (presumed — wind farms on agricultural land in Dawson County are typically leased)",
+    "evidence": "no CAD or abatement document retrieved to confirm",
+    "abatements": "none found (repower; Ch.313 cutoff was 2022; JETI post-2022 — no JETI entry found)"
+  },
+  "interconnection": {
+    "ia_found": false,
+    "ia_source": "PUCT Interchange — all access blocked HTTP 402; IA milestone not achieved in ERCOT queue as of Jun 2026",
+    "poi_confirmed": "Long Draw 345 kV (from ERCOT queue POI field)",
+    "contractual_schedule": {
+      "documents": []
+    }
+  },
+  "faa_obstruction": {
+    "found": false,
+    "note": "FAA OE/AAA portal migrated to Angular SPA; all legacy search URLs return 404; no turbine filings retrievable"
+  },
+  "queue_history": {
+    "snapshots": 15,
+    "first_snapshot": "2025-04-01",
+    "last_snapshot": "2026-06-01",
+    "cod_reported": "2027-12-31",
+    "cod_changes": 0,
+    "milestones_achieved": ["screening_started", "screening_complete", "fis_requested"],
+    "milestones_pending": ["fis_approved", "ia_signed", "all_6_9"]
+  },
+  "cod_assessment": {
+    "reported": "2027-12-31",
+    "independent_estimate": "2029-Q4 or later",
+    "drift_risk": "high",
+    "rationale": "No IA as of Jun 2026 (18 months to reported COD); no FIS approval; no construction; no FAA filings; no developer PR. Typical repower timeline from IA signing to COD is 18-24 months for wind. Best case: FIS approved late 2026, IA signed Q1 2027, construction 2027-2028, COD 2029. Stable COD across 15 snapshots suggests placeholder date, not tracked target."
+  },
+  "negative_evidence": [
+    "No FAA OE/AAA obstruction filings found for new turbines (portal inaccessible; no new filings in any accessible source)",
+    "No PUCT IA filing found (IA milestone not achieved; portal blocked)",
+    "No Ch.313/JETI abatement found (repower; post-2022 JETI cutoff; no entry found)",
+    "No developer press release or repower announcement found",
+    "No construction visible in satellite imagery (Jan 2026, Jul 2026)",
+    "No Texas SOS entity filing accessible (SOSDirect requires paid account)",
+    "No Google Places delivery pin found (429 rate-limit during both triage and deep scan)"
+  ]
+}

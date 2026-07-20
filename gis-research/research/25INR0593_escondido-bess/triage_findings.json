@@ -1,0 +1,34 @@
+{
+  "inr": "25INR0593",
+  "project": "Escondido BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.7285,
+    "lon": -100.4745,
+    "method": "OSM Overpass substation name match — POI 'Escondido' substation exactly matches queue POI description",
+    "confidence": "high"
+  },
+  "construction": {
+    "verdict": "inconclusive",
+    "evidence": "Tight S2 chip (2026-07-01, 0.8km buffer) shows parallel rectangular white elements adjacent to substation compound — pattern consistent with BESS containers but also consistent with pre-existing substation equipment. Baseline chip unavailable (CDSE auth expired). Project is already approved-for-energization and approved-for-synchronization (2026-05), strongly implying physical installation is complete."
+  },
+  "cod_first_look": {
+    "reported": "2026-09-21",
+    "plausible": true,
+    "why": "Project cleared energization + sync approval in May 2026; commercial operation gate is the last remaining milestone; 4-month window is credible but tight given 6 prior slips"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA retrieval — IA signed 2023-11-29 but portal blocked during triage; IA parties page and milestone schedule exhibit are the key documents",
+    "Baseline satellite imagery (2023 vs 2026) to confirm new BESS pad vs pre-existing infrastructure at Escondido substation",
+    "Developer/sponsor identification — no web presence found for Escondido BESS LLC; Texas SOS business search and FERC eLibrary may surface parent entity"
+  ],
+  "turns_used": 28
+}

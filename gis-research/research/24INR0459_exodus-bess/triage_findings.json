@@ -1,0 +1,27 @@
+{
+  "inr": "24INR0459",
+  "project": "Exodus BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": false,
+    "why": "FIS not yet approved after 3 years; COD slipped 27 months across 5 revisions; no construction milestones achieved — Dec 2027 requires IA + construction start imminently"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange manual search for IA or GIA filings (portal returned 402 during triage — try direct docket search or ERCOT GIM project page)",
+    "ERCOT GIM project details page for 24INR0459 to confirm FIS study status and any queue withdrawal risk",
+    "Texas SOS / OpenCorporates for Exodus Solar LLC or Exodus BESS LLC entity registration and principal names",
+    "Locate Austrop–Zorn 345kV tap point via ERCOT network map or PUC transmission maps before imagery run"
+  ],
+  "turns_used": 22
+}

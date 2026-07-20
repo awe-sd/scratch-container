@@ -1,0 +1,58 @@
+{
+ "inr": "28INR0436",
+ "generated": "2026-07-20",
+ "project": "Englehardt BESS",
+ "county": "Comal",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 200.51,
+ "queue_cod": "2027-09-01",
+ "milestones": {
+  "screeningStudyComplete": "2025-12-02",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "ok",
+  "plant_id": 67237,
+  "entity": "Ebony Energy Storage, LLC",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   29.62009,
+   -98.33448
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Ebony Energy Storage, LLC",
+    "detail": "plant=Ebony Energy Storage 207.9MW (OP) Operating @29.62009,-98.33448 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_operating_date"
+ ],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 14.94,
+  "reason": "reality signal"
+ }
+}

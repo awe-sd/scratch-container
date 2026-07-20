@@ -1,0 +1,35 @@
+{
+  "inr": "24INR0500",
+  "project": "Claire BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.741,
+    "lon": -94.972,
+    "method": "POI infrastructure — Cedar Bayou 138kV substation area, Baytown, Harris County TX",
+    "confidence": "low — substation anchor only; exact parcel unknown"
+  },
+  "construction": {
+    "verdict": "none detected",
+    "evidence": "5 of 9 Sentinel-2 chips (2026-07-01) over Cedar Bayou POI area show suburban/industrial Baytown; no bare gravel pad, no container rows, no fresh clearing. Partial grid (4 chips missing due to CDSE auth expiry)."
+  },
+  "cod_first_look": {
+    "reported": "2027-12-17",
+    "plausible": false,
+    "why": "COD has slipped 3 times (2024-06 → 2024-12 → 2026-11 → 2027-12); no FIS approved, no IA signed, no construction milestones after 3.5 years in queue — extremely unlikely to reach COD in 18 months from today"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm developer identity: infrasure.ai lists 'BRP Blue Topaz 3, LLC' — verify via Texas SOS entity search and cross-ref to any BRP Energy / Blue Topaz portfolio track record",
+    "PUCT Interchange IA search: portal returned 402 this run — retry when accessible; IA filing would confirm or deny developer commitment",
+    "JETI registry retry: comptroller.texas.gov/economy/development/prop-tax/jeti/applications.php returned a data-load error — worth one retry pass",
+    "Verify POI siting: 'Cedar Bayou 138kV' likely refers to a CenterPoint/ERCOT 138 kV bus near the Cedar Bayou generating complex; exact lat/lon should be confirmed against ERCOT's substation map before any imagery re-run"
+  ],
+  "turns_used": 30
+}

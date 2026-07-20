@@ -1,0 +1,8 @@
+Source: OpenStreetMap Overpass API (retrieved during triage session T8, 2026-07-18)
+Query: way["power"="substation"]["name"~"Venus",i] area["name"="Ellis County"]
+Result: Venus Switch Substation
+  Type: Oncor Electric Delivery substation
+  Voltage: 345kV / 138kV
+  Address: 2121 E County Road 109, Venus, TX 76084
+  Coordinates: 32.44401°N, 97.07272°W
+  Note: API returned HTTP 406 on raw JSON download; coords from T8 session log note

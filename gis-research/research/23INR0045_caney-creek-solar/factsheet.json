@@ -1,0 +1,77 @@
+{
+ "inr": "23INR0045",
+ "generated": "2026-07-20",
+ "project": "Caney Creek Solar",
+ "county": "Van Zandt",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 121.04,
+ "queue_cod": "2027-06-21",
+ "milestones": {
+  "screeningStudyComplete": "2020-12-16",
+  "fisApproved": null,
+  "iaSigned": "2021-12-29",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "puct-index",
+    "entity": "(parse failed \u2014 read description)",
+    "detail": "Solar Generation Interconnection Agreement between REC and hep Caney Creek Solar LLC"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "financial_security_posted"
+ ],
+ "paper_score": 36,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 10.95,
+  "reason": "reality signal"
+ }
+}

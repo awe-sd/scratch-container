@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0102",
+  "project": "Cottonseed Energy Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.194,
+    "lon": -96.026,
+    "method": "POI description: 'South Lane City substation' — Lane City TX coords offset ~1.5mi south",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery blocked (OAuth 401); no other visual source available"
+  },
+  "cod_first_look": {
+    "reported": "2027-04-20",
+    "plausible": false,
+    "why": "No IA signed as of Jun 2026; BESS build takes 12-18 months post-NTP — 9-month runway from IA execution to Apr 2027 COD is extremely tight"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Identify developer/parent behind Cottonseed Energy Storage LLC (Delaware Jan 2023) — no principal found in triage; sponsor quality is the key unknown",
+    "PUCT Interchange: search for IA filing or any docket once portal accessible — IA status is the primary go/no-go gate",
+    "Fix CDSE credentials and run imagery on South Lane City substation (~29.194, -96.026) to confirm whether site prep has started",
+    "Check ERCOT project details page for any FIS study result or NTP notice posted post-Jun 2026"
+  ],
+  "turns_used": 28
+}

@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0068",
+  "project": "KEYS HOLLOW STORAGE SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.63,
+    "lon": -97.25,
+    "method": "POI substation name inference (Coleto 8164 = Coleto Creek area, Goliad County)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery blocked (401 Unauthorized); no pins; no reported construction milestones in queue"
+  },
+  "cod_first_look": {
+    "reported": "2028-03-10",
+    "plausible": true,
+    "why": "IA signed Oct 2024; 2 prior COD slips of ~1-2 years each; FIS not yet approved; 18-month build window leaves 2028-03 achievable if FIS granted soon but tight"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF from PUCT — docket #35077 (portal blocked during triage); extract POI coordinates and milestone schedule",
+    "Precise site location: Coleto 8164 substation exact coords from ERCOT network model or AW.dbo; run tight imagery once located",
+    "Developer identity: 'Keys Hollow Solar LLC' is project-specific; find parent company/sponsor behind Dallas TX address",
+    "Phase II sibling (cleanview.co): same developer, confirm INR and shared POI — combined capacity signal",
+    "FIS status: FIS requested 2022-03-04 but never approved; 4-year gap is unusual — check if FIS was withdrawn/restudy"
+  ],
+  "turns_used": 18
+}

@@ -1,0 +1,27 @@
+{
+  "inr": "26INR0243",
+  "project": "Caladium BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-11-30",
+    "plausible": false,
+    "why": "18-month COD slip already logged, FIS not approved, IA not signed — no advanced milestones; 2027-11 COD requires IA + permitting + 12-18 month build from now"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Sunnyside 69kV substation (ERCOT ID 57664) coordinates — CenterPoint territory, Waller County west of Houston; enables imagery pass",
+    "Identify parent company behind Caladium Storage LLC — TX SOS lookup, SEC EDGAR full-text search; aggregators show no parent",
+    "PUCT Interchange: retry with authenticated session or direct filing search for 26INR0243 or Caladium Storage LLC — portal returned 402 during triage",
+    "FIS approval status: if approved post-June-2026 snapshot, project advances materially and deep scan warranted"
+  ],
+  "turns_used": 22
+}

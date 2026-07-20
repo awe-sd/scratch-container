@@ -1,0 +1,35 @@
+{
+  "inr": "23INR0485",
+  "project": "Hacienda Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.42,
+    "lon": -94.99,
+    "method": "third-party aggregator trackers (infrasure.ai, cleanview.co, interconnection.fyi)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth failed (401/403) — no imagery obtained; no other construction signals"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": false,
+    "why": "4 COD slips in 4 years; no FIS approval, no IA signed as of Jun 2026 — 18 months to COD with no critical milestones is implausible"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Identify developer behind 'BT Hacienda Storage, LLC' — BT prefix unknown, likely a parent company or fund; Texas SOS entity search",
+    "Army Corps Galveston file SWG-2022-00547 — jurisdictional determination issued; fetch AJD document for site map with coordinates",
+    "PUCT Interchange IA search — portal returned 402 during triage; retry with correct session/tool for any IA or IA amendment filings",
+    "Imagery once CDSE creds restored — site candidate ~29.42N, 94.99W is low-confidence; Army Corps AJD map may give better pin; battery build is fast so check recent dates"
+  ],
+  "turns_used": 28
+}

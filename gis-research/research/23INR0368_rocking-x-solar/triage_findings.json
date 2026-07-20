@@ -1,0 +1,27 @@
+{
+  "inr": "23INR0368",
+  "project": "Rocking X Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-09-20",
+    "plausible": false,
+    "why": "FIS not yet approved after 3 years in queue; no IA signed; no construction milestones — ~14 months to COD from now with zero execution milestones achieved is implausible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Parker Switch substation (bus #1436) coordinates via ERCOT transmission network model data to enable imagery run",
+    "PUCT Interchange search requires browser session — check for IA filing under 'Rocking X Solar' or developer name once identified",
+    "Texas SOS entity search for 'Rocking X Solar LLC' to confirm SPV existence and identify registered agent / developer parent",
+    "If developer identified, search for portfolio-level news or other Parker County solar projects under same developer"
+  ],
+  "turns_used": 22
+}

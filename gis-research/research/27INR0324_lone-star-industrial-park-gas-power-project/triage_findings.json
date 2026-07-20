@@ -1,0 +1,32 @@
+{
+  "inr": "27INR0324",
+  "project": "LONE STAR INDUSTRIAL PARK GAS POWER PROJECT",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.096,
+    "lon": -95.038,
+    "method": "POI substation — Monticello SES (Titus/Morris county border) via OSM Nominatim",
+    "confidence": "low"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-11",
+    "plausible": false,
+    "why": "No IA, no FIS approval, no TCEQ air permit found, no construction signal — 166 MW gas reciprocating plant needs multi-year permitting; 2028 COD implausible without imminent IA and air permit"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "TCEQ air permit NSR search for 'Lone Star Industrial Park' in Morris County — absence is the key paper-project signal for thermal",
+    "Texas SOS entity search for 'LONE STAR INDUSTRIAL PARK, LLC' to confirm formation date and registered agent (developer identity)",
+    "PUCT Interchange search when portal access restored — IA status is the gate milestone",
+    "Monticello SES area imagery once CDSE credentials configured — generator site likely within 5 km of substation"
+  ],
+  "turns_used": 28
+}

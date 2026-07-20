@@ -1,0 +1,65 @@
+{
+ "inr": "25INR0420",
+ "generated": "2026-07-20",
+ "project": "Houston BESS",
+ "county": "Harris",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 227.9,
+ "queue_cod": "2027-08-01",
+ "milestones": {
+  "screeningStudyComplete": "2023-07-03",
+  "fisApproved": "2024-04-04",
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ok",
+  "plant_id": 66338,
+  "entity": "Callisto I Energy Center",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   29.64681,
+   -95.45054
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Callisto I Energy Center",
+    "detail": "plant=Callisto I Energy Center 223.4MW (OP) Operating @29.64681,-95.45054 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "fis_approved"
+ ],
+ "paper_score": 6,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 18.38,
+  "reason": "reality signal"
+ }
+}

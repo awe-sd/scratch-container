@@ -1,0 +1,28 @@
+{
+  "inr": "21INR0221",
+  "project": "Samson Solar 1",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-09-30",
+    "plausible": false,
+    "why": "23 COD drifts over 5 years; approved-for-sync Aug 2021 but no COD approval and no construction start/end reported — pattern suggests stalled post-energization; only ~10 weeks away with no visible progress signal"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT IA filing — interchange.puc.texas.gov was blocked (HTTP 402); retrieve IA PDF for milestone-schedule exhibit to assess contractual obligations",
+    "Resolve approved-for-sync (2021-08-31) without COD — check if 21INR0221 has a SCED unit name or if the sync approval was for a different sub-unit/phase; cross-check ERCOT GenUnit",
+    "Site geolocation — find ERCOT substation coordinates for '1685 FarmersVl' and '1695 Moses' 345kV to anchor imagery; try HIFLD/CISA substation dataset or ERCOT network map",
+    "Invenergy Samson Solar Energy Center phasing — web search named operating phases (Samson Solar Energy, Samson Solar Energy II) vs. this 'planned' phase; confirm whether 21INR0221 is truly a new build or a re-queue of an older project",
+    "Imagery at site once geolocated — run T6 properly with substation-anchored coordinates; check 2023-2026 for construction progression"
+  ],
+  "turns_used": 37
+}

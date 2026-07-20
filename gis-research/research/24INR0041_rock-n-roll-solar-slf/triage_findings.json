@@ -1,0 +1,35 @@
+{
+  "inr": "24INR0041",
+  "project": "Rock N' Roll Solar SLF",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.35,
+    "lon": -95.47,
+    "method": "POI tap line reference ('44600 Rosharon - 44531 Winmil') — Rosharon, Brazoria County",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no activity",
+    "evidence": "4 Sentinel-2 chips (2026-07-01, 2km buffer) around Rosharon show agricultural/rural land; no grading, panels, or staging visible; consistent with queue showing zero construction milestones"
+  },
+  "cod_first_look": {
+    "reported": "2027-08-30",
+    "plausible": false,
+    "why": "FIS not yet approved, no IA signed, 3 prior COD slips (original 2024-06-01 → now 2027-08-30); <18 months to reported COD with no execution milestones passed is implausible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange control 35077 (CenterPoint IA filing for 'Rock N' Roll Storage SLF') — confirm if this is the IA for this project or a sister project; PUCT portal blocked during triage, needs direct browser access",
+    "Verify developer identity: 'Rock N' Roll Solar, LLC' (queue/T3 sources) vs 'Rock N' Roll Solar SLF, LLC' (identity packet) — possible SPV distinction",
+    "gmaps places search (rate-limited during triage) — retry for direct site pin to refine imagery area",
+    "Re-run imagery on a broader Brazoria County sweep if pin is found"
+  ],
+  "turns_used": 22
+}

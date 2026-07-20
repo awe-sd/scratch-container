@@ -1,0 +1,85 @@
+{
+ "inr": "25INR0166",
+ "generated": "2026-07-20",
+ "project": "Compadre Solar II",
+ "county": "Hill",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 201.4,
+ "queue_cod": "2026-10-01",
+ "milestones": {
+  "screeningStudyComplete": "2022-12-13",
+  "fisApproved": "2025-06-16",
+  "iaSigned": "2024-12-24",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 6,
+ "eia": {
+  "status": "ok",
+  "plant_id": 67765,
+  "entity": "Compadre Solar, LLC",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   33.45736,
+   -97.28961
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "HEC Renewable Energy America LLC",
+    "detail": "plant=OCI Hillsboro 200.0MW (P) Planned for installation, but regula @31.941,-97.021 planned=2027-10"
+   },
+   {
+    "source": "eia860m/Planned",
+    "entity": "Hill Solar II, LLC",
+    "detail": "plant=Hill Solar II 200.0MW (TS) Construction complete, but not yet  @32.1152,-97.06783 planned=2026-06"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": [
+   {
+    "program": "Ch.313",
+    "applicant": "Padre Solar, LLC",
+    "district": "Gregory-Portland ISD",
+    "score": 11
+   },
+   {
+    "program": "Ch.313",
+    "applicant": "Padre Solar LLC",
+    "district": "Taft ISD",
+    "score": 11
+   }
+  ]
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 12,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 12,
+   "detail": "6 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 83.92,
+  "reason": "reality signal"
+ }
+}

@@ -1,0 +1,27 @@
+{
+  "inr": "25INR0190",
+  "project": "Fortissimo BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-04-24",
+    "plausible": true,
+    "why": "FIS approved 2024-09 but IA not signed; ~3-year COD slip already occurred; 2028 is achievable if IA executes soon but no evidence of progress"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "IA status — FIS approved 2024-09-12, check if IA has been executed or is in negotiation via PUCT interchange (session-authenticated search)",
+    "Developer identity — project name yields no web footprint; TX SOS LLC search for 'Fortissimo BESS' needed",
+    "PUCT interchange — blocked during triage; retry with authenticated session for docket filings under project or developer name",
+    "Abatements — T5 skipped due to budget; run TX Comptroller Ch.313 + JETI for Montague County"
+  ],
+  "turns_used": 18
+}

@@ -1,0 +1,28 @@
+{
+  "inr": "26INR0269",
+  "project": "Moccasin Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-07-06",
+    "plausible": true,
+    "why": "IA signed Sep 2024, all 6.9 milestones met Apr 2026, ~14 months to COD is tight but consistent with an advanced-stage project; no construction start recorded yet adds risk"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange: IA filing for 26INR0269 or 'Moccasin Solar' — blocked during triage (402); try authenticated session or PUCT docket search to get IA parties, POI coordinates, and milestone schedule exhibit",
+    "POI substation geo-lookup: Kirchhoff Bus#60707 and Clear Crossing Bus#60515 — find coordinates to anchor imagery; try ERCOT MIS, OpenInfraMap, or AEP transmission maps",
+    "TX SOS LLC search: 'Moccasin Solar LLC' — no developer name surfaced in T3; SOS entity lookup may reveal developer/parent company",
+    "Imagery once site candidate found: no construction start reported but all gate milestones cleared — check current date imagery for site prep or panel staging near POI line corridor in Stonewall County",
+    "Capacity step-down: 809.6→603.59 MW reduction (25%) — likely project scope reduction; IA amendment may reveal revised layout or acreage"
+  ],
+  "turns_used": 22
+}

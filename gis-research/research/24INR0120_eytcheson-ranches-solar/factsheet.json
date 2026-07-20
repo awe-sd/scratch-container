@@ -1,0 +1,67 @@
+{
+ "inr": "24INR0120",
+ "generated": "2026-07-20",
+ "project": "Eytcheson Ranches Solar",
+ "county": "Navarro",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 76.42,
+ "queue_cod": "2028-01-01",
+ "milestones": {
+  "screeningStudyComplete": "2021-11-29",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "ok",
+  "plant_id": 66398,
+  "entity": "Gransolar Texas Fourteen, LLC",
+  "planned_cod": "2028-01",
+  "cod_delta_quarters": 0.0,
+  "dropped_scope": null,
+  "coords": [
+   31.87262,
+   -96.7
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Gransolar Texas Fourteen, LLC",
+    "detail": "plant=Eytcheson Solar 76.4MW (P) Planned for installation, but regula @31.87262,-96.7 planned=2028-01"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [],
+ "paper_score": 20,
+ "score_factors": [
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 20 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

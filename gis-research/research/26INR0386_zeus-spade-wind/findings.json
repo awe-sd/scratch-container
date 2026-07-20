@@ -1,0 +1,77 @@
+{
+ "inr": "26INR0386",
+ "project": "Zeus Spade Wind",
+ "researched_at": "2026-07-18",
+ "site": {
+  "lat": 32.3546,
+  "lon": -100.9505,
+  "method": "poi_infrastructure",
+  "confidence": "low",
+  "evidence": "POI text 'Tap 345 kV 1030 Morgan Creek to 76030 Gasconades Creek' locates a tap on the Morgan Creek-Gasconades Creek 345 kV line ~5 mi SW of Colorado City, TX; the site itself has NOT been anchored by any independent artifact (no FAA turbine coords, no CAD parcels, no news photos, no delivery pin). Lat/lon reflects the vicinity of the tap infrastructure, not a confirmed site footprint."
+ },
+ "parcels": [],
+ "project_area": {
+  "acres": null,
+  "source": "no primary document available",
+  "artifact": null,
+  "note": "No abatement application, signed IA, or CAD parcel record was obtainable. Wind projects at 987 MW typically span 30,000-50,000+ acres of leased ranchland; no such land-control paper trail was found in this research."
+ },
+ "llc_chain": [
+  {
+   "entity": "Spade Wind, LLC (SPV)",
+   "relation": "queue_registrant",
+   "evidence": "TX Comptroller Active Franchise Taxpayers dataset (data.texas.gov 9cir-efmm, retrieved 2026-07-18) has 4 Spade Wind entities all at 500 W 2nd St, Austin TX 78701, chartered 2022-05-02: Spade Wind LLC (SOS 0804549070), Spade Wind I LLC (0804549043), Spade Wind II LLC (0804549049), Spade Wind III LLC (0804549059). No entity 'Zeus Spade Wind, LLC' exists. ERCOT queue project-name prefix 'Zeus' is a portfolio label, not the SPV."
+  },
+  {
+   "entity": "Zeus Renewable Energy Development, LLC (developer)",
+   "relation": "developer_parent",
+   "evidence": "TX Comptroller franchise dataset places 'Zeus Renewable Energy Development, LLC' (chartered 2022-04-27, 5 days before the Spade Wind LLCs) at the same address 500 W 2nd St Ste 1900, Austin TX 78701. Sibling SPVs at that suite include Mitchell Solar I/II/III (same county), Armstrong Solar, Houston County Solar, Rusk Solar — a portfolio pattern of county-name + resource + numbered variants consistent with a single early-stage developer spinning up SPVs to speculate on interconnection queue positions."
+  },
+  {
+   "entity": "no public parent identified",
+   "relation": "unknown",
+   "evidence": "Zeus Renewable Energy Development LLC has no discoverable web presence: zeusrenewables.com / zeusrenewableenergy.com / zeus-re.com / zeusrenewable.com all NXDOMAIN; LinkedIn public 404; SEC EDGAR full-text 'Spade Wind' = 0 hits; no press releases, no financing announcement, no offtake announcement, no EPC named."
+  },
+  {
+   "entity": "Spade BESS I/II/III, LLC (companion 26INR0387)",
+   "relation": "companion_battery_SPV_same_developer",
+   "evidence": "TX Comptroller: Spade BESS I/II/III LLCs chartered 2025-04-07, same Suite 1900 address. Confirms coordinated Zeus-portfolio wind+battery development in Mitchell County."
+  }
+ ],
+ "land_tenure": {
+  "status": "unknown",
+  "evidence": "Mitchell County CAD 2025 certified appraisal roll (33,459 parcels, dated 2025-08, downloaded direct from mitchellcad.org and searched in full — sources/2026-07-18_mitchell-cad_2025-appraisal-roll.xlsx) contains ZERO parcels under Spade Wind LLC (any variant), Spade BESS LLC, Zeus Renewable Energy, or any owner at 500 W 2nd St Austin. Existing Mitchell County wind farms are all owned by RWE (Champion / Inadale / Roscoe) or Loraine Windpark LLC — no overlap with this project. Wind projects typically lease rather than purchase, so absence of purchased parcels is expected — but there is also no independent lease record, no abatement application listing tracts, and no IA exhibit describing land, so tenure cannot be characterized."
+ },
+ "construction": {
+  "verdict": "no_activity",
+  "first_activity_seen": null,
+  "evidence": [
+   "Sentinel-2 3x3 chip grid at buffer 2 km stepping ±0.03° around POI center (32.32-32.38 N, -100.92 to -100.98 W), date 2026-07-01, covering approximately 18 km x 18 km around the Morgan Creek tap infrastructure. Contact sheet imagery/2026-07_contact-sheet_18x18km.png shows undisturbed West Texas ranchland, existing farm/ranch fields, and Colorado City Lake. Zero graded turbine pads, zero new access-road networks, zero new substation construction",
+   "USGS US Wind Turbine Database (energy.usgs.gov/api/uswtdb) returns 206 built turbines in Mitchell County, all pre-existing (Roscoe 2008 x104, Loraine 2010 x68, Loraine II 2011 x32, Champion 2008, Inadale/Roscoe IV 2009). Zero turbines under Spade Wind or Zeus. Latest observation dates in the database extend to 2025-05-19 (Maxar) — the database has been maintained since triage and still shows no new Spade/Zeus turbines",
+   "Queue milestone data (per ERCOT GIS monthly report, verified against timeline.json): construction start REPORTED as 2025-08-01 by the developer. As of 2026-07 (~11 months later), this construction is NOT visible in imagery and NOT visible in the FAA/USGS turbine record. Reported construction claims are aspirational data supplied to ERCOT, not confirmed activity.",
+   "Wind projects of 987 MW typically install ~150-200 turbines strung across 20-40 km — a footprint far too large to miss at the 18-km grid resolution used"
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2027-03-20",
+  "independent": "2029-Q4",
+  "drift_risk": "high",
+  "reasoning_evidence": [
+   "As of 2026-06-01 (latest ERCOT GIS report), the project has NOT achieved FIS approval, has NOT signed an Interconnection Agreement (iaSigned=null), and has met NONE of the 6.9(1) milestones — it is at the FIS-Requested stage only (dated 2025-01-07). The reported COD is 2027-03-20, approximately 9 months from the imagery-observation date. For a wind project of this scale, the industry-typical gap between IA countersignature and COD is 24-36 months (siting, permitting, procurement, EPC mobilization, construction, commissioning). A COD in 9 months with no IA is contractually impossible for a wind project of this size.",
+   "Independent PUCT Interchange Filings Search (interchange.puc.texas.gov, 2026-07-18): searches by FilingParty for 'Spade Wind', 'Zeus Renewable', 'Zeus Spade', 'Spade BESS' all return 0 records. No IA has been publicly filed. This corroborates the queue-milestone absence of iaSigned.",
+   "Sentinel-2 imagery for 2026-07 shows no construction activity — no clearing, no grading, no turbine pads, no substation. The developer's reported construction-start date (2025-08-01) has passed without visible activity, showing the reported construction schedule is aspirational and not being executed.",
+   "Land control not established: Mitchell County CAD 2025 roll (33,459 parcels) contains zero Spade/Zeus/Suite-1900 owners; no abatement application on file with the county (JETI does not cover wind under HB 5; Ch.313 expired 2022-12-31, so no state-level abatement path exists for a 2024+ wind project). Land tenure remains 'unknown' at ~8 months to reported COD, another red flag.",
+   "The developer 'Zeus Renewable Energy Development, LLC' has NO web presence, NO press releases, NO announced financing, NO named EPC, NO PPA offtake, and no SEC/EDGAR filings. The sibling-SPV pattern (Mitchell Solar I/II/III, Armstrong Solar, Houston County Solar, Rusk Solar all chartered same day at the same suite) is signature of a queue-position-flipping speculator, not an execution-focused developer.",
+   "COD-drift history: reported COD 2027-03-20 has held steady across all 15 monthly snapshots (2025-04 through 2026-06) — apparent 'zero drift' is a triage red flag not a positive. A project that never updates its COD despite no progress is either not being actively managed or is holding an implausible date for optionality. Real developers file amendments; paper developers hold and hope.",
+   "External risk: federal permitting pause on wind (Trump DoD-review) affecting 54 TX projects — Spade Wind may be affected; effect is additive to the project's internal deficits.",
+   "Independent estimate: if this project moves at all, the earliest plausible COD is late 2029 — assuming FIS approval in 2026-H2, IA signing 2026-Q4/2027-Q1, financing/PPA 2027, EPC + procurement 2027-H2, construction 2028, commissioning 2029. This is contingent on the developer having capital, land control, offtake, and permits — none currently evidenced. More likely outcome: cancellation before IA."
+  ]
+ },
+ "real_project_verdict": "paper",
+ "negative_searches": 18,
+ "banned_source_violations": 0,
+ "contractual_schedule": {
+  "documents": [],
+  "note": "NO signed Interconnection Agreement located. PUCT Interchange search: 0 records for 'Spade Wind', 'Zeus Renewable', 'Zeus Spade', 'Spade BESS' (2026-07-18). ERCOT queue milestone iaSigned=null in latest report (2026-06-01). No contractual schedule exists to record."
+ }
+}

@@ -1,0 +1,36 @@
+{
+  "inr": "21INR0263",
+  "project": "Monarch Creek Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.18,
+    "lon": -99.18,
+    "method": "Ch.313 map (TAB 11) shows project near Haskell/Throckmorton county border — image only, no extractable coords",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "T6 imagery skipped due to budget; no construction milestone in queue data; no news of construction start"
+  },
+  "cod_first_look": {
+    "reported": "2027-09-17",
+    "plausible": true,
+    "why": "All pre-COD gates cleared Jan 2026; Ch.313 value limitation starts Jan 2028 implying COD target before that; 9 prior slips but trajectory converging — 2027 COD is tight but not implausible"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA documents at PUCT 35077 (items 1138, 2355, 1877) are confirmed but portal-blocked — retrieve milestone schedule exhibit and parties page for COD commitment date",
+    "EDF Renewables developer confirmed — check EDF press releases or FERC EWG filing for financing/offtake announcements",
+    "Extract turbine coordinate grid from Ch.313 TAB 11 map (GIS shapefile or georeferenced image) to get real site centroid for imagery run",
+    "Run imagery over Throckmorton/Haskell border area once site candidate improves — check for pad clearing or access road construction",
+    "FAA OE/AAA obstruction filings under 'Monarch Creek Wind' or 'King Creek Wind Farm 3' — would give exact turbine locations"
+  ],
+  "turns_used": 28
+}

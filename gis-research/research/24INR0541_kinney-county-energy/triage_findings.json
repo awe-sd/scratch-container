@@ -1,0 +1,35 @@
+{
+  "inr": "24INR0541",
+  "project": "Kinney County Energy",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.33,
+    "lon": -100.40,
+    "method": "POI inference — AEP 138kV substation NE of Brackettville on FM-334, Kinney County TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE 401 — no imagery retrieved; site candidate is low-confidence POI inference only"
+  },
+  "cod_first_look": {
+    "reported": "2027-05-15",
+    "plausible": false,
+    "why": "No IA signed, FIS not approved; COD already slipped ~20mo; 18mo to COD with no IA is implausible for battery"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Fix CDSE credentials and run imagery at confirmed AEP Brackett substation coords — battery pad would be compact and visible",
+    "PUCT Interchange requires browser session — check FilingParty='Kinney County Energy' and developer 'Hexagon Energy' for any IA or study filings",
+    "Confirm Hexagon Energy (321 E Main St, Charlottesville VA) as developer via TX SOS lookup; check their other ERCOT battery projects for pattern",
+    "Re-check FIS approval date in next monthly GIS snapshot — if FIS approves, project moves to active watch"
+  ],
+  "turns_used": 22
+}

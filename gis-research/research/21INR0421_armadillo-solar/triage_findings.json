@@ -1,0 +1,37 @@
+{
+  "inr": "21INR0421",
+  "project": "Armadillo Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.0707,
+    "lon": -96.4426,
+    "method": "address geocode — 9316 S US Hwy 287, Corsicana TX, from T3 web sweep",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "probable — under construction as of Spring 2025 per press/county docs; no satellite confirmation",
+    "evidence": "Navco Chronicle 'Set to begin construction in Spring 2025'; Navarro County Road ROW amendment signed 2025-04-28; GEM Wiki lists as 'under construction'; AES project page shows construction phase 2025–2027"
+  },
+  "cod_first_look": {
+    "reported": "2026-10-27",
+    "plausible": false,
+    "why": "AES own project page shows COD 2027; construction reportedly started Spring 2025; zero ERCOT construction/energization milestones logged; 6 prior COD slips over 5+ years"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Confirm site coordinates — address from secondary source only; pull PUCT IA docket to get surveyed parcel map",
+    "PUCT Interchange IA filing (2021-02-02 signed) — retrieve milestone schedule exhibit to compare ERCOT queue COD vs. contractual schedule",
+    "Satellite imagery at 32.0707,-96.4426 — verify construction progress; Spring 2025 start means panels or grading may be visible by mid-2026",
+    "Capacity reconciliation — queue trimmed from 204 MW to 150.48 MW in Feb 2026; AES still advertises 204 MW; determine if Phase 1 was descoped",
+    "Tax abatement/JETI — Mildred ISD + Navarro County abatement from 2020; get application PDF for acreage + parcel footprint confirmation",
+    "Phase 2 (27INR0614, ~201 MW, 2027) — confirm developer is same AES entity and whether it shares the same site footprint"
+  ],
+  "turns_used": 22
+}

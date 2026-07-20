@@ -1,0 +1,75 @@
+{
+ "inr": "26INR0380",
+ "generated": "2026-07-20",
+ "project": "Pepper Solar Farm",
+ "county": "McLennan",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 120.72,
+ "queue_cod": "2027-09-20",
+ "milestones": {
+  "screeningStudyComplete": "2024-05-20",
+  "fisApproved": null,
+  "iaSigned": "2025-06-23",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "ok",
+  "plant_id": 68359,
+  "entity": "Pepper Solar Farm, LLC",
+  "planned_cod": "2027-07",
+  "cod_delta_quarters": -0.7,
+  "dropped_scope": null,
+  "coords": [
+   31.67836,
+   -97.04595
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Pepper Solar Farm, LLC",
+    "detail": "plant=Pepper Solar Farm 120.0MW (P) Planned for installation, but regula @31.67836,-97.04595 planned=2027-07"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Pepper Solar Farm, LLC",
+    "detail": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Pepper Solar Far"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Pepper Solar Farm, LLC",
+    "detail": "Amendment No. 1 to the Standard Generation Interconnection Agreement between Oncor Electric Delivery Company L"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 2,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "financial_security_posted"
+ ],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 8.59,
+  "reason": "reality signal"
+ }
+}

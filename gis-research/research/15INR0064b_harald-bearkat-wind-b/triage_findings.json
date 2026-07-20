@@ -1,0 +1,36 @@
+{
+  "inr": "15INR0064b",
+  "project": "Harald (BearKat Wind B)",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.85,
+    "lon": -101.50,
+    "method": "county centroid — BearKat Phase I known Glasscock County site; no pin tool available",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown — imagery skipped (no reliable pin; budget constraint)",
+    "evidence": "Web aggregators claim commissioned; ERCOT queue has sync-approved 2020-05-12 but no commercial operation date and COD still shows 2026-12-03 in Jun-2026 report"
+  },
+  "cod_first_look": {
+    "reported": "2026-12-03",
+    "plausible": false,
+    "why": "Sync-approved 2020-05-12 but no COD after 6+ years; 62 COD slips across 12 years; web sources say already live — project may be operational but stuck in ERCOT administrative limbo"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Resolve commissioned vs. queue discrepancy: ercotqueue.com and renewablesnow say 'goes live' but ERCOT GIS has no approvedForCommercialOperation — pull ERCOT project details page and check energization/sync records",
+    "PUCT Interchange IA and any amendments: IA signed 2018-05-30, seek schedule exhibit for milestone history",
+    "FAA OE/AAA obstruction filings for turbine coordinates in Glasscock County — will give exact site for imagery",
+    "Ch.313 abatement for Glasscock County pre-2022 (CIP/Tri Global acquisition era) to confirm land footprint",
+    "Imagery at BearKat Phase I adjacent area once turbine coords confirmed — verify if B-phase turbines are installed"
+  ],
+  "turns_used": 14
+}

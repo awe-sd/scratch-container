@@ -1,0 +1,110 @@
+{
+ "inr": "28INR0089",
+ "project": "EmberYork Energy Center",
+ "researched_at": "2026-07-18",
+ "site": {
+  "lat": 29.72411,
+  "lon": -96.13698,
+  "method": "signed_IA_Exhibit_C_verbatim_coord",
+  "confidence": "high"
+ },
+ "parcels": [],
+ "project_area": {
+  "acres": null,
+  "source": "not_obtained",
+  "artifact": null,
+  "note": "No abatement filing, no JETI application, no CAD parcel under any developer-affiliated owner name. Site footprint acreage not stated in any retrieved document. TCEQ Standard Permit 6005 application coord (29.72202, -96.13930) is ~300 m south of the IA POI coord, consistent with one industrial site — but no boundary polygon available."
+ },
+ "llc_chain": [
+  {
+   "entity": "EmberYork Energy Center LLC",
+   "relation": "SPV",
+   "evidence": "Party to signed CenterPoint SGIA effective 2025-12-01 (sources/2025-12-11_puct_35077-2322_centerpoint-emberyork-IA.pdf); TCEQ air-permit applicant (sources/2024-12_tceq_dID8484637_air-permit.pdf); PUCT filer under docket 56896 (sources/2025-04-16_puct_56896-73_emberyork-response-to-denial.pdf, letterhead 800 Town & Country Blvd Ste 500 Houston TX 77024)"
+  },
+  {
+   "entity": "EmberClear (Raj Suri, President/CEO)",
+   "relation": "developer_manager_of_SPV",
+   "evidence": "Raj Suri signs signed SGIA as President of EmberYork and PUCT response as CEO EmberClear (sources/2025-04-16_puct_56896-73_emberyork-response-to-denial.pdf, sources/2025-12-11_puct_35077-2322_centerpoint-emberyork-IA.pdf); Frank Wilson (VP Construction EmberClear) co-signs the TCEQ air-permit application (sources/2024-12_tceq_dID8484637_air-permit.pdf); TEF sponsor application named 'EmberClear Management, Jupiter Island Capital' (sources/2025-04-15_puct_56896-71_order-denying-loan-app.pdf)"
+  },
+  {
+   "entity": "Jupiter Island Capital (Peter Perri, Managing Partner)",
+   "relation": "co_sponsor_TEF_loan",
+   "evidence": "Named jointly with EmberClear on the TEF sponsor Application 131 (sources/2025-04-15_puct_56896-71_order-denying-loan-app.pdf); Peter Perri signs PUCT response as Managing Partner (sources/2025-04-16_puct_56896-73_emberyork-response-to-denial.pdf); also appears on the sister EmberGreen JETI (sources/2026-04-15_comptroller_J0028_embergreen-wharton-jeti-recpkt.pdf p.2 cc list)"
+  },
+  {
+   "entity": "Whitehall & Company (Jon Cody, Managing Director)",
+   "relation": "financial_advisor",
+   "evidence": "Jon Cody signs PUCT response as Whitehall MD (sources/2025-04-16_puct_56896-73_emberyork-response-to-denial.pdf)"
+  },
+  {
+   "entity": "EmberGreen Energy Center LLC",
+   "relation": "sister_SPV_same_developer_Wharton_County",
+   "evidence": "Twin 900 MW gas peaker; same officer set (Raj Suri, Peter Perri) and same Houston address; Comptroller JETI application J0028 filed 2026-03-10, Recommendation Packet 2026-04-15 (sources/2026-04-15_comptroller_J0028_embergreen-wharton-jeti-recpkt.pdf); provides an internal-schedule cross-reference — EmberClear tells the Comptroller construction 2026-2029, incentive from 2030"
+  },
+  {
+   "entity": "General Electric",
+   "relation": "turbine_OEM_designated_not_ordered",
+   "evidence": "Signed SGIA Exhibit C names 2× GE Frame 7HA CTGs with GE H84 generators, 583 MW each (sources/2025-12-11_puct_35077-2322_centerpoint-emberyork-IA.pdf); TEF response 2025-04-16 admits 'Ongoing negotiations with gas turbine suppliers, with binding proposals in progress' — turbines NOT yet ordered (sources/2025-04-16_puct_56896-73_emberyork-response-to-denial.pdf)"
+  },
+  {
+   "entity": "CenterPoint Energy Houston Electric, LLC",
+   "relation": "transmission_service_provider_TSP",
+   "evidence": "Counterparty to the SGIA; Jesus Soto Jr (EVP & COO CenterPoint) signs as TSP (sources/2025-12-11_puct_35077-2322_centerpoint-emberyork-IA.pdf)"
+  }
+ ],
+ "land_tenure": {
+  "status": "unknown",
+  "evidence": "Austin CAD 2026 tax roll owner-name searches: OwnerName:EmberYork / EmberClear / Ember / Jupiter Island / GIFSUB all returned totalResults:0 (sources/2026-07-18_austincad_owner-search-empty.json). 132 Machala Rd (the address given in the TCEQ application) is prop #16375 owned by ROSNIAK JOAN MARIE ET AL, a $210,876 residential parcel — no developer-affiliated owner appears on any Machala Rd parcel. Either land option/lease is off-record, held via nominee, or land has not yet been secured."
+ },
+ "construction": {
+  "verdict": "no_activity",
+  "first_activity_seen": null,
+  "evidence": [
+   "Sentinel-2 grid (2026-07-01 ±20d, 3km buffer, 3×3 chips centered on IA POI coord) shows undisturbed cropland + scattered rural residences at the exact IA coord (imagery/grid_29.724109_-96.13698.png, copied to imagery/key/s2_2026-07-01_center.png); contact sheet (imagery/contact_sheet.png) confirms 8 neighbors are the same rural farmland",
+   "The two industrial-looking sites visible ~3 km E/SE (grid_05, grid_06, grid_08) are pre-existing unrelated facilities (Sealy commercial park), not the EmberYork footprint",
+   "No pad, laydown yard, cranes, foundations, or road access have appeared at the IA POI as of 2026-07-01"
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2028-01-01",
+  "independent": "2030-Q2",
+  "drift_risk": "high",
+  "reasoning_evidence": [
+   "The queue-reported COD 2028-01-01 does not match the signed CenterPoint SGIA: Exhibit B Schedule gives Scheduled COD = later of 2029-01-12 or 3 months after TIF In-Service (which is itself later of 2028-10-12 or 36 months after Prerequisite Items). The queue value is stale/misaligned with the executed contract (sources/2025-12-11_puct_35077-2322_centerpoint-emberyork-IA.pdf).",
+   "Physical feasibility for 2028-01-01: ruled out. GE 7HA turbines have ~24-36 month OEM lead time; the TEF response 2025-04-16 states turbines were still being negotiated (sources/2025-04-16_puct_56896-73_emberyork-response-to-denial.pdf); no public GE order announcement retrieved. From bare land at 2026-07-01, plant commissioning by 2028-01 is not physically achievable for a 900 MW simple-cycle site (multi-year build).",
+   "Financing overhang: Texas Energy Fund loan HARD-DENIED for due-diligence failure, PUCT Docket 56896 order 2025-04-15 explicitly 'not subject to motions for rehearing or appeal' (sources/2025-04-15_puct_56896-71_order-denying-loan-app.pdf). EYEC's stated substitute (First-round equity commitment from an unnamed A-credit-parent asset owner + Paul Hastings 'Term Sheet C') was a proposal at April 2025 and no closed-facility announcement located since (sources/2025-04-16_puct_56896-73_emberyork-response-to-denial.pdf).",
+   "Contractual pressure point: $99,157,000 letter of credit is due to CenterPoint by 2026-12-12 under SGIA Exhibit E (sources/2025-12-11_puct_35077-2322_centerpoint-emberyork-IA.pdf); ERCOT queue records financialSecurityAndNoticeToProceedProvided=No at the 2026-06-01 snapshot. Failure to post the LC enables IA termination under Section 2.1 — this is a near-term binary risk.",
+   "Sister EmberGreen project (same developer, same officer set, twin 900 MW) has told the Comptroller its own construction runs 2026-2029 with incentive period starting 2030 (sources/2026-04-15_comptroller_J0028_embergreen-wharton-jeti-recpkt.pdf Attachment A p.3) — EmberClear's own timeline confirms 2029, not 2028. EmberYork trails EmberGreen: EmberGreen has an approved JETI + earlier land activity; EmberYork has neither.",
+   "Positive counter-signals limiting the downside: TCEQ Standard Permit 1778571 stated received (sources/2025-04-16_puct_56896-73_emberyork-response-to-denial.pdf citing air permit issue 2024-12-17; application PDF at sources/2024-12_tceq_dID8484637_air-permit.pdf), fully executed 100-page SGIA on file, GE turbine models specified in IA — these establish the project as 'real early' not 'paper', but do not shorten the physical build timeline.",
+   "Independent COD estimate 2030-Q2: assumes turbine order placed late 2026/early 2027, NTP mid-2027, first fire late 2029/early 2030. 'high' drift risk from queue's 2028-01-01 reflects the ~2.5-year gap between reported and contractually plausible COD."
+  ]
+ },
+ "real_project_verdict": "real_early",
+ "negative_searches": 12,
+ "banned_source_violations": 0,
+ "contractual_schedule": {
+  "note": "CenterPoint - EmberYork ERCOT Standard Generation Interconnection Agreement (SGIA) with Amendment Provisions, PUCT Control No. 35077 item 2322, effective 2025-12-01, DocuSign envelope 562A048A-DADE-49CE-885A-D4FD8CA9520D. Signed by Raj Suri (President, EmberYork) and Jesus Soto Jr (EVP & COO, CenterPoint). Financial security $99,157,000 (LC) due 2026-12-12; not yet posted per ERCOT queue.",
+  "documents": [
+   {
+    "doc": "Signed SGIA with Amendment Provisions",
+    "signed": "2025-12-01",
+    "financial_security": "$99,157,000 (LC) due 2026-12-12",
+    "artifact": "sources/2025-12-11_puct_35077-2322_centerpoint-emberyork-IA.pdf"
+   }
+  ],
+  "milestones": [
+   {
+    "name": "Prerequisite Items (NTP, Security, CIAC due)",
+    "signed_ia_2025": "2026-12-12"
+   },
+   {
+    "name": "TIF In-Service Date",
+    "signed_ia_2025": "later of 2028-10-12 or +36 months after Prerequisite Items"
+   },
+   {
+    "name": "Scheduled Commercial Operation Date",
+    "signed_ia_2025": "later of 2029-01-12 or +3 months after TIF In-Service"
+   }
+  ]
+ }
+}

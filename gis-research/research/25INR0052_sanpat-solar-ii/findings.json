@@ -1,0 +1,129 @@
+{
+  "inr": "25INR0052",
+  "project": "SanPat Solar II",
+  "research_date": "2026-07-19",
+  "verdict": "real_active",
+  "verdict_confidence": "high",
+  "verdict_summary": "Modules installing as of 2026-03; signed IA (PUCT 35077); $28M security posted; construction start confirmed Q3 2024",
+
+  "site": {
+    "lat": 28.041,
+    "lon": -97.326,
+    "method": "IA Exhibit C §2.2 — '~6 miles NE of Taft, TX'",
+    "confidence": "medium",
+    "cross_checks": [
+      "Imagery solar footprint at ~28.005–28.016°N, -97.40–97.42°W — combined SanPat I+II corridor; SanPat II substation per IA is eastern end",
+      "Angstrom substation at 28.0443°N, -97.4384°W per OSM way/1089997597 — ~10 miles from POI (Lucero Station) per IA Exhibit C-1",
+      "Taft, TX: ~27.9795°N, -97.3932°W; 6 miles NE at 45° → 28.041°N, -97.326°W"
+    ],
+    "not_obtainable": "Lucero Station exact coordinates (not in OSM; CEII); CAD parcel situs addresses"
+  },
+
+  "construction": {
+    "stage": "racking",
+    "first_activity_seen": "2024-09",
+    "current_state_date": "2026-07",
+    "current_state": "Modules installed on majority of site; balance-of-plant and interconnection work ongoing",
+    "key_frames": [
+      "imagery/key/s2_2024-02-01.png",
+      "imagery/key/s2_2024-09-01.png",
+      "imagery/key/s2_2025-04-01.png",
+      "imagery/key/s2_2026-03-01.png",
+      "imagery/key/s2_2026-07-01.png"
+    ]
+  },
+
+  "ownership": {
+    "spv": "CGRP 04, LLC",
+    "agent": "CGRP 10, LLC (Designated Interconnection Agent)",
+    "developer": "CleanGen Inc. (c/o Bechtel Enterprises), 12011 Sunset Hills Road, Reston VA 20190",
+    "developer_evidence": "PUCT 35077 Exhibit D — notice address and email (hchi@bechtel.com, padresolar@bechtel.com)",
+    "epc": "unknown",
+    "ppa_offtaker": "unknown",
+    "financing": "No public announcement; $28M security posted as LC (combined I+II)"
+  },
+
+  "interconnection": {
+    "tsp": "AEP Texas Inc.",
+    "poi": "Lucero Station, 345kV",
+    "poi_description_queue": "Tap 345kV 8249 Angstrom – 8659 Naismith",
+    "ia_control_number": "35077",
+    "ia_doc": "35077_1780_1383600",
+    "original_ia_date": "2023-10-18",
+    "amendment_date": "2024-03-26",
+    "original_project_name": "Port Bay Solar",
+    "sibling_project": "25INR0081 SanPat Solar I (Padre Solar LLC / Copano Solar)"
+  },
+
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Original IA (Oct 2023)",
+        "signed": "2023-10-18",
+        "financial_security": "not stated in amendment",
+        "artifact": "sources/2026-07-19_puct_35077-1780_sanpat-solar-II-name-change.pdf"
+      },
+      {
+        "doc": "First Amended and Restated IA (Mar 2024)",
+        "signed": "2024-03-26",
+        "financial_security": "$28,000,000 combined (I+II) — LC posted",
+        "artifact": "sources/2026-07-19_puct_35077-1780_sanpat-solar-II-name-change.pdf"
+      }
+    ],
+    "milestones": [
+      {"name": "In-Service",          "Original IA 2023": "2026-10-18", "Amendment 2024": "2026-10-18"},
+      {"name": "Trial Operation",     "Original IA 2023": "2026-11-18", "Amendment 2024": "2026-11-18"},
+      {"name": "Scheduled COD",       "Original IA 2023": "2027-01-18", "Amendment 2024": "2027-01-18"}
+    ],
+    "milestone_basis": "+36/37/38 months from original IA date (2023-10-18) per Exhibit B"
+  },
+
+  "project_area": {
+    "acres": null,
+    "source": "not found — no abatement application (Ch.313 sunset 2022); IA has no acreage; CAD 0 hits",
+    "artifact": null
+  },
+
+  "land_tenure": "unknown — 0 CAD hits under LLC or developer names; consistent with leased ranchland",
+
+  "abatements": [],
+
+  "queue_history": {
+    "first_in_queue": "2022-07-01",
+    "snapshots": 48,
+    "ia_signed": "2023-10-18",
+    "meets_691": "2025-02-13",
+    "fis_approved": null,
+    "meets_all_69": null,
+    "construction_start_reported": null,
+    "cod_drift": [
+      {"cod": "2025-07-01", "held_from": "2022-07-01", "until": "2024-05-01"},
+      {"cod": "2026-12-31", "held_from": "2024-06-01", "until": "2024-09-01"},
+      {"cod": "2027-07-31", "held_from": "2024-10-01", "until": "2025-01-01"},
+      {"cod": "2027-09-01", "held_from": "2025-02-01", "until": "2025-08-01"},
+      {"cod": "2027-11-30", "held_from": "2025-09-01", "until": "2025-09-01"},
+      {"cod": "2027-07-22", "held_from": "2025-10-01", "until": "2026-06-01"}
+    ],
+    "total_drift_months": 30,
+    "drift_count": 5
+  },
+
+  "cod_assessment": {
+    "reported_cod": "2027-07-22",
+    "independent_estimate": "2027-Q3",
+    "ia_scheduled_cod": "2027-01-18",
+    "drift_risk": "medium",
+    "drift_risk_factors": [
+      "FIS not approved in queue despite IA signed 2.5 years ago — AEP Lucero Station TIF may be on critical path",
+      "5-slip history (+30 months from original COD)",
+      "No announced financing or PPA; construction underway but commissioning timeline unclear",
+      "Reported COD (2027-07-22) is +6 months from IA Scheduled COD (2027-01-18) — internally consistent with drift pattern"
+    ],
+    "drift_risk_mitigants": [
+      "Modules installing; active construction; no withdrawal/cancel signal",
+      "$28M security posted — developer committed",
+      "Pace consistent with 2027 completion (grading Q3 2024, modules Q1 2026)",
+      "Sibling project SanPat Solar I on same POI — coordinated completion incentive"
+    ]
+  }
+}

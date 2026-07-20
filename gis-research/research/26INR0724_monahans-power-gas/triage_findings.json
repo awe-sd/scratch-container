@@ -1,0 +1,27 @@
+{
+  "inr": "26INR0724",
+  "project": "Monahans Power Gas",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-03-01",
+    "plausible": false,
+    "why": "Stable in 2 snapshots but FIS only just requested May 2026; no IA, no air permit found, no web presence — 9-month COD from FIS request is implausibly short for a new-build gas reciprocating plant"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "TCEQ air permit (NSR) search for Ward County gas reciprocating — no air permit = strong paper-project confirmation",
+    "Texas SOS entity search for 'Monahans Power Gas LLC' to confirm company registration and identify developer",
+    "PUCT Interchange direct search when portal accessible — check for IA or FIS study filings under INR 26INR0724",
+    "PECOSTRAIL_8 138kV substation coordinates — once located, run targeted imagery to rule out site prep"
+  ],
+  "turns_used": 22
+}

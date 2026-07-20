@@ -1,0 +1,26 @@
+{
+  "inr": "22INR0357",
+  "project": "Loma Pinta Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": null,
+    "pins_found": 0,
+    "news_found": null,
+    "construction_visible": null
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-31",
+    "plausible": true,
+    "why": "7 COD slips over 6 years with no IA signed; 2028 plausible only if IA executes soon"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "No IA signed after 6 years — check PUCT Interchange filings for pending IA or study-phase status",
+    "FIS requested 2020-05-28 but never approved — check if FIS study is still active or project is stalled",
+    "T2-T6 not executed due to budget overflow at T1 — run full triage again with fresh budget"
+  ],
+  "turns_used": 8
+}

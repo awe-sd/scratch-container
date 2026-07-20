@@ -1,0 +1,74 @@
+{
+ "inr": "26INR0310",
+ "generated": "2026-07-20",
+ "project": "Quantum Storage",
+ "county": "Haskell",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 321.75,
+ "queue_cod": "2026-07-21",
+ "milestones": {
+  "screeningStudyComplete": "2024-06-19",
+  "fisApproved": "2025-06-16",
+  "iaSigned": "2023-10-26",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ok",
+  "plant_id": 63905,
+  "entity": "Azure Sky Solar Project, LLC",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   33.0216,
+   -99.61463
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": []
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": [
+   {
+    "program": "Ch.313",
+    "applicant": "IP Quantum II, LLC",
+    "district": "Haskell Cisd",
+    "score": 7
+   },
+   {
+    "program": "Ch.313",
+    "applicant": "IP Quantum, LLC",
+    "district": "Paint Creek ISD",
+    "score": 7
+   }
+  ]
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 5,
+  "join_items": 3
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 6,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 321.75,
+  "reason": "reality signal"
+ }
+}

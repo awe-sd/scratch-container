@@ -1,0 +1,27 @@
+{
+  "inr": "26INR0273",
+  "project": "Momentum Hazy Jane BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-02-26",
+    "plausible": false,
+    "why": "FIS not yet approved (only requested 2024-08-08); no IA signed; COD already slipped ~22 months once; 18-month build + FIS/IA/NTP pipeline makes 2028-02 very tight from today"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange IA search (interchange.puc.texas.gov requires browser session — check FilingParty = 'Momentum Hazy Jane')",
+    "Judkins substation location: find coords via ERCOT transmission map or AEP Texas facility list, then run imagery",
+    "TX SOS entity search for 'Momentum Hazy Jane BESS LLC' once SOSDirect is back online",
+    "Developer identity: 'Momentum' brand — check if linked to any known IPP (e.g. Momentum Energy, Momentum Infrastructure Group)"
+  ],
+  "turns_used": 28
+}

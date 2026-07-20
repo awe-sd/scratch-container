@@ -1,0 +1,69 @@
+{
+ "inr": "22INR0552",
+ "plant_id": 63892,
+ "plant_name": "Lily Solar",
+ "entity": "Lily Solar, LLC",
+ "matched_by": "county+prime-mover+MW within 5% (201.9 vs 208.89)",
+ "first_report": "2022-04-01",
+ "last_report": "2026-05-01",
+ "planned_cod_history": [
+  {
+   "value": null,
+   "from": "2022-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 231.0,
+   "from": "2022-04-01",
+   "to": "2022-06-01"
+  },
+  {
+   "value": 196.7,
+   "from": "2022-07-01",
+   "to": "2025-01-01"
+  },
+  {
+   "value": 201.9,
+   "from": "2025-02-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "status_history": [
+  {
+   "value": "(OP) Operating",
+   "from": "2022-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "queue_reported_cod": "2027-07-01",
+ "energy_capacity_mwh_history": [
+  {
+   "value": 76.0,
+   "from": "2022-04-01",
+   "to": "2024-05-01"
+  },
+  {
+   "value": 80.5,
+   "from": "2024-06-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "operating_date_history": [
+  {
+   "value": "2021-09",
+   "from": "2022-04-01",
+   "to": "2024-05-01"
+  },
+  {
+   "value": "2021-10",
+   "from": "2024-06-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "eia_county": "Kaufman",
+ "eia_lat": 32.53327,
+ "eia_lon": -96.42899,
+ "dropped_from_860m": null
+}

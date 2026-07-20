@@ -1,0 +1,58 @@
+{
+ "inr": "27INR0488",
+ "generated": "2026-07-20",
+ "project": "Dry Creek Solar II",
+ "county": "Rusk",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 203.44,
+ "queue_cod": "2028-02-01",
+ "milestones": {
+  "screeningStudyComplete": "2025-09-16",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "ok",
+  "plant_id": 64132,
+  "entity": "Renewable Energy Ventures LLC",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   32.21226,
+   -94.73632
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Vistra Zero LLC",
+    "detail": "plant=Oak Hill - Dry Creek 200.0MW (OP) Operating @32.21226,-94.73632 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_operating_date"
+ ],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 11.03,
+  "reason": "reality signal"
+ }
+}

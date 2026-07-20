@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0124",
+  "project": "High Noon Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.1785,
+    "lon": -97.2581,
+    "method": "Nominatim geocode of Covington TX — matches POI 'Tap 138kV 445 Yates-444 Covington' + 'Covington ISD reinvestment zone' from T3 web sweep",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "3x3 imagery grid attempted; CDSE auth errors returned 401/403 on 8 of 9 positions — only 1 off-center chip saved. Insufficient coverage for construction verdict."
+  },
+  "cod_first_look": {
+    "reported": "2028-05-09",
+    "plausible": true,
+    "why": "4 COD slips (2024→2028), IA signed 2024-05, 6.9(1) met 2025-02 — no construction milestones yet; 2028 is achievable but tight for Invenergy-scale project"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Ch.313 / Covington ISD abatement application — T3 found reinvestment zone reference; pull Comptroller application PDF to confirm developer, acreage, and COD commitment",
+    "PUCT Interchange IA filing — queue shows IA signed 2024-05-03; retrieve filing to get parties, POI details, and milestone schedule exhibit",
+    "Imagery retry — CDSE auth failed on most grid positions; re-run 3x3 grid with fresh credentials to assess construction status",
+    "Google Maps pin — gmaps.py was 429-blocked; retry to place delivery pin and narrow site polygon",
+    "FIS status — queue shows FIS approved is blank despite IA being signed; confirm via ERCOT PRE or PUCT whether FIS was waived or is pending"
+  ],
+  "turns_used": 26
+}

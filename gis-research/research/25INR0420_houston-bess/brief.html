@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Houston BESS — research brief</title><style>
+:root{--bg:#fff;--sur:#f6f7f9;--ink:#191c20;--ink2:#555b64;--mut:#899;--line:#e1e5ea;
+--good:#0a7d33;--warn:#b45309;--bad:#b91c1c;--acc:#2563eb}
+@media(prefers-color-scheme:dark){:root{--bg:#14171c;--sur:#1c2027;--ink:#eceff3;
+--ink2:#b3bac4;--mut:#7d8590;--line:#2a2f38;--good:#34d399;--warn:#fbbf24;--bad:#f87171;--acc:#6ea8fe}}
+*{box-sizing:border-box}body{margin:0 auto;max-width:1080px;padding:20px;background:var(--bg);
+color:var(--ink);font:14px/1.45 -apple-system,"Segoe UI",Roboto,sans-serif}
+h1{font-size:19px;margin:0}h2{font-size:13px;text-transform:uppercase;letter-spacing:.05em;
+color:var(--mut);margin:22px 0 8px}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-weight:700;font-size:12px}
+.b-good{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+.b-warn{background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--warn)}
+.b-bad{background:color-mix(in srgb,var(--bad) 15%,transparent);color:var(--bad)}
+.hdr{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.sub{color:var(--ink2);font-size:13px;margin:4px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.card{background:var(--sur);border:1px solid var(--line);border-radius:9px;padding:10px 13px}
+.card .k{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+.card .v{font-weight:650;margin-top:2px}.card .v small{font-weight:400;color:var(--ink2)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:5px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:13px}
+th{color:var(--mut);font-size:11px;text-transform:uppercase}
+.imgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.imgs figure{margin:0}.imgs img{width:100%;border-radius:8px;border:1px solid var(--line)}
+.imgs figcaption{font-size:12px;color:var(--ink2);margin-top:2px}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.small{font-size:12px;color:var(--ink2)}
+</style></head><body>
+<div class="hdr"><h1>Houston BESS <span class="small">(25INR0420)</span></h1>
+<span class="badge b-warn">unclear</span>
+<span class="badge b-warn">COD drift: —</span></div>
+<div class="sub">researched — ·
+<a href="https://www.google.com/maps/@29.9112,-95.3215,5000m/data=!3m1!1e3" target="_blank">site 29.9112, -95.3215</a> (POI substation — Lauder 138kV; OSM Overpass geometry centroid, medium conf) ·
+<a href="dossier.md">dossier</a> · <a href="log.md">log</a> · <a href="timeline.md">timeline</a></div>
+<div class="grid">
+<div class="card"><div class="k">Construction</div><div class="v">—
+<small>since —</small></div></div>
+<div class="card"><div class="k">COD reported → independent</div>
+<div class="v">— → —</div></div>
+<div class="card"><div class="k">Owner chain</div><div class="v">unknown</div></div>
+<div class="card"><div class="k">Land</div><div class="v">—</div></div>
+
+</div>
+
+<h2>Site imagery (Sentinel-2, key dates)</h2><div class="imgs"><figure><a href="imagery/key/s2_2026-06-01_lauder_3km.png"><img src="imagery/key/s2_2026-06-01_lauder_3km.png" loading="lazy"></a><figcaption>2026-06-01_lauder_3km</figcaption></figure><figure><a href="imagery/key/s2_2026-06-01_lauder_tight_1km.png"><img src="imagery/key/s2_2026-06-01_lauder_tight_1km.png" loading="lazy"></a><figcaption>2026-06-01_lauder_tight_1km</figcaption></figure><figure><a href="imagery/key/s2_2026-07_lauder_tight.png"><img src="imagery/key/s2_2026-07_lauder_tight.png" loading="lazy"></a><figcaption>2026-07_lauder_tight</figcaption></figure></div>
+
+
+<h2>Reported-COD drift (queue history, 40 monthly reports since 2023-03-01)</h2>
+<table><tr><th>Reported COD</th><th>Held from</th><th>Until</th></tr><tr><td>2025-09-29</td><td>2023-03-01</td><td>2024-10-01</td></tr><tr><td>2026-06-15</td><td>2024-11-01</td><td>2025-08-01</td></tr><tr><td>2026-12-15</td><td>2025-09-01</td><td>2026-01-01</td></tr><tr><td>2027-08-01</td><td>2026-02-01</td><td>2026-06-01</td></tr></table>
+<h2>Milestones achieved (latest report)</h2>
+<table><tr><th>Milestone</th><th>Date</th></tr><tr><td>Screening started</td><td>2023-04-07</td></tr><tr><td>Screening complete</td><td>2023-07-03</td></tr><tr><td>FIS requested</td><td>2023-03-28</td></tr><tr><td>FIS approved</td><td>2024-04-04</td></tr></table>
+
+<h2>EIA-860M second source — plant 'Callisto I Energy Center', entity Callisto I Energy Center</h2>
+<div class="small">matched by county+prime-mover+MW within 5% (223.4 vs 227.9) · reports 2023-02-01 → 2026-05-01 ·
+queue-reported COD <b>2027-08-01</b> vs latest EIA planned COD <b>—</b> · EIA operating date (actual) <b>2024-08</b> · <a href="https://www.google.com/maps/@29.64681,-95.45054,5000m/data=!3m1!1e3" target="_blank">EIA site 29.64681, -95.45054</a> (Harris Co)</div>
+
+<table><tr><th>EIA planned COD</th><th>Held from</th><th>Until</th></tr><tr><td>2024-06</td><td>2023-02-01</td><td>2024-04-01</td></tr><tr><td>2024-07</td><td>2024-05-01</td><td>2024-05-01</td></tr><tr><td>2024-08</td><td>2024-06-01</td><td>2024-07-01</td></tr><tr><td>—</td><td>2024-08-01</td><td>2026-05-01</td></tr></table>
+<table><tr><th>EIA energy capacity MWh</th><th>From</th><th>Until</th></tr><tr><td>—</td><td>2023-02-01</td><td>2024-07-01</td></tr><tr><td>200.0</td><td>2024-08-01</td><td>2026-05-01</td></tr></table>
+<table><tr><th>EIA status</th><th>From</th><th>Until</th></tr><tr><td>(P) Planned for installation, but regulatory approvals not initiated</td><td>2023-02-01</td><td>2024-01-01</td></tr><tr><td>(U) Under construction, less than or equal to 50 percent complete</td><td>2024-02-01</td><td>2024-07-01</td></tr><tr><td>(OP) Operating</td><td>2024-08-01</td><td>2026-05-01</td></tr></table>
+<h2>Key evidence</h2><ul></ul>
+<h2>Saved sources (3)</h2><h3 class='small'>Other (3)</h3><ul><li><a href="sources/2026-07-19_infrasure_project_page_deep.md">2026-07-19_infrasure_project_page_deep.md</a></li><li><a href="sources/2026-07-19_irby_smt-houston-iv-project.md">2026-07-19_irby_smt-houston-iv-project.md</a></li><li><a href="sources/infrasure_project_page.md">infrasure_project_page.md</a></li></ul>
+</body></html>

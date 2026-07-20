@@ -1,5 +1,38 @@
 # Research Log — Hanson Solar (23INR0086)
 
+---
+## TRIAGE PASS — 2026-07-18
+
+T1 start
+- `queue_history.py` + `timeline.md` read. COD drift: 3 changes (2024-05-31 → 2025-10-21 → 2027-01-28 → 2027-04-17). Current COD 2027-04-17 stable 26 months. Milestones: IA signed 2023-09-20, Meets 6.9(1) 2025-02-12, FIS approved 2026-03-26 (recent). Meets all 6.9 = NOT YET. No construction-end or approval milestones in queue data.
+T1 done (2 tool calls).
+
+T2 start
+- Prior research (log below) already covered gmaps places. Results: pin "TIC Hanson solar" at 31.692543,-99.548231 (Valera TX, Coleman County). 1 confirmed pin, EPC = TIC/Kiewit registered under this name.
+T2 done (0 new tool calls — referenced prior results).
+
+T3 start
+- Prior research covered web sweep. Developer = Cypress Creek Renewables (CCR); SPV = Hanson Solar LLC. Offtake = Meta. Financing closed Nov 2025; construction mobilized 2025; COD target mid-2027. Sources saved in sources/. news_found = true.
+T3 done (0 new tool calls — referenced prior results).
+
+T4 start
+- Prior research found PUCT Interchange Control 35077: original IA (35077-1682, filed 2023-10-13) + Amendment No. 1 (35077-1899, filed 2024-08-15). Amendment schedule: In-Service 2026-12-03, Trial Op 2026-12-17, COD 2027-04-17. Exactly matches reported COD. ia_found = true.
+T4 done (0 new tool calls — referenced prior results).
+
+T5 start
+- Prior research: TX Comptroller Ch313 agreement ID 1698, executed 2022-11-14, 396 MW, Panther Creek CISD, Coleman County. Annual Form 772 reports filed 2023–2025. abatement_found = true.
+T5 done (0 new tool calls — referenced prior results).
+
+T6 start
+- Prior research: site center at 31.6950, -99.5315 (imagery feature match + IA text + Places pin cross-validation). Sentinel-2 timelapse 2024-07→2026-07: first activity 2025-04 (substation pad); site-wide grading complete ~2025-09; panel/racking installation ambiguous-but-plausible from 2026-03. As of 2026-07 reads as late-stage civil / early electrical. construction_visible = true.
+T6 done (0 new tool calls — referenced prior results).
+
+T7 start — writing triage_findings.json + triage.md.
+T7 done. triage_findings.json + triage.md written. Turns used: 10. STOP.
+
+---
+## PRIOR DEEP-RESEARCH RECORD (2026-07-17)
+
 Date convention: all entries 2026-07-17 unless noted.
 
 ## Stage 3 (done first per playbook advice — delivery pin trick)

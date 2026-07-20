@@ -1,0 +1,28 @@
+{
+  "inr": "21INR0029",
+  "project": "Red Holly Storage 1",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-30",
+    "plausible": true,
+    "why": "IA signed 2020, 4 COD slips over 7 years, no FIS or construction milestones — further delays likely but 2028 not impossible"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate Longdraw (bus 59900) or Farmland (bus 79641) substation GPS coordinates to enable imagery — HIFLD dataset or ERCOT network model",
+    "Confirm developer identity as GreenGo Energy and find LLC registration (TX SOS search for 'Red Holly Storage 1')",
+    "Pull IA from PUCT Interchange (requires subscription) — IA signed 2020-10-19 should have a milestone schedule",
+    "Investigate why FIS was never approved despite IA being signed 4+ years ago — possible financing/permitting issue",
+    "Check sibling project 21INR0033 (Red Holly Storage) for any shared developer/site information"
+  ],
+  "turns_used": 25
+}

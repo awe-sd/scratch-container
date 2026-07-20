@@ -1,0 +1,65 @@
+{
+ "inr": "24INR0425",
+ "generated": "2026-07-20",
+ "project": "Two Brothers ESS",
+ "county": "Victoria",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 154.65,
+ "queue_cod": "2028-02-29",
+ "milestones": {
+  "screeningStudyComplete": "2022-12-13",
+  "fisApproved": null,
+  "iaSigned": "2024-04-22",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 6,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": false,
+  "candidates": []
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 3
+ },
+ "reality_signals": [
+  "financial_security_posted"
+ ],
+ "paper_score": 32,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 12,
+   "detail": "6 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "spv_unresolvable",
+   "points": 10,
+   "detail": "no SPV via spv.py or any registry"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 7.98,
+  "reason": "reality signal"
+ }
+}

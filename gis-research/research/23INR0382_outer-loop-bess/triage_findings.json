@@ -1,0 +1,34 @@
+{
+  "inr": "23INR0382",
+  "project": "Outer Loop BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.8219,
+    "lon": -95.2211,
+    "method": "POI name 'Greens Bayou 345kV' matched to substation address via web search",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery blocked (401 auth failure); no construction dates in queue history; no pins or permits found"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-06",
+    "plausible": false,
+    "why": "FIS not approved, no IA signed, 2 prior COD slips, 3rd-party build probability rated 5%; 18-month BESS build clock hasn't started"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Fix CDSE credentials and run Greens Bayou substation imagery (29.8219, -95.2211) — site candidate is solid, just unimaged",
+    "PUCT Interchange manual search for Black Mountain Energy Storage II — portal blocked via WebFetch, worth a browser check for any IA filings",
+    "Confirm developer identity: Black Mountain Energy Storage II found only on queue aggregators, not in any primary source; verify via SEC/TX SOS registry"
+  ],
+  "turns_used": 22
+}

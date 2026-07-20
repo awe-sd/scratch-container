@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0418",
+  "project": "TE Smith Storage 2",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.97,
+    "lon": -96.47,
+    "method": "POI inference — 'Royse 345kV' maps to Royse City, Rockwall County",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth blocked (401); no imagery acquired. No construction milestones in queue history."
+  },
+  "cod_first_look": {
+    "reported": "2027-08-16",
+    "plausible": true,
+    "why": "FIS requested Nov 2024 but not yet approved; ~13-month COD slip already absorbed; 12-18 month build window for BESS means 2027-Q3 requires IA+NTP by end of 2025 at latest — tight but not impossible if IA is imminent."
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange IA search (portal was 402-blocked during triage) — run when accessible; FIS approval + IA signing are the key pending gates",
+    "CDSE imagery once credentials available — tight 1-km buffer around Royse City 345kV substation for BESS pad/container signal",
+    "Developer identity still unknown — try Texas SOS business search for 'TE Smith Storage' LLC; name may surface a parent developer with track record",
+    "JETI application: JETI portal returned 404 during triage; check if Rockwall County filing exists once portal is accessible"
+  ],
+  "turns_used": 28
+}

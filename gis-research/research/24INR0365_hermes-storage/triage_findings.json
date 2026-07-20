@@ -1,0 +1,35 @@
+{
+  "inr": "24INR0365",
+  "project": "Hermes Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.042,
+    "lon": -97.275,
+    "method": "POI name text description ('5.5 miles SE of Temple, Bell County')",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery auth failed (401/403); no other visual source attempted"
+  },
+  "cod_first_look": {
+    "reported": "2026-08-18",
+    "plausible": false,
+    "why": "7 COD slips in 4 years; Approved-for-Sync 2026-04-17 but no Commercial-Operation-Approved date; 30-day window to COD from today is tight"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA: queue shows iaSigned=2023-11-08 but PUCT portal was blocked — retrieve IA PDF to extract milestone schedule and confirm POI details",
+    "Developer identity: infrasure.ai cites 'Bell Solar 1 LLC' as developer; 'Bell 1 Storage LLC' is a related operational entity — clarify parent company and any existing operational BESS at site",
+    "Imagery: fix CDSE credentials and run tight chip around 31.042°N, -97.275°W; Approved-for-Sync milestone hit April 2026 means site may be commissioning-stage or complete",
+    "COD slip pattern: 7 slips over 4 years with a 30-day window remaining — check ERCOT project status page or any amendment filings for any energization/sync test activity"
+  ],
+  "turns_used": 22
+}

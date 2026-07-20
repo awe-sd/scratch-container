@@ -1,0 +1,27 @@
+Source: https://ocienergy.com/projects (fetched 2026-07-19 via WebFetch)
+Relevant extract from OCI Energy's public project portfolio page:
+
+Under Development — Battery/BESS:
+| Bravo | 200 MW | Zapata County, TX |
+
+Note: OCI Energy lists this project as Zapata County; the ERCOT GIS queue lists it as
+Webb County (INR 27INR0398). The Cenizo Substation POI (OSM way 451971746) is confirmed
+in Webb County by Census geocoder. The discrepancy may reflect that the battery site
+straddles or is near the Webb/Zapata county line, while connecting to the Webb County
+substation.
+
+OCI Energy full BESS pipeline per page (July 2026):
+Under Construction: Alamo City BESS 200 MWac (Bexar County, TX) — broke ground May 2026
+Under Development:
+- Rush 200 MWac, Bexar County TX
+- Prost 200 MW, Austin County TX
+- Crescent C 500 MW, La Salle County TX
+- Sun Angel 200 MW, Angelina County TX
+- Avant Prairie 200 MW, Freestone County TX
+- Juniper Ridge 1 250 MW, Hardeman County TX
+- Juniper Ridge 2 250 MW, Hardeman County TX
+- Tex Bar 200 MW, Madison County TX
+- SunShiner 200 MW, Dimmit County TX
+- Bravo 200 MW, Zapata County TX
+- Metro 200 MW, Caldwell County TX
+- Jay Flat 250 MW, Kent County TX

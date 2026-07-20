@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0330",
+  "project": "Alamo City BESS",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.307,
+    "lon": -98.323,
+    "method": "POI substation (JT Deely former plant, Calaveras Lake, southeastern Bexar County)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "groundbreaking confirmed May 2026 via press release; no BESS pad visible in Sentinel-2 (10m/px) as of 2026-04 — timing gap, not absence",
+    "evidence": "OCI Energy/CPS Energy groundbreaking PR (2026-05-15); S2 chips 2025-09 and 2026-04 show legacy JT Deely plant footprint, no new gravel pad distinguishable at this resolution; 2026-06 chip cloud-obscured"
+  },
+  "cod_first_look": {
+    "reported": "2027-09-21",
+    "plausible": true,
+    "why": "IA signed May 2025, construction financing closed Sep 2025, groundbreaking May 2026; 16-month build to Sep 2027 is tight but feasible for 128 MW BESS with named EPC (Elgin Power Solutions) and LG battery supply"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA document: milestone schedule exhibit — retrieve from PUCT Interchange (docket search by OCI Energy or CPS Energy, CEII-redacted version may exist); queue data shows IA signed 2025-05-22",
+    "Site pin: groundbreaking was May 2026 at former JT Deely site — acquire post-June 2026 imagery at tighter buffer (~0.5 km) to detect container rows",
+    "Developer track record: OCI Energy is a smaller developer; verify prior BESS completions and EPC (Elgin Power Solutions) track record for schedule confidence",
+    "Capacity discrepancy: ERCOT queue shows 128.2 MW, press reports say 120 MW — determine which is the contracted capacity and which is the interconnection capacity"
+  ],
+  "turns_used": 22
+}

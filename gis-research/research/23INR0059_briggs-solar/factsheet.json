@@ -1,0 +1,97 @@
+{
+ "inr": "23INR0059",
+ "generated": "2026-07-20",
+ "project": "Briggs Solar",
+ "county": "Haskell",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 323.7,
+ "queue_cod": "2028-04-15",
+ "milestones": {
+  "screeningStudyComplete": "2020-10-28",
+  "fisApproved": null,
+  "iaSigned": "2025-03-15",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ok",
+  "plant_id": 66691,
+  "entity": "Intersect USA, LLC",
+  "planned_cod": "2027-12",
+  "cod_delta_quarters": -1.3,
+  "dropped_scope": null,
+  "coords": [
+   33.14433,
+   -99.55977
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Intersect USA, LLC",
+    "detail": "plant=Briggs Solar, LLC 305.0MW (L) Regulatory approvals pending. Not un @33.14433,-99.55977 planned=2027-12"
+   },
+   {
+    "source": "eia860m/Planned",
+    "entity": "Southern Power Co",
+    "detail": "plant=Millers Branch Solar 312.0MW (V) Under construction, more than 50 per @33.22132,-99.58652 planned=2026-06"
+   },
+   {
+    "source": "puct-index",
+    "entity": "BRIGGS SOLAR, LLC",
+    "detail": "ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN ELECTRIC TRANSMISSION TEXAS, LLC AND BRIGGS SOLAR,"
+   },
+   {
+    "source": "puct-index",
+    "entity": "IP QUANTUM III, LLC",
+    "detail": "FIRST AMENDED AND RESTATED ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN ELECTRIC TRANSMISSION T"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": [
+   {
+    "program": "Ch.313",
+    "applicant": "Briggs Solar, LLC",
+    "district": "Haskell Cisd",
+    "score": 12
+   }
+  ]
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 2,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "financial_security_posted"
+ ],
+ "paper_score": 26,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 15.5,
+  "reason": "reality signal"
+ }
+}

@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0251",
+  "project": "Sayle Solar SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.98,
+    "lon": -96.64,
+    "method": "POI substation town (Edna, TX) — no pin, no IA map, no abatement parcel",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery returned 401 auth failure; no other imagery source attempted during triage"
+  },
+  "cod_first_look": {
+    "reported": "2028-05-31",
+    "plausible": true,
+    "why": "One COD slip (2027→2028) with FIS not yet approved and no IA — 2028 is optimistic but geometrically possible if FIS approves within ~12 months"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange portal was blocked (402) — retry via direct browser or alternate query to confirm no IA exists",
+    "Companion project 27INR0260 (storage) may share developer / site — check its queue record for any pins or IA that could anchor site location",
+    "Fix CDSE credentials and re-run imagery once a site candidate improves (currently only county-level anchor)",
+    "Watch for FIS approval milestone — if granted, revisit for deep scan"
+  ],
+  "turns_used": 18
+}

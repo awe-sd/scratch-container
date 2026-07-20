@@ -1,0 +1,26 @@
+{
+  "inr": "26INR0559",
+  "project": "Georgia-Lynn BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-02-20",
+    "plausible": true,
+    "why": "COD slipped once from 2026-12 to 2028-02; pre-FIS-approval stage is consistent with a ~2028 target if IA executes in 2026-2027"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange filings — search 'Georgia-Lynn' for any IA or study filing to confirm developer identity",
+    "TX SOS entity search for 'Georgia-Lynn BESS LLC' to identify developer/sponsor",
+    "POI substation 80064 CHOCBAYU4A 138kV — imagery within 1km to establish site candidate once developer confirmed"
+  ],
+  "turns_used": 12
+}

@@ -1,0 +1,75 @@
+{
+ "inr": "24INR0186",
+ "plant_id": 65854,
+ "plant_name": "Rowdy Creek Solar and BESS",
+ "entity": "Solar Proponent LLC",
+ "matched_by": "name match",
+ "first_report": "2022-08-01",
+ "last_report": "2026-05-01",
+ "planned_cod_history": [
+  {
+   "value": "2024-05",
+   "from": "2022-08-01",
+   "to": "2023-04-01"
+  },
+  {
+   "value": "2025-05",
+   "from": "2023-05-01",
+   "to": "2024-04-01"
+  },
+  {
+   "value": "2027-05",
+   "from": "2024-05-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 1050.0,
+   "from": "2022-08-01",
+   "to": "2026-04-01"
+  },
+  {
+   "value": 700.0,
+   "from": "2026-05-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "status_history": [
+  {
+   "value": "(L) Regulatory approvals pending. Not under construction",
+   "from": "2022-08-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "queue_reported_cod": "2027-12-29",
+ "energy_capacity_mwh_history": [
+  {
+   "value": null,
+   "from": "2022-08-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "operating_date_history": [
+  {
+   "value": null,
+   "from": "2022-08-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "eia_county": "Lamar",
+ "eia_lat": 33.75694,
+ "eia_lon": -95.6458,
+ "dropped_from_860m": {
+  "scope": "units",
+  "last_seen": "2026-04-01",
+  "dataset_latest": "2026-05-01",
+  "dropped_units": [
+   {
+    "generator_id": "RDYBS",
+    "last_seen": "2026-04-01",
+    "last_status": "(L) Regulatory approvals pending. Not under construction"
+   }
+  ]
+ }
+}

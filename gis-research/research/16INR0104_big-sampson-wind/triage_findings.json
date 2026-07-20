@@ -1,0 +1,35 @@
+{
+  "inr": "16INR0104",
+  "project": "Big Sampson Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 30.91,
+    "lon": -101.90,
+    "method": "TDLR/PUC address: CR 310, Crockett County TX near Iraan",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "COMPLETE — project operational",
+    "evidence": "Multiple press sources (ENGIE, Sonoco VPPA announcement, Renewable Mirror) confirm operational late 2025; ERCOT queue shows approved-for-sync 2025-06-16; CDSE imagery auth blocked so no visual confirmation but news evidence is decisive"
+  },
+  "cod_first_look": {
+    "reported": "2026-09-01",
+    "plausible": false,
+    "why": "Project already operational late 2025 per ENGIE/Sonoco VPPA press releases; queue COD date lags actual commercial operation — likely stale queue entry"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm exact commercial operation date from ERCOT settlement or ENGIE press release (queue COD 2026-09-01 appears stale — project went online late 2025)",
+    "Retrieve PUCT IA PDF (interchange.puc.texas.gov blocked during triage) to confirm milestone schedule and POI details",
+    "Ch.313 abatement check for Crockett County (filed pre-2022; portal not machine-readable in triage — project economics may include tax abatement)",
+    "FAA OE/AAA obstruction filings for exact turbine coordinates (60 × Vestas V163; useful for precise site polygon)"
+  ],
+  "turns_used": 22
+}

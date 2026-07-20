@@ -1,0 +1,87 @@
+{
+  "inr": "23INR0244",
+  "project": "Tiger Solar",
+  "researched_at": "2026-07-19",
+  "site": {
+    "lat": 32.543,
+    "lon": -99.619,
+    "method": "dual-cross-check: (a) 4.55-mile bearing ~128° from Fort Phantom Switchyard (32.5826, -99.6823, confirmed OSM); (b) 2.3 miles north of CR 195/US-277 intersection as stated in PUCT CCN docket 58405 application. Both methods converge to 32.543, -99.619 within 0.5 km.",
+    "confidence": "medium-high"
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Tiger Solar, LLC",
+      "relation": "project_name",
+      "evidence": "ERCOT queue INR 23INR0244; project name in PUCT filings"
+    },
+    {
+      "entity": "Vaca Del Sol, LLC",
+      "relation": "SPV/generator",
+      "evidence": "Party to IA in PUCT 35077-1966 (sources/2026-07-19_puct_35077-1966_tiger-solar-IA.pdf)"
+    },
+    {
+      "entity": "NextEra Energy Resources, LLC",
+      "relation": "indirect parent of Vaca Del Sol",
+      "evidence": "CCN application docket 58405 item 2: 'Vaca del Sol is an indirect, wholly owned subsidiary of NextEra Energy Resources, LLC' (sources/2026-07-19_puct_58405-2_ccn-app-p1-100.pdf)"
+    },
+    {
+      "entity": "Lone Star Transmission, LLC",
+      "relation": "TSP (transmission service provider / NextEra affiliate)",
+      "evidence": "IA party; address 700 Universe Blvd Juno Beach FL = NextEra HQ (sources/2026-07-19_puct_35077-1966_tiger-solar-IA.pdf Exhibit D)"
+    }
+  ],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Jones CAD returned 0 hits for Vaca Del Sol / Tiger Solar (JavaScript-rendered portal). CCN application Attachment 2 references Waddell landowners for transmission ROW corridor, not solar array parcels. No Ch.313/JETI abatement found (expected — post-2022 project)."
+  },
+  "project_area": {
+    "acres": null,
+    "source": "Not found in available documents. 250.9 MW solar at ~3-4 ac/MW implies ~750-1000 acres estimated. CCN route map (sources/2026-07-19_puct_58405_ccn-route-map.jpg) shows project footprint boundary but scale extraction not performed.",
+    "artifact": "sources/2026-07-19_puct_58405_ccn-route-map.jpg"
+  },
+  "construction": {
+    "verdict": "no_activity",
+    "first_activity_seen": null,
+    "evidence": [
+      "CDSE API returned 401 (credential issue) — no satellite chips retrieved in deep scan",
+      "Triage CDSE partial coverage (2 of 9 chips): southern chips showed undisturbed agriculture, no construction",
+      "CCN route map (2023 imagery background) shows undisturbed agricultural land at Tiger Solar footprint",
+      "Queue data: no construction start/end dates filed as of 2026-06-01 snapshot",
+      "CCN construction schedule: transmission line construction starts May 2026, completes Oct 2026 — generator-side construction timing not stated but IA NTP Need Date was Nov 1, 2024"
+    ]
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "ERCOT Standard Generation Interconnection Agreement, Vaca Del Sol LLC / Lone Star Transmission LLC for Tiger Solar Project",
+        "signed": "2024-10-30",
+        "financial_security": "$32,710,000 (Irrevocable Standby LC or Corporate Guaranty)",
+        "artifact": "sources/2026-07-19_puct_35077-1966_tiger-solar-IA.pdf"
+      }
+    ],
+    "milestones": [
+      {"name": "NTP Need Date", "Original IA 2024": "2024-11-01"},
+      {"name": "TIF In-Service (Backfeed)", "Original IA 2024": "2026-11-06"},
+      {"name": "Trial Operation (Synchronization)", "Original IA 2024": "2026-11-14"},
+      {"name": "Scheduled COD", "Original IA 2024": "2027-06-30"}
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-06-30",
+    "independent": "2027-Q3",
+    "drift_risk": "med",
+    "reasoning_evidence": [
+      "Contractual COD 2027-06-30 is confirmed in IA Exhibit B (sources/2026-07-19_puct_35077-1966_tiger-solar-IA.pdf)",
+      "CCN for dedicated 345-kV spur was contested by ENGIE — SOAH issued Proposal for Decision May 2026, no-exceptions Jun 2026; CCN likely approved but adds transmission delay risk",
+      "CCN transmission construction: starts May 2026, energizes Oct 2026, completes Dec 2026 — tight but within window for Nov 6, 2026 in-service date",
+      "No construction start dates in ERCOT queue as of Jun 2026 snapshot — no evidence NTP was issued to TSP by Nov 2024 Need Date; if NTP delayed, all dates extend day-for-day",
+      "COD has drifted 3 times (2023-12-01 → 2026-10-15 → 2028-03-15 → 2027-06-30) — pattern of prior slips increases medium risk",
+      "For: NextEra-backed, full financial security $32.7M required, FIS approved Dec 2025, all 6.9 milestones met Jan 2026, credible developer with track record",
+      "Independent estimate: 2027-Q3 (slight slip from contractual Jun 30 due to transmission CCN contest adding uncertainty to energization timeline)"
+    ]
+  },
+  "real_project_verdict": "real_early",
+  "negative_searches": 6,
+  "banned_source_violations": 0
+}

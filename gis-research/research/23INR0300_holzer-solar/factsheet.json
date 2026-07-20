@@ -1,0 +1,71 @@
+{
+ "inr": "23INR0300",
+ "generated": "2026-07-20",
+ "project": "Holzer Solar",
+ "county": "Midland",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 17.7,
+ "queue_cod": "2026-11-16",
+ "milestones": {
+  "screeningStudyComplete": "2021-09-01",
+  "fisApproved": "2025-04-09",
+  "iaSigned": "2022-07-18",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 12,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": false,
+  "candidates": []
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 50,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 20,
+   "detail": "12 COD slips"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  },
+  {
+   "factor": "spv_unresolvable",
+   "points": 10,
+   "detail": "no SPV via spv.py or any registry"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "paper_kill",
+  "priority": null,
+  "reason": "paper_score 50 >= 50"
+ }
+}

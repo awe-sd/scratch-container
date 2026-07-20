@@ -1,0 +1,88 @@
+{
+ "inr": "19INR0134",
+ "generated": "2026-07-20",
+ "project": "Cottonwood Bayou Solar",
+ "county": "Brazoria",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 351.4,
+ "queue_cod": "2026-08-29",
+ "milestones": {
+  "screeningStudyComplete": "2017-11-17",
+  "fisApproved": "2023-04-27",
+  "iaSigned": "2019-11-13",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 24,
+ "eia": {
+  "status": "ok",
+  "plant_id": 66915,
+  "entity": "Cottonwood Bayou Solar, LLC",
+  "planned_cod": "2026-06",
+  "cod_delta_quarters": -0.7,
+  "dropped_scope": null,
+  "coords": [
+   29.26312,
+   -95.258
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Cottonwood Bayou Solar, LLC",
+    "detail": "plant=Cottonwood Bayou Solar 350.0MW (TS) Construction complete, but not yet  @29.26312,-95.258 planned=2026-06"
+   },
+   {
+    "source": "puct-index",
+    "entity": "COTTONWOOD BAYOU SOLAR, LLC",
+    "detail": "ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN CENTERPOINT ENERGY HOUSTON ELECTRIC, LLC AND COTTO"
+   },
+   {
+    "source": "puct-index",
+    "entity": "COTTONWOOD BAYOU SOLAR II, LLC",
+    "detail": "ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN CENTERPOINT ENERGY HOUSTON ELECTRIC, LLC AND COTTO"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Cottonwood Bayou Solar, LLC.",
+    "detail": "Amendment One to the ERCOT Standard Generation Interconnection Agreement between CenterPoint Energy Houston El"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": [
+   {
+    "program": "Ch.313",
+    "applicant": "Cottonwood Bayou Solar, LLC",
+    "district": "Angleton ISD",
+    "score": 22
+   }
+  ]
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 4,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 20,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 20,
+   "detail": "24 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 266.21,
+  "reason": "reality signal"
+ }
+}

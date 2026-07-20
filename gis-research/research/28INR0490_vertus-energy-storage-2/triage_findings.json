@@ -1,0 +1,28 @@
+{
+  "inr": "28INR0490",
+  "project": "Vertus Energy Storage 2",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-02-15",
+    "plausible": true,
+    "why": "Developer (AOP/Fengate) has Vertus 1 (200MW) already commissioned at same county/POI — repeat-site execution track record makes 2028 plausible if IA follows soon, but FIS not yet approved"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate Vertus 1 site coordinates via GCAD parcel search or EIA Form 860 — Vertus 2 will likely be an adjacent parcel or expansion; use as imagery anchor",
+    "PUCT Interchange IA filings: search 26INR0333 (Vertus 1) for POI substation location details that carry over to project 2",
+    "FIS approval status: queue shows FIS requested 2026-01-21 but not yet approved — track when it clears as key next gate",
+    "Alpha Omega Power / Fengate project pipeline: check for additional SEC/FERC filings or press releases naming a Vertus 2 site address",
+    "TNMAINLAND1 substation coordinates: OpenInfraMap OSM export or ERCOT network model to pin the POI for imagery"
+  ],
+  "turns_used": 22
+}

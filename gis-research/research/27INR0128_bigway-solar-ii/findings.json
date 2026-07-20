@@ -1,0 +1,100 @@
+{
+  "inr": "27INR0128",
+  "project": "Bigway Solar II",
+  "research_date": "2026-07-19",
+  "verdict": "real_early",
+  "construction_stage": "no_activity",
+  "first_activity_seen": null,
+
+  "site": {
+    "lat": 33.77561,
+    "lon": -100.31339,
+    "method": "Texas GLO OTLS survey-abstract polygons (10 tracts from King County abatement agenda)",
+    "confidence": "high",
+    "cross_checks": [
+      "All 10 OTLS abstract polygons cluster within 33.74–33.81 lat, -100.34 to -100.29 lon — King County northern sector",
+      "POI 'Cottonwood 345kV #59904 – Edith Clarke #60500' consistent with West Texas ETT transmission corridor in that area",
+      "No Google Places pin (429-blocked), no parcel situs crosscheck possible (CAD search interface JS-only)"
+    ]
+  },
+
+  "project_area": {
+    "acres": 7681,
+    "source": "Sum of 10 OTLS survey-abstract polygon areas from abatement agenda tract list",
+    "artifact": "sources/2026-07-19_king-county_jan2026_agenda.pdf + OTLS ArcGIS query"
+  },
+
+  "ownership": {
+    "spv": "Bigway Solar, LLC",
+    "developer": "Stetson Renewables Holdings, LLC (abatement applicant) → NextEra Energy Interconnection Holdings (per triage T3 PUCT filing party)",
+    "epc": null,
+    "offtaker": null,
+    "financing": "not announced"
+  },
+
+  "county_records": {
+    "abatement_found": true,
+    "abatement_type": "Ch.312",
+    "abatement_note": "Second Amendment to Tax Abatement Agreement, King County + Stetson Renewables Holdings LLC and/or Bigway Solar LLC as assignee; Reinvestment Zone #2021-01; meeting Jan 12, 2026; original agreement dated Sep 9, 2024; estimated improvements $210M; 175 MW AC; Road Use Agreement also approved same meeting",
+    "abatement_artifact": "sources/2026-07-19_king-county_jan2026_agenda.pdf",
+    "cad_parcels": "not retrieved — CAD portal requires JS; no parcel owner-name hits via API",
+    "jeti_ch313": "not found — project entered queue Dec 2023, after Ch.313 expiry"
+  },
+
+  "interconnection": {
+    "ia_found": true,
+    "ia_signed_date": "2025-02-15",
+    "ia_tsp": "Electric Transmission Texas, LLC (ETT)",
+    "ia_puct_control": "35077",
+    "ia_puct_item": "2069",
+    "ia_schedule_retrieved": false,
+    "ia_schedule_note": "PUCT Interchange returns 402 on all access attempts; schedule exhibit not retrieved",
+    "fis_approved": false,
+    "meets_all_69": false,
+    "poi": "Tap 345KV #59904 Cottonwood - #60500 Edith Clarke Ckt #2"
+  },
+
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Original IA (PUCT 35077-2069)",
+        "signed": "2025-02-15",
+        "financial_security": "not retrieved",
+        "artifact": null
+      }
+    ]
+  },
+
+  "imagery": {
+    "verdict": "no_activity",
+    "frames": [
+      {
+        "date": "2026-07-15",
+        "observation": "Undisturbed ranchland and irrigated pivot fields. No grading, no cleared pads, no access roads, no module arrays anywhere in 6km view.",
+        "artifact": "imagery/key/s2_2026-07-15_present.png"
+      },
+      {
+        "date": "2026-01-15",
+        "observation": "Same undisturbed character as July 2026. No activity signal at 6 months back. Early-exit rule applied.",
+        "artifact": "imagery/key/s2_2026-01-15_6mo_back.png"
+      }
+    ]
+  },
+
+  "cod": {
+    "reported": "2027-12-31",
+    "independent_estimate": "2028-Q4",
+    "drift_risk": "high",
+    "rationale": "No ground disturbance as of July 2026 (18 months before reported COD). FIS not approved, 'Meets all 6.9' not achieved. A 206 MW solar build requires ~12-18 months from NTP to COD at minimum. Abatement Road Use Agreement filed Jan 2026 = pre-construction permitting, not construction start. COD pulled forward twice from 2029-07 to 2027-12-31 reflects developer ambition, not observed progress. Most likely scenario: construction start mid-2026 → COD late 2028. If FIS delays, slip to 2029 is possible."
+  },
+
+  "cod_drift_history": {
+    "changes": 2,
+    "series": [
+      {"cod": "2029-07-01", "from": "2024-03-01", "until": "2024-04-01"},
+      {"cod": "2028-12-31", "from": "2024-05-01", "until": "2026-01-01"},
+      {"cod": "2027-12-31", "from": "2026-02-01", "until": "2026-06-01"}
+    ],
+    "note": "Both COD changes are pull-forwards (2029→2028→2027), unusual direction. Combined with no construction visible, this suggests schedule ambition driven by permitting completions (IA Feb 2025, abatement amendment Jan 2026), not actual construction progress."
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "inr": "24INR0333",
+  "project": "Chisme Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-04-13",
+    "plausible": false,
+    "why": "IA not signed in queue as of June 2026; 3 prior COD slips totaling ~21 months; no construction start reported; FIS only approved 2026-06-23"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT control #35077 (Blue Heron Solar / Chisme Solar & Storage IA with Oncor) — portal blocked at triage; retrieve PDF directly and extract milestone schedule",
+    "Developer identity: Blue Heron Solar, LLC — research parent company, financing, and portfolio to assess development credibility",
+    "Project straddles Brown + Mills County — Mills County fact sheet URL found (millscountytx.gov) suggesting landowner engagement; retrieve for site location/coordinates",
+    "BESS component (~146 MW) not captured in ERCOT queue entry — confirm whether separate INR filed or combined; affects COD reliability",
+    "Site coordinates: gmaps 429 blocked at triage — retry to get a pin for imagery pass"
+  ],
+  "turns_used": 22
+}

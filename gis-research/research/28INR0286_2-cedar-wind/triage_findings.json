@@ -1,0 +1,27 @@
+{
+  "inr": "28INR0286",
+  "project": "2 Cedar Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-02",
+    "plausible": false,
+    "why": "FIS only just requested 2026-03-26; no IA, no FIS approval — 2028 COD requires IA + construction start within ~12 months, very aggressive given current stage"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "FAA OE/AAA Fannin County wind turbine filings — portal was blocked (shutdown page); retry when live to get exact turbine coordinates",
+    "PUCT Interchange — portal returned 402; retry direct browser search for SunWR or '2 Cedar Wind' filings",
+    "SunWR, LLC developer background — no web presence found; Texas SOS registration lookup to confirm LLC and identify principals",
+    "Site candidate needed before imagery is viable — FAA DOF coordinates or county permit records"
+  ],
+  "turns_used": 22
+}

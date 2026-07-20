@@ -1,0 +1,32 @@
+{
+  "inr": "25INR0334",
+  "project": "Star Dairy Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.461,
+    "lon": -95.367,
+    "method": "OSM place-name anchor: Woodard Cemetery (Lamar County) — derived from WOODARD_5 bus in POI description",
+    "confidence": "low"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-07-12",
+    "plausible": true,
+    "why": "IA signed Dec 2024; COD already slipped ~16 months from original; 2.5 years from IA to COD is tight but possible for a battery project with no FIS approval yet"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA exists (queue-confirmed 2024-12-09) but no PDF retrieved — attempt PUCT Interchange authenticated search for 'Star Dairy Storage' IA and any amendment filings",
+    "Developer identity unknown — no LLC registration surfaced; try Texas SOS entity search for 'Star Dairy Storage' to find principal names and linked developer",
+    "CDSE credentials needed — configure ~/.config/gis-research.env and run 3x3 chip grid at lat=33.461, lon=-95.367 buffer 2km; site candidate confidence is low, widen search if no pad found",
+    "POI is a 345kV tap (PARIS_SW1 -- WOODARD) not a named substation — obtain ERCOT nodal network model or PUCT transmission map to pin substation coordinates before imagery"
+  ],
+  "turns_used": 28
+}

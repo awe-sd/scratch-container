@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0394",
+  "project": "Orchard Ray BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.620,
+    "lon": -97.800,
+    "method": "POI substation name ('Tuleta 138kV') + web snippet placing it ~1 mi south of Pettus TX + OSM Nominatim for Pettus centroid",
+    "confidence": "low — estimated from substation name, not confirmed pin or map"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery auth failed (401/403); no construction dates in queue; no ground-level reports found"
+  },
+  "cod_first_look": {
+    "reported": "2027-05-01",
+    "plausible": true,
+    "why": "COD has drifted ~2 yrs but stabilized; FIS not yet approved, no IA — tight but not impossible if IA executes in 2026"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "FIS approval status — no FIS approved after 3 yrs in queue; check if study is stalled or withdrawn",
+    "IA status — PUCT Interchange was blocked (402); retry to confirm no IA or find a draft IA",
+    "Developer identity — 'Pettus BESS LLC' not 'Orchard Ray BESS LLC'; verify TX SOS registration and parent company",
+    "Imagery — retry cdse.py with valid CDSE creds; substation at Pettus TX is the best site candidate"
+  ],
+  "turns_used": 22
+}

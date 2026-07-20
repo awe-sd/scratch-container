@@ -1,0 +1,36 @@
+{
+  "inr": "19INR0041",
+  "project": "Myrtle Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.22,
+    "lon": -95.43,
+    "method": "web sources: near Angleton, Brazoria County; north of Angleton qualifier",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "operating per web sources",
+    "evidence": "TotalEnergies press release announces startup; GEM wiki lists as operating; ercotqueue.com shows Commissioned 100%; ABC13/USA Solar Cell report completion ~2023. Imagery unavailable (CDSE 401)."
+  },
+  "cod_first_look": {
+    "reported": "2027-06-21",
+    "plausible": false,
+    "why": "Multiple independent sources (TotalEnergies PR, GEM, ercotqueue.com) confirm project is already operating ~2023; queue still lacks approvedForCommercialOperation date despite sync/energization approvals from Dec 2022 — likely a queue data lag or BESS/uprate scope still pending commercial operation"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Resolve COD anomaly: project is reportedly operating but ERCOT queue lacks approvedForCommercialOperation — check if this is a data lag, partial commissioning (321.2 MW solar vs 380 MW total with BESS), or separate BESS queue entry",
+    "Confirm exact commissioning date from TotalEnergies press release (URL: corporate.totalenergies.us — returned 404 during triage, try alternate TotalEnergies news URL)",
+    "PUCT Interchange IA documents: iaSigned=2019-11-13 confirmed; retrieve IA PDF for POI/schedule terms (portal was 402-blocked in triage)",
+    "Capacity discrepancy: ERCOT queue 321.2 MW vs TotalEnergies claim ~380 MW — likely BESS is a separate queue entry; search for companion BESS INR in Brazoria/COASTAL zone",
+    "Ch.313 abatement: TotalEnergies 2019 project in Brazoria County ISD is prime Ch.313 candidate; check comptroller database manually"
+  ],
+  "turns_used": 28
+}

@@ -1,0 +1,56 @@
+{
+ "inr": "28INR0155",
+ "generated": "2026-07-20",
+ "project": "Coke BESS",
+ "county": "Coke",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 220.3,
+ "queue_cod": "2028-04-10",
+ "milestones": {
+  "screeningStudyComplete": "2024-12-09",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 0,
+ "eia": {
+  "status": "ok",
+  "plant_id": 68668,
+  "entity": "RIC Development, LLC",
+  "planned_cod": "2028-04",
+  "cod_delta_quarters": 0.0,
+  "dropped_scope": null,
+  "coords": [
+   31.8625,
+   -100.7638
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "RIC Development, LLC",
+    "detail": "plant=Coke BESS 220.0MW (P) Planned for installation, but regula @31.8625,-100.7638 planned=2028-04"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 0 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

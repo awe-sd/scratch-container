@@ -1,0 +1,35 @@
+{
+  "inr": "22INR0497",
+  "project": "TEXPO",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.783,
+    "lon": -99.124,
+    "method": "POI infrastructure — 'Oklaunion 345kV' = retired Oklaunion Power Station site, Wilbarger County",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "no activity",
+    "evidence": "2023-06-01 Sentinel-2 chip shows cleared/scrubland terrain at Oklaunion site; no power plant structures, laydown yard, or earthworks visible. 2026 chip unusable (all-cloud composite). No construction signal."
+  },
+  "cod_first_look": {
+    "reported": "2027-10-31",
+    "plausible": false,
+    "why": "5 COD slips in 5 years (2023→2024→2025→2026→2027), no milestones beyond FIS requested (never approved), no IA, no imagery signal, no press/permits found — 2027 COD implausible for a gas steam plant with multi-year construction lead"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "TCEQ air permit search — mandatory for any gas combustion project; absence would confirm paper status",
+    "Texas SOS entity search for 'TEXPO LLC' or 'Oklaunion Power Station LLC' — check formation date and registered agent",
+    "PUCT Interchange search when portal accessible — confirm no IA filed under alternate name",
+    "Better imagery at the actual Oklaunion substation (33.840°N, 99.120°W) — current chip may be slightly off-center from the demolished coal plant footprint"
+  ],
+  "turns_used": 22
+}

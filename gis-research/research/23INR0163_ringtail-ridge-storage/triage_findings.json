@@ -1,0 +1,35 @@
+{
+  "inr": "23INR0163",
+  "project": "Ringtail Ridge Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.9966,
+    "lon": -98.8793,
+    "method": "news_article_address — Flat Rock Creek Rd off FM 473, Comfort TX (near LCRA 138kV substation)",
+    "confidence": "high"
+  },
+  "construction": {
+    "verdict": "no evidence",
+    "evidence": "CDSE credentials not configured — no imagery obtained; news articles (Jan 2024) describe pre-construction, no groundbreaking mentioned"
+  },
+  "cod_first_look": {
+    "reported": "2028-05-23",
+    "plausible": false,
+    "why": "5 COD slips over 5 yrs (original 2023-05-01); no IA signed; still Facility Study phase; active community/county opposition; abatement blocked — construction start by late 2026 needed for 2028 COD looks aggressive"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange: search for KCE TX 26 or Key Capture Energy IA filings — PUCT blocked via WebFetch, needs browser/session access",
+    "Imagery with CDSE creds: 3×3 grid centered on 29.9966/-98.8793 (Flat Rock Creek Rd / LCRA substation) — check for grading, container placement, or substation tie-in work",
+    "Kendall County opposition: track TCEQ BESS permit request and Chapter 391 commission formation — could be a hard permit blocker",
+    "Key Capture Energy corporate health: verify KCE TX 26 LLC TX SOS registration status and any recent KCE portfolio news (the company had ~580 MW operational/under construction per Jan 2024 reporting)"
+  ],
+  "turns_used": 28
+}

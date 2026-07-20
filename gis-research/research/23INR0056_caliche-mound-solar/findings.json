@@ -1,0 +1,63 @@
+{
+  "inr": "23INR0056",
+  "project": "Caliche Mound Solar",
+  "research_date": "2026-07-19",
+  "phase": "deep",
+  "developer_chain": {
+    "spv": "Caliche Mound Solar, LLC",
+    "prior_triage_developer": "Tierra Blanco Solar LLC",
+    "prior_triage_note": "Tierra Blanco Solar LLC appeared on aggregators only — not independently verified this session",
+    "this_session_result": "NO NEW DEVELOPER CONFIRMED — all public registries blocked or unavailable",
+    "sources_attempted": [
+      "TX Comptroller COA search (mycpa.cpa.state.tx.us) — redirects to login-required comptroller.texas.gov; no programmatic result",
+      "TX SOS SOSDirect (direct.sos.state.tx.us) — requires paid account; not accessible",
+      "SEC EDGAR full-text search (efts.sec.gov) — HTTP 403 on all queries; uniformly blocked from this environment",
+      "SEC EDGAR company search (sec.gov/cgi-bin/browse-edgar) — HTTP 403 on all queries",
+      "FERC eLibrary (elibrary.ferc.gov) — returns empty 'eLibrary' page; no results accessible via WebFetch",
+      "PUCT Interchange (interchange.puc.texas.gov) — HTTP 402 on all queries",
+      "OpenCorporates (opencorporates.com) — CAPTCHA blocked",
+      "Bizapedia — CAPTCHA blocked",
+      "Corporate Wiki — HTTP 403",
+      "Deaf Smith CAD esearch (esearch.deafsmithcad.org) — search returns 404; portal requires account",
+      "TCEQ Central Registry (tceq.texas.gov) — search returned no results for 'caliche mound solar'",
+      "Law360 — no results for 'caliche mound solar'",
+      "CleanTechnica — no results",
+      "PV-Tech — no results",
+      "GlobeNewswire — no results",
+      "Local newspapers (thecastrocountynews.com, herefordbrand.com) — no results"
+    ]
+  },
+  "registered_agent": null,
+  "mailing_address": null,
+  "officers": null,
+  "parent_company": null,
+  "puct_filing": {
+    "control_number": "35077",
+    "type": "Interconnection Agreement",
+    "ia_signed_date": "2023-10-12",
+    "oncor_filing_date": "2023-10-26",
+    "note": "IA confirmed to exist; PDF contents unread — PUCT portal (interchange.puc.texas.gov) returned HTTP 402 on all query attempts this session"
+  },
+  "abatement": {
+    "ch313": "Not found — portal inaccessible",
+    "jeti": "Not searched — budget exhausted"
+  },
+  "imagery": {
+    "status": "SKIPPED",
+    "reason": "No site coordinates established — POI substations AJSwope/Windmill not geolocated this session"
+  },
+  "cod": {
+    "reported": "2027-10-26",
+    "slip_count": 5,
+    "slip_years": 4.5,
+    "assessment": "Plausible but risky given slip history"
+  },
+  "open_items": [
+    "Pull PUCT #35077 IA PDF directly — contains milestone schedule and exact POI coordinates",
+    "Verify developer via TX SOS (requires paid account) or call Deaf Smith CAD at 806-364-0625",
+    "Search JETI registry for post-2022 Deaf Smith County application",
+    "Run Sentinel-2 imagery once site coordinates established",
+    "Try SEC EDGAR from a non-blocked IP — efts.sec.gov returned 403 on all ~40 attempts"
+  ],
+  "session_budget_outcome": "400,652/400,000 tokens — budget exhausted; deep scan incomplete"
+}

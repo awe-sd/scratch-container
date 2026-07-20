@@ -1,0 +1,101 @@
+{
+ "inr": "27INR0246",
+ "project": "Easy Wind Energy Center",
+ "first_seen_in_reports": "2024-05-01",
+ "last_seen_in_reports": "2026-06-01",
+ "snapshots": 26,
+ "milestones": [
+  {
+   "milestone": "Screening started",
+   "achieved": "2024-05-20",
+   "first_in_report": "2024-05-01"
+  },
+  {
+   "milestone": "Screening complete",
+   "achieved": "2024-08-16",
+   "first_in_report": "2024-08-01"
+  },
+  {
+   "milestone": "FIS requested",
+   "achieved": "2024-05-02",
+   "first_in_report": "2024-05-01"
+  },
+  {
+   "milestone": "FIS approved",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "IA signed",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Meets 6.9(1)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Meets all 6.9",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Construction start (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Construction end (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Approved for energization",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Approved for synchronization",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Commercial operation approved",
+   "achieved": null,
+   "first_in_report": null
+  }
+ ],
+ "reported_cod_history": [
+  {
+   "value": "2027-06-01",
+   "from": "2024-05-01",
+   "to": "2024-07-01"
+  },
+  {
+   "value": "2027-12-01",
+   "from": "2024-08-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 241.13,
+   "from": "2024-05-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "study_phase_history": [
+  {
+   "value": "SS Started, FIS Started, No IA",
+   "from": "2024-05-01",
+   "to": "2024-07-01"
+  },
+  {
+   "value": "SS Completed, FIS Started, No IA",
+   "from": "2024-08-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "financial_security_latest": "No"
+}

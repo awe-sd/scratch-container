@@ -1,0 +1,37 @@
+OpenStreetMap Overpass API — wind turbine nodes, Bee County area
+Query: power=generator, generator:source=wind, bbox (28.4,-98.2,28.9,-97.7)
+Source: https://overpass-api.de/api/interpreter
+Retrieved: 2026-07-19
+
+72 turbine nodes returned. No name/capacity/operator tags in OSM.
+All tagged: generator:method=wind_turbine, generator:source=wind, power=generator
+
+Cluster 1 (southern, ~28.53–28.57N, ~-97.97W): ~12 turbines
+Cluster 2 (main, ~28.60–28.68N, ~-97.91 to -97.97W): ~60 turbines
+
+Selected representative turbine coordinates:
+28.5351, -97.9727
+28.5396, -97.9674
+28.5412, -97.9596
+28.6770, -97.9098
+28.6791, -97.9155
+28.6784, -97.9219
+28.6777, -97.9300
+28.6760, -97.9352
+28.6699, -97.9532
+28.6643, -97.9542
+28.6491, -97.9417
+28.6373, -97.9448
+28.6250, -97.9329
+28.6185, -97.9398
+28.6052, -97.9387
+28.6021, -97.9424
+28.5897, -97.9417
+28.5649, -97.9657
+28.5666, -97.9619
+
+Centroid of main cluster: approx 28.622N, -97.938W
+Matches EIA 860 Helena Wind coordinates (28.621959, -97.937625) exactly.
+These are real, installed turbines visible in satellite imagery.
+
+NOTE: 72 OSM nodes for 180-turbine project = partial OSM mapping, not all turbines mapped.

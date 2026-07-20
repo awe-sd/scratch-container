@@ -1,0 +1,111 @@
+{
+  "inr": "23INR0057",
+  "project": "Duffy Solar",
+  "research_date": "2026-07-19",
+  "verdict": "real_early",
+  "confidence": "medium",
+  "verdict_rationale": "IA signed 2023-04-12, Meets 6.9(1) 2023-05-24, capacity resized Oct-2024 — these are real development actions. BUT: zero construction visible in satellite imagery across entire WAP-STP 345kV corridor in March 2026 (18 months before COD claim). No developer identity, no abatement, no web presence. Project is real but meaningfully pre-construction with 4 prior COD slips.",
+
+  "developer": {
+    "llc": "Duffy Solar, LLC",
+    "parent": null,
+    "epc": null,
+    "offtaker": null,
+    "financing_status": "unknown",
+    "notes": "No developer identity established. Zero SEC EDGAR hits, zero press releases, zero pv-magazine coverage. TX Comptroller COA JS-rendered (no direct API access). TX SOS SOSDirect paid search not accessible."
+  },
+
+  "site": {
+    "lat": null,
+    "lon": null,
+    "method": null,
+    "confidence": "none",
+    "notes": "Site not pinpointed. POI 'Tap 345kV WAP to STP CKT39' anchors project to ~18 km E-W corridor (28.8279,-95.8591 to 28.8018,-96.0498, CenterPoint AEP double-circuit, OSM id=1060258405). No Google Places pin (daily quota exhausted). No parcel data (Matagorda CAD unreachable). No abatement application found. 6-grid satellite survey of corridor shows zero solar activity.",
+    "poi_corridor": {
+      "from_substation": "Wadsworth Substation (AEP), 28.7851N 95.9380W",
+      "to_substation": "STP Switchyard, ~28.800N 96.051W",
+      "line_osm_id": "1060258405",
+      "voltage_kv": 345,
+      "length_km": 18
+    }
+  },
+
+  "project_area": {
+    "acres": null,
+    "source": null,
+    "artifact": null,
+    "notes": "No abatement application found. No IA retrieved (PUCT Interchange 402). No CAD parcels found. Estimated ~2,000-2,500 acres for 502 MW at typical TX coastal plain packing density."
+  },
+
+  "construction": {
+    "stage": "no_activity",
+    "first_activity_seen": null,
+    "latest_observation": "2026-03",
+    "notes": "Six-tile grid survey of WAP-STP 345kV corridor in March 2026 shows undisturbed farmland throughout. No grading, clearing, or solar installation visible. Heavy cloud cover in June-July 2026 chips prevents confirmation for latest date, but March 2026 baseline is clear and definitive."
+  },
+
+  "imagery": {
+    "frames": [
+      {"date": "2026-03", "location": "28.80,-95.90", "observation": "undisturbed agricultural land", "artifact": "imagery/grid_28.80_-95.90_2026-03.png"},
+      {"date": "2026-03", "location": "28.80,-96.00", "observation": "Colorado River corridor, farmland, no activity", "artifact": "imagery/grid_28.80_-96.00_2026-03.png"},
+      {"date": "2026-03", "location": "28.85,-95.90", "observation": "flat coastal plain, pasture/cropland, no activity", "artifact": "imagery/grid_28.85_-95.90_2026-03.png"},
+      {"date": "2026-03", "location": "28.88,-95.90", "observation": "irrigated rice fields, no activity", "artifact": "imagery/grid_28.88_-95.90_2026-03.png"},
+      {"date": "2026-03", "location": "28.90,-95.85", "observation": "open grassland/cropland, no activity", "artifact": "imagery/grid_28.90_-95.85_2026-03.png"},
+      {"date": "2026-03", "location": "29.00,-95.85", "observation": "green pasture/river, no activity", "artifact": "imagery/grid_29.00_-95.85_2026-03.png"},
+      {"date": "2026-07", "location": "28.812,-95.960", "observation": "heavy cloud cover; underlying landscape appears undisturbed agricultural", "artifact": "imagery/s2_2026-07-01_mid.png"}
+    ],
+    "contact_sheet": "imagery/contact_grid.png"
+  },
+
+  "interconnection": {
+    "ia_signed": "2023-04-12",
+    "fis_approved": null,
+    "meets_691": "2023-05-24",
+    "meets_all_69": null,
+    "ia_pdf_retrieved": false,
+    "ia_pdf_blocker": "PUCT Interchange returns HTTP 402 (session auth required)",
+    "poi": "Tap 345kV WAP to STP CKT39 (PTI# 5915-44000 CKT 39)",
+    "tsp": "AEP/CenterPoint (operator of WAP-STP 345kV line)"
+  },
+
+  "contractual_schedule": {
+    "documents": [],
+    "notes": "IA PDF not retrieved (PUCT Interchange 402). No amendment history obtainable. Milestone dates from ERCOT GIS report only — no contractual schedule exhibit available."
+  },
+
+  "county_records": {
+    "cad_parcels": "none found — matagordacad.org SSL error, unreachable",
+    "abatement": "none — Ch.313 expired 2022; no JETI application found for Duffy Solar",
+    "commissioners_minutes": "scanned image PDFs, no OCR; not searched"
+  },
+
+  "cod_assessment": {
+    "reported_cod": "2027-12-31",
+    "independent_estimate": "2029-Q1",
+    "drift_risk": "high",
+    "rationale": [
+      "No construction visible in March 2026 satellite imagery across 18×10 km corridor search area",
+      "COD claim 2027-12-31 requires completion in ≤21 months from today — standard TX coastal solar takes 18-24 months from first ground disturbance",
+      "4 prior COD slips at ~18-month intervals (2023-06 → 2025-05 → 2026-11 → 2027-12), consistent annual slip pattern",
+      "No FIS approved as of latest snapshot (FIS requested Feb 2021, still outstanding after 5+ years)",
+      "No construction milestones, no energization, no sync in queue record",
+      "No abatement, developer PR, or financing announcement found — unusually dark for a project this late in queue",
+      "Capacity trimmed 550→502 MW Oct-2024 — scope adjustment, not withdrawal"
+    ],
+    "cod_history": {
+      "initial": "2023-06-01",
+      "current": "2027-12-31",
+      "total_slip_months": 54,
+      "num_changes": 3
+    }
+  },
+
+  "unknowns": [
+    "Developer / LLC parent company not identified",
+    "IA PDF not retrieved — no contractual milestone dates, no POI exact coordinates",
+    "Exact tap location on WAP-STP 345kV line (CEII)",
+    "Land tenure (lease vs purchase)",
+    "Financing status",
+    "Whether FIS has been waived or is still pending"
+  ]
+}

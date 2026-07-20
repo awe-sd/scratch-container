@@ -1,0 +1,27 @@
+{
+  "inr": "19INR0075",
+  "project": "Horseshoe Bend Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-02-20",
+    "plausible": false,
+    "why": "11 COD slips over 8+ years, no IA signed, no FIS approved — project has never cleared a binding milestone"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange blocked (402) — try browser session for IA search under 'Horseshoe Bend Solar' or 'Clenera'",
+    "gmaps rate-limited — retry places search for site pin in Brown County",
+    "TX Comptroller Ch.313 + JETI: check browser session for Brown County solar abatements post-2022",
+    "Sept 2025 community article claims 'construction on horizon' — verify if NTP or financing announcement followed"
+  ],
+  "turns_used": 18
+}

@@ -1,0 +1,36 @@
+{
+  "inr": "18INR0079",
+  "project": "Woodward I repower",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 30.9514,
+    "lon": -102.4141,
+    "method": "worldpowerplants.com coordinates for Woodward Mountain wind farm; corroborated by I-10 milepost 283-290 description (~23 mi east Fort Stockton, Pecos County)",
+    "confidence": "high"
+  },
+  "construction": {
+    "verdict": "unknown — imagery not run",
+    "evidence": "Site candidate identified (existing wind farm); cdse.py imagery deferred to deep scan due to budget"
+  },
+  "cod_first_look": {
+    "reported": "2026-12-31",
+    "plausible": true,
+    "why": "14 COD slips over 8 years; IA signed 2018, all queue milestones met; repower of existing Woodward Mountain farm (NextEra/Vestas V47); 0.0 MW capacity typical for repower repermit; 2026-12-31 plausible but pattern of drift warrants watch"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA filing (18INR0079, NextEra) — portal blocked during triage; retrieve IA PDF and milestone-schedule exhibit to confirm construction window",
+    "Sentinel-2 imagery at 30.9514°N, 102.4141°W — existing turbine site, look for pad disturbance, equipment staging, new turbine installation activity vs. original V47 strings",
+    "FAA OE/AAA obstruction notices for Woodward Mountain area — would give exact turbine coordinates and any new tower filings confirming repower is active",
+    "TX Comptroller Ch.313 database (Pecos County, NextEra / Woodward Mountain) — 2018-era agreement likely exists; confirm it covers the repower scope",
+    "Confirm 0.0 MW capacity: repower likely holds capacity under original INR; verify whether sister project 18INR0080 (Woodward 2 repower) shares same site or is separate turbine string"
+  ],
+  "turns_used": 22
+}

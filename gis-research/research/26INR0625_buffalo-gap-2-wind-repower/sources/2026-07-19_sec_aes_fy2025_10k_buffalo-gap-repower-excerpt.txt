@@ -1,0 +1,20 @@
+Source: AES Corp FY2025 10-K (filed 2026-03-02), Accession 0000874761-26-000063
+URL: https://www.sec.gov/Archives/edgar/data/874761/000087476126000063/aes-20251231.htm
+CIK: 0000874761 (AES CORP)
+
+KEY EXCERPTS:
+
+1. CONSTRUCTION PIPELINE TABLE (p.~1H 2027 section):
+"Buffalo Gap Repowering  US-TX  Wind  527 [MW]  100% [AES equity interest]  1H 2027"
+
+Full table context: Projects listed at 1H 2027: Baldy Mesa Energy Storage (US-CA), Vientos Bonaerenses 3 and 4 (Argentina), Buffalo Gap Repowering (US-TX Wind 527 MW 100% 1H 2027), Cristales (Chile Solar 287 MW), Pampas (Chile Solar+Storage), Atacama (Chile Storage)
+
+2. REDEEMABLE STOCK OF SUBSIDIARIES / AES DEVCO HOLDCO:
+"AES DevCo HoldCo, LLC — In December 2025, the Company entered into several key agreements with HASI, including an investment agreement under which HASI invested $200 million in the Buffalo Gap wind repowering project in exchange for a preferred membership interest. The agreement contains certain redemption features that may require future redemption of the preferred membership interest and are not solely in AES' control. As a result, the noncontrolling ownership interest is considered temporary equity, resulting in an increase to Redeemable stock of subsidiaries of $199 million, net of transaction costs. The Company has concluded it is probable the Buffalo Gap wind repowering project will generate sufficient cash upon substantial completion to require distributions, absent members' consent, to be made to the preferred member of an amount that would redeem the instrument. Therefore, the noncontrolling ownership interest is probable of becoming redeemable. As of December 31, 2025, the carrying value of the noncontrolling interest approximates redemption value, therefore no adjustment to the carrying value was necessary. AES DevCo Holdco, LLC is reported in the Renewables SBU reportable segment."
+
+SIGNIFICANCE: 
+- Confirms project is real and under AES Corp
+- HASI ($200M tax equity / preferred equity) closed December 2025 = financing commitment in hand
+- 527 MW total (vs. 231.49 MW in this INR alone — Buffalo Gap has 3 separate repowering INRs)
+- Expected COD 1H 2027 per AES own guidance
+- AES DevCo Holdco LLC is the SPV holdco

@@ -1,0 +1,27 @@
+{
+  "inr": "24INR0379",
+  "project": "Solara BESS 2",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-11-30",
+    "plausible": false,
+    "why": "COD drifted 3x (was 2024-05, now 2027-11); no FIS approval, no IA signed, no Section 6.9 milestones — 17 months to a never-funded project is implausible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Hendrick 138kV substation coordinates (HIFLD/EIA Form 860 direct download) to enable imagery check",
+    "PUCT Interchange direct portal search for CED Development IA filings (requires browser session — not accessible via WebFetch)",
+    "Verify CED Development Inc. developer profile and other Texas BESS projects (GALVANIC BESS 23INR0204) for pattern/viability signal",
+    "Texas SOS entity search for 'Solara BESS 2' or 'CED Development' to confirm LLC registration status"
+  ],
+  "turns_used": 22
+}

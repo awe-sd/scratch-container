@@ -1,0 +1,34 @@
+{
+  "inr": "26INR0073",
+  "project": "Charro Creek Storage 3 SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.6537,
+    "lon": -98.0033,
+    "method": "POI substation name (PAWNEESW5) geocoded to Pawnee, TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "8 Sentinel-2 chips 2022-07-01 to 2026-05-15 around Pawnee TX (2km buffer); all frames show undisturbed agricultural baseline + Eagle Ford pad equipment; no gravel pad, no container rows, no land clearing at any date"
+  },
+  "cod_first_look": {
+    "reported": "2026-07-01",
+    "plausible": false,
+    "why": "No IA signed, no construction started in queue record, no site preparation visible in imagery as of May 2026 — COD claim implausible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm substation location: PAWNEESW5 coordinates via AEP Texas or PUCT transmission maps (imagery may be at wrong site)",
+    "PUCT Interchange IA search once portal auth available — no IA = no project commitment",
+    "Developer identity: TX SOS search for 'Charro Creek Storage 3 SLF LLC' to find parent/sponsor"
+  ],
+  "turns_used": 22
+}

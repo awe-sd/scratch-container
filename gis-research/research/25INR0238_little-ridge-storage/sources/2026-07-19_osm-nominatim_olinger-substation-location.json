@@ -1,0 +1,24 @@
+{
+  "query": "Olinger Texas",
+  "url": "https://nominatim.openstreetmap.org/search?q=Olinger+Texas&format=json&addressdetails=1&limit=10",
+  "retrieved": "2026-07-19",
+  "relevant_result": {
+    "place_id": 334288237,
+    "osm_type": "way",
+    "osm_id": 864993515,
+    "lat": "33.0691813",
+    "lon": "-96.4509452",
+    "class": "landuse",
+    "type": "industrial",
+    "name": "Ray Olinger Power Station",
+    "display_name": "Ray Olinger Power Station, Little Ridge, Collin County, Texas, United States",
+    "address": {
+      "industrial": "Ray Olinger Power Station",
+      "hamlet": "Little Ridge",
+      "county": "Collin County",
+      "state": "Texas"
+    },
+    "boundingbox": ["33.0669129", "33.0705909", "-96.4539820", "-96.4479526"]
+  },
+  "notes": "OSM confirms hamlet named 'Little Ridge' in Collin County. Ray Olinger Power Station (401 MW gas, City of Garland) is the anchor industrial facility. Project name 'Little Ridge Storage' derives from this hamlet. Adjacent 138kV transmission substation at lat=33.0681, lon=-96.4515 (OSM id 283611943) is 0.1km away - likely the 'Olinger (818)' POI substation."
+}

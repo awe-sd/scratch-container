@@ -1,0 +1,60 @@
+{
+ "inr": "26INR0147",
+ "generated": "2026-07-20",
+ "project": "Seven Springs Solar",
+ "county": "Lampasas",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 145.0,
+ "queue_cod": "2028-05-26",
+ "milestones": {
+  "screeningStudyComplete": "2023-12-14",
+  "fisApproved": null,
+  "iaSigned": "2025-08-28",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": false,
+  "candidates": []
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "financial_security_posted"
+ ],
+ "paper_score": 20,
+ "score_factors": [
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "spv_unresolvable",
+   "points": 10,
+   "detail": "no SPV via spv.py or any registry"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 6.52,
+  "reason": "reality signal"
+ }
+}

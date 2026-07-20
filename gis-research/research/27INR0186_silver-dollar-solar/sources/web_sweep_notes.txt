@@ -1,0 +1,16 @@
+T3 web sweep — 2026-07-18
+
+Developer entity: Silver Dollar Solar Project, LLC
+  - Foreign LLC (out-of-state), domestic jurisdiction: Delaware
+  - TX file number: 0804023227, incorporated/registered 2021-04-13, Status: Active
+  - Address on record: 100 Brickstone Square, Suite 300, Andover, MA 01810
+
+Companion project: 27INR0187 Silver Dollar Storage (153.1 MW BESS), same county/developer
+
+Aggregator sites confirm queue data (no independent news):
+  - infrasure.ai, cleanview.co, interconnection.fyi, ercotqueue.com
+
+ercotqueue.com note: "developer has fewer than three resolved projects on record; build-chance 4%"
+
+No press releases, no permitting news, no local news found.
+Andover MA address identity not confirmed (CAPTCHA on 3rd search — budget exhausted).

@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0711",
+  "project": "Coyanosa Gas",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.375,
+    "lon": -103.093,
+    "method": "POI infrastructure — 'Station Name: COYANOSA, TNMP 138kV' maps to the community of Coyanosa, Pecos County TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery blocked (CDSE_PASSWORD absent from credentials file); no contact sheet produced"
+  },
+  "cod_first_look": {
+    "reported": "2026-12-17",
+    "plausible": null,
+    "why": "IA signed 2025-03-13 is consistent with a late-2026 COD, but COD slipped twice in 5 months (Apr→Sep→Dec), no construction milestones are set, and a TCEQ air permit (mandatory for gas reciprocating) was not found — cannot confirm plausible without permit check"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "MANDATORY: TCEQ air permit (NSR) search for Coyanosa Gas or Winkler/Pecos County — no air permit = strong paper-project signal for gas reciprocating unit",
+    "PUCT Interchange IA filing — portal returned 402 from this container; run from a browser or authenticated session to confirm IA signed 2025-03-13 and extract schedule exhibit",
+    "County mismatch: queue says Winkler County but POI substation 'Coyanosa' is in Pecos County — verify correct county and run CAD parcel search in the confirmed county",
+    "TX Comptroller taxable entity search for 'Coyanosa Gas LLC' — developer/parent chain unknown",
+    "CDSE imagery once credentials restored — Coyanosa substation area (31.375°N, 103.093°W, buffer 2km)"
+  ],
+  "turns_used": 28
+}
