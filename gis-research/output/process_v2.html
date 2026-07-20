@@ -89,6 +89,8 @@
     color: var(--ink-2); background: var(--bg); border: 1px solid var(--line); border-radius: 6px;
     padding: 8px 10px; margin-top: 6px; word-break: break-word; }
   .fail-fix { font-size: 12.5px; margin-top: 10px; }
+  .drift-warning { font-size: 12px; color: var(--kill-line); background: var(--kill);
+    border: 1px solid var(--kill-line); border-radius: 6px; padding: 8px 10px; margin-top: 6px; }
 
   ul.corpus-stats { margin: 10px 0 0; padding-left: 18px; }
   ul.corpus-stats li { margin-bottom: 6px; font-size: 13px; }
@@ -247,6 +249,7 @@
           <span class="badge">ADDRESSED</span>
         </div>
         <div class="fail-measured">3,011 WebFetch calls to the PUCT Interchange portal, 3,010 of them (100.0%) HTTP 402 &mdash; plus SEC EDGAR failing 100.0% across 1,196 calls. Worst single-run loop: 26 consecutive curls, run <code>27INR0536</code>.</div>
+        
         <details class="fail-example">
           <summary>Real example: <code>27INR0536</code>
             (deep, terminal state <code>max_turns</code>)</summary>
@@ -261,6 +264,7 @@
           <span class="badge">ADDRESSED</span>
         </div>
         <div class="fail-measured">33 token-budget kills (30 deep / 3 triage), 23 of them wrote no <code>findings.json</code>/<code>dossier.md</code> at all. Median wall-clock to death: 12.4 min vs 5.2 min for a successful run.</div>
+        
         <details class="fail-example">
           <summary>Real example: <code>25INR0591</code>
             (deep, terminal state <code>budget_kill</code>)</summary>
@@ -275,6 +279,7 @@
           <span class="badge">ADDRESSED</span>
         </div>
         <div class="fail-measured">28 runs (22 deep / 6 triage) hit the SDK turn cap. Last 10 tool calls of these runs: 18 stage0_queue, 66 other, 37 wrapup, 52 imagery, 107 web_research &mdash; still researching or re-running wrap-up scripts, not finishing.</div>
+        
         <details class="fail-example">
           <summary>Real example: <code>25INR0052</code>
             (deep, terminal state <code>max_turns</code>)</summary>
@@ -289,6 +294,7 @@
           <span class="badge">ADDRESSED</span>
         </div>
         <div class="fail-measured">7,260 WebFetch calls to html.duckduckgo.com / www.bing.com / search.yahoo.com search-result pages (28.0% of all WebFetch, 12.5% of all 57,865 tool calls) &mdash; done in place of a search tool.</div>
+        
         <details class="fail-example">
           <summary>Real example: <code>22INR0203</code>
             (triage, terminal state <code>hung_hardkilled</code>)</summary>

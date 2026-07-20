@@ -12,13 +12,25 @@ Every number on the page is read from committed data at build time, never hand-t
     counting logic, writes nothing) to get the paper_kill count the two reference
     files above don't carry on their own.
   - docs/analysis/*-pilot.md -- the v1-vs-v2 pilot report. OPTIONAL: a pilot may be
-    running concurrently and may not exist yet. If present, its markdown tables are
-    parsed and rendered; if absent, the before/after section shows v1 numbers only
-    with an explicit "pilot in progress" placeholder. Re-run this builder after the
-    pilot report lands to pick it up -- fully idempotent, safe to overwrite.
+    running concurrently and may not exist yet (its exact format isn't guaranteed
+    either way). If present: every markdown table in it is parsed, and any table with
+    a recognizable cost/turns/webfetch header (matched by substring, case-insensitive)
+    has its per-run values placed directly in the before/after table's v2 column,
+    grouped by a "mode" column if present; unmatched rows and the full raw text are
+    still rendered below for manual review. If absent, the before/after section shows
+    v1 numbers only with an explicit "pilot in progress" placeholder. Re-run this
+    builder after the pilot report lands to pick it up -- fully idempotent, safe to
+    overwrite.
 
 No external assets: no CDN, no <script src=, no <link href=. Only <details> for
 JS-free interactivity, matching build_queue_report.py's self-contained convention.
+
+Silent-degradation policy: every regex/lookup against source data (report.md prose,
+class_err lookups, failure_inrs.csv examples) either succeeds with a live-derived
+number, or renders DRIFT_PLACEHOLDER / an explicit warning -- it never falls back to a
+number that was merely true on some earlier build. parse_step_blocks() output is
+asserted to meet a minimum count (T1-T5, D0-D5); a structural drift in the checklist/
+playbook raises loudly instead of silently shipping a page with fewer cards.
 
 Run from repo root:
   uv run gis-research/scripts/build_process_report.py
@@ -48,6 +60,17 @@ PLAYBOOK = RESEARCH / "PLAYBOOK.md"
 # invented here, just reused so the spend estimate matches the tool that queues the work.
 DEEP_SCAN_COST = 4.64
 RECHECK_COST = 0.35
+
+# Shown whenever a regex/lookup against source data misses -- NEVER fall back to a
+# hardcoded number that was true on some past build. A stale-looking placeholder is
+# the honest failure mode; a silently-frozen old figure is not.
+DRIFT_PLACEHOLDER = "[source data changed — re-verify]"
+
+# Minimum step-block counts the checklist/playbook parsers must find. If either file's
+# structure drifts (renumbered, reworded past recognition) the build must fail loudly
+# here rather than silently ship a page with fewer cards than the real process has.
+MIN_TRIAGE_STEPS = 5   # T1-T5
+MIN_DEEP_STEPS = 6     # D0-D5
 
 
 # --------------------------------------------------------------------------- data
@@ -149,8 +172,17 @@ def leading_label(text: str) -> tuple[str | None, str]:
 
 def load_triage_steps() -> list[dict]:
     text = TRIAGE_CHECKLIST.read_text(encoding="utf-8")
+    blocks = parse_step_blocks(text, "T")
+    if len(blocks) < MIN_TRIAGE_STEPS:
+        raise RuntimeError(
+            f"research/TRIAGE_CHECKLIST.md structure drifted: parse_step_blocks() found "
+            f"only {len(blocks)} T-marker block(s) (expected >= {MIN_TRIAGE_STEPS}, T1-T5). "
+            f"The checklist was reworded/renumbered past what this builder's parser "
+            f"recognizes -- fix parse_step_blocks() in build_process_report.py (or the "
+            f"checklist) before rebuilding; do not ship a page with steps silently missing."
+        )
     steps = []
-    for marker, body in parse_step_blocks(text, "T"):
+    for marker, body in blocks:
         label, rest = leading_label(body)
         steps.append({"marker": marker, "label": label, "body": rest})
     return steps
@@ -161,8 +193,18 @@ def load_deep_steps() -> list[dict]:
     start = text.index("## Deep scan v2")
     end = text.index("\n## Stage 1", start)
     section = text[start:end]
+    blocks = parse_step_blocks(section, "D")
+    if len(blocks) < MIN_DEEP_STEPS:
+        raise RuntimeError(
+            f"research/PLAYBOOK.md structure drifted: parse_step_blocks() found only "
+            f"{len(blocks)} D-marker block(s) in the 'Deep scan v2' section (expected "
+            f">= {MIN_DEEP_STEPS}, D0-D5). The playbook was reworded/renumbered/moved "
+            f"past what this builder's parser recognizes -- fix parse_step_blocks() in "
+            f"build_process_report.py (or the playbook) before rebuilding; do not ship "
+            f"a page with stages silently missing."
+        )
     steps = []
-    for marker, body in parse_step_blocks(section, "D"):
+    for marker, body in blocks:
         label, rest = leading_label(body)
         steps.append({"marker": marker, "label": label, "body": rest})
     return steps
@@ -259,6 +301,59 @@ def extract_md_tables(text: str) -> list[list[list[str]]]:
     return tables
 
 
+# Column-name needles (case-insensitive substring match against the header row) used
+# to recognize a per-run pilot metrics table regardless of its exact header wording --
+# Task 10's report format isn't guaranteed, so this is a best-effort match, not a
+# fixed schema.
+_PILOT_COL_NEEDLES = {
+    "cost": ["cost"],
+    "turns": ["turn"],
+    "webfetch": ["webfetch", "fetch"],
+    "mode": ["mode"],
+}
+
+
+def extract_pilot_metrics(tables: list[list[list[str]]]) -> dict[str, dict[str, list[str]]] | None:
+    """Best-effort extraction of per-run cost/turns/webfetch values from whichever
+    pilot-report table has recognizable headers, grouped by a 'mode' column if one
+    exists (else grouped under 'run'). Returns None if no table has ANY of the three
+    recognized metric columns -- caller then falls back to the raw table dump."""
+    for rows in tables:
+        header = [c.strip().lower() for c in rows[0]]
+        col_idx: dict[str, int] = {}
+        for key, needles in _PILOT_COL_NEEDLES.items():
+            for i, col in enumerate(header):
+                if any(n in col for n in needles):
+                    col_idx[key] = i
+                    break
+        if not any(k in col_idx for k in ("cost", "turns", "webfetch")):
+            continue  # doesn't look like a per-run metrics table -- try the next one
+
+        by_mode: dict[str, dict[str, list[str]]] = {}
+        for r in rows[1:]:
+            mode_val = "run"
+            if "mode" in col_idx and col_idx["mode"] < len(r) and r[col_idx["mode"]].strip():
+                mode_val = r[col_idx["mode"]].strip().lower()
+            bucket = by_mode.setdefault(mode_val, {})
+            for key in ("cost", "turns", "webfetch"):
+                if key in col_idx and col_idx[key] < len(r) and r[col_idx[key]].strip():
+                    bucket.setdefault(key, []).append(r[col_idx[key]].strip())
+        if by_mode:
+            return by_mode
+    return None
+
+
+def pilot_value_for(by_mode: dict | None, mode: str, key: str) -> str | None:
+    """Look up an extracted pilot value for (mode, metric); falls back to the
+    mode-less 'run' bucket if the table had no mode column. None = not found."""
+    if not by_mode:
+        return None
+    bucket = by_mode.get(mode) or by_mode.get("run")
+    if not bucket or key not in bucket:
+        return None
+    return ", ".join(bucket[key])
+
+
 # --------------------------------------------------------------------------- html
 
 
@@ -333,42 +428,58 @@ def render_before_after(stats: dict, df: pd.DataFrame, reconciled: dict, pilot) 
     tri_success = (tri["terminal_state"] == "success").sum()
     deep_success = (deep["terminal_state"] == "success").sum()
 
-    rows = [
-        ("Triage &mdash; mean cost / run", f"${stats['cost_by_mode']['triage']['mean']:.2f}"),
-        ("Triage &mdash; median turns / run", f"{tri['num_turns'].median():.0f}"),
-        ("Triage &mdash; success rate", f"{tri_success}/{len(tri)} ({100*tri_success/len(tri):.1f}%)"),
-        ("Deep &mdash; mean cost / run", f"${stats['cost_by_mode']['deep']['mean']:.2f}"),
-        ("Deep &mdash; median turns / run", f"{deep['num_turns'].median():.0f}"),
-        ("Deep &mdash; success rate", f"{deep_success}/{len(deep)} ({100*deep_success/len(deep):.1f}%)"),
-        ("Web-research share of all tool calls", f"{stats['stage_share']['web_research']}%"),
-        ("PUCT portal WebFetch fail rate", f"{stats['puct_402']:,}/{stats['puct_calls']:,} (100%)"),
-        ("Search-engine HTML scraping share of all calls", f"{stats['search_scrape_pct_all']}%"),
+    # Each row: (label, v1 value, optional (mode, metric_key) for pilot per-row lookup)
+    rows: list[tuple[str, str, tuple[str, str] | None]] = [
+        ("Triage &mdash; mean cost / run", f"${stats['cost_by_mode']['triage']['mean']:.2f}", ("triage", "cost")),
+        ("Triage &mdash; median turns / run", f"{tri['num_turns'].median():.0f}", ("triage", "turns")),
+        ("Triage &mdash; success rate", f"{tri_success}/{len(tri)} ({100*tri_success/len(tri):.1f}%)", None),
+        ("Deep &mdash; mean cost / run", f"${stats['cost_by_mode']['deep']['mean']:.2f}", ("deep", "cost")),
+        ("Deep &mdash; median turns / run", f"{deep['num_turns'].median():.0f}", ("deep", "turns")),
+        ("Deep &mdash; success rate", f"{deep_success}/{len(deep)} ({100*deep_success/len(deep):.1f}%)", None),
+        ("Web-research share of all tool calls", f"{stats['stage_share']['web_research']}%", None),
+        ("PUCT portal WebFetch fail rate", f"{stats['puct_402']:,}/{stats['puct_calls']:,} (100%)", None),
+        ("Search-engine HTML scraping share of all calls", f"{stats['search_scrape_pct_all']}%", None),
     ]
-    if reconciled.get("token_budget_kill") and reconciled.get("max_turns") and reconciled.get("hard_kill_no_record"):
-        tb = reconciled["token_budget_kill"]
-        mt = reconciled["max_turns"]
-        hk = reconciled["hard_kill_no_record"]
+    tb = reconciled.get("token_budget_kill")
+    mt = reconciled.get("max_turns")
+    hk = reconciled.get("hard_kill_no_record")
+    if tb and mt and hk:
         n_total = int(tb[2]) + int(mt[2]) + int(hk[2])
-        rows.append(("Non-success runs (of 943)", f"{n_total} ({tb[2]} budget-kill / {mt[2]} max-turns / {hk[2]} hard-kill)"))
+        rows.append((
+            "Non-success runs (of 943)",
+            f"{n_total} ({tb[2]} budget-kill / {mt[2]} max-turns / {hk[2]} hard-kill)",
+            None,
+        ))
+    else:
+        rows.append(("Non-success runs (of 943)", DRIFT_PLACEHOLDER, None))
     if reconciled.get("lost_all_work"):
         rows.append(("Runs that lost ALL work (no findings/dossier/triage output)",
-                      f"{reconciled['lost_all_work']}/75"))
+                      f"{reconciled['lost_all_work']}/75", None))
+    else:
+        rows.append(("Runs that lost ALL work (no findings/dossier/triage output)",
+                      DRIFT_PLACEHOLDER, None))
+
+    by_mode = extract_pilot_metrics(pilot[1]) if pilot is not None else None
+
+    def v2_cell(pilot_key: tuple[str, str] | None) -> str:
+        if pilot is None:
+            return '<td class="v2val pending">pilot in progress</td>'
+        if pilot_key is not None:
+            val = pilot_value_for(by_mode, pilot_key[0], pilot_key[1])
+            if val is not None:
+                return f'<td class="v2val">{esc(val)}</td>'
+        return '<td class="v2val">see pilot table below</td>'
 
     row_html = "\n".join(
-        f'<tr><td class="metric">{label}</td><td class="v1val">{val}</td>'
-        f'<td class="v2val pending">pilot in progress</td></tr>'
-        for label, val in rows
-    ) if pilot is None else "\n".join(
-        f'<tr><td class="metric">{label}</td><td class="v1val">{val}</td>'
-        f'<td class="v2val">see pilot table below</td></tr>'
-        for label, val in rows
+        f'<tr><td class="metric">{label}</td><td class="v1val">{val}</td>{v2_cell(pkey)}</tr>'
+        for label, val, pkey in rows
     )
 
     pilot_html = ""
     if pilot is not None:
         path, tables = pilot
         table_blocks = []
-        for i, rows_ in enumerate(tables):
+        for rows_ in tables:
             header, *body = rows_
             thead = "".join(f"<th>{esc(c)}</th>" for c in header)
             tbody = "\n".join(
@@ -380,7 +491,17 @@ def render_before_after(stats: dict, df: pd.DataFrame, reconciled: dict, pilot) 
           <tbody>{tbody}</tbody>
         </table>""")
         raw_text = esc(path.read_text(encoding="utf-8"))
+        match_note = (
+            "Per-run cost/turns/webfetch values above were auto-matched from a "
+            "recognizable header in the table(s) below (matched columns: "
+            + ", ".join(sorted({k for m in (by_mode or {}).values() for k in m})) + ")."
+            if by_mode else
+            "No table with a recognizable cost/turns/webfetch header was found in the "
+            "pilot report -- the v2 column above falls back to \"see pilot table below\"; "
+            "the raw extracted table(s) follow for manual review."
+        )
         pilot_html = f"""
+    <p class="muted">{match_note}</p>
     <h3>Pilot report tables (auto-extracted from <code>{esc(path.relative_to(BASE))}</code>)</h3>
     {"".join(table_blocks) if table_blocks else '<p class="muted">No markdown tables found in the pilot report.</p>'}
     <details>
@@ -403,7 +524,17 @@ def render_before_after(stats: dict, df: pd.DataFrame, reconciled: dict, pilot) 
     {pilot_html}"""
 
 
-def render_failure_classes(stats: dict, failure_inrs: dict, reconciled: dict) -> str:
+def _median_wallclock_min(df: pd.DataFrame, terminal_state: str) -> str:
+    """Live median wall-clock (minutes) for a terminal_state bucket, computed from
+    per_run_summary.csv -- never a frozen literal. DRIFT_PLACEHOLDER if the bucket
+    is empty (e.g. a future regeneration relabels terminal states)."""
+    sub = df.loc[df["terminal_state"] == terminal_state, "wallclock_s"]
+    if sub.empty:
+        return DRIFT_PLACEHOLDER
+    return f"{sub.median() / 60:.1f} min"
+
+
+def render_failure_classes(stats: dict, failure_inrs: dict, reconciled: dict, df: pd.DataFrame) -> str:
     def class_err(name: str) -> dict | None:
         for c in stats["class_err"]:
             if c["domain_class"] == name:
@@ -411,11 +542,13 @@ def render_failure_classes(stats: dict, failure_inrs: dict, reconciled: dict) ->
         return None
 
     sec = class_err("sec")
-    sec_rate = f"{sec['rate']}" if sec else "100"
-    sec_calls = f"{sec['calls']:,}" if sec else "1,196"
+    sec_rate = f"{sec['rate']}" if sec else DRIFT_PLACEHOLDER
+    sec_calls = f"{sec['calls']:,}" if sec else DRIFT_PLACEHOLDER
     tb = reconciled.get("token_budget_kill")
     mt = reconciled.get("max_turns")
     longest = reconciled.get("longest_loop")
+    budget_kill_min = _median_wallclock_min(df, "budget_kill")
+    success_min = _median_wallclock_min(df, "success")
 
     classes = [
         {
@@ -438,11 +571,12 @@ def render_failure_classes(stats: dict, failure_inrs: dict, reconciled: dict) ->
             "title": "Budget-kill work loss",
             "measured": (
                 (f"{tb[2]} token-budget kills ({tb[0]} deep / {tb[1]} triage)"
-                 if tb else "33 token-budget kills (30 deep / 3 triage)")
+                 if tb else f"token-budget kill count {DRIFT_PLACEHOLDER}")
                 + (f", {reconciled['token_kill_no_output']} of them wrote no "
                    f"<code>findings.json</code>/<code>dossier.md</code> at all"
                    if reconciled.get("token_kill_no_output") else "")
-                + ". Median wall-clock to death: 12.4 min vs 5.2 min for a successful run."
+                + f". Median wall-clock to death: {budget_kill_min} vs {success_min} "
+                  f"for a successful run."
             ),
             "example_inr": "25INR0591",
             "fix": ("Checkpointed deep stages: D0 writes the full <code>findings.json</code> "
@@ -454,7 +588,7 @@ def render_failure_classes(stats: dict, failure_inrs: dict, reconciled: dict) ->
             "title": "Max-turns exhaustion",
             "measured": (
                 (f"{mt[2]} runs ({mt[0]} deep / {mt[1]} triage) hit the SDK turn cap"
-                 if mt else "28 runs (22 deep / 6 triage) hit the SDK turn cap")
+                 if mt else f"max-turns run count {DRIFT_PLACEHOLDER}")
                 + ". Last 10 tool calls of these runs: "
                 + ", ".join(f"{v} {k}" for k, v in stats["maxturns_last10_stage"].items())
                 + " &mdash; still researching or re-running wrap-up scripts, not finishing."
@@ -487,10 +621,22 @@ def render_failure_classes(stats: dict, failure_inrs: dict, reconciled: dict) ->
 
     cards = []
     for c in classes:
-        row = failure_inrs.get(c["example_inr"], {})
-        narrative = row.get("last_activity_summary", "")
-        mode = row.get("mode", "?")
-        terminal = row.get("terminal_state", "?")
+        row = failure_inrs.get(c["example_inr"])
+        if row is None:
+            example_html = f"""
+        <div class="fail-example drift-warning">
+          <b>{DRIFT_PLACEHOLDER}</b> real example
+          <code>{esc(c['example_inr'])}</code> is no longer present in
+          <code>failure_inrs.csv</code> -- the source data changed since this example
+          was picked; re-verify and choose a current example before trusting this card.
+        </div>"""
+        else:
+            example_html = f"""
+        <details class="fail-example">
+          <summary>Real example: <code>{esc(c['example_inr'])}</code>
+            ({esc(row['mode'])}, terminal state <code>{esc(row['terminal_state'])}</code>)</summary>
+          <div class="fail-narrative">{esc(row.get('last_activity_summary', ''))}</div>
+        </details>"""
         cards.append(f"""
       <div class="fail-card">
         <div class="fail-head">
@@ -498,11 +644,7 @@ def render_failure_classes(stats: dict, failure_inrs: dict, reconciled: dict) ->
           <span class="badge">ADDRESSED</span>
         </div>
         <div class="fail-measured">{c['measured']}</div>
-        <details class="fail-example">
-          <summary>Real example: <code>{esc(c['example_inr'])}</code>
-            ({esc(mode)}, terminal state <code>{esc(terminal)}</code>)</summary>
-          <div class="fail-narrative">{esc(narrative)}</div>
-        </details>
+        {example_html}
         <div class="fail-fix"><b>v2 fix:</b> {c['fix']}</div>
       </div>""")
     return "\n".join(cards)
@@ -514,7 +656,7 @@ def render_footer(stats: dict, gate: dict, fs: dict, reconciled: dict, spend: di
     )
     stuck = reconciled.get("stuck_loops")
     stuck_txt = (f"{stuck[0]} stuck-loop episodes across {stuck[1]} runs"
-                 if stuck else "363 stuck-loop episodes across 209 runs")
+                 if stuck else f"stuck-loop count {DRIFT_PLACEHOLDER}")
     return f"""
     <ul class="corpus-stats">
       <li><b>943</b> runs mined (779 triage + 164 deep) &mdash; <b>{stats['total_tool_calls']:,}</b> tool calls</li>
@@ -625,6 +767,8 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     color: var(--ink-2); background: var(--bg); border: 1px solid var(--line); border-radius: 6px;
     padding: 8px 10px; margin-top: 6px; word-break: break-word; }}
   .fail-fix {{ font-size: 12.5px; margin-top: 10px; }}
+  .drift-warning {{ font-size: 12px; color: var(--kill-line); background: var(--kill);
+    border: 1px solid var(--kill-line); border-radius: 6px; padding: 8px 10px; margin-top: 6px; }}
 
   ul.corpus-stats {{ margin: 10px 0 0; padding-left: 18px; }}
   ul.corpus-stats li {{ margin-bottom: 6px; font-size: 13px; }}
@@ -688,7 +832,7 @@ def build() -> str:
         triage_cards=render_step_cards(triage_steps, "triage"),
         deep_cards=render_step_cards(deep_steps, "deep"),
         before_after=render_before_after(stats, df, reconciled, pilot),
-        failure_cards=render_failure_classes(stats, failure_inrs, reconciled),
+        failure_cards=render_failure_classes(stats, failure_inrs, reconciled, df),
         footer=render_footer(stats, gate, fs_counts, reconciled, spend),
     )
 
