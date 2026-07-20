@@ -26,6 +26,17 @@ gis-research/data/reference/*.xlsx
 gis-research/data/reference/search_cache/
 !gis-research/research/*/transcripts/*.jsonl.gz
 
+# gis-research runtime-state files -- per-run/per-worker coordination state with no
+# audit value (regenerated every run_agent.py/deep_worker.py invocation); run_meta_*.json
+# is the audit trail and stays tracked
+gis-research/research/*/.budget_state.json
+gis-research/research/*/.budget_settings.json
+gis-research/research/*/.budget_warn_sent
+gis-research/research/*/.budget_exhaust_sent
+gis-research/research/*/.deep_claim
+gis-research/research/*/.deep_failed
+gis-research/research/*/.checkpoint_state.json
+
 # binary safety net -- source/imagery dir naming has drifted beyond the patterns
 # above (imagery_chips/, chips_grid/, img/, nested sources/*/*.pdf, root-level
 # contact_sheet.png, sources/*.xlsx, sources/*.zip); catch these anywhere under
