@@ -133,6 +133,13 @@ County is known. Work it hard — this is where real projects leave paper.
          <INR>` (also `--name "<text>"` / `--county <name>`) — Ch.313 (pre-2023) or JETI
          (2024+) value-limitation applicant = the legal SPV + application PDFs. Lists key
          on SCHOOL DISTRICT, not county — name match is primary.
+       - ALL fuels, esp. post-2022 queue entries (Ch.313 expired 2022-12-31, JETI is
+         tiny) → `uv run gis-research/scripts/research_tools/ch312.py resolve <INR>`
+         (also `--name` / `--county`) — county/city Ch.312 abatement registry: owner
+         (= SPV), reinvestment-zone name, status, per-year %s, and a DIRECT county
+         field. A HIT is strong; a MISS is WEAK negative evidence (CAD-submitted
+         annually, some counties never report) — do not record absence from this
+         alone, cross-check commissioners-court minutes/news first.
        - gas/thermal → `uv run gis-research/scripts/research_tools/tceq.py resolve <INR>`
          (or `--county <name> --keyword <text>`) — TCEQ air-permit (AIRNSR) facility +
          owner legal names in the county. Same-named facility may be a co-located

@@ -131,7 +131,11 @@ Code (`claude -p`) on **Bedrock**. Full running-system spec:
 - **Registry resolvers** (SPV leads by fuel; same conventions as puct.py; `resolve` is
   read-only/agent-safe; every candidate is a LEAD — verify via `puct.py match --key`):
   `ch313.py resolve <INR>` (Comptroller Ch.313 static 740 rows + JETI API; keys on SCHOOL
-  DISTRICT not county), `faa.py resolve <INR>` (wind OE/AAA per-turbine cases → sponsor,
+  DISTRICT not county), `ch312.py resolve <INR>` (Comptroller Ch.312 county/city abatement
+  registry ~1,400 rows via the same open-data API family; owner=SPV + reinvestment-zone
+  name + DIRECT county field + per-year %s; THE abatement rung for post-2022 entries since
+  Ch.313 expired — but CAD-submitted annually with gaps, so a miss is WEAK negative
+  evidence), `faa.py resolve <INR>` (wind OE/AAA per-turbine cases → sponsor,
   ASN block, turbine centroid; live FAA sources blocked 2026-07: Socrata private + oeaaa
   shutdown — runs off cached pulls, self-heals on `refresh`), `tceq.py resolve <INR>`
   (data.texas.gov Central Registry, 5 regional tables, county-routed live SoQL; AIRNSR
