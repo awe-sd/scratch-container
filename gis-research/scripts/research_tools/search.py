@@ -53,7 +53,7 @@ CLAUDE_TIMEOUT = 500  # first probe took ~3min wall (headless startup + search)
 # queue aggregators are BANNED sources (citing one = automatic fail) — suppress at
 # the tool layer so agents never see them
 BANNED = ("interconnection.fyi", "cleanview.co", "gridinfo.com", "energyacuity",
-          "infrasure.ai")
+          "infrasure.ai", "futuregrid.io")
 
 
 def load_env_file() -> None:

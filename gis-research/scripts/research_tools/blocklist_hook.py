@@ -31,6 +31,8 @@ BLOCKED = [
     ("cleanview.co", "BLOCKED: banned queue-tracker source. Primary sources only."),
     ("gridinfo.com", "BLOCKED: banned queue-tracker source. Primary sources only."),
     ("energyacuity", "BLOCKED: banned queue-tracker source. Primary sources only."),
+    ("futuregrid.io", "BLOCKED: banned queue-tracker source (added 2026-07-20). "
+     "Primary sources only; citing this = automatic fail."),
     ("infrasure.ai", "BLOCKED: banned queue-tracker source (added 2026-07-20). "
      "Primary sources only; citing this = automatic fail."),
 ]

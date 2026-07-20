@@ -12,7 +12,7 @@ looking for it: your job is independent ground truth.
 ## Hard rules
 
 1. **BANNED SOURCES** — these republish the ERCOT GIS report; citing them as evidence is an
-   automatic fail: interconnection.fyi, cleanview.co, gridinfo.com, energyacuity, infrasure.ai, any
+   automatic fail: interconnection.fyi, cleanview.co, gridinfo.com, energyacuity, infrasure.ai, futuregrid.io, any
    "interconnection queue tracker". You may not use them even for orientation.
 2. **Artifacts or it didn't happen.** Every claim in findings.json must reference a saved file
    in `sources/` or a URL + verbatim quote. Save documents with `curl` as
