@@ -25,6 +25,14 @@ BLOCKED = [
      "BLOCKED: do not scrape search engines. Use search.py."),
     ("search.yahoo.com",
      "BLOCKED: do not scrape search engines. Use search.py."),
+    # banned queue-tracker aggregators — citing one is an automatic quality fail
+    ("interconnection.fyi", "BLOCKED: banned queue-tracker source (republishes the GIS "
+     "report). Use primary sources; citing this = automatic fail."),
+    ("cleanview.co", "BLOCKED: banned queue-tracker source. Primary sources only."),
+    ("gridinfo.com", "BLOCKED: banned queue-tracker source. Primary sources only."),
+    ("energyacuity", "BLOCKED: banned queue-tracker source. Primary sources only."),
+    ("infrasure.ai", "BLOCKED: banned queue-tracker source (added 2026-07-20). "
+     "Primary sources only; citing this = automatic fail."),
 ]
 
 

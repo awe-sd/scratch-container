@@ -187,7 +187,8 @@ exit 0 (a usable partial run, not a failure). Sonnet deep ≈ **$4.64/scan** mea
 - Agents write ONLY inside their assigned `research/<dir>/` and are blocked from
   `data/**` and `output/**` via `--disallowedTools`.
 - **Banned sources** — queue aggregators (interconnection.fyi, cleanview.co, gridinfo.com,
-  energyacuity, any queue tracker). Citing one = failed run.
+  energyacuity, infrasure.ai, any queue tracker). Citing one = failed run. Enforced three
+  ways: blocklist_hook (fetch denied), search.py (results suppressed), playbook rule 1.
 
 **Known issues**
 - **CDSE 403s were rate-limiting, not expired creds**: every chip call did a fresh
