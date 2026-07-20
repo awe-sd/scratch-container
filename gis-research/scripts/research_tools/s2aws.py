@@ -49,7 +49,7 @@ def search_scenes(lat: float, lon: float, day: str, window_days: int,
 
 
 def chip(lat: float, lon: float, day: str, out: Path, buffer_km: float,
-         window_days: int, max_cloud: int) -> int:
+         window_days: int, max_cloud: int, buffer_y_km: float | None = None) -> int:
     try:
         items = search_scenes(lat, lon, day, window_days, max_cloud)
     except Exception as e:
@@ -68,16 +68,18 @@ def chip(lat: float, lon: float, day: str, out: Path, buffer_km: float,
     from rasterio.windows import from_bounds
 
     item = items[0]
-    half = buffer_km * 1000.0
-    layers = []
+    half_x = buffer_km * 1000.0
+    half_y = (buffer_y_km or buffer_km) * 1000.0   # rectangular frames for elongated
+    layers = []                                     # (river-following) sites
     try:
         for band in ("red", "green", "blue"):
             href = item["assets"][band]["href"]
             with rasterio.open(href) as ds:
                 (x,), (y,) = rio_transform("EPSG:4326", ds.crs, [lon], [lat])
-                win = from_bounds(x - half, y - half, x + half, y + half, ds.transform)
-                px = min(int(win.width), 1400)
-                layers.append(ds.read(1, window=win, out_shape=(px, px),
+                win = from_bounds(x - half_x, y - half_y, x + half_x, y + half_y, ds.transform)
+                px_w = min(int(win.width), 1400)
+                px_h = min(int(win.height), 2400)
+                layers.append(ds.read(1, window=win, out_shape=(px_h, px_w),
                                       boundless=True, fill_value=0))
     except Exception as e:
         print(f"COG read failed: {e.__class__.__name__}: {e}")
@@ -106,18 +108,20 @@ def main() -> None:
         p.add_argument("--buffer-km", type=float, default=1.6)
         p.add_argument("--window-days", type=int, default=15)
         p.add_argument("--max-cloud", type=int, default=40)
+        p.add_argument("--buffer-y-km", type=float, default=None,
+                       help="N-S half-height if different from --buffer-km (elongated sites)")
     p1.add_argument("--date", required=True)
     p1.add_argument("--out", type=Path, required=True)
     p2.add_argument("--dates", required=True, help="comma-separated ISO dates")
     p2.add_argument("--out-dir", type=Path, required=True)
     a = ap.parse_args()
     if a.cmd == "chip":
-        sys.exit(chip(a.lat, a.lon, a.date, a.out, a.buffer_km, a.window_days, a.max_cloud))
+        sys.exit(chip(a.lat, a.lon, a.date, a.out, a.buffer_km, a.window_days, a.max_cloud, a.buffer_y_km))
     rc = 0
     for d in a.dates.split(","):
         d = d.strip()
         rc |= chip(a.lat, a.lon, d, a.out_dir / f"s2_{d}.png",
-                   a.buffer_km, a.window_days, a.max_cloud)
+                   a.buffer_km, a.window_days, a.max_cloud, a.buffer_y_km)
     sys.exit(rc)
 
 
