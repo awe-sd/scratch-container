@@ -60,6 +60,12 @@ D3 GAP-FILL: county records/news for what the factsheet couldn't answer — loca
 D4 NARRATIVE: independent COD + drift verdict + confidence; write dossier.md.
 D5 DETERMINISTIC WRAP-UP (in order): queue_history.py <INR> → eia_history.py <INR>
    --write → build_brief.py <dir> → build_index.py. Then a final findings.json pass.
+   EIA BIND RULE: if eia_history returns multiple candidates (or the operating-plant
+   guard fires), you may pass --plant-id ONLY when that plant/entity name matches the
+   CONFIRMED SPV from the IA parties or another primary document. NEVER bind a
+   county+MW neighbor (Space City→Red Tailed Hawk and Camino→Stoneridge were both
+   false binds to operating lookalikes). No verifiable match = leave it ambiguous and
+   record the candidates as negative evidence.
 
 The detail sections below (Stage 1–5, retained for reference) are what D1–D5 draw on:
 the systematic IA ladder + registry tools + fuel paper trails (Stage 2), site pinpoint
