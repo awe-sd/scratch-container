@@ -20,6 +20,14 @@ for the deep-scan relaunch decision. ALSO writes research/_reference/triage_rech
 — every "ambiguous" INR plus any "paper_kill" INR whose triage_findings.json (v1) has
 deep_scan_recommended=true (a v1/v2 conflict the user routed to a triage-v2 re-check),
 one INR per line.
+
+Recheck promotion/demotion wiring: for every factsheet, ALSO reads that project's
+triage_findings.json (v2 schema) if present. gate said "ambiguous" but the (post-recheck)
+triage verdict is "deep_candidate" -> PROMOTED into deep_queue_v2.csv with
+promoted_by_triage=True (priority computed the same way gate() does, from this factsheet's
+own MW/months_to_cod). gate said "deep_candidate" but the triage verdict is
+"paper_dismissed" -> DEMOTED: excluded from deep_queue_v2.csv entirely. Promotion/demotion
+counts are printed.
   uv run gis-research/scripts/research_tools/make_deep_queue.py --v2
 """
 
@@ -29,6 +37,7 @@ import argparse
 import csv as csvmod
 import datetime as dt
 import json
+import sys
 from pathlib import Path
 
 import pandas as pd
@@ -53,7 +62,7 @@ def build_v2(csv_path: Path, recheck_path: Path) -> None:
     rows = []
     ambiguous = []       # (inr, project, mw)
     conflicts = []       # (inr, project, mw) -- paper_kill but v1 triage flagged deep_scan
-    n_total = n_paper_kill = 0
+    n_total = n_paper_kill = n_promoted = n_demoted = 0
     for fp in sorted(BASE.glob("research/*/factsheet.json")):
         if fp.parent.name.startswith("_"):
             continue
@@ -61,44 +70,80 @@ def build_v2(csv_path: Path, recheck_path: Path) -> None:
         try:
             f = json.loads(fp.read_text())
         except json.JSONDecodeError:
+            print(f"WARNING: corrupt JSON, skipping {fp}", file=sys.stderr)
             continue
         g = f.get("gate") or {}
         decision = g.get("decision")
         inr = f.get("inr")
         project = f.get("project")
         mw = f.get("capacity_mw") or 0.0
+        months_to_cod = _months_to_cod(f.get("queue_cod"), f.get("generated"))
+
+        # Read this project's triage_findings.json ONCE regardless of which gate bucket
+        # it fell into -- used below both for the v1 paper_kill-conflict check (the
+        # deep_scan_recommended bool) and the v2 recheck promotion/demotion check (the
+        # verdict enum, written by a post-recheck triage-v2 run).
+        t: dict = {}
+        tf = fp.parent / "triage_findings.json"
+        if tf.exists():
+            try:
+                t = json.loads(tf.read_text())
+            except json.JSONDecodeError:
+                print(f"WARNING: corrupt JSON, skipping triage_findings for "
+                      f"{inr or fp.parent.name}: {tf}", file=sys.stderr)
+        v2_verdict = t.get("verdict")
 
         if decision == "deep_candidate":
+            if v2_verdict == "paper_dismissed":
+                # triage-v2 recheck demoted this factsheet deep_candidate -- excluded
+                n_demoted += 1
+                continue
             already = (fp.parent / "findings.json").exists()
             rows.append({
                 "inr": inr,
                 "project": project,
                 "mw": f.get("capacity_mw"),
-                "months_to_cod": _months_to_cod(f.get("queue_cod"), f.get("generated")),
+                "months_to_cod": months_to_cod,
                 "paper_score": f.get("paper_score"),
                 "decision": decision,
                 "priority": g.get("priority"),
                 "already_deep_scanned": already,
+                "promoted_by_triage": False,
             })
         elif decision == "ambiguous":
-            ambiguous.append((inr, project, mw))
+            if v2_verdict == "deep_candidate":
+                # post-recheck promotion -- priority computed the same way gate() does
+                n_promoted += 1
+                pri = round(mw * (1.0 / max(months_to_cod if months_to_cod is not None
+                                             else 24.0, 1.0)), 2)
+                already = (fp.parent / "findings.json").exists()
+                rows.append({
+                    "inr": inr,
+                    "project": project,
+                    "mw": f.get("capacity_mw"),
+                    "months_to_cod": months_to_cod,
+                    "paper_score": f.get("paper_score"),
+                    "decision": "deep_candidate",
+                    "priority": pri,
+                    "already_deep_scanned": already,
+                    "promoted_by_triage": True,
+                })
+            else:
+                ambiguous.append((inr, project, mw))
         elif decision == "paper_kill":
             n_paper_kill += 1
-            tf = fp.parent / "triage_findings.json"
-            if tf.exists():
-                try:
-                    t = json.loads(tf.read_text())
-                except json.JSONDecodeError:
-                    t = {}
-                if t.get("deep_scan_recommended"):
-                    conflicts.append((inr, project, mw))
+            if t.get("deep_scan_recommended"):
+                conflicts.append((inr, project, mw))
+        else:
+            print(f"WARNING: unknown/missing gate.decision {decision!r} for "
+                  f"{inr or fp.parent.name} ({fp}), skipping", file=sys.stderr)
 
     rows.sort(key=lambda r: (r["priority"] if r["priority"] is not None else -1), reverse=True)
     for i, r in enumerate(rows, start=1):
         r["rank"] = i
 
     cols = ["rank", "inr", "project", "mw", "months_to_cod", "paper_score",
-            "decision", "priority", "already_deep_scanned"]
+            "decision", "priority", "already_deep_scanned", "promoted_by_triage"]
     csv_path.parent.mkdir(parents=True, exist_ok=True)
     with open(csv_path, "w", newline="", encoding="utf-8") as fh:
         w = csvmod.DictWriter(fh, fieldnames=cols)
@@ -110,6 +155,8 @@ def build_v2(csv_path: Path, recheck_path: Path) -> None:
     total_mw_not_scanned = sum(r["mw"] or 0 for r in not_scanned)
     print(f"{n_total} factsheets scanned  ->  {len(rows)} deep_candidate  "
           f"({len(rows) - len(not_scanned)} already deep-scanned, {len(not_scanned)} not)")
+    print(f"triage-v2 recheck: {n_promoted} promoted (ambiguous -> deep_candidate), "
+          f"{n_demoted} demoted (deep_candidate -> excluded)")
     print(f"top 15 by priority:")
     print(f"{'rank':>4}  {'inr':10}  {'project':32}  {'mw':>8}  {'mo_cod':>7}  "
           f"{'score':>5}  {'priority':>9}  scanned")
