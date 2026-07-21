@@ -1,0 +1,2564 @@
+{
+"files": {
+"data/reference/county_minutes/Matagorda/February_28_2022_Minutes.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/June_13_2022_Minutes.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_-_July_28_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_-_July_31_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_10_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_11_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_12_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_13_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_13_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_13_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_14_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_15_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_17_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_18_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_19_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_1_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_20_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_20_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_22_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_24_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_25_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_26_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_27_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_27_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_28_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_29_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_3_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_4_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_5_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_6_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_6_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_7_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_April_8_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_10_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_11_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_12_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_14_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_15_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_16_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_18_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_19_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_1_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_21_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_21_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_22_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_23_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_24_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_25_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_26_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_28_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_29_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_2_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_30_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_3_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_4_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_5_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_7_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_8_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_8_2025_Special_Meeting.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_August_9_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_11_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_12_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_13_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_13_2021_Special_Session.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_15_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_16_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_18_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_19_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_1_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_20_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_22_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_27_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_28_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_2_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_30_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_4_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_5_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_6_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_8_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_December_9_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_10_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_10_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_12_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_12_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_14_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_1_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_20_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_22_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_23_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_24_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_24_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_26_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_27_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_2_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_3_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_3_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_5_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_6_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_7_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_8_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_February_9_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_Febuary_13_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_10_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_10_2022_Special_Meeting.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_12_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_13_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_13_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_17_2022_Special_Meeting.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_1_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_1_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_22_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_23_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_24_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_25_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_27_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_27_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_29_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_30_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_31_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_31_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_3_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_4_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_5_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_6_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_6_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_8_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_January_9_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_10_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_11_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_12_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_13_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_13_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_14_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_15_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_17_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_18_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_19_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_1_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_20_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_21_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_22_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_24_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_25_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_26_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_27_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_28_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_29_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_3_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_6_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_July_7_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_10_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_12_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_14_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_15_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_16_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_17_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_19_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_1_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_1_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_20_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_21_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_22_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_22_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_23_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_24_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_26_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_27_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_28_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_29_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_29_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_2_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_30_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_3_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_5_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_6_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_8_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_8_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_June_9_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_10_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_11_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_13_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_14_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_15_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_16_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_16_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_17_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_18_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_19_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_1_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_20_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_21_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_22_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_23_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_23_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_24_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_25_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_27_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_29_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_2_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_2_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_30_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_30_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_31_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_3_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_4_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_6_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_7_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_8_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_9_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_March_9_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_11_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_11_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_12_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_13_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_15_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_16_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_18_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_19_2025_Special_Meeting_corrected.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_19_2025_corrected.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_1_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_20_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_21_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_22_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_23_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_23_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_24_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_24_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_28_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_28_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_2_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_3_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_4_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_4_2026.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_5_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_6_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_8_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_May_9_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_10_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_13_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_14_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_15_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_17_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_18_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_1_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_20_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_22_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_25_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_27_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_28_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_29_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_3_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_4_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_6_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_7_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_November_8_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_11_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_13_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_14_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_16_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_17_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_18_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_20_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_21_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_23_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_25_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_27_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_28_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_2_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_30_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_31_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_4_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_6_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_7_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_October_9_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_11_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_12_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_13_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_14_2020.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_14_2020_930_AM.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_15_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_16_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_18_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_19_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_20_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_22_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_23_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_25_2023.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_26_2022.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_27_2021.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_29_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_30_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_8_2025.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/Minutes_September_9_2024.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/November_21_2022_Minutes.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/October_24_2022_Minutes.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Matagorda/October_3_2022_Minutes.pdf": {
+"county": "Matagorda",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-01-08__01082024-10.pdf": {
+"county": "Somervell",
+"date": "2024-01-08",
+"text_len": 4615,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-01-18__01182024-11.pdf": {
+"county": "Somervell",
+"date": "2024-01-18",
+"text_len": 934,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-01-22__01222024-12.pdf": {
+"county": "Somervell",
+"date": "2024-01-22",
+"text_len": 1576,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-01-29__01292024-13.pdf": {
+"county": "Somervell",
+"date": "2024-01-29",
+"text_len": 961,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-02-12__02122024-14.pdf": {
+"county": "Somervell",
+"date": "2024-02-12",
+"text_len": 1899,
+"inr_hits": {
+"21INR0520": [
+"Yellow Viking"
+]
+},
+"generic": [
+"abatement"
+]
+},
+"data/reference/county_minutes/Somervell/2024-02-12__02122024-15.pdf": {
+"county": "Somervell",
+"date": "2024-02-12",
+"text_len": 2188,
+"inr_hits": {
+"21INR0520": [
+"Yellow Viking"
+]
+},
+"generic": [
+"abatement"
+]
+},
+"data/reference/county_minutes/Somervell/2024-02-12__02122024-16.pdf": {
+"county": "Somervell",
+"date": "2024-02-12",
+"text_len": 6981,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-02-15__02152024-17.pdf": {
+"county": "Somervell",
+"date": "2024-02-15",
+"text_len": 986,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-02-26__02262024-18.pdf": {
+"county": "Somervell",
+"date": "2024-02-26",
+"text_len": 2933,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-03-01__03012024-19.pdf": {
+"county": "Somervell",
+"date": "2024-03-01",
+"text_len": 679,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-03-01__03012024-20.pdf": {
+"county": "Somervell",
+"date": "2024-03-01",
+"text_len": 1022,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-03-11__03112024-21.pdf": {
+"county": "Somervell",
+"date": "2024-03-11",
+"text_len": 3959,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-03-15__03152024-22.pdf": {
+"county": "Somervell",
+"date": "2024-03-15",
+"text_len": 1173,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-03-25__03252024-23.pdf": {
+"county": "Somervell",
+"date": "2024-03-25",
+"text_len": 1391,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-04-08__04082024-24.pdf": {
+"county": "Somervell",
+"date": "2024-04-08",
+"text_len": 2699,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-04-15__04152024-25.pdf": {
+"county": "Somervell",
+"date": "2024-04-15",
+"text_len": 5630,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-04-19__04192024-26.pdf": {
+"county": "Somervell",
+"date": "2024-04-19",
+"text_len": 1097,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-04-26__04262024-27.pdf": {
+"county": "Somervell",
+"date": "2024-04-26",
+"text_len": 1386,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-05-06__05062024-28.pdf": {
+"county": "Somervell",
+"date": "2024-05-06",
+"text_len": 1735,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-05-13__05132024-29.pdf": {
+"county": "Somervell",
+"date": "2024-05-13",
+"text_len": 6554,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-05-20__05202024-30.pdf": {
+"county": "Somervell",
+"date": "2024-05-20",
+"text_len": 1570,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-05-24__05242024-31.pdf": {
+"county": "Somervell",
+"date": "2024-05-24",
+"text_len": 1364,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-06-10__06102024-32.pdf": {
+"county": "Somervell",
+"date": "2024-06-10",
+"text_len": 5629,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-06-17__06172024-33.pdf": {
+"county": "Somervell",
+"date": "2024-06-17",
+"text_len": 938,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-06-18__06182024-34.pdf": {
+"county": "Somervell",
+"date": "2024-06-18",
+"text_len": 2635,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-07-02__07022024-35.pdf": {
+"county": "Somervell",
+"date": "2024-07-02",
+"text_len": 1078,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-07-08__07082024-36.pdf": {
+"county": "Somervell",
+"date": "2024-07-08",
+"text_len": 4340,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-07-09__07092024-37.pdf": {
+"county": "Somervell",
+"date": "2024-07-09",
+"text_len": 602,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-07-10__07102024-38.pdf": {
+"county": "Somervell",
+"date": "2024-07-10",
+"text_len": 604,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-07-15__07152024-39.pdf": {
+"county": "Somervell",
+"date": "2024-07-15",
+"text_len": 5802,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-07-17__07172024-40.pdf": {
+"county": "Somervell",
+"date": "2024-07-17",
+"text_len": 537,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-07-22__07222024-41.pdf": {
+"county": "Somervell",
+"date": "2024-07-22",
+"text_len": 3352,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-07-26__07262024-42.pdf": {
+"county": "Somervell",
+"date": "2024-07-26",
+"text_len": 540,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-07-31__07312024-43.pdf": {
+"county": "Somervell",
+"date": "2024-07-31",
+"text_len": 817,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-07-31__07312024-44.pdf": {
+"county": "Somervell",
+"date": "2024-07-31",
+"text_len": 543,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-08-07__08072024-45.pdf": {
+"county": "Somervell",
+"date": "2024-08-07",
+"text_len": 537,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-08-08__08082024-46.pdf": {
+"county": "Somervell",
+"date": "2024-08-08",
+"text_len": 1158,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-08-12__08122024-47.pdf": {
+"county": "Somervell",
+"date": "2024-08-12",
+"text_len": 6259,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-08-19__08192024-48.pdf": {
+"county": "Somervell",
+"date": "2024-08-19",
+"text_len": 1570,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-08-29__08292024-49.pdf": {
+"county": "Somervell",
+"date": "2024-08-29",
+"text_len": 614,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-08-29__08292024-50.pdf": {
+"county": "Somervell",
+"date": "2024-08-29",
+"text_len": 3776,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-08-29__08292024-51.pdf": {
+"county": "Somervell",
+"date": "2024-08-29",
+"text_len": 592,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-09-03__09032024-52.pdf": {
+"county": "Somervell",
+"date": "2024-09-03",
+"text_len": 617,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-09-09__09092024-53.pdf": {
+"county": "Somervell",
+"date": "2024-09-09",
+"text_len": 560,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-09-09__09092024-54.pdf": {
+"county": "Somervell",
+"date": "2024-09-09",
+"text_len": 558,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-09-09__09092024-55.pdf": {
+"county": "Somervell",
+"date": "2024-09-09",
+"text_len": 4892,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-09-23__09232024-56.pdf": {
+"county": "Somervell",
+"date": "2024-09-23",
+"text_len": 2478,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-09-30__09302024-57.pdf": {
+"county": "Somervell",
+"date": "2024-09-30",
+"text_len": 3268,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-10-15__10152024-58.pdf": {
+"county": "Somervell",
+"date": "2024-10-15",
+"text_len": 4569,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-11-04__11042024-59.pdf": {
+"county": "Somervell",
+"date": "2024-11-04",
+"text_len": 2124,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-11-12__11122024-60.pdf": {
+"county": "Somervell",
+"date": "2024-11-12",
+"text_len": 2524,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-11-18__11182024-61.pdf": {
+"county": "Somervell",
+"date": "2024-11-18",
+"text_len": 951,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-11-25__11252024-62.pdf": {
+"county": "Somervell",
+"date": "2024-11-25",
+"text_len": 1884,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-12-09__12092024-63.pdf": {
+"county": "Somervell",
+"date": "2024-12-09",
+"text_len": 484,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-12-09__12092024-64.pdf": {
+"county": "Somervell",
+"date": "2024-12-09",
+"text_len": 4245,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-12-16__12162024-65.pdf": {
+"county": "Somervell",
+"date": "2024-12-16",
+"text_len": 2415,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-12-19__12192024-66.pdf": {
+"county": "Somervell",
+"date": "2024-12-19",
+"text_len": 718,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2024-12-30__12302024-67.pdf": {
+"county": "Somervell",
+"date": "2024-12-30",
+"text_len": 1389,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2025-01-13__01132025-1.pdf": {
+"county": "Somervell",
+"date": "2025-01-13",
+"text_len": 2776,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2025-01-15__01152025-2.pdf": {
+"county": "Somervell",
+"date": "2025-01-15",
+"text_len": 764,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2025-02-03__02032025-3.pdf": {
+"county": "Somervell",
+"date": "2025-02-03",
+"text_len": 139,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2025-02-10__02102025-8.pdf": {
+"county": "Somervell",
+"date": "2025-02-10",
+"text_len": 151,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2025-02-12__02122025-4.pdf": {
+"county": "Somervell",
+"date": "2025-02-12",
+"text_len": 139,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2025-02-18__02182025-5.pdf": {
+"county": "Somervell",
+"date": "2025-02-18",
+"text_len": 139,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2025-02-24__02242025-7.pdf": {
+"county": "Somervell",
+"date": "2025-02-24",
+"text_len": 145,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2025-02-28__02282025-6.pdf": {
+"county": "Somervell",
+"date": "2025-02-28",
+"text_len": 139,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2025-03-10__03102025-9.pdf": {
+"county": "Somervell",
+"date": "2025-03-10",
+"text_len": 139,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Somervell/2025-04-14__04142025-72.pdf": {
+"county": "Somervell",
+"date": "2025-04-14",
+"text_len": 75889,
+"inr_hits": {},
+"generic": []
+}
+}
+}

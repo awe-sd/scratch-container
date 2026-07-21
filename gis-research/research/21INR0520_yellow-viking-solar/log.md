@@ -92,3 +92,159 @@ Wrote triage_findings.json and triage.md. Run complete.
 
 **Blockers:** gmaps 429 (T2), PUCT 402 (T4), hcnews 403 (T5), GEM Wiki 403 (T3).
 **Key finds:** IA confirmed via queue; $689M Lydian Energy financing Feb 2026; county abatement terminated; no construction visible in imagery; site not precisely located.
+
+---
+
+## D1 — IA schedule extraction (2026-07-20)
+
+**Original IA** (PUCT 35077-1523, signed 2022-10-25, filed 2022-11-22):
+- Exhibit B: In-Service 2024-04-18, Trial Op 2024-05-01, COD **2024-07-26**
+- NTP for construction: 2023-08-18
+- Exhibit C: POI in **Hood County** TX, Nautilus Switch in Comanche Peak–Timberview Switch 345kV line, on **FM 2174, ~25 miles west of Cleburne**
+- Equipment: 78 inverters × 4.004 MVA = 312.312 MVA / 288.99 MW (original capacity)
+- Inverter type: SMA SC4400 UP
+- Exhibit E: Irrevocable standby LC effective on/before 2022-10-18 (amount not yet extracted)
+- Sources: sources/2026-07-19_puct_35077-1523_interconnection-agreement-between-oncor-electric.pdf
+
+**Amendment No. 1** (PUCT 35077-2154, filed 2025-06-13):
+- Exhibit B: In-Service **2027-05-13**, Trial Op **2027-05-28**, COD **2027-07-13**
+- NTP for construction: **2025-07-01** (key: this date is now past — construction notice was due ~12 months ago)
+- Exhibit E: LC structure unchanged (amount still needs extraction from p8 further text)
+- Sources: sources/2026-07-19_puct_35077-2154_amendment-no-1-to-the-standard-generation-interc.pdf
+
+**Amendment No. 2** (PUCT 35077-2493, filed 2026-05-27):
+- Exhibit B: Same schedule as Amend 1 (In-Service 2027-05-13, COD 2027-07-13)
+- NTP for construction: 2025-07-01 unchanged
+- Sources: sources/2026-07-19_puct_35077-2493_amendment-no-2-to-the-standard-generation-interc.pdf
+
+**Amendment No. 3** (PUCT 35077-2523, signed 2026-07-02, filed 2026-07-09 — 11 DAYS BEFORE TODAY):
+- Only change: equipment updated to 45 inverters × 4.312 MVA = 194.04 MVA / **172.80 MW** dispatched
+- Schedule UNCHANGED — COD still 2027-07-13
+- INR confirmed in title: "GINR 21INR0520"
+- Sources: sources/2026-07-19_puct_35077-2523_amendment-no-3-to-the-standard-generation-interc.pdf
+
+**Key site clue from IA:** Generator Switchyard located adjacent to Oncor's Nautilus Switch, FM 2174, Hood County, ~25 miles west of Cleburne TX. This is the definitive location anchor — must search FM 2174 / Hood County, NOT Somervell County centroid.
+
+**EIA coords:** 32.31664, -97.62889 — candidate (from factsheet). Somervell County is the queue county but Hood County is where the POI/switchyard is per IA text.
+
+
+---
+
+## D2 — Site pinpoint attempt + imagery (2026-07-20)
+
+**Site location triangulation:**
+- IA Exhibit C: Nautilus Switch, FM 2174, Hood County TX, ~25 miles west of Cleburne
+- GEM wiki search snippet: "4,078-acre site in southeast Hood County, Texas" (403 on direct fetch)
+- EIA-860M coords: 32.31664, -97.62889 (Lydian Energy / Yellow Viking Solar plant)
+- Somervell County abatement: project spans Hood AND Somervell county lines (both counties had/have abatements)
+- Best estimate: SE Hood County near Hood/Somervell/Johnson county convergence, FM 2174 corridor
+
+**Google Places:** 0 pins found for all variants (Yellow Viking Solar, Viking Solar Hood County, Lydian Energy solar Hood County)
+
+**Hood County CAD:** 0 parcels under Yellow Viking / Lydian / European Energy — expected for leased ranchland; land held under landowner names
+
+**Somervell CAD:** 0 hits via search
+
+**CDSE imagery:** BLOCKED — openeo/result endpoint returns HTTP 402 "insufficient credits." Sentinel-2 imagery cannot be obtained for this project. Verdict: imagery-less.
+
+**SCS Salon articles:** 404 (site under upgrade as of 2026-07-07)
+
+**Hood County News:** 403 on all fetch attempts
+
+**Log: negative imagery evidence** — CDSE returned 402 on 2026-07-20; unable to verify construction stage via Sentinel-2 for this project.
+
+---
+
+## D3 — Gap-fill search results (2026-07-20)
+
+**Financing (BusinessWire, saved as sources/lydian_financing_businesswire.md):**
+- $689M construction-to-term + tax credit bridge
+- 100 MW PPA with investment-grade offtaker
+- CIBC + MUFG as lenders
+- 170 MWac / 210 MWdc capacity confirmed
+
+**Hood County abatement termination:** February 2025 voted "no longer active" per hcnews.com snippet. Reason unknown (403 on fetch). This is Hood County abatement only — Somervell County abatement was being extended/amended per Feb 2024 hearing.
+
+**Amendment No. 3 (July 2, 2026 — 18 days ago):** Changed equipment from 78 inverters (288.99 MW) to 45 inverters x 4.312 MVA = 172.80 MW dispatched. Schedule unchanged. Active contract modification confirms project is still live.
+
+**Key concern:** Construction NTP deadline per Amend 1 was July 1, 2025. That date is now 12 months past with no ERCOT construction-start milestone flagged and no visible construction pins. Project may have NTP'd without public announcement.
+
+
+---
+
+## D4/D5 synthesis (2026-07-20)
+
+**EIA history (eia_history.py):**
+- Plant 67222 "Yellow Vikings" — Lydian Energy, matched county+prime-mover+MW
+- Status history: (P) Planned → (L) Regulatory approvals pending, not under construction (2025-02 → 2026-05)
+- EIA COD: 2026-11 → 2026-10 → 2027-10 (latest, 1 quarter past contractual 2027-07)
+- EIA coords: 32.31664, -97.62889
+
+**LC amounts (Amend 1 Exhibit E, p9 rendered):**
+- Initial: $4,724,586 by Oct 18, 2022
+- Step-up: $13,784,627 by July 1, 2025
+
+**Amendment 3 (signed 2026-07-02, filed 2026-07-09):**
+- Equipment-only update: 45 inverters × 4.312 MVA = 172.80 MW dispatched
+- Schedule unchanged: In-Service 2027-05-13, COD 2027-07-13
+- Confirms active contract modification 18 days before research date
+
+**Verdict: real_early — HIGH confidence**
+- Strong capital signal ($689M, CIBC+MUFG, closed Feb 2026)
+- Active IA amendments (Amend 3 signed this month)
+- $13.8M LC posted
+- BUT: not yet under construction as of May 2026; NTP deadline 12 months past; 4.5-yr drift history
+- Independent COD: 2027-Q4; drift risk: HIGH
+
+**D5 wrap-up complete:**
+- queue_history.py: timeline.md refreshed (69 snapshots, 3 COD changes)
+- eia_history.py --write: eia_history.json written
+- build_brief.py: brief.html (13KB, 37 sources)
+- build_index.py: 154 projects indexed
+
+
+## D3 — Second-pass user review: ch313 re-check + site verification + imagery fix (2026-07-20)
+
+**User complaint:** missing Ch.313, missing parcel boundary, imagery "just random."
+
+- **Ch.313 re-checked systematically** (`ch313.py resolve 21INR0520`, `--county Hood`,
+  `--county Somervell`, `--name "Yellow Viking"`, `--name Lydian`): all five NEGATIVE. This
+  is a genuine absence (pre-2023 SPV with no Ch.313/JETI filing), not a missed lookup --
+  consistent with the log's earlier manual-search finding.
+- **No parcel/site-plan exhibit exists in any of the 4 PUCT filings** (original IA + 3
+  amendments) -- confirmed via full sheet-index read of all 4 PDFs. Exhibit C (p30) is text
+  only; the sole drawing in the docket is p40, a one-line diagram of Nautilus Switching
+  Station (not a parcel/boundary map). There is nothing to add here; the brief's
+  `map_artifacts` already points at the correct (only) exhibit page.
+- **Root cause of "random" imagery**: the triage-stage 3x3 grid (contact_sheet +
+  9 tiles, all deleted this pass) was centered on a POI candidate the deep scan explicitly
+  rejected once EIA coordinates were found -- but imagery was never re-fetched at the
+  corrected point because CDSE returned 402 credit-exhaustion at the time. The stale grid
+  sat in `imagery/` as if it were current.
+- **Site re-verified via OSM/Overpass** (`lz4.overpass-api.de`, plain-text POST,
+  `User-Agent` header required to avoid 406): FM 2174 and a 345kV line both present within
+  5 km of 32.31664,-97.62889 (matches IA Exhibit C text); `is_in()` query places the point in
+  **Somervell County**, matching the ERCOT queue's own county field exactly (GEM wiki's
+  "Hood County" claim likely describes the switchyard side of a documented tri-county
+  convergence, not the plant itself).
+- **New AWS Open Data chips** (`s2aws.py`, 3.2/3.2 km buffer) fetched for 2022-06, 2024-06,
+  2025-07, 2026-06 at the verified point, plus one 7 km-wide check. All show only
+  pre-existing sand/limestone quarry pits near the interconnect -- no solar development in
+  any year. This is consistent with EIA's "(L) not under construction" status and the
+  passed NTP deadline; recorded as pre_construction with a clean 4-year negative
+  observation, not "unverified."
+
+## D4 — minutes.py pilot payoff (2026-07-21)
+
+The new commissioners-court minutes pipeline (minutes.py harvest/index/resolve — built
+because Somervell reports nothing to the Ch.312 registry) resolved 21INR0520 to two
+Somervell CC meeting files dated 2024-02-12, closing the "outcome not retrievable" gap
+from the original scan:
+- First Amendments to BOTH abatement agreements (2021-10-29 and 2023-08-14) PASSED —
+  signed motion + signed amendments attached to the meeting record.
+- Completion date extended 2024-12-31 -> ON OR BEFORE 2026-12-31 (now ~6.5 months ahead
+  of the contractual COD 2027-07-13 — a compounding schedule squeeze).
+- Company notice address changed to Tomohiko Ono / VP, renewables-grid-solutions@
+  osakausa.com, copy to OSAKA GAS USA CORPORATION (Houston) — a document-verified
+  ownership datapoint sitting between the European Energy origin and the Lydian Energy
+  entity in EIA-860M. Both artifacts copied to sources/.
