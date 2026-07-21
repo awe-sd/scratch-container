@@ -22,6 +22,7 @@ gis-research/research/*/imagery_grid/
 gis-research/research/*/run_stream*.jsonl
 gis-research/data/*.parquet
 gis-research/data/reference/puct_docket_pdfs/
+gis-research/data/reference/ch312_docs/
 gis-research/data/reference/*.xlsx
 gis-research/data/reference/search_cache/
 !gis-research/research/*/transcripts/*.jsonl.gz
