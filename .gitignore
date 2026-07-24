@@ -8,3 +8,6 @@ branch_tracking/output/*.prev
 __pycache__/
 *.pyc
 .venv/
+
+# execution scratch dir
+.superpowers/

@@ -49,7 +49,7 @@ from pathlib import Path
 
 import pandas as pd
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 DATES_CSV = REPO_ROOT / "output" / "teid_inservice_retirement_dates.csv"
 STATUS_CSV = REPO_ROOT / "output" / "branch_default_status.csv"
 TEID_MAP_CSV = REPO_ROOT / "output" / "teid_branch_id_map.csv"

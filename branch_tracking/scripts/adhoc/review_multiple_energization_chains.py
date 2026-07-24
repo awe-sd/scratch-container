@@ -14,18 +14,21 @@ as another systematic fix, rather than reviewing 237 raw dumps by hand.
 Read-only. Writes only to branch_tracking/output/ (a review worklist, not
 a pipeline artifact).
 """
+import sys
 from pathlib import Path
 
 import awconnect
 import pandas as pd
 from awconnect import db
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 from build_inservice_retirement_dates import (
     ISOMARKETID_ERCOT, REASON_NEW_EQUIPMENT, is_invalid_status,
     assign_chain_ids,
 )
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 RESULT_CSV = REPO_ROOT / "output" / "teid_inservice_retirement_dates.csv"
 TEID_MAP_CSV = REPO_ROOT / "output" / "teid_branch_id_map.csv"
 OUTPUT_CSV = REPO_ROOT / "output" / "multiple_energization_review.csv"
