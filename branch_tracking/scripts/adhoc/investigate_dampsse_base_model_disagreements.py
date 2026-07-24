@@ -34,17 +34,17 @@ The two disagreement directions mean different things in the *outages* case:
 Output: output/dampsse_outages_status_anomalies.csv (the base=Closed/dampsse=Open
 worklist, one row per teid, with the classification column + evidence fields).
 
-Run: uv run branch_tracking/scripts/investigate_dampsse_base_model_disagreements.py
+Run: uv run branch_tracking/scripts/adhoc/investigate_dampsse_base_model_disagreements.py
 """
 import importlib.util
 from pathlib import Path
 
 import pandas as pd
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
-CMP_PATH = REPO_ROOT / "scripts" / "compare_base_model_status.py"
-BASE_OUTAGES_CSV = REPO_ROOT / "data" / "base_model_outages.csv"
-OUTPUT_CSV = REPO_ROOT / "output" / "dampsse_outages_status_anomalies.csv"
+REPO_ROOT = Path(__file__).resolve().parents[3]
+CMP_PATH = REPO_ROOT / "branch_tracking/scripts/adhoc/compare_base_model_status.py"
+BASE_OUTAGES_CSV = REPO_ROOT / "branch_tracking/data/base_model_outages.csv"
+OUTPUT_CSV = REPO_ROOT / "branch_tracking/output/dampsse_outages_status_anomalies.csv"
 RECENT_CUTOFF = pd.Timestamp("2023-01-01")  # DAM PSSE window is ~last 730 days
 
 

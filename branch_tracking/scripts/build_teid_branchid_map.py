@@ -83,32 +83,15 @@ is sound). Two uses:
 Read-only. Writes only to branch_tracking/output/ -- never touches the
 live database beyond a SELECT.
 """
-import re
-from difflib import SequenceMatcher
+import sys
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from branch_tracking.pipeline.mapping import resolve_duplicates  # noqa: E402
+from branch_tracking.pipeline.config import ISOMARKETID_ERCOT  # noqa: E402
 
 import awconnect
 import pandas as pd
 from awconnect import db
-
-ISOMARKETID_ERCOT = 6  # always ERCOT going forward
-
-# Calibrated against the 725 known-correct-but-string-disagreeing 1:1
-# matches -- see build_teid_branchid_map.py docstring point 4.
-FUZZY_MIN_TOP_RATIO = 0.6
-FUZZY_MIN_MARGIN = 0.15
-
-
-def fuzzy_ratio(a, b):
-    return SequenceMatcher(None, str(a).strip().upper(), str(b).strip().upper()).ratio()
-
-
-HIGH_SIDE_RE = re.compile(r"(_?HISIDE|_?HIGH|_?H)$", re.IGNORECASE)
-
-
-def is_high_side(op_eqcode):
-    return bool(HIGH_SIDE_RE.search(str(op_eqcode).strip()))
-
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 CIM_CSV = REPO_ROOT / "data" / "CIM_Jul_ML1_1_07142026_Redacted_20260801-003000_TeidMap.csv"
@@ -179,87 +162,10 @@ def main():
         "OpEqName"
     ].astype(str).str.strip()
 
-    # Resolve duplicate_match groups where exactly one candidate's
-    # OP_EQCODE agrees with the CIM OpEqName -- drop the other candidate
-    # row(s) and reclassify. Recompute n_agree fresh after each boolean
-    # mask rather than reusing masks across a row-dropping step, to avoid
-    # stale-index alignment bugs.
-    is_dup = merged["match_status"] == "duplicate_match"
-    n_agree = merged.groupby("teid")["opeq_agrees"].transform("sum")
-    drop_mask = is_dup & (n_agree == 1) & ~merged["opeq_agrees"]
-    merged = merged.loc[~drop_mask].reset_index(drop=True)
-
-    is_dup = merged["match_status"] == "duplicate_match"
-    n_agree = merged.groupby("teid")["opeq_agrees"].transform("sum")
-    resolved_mask = is_dup & (n_agree == 1) & merged["opeq_agrees"]
-    merged.loc[resolved_mask, "match_status"] = "duplicate_resolved_by_opeqcode"
-
-    # Exact-duplicate resolver: groups where 2+ candidates agree with
-    # OpEqName are the same element entered more than once. Drop any
-    # non-agreeing candidate in those groups first (clearly wrong), then
-    # keep only the highest branch_id among the agreeing copies.
-    is_dup = merged["match_status"] == "duplicate_match"
-    n_agree = merged.groupby("teid")["opeq_agrees"].transform("sum")
-    multi_agree_group = is_dup & (n_agree > 1)
-    drop_non_agreeing_in_multi = multi_agree_group & ~merged["opeq_agrees"]
-    merged = merged.loc[~drop_non_agreeing_in_multi].reset_index(drop=True)
-
-    is_dup = merged["match_status"] == "duplicate_match"
-    n_agree = merged.groupby("teid")["opeq_agrees"].transform("sum")
-    multi_agree_group = is_dup & (n_agree > 1)
-    max_branch_id_in_group = merged.groupby("teid")["branch_id"].transform("max")
-    drop_non_max_in_multi = multi_agree_group & (merged["branch_id"] != max_branch_id_in_group)
-    merged = merged.loc[~drop_non_max_in_multi].reset_index(drop=True)
-
-    is_dup = merged["match_status"] == "duplicate_match"
-    still_multi = is_dup & (merged.groupby("teid")["teid"].transform("count") == 1)
-    merged.loc[still_multi, "match_status"] = "duplicate_resolved_exact_duplicate"
-
-    # Fuzzy-match resolver: for remaining duplicate_match (zero-agree)
-    # groups, rank candidates by string similarity to OpEqName and accept
-    # the top one only if it clears a quality floor AND is clearly
-    # separated from the runner-up (see docstring point 4 for calibration).
-    is_dup = merged["match_status"] == "duplicate_match"
-    merged["fuzzy_ratio"] = 0.0
-    merged.loc[is_dup, "fuzzy_ratio"] = merged.loc[is_dup].apply(
-        lambda r: fuzzy_ratio(r["OP_EQCODE"], r["OpEqName"]), axis=1
-    )
-    ranked = merged.loc[is_dup].sort_values("fuzzy_ratio", ascending=False)
-    top_ratio = ranked.groupby("teid")["fuzzy_ratio"].transform("max")
-    second_ratio = ranked.groupby("teid")["fuzzy_ratio"].transform(
-        lambda s: s.iloc[1] if len(s) > 1 else 0.0
-    )
-    is_top = ranked["fuzzy_ratio"] == top_ratio
-    fuzzy_resolvable = (top_ratio >= FUZZY_MIN_TOP_RATIO) & (
-        (top_ratio - second_ratio) >= FUZZY_MIN_MARGIN
-    )
-    drop_non_top_in_resolvable = ranked.index[(fuzzy_resolvable & ~is_top)]
-    merged = merged.drop(index=drop_non_top_in_resolvable).reset_index(drop=True)
-
-    is_dup = merged["match_status"] == "duplicate_match"
-    still_multi = is_dup & (merged.groupby("teid")["teid"].transform("count") == 1)
-    merged.loc[still_multi, "match_status"] = "duplicate_resolved_by_fuzzy_match"
-
-    # High-side + latest-id catch-all: teid is the grain (1:1). Everything
-    # still duplicate_match here is a Transformer (100% of the 176 at the
-    # prior baseline) -- prefer the high-side ('_H'/'HIGH') leg where the
-    # group has one; drop any non-high-side candidate when that's the case.
-    is_dup = merged["match_status"] == "duplicate_match"
-    merged["is_high_side"] = merged["OP_EQCODE"].apply(is_high_side)
-    has_high_side = merged.groupby("teid")["is_high_side"].transform("any")
-    drop_non_high_side = is_dup & has_high_side & ~merged["is_high_side"]
-    merged = merged.loc[~drop_non_high_side].reset_index(drop=True)
-
-    # Whatever's left per teid (a single high-side row, multiple high-side
-    # candidates, or no H/L naming at all e.g. parallel-unit banks like
-    # 'XFMR21'/'XFMR22') -- keep the highest (latest) branch_id.
-    is_dup = merged["match_status"] == "duplicate_match"
-    max_branch_id_in_group = merged.groupby("teid")["branch_id"].transform("max")
-    drop_non_max = is_dup & (merged["branch_id"] != max_branch_id_in_group)
-    merged = merged.loc[~drop_non_max].reset_index(drop=True)
-
-    is_dup = merged["match_status"] == "duplicate_match"
-    merged.loc[is_dup, "match_status"] = "duplicate_resolved_by_latest_id"
+    # Layered duplicate-resolution passes (opeqcode-exact -> exact-duplicate
+    # collapse -> fuzzy -> high-side + latest-id) live in
+    # pipeline/mapping.py:resolve_duplicates; see its module docstring.
+    merged = resolve_duplicates(merged)
 
     OUTPUT_CSV.parent.mkdir(parents=True, exist_ok=True)
     merged.to_csv(OUTPUT_CSV, index=False)

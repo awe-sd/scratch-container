@@ -20,48 +20,24 @@ Three cases per teid:
 
 Read-only. Writes only to branch_tracking/output/.
 """
+import sys
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from branch_tracking.pipeline.legs import (  # noqa: E402
+    classify_leg,
+    base_name,
+    bus_pair,
+    pick_best,
+)
+from branch_tracking.pipeline.config import ISOMARKETID_ERCOT  # noqa: E402
 
 import awconnect
 import pandas as pd
 from awconnect import db
 
-from build_teid_branchid_map import (
-    CIM_CSV,
-    ISOMARKETID_ERCOT,
-    HIGH_SIDE_RE,
-)
-
 REPO_ROOT = Path(__file__).resolve().parents[1]
+CIM_CSV = REPO_ROOT / "data" / "CIM_Jul_ML1_1_07142026_Redacted_20260801-003000_TeidMap.csv"
 OUTPUT_CSV = REPO_ROOT / "output" / "transformer_leg_map.csv"
-
-LOW_SIDE_RE_STR = r"(_?LOSIDE|_?LOW|_?L)$"
-LEG_STRIP_RE_STR = r"(_?HISIDE|_?HIGH|_?H|_?LOSIDE|_?LOW|_?L)$"
-
-import re
-
-LOW_SIDE_RE = re.compile(LOW_SIDE_RE_STR, re.IGNORECASE)
-LEG_STRIP_RE = re.compile(LEG_STRIP_RE_STR, re.IGNORECASE)
-
-
-def classify_leg(op_eqcode):
-    s = str(op_eqcode).strip()
-    if HIGH_SIDE_RE.search(s):
-        return "H"
-    if LOW_SIDE_RE.search(s):
-        return "L"
-    return None
-
-
-def base_name(op_eqcode):
-    return LEG_STRIP_RE.sub("", str(op_eqcode).strip().upper())
-
-
-def bus_pair(row, from_col="FromName", to_col="ToName"):
-    a, b = row[from_col], row[to_col]
-    if pd.isna(a) or pd.isna(b):
-        return None
-    return frozenset([str(a), str(b)])
 
 
 def load_cim_transformer_teids():
@@ -80,10 +56,6 @@ def load_all_branch_transformers():
           AND DeviceType = 'Transformer'
         """
     )
-
-
-def pick_best(rows, prefer_col="branchID"):
-    return rows.sort_values(prefer_col, ascending=False).iloc[0]
 
 
 def main():

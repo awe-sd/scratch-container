@@ -35,7 +35,7 @@ from awconnect import db
 
 ISOMARKETID_ERCOT = 6
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = Path(__file__).resolve().parents[2]
 COLLAPSEID_FIX_CSV = REPO_ROOT / "output" / "collapseid_fix_candidates.csv"
 LEG_MAP_CSV = REPO_ROOT / "output" / "transformer_leg_map.csv"
 OUTPUT_CSV = REPO_ROOT / "output" / "teid_collision_candidates.csv"

@@ -19,7 +19,7 @@ from awconnect import db
 
 ISOMARKETID_ERCOT = 6
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 RESULT_CSV = REPO_ROOT / "output" / "teid_inservice_retirement_dates.csv"
 OUTPUT_CSV = REPO_ROOT / "output" / "retirement_flags_investigation.csv"
 
