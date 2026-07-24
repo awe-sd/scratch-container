@@ -8,7 +8,7 @@ def _sha(path):
 
 
 def test_dbfree_rerun_reproduces_goldens(repo_root):
-    golden = json.loads((repo_root / "tests/goldens/hashes.json").read_text())
+    golden = json.loads((repo_root / "branch_tracking/tests/goldens/hashes.json").read_text())
     for script in [
         "branch_tracking/scripts/map_unmapped_dampsse_teids.py",
         "branch_tracking/scripts/build_final_branch_table.py",

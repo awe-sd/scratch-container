@@ -57,7 +57,7 @@ def test_chain_collapse_and_longest_wins_for_energization():
 
 def test_mistag_and_wrongdevice_on_real_slice(repo_root):
     from branch_tracking.pipeline.dates import resolve_dates
-    events = pd.read_csv(repo_root / "tests/fixtures/retirement_events_slice.csv",
+    events = pd.read_csv(repo_root / "branch_tracking/tests/fixtures/retirement_events_slice.csv",
                          parse_dates=["plannedStartDate", "plannedEndDate",
                                       "actualStartDate", "actualEndDate",
                                       "CancellationDate"])

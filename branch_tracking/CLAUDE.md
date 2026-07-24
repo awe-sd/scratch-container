@@ -12,8 +12,8 @@ In-progress design for a topology database table that tracks transmission branch
 
 - `pipeline/` — 8 pure-logic modules, no DB access: `config`, `naming`, `mapping`, `legs`, `dates`, `dampsse`, `status`, `assemble`. Imported by scripts via a `sys.path` bootstrap (no packaging yet — that's phase 5).
 - `scripts/` — the original entry points are now thin wrappers around `pipeline/`: DB pulls + prints + CSV writes only. Every existing `uv run branch_tracking/scripts/<name>.py` invocation still works unchanged.
-- `scripts/adhoc/` — 16 one-off investigation scripts, out of production scope, moved here verbatim.
-- `tests/` (repo root) — 11 test files, including a golden byte-identity gate (`test_goldens.py`) and fixture-based regression pins for hand-verified marquee teids.
+- `scripts/adhoc/` — one-off investigation scripts, out of production scope, moved here verbatim.
+- `tests/` — test files (under `branch_tracking/`), including a golden byte-identity gate (`test_goldens.py`) and fixture-based regression pins for hand-verified marquee teids. Run with `uv run pytest` from the repo root (`testpaths` points here).
 
 Full docs restructure is deferred to phase 5; this section is just an orientation pointer for phase 1.
 

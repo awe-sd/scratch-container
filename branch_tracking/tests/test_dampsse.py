@@ -3,8 +3,8 @@ import pytest
 
 
 @pytest.fixture()
-def fixtures(repo_root):
-    fx = repo_root / "tests" / "fixtures"
+def fixtures(tests_dir):
+    fx = tests_dir / "fixtures"
     return (
         pd.read_csv(fx / "dampsse_def_slice.csv"),
         pd.read_csv(fx / "dampsse_agg_slice.csv"),
