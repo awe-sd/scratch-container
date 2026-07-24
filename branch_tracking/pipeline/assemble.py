@@ -5,6 +5,8 @@ joins + date defaults + renames + dampsse concat + column order. See that
 script's module docstring for the full rationale. Writes nothing; the
 script wrapper handles I/O.
 """
+from typing import Optional
+
 import pandas as pd
 
 from .status import resolve_default_status
@@ -17,8 +19,8 @@ def build_table(
     teid_map: pd.DataFrame,
     dates: pd.DataFrame,
     status: pd.DataFrame,
-    dampsse: pd.DataFrame,
-    dampsse_fallback: pd.DataFrame,
+    dampsse: Optional[pd.DataFrame],
+    dampsse_fallback: Optional[pd.DataFrame],
 ) -> pd.DataFrame:
     """Full join + date defaults + renames + dampsse concat + column
     order. From build_final_branch_table.py:main. Returns the frame;
