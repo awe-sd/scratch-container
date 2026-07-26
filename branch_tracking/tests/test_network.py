@@ -31,3 +31,46 @@ def test_transformer_winding_groups(tests_dir):
     assert grp["star_bus"] == "24107"
     assert grp["ckt"] == "2"
     assert set(grp["winding_teids"]) == {"280447", "280444", "280453"}
+
+
+def _status(pairs):
+    return pd.DataFrame(pairs, columns=["teid", "default_status"])
+
+
+def test_infer_all_closed_yields_inferred_closed(tests_dir):
+    from branch_tracking.pipeline.network import infer_tertiary_status
+    cim = pd.read_csv(tests_dir / "fixtures" / "cim_slice.csv", dtype=str)
+    status = _status([("280447", "Closed"), ("280444", "Closed")])  # 280453 missing
+    out = infer_tertiary_status(cim, status)
+    row = out[out["teid"] == "280453"].iloc[0]
+    assert row["inferred_status"] == "Closed"
+    assert row["source"] == "inferred_transformer_winding"
+    assert row["flag"] == ""
+
+
+def test_infer_conflict_flags(tests_dir):
+    from branch_tracking.pipeline.network import infer_tertiary_status
+    cim = pd.read_csv(tests_dir / "fixtures" / "cim_slice.csv", dtype=str)
+    status = _status([("280447", "Closed"), ("280444", "Open")])
+    out = infer_tertiary_status(cim, status)
+    row = out[out["teid"] == "280453"].iloc[0]
+    assert pd.isna(row["inferred_status"]) or row["inferred_status"] is None
+    assert row["flag"] == "conflict"
+
+
+def test_infer_all_open_flags(tests_dir):
+    from branch_tracking.pipeline.network import infer_tertiary_status
+    cim = pd.read_csv(tests_dir / "fixtures" / "cim_slice.csv", dtype=str)
+    status = _status([("280447", "Open"), ("280444", "Open")])
+    out = infer_tertiary_status(cim, status)
+    row = out[out["teid"] == "280453"].iloc[0]
+    assert row["flag"] == "all_siblings_open"
+
+
+def test_infer_no_evidence(tests_dir):
+    from branch_tracking.pipeline.network import infer_tertiary_status
+    cim = pd.read_csv(tests_dir / "fixtures" / "cim_slice.csv", dtype=str)
+    status = _status([])  # nobody in the group has status
+    out = infer_tertiary_status(cim, status)
+    assert set(out["flag"]) == {"no_evidence"}
+    assert len(out) == 3

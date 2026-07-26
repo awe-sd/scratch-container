@@ -81,3 +81,50 @@ def transformer_winding_groups(cim: pd.DataFrame) -> list[dict]:
             "winding_teids": [_clean(t) for t in g["TransmissionElementId"]],
         })
     return groups
+
+
+def infer_tertiary_status(cim: pd.DataFrame, status: pd.DataFrame) -> pd.DataFrame:
+    smap = {}
+    for t, d in zip(status["teid"], status["default_status"]):
+        t = _clean(t)
+        d = _clean(d)
+        if t is not None and d is not None:
+            smap[t] = d
+
+    rows = []
+    for grp in transformer_winding_groups(cim):
+        teids = grp["winding_teids"]
+        known = [(t, smap[t]) for t in teids if t in smap]
+        missing = [t for t in teids if t not in smap]
+        if not missing:
+            continue
+
+        known_statuses = [s for _, s in known]
+        sib_teids = ";".join(t for t, _ in known)
+        sib_statuses = ";".join(known_statuses)
+
+        if not known:
+            flag, inferred, source = "no_evidence", None, None
+        elif all(s == "Closed" for s in known_statuses):
+            flag, inferred, source = "", "Closed", "inferred_transformer_winding"
+        elif all(s == "Open" for s in known_statuses):
+            flag, inferred, source = "all_siblings_open", None, None
+        else:
+            flag, inferred, source = "conflict", None, None
+
+        for t in missing:
+            rows.append({
+                "teid": t,
+                "substation": grp["substation"],
+                "star_bus": grp["star_bus"],
+                "ckt": grp["ckt"],
+                "inferred_status": inferred,
+                "source": source,
+                "sibling_teids": sib_teids,
+                "sibling_statuses": sib_statuses,
+                "flag": flag,
+            })
+    return pd.DataFrame(rows, columns=[
+        "teid", "substation", "star_bus", "ckt", "inferred_status", "source",
+        "sibling_teids", "sibling_statuses", "flag",
+    ])
