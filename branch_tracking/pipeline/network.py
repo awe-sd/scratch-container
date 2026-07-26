@@ -58,3 +58,26 @@ def build_graph(cim: pd.DataFrame, status: pd.DataFrame | None = None) -> nx.Mul
             default_status=status_map.get(teid),
         )
     return g
+
+
+def transformer_winding_groups(cim: pd.DataFrame) -> list[dict]:
+    xf = cim[cim["PsseType"] == "Transformer"].copy()
+    groups = []
+    for (sub, ckt), g in xf.groupby(["Substation1", "CircuitIdentifier"], dropna=False):
+        if len(g) < 2:
+            continue
+        bus_sets = [
+            {_clean(r["BusNumber1"]), _clean(r["BusNumber2"])} - {None}
+            for _, r in g.iterrows()
+        ]
+        common = set.intersection(*bus_sets) if bus_sets else set()
+        if len(common) != 1:
+            continue  # no single shared star bus -> not one physical unit
+        star = next(iter(common))
+        groups.append({
+            "substation": _clean(sub),
+            "star_bus": star,
+            "ckt": _clean(ckt),
+            "winding_teids": [_clean(t) for t in g["TransmissionElementId"]],
+        })
+    return groups
