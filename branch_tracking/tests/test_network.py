@@ -83,3 +83,16 @@ def test_infer_no_evidence(tests_dir):
     out = infer_tertiary_status(cim, status)
     assert set(out["flag"]) == {"no_evidence"}
     assert len(out) == 3
+
+
+def test_multigroup_winding_deduped_to_one_row(tests_dir):
+    # WX (911002) sits between two star buses 901 & 902, so it is in two groups.
+    # Only WA (911001) has status Closed; WB (911003) is unknown. WX must appear
+    # exactly once, inferred Closed (Closed wins over the no_evidence group).
+    from branch_tracking.pipeline.network import infer_tertiary_status
+    cim = pd.read_csv(tests_dir / "fixtures" / "cim_multigroup_slice.csv", dtype=str)
+    status = pd.DataFrame([("911001", "Closed")], columns=["teid", "default_status"])
+    out = infer_tertiary_status(cim, status)
+    wx = out[out["teid"] == "911002"]
+    assert len(wx) == 1
+    assert wx.iloc[0]["inferred_status"] == "Closed"

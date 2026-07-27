@@ -8,6 +8,8 @@ Parallel circuits between the same bus pair are common, so the graph is a
 MultiGraph. Each edge carries its teid, device type, circuit id, substation,
 name, and (optionally joined) default_status.
 """
+from collections import OrderedDict
+
 import networkx as nx
 import pandas as pd
 
@@ -129,6 +131,26 @@ def infer_tertiary_status(cim: pd.DataFrame, status: pd.DataFrame) -> pd.DataFra
                 "sibling_statuses": sib_statuses,
                 "flag": flag,
             })
+    # A winding whose both endpoint buses are internal star buses (e.g. a VFT
+    # converter) lands in two groups -> the same teid emitted twice. Collapse to
+    # one row per teid. Inference only ever yields "Closed" or None, so a
+    # concrete Closed from any group wins; otherwise keep the first (flagged) row.
+    by_teid = OrderedDict()
+    for r in rows:
+        by_teid.setdefault(r["teid"], []).append(r)
+    deduped = []
+    for _teid, rs in by_teid.items():
+        closed = [r for r in rs if r["inferred_status"] == "Closed"]
+        if closed:
+            keep = dict(closed[0])
+            keep["sibling_teids"] = ";".join(
+                sorted({s for r in closed for s in (r["sibling_teids"] or "").split(";") if s})
+            )
+            deduped.append(keep)
+        else:
+            deduped.append(rs[0])
+    rows = deduped
+
     return pd.DataFrame(rows, columns=[
         "teid", "substation", "star_bus", "ckt", "inferred_status", "source",
         "sibling_teids", "sibling_statuses", "flag",
