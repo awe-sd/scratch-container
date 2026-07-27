@@ -30,7 +30,10 @@ script -- this table is a starting point for further iteration):
 
 Read-only. Writes only to branch_tracking/output/.
 """
+import sys
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from branch_tracking.pipeline import assemble  # noqa: E402
 
 import pandas as pd
 
@@ -39,102 +42,26 @@ TEID_MAP_CSV = REPO_ROOT / "output" / "teid_branch_id_map.csv"
 DATES_CSV = REPO_ROOT / "output" / "teid_inservice_retirement_dates.csv"
 STATUS_CSV = REPO_ROOT / "output" / "branch_default_status.csv"
 DAMPSSE_CSV = REPO_ROOT / "output" / "dampsse_default_status.csv"
+DAMPSSE_FALLBACK_CSV = REPO_ROOT / "output" / "dampsse_default_status_fallback.csv"
 OUTPUT_CSV = REPO_ROOT / "output" / "branch_tracking_table.csv"
-
-DEFAULT_IN_SERVICE_DATE = "1990-01-01"
-DEFAULT_RETIREMENT_DATE = "2099-12-31"
 
 
 def main():
     teid_map = pd.read_csv(TEID_MAP_CSV)
     dates = pd.read_csv(DATES_CSV)
     status = pd.read_csv(STATUS_CSV)
+    dampsse = pd.read_csv(DAMPSSE_CSV) if DAMPSSE_CSV.exists() else None
+    dampsse_fallback = pd.read_csv(DAMPSSE_FALLBACK_CSV) if DAMPSSE_FALLBACK_CSV.exists() else None
 
-    base = teid_map[["teid", "branch_id", "FromName", "ToName", "ckt",
-                      "DeviceType", "match_status"]].copy()
+    n_missing_dates = int((~teid_map["teid"].isin(dates["teid"])).sum())
 
-    table = base.merge(
-        dates[["teid", "in_service_date", "retirement_date",
-               "in_service_date_source", "retirement_date_source", "review_flag"]]
-        .rename(columns={"review_flag": "dates_review_flag"}),
-        on="teid", how="left",
+    table = assemble.build_table(
+        teid_map=teid_map,
+        dates=dates,
+        status=status,
+        dampsse=dampsse,
+        dampsse_fallback=dampsse_fallback,
     )
-    table = table.merge(
-        status[["teid", "default_status_majority", "pct_closed", "review_flag"]]
-        .rename(columns={"review_flag": "status_review_flag"}),
-        on="teid", how="left",
-    )
-
-    # DAM PSSE linkage + inService-derived status (per the user: the DAM
-    # hourly model's inService is a better status indicator than the
-    # auction snapshots, and ercotDampsseId completes the identity mapping
-    # alongside teid/branch_id). Two sources, no teid overlap by
-    # construction: the exact-name tier (build_dampsse_default_status.py)
-    # and the fallback tiers (map_unmapped_dampsse_teids.py).
-    if DAMPSSE_CSV.exists():
-        dampsse = pd.read_csv(DAMPSSE_CSV)[
-            ["teid", "ercotDampsseId", "dampsse_default_status", "pct_inservice"]
-        ]
-        fallback_csv = DAMPSSE_CSV.parent / "dampsse_default_status_fallback.csv"
-        if fallback_csv.exists():
-            fb = pd.read_csv(fallback_csv)[
-                ["teid", "ercotDampsseId", "dampsse_default_status", "pct_inservice"]
-            ]
-            dampsse = pd.concat([dampsse, fb], ignore_index=True).drop_duplicates(
-                subset="teid", keep="first"
-            )
-        dampsse = dampsse.rename(columns={"pct_inservice": "dampsse_pct_inservice"})
-        table = table.merge(dampsse, on="teid", how="left")
-    else:
-        table["ercotDampsseId"] = pd.NA
-        table["dampsse_default_status"] = pd.NA
-        table["dampsse_pct_inservice"] = pd.NA
-
-    # Defaults where missing (per the user): a teid with no outage evidence
-    # (e.g. the ~516 unmatched teids, which never get processed by
-    # build_inservice_retirement_dates.py at all) still gets the standard
-    # 1990-01-01 in-service / 2099-12-31 retirement defaults -- this is
-    # NOT confirmed evidence, just "no information either way," same
-    # meaning as everywhere else in the pipeline.
-    n_missing_dates = int(table["in_service_date"].isna().sum())
-    table["in_service_date"] = table["in_service_date"].fillna(DEFAULT_IN_SERVICE_DATE)
-    table["retirement_date"] = table["retirement_date"].fillna(DEFAULT_RETIREMENT_DATE)
-    table["in_service_date_source"] = table["in_service_date_source"].fillna("default")
-    table["retirement_date_source"] = table["retirement_date_source"].fillna("default")
-
-    # implied_default_status is left blank when missing (no branch_id, or
-    # no recent PTOBRANCH coverage) -- Closed/Open is a genuine fact that
-    # shouldn't be guessed at without any evidence, unlike the date
-    # defaults above which have an explicit, stated fallback convention.
-    table = table.rename(columns={
-        "FromName": "from_bus",
-        "ToName": "to_bus",
-        "default_status_majority": "implied_default_status",
-    })
-
-    # Resolved default_status (per the user): DAM PSSE inService dominant
-    # status is the primary indicator; the auction-based value is only a
-    # fallback where DAM has no coverage; blank when neither knows.
-    table["default_status"] = table["dampsse_default_status"].fillna(
-        table["implied_default_status"]
-    )
-    table["default_status_source"] = pd.NA
-    table.loc[table["dampsse_default_status"].notna(), "default_status_source"] = "dampsse_inservice"
-    table.loc[
-        table["dampsse_default_status"].isna() & table["implied_default_status"].notna(),
-        "default_status_source",
-    ] = "auction_fallback"
-
-    column_order = [
-        "teid", "branch_id", "ercotDampsseId", "from_bus", "to_bus", "ckt",
-        "default_status", "default_status_source",
-        "in_service_date", "retirement_date",
-        "DeviceType", "match_status", "in_service_date_source",
-        "retirement_date_source", "dates_review_flag", "status_review_flag",
-        "dampsse_default_status", "dampsse_pct_inservice",
-        "implied_default_status", "pct_closed",
-    ]
-    table = table[column_order]
 
     OUTPUT_CSV.parent.mkdir(parents=True, exist_ok=True)
     table.to_csv(OUTPUT_CSV, index=False)

@@ -43,7 +43,7 @@ from pathlib import Path
 
 import pandas as pd
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_BASE_MODEL_CSV = REPO_ROOT / "branch_tracking/data/base_model.csv"
 TEID_MAP_CSV = (
     REPO_ROOT

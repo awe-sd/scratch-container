@@ -16,7 +16,7 @@ from pathlib import Path
 
 import pandas as pd
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = Path(__file__).resolve().parents[2]
 INPUT_CSV = REPO_ROOT / "output" / "teid_branch_id_map.csv"
 OUTPUT_CSV = REPO_ROOT / "output" / "duplicate_opeqcode_classified.csv"
 

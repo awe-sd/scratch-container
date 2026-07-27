@@ -56,3 +56,9 @@ gis-research/research/**/*.parquet
 gis-research/research/**/*.doc
 gis-research/research/**/*.tmp.*
 gis-research/data/reference/*.parquet
+# git worktrees live here (linked worktrees of this repo; not tracked by master)
+.claude/worktrees/
+
+# agent/execution scratch dirs (leak into the tree; never tracked)
+.superpowers/
+.claire/

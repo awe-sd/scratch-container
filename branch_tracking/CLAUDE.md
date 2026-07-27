@@ -8,6 +8,15 @@ In-progress design for a topology database table that tracks transmission branch
 
 **`teid` is the grain.** It's ERCOT's own authoritative per-component identifier, not a database surrogate — so the tracking table is keyed on `teid`, one row per `teid`, even where the underlying `BRANCH` table has more than one candidate row for it. `branch_id` (SQL Server `BRANCH.branchID`) is just an attribute of that row, not the identity. This was deliberately reconsidered mid-project (an `advisor` consultation suggested keying on `branch_id` instead, reasoning that status/date columns are per-physical-row) and reverted — `branch_id` is a source-system surrogate that can be duplicated, superseded, or occasionally mistagged, so it can't be the grain. See "Known `BRANCH` data-quality issues" below for concrete examples of why.
 
+## Code layout (post phase-1)
+
+- `pipeline/` — 8 pure-logic modules, no DB access: `config`, `naming`, `mapping`, `legs`, `dates`, `dampsse`, `status`, `assemble`. Imported by scripts via a `sys.path` bootstrap (no packaging yet — that's phase 5).
+- `scripts/` — the original entry points are now thin wrappers around `pipeline/`: DB pulls + prints + CSV writes only. Every existing `uv run branch_tracking/scripts/<name>.py` invocation still works unchanged.
+- `scripts/adhoc/` — one-off investigation scripts, out of production scope, moved here verbatim.
+- `tests/` — test files (under `branch_tracking/`), including a golden byte-identity gate (`test_goldens.py`) and fixture-based regression pins for hand-verified marquee teids. Run with `uv run pytest` from the repo root (`testpaths` points here).
+
+Full docs restructure is deferred to phase 5; this section is just an orientation pointer for phase 1.
+
 ## Hard rule — do not touch the live database
 
 This folder only ever produces:

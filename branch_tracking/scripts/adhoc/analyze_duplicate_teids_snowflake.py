@@ -16,7 +16,7 @@ ISOMARKETID_ERCOT = 6
 DB_NAME = "AW"
 SCHEMA = "DBO"
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = Path(__file__).resolve().parents[2]
 OUTPUT_CSV = REPO_ROOT / "output" / "duplicate_teid_groups_snowflake.csv"
 
 
