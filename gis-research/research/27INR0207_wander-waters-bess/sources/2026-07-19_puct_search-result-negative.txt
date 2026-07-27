@@ -1,1 +1,0 @@
-PUCT Interchange search for 'Wander Waters' - HTTP 402/JS required, no IA found as of 2026-07-19. Portal requires JavaScript. All search URL patterns returned 402 or 404 errors.

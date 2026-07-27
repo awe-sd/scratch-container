@@ -62,3 +62,10 @@ gis-research/data/reference/*.parquet
 # agent/execution scratch dirs (leak into the tree; never tracked)
 .superpowers/
 .claire/
+
+# --- gis-research: track only scripts/ + top-level docs; research outputs & data live off-git (2026-07-27) ---
+gis-research/research/
+gis-research/data/
+gis-research/docs/
+gis-research/assets/
+gis-research/output/
