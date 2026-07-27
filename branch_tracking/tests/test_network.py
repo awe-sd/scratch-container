@@ -55,6 +55,8 @@ def test_infer_all_closed_yields_inferred_closed(tests_dir):
     assert row["inferred_status"] == "Closed"
     assert row["source"] == "inferred_transformer_winding"
     assert row["flag"] == ""
+    # only the status-less winding is emitted; known-status siblings never are
+    assert set(out["teid"]) == {"280453"}
 
 
 def test_infer_conflict_flags(tests_dir):

@@ -27,7 +27,7 @@ def build_graph(cim: pd.DataFrame, status: pd.DataFrame | None = None) -> nx.Mul
     status_map = {}
     if status is not None:
         status_map = {
-            str(t).strip(): d
+            _clean(t): _clean(d)
             for t, d in zip(status["teid"], status["default_status"])
         }
 
@@ -98,6 +98,8 @@ def infer_tertiary_status(cim: pd.DataFrame, status: pd.DataFrame) -> pd.DataFra
         if t is not None and d is not None:
             smap[t] = d
 
+    name_map = {d.get("teid"): d.get("name") for _, _, d in build_graph(cim).edges(data=True)}
+
     rows = []
     for grp in transformer_winding_groups(cim):
         teids = grp["winding_teids"]
@@ -122,6 +124,7 @@ def infer_tertiary_status(cim: pd.DataFrame, status: pd.DataFrame) -> pd.DataFra
         for t in missing:
             rows.append({
                 "teid": t,
+                "winding_name": name_map.get(t),
                 "substation": grp["substation"],
                 "star_bus": grp["star_bus"],
                 "ckt": grp["ckt"],
@@ -143,15 +146,15 @@ def infer_tertiary_status(cim: pd.DataFrame, status: pd.DataFrame) -> pd.DataFra
         closed = [r for r in rs if r["inferred_status"] == "Closed"]
         if closed:
             keep = dict(closed[0])
-            keep["sibling_teids"] = ";".join(
-                sorted({s for r in closed for s in (r["sibling_teids"] or "").split(";") if s})
-            )
+            merged_sibs = sorted({s for r in closed for s in (r["sibling_teids"] or "").split(";") if s})
+            keep["sibling_teids"] = ";".join(merged_sibs)
+            keep["sibling_statuses"] = ";".join(smap.get(s, "") for s in merged_sibs)
             deduped.append(keep)
         else:
             deduped.append(rs[0])
     rows = deduped
 
     return pd.DataFrame(rows, columns=[
-        "teid", "substation", "star_bus", "ckt", "inferred_status", "source",
+        "teid", "substation", "star_bus", "ckt", "winding_name", "inferred_status", "source",
         "sibling_teids", "sibling_statuses", "flag",
     ])
