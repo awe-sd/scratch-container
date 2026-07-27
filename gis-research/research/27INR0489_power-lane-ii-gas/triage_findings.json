@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0489",
+  "project": "Power Lane II Gas",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.057,
+    "lon": -96.221,
+    "method": "POI inference — 'future GEUS_STM Substation near Caddo Mills' from queue description",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "3 of 9 grid chips retrieved (auth expired); south Caddo Mills area shows agricultural/suburban land + municipal airport. No laydown, cranes, or industrial staging visible. North row not captured."
+  },
+  "cod_first_look": {
+    "reported": "2027-06-01",
+    "plausible": false,
+    "why": "Pre-IA (FIS not yet approved as of Jun 2026); COD 12 months out with no IA, no abatement, no news, no visible site activity — extremely aggressive for a 104 MW gas reciprocating build"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "TCEQ NSR air permit search for Hunt County gas generation — no permit found during triage (mandatory signal; absence would confirm paper project)",
+    "PUCT Interchange filing search (portal 402-blocked during triage) — try from outside container or with different session; IA existence is the key gate",
+    "Texas SOS entity search for 'Power Lane II Gas LLC' — developer identity unknown, no web presence found",
+    "Re-run imagery with fresh CDSE auth token on full 3×3 grid; focus north row (33.087°N) which was not captured"
+  ],
+  "turns_used": 28
+}

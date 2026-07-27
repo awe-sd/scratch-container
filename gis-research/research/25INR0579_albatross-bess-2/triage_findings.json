@@ -1,0 +1,32 @@
+{
+  "inr": "25INR0579",
+  "project": "Albatross BESS 2",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.437,
+    "lon": -97.408,
+    "method": "POI substation — 'Windsor Switch - 161 McGregor' near McGregor TX",
+    "confidence": "medium"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-02-22",
+    "plausible": true,
+    "why": "FIS approved 2025-10; IA unsigned; 2028 COD gives ~26 months from now — feasible if IA executes in 2026, but prior 2x slippage (2025-06 → 2028-02) and zero construction milestones signal elevated schedule risk"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange — retry when portal accessible; search FilingParty='Albatross BESS 2' and Description='Windsor' to find IA or NTP filing",
+    "Developer identity unknown — Texas SOS search for 'Albatross BESS 2 LLC' may surface parent company; no web presence found",
+    "CDSE imagery blocked this run — rerun T6 with valid CDSE credentials; POI lat/lon 31.437,-97.408 already scouted",
+    "Capacity step-up (107.5→159.6 MW in Nov 2024) may indicate FIS restudy or project consolidation — worth checking FIS report when IA surfaces"
+  ],
+  "turns_used": 28
+}

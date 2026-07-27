@@ -1,0 +1,36 @@
+{
+  "inr": "27INR0181",
+  "project": "Elk Unit 4",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.837,
+    "lon": -101.840,
+    "method": "T3 web sweep — Elk Station, Abernathy TX named by Jacobs Engineering / ercotqueue.com",
+    "confidence": "high"
+  },
+  "construction": {
+    "verdict": "unknown — imagery not run",
+    "evidence": "T6 skipped due to budget constraint; site candidate (Elk Station, Abernathy TX) is well-defined for deep scan imagery"
+  },
+  "cod_first_look": {
+    "reported": "2027-02-28",
+    "plausible": true,
+    "why": "IA signed 2025-12-30, FIS approved 2025-07-16, COD stable 27 months; ~14-month construction window is tight but feasible for CT expansion of existing station"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Imagery at Elk Station Abernathy TX (33.837N, 101.840W) — check for laydown yard, turbine hall, crane activity vs 2023 baseline",
+    "PUCT docket 35077 Item 2388 — retrieve IA PDF parties/POI page and milestone schedule exhibit (PUCT portal blocked during triage, try direct PDF link)",
+    "TCEQ air permit (NSR) — search for Golden Spread Electric Cooperative + Hale County; no air permit = paper project",
+    "Turbine order confirmation — simple-cycle CT, check GE/Siemens/Mitsubishi order via news or SEC disclosures for Golden Spread",
+    "Water supply — verify cooling water source for simple-cycle CT in Hale County (arid High Plains region)"
+  ],
+  "turns_used": 18
+}

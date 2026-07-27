@@ -1,0 +1,318 @@
+# triage-recheck queue v2 -- ambiguous gate() verdicts + v1/v2 paper_kill conflicts (v1 triage flagged deep_scan_recommended, v2 gate says paper_kill)
+#   uv run gis-research/scripts/research_tools/run_batch.py --name recheck-1 --mode triage --inrs-file /workspaces/scratch-workspace/.claude/worktrees/GIS-research/gis-research/research/_reference/triage_recheck_v2.txt --concurrency 3
+20INR0238  # ambiguous     50.1 MW  Voyager Storage
+20INR0245  # ambiguous     50.6 MW  Volunteer Storage
+21INR0260  # ambiguous     50.0 MW  Chariot Storage
+21INR0280  # ambiguous     50.0 MW  Edgewater Storage
+21INR0349  # ambiguous    208.3 MW  Pearl Crescent Solar
+21INR0380  # ambiguous    261.6 MW  Charolais Solar
+21INR0455  # ambiguous    100.0 MW  Independence Trail Storage
+21INR0470  # ambiguous     50.3 MW  Pearl Crescent Storage
+22INR0244  # ambiguous    240.0 MW  Razorbill Solar
+22INR0357  # ambiguous    203.1 MW  Loma Pinta Solar
+22INR0382  # ambiguous    120.0 MW  Razorbill Storage
+22INR0383  # ambiguous    100.5 MW  BRP Musca BESS
+22INR0423  # ambiguous    301.4 MW  Quela BESS
+22INR0473  # ambiguous     37.5 MW  TAIN SOLAR
+22INR0488  # ambiguous     70.4 MW  Venture Hill Storage
+22INR0541  # ambiguous    208.6 MW  ALWEST BESS
+22INR0586  # ambiguous     18.0 MW  Hays Energy Unit 2 Repower
+23INR0006  # ambiguous    255.2 MW  Sierra Madre Solar
+23INR0055  # ambiguous    506.4 MW  Tabor Solar 
+23INR0071  # ambiguous    206.9 MW  BRP Volans BESS
+23INR0074  # ambiguous    121.6 MW  BRP Ampato BESS
+23INR0080  # ambiguous    201.7 MW  Soda Lake Solar 2 SLF
+23INR0143  # ambiguous    205.0 MW  Sepik BESS
+23INR0163  # ambiguous    100.6 MW  Ringtail Ridge Storage
+23INR0168  # ambiguous    150.0 MW  Charolais Storage
+23INR0204  # ambiguous    100.0 MW  GALVANIC BESS
+23INR0205  # ambiguous    100.0 MW  SUNSETTER BESS
+23INR0206  # ambiguous    150.0 MW  PEREGRINE BESS
+23INR0209  # ambiguous    508.1 MW  Outpost Storage
+23INR0222  # ambiguous     81.5 MW  Sunbelt Solar
+23INR0229  # ambiguous    143.0 MW  CH Solterra LLC
+23INR0279  # ambiguous    205.5 MW  Trivor BESS
+23INR0310  # ambiguous    226.3 MW  Dunkel BESS
+23INR0359  # ambiguous    205.5 MW  Crios BESS
+23INR0368  # ambiguous    602.2 MW  Rocking X Solar
+23INR0376  # ambiguous    250.0 MW  Cascade Storage
+23INR0382  # ambiguous    201.2 MW  Outer Loop BESS
+23INR0409  # ambiguous     52.0 MW  Sunbelt Storage
+23INR0456  # ambiguous    103.5 MW  Bronze Quinta Storage
+23INR0466  # ambiguous    221.0 MW  Shoshana Storage 
+23INR0486  # ambiguous     66.0 MW  Lamar Unit 1 Repower
+23INR0503  # ambiguous    100.0 MW  Ardesia Storage
+23INR0794  # ambiguous    140.5 MW  Invictus Energy Storage
+24INR0041  # ambiguous    152.0 MW  Rock N' Roll Solar SLF
+24INR0081  # ambiguous    202.4 MW  SANJAC BESS
+24INR0098  # ambiguous    508.7 MW  Dovetail Storage
+24INR0104  # ambiguous     42.6 MW  Braswell Solar
+24INR0120  # ambiguous     76.4 MW  Eytcheson Ranches Solar
+24INR0121  # ambiguous     75.0 MW  PHOTO BESS 1
+24INR0122  # ambiguous    150.0 MW  PHOTO BESS 2
+24INR0127  # ambiguous     77.6 MW  Naduah Solar
+24INR0131  # ambiguous    201.0 MW  Zelus BESS
+24INR0135  # ambiguous    409.9 MW  BRP Mekong BESS
+24INR0142  # ambiguous    201.0 MW  De Los Santos
+24INR0157  # ambiguous    402.4 MW  Merope BESS
+24INR0174  # ambiguous    125.9 MW  Solar Star North Herty Storage
+24INR0184  # ambiguous    104.9 MW  Slate Solar Project
+24INR0200  # ambiguous    226.8 MW  White Tail Solar
+24INR0234  # ambiguous      0.0 MW  Rock N' Roll Storage SLF
+24INR0235  # ambiguous    206.0 MW  Rock N' Roll Storage Two
+24INR0238  # ambiguous    103.0 MW  Appaloosa Run BESS
+24INR0287  # ambiguous    211.2 MW  Rockridge Solar
+24INR0378  # ambiguous    150.0 MW  Solara BESS 1
+24INR0379  # ambiguous    150.0 MW  Solara BESS 2
+24INR0380  # ambiguous    100.0 MW  Photo BESS 3
+24INR0381  # ambiguous    203.0 MW  Alexandrite Storage
+24INR0383  # ambiguous    205.3 MW  Soda Lake BESS 2 SLF
+24INR0392  # ambiguous    120.0 MW  Riverwalk BESS
+24INR0393  # ambiguous    150.0 MW  ELECTRODE BESS 
+24INR0394  # ambiguous    150.0 MW  CATHODE BESS
+24INR0404  # ambiguous    508.0 MW  Tres Rios Ranch Solar
+24INR0419  # ambiguous    157.7 MW  High Plains Storage
+24INR0459  # ambiguous    201.4 MW  Exodus BESS
+24INR0494  # ambiguous    100.8 MW  Hana Springs BESS
+24INR0516  # ambiguous     75.0 MW  French Riviera Storage
+24INR0532  # ambiguous    100.5 MW  Timber Cove Solar SLF
+24INR0534  # ambiguous    101.2 MW  Lyford Energy
+24INR0538  # ambiguous     84.0 MW  FLIFER Solar I
+24INR0541  # ambiguous    101.2 MW  Kinney County Energy
+24INR0572  # ambiguous    110.0 MW  Megacharge BESS
+24INR0617  # ambiguous    185.6 MW  Serrano Storage
+24INR0763  # ambiguous    307.2 MW  Team Ranch Storage
+25INR0021  # ambiguous     50.3 MW  Findley Solar
+25INR0029  # ambiguous     56.3 MW  Whistle Solar
+25INR0057  # ambiguous    351.9 MW  Sombrero Solar
+25INR0078  # ambiguous    150.0 MW  Peregrine BESS 2
+25INR0082  # ambiguous    105.5 MW  Reis Solar 
+25INR0106  # ambiguous    101.0 MW  Luthor Solar
+25INR0142  # ambiguous    100.6 MW  Sagewood BESS
+25INR0146  # ambiguous    201.1 MW  Blue Heron BESS
+25INR0164  # ambiguous    115.6 MW  Star Dairy Solar
+25INR0192  # ambiguous    100.0 MW  Palmvalley Storage
+25INR0194  # ambiguous    150.0 MW  Photo Solar 1
+25INR0195  # ambiguous    300.0 MW  Photo Solar 2
+25INR0202  # ambiguous    122.6 MW  East West BESS
+25INR0239  # ambiguous    102.2 MW  Big Five Storage
+25INR0241  # ambiguous    132.7 MW  Halcon Storage
+25INR0266  # ambiguous     75.0 MW  East Blackland Battery Storage SLF
+25INR0270  # ambiguous    190.0 MW  Harryoung Solar
+25INR0297  # ambiguous    301.6 MW  RIVERBEND SOLAR SLF
+25INR0310  # ambiguous    100.0 MW  IEP Blackhawk
+25INR0322  # ambiguous      0.0 MW  El Molino Storage SLF
+25INR0342  # ambiguous    150.0 MW  Nickel Spruce Solar
+25INR0379  # ambiguous      0.0 MW  Starr Storage 
+25INR0385  # ambiguous    200.8 MW  Bobcat Cameron BESS
+25INR0390  # ambiguous    150.6 MW  Macho Creek BESS
+25INR0394  # ambiguous     51.9 MW  Orchard Ray BESS
+25INR0395  # ambiguous     78.0 MW  Hinkell BESS
+25INR0396  # ambiguous    150.5 MW  Stewart Grady BESS
+25INR0434  # ambiguous    251.0 MW  Bluegill BESS
+25INR0446  # ambiguous    204.8 MW  Guitar BESS
+25INR0451  # ambiguous    290.0 MW  Tres Rios Ranch BESS
+25INR0489  # ambiguous    150.0 MW  Ranchero BESS
+25INR0491  # ambiguous    201.0 MW  Tarim BESS
+25INR0495  # ambiguous    125.7 MW  Dolomite Storage
+25INR0502  # ambiguous      0.0 MW  Longday BESS SLF
+25INR0515  # ambiguous      0.0 MW  Fagus Storage SLF
+25INR0528  # ambiguous     60.0 MW  Indigo Storage 2
+25INR0529  # ambiguous     60.0 MW  Indigo Storage 3
+25INR0530  # ambiguous     60.0 MW  Indigo Storage 4
+25INR0547  # ambiguous    180.0 MW  Indigo solar 2
+25INR0554  # ambiguous    204.4 MW  Dan Kearney BESS
+25INR0566  # ambiguous    201.0 MW  Copano Bay Energy Storage
+25INR0586  # ambiguous    503.6 MW  Zeus Armstrong Solar
+25INR0587  # ambiguous   1043.1 MW  Zeus Armstrong BESS
+25INR0590  # ambiguous     26.8 MW  Zeus Rusk Solar
+25INR0591  # ambiguous    208.8 MW  Zeus Rusk BESS
+25INR0606  # ambiguous    180.0 MW  Proteus Thornton Ranch Solar SLF
+25INR0607  # ambiguous      0.0 MW  Proteus Thornton Ranch Storage SLF
+25INR0610  # ambiguous     99.5 MW  Adam Bryant BESS
+25INR0621  # ambiguous    130.6 MW  Anagram Solar
+25INR0622  # ambiguous    180.9 MW  Turkey Creek Solar SLF
+25INR0623  # ambiguous      0.0 MW  Turkey Creek Battery Energy Storage System SLF
+25INR0666  # ambiguous    142.9 MW  GIBSON BRANCH BESS
+25INR0693  # ambiguous    153.7 MW  Leon BESS
+25INR0694  # ambiguous     18.0 MW  Hays Energy Unit 1 Repower
+25INR0695  # ambiguous     18.0 MW  Hays Energy Unit 4 Repower
+26INR0008  # ambiguous    213.8 MW  Puerto Del Sol 1
+26INR0019  # ambiguous    347.0 MW  HyFuels Green Lake Solar
+26INR0024  # ambiguous    125.6 MW  Becerra Creek Storage 1
+26INR0028  # ambiguous    301.8 MW  HyFuels Calhoun Solar
+26INR0068  # ambiguous    203.0 MW  Charro Creek Solar 1 SLF
+26INR0069  # ambiguous      0.0 MW  Charro Creek Storage 1 SLF
+26INR0070  # ambiguous    203.0 MW  Charro Creek Solar 2 SLF
+26INR0071  # ambiguous      0.0 MW  Charro Creek Storage 2 SLF
+26INR0072  # ambiguous    203.0 MW  Charro Creek Solar 3 SLF
+26INR0073  # ambiguous      0.0 MW  Charro Creek Storage 3 SLF
+26INR0083  # ambiguous    163.9 MW  Zeppelin Energy Storage
+26INR0089  # ambiguous    508.3 MW  Crescent C BESS
+26INR0134  # ambiguous    101.6 MW  Myers Solar
+26INR0135  # ambiguous     76.0 MW  Myers Storage
+26INR0156  # ambiguous    511.0 MW  Ross Storage
+26INR0176  # ambiguous    153.3 MW  Dionysus Solar
+26INR0177  # ambiguous     77.3 MW  Dionysus Storage
+26INR0185  # ambiguous    200.6 MW  Beitel Energy Storage
+26INR0218  # ambiguous     50.2 MW  Fort Chadbourne Cattle BESS
+26INR0243  # ambiguous    201.3 MW  Caladium BESS
+26INR0259  # ambiguous    200.8 MW  Cottontail Energy Center
+26INR0273  # ambiguous    125.5 MW  Momentum Hazy Jane BESS
+26INR0301  # ambiguous    205.5 MW  Bhalu Storage
+26INR0329  # ambiguous    202.0 MW  Pianissimo BESS II
+26INR0330  # ambiguous    128.2 MW  Alamo City BESS
+26INR0343  # ambiguous    200.8 MW  Stinger Energy Storage
+26INR0356  # ambiguous    125.4 MW  Saluga Ranch Storage
+26INR0370  # ambiguous    750.0 MW  Central Power Station
+26INR0376  # ambiguous    200.6 MW  Blackcat Storage
+26INR0385  # ambiguous    181.5 MW  Nanulak BESS
+26INR0386  # ambiguous    987.3 MW  Zeus Spade Wind 
+26INR0387  # ambiguous    446.3 MW  Zeus Spade BESS
+26INR0394  # ambiguous      0.0 MW  Timber Cove Storage SLF
+26INR0396  # ambiguous    132.0 MW  Kodiak AGR1
+26INR0412  # ambiguous    211.6 MW  BumbleBee Solar
+26INR0427  # ambiguous    200.6 MW  BremRaek BESS
+26INR0485  # ambiguous    204.6 MW  Prospector Energy Storage
+26INR0489  # ambiguous    170.5 MW  Seven Springs Storage
+26INR0498  # ambiguous    120.0 MW  Buckaroo BESS
+26INR0499  # ambiguous    104.0 MW  Mineral Springs BESS
+26INR0502  # ambiguous    104.0 MW  Fudge Ranch BESS
+26INR0503  # ambiguous    256.4 MW  Rex Storage
+26INR0511  # ambiguous     61.6 MW  Little Star Solar
+26INR0529  # ambiguous     43.6 MW  Electric E - West Texas Generation
+26INR0537  # ambiguous    107.0 MW  Comanche Creek generating station
+26INR0545  # ambiguous    522.5 MW  Knight Airport BESS I
+26INR0550  # ambiguous    253.3 MW  Grand Mesa BESS
+26INR0559  # ambiguous    108.7 MW  Georgia-Lynn BESS
+26INR0589  # ambiguous    201.1 MW  Goat Mountain BESS
+26INR0598  # ambiguous    202.0 MW  Tennuto BESS
+26INR0611  # ambiguous    100.7 MW  Goat Mountain BESS 2
+26INR0615  # ambiguous    256.3 MW  Bell County Morgan Storage
+26INR0630  # ambiguous    500.0 MW  Betel Storage I
+26INR0633  # ambiguous    500.0 MW  Betel Storage II
+26INR0635  # ambiguous    500.0 MW  Aquila Solar
+26INR0636  # ambiguous    500.0 MW  Lyra Storage
+26INR0640  # ambiguous    180.0 MW  Amberjack2 BESS
+26INR0654  # ambiguous    123.0 MW  Great Hambino BESS
+26INR0685  # ambiguous    400.0 MW  Exergy Energy West Texas Natural Gas Reciprocating Power I
+26INR0686  # ambiguous   1042.9 MW  Zeus Mitchell BESS II
+26INR0724  # ambiguous     18.2 MW  Monahans Power Gas
+26INR0725  # ambiguous    305.5 MW  PHOTON BESS REPOWERING
+27INR0002  # ambiguous    213.8 MW  Puerto Del Sol 2
+27INR0003  # ambiguous    125.6 MW  Becerra Creek Storage 2
+27INR0009  # ambiguous    100.5 MW  Felix Storage
+27INR0071  # ambiguous   1291.6 MW  Sandow Lakes Energy Station
+27INR0082  # ambiguous    501.9 MW  Orbit Energy Storage
+27INR0090  # ambiguous    155.5 MW  Antonio Road BESS
+27INR0096  # ambiguous    301.4 MW  Rubicon Power BESS
+27INR0142  # ambiguous    279.0 MW  UNICORN BESS
+27INR0143  # ambiguous    251.6 MW  Ogalalla Storage
+27INR0145  # ambiguous    192.1 MW  Steelhead Energy Storage
+27INR0146  # ambiguous    231.6 MW  Larrea Solar
+27INR0147  # ambiguous    193.8 MW  Paloma Energy Center
+27INR0148  # ambiguous     53.6 MW  Paloma Energy Center BESS
+27INR0170  # ambiguous    115.9 MW  Marcos BESS
+27INR0186  # ambiguous    301.9 MW  Silver Dollar Solar
+27INR0187  # ambiguous    153.1 MW  Silver Dollar Storage
+27INR0192  # ambiguous    451.4 MW  Cedar Draw Solar
+27INR0193  # ambiguous    225.7 MW  Cedar Draw BESS
+27INR0195  # ambiguous    417.8 MW  CORRUSCANT BESS
+27INR0206  # ambiguous    188.9 MW  Chacon Creek
+27INR0208  # ambiguous    100.6 MW  Sugarloaf BESS
+27INR0209  # ambiguous    200.7 MW  Goby Energy Center
+27INR0216  # ambiguous    256.1 MW  Champs Elysees BESS
+27INR0217  # ambiguous    124.7 MW  Journey Solar
+27INR0227  # ambiguous    150.0 MW  PALO VERDE BESS
+27INR0232  # ambiguous     93.3 MW  Anawa La Solar
+27INR0233  # ambiguous    103.7 MW  Anawa La BESS
+27INR0236  # ambiguous    103.0 MW  Atticus Energy Storage
+27INR0246  # ambiguous    241.1 MW  Easy Wind Energy Center
+27INR0248  # ambiguous    132.6 MW  Double A Solar SLF
+27INR0249  # ambiguous     91.9 MW  Raghorn Solar SLF
+27INR0251  # ambiguous    122.4 MW  Sayle Solar SLF
+27INR0252  # ambiguous    250.9 MW  Parula Energy Center 
+27INR0257  # ambiguous      0.0 MW  Double A Storage SLF
+27INR0259  # ambiguous      0.0 MW  Raghorn Storage SLF
+27INR0260  # ambiguous    122.3 MW  Sayle Storage SLF
+27INR0261  # ambiguous     60.2 MW  Tipperary Solar
+27INR0274  # ambiguous    104.9 MW  Flying Kite Bess
+27INR0291  # ambiguous    256.1 MW  Nouveau BESS
+27INR0298  # ambiguous     66.5 MW  Symank Solar
+27INR0317  # ambiguous    102.1 MW  Edgewood BESS 1
+27INR0324  # ambiguous    166.0 MW  LONE STAR INDUSTRIAL PARK GAS POWER PROJECT  
+27INR0343  # ambiguous    200.7 MW  Plant Road BESS
+27INR0348  # ambiguous    195.8 MW  Johnson Grass Solar
+27INR0355  # ambiguous    309.5 MW  Gardner Draw Solar
+27INR0364  # ambiguous    150.4 MW  Cashel BESS
+27INR0371  # ambiguous    200.0 MW  Feather Dalea BESS
+27INR0393  # ambiguous    208.1 MW  Ferdinand Grid BESS II
+27INR0398  # ambiguous    207.4 MW  Bravo BESS
+27INR0401  # ambiguous    207.6 MW  Reforzar Bess 2
+27INR0413  # ambiguous    102.1 MW  Edgewood BESS 2
+27INR0418  # ambiguous    102.1 MW  Pioneer Path Energy Storage 1
+27INR0423  # ambiguous    102.1 MW  Pioneer Path Energy Storage 2
+27INR0424  # ambiguous    102.1 MW  Pioneer Path Energy Storage 3
+27INR0425  # ambiguous    102.1 MW  Pioneer Path Energy Storage 4
+27INR0426  # ambiguous    102.1 MW  Prairie Horizon Energy Storage 1
+27INR0427  # ambiguous    102.1 MW  Prairie Horizon Energy Storage 2
+27INR0428  # ambiguous    102.1 MW  Prairie Horizon Energy Storage 3
+27INR0429  # ambiguous    102.1 MW  Prairie Horizon Energy Storage 4
+27INR0432  # ambiguous    111.1 MW  Coyote Ridge BESS
+27INR0466  # ambiguous    206.6 MW  Wolfram Storage
+27INR0489  # ambiguous    104.4 MW  Power Lane II Gas
+27INR0499  # ambiguous    500.0 MW  Draco Solar
+27INR0503  # ambiguous    502.6 MW  Dog Star Solar I
+27INR0504  # ambiguous    502.6 MW  Dog Star Solar II
+27INR0510  # ambiguous    193.8 MW  Pecos Wind
+27INR0524  # ambiguous      0.0 MW  Portland Storage SLF
+27INR0536  # ambiguous    492.8 MW  Siete Wind
+27INR0554  # ambiguous     71.7 MW  Texas Sun Solar
+27INR0557  # ambiguous   1336.5 MW  STP Unit2 High Pressure Turbine Upgrade
+27INR0562  # ambiguous    180.9 MW  Frizzle BESS
+27INR0572  # ambiguous    371.0 MW  Kilby1 Part 1 Small Block Simple Cycle
+27INR0575  # ambiguous   1026.0 MW  Trailblazer Natural Gas Generation Plant
+27INR0576  # ambiguous    262.0 MW  Trailblazer BESS
+27INR0578  # ambiguous    323.0 MW  Trailblazer Solar
+27INR0593  # ambiguous    150.8 MW  Pecan Ridge
+27INR0606  # ambiguous    449.0 MW  Big Watt Mustang Power
+27INR0607  # ambiguous    297.2 MW  Prairie Phoenix Wind
+27INR0611  # ambiguous     79.1 MW  Bodkin BESS
+27INR0614  # ambiguous    200.7 MW  Armadillo Solar Phase 2
+27INR0618  # ambiguous   1000.0 MW  Prairie Point Energy Storage I
+27INR0619  # ambiguous   1000.0 MW  Prairie Point Energy Storage II
+27INR0623  # ambiguous    100.0 MW  Helion Solar
+27INR0624  # ambiguous    100.0 MW  Helion BESS
+27INR0653  # ambiguous    523.0 MW  Rock House Draw Gas
+28INR0030  # ambiguous    251.3 MW  Brela BESS LLC
+28INR0057  # ambiguous    419.7 MW  Windecker
+28INR0068  # ambiguous    112.5 MW  Alpujarra Solar
+28INR0100  # ambiguous    378.0 MW  Digital Ranch Gas 
+28INR0155  # ambiguous    220.3 MW  Coke BESS
+28INR0156  # ambiguous    156.0 MW  Chimney Rock BESS
+28INR0175  # ambiguous    100.6 MW  Mobee Springs BESS
+28INR0219  # ambiguous    113.8 MW  Neptune Gas Generation Plant
+28INR0286  # ambiguous    180.0 MW  2 Cedar Wind
+28INR0327  # ambiguous    407.0 MW  18-BRAVO BESS
+28INR0328  # ambiguous    307.4 MW  18-ALPHA BESS
+28INR0389  # ambiguous    205.3 MW  Tri-X BESS 1 SLF
+28INR0390  # ambiguous    257.5 MW  Horsepower BESS
+28INR0419  # ambiguous     63.8 MW  PRI Solar
+28INR0437  # ambiguous    200.5 MW  Barbara BESS
+28INR0457  # ambiguous    560.0 MW  Kilby1 Part 2 Tier1 BESS
+28INR0459  # ambiguous    950.0 MW  Kilby1 Part 4 Large Block Simple Cycle
+28INR0499  # ambiguous     58.3 MW  Alpha Digital Campus Combined-cycle and Co-located Load
+28INR0503  # ambiguous    251.6 MW  Rancho Grande Solar
+28INR0514  # ambiguous    101.7 MW  Young Road Solar
+28INR0530  # ambiguous      0.0 MW  Uva Creek Gas
+29INR0173  # ambiguous    617.6 MW  Howard Road BESS
+18INR0064  # paper_kill v1-conflict (v1 deep_scan_recommended=true)     -7.2 MW  Silver Star repower
+19INR0103  # paper_kill v1-conflict (v1 deep_scan_recommended=true)    200.0 MW  Rodeo Solar
+20INR0143  # paper_kill v1-conflict (v1 deep_scan_recommended=true)    201.5 MW  Tri-X Solar 1 SLF
+20INR0255  # paper_kill v1-conflict (v1 deep_scan_recommended=true)    515.7 MW  Renegade Project
+21INR0391  # paper_kill v1-conflict (v1 deep_scan_recommended=true)    121.9 MW  Grandslam Solar
+23INR0232  # paper_kill v1-conflict (v1 deep_scan_recommended=true)     33.2 MW  Hoke Storage
+23INR0290  # paper_kill v1-conflict (v1 deep_scan_recommended=true)    255.3 MW  Zeya BESS
+23INR0300  # paper_kill v1-conflict (v1 deep_scan_recommended=true)     17.7 MW  Holzer Solar
+23INR0342  # paper_kill v1-conflict (v1 deep_scan_recommended=true)    144.2 MW  Brizo BESS
+24INR0298  # paper_kill v1-conflict (v1 deep_scan_recommended=true)    181.0 MW  Leighton Solar SLF

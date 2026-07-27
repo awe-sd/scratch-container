@@ -1,0 +1,90 @@
+{
+ "inr": "22INR0239",
+ "project": "Rockefeller Storage",
+ "researched": "2026-07-19",
+ "verdict": "real_early",
+ "verdict_reason": "Signed IA (Sep 2024) with $9M security posted; ENGIE parent confirmed via bank account in IA; compact gravel pad visible in S2 imagery at site matching IA location description",
+ "site": {
+  "lat": 31.044,
+  "lon": -100.548,
+  "method": "IA Exhibit C text ('Schleicher County ~10 miles north of Eldorado') + S2 imagery gravel pad adjacent to Big Hill Station",
+  "confidence": "medium-high",
+  "cross_checks": [
+   "IA POI text 'Big Hill Station' matches queue POI '76003 Big Hill 345kV'",
+   "10-mile north of Eldorado (30.860N, -100.601W) + eastward offset toward Big Hill places site ~31.044N, -100.548W",
+   "S2 pad footprint (~15 ac) consistent with 207 MW BESS specification"
+  ]
+ },
+ "project_area": {
+  "acres": 15,
+  "source": "S2 imagery pad footprint estimate",
+  "artifact": "imagery/key/s2_2026-07-01.png"
+ },
+ "ownership": {
+  "spv": "Mittel Rockefeller Storage LLC",
+  "developer": "ENGIE North America / ENGIE IR Holdings LLC",
+  "epc": null,
+  "offtaker": null,
+  "financing_status": "No public announcement; ENGIE corporate guaranty structure permitted by IA"
+ },
+ "construction": {
+  "verdict": "pad_grading",
+  "first_activity_seen": "\u22642025-12",
+  "latest_imagery": "2026-07",
+  "detail": "Compact white gravel pad (~15 ac) confirmed Dec 2025 and Jul 2026; no BESS container rows visible at 10 m/px; pre-Dec 2025 imagery unavailable due to CDSE credential expiry"
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "ERCOT Standard Generation Interconnection Agreement",
+    "signed": "2024-09-23",
+    "financial_security": "$9,000,000 LC or corporate guaranty to ETT",
+    "artifact": "sources/2026-07-19_puct_35077_IA.pdf"
+   }
+  ],
+  "in_service": "~2027-04-23 (31 months from 2024-09-23 execution)",
+  "trial_operation": "~2027-05-23 (32 months)",
+  "scheduled_cod": "~2027-07-23 (34 months)",
+  "schedule_type": "relative",
+  "note": "Schedule is months from conditions-precedent satisfaction; Generator provided authorization at execution (2024-09-23), so clock started then. No amendments filed as of 2026-07-19."
+ },
+ "cod_assessment": {
+  "reported": "2027-06-01",
+  "independent": "2027-Q3/Q4",
+  "drift_risk": "medium-high",
+  "drift_reason": "4 prior COD slips (2022-12 \u2192 2023-02 \u2192 2024-12 \u2192 2025-12 \u2192 2027-06); 3-yr capacity gap Oct 2021-Jul 2024 indicating prior withdrawal; 'Meets all 6.9' milestone not achieved; pad present but no container deployment confirmed; reported COD (2027-06) is 1 month ahead of contractual (~2027-07)",
+  "cod_drift_history": "4 changes across 72 snapshots; first in queue 2020-07"
+ },
+ "sources": [
+  {
+   "type": "signed_ia",
+   "desc": "ERCOT Standard Generation Interconnection Agreement, ETT + Mittel Rockefeller Storage LLC, signed 2024-09-23, filed PUCT Project 35077 Item 1936",
+   "artifact": "sources/2026-07-19_puct_35077_IA.pdf",
+   "url": "https://interchange.puc.texas.gov/Documents/35077_1936_1430773.PDF"
+  },
+  {
+   "type": "imagery",
+   "desc": "Sentinel-2 true color 2025-12, 1.5km buffer, gravel pad confirmed",
+   "artifact": "imagery/key/s2_2025-12-01.png"
+  },
+  {
+   "type": "imagery",
+   "desc": "Sentinel-2 true color 2026-07, 1km tight, same pad",
+   "artifact": "imagery/key/s2_2026-07-01.png"
+  },
+  {
+   "type": "queue_timeline",
+   "desc": "Queue history timeline from local parquet",
+   "artifact": "timeline.md"
+  }
+ ],
+ "could_not_determine": [
+  "Exact Rockefeller Substation coordinates (not in IA; Google pin 429 rate-limited)",
+  "Construction start date (CDSE credentials expired; pre-Dec 2025 imagery unavailable)",
+  "BESS container deployment status (S2 10m ceiling; pad visible but containers unconfirmable)",
+  "Land tenure / parcel IDs (Schleicher CAD portal JS-gated)",
+  "Financing close and PPA (no public announcement found)",
+  "TX SOS / Comptroller LLC filings (CAPTCHA-gated)"
+ ],
+ "real_project_verdict": "real_early"
+}

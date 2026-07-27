@@ -1,0 +1,35 @@
+{
+  "inr": "28INR0389",
+  "project": "Tri-X BESS 1 SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.42,
+    "lon": -102.38,
+    "method": "geographic name inference (Soda Lake playa, Crane County)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "2/9 chips returned; visible chip shows arid scrubland, no BESS pad or container rows; substation not precisely located"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": true,
+    "why": "FIS not yet approved, IA not signed — 18-month runway to COD is thin but not impossible if FIS clears in H2 2026; zero COD drift in 11 months suggests developer hasn't slipped yet"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Soda Lake #76026 substation precise coordinates via ERCOT CRR/nodal map or EIA-860 — imagery was shot at wrong/approximate location",
+    "PUCT Interchange was fully blocked (402); try authenticated session to search for IA filing under 'Tri-X BESS' or 'Soda Lake'",
+    "Texas SOS SOSDirect entity search for 'Tri-X BESS 1 SLF LLC' to identify developer and principal backers",
+    "FIS approval is the critical next milestone — monitor queue for fisApproved date; if approved, escalate to deep scan"
+  ],
+  "turns_used": 28
+}

@@ -1,0 +1,71 @@
+{
+ "inr": "25INR0247",
+ "generated": "2026-07-20",
+ "project": "Bluebonnet Prairie Wind",
+ "county": "Navarro",
+ "fuel": "WIN",
+ "technology": "WT",
+ "capacity_mw": 173.0,
+ "queue_cod": "2027-07-15",
+ "milestones": {
+  "screeningStudyComplete": "2023-03-06",
+  "fisApproved": null,
+  "iaSigned": "2025-07-03",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "ok",
+  "plant_id": 68082,
+  "entity": "Infigen Asset Management LLC",
+  "planned_cod": "2027-12",
+  "cod_delta_quarters": 1.7,
+  "dropped_scope": null,
+  "coords": [
+   32.14386,
+   -96.30097
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Leeward Asset Management, LLC",
+    "detail": "plant=Bluebonnet Prairie Wind 170.0MW (U) Under construction, less than or equ @32.14386,-96.30097 planned=2027-12"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Bluebonnet Prairie Wind, LLC",
+    "detail": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Bluebonnet Prair"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "faa",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "eia_under_construction",
+  "verified_ia_on_disk",
+  "financial_security_posted"
+ ],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 14.61,
+  "reason": "reality signal"
+ }
+}

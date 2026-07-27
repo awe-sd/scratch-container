@@ -1,0 +1,61 @@
+{
+ "inr": "26INR0327",
+ "generated": "2026-07-20",
+ "project": "Sleepy Hollow BESS",
+ "county": "Throckmorton",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 123.1,
+ "queue_cod": "2028-02-22",
+ "milestones": {
+  "screeningStudyComplete": "2024-02-27",
+  "fisApproved": "2025-07-21",
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 4,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Azure Sky Wind Project, LLC",
+    "detail": "plant=Azure Sky Wind Project, LLC Hybrid 120.0MW (OP) Operating @33.16914,-99.26601 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "fis_approved"
+ ],
+ "paper_score": 8,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 8,
+   "detail": "4 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 6.43,
+  "reason": "reality signal"
+ }
+}

@@ -1,0 +1,36 @@
+{
+  "inr": "22INR0552",
+  "project": "Sowers Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.6736,
+    "lon": -96.3358,
+    "method": "POI name 'Rose Hill_RC Sub 138kV' geo-resolved to Rose Hill community, Kaufman Co TX near Terrell",
+    "confidence": "low-medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE 401 — no imagery retrieved; no construction news in web sweep"
+  },
+  "cod_first_look": {
+    "reported": "2027-07-01",
+    "plausible": true,
+    "why": "IA signed 2022-04, 9 COD slips over 5 years but still pre-COD; no FIS approval yet — tight but possible if procurement underway"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA schedule exhibit: PUCT Control 35077 item 1409 + item 1543 — portal 402-blocked during triage; try authenticated PUCT session or request PDF directly to extract milestone dates and CEII status",
+    "Parent developer: 'Belltown Power Texas' named in IA filing — research company, portfolio, financing history",
+    "FIS not approved: verify whether FIS waived or still pending — key milestone gap that may explain COD drift",
+    "Imagery: CDSE credentials blocked; re-run with valid creds at 32.6736, -96.3358 (Rose Hill sub area) for current + 2023 baseline to check bare-ground vs pad activity",
+    "Delivery pins: gmaps 429 during triage — retry to get precise site coordinates before imagery rerun"
+  ],
+  "turns_used": 24
+}

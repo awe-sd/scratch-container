@@ -1,0 +1,36 @@
+{
+  "inr": "26INR0201",
+  "project": "Rock Rose BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.47,
+    "lon": -95.77,
+    "method": "POI inference — Whaley 345kV is on the W.A. Parish–Whaley 345kV line; Parish station known near Thompsons, Fort Bend Co.",
+    "confidence": "low-medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials not configured (401); no pins; news sources describe project as pre-NTP at time of sale (~Oct 2025). No construction start date in queue."
+  },
+  "cod_first_look": {
+    "reported": "2027-03-19",
+    "plausible": true,
+    "why": "IA signed 2024-06-15, all 6.9 milestones met 2026-05-26, sold as fully-developed pre-NTP Oct 2025 to Greenflash; 12-18 month BESS build from NTP aligns with Q1 2027 COD if Greenflash moves quickly"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA document retrieval via PUCT Interchange (blocked 402 during triage) — get schedule exhibit and parties page; confirm POI and NTP milestone dates",
+    "Substation pin: locate Whaley 345kV coords precisely (ERCOT transmission maps, CenterPoint GIS) then run tight imagery chips",
+    "JETI abatement check: Fort Bend CAD and TX Comptroller JETI registry for Rock Rose Energy Storage LLC — post-2022 BESS projects often file under new owner",
+    "Greenflash Infrastructure NTP/construction status: any public announcement post-Oct 2025 sale indicating NTP issued or construction start",
+    "LLC name correction: queue uses 'Rock Rose BESS' but PR confirms 'Rock Rose Energy Storage LLC' — check if PUCT/ERCOT filings are under either name"
+  ],
+  "turns_used": 26
+}

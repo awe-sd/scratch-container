@@ -1,0 +1,788 @@
+{
+  "project": "Monarch Creek Wind (21INR0263)",
+  "developer": "EDF Renewables",
+  "llc": "Monarch Creek Wind LLC (formerly King Creek Wind Farm 3 LLC)",
+  "ercot_inr": "21INR0263",
+  "capacity_mw": 283.4,
+  "faa_asn_range": "2024-WTW-8086 through 2024-WTW-8171",
+  "filing_date": "2024-08-05",
+  "status": "Determined - No Hazard",
+  "turbine_height_agl_ft": 599,
+  "note": "80 primary positions (incl. 14 'b' alternates) + 6 'Alt' positions = 86 total FAA filings. Spans Throckmorton and Haskell Counties. The FAA public API does not expose applicant name for these cases; attribution is based on location (Throckmorton/Haskell counties, TX), filing date (Aug 2024), and project count matching 21INR0263.",
+  "turbines": [
+    {
+      "asn": "2024-WTW-8086-OE",
+      "county": "Haskell",
+      "turbine_id": "1b",
+      "lat": 33.23751389,
+      "lon": -99.50835833,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8087-OE",
+      "county": "Haskell",
+      "turbine_id": "2b",
+      "lat": 33.23646667,
+      "lon": -99.49860278,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8088-OE",
+      "county": "Haskell",
+      "turbine_id": "3",
+      "lat": 33.23885556,
+      "lon": -99.493875,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8089-OE",
+      "county": "Throckmorton",
+      "turbine_id": "4b",
+      "lat": 33.23662222,
+      "lon": -99.43723889,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8090-OE",
+      "county": "Haskell",
+      "turbine_id": "5b",
+      "lat": 33.22891111,
+      "lon": -99.50635278,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8091-OE",
+      "county": "Haskell",
+      "turbine_id": "6b",
+      "lat": 33.22907222,
+      "lon": -99.50144444,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8092-OE",
+      "county": "Haskell",
+      "turbine_id": "7",
+      "lat": 33.22939444,
+      "lon": -99.49540278,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8093-OE",
+      "county": "Haskell",
+      "turbine_id": "8",
+      "lat": 33.23335833,
+      "lon": -99.48980278,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8094-OE",
+      "county": "Haskell",
+      "turbine_id": "9",
+      "lat": 33.23303611,
+      "lon": -99.48481389,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8095-OE",
+      "county": "Haskell",
+      "turbine_id": "10b",
+      "lat": 33.23481111,
+      "lon": -99.48002222,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8096-OE",
+      "county": "Haskell",
+      "turbine_id": "11",
+      "lat": 33.22733056,
+      "lon": -99.47586389,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8097-OE",
+      "county": "Throckmorton",
+      "turbine_id": "12",
+      "lat": 33.22883056,
+      "lon": -99.46696111,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8098-OE",
+      "county": "Throckmorton",
+      "turbine_id": "13b",
+      "lat": 33.22783611,
+      "lon": -99.45984167,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8099-OE",
+      "county": "Throckmorton",
+      "turbine_id": "14b",
+      "lat": 33.22930278,
+      "lon": -99.44188889,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8100-OE",
+      "county": "Throckmorton",
+      "turbine_id": "15",
+      "lat": 33.23188056,
+      "lon": -99.43233056,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8101-OE",
+      "county": "Haskell",
+      "turbine_id": "16",
+      "lat": 33.22194167,
+      "lon": -99.52116111,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8102-OE",
+      "county": "Haskell",
+      "turbine_id": "17",
+      "lat": 33.22202222,
+      "lon": -99.51546944,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8103-OE",
+      "county": "Haskell",
+      "turbine_id": "18",
+      "lat": 33.22256944,
+      "lon": -99.51022778,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8104-OE",
+      "county": "Haskell",
+      "turbine_id": "19",
+      "lat": 33.22061667,
+      "lon": -99.50381667,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8105-OE",
+      "county": "Haskell",
+      "turbine_id": "20",
+      "lat": 33.22059444,
+      "lon": -99.49811944,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8106-OE",
+      "county": "Haskell",
+      "turbine_id": "21",
+      "lat": 33.22007222,
+      "lon": -99.49325556,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8107-OE",
+      "county": "Haskell",
+      "turbine_id": "22",
+      "lat": 33.22216944,
+      "lon": -99.48651944,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8108-OE",
+      "county": "Haskell",
+      "turbine_id": "23",
+      "lat": 33.21923056,
+      "lon": -99.47876111,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8109-OE",
+      "county": "Throckmorton",
+      "turbine_id": "24",
+      "lat": 33.22016111,
+      "lon": -99.46909167,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8110-OE",
+      "county": "Throckmorton",
+      "turbine_id": "25",
+      "lat": 33.22010278,
+      "lon": -99.46340278,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8111-OE",
+      "county": "Throckmorton",
+      "turbine_id": "26b",
+      "lat": 33.22223056,
+      "lon": -99.45212778,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8112-OE",
+      "county": "Throckmorton",
+      "turbine_id": "27b",
+      "lat": 33.22158333,
+      "lon": -99.44635833,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8113-OE",
+      "county": "Throckmorton",
+      "turbine_id": "28",
+      "lat": 33.21955833,
+      "lon": -99.44107778,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8114-OE",
+      "county": "Throckmorton",
+      "turbine_id": "29",
+      "lat": 33.22263056,
+      "lon": -99.43633889,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8115-OE",
+      "county": "Throckmorton",
+      "turbine_id": "30",
+      "lat": 33.21640833,
+      "lon": -99.43251667,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8116-OE",
+      "county": "Throckmorton",
+      "turbine_id": "31b",
+      "lat": 33.21717222,
+      "lon": -99.42532222,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8117-OE",
+      "county": "Throckmorton",
+      "turbine_id": "32",
+      "lat": 33.21568056,
+      "lon": -99.42018056,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8118-OE",
+      "county": "Haskell",
+      "turbine_id": "33",
+      "lat": 33.21466111,
+      "lon": -99.52489167,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8119-OE",
+      "county": "Haskell",
+      "turbine_id": "34",
+      "lat": 33.21447778,
+      "lon": -99.51263333,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8120-OE",
+      "county": "Haskell",
+      "turbine_id": "35b",
+      "lat": 33.20980833,
+      "lon": -99.49489722,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8121-OE",
+      "county": "Haskell",
+      "turbine_id": "36",
+      "lat": 33.21379722,
+      "lon": -99.48957778,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8122-OE",
+      "county": "Haskell",
+      "turbine_id": "37",
+      "lat": 33.21098333,
+      "lon": -99.47432778,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8123-OE",
+      "county": "Throckmorton",
+      "turbine_id": "38",
+      "lat": 33.21065278,
+      "lon": -99.46651667,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8124-OE",
+      "county": "Throckmorton",
+      "turbine_id": "39",
+      "lat": 33.210425,
+      "lon": -99.46100278,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8125-OE",
+      "county": "Throckmorton",
+      "turbine_id": "40",
+      "lat": 33.21040833,
+      "lon": -99.45576111,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8126-OE",
+      "county": "Throckmorton",
+      "turbine_id": "41",
+      "lat": 33.21223333,
+      "lon": -99.44408056,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8127-OE",
+      "county": "Throckmorton",
+      "turbine_id": "42b",
+      "lat": 33.20910833,
+      "lon": -99.43879444,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8128-OE",
+      "county": "Throckmorton",
+      "turbine_id": "43b",
+      "lat": 33.20715278,
+      "lon": -99.43344167,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8129-OE",
+      "county": "Haskell",
+      "turbine_id": "44",
+      "lat": 33.21219167,
+      "lon": -99.50623611,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8130-OE",
+      "county": "Haskell",
+      "turbine_id": "45",
+      "lat": 33.20021111,
+      "lon": -99.49809444,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8131-OE",
+      "county": "Haskell",
+      "turbine_id": "46",
+      "lat": 33.20513333,
+      "lon": -99.486575,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8132-OE",
+      "county": "Haskell",
+      "turbine_id": "47",
+      "lat": 33.20113333,
+      "lon": -99.48068611,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8133-OE",
+      "county": "Haskell",
+      "turbine_id": "48",
+      "lat": 33.20139722,
+      "lon": -99.47555278,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8134-OE",
+      "county": "Throckmorton",
+      "turbine_id": "49",
+      "lat": 33.20095556,
+      "lon": -99.46660833,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8135-OE",
+      "county": "Throckmorton",
+      "turbine_id": "50",
+      "lat": 33.20085,
+      "lon": -99.46104722,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8136-OE",
+      "county": "Throckmorton",
+      "turbine_id": "51",
+      "lat": 33.20072222,
+      "lon": -99.45558333,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8137-OE",
+      "county": "Throckmorton",
+      "turbine_id": "52",
+      "lat": 33.20206389,
+      "lon": -99.44776667,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8138-OE",
+      "county": "Throckmorton",
+      "turbine_id": "53",
+      "lat": 33.20181111,
+      "lon": -99.44215278,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8139-OE",
+      "county": "Throckmorton",
+      "turbine_id": "54",
+      "lat": 33.19932778,
+      "lon": -99.43666668,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8140-OE",
+      "county": "Throckmorton",
+      "turbine_id": "55",
+      "lat": 33.19873056,
+      "lon": -99.43095278,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8141-OE",
+      "county": "Throckmorton",
+      "turbine_id": "56",
+      "lat": 33.204625,
+      "lon": -99.42629722,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8142-OE",
+      "county": "Throckmorton",
+      "turbine_id": "57",
+      "lat": 33.20624722,
+      "lon": -99.42133056,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8143-OE",
+      "county": "Throckmorton",
+      "turbine_id": "58",
+      "lat": 33.20924444,
+      "lon": -99.41501389,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8144-OE",
+      "county": "Throckmorton",
+      "turbine_id": "59",
+      "lat": 33.20926111,
+      "lon": -99.410075,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8145-OE",
+      "county": "Throckmorton",
+      "turbine_id": "60",
+      "lat": 33.19366111,
+      "lon": -99.42156389,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8146-OE",
+      "county": "Throckmorton",
+      "turbine_id": "61",
+      "lat": 33.19891111,
+      "lon": -99.41590833,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8147-OE",
+      "county": "Throckmorton",
+      "turbine_id": "62",
+      "lat": 33.19850278,
+      "lon": -99.41016944,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8148-OE",
+      "county": "Throckmorton",
+      "turbine_id": "63",
+      "lat": 33.20109722,
+      "lon": -99.40362778,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8149-OE",
+      "county": "Haskell",
+      "turbine_id": "64",
+      "lat": 33.19146389,
+      "lon": -99.50134722,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8150-OE",
+      "county": "Haskell",
+      "turbine_id": "65",
+      "lat": 33.18681111,
+      "lon": -99.49635556,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8151-OE",
+      "county": "Haskell",
+      "turbine_id": "66",
+      "lat": 33.18534722,
+      "lon": -99.49095,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8152-OE",
+      "county": "Haskell",
+      "turbine_id": "67",
+      "lat": 33.18498889,
+      "lon": -99.48610556,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8153-OE",
+      "county": "Haskell",
+      "turbine_id": "68",
+      "lat": 33.18546667,
+      "lon": -99.48125556,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8154-OE",
+      "county": "Haskell",
+      "turbine_id": "69",
+      "lat": 33.18593889,
+      "lon": -99.47642222,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8155-OE",
+      "county": "Throckmorton",
+      "turbine_id": "70",
+      "lat": 33.18641389,
+      "lon": -99.46914444,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8156-OE",
+      "county": "Throckmorton",
+      "turbine_id": "71",
+      "lat": 33.18657778,
+      "lon": -99.46331667,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8157-OE",
+      "county": "Throckmorton",
+      "turbine_id": "72",
+      "lat": 33.19169167,
+      "lon": -99.44614444,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8158-OE",
+      "county": "Throckmorton",
+      "turbine_id": "73",
+      "lat": 33.18889722,
+      "lon": -99.43849167,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8159-OE",
+      "county": "Throckmorton",
+      "turbine_id": "74",
+      "lat": 33.18825,
+      "lon": -99.43166667,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8160-OE",
+      "county": "Throckmorton",
+      "turbine_id": "75",
+      "lat": 33.18666944,
+      "lon": -99.42588889,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8161-OE",
+      "county": "Throckmorton",
+      "turbine_id": "76",
+      "lat": 33.18728333,
+      "lon": -99.41523889,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8162-OE",
+      "county": "Throckmorton",
+      "turbine_id": "77",
+      "lat": 33.18566944,
+      "lon": -99.41045556,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8163-OE",
+      "county": "Throckmorton",
+      "turbine_id": "78",
+      "lat": 33.18509167,
+      "lon": -99.40455,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8164-OE",
+      "county": "Throckmorton",
+      "turbine_id": "79",
+      "lat": 33.18493333,
+      "lon": -99.39965,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8165-OE",
+      "county": "Throckmorton",
+      "turbine_id": "80",
+      "lat": 33.18457778,
+      "lon": -99.39475833,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8166-OE",
+      "county": "Throckmorton",
+      "turbine_id": "Alt1",
+      "lat": 33.21981111,
+      "lon": -99.457125,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8167-OE",
+      "county": "Haskell",
+      "turbine_id": "Alt2",
+      "lat": 33.198775,
+      "lon": -99.49186944,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8168-OE",
+      "county": "Haskell",
+      "turbine_id": "Alt3b",
+      "lat": 33.20486944,
+      "lon": -99.50324167,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8169-OE",
+      "county": "Throckmorton",
+      "turbine_id": "Alt4",
+      "lat": 33.18648889,
+      "lon": -99.45788333,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8170-OE",
+      "county": "Haskell",
+      "turbine_id": "Alt5",
+      "lat": 33.21029444,
+      "lon": -99.48104444,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    },
+    {
+      "asn": "2024-WTW-8171-OE",
+      "county": "Throckmorton",
+      "turbine_id": "Alt6",
+      "lat": 33.21231667,
+      "lon": -99.449875,
+      "status": "No Hazard",
+      "filed": "2024-08-05"
+    }
+  ]
+}

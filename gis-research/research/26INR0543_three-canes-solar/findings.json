@@ -1,0 +1,251 @@
+{
+ "inr": "26INR0543",
+ "project": "Three Canes Solar",
+ "research_date": "2026-07-19",
+ "verdict": "real_early",
+ "verdict_confidence": "medium",
+ "verdict_basis": "Solar Proponent LLC (credible EnCap-backed ERCOT developer) signed IA with Oncor Nov 2024; meets 6.9(1) Feb 2025; no construction visible in satellite imagery consistent with pre-construction stage",
+ "construction_stage": "pre_construction",
+ "construction_first_activity_date": null,
+ "construction_imagery_notes": "Multiple 6km Sentinel-2 chips across Navarro County 2026-06-15 show no grading, racking, or site preparation. COD has slipped 3x; FIS not yet approved as of Jun 2026.",
+ "site": {
+  "lat": 31.964,
+  "lon": -96.518,
+  "method": "OSM Overpass substation lookup \u2014 Navarro Switching Station (NextEra, 345kV) is nearest named 345kV node matching ERCOT POI description 'Big Brown\u201368091 Navarro circuit'; project will interconnect at or near this substation",
+  "confidence": "low_medium",
+  "cross_checks": [
+   "POI: 'Tap 345kV 3381 Big Brown \u2013 68091 Navarro circuit' \u2014 node 68091 = Navarro, consistent with Navarro Switching Station",
+   "County: Navarro County \u2014 substation at 31.964N, 96.518W is in western Navarro County, consistent",
+   "No parcel, delivery pin, or IA exhibit available to triangulate"
+  ],
+  "not_obtainable": [
+   "Exact parcel(s) \u2014 Navarro CAD JS-gated; PUCT IA with site map inaccessible (JS-rendered, HTTP 402)",
+   "Delivery pin \u2014 Google Maps 429 rate-limited throughout research"
+  ]
+ },
+ "developer": {
+  "spv": "Three Canes Solar, LLC",
+  "spv_tx_tax_id": "32095228121",
+  "spv_formed": "2024-05-23",
+  "developer": "Solar Proponent LLC",
+  "developer_address": "9111 Jollyville Road Suite 115, Austin TX 78759",
+  "developer_phone": "(512) 637-3900",
+  "parent_chain": [
+   {
+    "entity": "Three Canes Solar, LLC",
+    "role": "SPV",
+    "source": "TX Comptroller entity search (triage)"
+   },
+   {
+    "entity": "Solar Proponent LLC",
+    "role": "Developer / project sponsor",
+    "source": "sources/2026-07-19_solarproponent_homepage.html"
+   },
+   {
+    "entity": "EnCap Investments LP",
+    "role": "Majority backer (Energy Transition Fund)",
+    "source": "sources/2026-07-19_solarproponent_homepage.html"
+   },
+   {
+    "entity": "Yorktown Partners",
+    "role": "Co-investor",
+    "source": "sources/2026-07-19_solarproponent_homepage.html"
+   },
+   {
+    "entity": "Mercuria Energy",
+    "role": "Co-investor",
+    "source": "sources/2026-07-19_solarproponent_homepage.html"
+   }
+  ],
+  "epc": null,
+  "offtaker": null,
+  "financing_status": "private equity backed; no debt/PPA financing found"
+ },
+ "land": {
+  "tenure": "unknown",
+  "abatement": null,
+  "cad_parcels": "not found \u2014 Navarro CAD JS-gated, no API access; 0 parcels confirmed absent",
+  "project_area": {
+   "acres": null,
+   "source": null,
+   "artifact": null,
+   "notes": "334.5 MW solar implies ~1,500\u20132,500 acres; no abatement, IA exhibit, or CAD parcel confirming exact acreage found"
+  }
+ },
+ "interconnection": {
+  "poi_description": "Tap 345kV 3381 Big Brown \u2013 68091 Navarro circuit",
+  "transmission_provider": "Oncor",
+  "ia_signed_date": "2024-11-27",
+  "ia_puct_docket": "35077-2019",
+  "ia_puct_filing_date": "2024-12-20",
+  "ia_artifact": null,
+  "ia_notes": "PUCT Interchange JS-rendered; IA PDF not retrieved. Docket 35077-2019 confirmed in triage.",
+  "contractual_schedule": {
+   "documents": [
+    {
+     "doc": "Oncor Standard Gen IA (docket 35077-2019)",
+     "signed": "2024-11-27",
+     "financial_security": null,
+     "artifact": null,
+     "notes": "Filed PUCT 2024-12-20; PDF not accessible \u2014 PUCT Interchange requires JavaScript rendering"
+    }
+   ],
+   "milestones_from_ia": null,
+   "notes": "Contractual schedule not retrievable \u2014 IA PDF inaccessible"
+  }
+ },
+ "queue_history": {
+  "first_snapshot": "2024-07-01",
+  "ia_signed_first_seen": "2024-12-01",
+  "meets_691_first_seen": "2025-02-01",
+  "fis_approved": null,
+  "cod_drift_changes": 3,
+  "cod_history": [
+   {
+    "cod": "2026-12-31",
+    "held_from": "2024-07-01",
+    "until": "2025-03-01"
+   },
+   {
+    "cod": "2027-03-10",
+    "held_from": "2025-04-01",
+    "until": "2025-08-01"
+   },
+   {
+    "cod": "2027-07-31",
+    "held_from": "2025-09-01",
+    "until": "2026-05-01"
+   },
+   {
+    "cod": "2028-02-01",
+    "held_from": "2026-06-01",
+    "until": "2026-06-01"
+   }
+  ],
+  "total_cod_slip_months": 14,
+  "timeline_artifact": "timeline.md"
+ },
+ "imagery": {
+  "chips": [
+   {
+    "file": "imagery/s2_navarro_sw_2026-06-15.png",
+    "date": "2026-06-15",
+    "center_lat": 31.964,
+    "center_lon": -96.518,
+    "buffer_km": 6,
+    "observation": "undisturbed agricultural land; Navarro Switching Station visible at center"
+   },
+   {
+    "file": "imagery/grid/north.png",
+    "date": "2026-06-15",
+    "center_lat": 32.014,
+    "center_lon": -96.518,
+    "buffer_km": 3,
+    "observation": "no activity"
+   },
+   {
+    "file": "imagery/grid/south.png",
+    "date": "2026-06-15",
+    "center_lat": 31.914,
+    "center_lon": -96.518,
+    "buffer_km": 3,
+    "observation": "no activity"
+   },
+   {
+    "file": "imagery/grid/east.png",
+    "date": "2026-06-15",
+    "center_lat": 31.964,
+    "center_lon": -96.468,
+    "buffer_km": 3,
+    "observation": "no activity"
+   },
+   {
+    "file": "imagery/grid/west.png",
+    "date": "2026-06-15",
+    "center_lat": 31.964,
+    "center_lon": -96.568,
+    "buffer_km": 3,
+    "observation": "no activity"
+   },
+   {
+    "file": "imagery/corridor_east.png",
+    "date": "2026-06-15",
+    "center_lat": 31.93,
+    "center_lon": -96.18,
+    "buffer_km": 6,
+    "observation": "eastern Navarro corridor \u2014 no solar activity"
+   },
+   {
+    "file": "imagery/corridor_mid.png",
+    "date": "2026-06-15",
+    "center_lat": 31.89,
+    "center_lon": -96.29,
+    "buffer_km": 6,
+    "observation": "central Navarro corridor \u2014 no solar activity"
+   },
+   {
+    "file": "imagery/nw_navarro.png",
+    "date": "2026-06-15",
+    "center_lat": 31.97,
+    "center_lon": -96.4,
+    "buffer_km": 6,
+    "observation": "NW Navarro \u2014 no solar activity"
+   },
+   {
+    "file": "imagery/sc_navarro.png",
+    "date": "2026-06-15",
+    "center_lat": 31.85,
+    "center_lon": -96.35,
+    "buffer_km": 6,
+    "observation": "SC Navarro \u2014 agricultural cleared patches (plowed fields), not solar"
+   }
+  ],
+  "timelapse": null,
+  "satellite_verdict": "no_activity",
+  "satellite_verdict_notes": "Consistent with pre-construction stage. IA signed Nov 2024, FIS not yet approved. No grading, clearing, or racking visible across 9 chips covering ~12x10 km of Navarro County."
+ },
+ "cod_assessment": {
+  "reported_cod": "2028-02-01",
+  "independent_cod_estimate": "2029-Q1",
+  "drift_risk": "high",
+  "drift_risk_basis": [
+   "FIS not approved as of Jun 2026 \u2014 unusual given IA signed Nov 2024; FIS is a prerequisite for construction financing",
+   "COD has slipped 14 months across 3 changes since original 2026-12-31 target",
+   "No construction visible in satellite imagery as of Jul 2026",
+   "Even if FIS approved imminently, 18-month construction leaves COD at earliest ~early 2028; any further study delay pushes to 2029",
+   "Solar Proponent's 300+ MW scale + ERCOT interconnection queue congestion are additional headwinds"
+  ],
+  "positive_factors": [
+   "IA signed (hard milestone)",
+   "Meets 6.9(1) (financial security milestone passed)",
+   "Credible developer: Solar Proponent / EnCap \u2014 active ERCOT pipeline"
+  ]
+ },
+ "sources": [
+  {
+   "file": "sources/2026-07-19_solarproponent_homepage.html",
+   "url": "https://www.solarproponent.com/",
+   "purpose": "Developer identity, backers"
+  },
+  {
+   "file": "sources/2026-07-19_osm_overpass_navarro_substations.json",
+   "url": "https://overpass-api.de/api/interpreter",
+   "purpose": "Navarro Switching Station location (345kV, NextEra)"
+  },
+  {
+   "file": "timeline.md",
+   "url": null,
+   "purpose": "Queue COD drift history from local parquet"
+  }
+ ],
+ "could_not_determine": [
+  "Exact site lat/lon \u2014 no parcel, delivery pin, or IA exhibit accessible",
+  "Project area (acres) \u2014 no abatement application, CAD parcel, or IA exhibit retrieved",
+  "Contractual milestone schedule \u2014 IA PDF inaccessible (PUCT Interchange JS-rendered)",
+  "Financial security amount \u2014 IA not retrieved",
+  "EPC contractor identity",
+  "PPA/offtaker",
+  "Reason FIS not yet approved despite IA signed 8 months prior"
+ ],
+ "real_project_verdict": "real_early"
+}

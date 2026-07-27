@@ -1,0 +1,28 @@
+{
+  "inr": "25INR0052",
+  "project": "SanPat Solar II",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-07-22",
+    "plausible": true,
+    "why": "IA signed Oct-2023, 6.9(1) met Feb-2025, no construction reported — ~12 months to COD is tight but possible if NTP imminent"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA confirmed in queue data (iaSigned=2023-10-18) but PUCT Interchange blocked (402) — retrieve IA PDF for milestone schedule and developer identity",
+    "Developer/sponsor identity unknown — no web presence found; check TX SOS entity search for 'SanPat Solar II LLC' to identify parent company",
+    "FIS not approved despite IA signed 2.5 years ago — unusual; deep scan should resolve whether FIS is waived, pending, or a data gap",
+    "POI substation location (Angstrom 8249 / Naismith 8659) unknown from public sources — ERCOT MIS bus data or AEP transmission map needed to anchor site for imagery",
+    "COD drifted 5 times (+2.5 years) but 6.9(1) met — assess whether NTP has been issued and construction is imminent or project is still pre-NTP"
+  ],
+  "turns_used": 28
+}

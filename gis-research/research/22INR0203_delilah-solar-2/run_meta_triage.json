@@ -1,0 +1,21 @@
+{
+ "mode": "triage",
+ "model": "us.anthropic.claude-sonnet-4-6",
+ "audit": {
+  "assistant_turns": 56,
+  "image_reads": 0,
+  "tool_counts": {
+   "Bash": 8,
+   "Glob": 1,
+   "Read": 1,
+   "Write": 3,
+   "ToolSearch": 1,
+   "Edit": 5,
+   "WebFetch": 19
+  },
+  "violations": []
+ },
+ "fresh_tokens": 79067,
+ "token_budget": 100000,
+ "exit_code": -9
+}

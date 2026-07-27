@@ -1,0 +1,65 @@
+{
+ "inr": "27INR0049",
+ "generated": "2026-07-20",
+ "project": "Darkwood Solar",
+ "county": "Comanche",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 150.76,
+ "queue_cod": "2027-09-20",
+ "milestones": {
+  "screeningStudyComplete": "2023-09-01",
+  "fisApproved": "2025-07-29",
+  "iaSigned": "2025-11-05",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "ok",
+  "plant_id": 68478,
+  "entity": "Mustang Creek Solar I, LLC",
+  "planned_cod": "2027-10",
+  "cod_delta_quarters": 0.3,
+  "dropped_scope": null,
+  "coords": [
+   31.92853,
+   -98.4241
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Mustang Creek Solar I, LLC",
+    "detail": "plant=Darkwood Solar 150.7MW (L) Regulatory approvals pending. Not un @31.92853,-98.4241 planned=2027-10"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Mustang Creek Solar, LLC",
+    "detail": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Mustang Creek So"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 10.73,
+  "reason": "reality signal"
+ }
+}

@@ -1,0 +1,45 @@
+SYSTEMATIC REGISTRY / GEO SWEEP — Juno 3 Solar (26INR0621) — 2026-07-21
+======================================================================
+
+### spv.py resolve 26INR0621
+26INR0621  'Juno 3 Solar'  Borden Co  500.0 MW  SOL/PV
+no systematic candidate. Remaining sources are fuel-specific registries (FAA OE/AAA sponsors for wind, TCEQ permit applicants for thermal, Ch.313/JETI applicants for solar) and TX SOS/Comptroller entity search — record whatever SPV you find in triage_findings.json spv_name.
+
+### ch313.py resolve 26INR0621
+provenance: Ch.313 ch313_agreements.json (fetched 2026-07-20, 740 rows) + JETI jeti_applications.json (fetched 2026-07-20, 38 rows). Source: comptroller.texas.gov
+26INR0621  'Juno 3 Solar'  Borden Co  500.0 MW  SOL/PV
+NEGATIVE EVIDENCE: no Ch.313 agreement or JETI application matches 'Juno 3 Solar'. For a pre-2023 solar/storage SPV this suggests no value-limitation filing (or an unrecognized legal name) — record as negative evidence and try spv.py / TX SOS entity search next.
+
+### ch312.py resolve 26INR0621 (Borden County abatement registry)
+provenance: Ch.312 open-data — 1398 live agreements + 888 post-abatement reports + 170 Wayback-recovered purged rows. CAD-submitted, annual cycle — a MISS is weak negative evidence (see docstring)
+26INR0621  'Juno 3 Solar'  Borden Co  500.0 MW  SOL/PV
+4 candidate(s) (0 by name, rest county-only):
+  [Ch.312 #000003676] owner: Oxbow Ranch | zone: BNB Oxbow Solar Reinvestment Zone | lead unit: Borden County (Borden CAD) | Active | expires 2028-04-22
+  [Ch.312 #000004302] owner: Youngblood Ranch & Coleman Ranch & Miller Ranch | zone: Borden County BNB Long Draw Solar | lead unit: Borden County (Borden CAD) | Active | expires 2030-12-31
+  [Ch.312 #000004303] owner: Coleman Ranch | zone: Borden County IP Juno Reinvestment Zone | lead unit: Borden County (Borden CAD) | Active | expires 2030-12-31
+  [Ch.312 #000015389] owner: Borden County Battery Storage System LLC | zone: Dairy Bank | lead unit: Borden County (Borden CAD) | Active | expires 2034-12-31
+
+search UI (same data): https://comptroller.texas.gov/economy/development/search-tools/ch312/abatements-simple.php
+verify a name hit as the SPV: puct.py match 26INR0621 --key "<owner>" --dir <sources/>  (INR-in-PDF = confirmed).
+
+  INTERPRETATION: 4 county-only hits, 0 by name. None is Juno 3.
+    #4303 'IP Juno Reinvestment Zone' (Coleman Ranch) = the OPERATING Juno Solar (IP Juno LLC).
+    #4302 'BNB Long Draw Solar' (Youngblood/Coleman/Miller Ranch) = a separate solar project in the Long Draw cluster.
+    #3676 'BNB Oxbow Solar' (Oxbow Ranch) = a SEPARATE solar project, NOT related to Juno 3.
+    #15389 'Dairy Bank' (Borden County Battery Storage System LLC) = the operating Borden County BESS.
+  Juno 3 has NO Ch.312/Ch.313/JETI abatement on record (weak negative; abatements are CAD-filed annually with gaps).
+
+### eia_history.py 26INR0621
+  26INR0621 'Juno 3 Solar': NOT in EIA-860M (TX slice) — negative evidence, no false-bind to any operating neighbor.
+
+### puct.py match 26INR0621 (by project name)
+  0 candidates by name ('Juno 3 Solar','Juno 3'). The IA exists but is filed under the SPV codename.
+  RESOLVED: Juno 3's IA is docket 35077-2184 — 'GIA between WETT and SE DC DevCo, LLC for the Juno Solar 3 Project'
+  (found via sibling Antila run; copied to this sources/ dir as 2026-07-21_puct_35077-2184_juno-solar-3-IA.pdf).
+
+### gmaps.py places (Google Places text search)
+  'Juno Solar Borden County Texas'  -> Juno Solar SB Energy | 32.767155, -101.650809 | O'Donnell TX
+  'Buck Canyon substation Borden'    -> Briscoe Substation (Silverton, 34.39N) = MISS (no Buck Canyon in Places; it is a NEW substation)
+  'Long Draw substation Borden'      -> Long Draw Substation | 32.719910, -101.635602 | Vealmoore Rd, Gail TX
+  'Antila Solar Borden County Texas' -> NO RESULTS
+  NOTE: gmaps 'Juno Solar SB Energy' pin (32.7672,-101.6508) == Antila findings site anchor; matches CCN Fig 1-1 collector-station location.

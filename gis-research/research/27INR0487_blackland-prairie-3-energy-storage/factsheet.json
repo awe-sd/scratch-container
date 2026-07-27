@@ -1,0 +1,58 @@
+{
+ "inr": "27INR0487",
+ "generated": "2026-07-20",
+ "project": "Blackland Prairie 3 Energy Storage",
+ "county": "Travis",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 102.1,
+ "queue_cod": "2027-12-01",
+ "milestones": {
+  "screeningStudyComplete": "2025-06-09",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "ok",
+  "plant_id": 65695,
+  "entity": "Key Capture Energy",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   30.41217,
+   -97.57405
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Key Capture Energy",
+    "detail": "plant=TX12 Silicon Hill Storage 100.0MW (OP) Operating @30.41217,-97.57405 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_operating_date"
+ ],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 6.22,
+  "reason": "reality signal"
+ }
+}

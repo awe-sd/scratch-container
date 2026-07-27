@@ -1,0 +1,34 @@
+{
+  "inr": "27INR0139",
+  "project": "Gatsby Energy Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 30.66,
+    "lon": -101.80,
+    "method": "POI infrastructure — Fort Lancaster 138 kV Substation (PSSE Bus #76579), Sheffield TX area",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no evidence",
+    "evidence": "2/9 CDSE chips returned (API failures); chips cover lat 30.69 (north of substation), no gravel pad or container rows visible. Fort Lancaster substation area (lat ~30.63-30.66) not imaged due to CDSE disconnections."
+  },
+  "cod_first_look": {
+    "reported": "2027-03-31",
+    "plausible": false,
+    "why": "No IA signed after 2.5 years in queue; FIS never approved; ercotqueue.com rates build-chance at 5% — COD in <9 months from triage is implausible without major milestones outstanding"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Verify whether an IA has been submitted to PUCT Interchange (PUCT blocked during triage — retry with session-authenticated browser)",
+    "Confirm Doral Renewables LLC as developer via Texas SOS entity search for 'Gatsby Energy Storage LLC'",
+    "Re-run imagery for lat 30.63-30.66 when CDSE API is stable to cover Fort Lancaster substation site directly"
+  ],
+  "turns_used": 28
+}

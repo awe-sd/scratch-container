@@ -1,0 +1,36 @@
+{
+  "inr": "21INR0444",
+  "project": "Long Point Storage",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.47,
+    "lon": -95.73,
+    "method": "Ch.313 Damon ISD reference — paired solar+BESS in Damon ISD, Brazoria County",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "inconclusive",
+    "evidence": "3x3 Sentinel-2 grid around Damon TX (July 2026) heavily cloud-obscured; rectangular light structures visible at 29.44,-95.76 but confidence too low to call. No BESS containers or solar arrays confirmed."
+  },
+  "cod_first_look": {
+    "reported": "2027-12-30",
+    "plausible": true,
+    "why": "IA signed Aug 2023; 8 COD drifts over 5 years; no construction milestones yet but battery build is fast (12-18 months), so 2027-12 is achievable if ground breaks by early 2026"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT IA document — IA signed 2023-08-28 per queue data but portal was 402-blocked; retrieve the actual IA PDF for milestone schedule (ERCOT study number, POI, guaranteed COD, liquidated damages)",
+    "Ch.313 app #1898 (Damon ISD) — main application PDF 403-blocked; supplement PDF binary; extract developer parent company name, site legal description, and any parcel map",
+    "Imagery re-run on a clear day — cloud cover July 2026 blocked construction read; try October-November 2026 or use Planet/Google to confirm BESS pad at 29.44,-95.76",
+    "Developer identity — LLC registered to 4300 Speedway #4617 Austin TX (likely registered-agent address); trace parent company (NextEra, Invenergy, or independent developer)",
+    "No FIS approved and no 6.9 milestones after 3+ years post-IA — investigate whether study is stalled or if CEII redactions are hiding progress"
+  ],
+  "turns_used": 22
+}

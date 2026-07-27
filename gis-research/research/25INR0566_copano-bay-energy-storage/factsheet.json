@@ -1,0 +1,79 @@
+{
+ "inr": "25INR0566",
+ "generated": "2026-07-20",
+ "project": "Copano Bay Energy Storage",
+ "county": "Brazoria",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 201.04,
+ "queue_cod": "2027-12-31",
+ "milestones": {
+  "screeningStudyComplete": "2024-01-22",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ambiguous",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Engie North America",
+    "detail": "plant=Castor 200.0MW (U) Under construction, less than or equ @29.15028,-95.65118 planned=2026-06"
+   },
+   {
+    "source": "eia860m/Planned",
+    "entity": "Engie North America",
+    "detail": "plant=Desna 200.0MW (U) Under construction, less than or equ @29.0633,-95.73543 planned=2026-06"
+   },
+   {
+    "source": "eia860m/Planned",
+    "entity": "Nexus Renewables U.S. Inc.",
+    "detail": "plant=Bell Creek BESS LLC 200.9MW (P) Planned for installation, but regula @29.13752,-95.66797 planned=2028-11"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [],
+ "paper_score": 26,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 26 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

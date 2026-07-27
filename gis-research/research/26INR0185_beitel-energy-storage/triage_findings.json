@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0185",
+  "project": "Beitel Energy Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.20,
+    "lon": -98.20,
+    "method": "POI name 'Jack County 138kV' + OSM Jacksboro substation reference (~5 mi SW of Jacksboro TX)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "3x3 Sentinel-2 contact sheet (2026-06-01) over Jacksboro substation area: uniformly rural/agricultural, no gravel pad or container rows"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": false,
+    "why": "No IA, no FIS approval, no construction started — 18 months to COD with zero milestones achieved is implausible without acceleration"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm developer identity: 'Brazos Energy Storage LLC' surfaced only from trackers — verify via TX SOS or PUCT filing party when portal accessible",
+    "Resolve 'Jack County Energy Storage LLC' Ch.312 abatement (April 2026) — different SPV or unrelated project? Could link to exact site parcel",
+    "PUCT Interchange blocked during triage (402) — retry IA search under both 'Beitel Energy Storage' and 'Brazos Energy Storage'",
+    "Re-image with tighter buffer once exact substation coordinates confirmed (current site candidate is low-confidence)"
+  ],
+  "turns_used": 28
+}

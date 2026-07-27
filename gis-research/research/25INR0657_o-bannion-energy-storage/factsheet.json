@@ -1,0 +1,57 @@
+{
+ "inr": "25INR0657",
+ "generated": "2026-07-20",
+ "project": "O'Bannion Energy Storage",
+ "county": "Jack",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 306.4,
+ "queue_cod": "2028-04-21",
+ "milestones": {
+  "screeningStudyComplete": "2024-08-05",
+  "fisApproved": "2025-05-02",
+  "iaSigned": "2025-12-05",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "puct-index",
+    "entity": "O'Bannion Energy Storage, LLC",
+    "detail": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and O'Bannion Energy"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 14.53,
+  "reason": "reality signal"
+ }
+}

@@ -1,0 +1,28 @@
+{
+  "inr": "25INR0235",
+  "project": "Austin Bayou Storage I",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-06-01",
+    "plausible": true,
+    "why": "IA signed Feb 2025; 3 prior COD slips (~2.3yr total); FIS not approved; ~28mo to reported COD is tight but battery builds are fast once FIS clears"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Control No. 35077 (IA with CenterPoint) — retrieve via authenticated PUCT Interchange session for milestone schedule and POI/substation coordinates",
+    "Savana 345kV substation (CenterPoint ID 43180) coordinates — needed to unlock T6 imagery; check HIFLD/CISA dataset or ERCOT RPG planning maps",
+    "Developer Austin Bayou Solar LLC — Texas SOS registration, principals, track record; sibling projects 25INR0236/0237 (Storage II/III) and 25INR0102 (502 MW solar) may share same site parcel",
+    "FIS approval status — not yet granted per queue; monitor if it clears (gate before construction)",
+    "JETI registry search for Brazoria County — Ch.313 expired but JETI is active successor; thin but worth one check"
+  ],
+  "turns_used": 22
+}

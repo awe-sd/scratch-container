@@ -1,0 +1,36 @@
+{
+  "inr": "23INR0061",
+  "project": "Noria Solar DCC",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 27.52,
+    "lon": -97.86,
+    "method": "web sweep — T3 sources place project south of Kingsville, Kleberg County",
+    "confidence": "low — county-level only, no pin, no parcel"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth blocked (403); no queue construction dates; no imagery retrieved"
+  },
+  "cod_first_look": {
+    "reported": "2028-04-21",
+    "plausible": true,
+    "why": "5 COD drifts totaling ~5 years; IA signed 2022 but Talen Energy bankruptcy likely caused delays; no construction dates; 2028 is optimistic given no 'meets all 6.9' milestone"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Confirm county discrepancy: queue says Nueces, T3 sources say Kleberg/Kingsville — pull IA or parcel records to pin exact site",
+    "PUCT Interchange: IA was signed 2022-10-12 but portal was 402-blocked — retry and extract milestone schedule exhibit",
+    "Talen Energy bankruptcy context: project emerged from Ch.11 2023 — confirm current owner/developer (may have sold or transferred the SPV)",
+    "TX Comptroller PDF mentioned in T3 for Noria Hondo Solar (~2000 acres, Kleberg): locate and confirm parcel coordinates",
+    "CDSE imagery once credentials refreshed — low-confidence site at 27.52N 97.86W needs verification before any real chip run"
+  ],
+  "turns_used": 28
+}

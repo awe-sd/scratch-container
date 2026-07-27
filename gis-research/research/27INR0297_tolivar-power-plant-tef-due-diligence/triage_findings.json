@@ -1,0 +1,36 @@
+{
+  "inr": "27INR0297",
+  "project": "Tolivar Power Plant (TEF- Due Diligence)",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.38,
+    "lon": -103.44,
+    "method": "POI name '38043 COWPEN' matched to TNMP 138kV COWPEN substation via DDG search (~1.1 mi NE of FM 1450/CR 107, SE of Pecos TX)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "cdse.py returned 401/403 on all chips — CDSE credentials not configured; no imagery obtained"
+  },
+  "cod_first_look": {
+    "reported": "2027-05-06",
+    "plausible": true,
+    "why": "IA signed 2025-07-01, meets-all-6.9 2026-06-16 (just achieved); ~11 months to COD is aggressive for 225 MW gas reciprocating but milestone pace is real; no construction start reported yet raises doubt"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "TCEQ air permit (NSR): mandatory for gas reciprocating — not found via public search; TCEQ portal session-blocked; pull directly from TCEQ STEERS/Air Permits database",
+    "TEF docket: project name flags '(TEF- Due Diligence)' but no PUCT TEF docket number surfaced; search PUCT interchange by party 'Pecos Power Plant LLC' and description 'Tolivar'",
+    "Imagery at COWPEN substation site (~31.38,-103.44): CDSE creds down this session; re-run grid when credentials restored; gas reciprocating buildout should be visible at 10m if underway",
+    "Phase 2 linkage: 28INR0413 (~225 MW) is paired — confirm shared developer and whether TEF application covers both phases",
+    "Construction start milestone absent: queue shows no reportedConstructionStart as of 2026-06-01; verify if permitting + site prep has begun given COD 2027-05"
+  ],
+  "turns_used": 28
+}

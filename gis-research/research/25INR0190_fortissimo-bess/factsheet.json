@@ -1,0 +1,55 @@
+{
+ "inr": "25INR0190",
+ "generated": "2026-07-20",
+ "project": "Fortissimo BESS",
+ "county": "Montague",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 202.65,
+ "queue_cod": "2028-04-24",
+ "milestones": {
+  "screeningStudyComplete": "2023-01-13",
+  "fisApproved": "2024-09-12",
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": false,
+  "candidates": []
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "fis_approved"
+ ],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "spv_unresolvable",
+   "points": 10,
+   "detail": "no SPV via spv.py or any registry"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 9.57,
+  "reason": "reality signal"
+ }
+}

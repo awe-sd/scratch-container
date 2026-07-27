@@ -1,0 +1,36 @@
+{
+  "inr": "27INR0321",
+  "project": "Rock Island Generating (TEF -Due Diligence)",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.66,
+    "lon": -96.38,
+    "method": "POI name 'Rock Island 138 kV' → Rock Island community, Colorado County, TX",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery auth failed (401); no chips retrieved"
+  },
+  "cod_first_look": {
+    "reported": "2027-06-01",
+    "plausible": true,
+    "why": "IA signed Mar 2025, 6.9(1) met Aug 2025, ~26 months to COD for a 122 MW reciprocating gas plant is tight but achievable if permits in hand"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "TEF docket: PUCT Interchange search for 'Kerrville Public Utility Board' or 'Rock Island Generating' — TEF due-diligence status is the primary valuation question",
+    "TCEQ NSR air permit: search TCEQ air permit database for Colorado County gas facility; no permit = paper project flag",
+    "IA PDF: PUCT Interchange filing party 'Rock Island Generating' or 'Kerrville Public Utility Board' for IA document and milestone-schedule exhibit",
+    "Imagery: fix CDSE creds and run 3x3 chip grid at 29.66N, -96.38W (Rock Island community) — construction not yet confirmed",
+    "Developer verification: Kerrville Public Utility Board Public Facility Corporation — confirm entity type (Texas public utility), board decisions, bond/financing approvals for a new build"
+  ],
+  "turns_used": 22
+}

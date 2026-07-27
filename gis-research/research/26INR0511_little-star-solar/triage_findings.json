@@ -1,0 +1,33 @@
+{
+  "inr": "26INR0511",
+  "project": "Little Star Solar",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.840,
+    "lon": -97.160,
+    "method": "POI name (CISTERN 345kV) → Cistern community, Fayette County",
+    "confidence": "low — POI-only, no corroborating pin or abatement map; project filed as Bastrop County but Cistern community is in Fayette County"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": true,
+    "why": "COD slipped once (2026→2027) but FIS not yet approved — another slip possible; 18-month runway with no IA is tight but not impossible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange manual search for IA or FIS study filings — portal blocked during triage (402)",
+    "Confirm site: Cistern 345kV substation exact coordinates + verify Bastrop vs Fayette County boundary for site",
+    "Imagery run centered on Cistern substation once coordinates confirmed",
+    "TX SOS entity search for 'Little Star Solar LLC' to identify developer/parent company",
+    "gmaps.py retry when rate limit clears — no pin found this pass"
+  ],
+  "turns_used": 28
+}

@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0487",
+  "project": "Blackland Prairie 3 Energy Storage",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 30.2513,
+    "lon": -97.4873,
+    "method": "POI substation lookup — Austrop Substation (LCRA 345/138kV, OSM W127245722), east Travis County near Hornsby Bend",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery blocked (401 — no credentials configured); no other visual evidence obtained"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": true,
+    "why": "Pre-IA project registered Feb 2025; FIS still pending; 18-month battery build window means 2027-12 is plausible only if IA signed in early 2026 — slippage risk is high given COD already drifted once"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Verify whether Jupiter Power filed an IA with ERCOT — search PUCT Interchange with authenticated browser session for 'Balcones Ridge Resiliency III' or '27INR0487'",
+    "Check Austin City Council records for Balcones Ridge Resiliency battery tolling agreement details (base entity vs III) to confirm site address and MW",
+    "Configure CDSE credentials and run 3x3 imagery grid at 30.2513/-97.4873 (±0.03°) to check for grading/pad activity near Austrop substation",
+    "Confirm developer identity: Jupiter Power relationship to Balcones Ridge Resiliency III LLC — check TX SOS SOSDirect for registered agent and formation docs"
+  ],
+  "turns_used": 22
+}

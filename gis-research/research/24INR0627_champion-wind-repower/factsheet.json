@@ -1,0 +1,63 @@
+{
+ "inr": "24INR0627",
+ "generated": "2026-07-20",
+ "project": "Champion Wind Repower",
+ "county": "Nolan",
+ "fuel": "WIN",
+ "technology": "WT",
+ "capacity_mw": 0.31,
+ "queue_cod": "2026-08-01",
+ "milestones": {
+  "screeningStudyComplete": "2023-12-21",
+  "fisApproved": "2024-04-26",
+  "iaSigned": "2007-01-19",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "puct-index",
+    "entity": "Airtricity Champion Wind Farm LLC",
+    "detail": "Amendment No. 1 to the Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Ai"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "faa",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 0.31,
+  "reason": "reality signal"
+ }
+}

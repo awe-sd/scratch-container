@@ -1,0 +1,28 @@
+{
+  "inr": "27INR0500",
+  "project": "Antila Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-11-30",
+    "plausible": true,
+    "why": "IA signed 2025-08-13, 500 MW solar, stable COD across all 15 snapshots — 27-month runway from IA to COD is tight but not impossible for utility-scale solar"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Retrieve IA document from PUCT Interchange (portal blocked during triage) — schedule exhibit and POI details",
+    "Identify Buck Canyon 345kV substation coordinates via ERCOT network map to enable imagery targeting",
+    "Developer/owner identity unknown — no public web presence; try TX SOS entity search for 'Antila Solar LLC' and FERC eLibrary",
+    "FIS not approved despite IA signed — verify whether this is normal sequencing in ERCOT or a data anomaly worth flagging",
+    "No 6.9 milestones achieved — track whether financial security/NTP is imminent given IA signed 11 months ago"
+  ],
+  "turns_used": 22
+}

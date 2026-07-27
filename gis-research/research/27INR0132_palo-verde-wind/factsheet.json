@@ -1,0 +1,70 @@
+{
+ "inr": "27INR0132",
+ "generated": "2026-07-20",
+ "project": "Palo Verde Wind",
+ "county": "San Patricio",
+ "fuel": "WIN",
+ "technology": "WT",
+ "capacity_mw": 297.5,
+ "queue_cod": "2027-09-02",
+ "milestones": {
+  "screeningStudyComplete": "2024-07-05",
+  "fisApproved": null,
+  "iaSigned": "2025-12-19",
+  "financial_security": "No"
+ },
+ "cod_slips": 0,
+ "eia": {
+  "status": "ok",
+  "plant_id": 61343,
+  "entity": "Iberdrola Renewables Inc",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   28.17018,
+   -97.81751
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Avangrid Power LLC",
+    "detail": "plant=Karankawa Wind LLC 307.1MW (OP) Operating @28.17018,-97.81751 planned="
+   },
+   {
+    "source": "puct-index",
+    "entity": "RWE CLEAN ENERGY DEVELOPMENT, LLC",
+    "detail": "ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN AEP TEXAS INC. AND RWE CLEAN ENERGY DEVELOPMENT, L"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "faa",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "verified_ia_on_disk"
+ ],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 22.12,
+  "reason": "reality signal"
+ }
+}

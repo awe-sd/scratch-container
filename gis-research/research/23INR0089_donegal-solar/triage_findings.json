@@ -1,0 +1,35 @@
+{
+  "inr": "23INR0089",
+  "project": "Donegal Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.66,
+    "lon": -100.79,
+    "method": "POI infrastructure (Cottonwood 345kV substation, Dickens TX, Silverton-Cottonwood CREZ line); web-confirmed in Dickens County",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "no activity detected",
+    "evidence": "2/9 grid chips retrieved (CDSE connection errors on remainder); both available chips (33.63/-100.82, 33.69/-100.79) show undeveloped rangeland/agriculture, no panel arrays or grading as of 2026-06-01"
+  },
+  "cod_first_look": {
+    "reported": "2028-03-01",
+    "plausible": true,
+    "why": "IA signed 2022-07-25 and meets 6.9(1) 2025-05-14, but FIS and all-6.9 not yet achieved; 4 COD slips over 4.5 years; no construction reported; 2028-03 is tight but not impossible if NTP received in H2 2026"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA filing (portal was 402 this run) — retrieve schedule exhibit to confirm NTP conditions and milestone dates",
+    "Wider imagery sweep across Dickens County with reliable CDSE session — site candidate is POI-derived only, actual plant location unknown",
+    "FIS status — queue shows FIS approved=null despite IA signed; unusual; check if project is on a special studies track",
+    "Developer identity — no name surfaces in web sweep; LLC owner/developer could unlock permit/SEC filing trail"
+  ],
+  "turns_used": 22
+}

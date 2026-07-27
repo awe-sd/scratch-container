@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cumulus Grid BESS — research brief</title><style>
+:root{--bg:#fff;--sur:#f6f7f9;--ink:#191c20;--ink2:#555b64;--mut:#899;--line:#e1e5ea;
+--good:#0a7d33;--warn:#b45309;--bad:#b91c1c;--acc:#2563eb}
+@media(prefers-color-scheme:dark){:root{--bg:#14171c;--sur:#1c2027;--ink:#eceff3;
+--ink2:#b3bac4;--mut:#7d8590;--line:#2a2f38;--good:#34d399;--warn:#fbbf24;--bad:#f87171;--acc:#6ea8fe}}
+*{box-sizing:border-box}body{margin:0 auto;max-width:1080px;padding:20px;background:var(--bg);
+color:var(--ink);font:14px/1.45 -apple-system,"Segoe UI",Roboto,sans-serif}
+h1{font-size:19px;margin:0}h2{font-size:13px;text-transform:uppercase;letter-spacing:.05em;
+color:var(--mut);margin:22px 0 8px}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-weight:700;font-size:12px}
+.b-good{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+.b-warn{background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--warn)}
+.b-bad{background:color-mix(in srgb,var(--bad) 15%,transparent);color:var(--bad)}
+.hdr{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.sub{color:var(--ink2);font-size:13px;margin:4px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.card{background:var(--sur);border:1px solid var(--line);border-radius:9px;padding:10px 13px}
+.card .k{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+.card .v{font-weight:650;margin-top:2px}.card .v small{font-weight:400;color:var(--ink2)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:5px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:13px}
+th{color:var(--mut);font-size:11px;text-transform:uppercase}
+.imgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.imgs figure{margin:0}.imgs img{width:100%;border-radius:8px;border:1px solid var(--line)}
+.imgs figcaption{font-size:12px;color:var(--ink2);margin-top:2px}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.small{font-size:12px;color:var(--ink2)}
+</style></head><body>
+<div class="hdr"><h1>Cumulus Grid BESS <span class="small">(24INR0178)</span></h1>
+<span class="badge b-warn">real_early</span>
+<span class="badge b-bad">COD drift: high</span></div>
+<div class="sub">researched 2026-07-19 ·
+<a href="https://www.google.com/maps/@32.444,-97.073,5000m/data=!3m1!1e3" target="_blank">site 32.444, -97.073</a> (POI substation name → OSM lookup → confirmed in tile imagery, high conf) ·
+<a href="dossier.md">dossier</a> · <a href="log.md">log</a> · <a href="timeline.md">timeline</a></div>
+<div class="grid">
+<div class="card"><div class="k">Construction</div><div class="v">clearing
+<small>since 2025</small></div></div>
+<div class="card"><div class="k">COD reported → independent</div>
+<div class="v">2028-01-01 → 2028-Q1</div></div>
+<div class="card"><div class="k">Owner chain</div><div class="v">Cumulus Grid BESS, LLC</div></div>
+<div class="card"><div class="k">Land</div><div class="v">unknown</div></div>
+
+</div>
+
+<h2>Site imagery (Sentinel-2, key dates)</h2><div class="imgs"><figure><a href="imagery/s2_2024-01-01.png"><img src="imagery/s2_2024-01-01.png" loading="lazy"></a><figcaption>2024-01-01</figcaption></figure><figure><a href="imagery/s2_2026-06-01.png"><img src="imagery/s2_2026-06-01.png" loading="lazy"></a><figcaption>2026-06-01</figcaption></figure><figure><a href="imagery/s2_2026-06-01_1km.png"><img src="imagery/s2_2026-06-01_1km.png" loading="lazy"></a><figcaption>2026-06-01_1km</figcaption></figure><figure><a href="imagery/s2_32.40_-96.94_2026-06.png"><img src="imagery/s2_32.40_-96.94_2026-06.png" loading="lazy"></a><figcaption>32.40_-96.94_2026-06</figcaption></figure><figure><a href="imagery/s2_32.40_-97.00_2026-06.png"><img src="imagery/s2_32.40_-97.00_2026-06.png" loading="lazy"></a><figcaption>32.40_-97.00_2026-06</figcaption></figure></div>
+
+
+<h2>Reported-COD drift (queue history, 45 monthly reports since 2022-10-01)</h2>
+<table><tr><th>Reported COD</th><th>Held from</th><th>Until</th></tr><tr><td>2025-05-31</td><td>2022-10-01</td><td>2023-03-01</td></tr><tr><td>2026-06-01</td><td>2023-04-01</td><td>2023-08-01</td></tr><tr><td>2025-06-01</td><td>2023-09-01</td><td>2023-09-01</td></tr><tr><td>2026-03-31</td><td>2023-10-01</td><td>2023-10-01</td></tr><tr><td>2027-06-01</td><td>2023-11-01</td><td>2024-11-01</td></tr><tr><td>2028-01-01</td><td>2024-12-01</td><td>2026-06-01</td></tr></table>
+<h2>Milestones achieved (latest report)</h2>
+<table><tr><th>Milestone</th><th>Date</th></tr><tr><td>Screening started</td><td>2022-03-14</td></tr><tr><td>Screening complete</td><td>2022-04-18</td></tr><tr><td>FIS requested</td><td>2022-10-18</td></tr><tr><td>FIS approved</td><td>2025-01-27</td></tr><tr><td>IA signed</td><td>2025-06-03</td></tr><tr><td>Meets 6.9(1)</td><td>2026-03-24</td></tr></table>
+<h2>Key evidence</h2><ul><li>imagery/venus_substation_mosaic_z17.jpg</li><li>imagery/venus_substation_z18.jpg</li><li>5 COD slips over 45 queue snapshots (2022-10 → 2026-06): 2025-05 → 2026-06 → 2025-06 → 2026-03 → 2027-06 → 2028-01</li><li>Meets 6.9(1) achieved 2026-03-24 but Meets All 6.9 NOT YET as of 2026-06 snapshot — open conditions block NTP</li><li>IA signed 2025-06-03; ~18-month window to Jan 2028 COD is tight for BESS but achievable if NTP imminent</li></ul>
+<h2>Saved sources (3)</h2><h3 class='small'>Documents (1)</h3><ul><li><a href="sources/2026-07-19_puct_35077-2178_standard-generation-interconnection-agreement-be.pdf">2026-07-19_puct_35077-2178_standard-generation-interconnection-agreement-be.pdf</a></li></ul><h3 class='small'>Other (2)</h3><ul><li><a href="sources/2026-07-19_osm_venus-substation-area.json">2026-07-19_osm_venus-substation-area.json</a></li><li><a href="sources/2026-07-19_osm_venus-switch-substation.txt">2026-07-19_osm_venus-switch-substation.txt</a></li></ul>
+</body></html>

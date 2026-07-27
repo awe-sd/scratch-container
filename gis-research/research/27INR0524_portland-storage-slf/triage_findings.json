@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0524",
+  "project": "Portland Storage SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 27.882,
+    "lon": -97.320,
+    "method": "POI description: project physically connects at 13.8 kV bus at ArcelorMittal plant, Portland TX (2800 Kay Bailey Hutchison Rd, Portland TX 78374)",
+    "confidence": "high — explicit in queue POI description"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery 401 Unauthorized in this session; no alternative imagery obtained"
+  },
+  "cod_first_look": {
+    "reported": "2028-01-03",
+    "plausible": true,
+    "why": "Early-stage (no IA, FIS in progress); 2028 COD gives ~18 months from now — tight but not impossible for BESS; one prior COD slip of ~1 year raises schedule risk"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Fix CDSE credentials and run imagery at ArcelorMittal Portland TX site (27.882, -97.320, buffer 1 km) — BESS pad would appear as gravel/container rows adjacent to industrial facility",
+    "Check PUCT Interchange via a non-HTTP-402 method (e.g. direct portal login) for any IA or interconnection study filings under 'Portland Storage SLF' or 'Convergent Energy Solutions'",
+    "Developer research: Convergent Energy Solutions LLC — any other ERCOT BESS projects, track record, financing announcements",
+    "Verify 0.0 MW capacity field — typical BESS projects report actual MWh/MW; 0.0 MW may be a placeholder pending FIS results"
+  ],
+  "turns_used": 22
+}

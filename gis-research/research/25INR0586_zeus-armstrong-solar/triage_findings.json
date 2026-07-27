@@ -1,0 +1,28 @@
+{
+  "inr": "25INR0586",
+  "project": "Zeus Armstrong Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-04-17",
+    "plausible": false,
+    "why": "FIS still pending as of Jun 2026; no IA signed; 22-month runway to COD with no executed agreements is implausible without FIS approval in near term"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate developer/sponsor behind Armstrong Solar LLC — TX SOS filing, parent company; 'Zeus' brand suggests portfolio developer worth identifying",
+    "PUCT Interchange direct search (session-authenticated browser) for IA or FIS-approval filings — portal blocked via WebFetch",
+    "Confirm JETI application status via TX Comptroller JETI portal filtered to Armstrong County",
+    "Resolve POI tap point on ALIBATES-TULECNYN 345kV line to GPS coordinates — enables imagery scan for site prep",
+    "Re-assess COD plausibility once FIS approval date known; companion BESS 25INR0587 shares same COD and zero milestones"
+  ],
+  "turns_used": 25
+}

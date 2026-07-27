@@ -1,0 +1,74 @@
+{
+ "inr": "26INR0226",
+ "generated": "2026-07-20",
+ "project": "First Capitol BESS",
+ "county": "Brazoria",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 257.48,
+ "queue_cod": "2027-11-01",
+ "milestones": {
+  "screeningStudyComplete": "2023-12-14",
+  "fisApproved": null,
+  "iaSigned": "2025-05-15",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 5,
+ "eia": {
+  "status": "ok",
+  "plant_id": 68583,
+  "entity": "Lydian Energy",
+  "planned_cod": "2027-10",
+  "cod_delta_quarters": -0.3,
+  "dropped_scope": null,
+  "coords": [
+   29.29937,
+   -95.42218
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Lydian Energy",
+    "detail": "plant=Rock N' Roll 250.0MW (L) Regulatory approvals pending. Not un @29.29937,-95.42218 planned=2027-10"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "financial_security_posted"
+ ],
+ "paper_score": 30,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 10,
+   "detail": "5 COD slips"
+  },
+  {
+   "factor": "no_verified_ia",
+   "points": 10,
+   "detail": "iaSigned claimed but no IA found on disk or in the docket join table"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 16.69,
+  "reason": "reality signal"
+ }
+}

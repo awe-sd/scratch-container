@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0370",
+  "project": "Central Power Station",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 30.517,
+    "lon": -96.095,
+    "method": "POI infrastructure inference — 'Gibbons Creek 345kV' maps to the former Gibbons Creek Steam Electric Station brownfield (retired coal plant, Grimes County)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "not visible",
+    "evidence": "June 2026 Sentinel-2 contact sheet: heavy cloud cover across all 9 grid tiles, imagery non-diagnostic; no laydown yard, cranes, or turbine hall visible through clouds"
+  },
+  "cod_first_look": {
+    "reported": "2027-05-01",
+    "plausible": false,
+    "why": "FIS requested 2025-01 but not yet approved; no IA; zero construction milestones; 750 MW gas plant requires multi-year permitting, turbine procurement, and build — <2 years from FIS request to COD is implausible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "TCEQ air permit (NSR) search for Grimes County gas turbine — no permit = strong paper-project evidence",
+    "PUCT Interchange IA filings when portal unblocked — project is at FIS stage, IA may be in progress",
+    "Clearer imagery at brownfield site (try drier months: Aug-Oct) to check for any ground disturbance",
+    "Developer/LLC identity: 'Central Power Station LLC' has zero web footprint — Texas SOS business search"
+  ],
+  "turns_used": 27
+}

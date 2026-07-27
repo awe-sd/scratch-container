@@ -1,0 +1,36 @@
+{
+  "inr": "20INR0241",
+  "project": "Crowded Star Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.578,
+    "lon": -99.827,
+    "method": "POI infrastructure anchor (Phantom Hill 345kV, ERCOT node 68004)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "likely active — indirect evidence only",
+    "evidence": "Industrial Info News reports BP began construction; ercotqueue.com labels 'Commissioned'; approved-for-sync milestone achieved 2026-05-28. No satellite imagery obtained (CDSE 401)."
+  },
+  "cod_first_look": {
+    "reported": "2026-08-17",
+    "plausible": true,
+    "why": "13 COD drifts since 2019 but project is approved-for-sync (2026-05-28) and reportedly under construction — near-term COD is plausible though the drift history warrants skepticism"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA filing (control 35077) — retrieve POI/milestone schedule exhibit; PUCT was 402 in triage",
+    "Site coordinates — Jones County CAD records for Jones City Solar LLC parcels; needed to anchor imagery",
+    "Satellite imagery — CDSE 401 in triage; fix credentials and run 3x3 chip grid to confirm construction activity",
+    "Ch.313 abatement — Comptroller database search for Jones City Solar or Lightsource bp in Jones County ISD",
+    "ercotqueue.com 'commissioned' claim — verify against ERCOT approvedForCommercialOperation date (not yet in queue as of 2026-06-01)"
+  ],
+  "turns_used": 18
+}

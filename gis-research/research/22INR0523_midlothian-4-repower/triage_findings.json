@@ -1,0 +1,35 @@
+{
+  "inr": "22INR0523",
+  "project": "Midlothian 4 repower",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.465,
+    "lon": -97.000,
+    "method": "POI infrastructure — '1940 Midlothian ANP 345kV' identifies the existing Midlothian ANP combined-cycle plant complex in Ellis County TX",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery failed (401 Unauthorized); no other visual evidence available during triage"
+  },
+  "cod_first_look": {
+    "reported": "2027-06-03",
+    "plausible": false,
+    "why": "12 COD slips in 5 years, FIS not approved, no IA signed — project has not advanced past screening in 5 years; COD claim lacks structural support"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "TCEQ air permit (NSR) search for 'Midlothian 4' or site address — no air permit would confirm paper project; an active permit would be the single strongest reality signal",
+    "PUCT Interchange search with authenticated session for FilingParty variations (Midlothian 4, Midlothian Energy, ANP Midlothian) — IA status is unverified due to portal 402",
+    "Identify developer/owner: the ANP (American National Power) brand was acquired; confirm current entity behind 22INR0523 before any deeper investment",
+    "CDSE imagery if credentials restored — site is known (32.465, -97.000), one chip run would confirm or deny construction activity at the ANP complex"
+  ],
+  "turns_used": 22
+}

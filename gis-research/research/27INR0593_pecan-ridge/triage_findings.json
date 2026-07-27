@@ -1,0 +1,36 @@
+{
+  "inr": "27INR0593",
+  "project": "Pecan Ridge",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.14,
+    "lon": -99.33,
+    "method": "POI substation name (HEARTLAN2A 69kV) → Heartland substation near Brady TX; county seat used as proxy center",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery blocked (401 on token endpoint); no site pin to confirm location; no construction milestones achieved in queue data"
+  },
+  "cod_first_look": {
+    "reported": "2027-06-30",
+    "plausible": true,
+    "why": "Stable COD across 7 snapshots; however no IA and no FIS approval yet — 12-month battery build needs IA signed by Q3 2026 to make 2027-06 COD, which is very tight"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange portal was HTTP 402-blocked during triage — try PUCT directly for IA filings under 'Pecan Ridge' or 'Luminous Energy Renewables'",
+    "Verify developer identity: 'Luminous Energy Renewables LLC' surfaced from secondary queue aggregators only — confirm via TX SOS entity search",
+    "Locate precise Heartland substation coordinates (ERCOT node 60386) to get a tight site candidate for imagery",
+    "CDSE credentials expired — refresh before imagery step; battery site at 2 km buffer around substation is the right target once credentials restored",
+    "No IA and no FIS approval as of June 2026 snapshot — re-check next monthly report before investing deep-scan effort; project may cancel"
+  ],
+  "turns_used": 28
+}

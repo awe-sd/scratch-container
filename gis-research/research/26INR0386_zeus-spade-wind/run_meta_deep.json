@@ -1,0 +1,46 @@
+{
+ "mode": "deep",
+ "model": "us.anthropic.claude-opus-4-7",
+ "subtype": "success",
+ "is_error": false,
+ "duration_ms": 882040,
+ "num_turns": 144,
+ "total_cost_usd": 7.547180000000001,
+ "usage": {
+  "input_tokens": 637,
+  "cache_creation_input_tokens": 129330,
+  "cache_read_input_tokens": 10620093,
+  "output_tokens": 48753,
+  "server_tool_use": {
+   "web_search_requests": 0,
+   "web_fetch_requests": 0
+  },
+  "service_tier": "standard",
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 129330
+  },
+  "inference_geo": "",
+  "iterations": [],
+  "speed": "standard"
+ },
+ "session_id": "02b86e46-86d3-4485-9241-4bf79b8aedae",
+ "audit": {
+  "assistant_turns": 174,
+  "image_reads": 1,
+  "tool_counts": {
+   "Skill": 1,
+   "Read": 11,
+   "Bash": 81,
+   "ToolSearch": 1,
+   "TaskCreate": 7,
+   "TaskUpdate": 14,
+   "WebFetch": 25,
+   "Write": 2
+  },
+  "violations": []
+ },
+ "fresh_tokens": 250987,
+ "token_budget": null,
+ "exit_code": 0
+}

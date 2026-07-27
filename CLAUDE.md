@@ -28,3 +28,4 @@ Other Appian Way repos (`LocalSkills`, `awconnect`) have been cloned under `/hom
 ## Subprojects
 
 - `branch_tracking/` — in-progress transmission-branch tracking table design (ERCOT / `isomarketid = 6`). See its own `CLAUDE.md` for details specific to that work.
+- `gis-research/` — ERCOT GIS interconnection-queue research + an interactive HTML queue report (`build_queue_report.py`: zone×milestone table + Texas county choropleth, all client-side). See its own `CLAUDE.md` for the data-model gotchas (grain, date-valued milestone columns, exclusion rules, GW). This worktree is `worktree-GIS-research`.

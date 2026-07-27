@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0654",
+  "project": "Great Hambino BESS",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.753,
+    "lon": -98.817,
+    "method": "place-name: Miracle Lake dam/reservoir near POI substation name",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "2 Sentinel-2 chips (Jun 2026) at Miracle Lake coords show rural farmland/pasture; no pad, container rows, or substation work visible. Site identification confidence is low — Miracle Lake Sub exact location unconfirmed."
+  },
+  "cod_first_look": {
+    "reported": "2027-10-01",
+    "plausible": false,
+    "why": "No IA signed, FIS not approved, 1 COD slip already (+8 months); at 15 months out with no FIS/IA, timeline is very tight for BESS (~12-18 month build post-IA)"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Miracle Lake Substation #5700 exact coords (ERCOT TPD or ATC maps) — current site candidate is speculative",
+    "Confirm SPV name: tracker sites say 'Atascosa BESS, LLC' not 'Great Hambino BESS, LLC' — check TX SOS registration",
+    "PUCT Interchange blocked (402) — attempt with authenticated session to find any IA or FIS filings",
+    "Re-run imagery once FIS/IA and real site coords established — current chips are near-county-level guesses"
+  ],
+  "turns_used": 28
+}

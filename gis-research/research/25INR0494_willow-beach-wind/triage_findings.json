@@ -1,0 +1,28 @@
+{
+  "inr": "25INR0494",
+  "project": "Willow Beach Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-10-01",
+    "plausible": true,
+    "why": "IA signed 2025-06-16, FIS approved 2024-11-18; ~28 months to COD is tight but possible for wind if construction starts soon; no construction milestones set yet"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA PDF (signed 2025-06-16) — retrieve milestone schedule exhibit; portal was 402-blocked during triage",
+    "FAA OE/AAA obstruction filings for Brazoria County wind turbines — decisive for exact turbine coordinates and developer identity",
+    "Locate MUSTNG (Mustang) and HUD substations to triangulate site area, then run imagery",
+    "JETI registry check — applications page errored during triage; Brazoria wind at 202 MW may qualify",
+    "TX SOS entity search for 'Willow Beach Wind LLC' — zero web footprint suggests early-stage or very quiet developer"
+  ],
+  "turns_used": 22
+}

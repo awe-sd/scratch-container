@@ -1,0 +1,36 @@
+{
+  "inr": "23INR0150",
+  "project": "Cradle Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.317,
+    "lon": -95.448,
+    "method": "PUCT SGIA filing names Bonney, Texas; Bonney centroid used",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "claimed-not-verified",
+    "evidence": "News/web sources (Construction Review Online, lreus.com) describe project as 'actively under construction' ~2024; CDSE imagery unavailable (401) so no direct visual confirmation"
+  },
+  "cod_first_look": {
+    "reported": "2027-09-17",
+    "plausible": true,
+    "why": "IA signed 2023-03, FIS approved 2025-03, all 6.9 gates met 2025-04, construction reportedly underway 2024; 4 prior COD slips but now post-milestones"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "CDSE imagery at Bonney TX (29.317N, 95.448W) — construction claimed but unverified; fix CDSE creds first",
+    "PUCT docket 35077 milestone schedule — portal blocked during triage, schedule may confirm or contradict 2027 COD",
+    "PUCT docket 53385 EOP filings (Aug 2024, Mar 2025) — EOP filing pattern consistent with active construction, worth pulling for milestones/dates",
+    "Exact site boundary — Bonney centroid is approximate; 1,600-acre footprint could span 2-3 km; cross-ref Brazoria CAD for parcel owner = Leeward or Cradle Solar LLC",
+    "Leeward/Microsoft PPA contract details — confirm COD commitment date vs. reported 2027-09-17"
+  ],
+  "turns_used": 22
+}

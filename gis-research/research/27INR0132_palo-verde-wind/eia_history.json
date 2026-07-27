@@ -1,0 +1,49 @@
+{
+ "inr": "27INR0132",
+ "plant_id": 61343,
+ "plant_name": "Karankawa Wind LLC",
+ "entity": "Iberdrola Renewables Inc",
+ "matched_by": "county+prime-mover+MW within 5% (307.1 vs 297.5)",
+ "first_report": "2022-04-01",
+ "last_report": "2026-05-01",
+ "planned_cod_history": [
+  {
+   "value": null,
+   "from": "2022-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 307.1,
+   "from": "2022-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "status_history": [
+  {
+   "value": "(OP) Operating",
+   "from": "2022-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "queue_reported_cod": "2027-09-02",
+ "energy_capacity_mwh_history": [
+  {
+   "value": null,
+   "from": "2022-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "operating_date_history": [
+  {
+   "value": "2019-11",
+   "from": "2022-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "eia_county": "San Patricio",
+ "eia_lat": 28.17018,
+ "eia_lon": -97.81751,
+ "dropped_from_860m": null
+}

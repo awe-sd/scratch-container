@@ -1,0 +1,35 @@
+{
+  "inr": "24INR0234",
+  "project": "Rock N' Roll Storage SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.3635,
+    "lon": -95.4613,
+    "method": "POI substation name — ERCOT facility 44600 Rosharon, Brazoria County TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery blocked (credentials not configured); no alternate imagery source available during triage"
+  },
+  "cod_first_look": {
+    "reported": "2028-05-01",
+    "plausible": false,
+    "why": "4 COD slips over 4 years with no milestones beyond screening — FIS not approved, no IA, no 6.9 gates met; pattern is speculative/paper project"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "If revisiting: check PUCT Interchange with authenticated session for IA filing under 'Rock N Roll' or Brazoria BESS 2024-2026",
+    "Configure CDSE credentials and run 2-km chip at Rosharon substation (29.3635, -95.4613) to check for bare-ground pad or container rows",
+    "Identify developer/sponsor — no LLC registration or news found; TX SoS direct search for 'Rock N Roll Storage' may surface parent entity",
+    "FIS approval is the gating milestone — monitor queue snapshots for fisApproved date before committing deep-scan resources"
+  ],
+  "turns_used": 18
+}

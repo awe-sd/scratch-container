@@ -1,0 +1,28 @@
+{
+  "inr": "26INR0134",
+  "project": "Myers Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-22",
+    "plausible": true,
+    "why": "COD slipped ~2 years (from 2026-09-01); FIS not yet approved as of Jun-2026; 2028 target is aggressive but not impossible if FIS clears soon"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm whether FIS has been approved in any post-Jun-2026 queue report — that is the single gating milestone",
+    "PUCT Interchange blocked during triage — search filings for 'BT Myers Solar' or '26INR0134' when portal access is available",
+    "Developer BT Myers Solar LLC: no parent company identified, registered agent Wayne Pope (Farmers Branch TX) — research principal identity and track record",
+    "Companion project 26INR0135 (Myers Storage 75.7 MW BESS) shares developer and county — check for shared IA or co-development signal",
+    "POI '8629 Baez 69 kV': locate substation coordinates to enable imagery if deep scan proceeds"
+  ],
+  "turns_used": 22
+}

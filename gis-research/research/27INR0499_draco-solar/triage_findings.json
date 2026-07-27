@@ -1,0 +1,27 @@
+{
+  "inr": "27INR0499",
+  "project": "Draco Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-08-19",
+    "plausible": false,
+    "why": "No FIS approved, no IA signed — 13 months to COD with zero milestone progress is implausible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Identify developer/owner: no LLC, no news, no PUCT filings found — SEC EDGAR or TX SOS search needed",
+    "PUCT Interchange IA check: portal blocked (402) during triage — retry with authenticated session",
+    "Long Draw substation (59900) coordinates: needed for any imagery attempt",
+    "COD slip monitoring: 2027-08-19 is likely a placeholder; watch for slip in next 2-3 monthly snapshots"
+  ],
+  "turns_used": 22
+}

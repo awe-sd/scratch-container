@@ -1,0 +1,35 @@
+{
+  "inr": "24INR0282",
+  "project": "Royal River BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.1694,
+    "lon": -95.4319,
+    "method": "POI city center (Angleton TX) — no pin or abatement map available",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "inconclusive",
+    "evidence": "Single chip 2026-06-15 around Angleton city center (~4km buffer) was ~70% cloud-covered; substation infrastructure not identifiable; no BESS pad visible but imagery quality insufficient to rule out activity"
+  },
+  "cod_first_look": {
+    "reported": "2027-06-30",
+    "plausible": true,
+    "why": "IA signed 2023-12-15 + FIS approved 2025-10-09 = project has cleared key gates; 3 COD drifts but current 2027-06-30 is 12 months out — tight but not impossible for a BESS build"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA document not retrieved — PUCT Interchange portal was 402-blocked; try direct PUCT docket search or ERCOT GIS portal for IA PDF to get milestone schedule and parties",
+    "Developer identity unknown — 'Royal River LLC' is the only name found; parent company / sponsor needed for deal tracking",
+    "Site candidate is low-confidence (city center proxy only) — locate exact Angleton 138kV substation coordinates via ERCOT transmission map or EIA Form 860, then run tight 1km-buffer chip for BESS pad detection",
+    "PUCT Interchange retry under clear conditions — portal may have been temporarily rejecting; a docket search for 'Royal River' or case filings since 2023-12 may yield IA exhibit"
+  ],
+  "turns_used": 27
+}

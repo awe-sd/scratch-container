@@ -1,0 +1,448 @@
+rank,inr,project,mw,months_to_cod,paper_score,decision,priority,already_deep_scanned
+1,20INR0069,Danish Fields Solar,602.8,1.32,20,deep_candidate,456.67,True
+2,26INR0310,Quantum Storage,321.75,0.03,6,deep_candidate,321.75,True
+3,21INR0406,Buffalo Creek,438.75,1.38,20,deep_candidate,317.93,True
+4,20INR0097,El Sauz Ranch,301.5,0.43,20,deep_candidate,301.5,True
+5,21INR0324,Board Creek Wind,299.2,-0.62,20,deep_candidate,299.2,False
+6,22INR0301,Fortuna Wind,295.3,-0.62,26,deep_candidate,295.3,True
+7,19INR0134,Cottonwood Bayou Solar,351.4,1.32,20,deep_candidate,266.21,True
+8,23INR0070,Chillingham Solar,352.39,1.38,20,deep_candidate,255.36,False
+9,20INR0155,Peyton Creek Wind II,241.2,-0.62,20,deep_candidate,241.2,True
+10,22INR0205,Sbranch Solar ,233.52,0.36,20,deep_candidate,233.52,True
+11,24INR0281,Red Egret BESS,310.58,1.38,37,deep_candidate,225.06,True
+12,20INR0241,Crowded Star Solar,218.79,0.92,30,deep_candidate,218.79,True
+13,26INR0023,Leon Solar Park,210.11,-0.62,0,deep_candidate,210.11,True
+14,24INR0302,Pintail Pass BESS,207.25,0.13,18,deep_candidate,207.25,True
+15,23INR0501,Soda Lake BESS 1,203.87,-0.39,38,deep_candidate,203.87,False
+16,22INR0503,Tidwell Prairie II Batt,203.62,0.49,40,deep_candidate,203.62,False
+17,23INR0047,Charger Solar,397.15,1.97,22,deep_candidate,201.6,False
+18,23INR0026,Baker Branch Solar ,469.42,2.37,20,deep_candidate,198.07,False
+19,20INR0129,Foxtrot Wind,268.2,1.38,20,deep_candidate,194.35,True
+20,16INR0104,Big Sampson Wind ,265.4,1.41,20,deep_candidate,188.23,False
+21,19INR0110,Azalea Springs Solar ,181.0,-0.16,20,deep_candidate,181.0,False
+22,24INR0493,Crowned Heron BESS 2,154.2,0.0,18,deep_candidate,154.2,False
+23,23INR0401,Headcamp Energy Storage Plant,152.88,-0.23,32,deep_candidate,152.88,False
+24,24INR0208,Eastbell Milam Solar II,150.6,-0.16,28,deep_candidate,150.6,False
+25,25INR0706,Bocanova Power II,150.46,0.36,18,deep_candidate,150.46,False
+26,25INR0353,Marshall Spring Solar,150.0,-0.62,30,deep_candidate,150.0,False
+27,25INR0354,Marshall Spring Storage,150.0,-0.62,20,deep_candidate,150.0,False
+28,21INR0240,La Casa Wind,148.4,0.86,20,deep_candidate,148.4,False
+29,16INR0081,Mesteno Wind,201.6,1.41,20,deep_candidate,142.98,False
+30,21INR0223,Tulsita Solar,256.2,1.88,20,deep_candidate,136.28,True
+31,26INR0664,Coleto Creek - Fuel Change Only,655.0,4.87,0,deep_candidate,134.5,True
+32,22INR0274,Crowded Star Solar II,189.5,1.41,40,deep_candidate,134.4,False
+33,22INR0203,Delilah Solar 2,317.58,2.37,30,deep_candidate,134.0,True
+34,18INR0031,Maryneal Wind,182.4,1.38,20,deep_candidate,132.17,False
+35,22INR0202,Delilah Solar 1,300.0,2.37,30,deep_candidate,126.58,False
+36,20INR0203,Pine Forest Solar,301.51,2.4,35,deep_candidate,125.63,False
+37,25INR0578,Forest Creek Wind Repower,125.1,0.86,0,deep_candidate,125.1,False
+38,27INR0084,Aegle Power,1536.4,12.34,30,deep_candidate,124.51,True
+39,26INR0375,Avalon BESS,522.12,4.41,10,deep_candidate,118.39,False
+40,24INR0491,Gunnar BESS,154.75,1.38,0,deep_candidate,112.14,False
+41,24INR0584,Kegans BESS (Houston IV BESS),164.6,1.55,30,deep_candidate,106.19,False
+42,21INR0221,Samson Solar 1,250.0,2.37,30,deep_candidate,105.49,True
+43,21INR0491,Samson Solar 3,250.0,2.37,30,deep_candidate,105.49,True
+44,24INR0210,Raven Storage,103.53,0.36,6,deep_candidate,103.53,False
+45,22INR0262,Sequoia II Solar,417.47,4.08,18,deep_candidate,102.32,False
+46,24INR0365,Hermes Storage,100.42,0.95,14,deep_candidate,100.42,False
+47,21INR0490,Samson Solar 2,203.0,2.37,30,deep_candidate,85.65,False
+48,22INR0504,Barton Branch IA,203.62,2.4,36,deep_candidate,84.84,False
+49,22INR0558,Callisto II Energy Center,203.2,2.4,22,deep_candidate,84.67,False
+50,25INR0166,Compadre Solar II,201.4,2.4,12,deep_candidate,83.92,False
+51,26INR0155,Ross Solar,1025.57,12.37,20,deep_candidate,82.91,True
+52,19INR0080,Whitehorse Wind,418.9,5.39,40,deep_candidate,77.72,True
+53,22INR0499,Aquilla Lake 3 Wind,297.4,4.05,20,deep_candidate,73.43,True
+54,17INR0043,Vaquero 1 Wind,400.0,5.89,44,deep_candidate,67.91,False
+55,26INR0261,Bastrop Peaking Generators (TEF-Due Diligence),1104.0,16.61,30,deep_candidate,66.47,True
+56,20INR0236,New Hickory Solar,209.15,3.22,40,deep_candidate,64.95,True
+57,23INR0027,Cachena Solar SLF,602.02,9.31,32,deep_candidate,64.66,False
+58,20INR0083,Baird North Wind,340.0,5.39,20,deep_candidate,63.08,True
+59,28INR0090,EmberGreen ,1036.0,17.43,20,deep_candidate,59.44,True
+60,24INR0306,Arroyo Storage,183.76,3.12,20,deep_candidate,58.9,False
+61,25INR0231,Apache Hill BESS,201.15,3.42,18,deep_candidate,58.82,False
+62,26INR0351,Jack County III – 345 kV,660.0,11.38,20,deep_candidate,58.0,False
+63,16INR0085,Priddy Wind ,302.4,5.39,20,deep_candidate,56.1,True
+64,26INR0521,Millers Branch Solar III,133.0,2.4,8,deep_candidate,55.42,False
+65,25INR0168,Piedra Solar,281.7,5.1,6,deep_candidate,55.24,True
+66,26INR0269,Moccasin Solar,603.59,11.55,10,deep_candidate,52.26,True
+67,28INR0089,EmberYork ,900.0,17.43,10,deep_candidate,51.64,True
+68,24INR0188,Tehuacana Creek Solar,505.43,9.93,34,deep_candidate,50.9,True
+69,24INR0042,Yaupon Solar SLF,200.78,3.98,32,deep_candidate,50.45,False
+70,23INR0487,Brightside Solar Alt POI,50.0,0.82,10,deep_candidate,50.0,False
+71,25INR0102,Austin Bayou Solar,502.48,10.39,10,deep_candidate,48.36,False
+72,21INR0421,Armadillo Solar ,150.48,3.26,37,deep_candidate,46.16,False
+73,23INR0086,Hanson Solar,398.83,8.91,16,deep_candidate,44.76,True
+74,26INR0250,Duffy BESS,241.05,5.39,0,deep_candidate,44.72,True
+75,23INR0078,Shaw Solar,124.65,2.89,30,deep_candidate,43.13,False
+76,22INR0437,TORMES SOLAR,356.6,8.36,26,deep_candidate,42.66,True
+77,19INR0002,Grandfalls Solar,175.6,4.21,34,deep_candidate,41.71,False
+78,21INR0334,Nightfall Solar,180.87,4.38,20,deep_candidate,41.29,False
+79,23INR0029,Cedar Bayou 5 (TEF - Due Diligence),697.0,16.88,28,deep_candidate,41.29,True
+80,23INR0318,Marcelina Storage ,203.21,4.97,20,deep_candidate,40.89,False
+81,25INR0101,Drake BESS,257.3,6.35,20,deep_candidate,40.52,True
+82,26INR0546,Hobby BESS I,602.56,14.87,20,deep_candidate,40.52,True
+83,25INR0372,Elan BESS,202.65,5.39,10,deep_candidate,37.6,False
+84,21INR0362,Oystercatcher Solar,198.43,5.3,26,deep_candidate,37.44,False
+85,25INR0189,Staccato BESS,201.8,5.39,0,deep_candidate,37.44,False
+86,24INR0031,Stoneridge Solar,201.6,5.39,12,deep_candidate,37.4,False
+87,24INR0201,Short Creek Solar,627.81,16.94,10,deep_candidate,37.06,True
+88,15INR0064b,Harald (BearKat Wind B),162.1,4.47,30,deep_candidate,36.26,False
+89,27INR0434,Lyra Solar,500.0,13.88,20,deep_candidate,36.02,True
+90,26INR0625,Buffalo Gap 2 Wind Repower,231.49,6.45,10,deep_candidate,35.89,True
+91,26INR0447,Honey Mesquite Wind Farm,173.95,4.87,20,deep_candidate,35.72,False
+92,21INR0341,Space City Solar,366.0,10.39,32,deep_candidate,35.23,False
+93,21INR0428,Pecan Prairie North,324.11,9.38,34,deep_candidate,34.55,True
+94,24INR0094,Dovetail Solar 1,666.1,20.79,28,deep_candidate,32.04,False
+95,26INR0113,Meitner Wind,709.0,22.17,10,deep_candidate,31.98,True
+96,26INR0519,Sky Global West Houston,324.58,10.39,10,deep_candidate,31.24,True
+97,25INR0018,Yellow Cat Wind,262.0,8.39,20,deep_candidate,31.23,True
+98,25INR0225,Lucy Solar,352.21,11.35,20,deep_candidate,31.03,False
+99,29INR0015,Funston Solar,351.1,11.38,0,deep_candidate,30.85,False
+100,26INR0621,Juno 3 Solar,500.0,16.38,30,deep_candidate,30.53,True
+101,27INR0500,Antila Solar,500.0,16.38,30,deep_candidate,30.53,False
+102,26INR0255,Operation Sunshine,603.2,19.77,20,deep_candidate,30.51,True
+103,27INR0005,Dundee East A Wind,524.0,17.4,30,deep_candidate,30.11,True
+104,24INR0567,Wolf Hollow III,306.32,10.36,10,deep_candidate,29.57,True
+105,28INR0108,RAYBURN ENERGY STATION II Gas (TEF-Due Diligence),570.0,19.28,10,deep_candidate,29.56,True
+106,27INR0367,Goat Mountain Wind-Repower,303.2,10.39,10,deep_candidate,29.18,True
+107,19INR0041,Myrtle Solar,321.2,11.05,20,deep_candidate,29.07,True
+108,23INR0057,Duffy Solar,502.46,17.4,36,deep_candidate,28.88,True
+109,24INR0154,Lupinus Solar 2,242.31,8.45,31,deep_candidate,28.68,True
+110,27INR0181,Elk Unit 4 ,210.0,7.34,10,deep_candidate,28.61,False
+111,24INR0313,Backbone Creek BESS,124.1,4.41,22,deep_candidate,28.14,False
+112,24INR0282,Royal River BESS,310.7,11.35,16,deep_candidate,27.37,True
+113,24INR0198,Two Forks BESS,309.8,11.35,46,deep_candidate,27.3,True
+114,26INR0647,Wake Wind Energy Repower,252.5,9.38,0,deep_candidate,26.92,True
+115,23INR0056,Caliche Mound Solar ,406.6,15.23,40,deep_candidate,26.7,True
+116,25INR0081,SanPat Solar I,308.88,11.61,40,deep_candidate,26.6,True
+117,26INR0201,Rock Rose BESS,208.5,7.96,10,deep_candidate,26.19,True
+118,26INR0626,Buffalo Gap 3 Wind Repower,168.45,6.45,10,deep_candidate,26.12,False
+119,25INR0301,Van Zandt Energy Storage ,256.0,9.84,18,deep_candidate,26.02,True
+120,23INR0637,Goodnight Wind II,259.2,10.56,24,deep_candidate,24.55,True
+121,25INR0555,Stargazer Solar,157.7,6.45,20,deep_candidate,24.45,False
+122,24INR0455,Longfellow BESS II,105.75,4.38,18,deep_candidate,24.14,False
+123,26INR0417,GAMAY ENERGY STORAGE,418.6,17.43,16,deep_candidate,24.02,False
+124,24INR0500,Claire BESS,406.01,16.94,16,deep_candidate,23.97,False
+125,25INR0368,Echols Grove Solar,201.56,8.45,20,deep_candidate,23.85,False
+126,27INR0297,Tolivar Power Plant (TEF- Due Diligence),224.5,9.54,10,deep_candidate,23.53,False
+127,26INR0425,Twinwood Solar 1,358.06,15.26,30,deep_candidate,23.46,True
+128,23INR0235,Hoyte Solar,206.75,8.85,30,deep_candidate,23.36,False
+129,25INR0531,CPS Energy AvR1CT2 Rotor Replacement,23.2,0.53,34,deep_candidate,23.2,False
+130,27INR0102,Cottonseed Energy Storage,207.6,9.01,20,deep_candidate,23.04,False
+131,25INR0133,Rose Quartz BESS,101.41,4.41,20,deep_candidate,23.0,False
+132,24INR0472,Amador Storage,102.41,4.51,22,deep_candidate,22.71,False
+133,25INR0262,Shepard Energy Storage,256.79,11.38,10,deep_candidate,22.57,True
+134,26INR0422,PowerVault BESS,254.8,11.38,20,deep_candidate,22.39,False
+135,27INR0519,Wagyu BESS SLF,120.55,5.39,10,deep_candidate,22.37,False
+136,27INR0132,Palo Verde Wind,297.5,13.45,10,deep_candidate,22.12,True
+137,23INR0244,Tiger Solar,250.9,11.35,16,deep_candidate,22.11,True
+138,24INR0274,Bufflehead BESS,150.48,6.91,34,deep_candidate,21.78,False
+139,23INR0140,Seine BESS,308.88,14.41,36,deep_candidate,21.44,True
+140,25INR0052,SanPat Solar II,256.23,12.07,40,deep_candidate,21.23,True
+141,25INR0417,Mesa View Storage,251.3,11.84,20,deep_candidate,21.22,True
+142,26INR0034,Bracero Pecan Storage,238.21,11.38,26,deep_candidate,20.93,False
+143,24INR0410,NRG Greens Bayou 6 (TEF-Due Diligence),445.0,21.41,6,deep_candidate,20.78,True
+144,26INR0357,Operation Sunshine Storage,409.8,19.77,20,deep_candidate,20.73,True
+145,19INR0100,Prairie Hill Wind,297.2,14.38,20,deep_candidate,20.67,False
+146,23INR0502,Adelite Storage,231.88,11.28,10,deep_candidate,20.56,True
+147,27INR0438,Wisdom Solar SLF,299.37,14.57,0,deep_candidate,20.55,True
+148,28INR0105,Vast Sands Power I (TEF -Due Diligence),440.0,21.41,10,deep_candidate,20.55,True
+149,28INR0154,Pamela Heights I,101.65,4.97,16,deep_candidate,20.45,False
+150,21INR0253,Ulysses Solar,151.2,7.4,24,deep_candidate,20.43,False
+151,21INR0263,Monarch Creek Wind,283.4,13.95,28,deep_candidate,20.32,True
+152,24INR0186,Rowdy Creek Solar,351.78,17.34,40,deep_candidate,20.29,True
+153,22INR0559,Honeycomb Solar SLF,61.4,3.03,48,deep_candidate,20.26,False
+154,26INR0340,SOUTHERN SELECT ENERGY STORAGE,204.76,10.13,6,deep_candidate,20.21,False
+155,25INR0557,McCamey's Castle Battery,409.6,20.36,30,deep_candidate,20.12,True
+156,24INR0355,Anatole Renewable Energy Storage,207.82,10.39,28,deep_candidate,20.0,True
+157,22INR0239,Rockefeller Storage,206.8,10.39,38,deep_candidate,19.9,True
+158,27INR0207,Wander Waters BESS,303.5,15.39,20,deep_candidate,19.72,True
+159,23INR0421,Bee Branch IA,203.75,10.39,36,deep_candidate,19.61,False
+160,26INR0290,Cold Creek Solar 2,431.87,22.3,10,deep_candidate,19.37,True
+161,25INR0375,NavBoot BESS,303.7,15.76,20,deep_candidate,19.27,True
+162,27INR0416,Kresge Land Battery Storage,200.0,10.39,0,deep_candidate,19.25,False
+163,26INR0222,GOTHAM BESS,151.2,7.89,10,deep_candidate,19.16,False
+164,25INR0238,Little Ridge Storage,252.0,13.42,10,deep_candidate,18.78,True
+165,25INR0432,Brotherton Storage,176.13,9.38,10,deep_candidate,18.78,False
+166,21INR0210,Adamstown Solar,250.88,13.39,34,deep_candidate,18.74,False
+167,25INR0425,Aldrin 345 BESS,362.0,19.41,20,deep_candidate,18.65,True
+168,26INR0622,Buffalo Gap 1 Wind Repower,120.23,6.45,10,deep_candidate,18.64,False
+169,26INR0551,Hastings Park BESS,256.34,13.88,0,deep_candidate,18.47,True
+170,24INR0167,OCI SunRoper,265.1,14.41,30,deep_candidate,18.4,True
+171,25INR0420,Houston BESS,227.9,12.4,6,deep_candidate,18.38,True
+172,22INR0552,Sowers Storage,208.89,11.38,38,deep_candidate,18.36,True
+173,27INR0095,Bulldog Power (TEF - Due Diligence) ,311.0,16.97,10,deep_candidate,18.33,False
+174,25INR0421,Aldrin 138 BESS,207.0,11.38,20,deep_candidate,18.19,True
+175,28INR0413,Tolivar Power Plant Phase 2,224.5,12.34,10,deep_candidate,18.19,False
+176,26INR0543,Three Canes Solar,334.5,18.45,16,deep_candidate,18.13,True
+177,25INR0271,City Breeze BESS,143.1,7.93,18,deep_candidate,18.05,False
+178,26INR0231,Energy City BESS,204.9,11.35,20,deep_candidate,18.05,False
+179,24INR0291,Rubicon Alpha Wind,222.6,12.37,20,deep_candidate,18.0,True
+180,26INR0431,Big Rooter West Solar,403.2,22.4,26,deep_candidate,18.0,False
+181,24INR0038,Jaguar Solar,300.87,16.74,38,deep_candidate,17.97,True
+182,25INR0138,Champaign BESS,201.13,11.28,6,deep_candidate,17.83,False
+183,24INR0303,Erika Solar,200.5,11.35,28,deep_candidate,17.67,False
+184,25INR0230,Great Rock BESS,300.9,17.04,34,deep_candidate,17.66,True
+185,27INR0056,Laurel Wind Energy Center,306.6,17.4,40,deep_candidate,17.62,True
+186,25INR0334,Star Dairy Storage,205.24,11.74,38,deep_candidate,17.48,True
+187,25INR0473,Crowded Star I BESS,202.69,11.64,18,deep_candidate,17.41,False
+188,24INR0331,Chisme Storage,150.7,8.78,16,deep_candidate,17.16,False
+189,24INR0118,Possum Kingdom Solar,262.22,15.33,26,deep_candidate,17.11,True
+190,26INR0524,Fagus Solar Park 3 SLF,169.59,9.97,0,deep_candidate,17.01,False
+191,24INR0333,Chisme Solar,147.0,8.78,6,deep_candidate,16.74,False
+192,26INR0226,First Capitol BESS,257.48,15.43,30,deep_candidate,16.69,True
+193,24INR0386,Black & Gold Energy Storage,203.8,12.34,26,deep_candidate,16.52,False
+194,27INR0313,Spindletop Solar,286.4,17.34,18,deep_candidate,16.52,True
+195,23INR0207,El Patrimonio Solar,152.32,9.31,26,deep_candidate,16.36,False
+196,25INR0556,Stargazer BESS,104.5,6.45,0,deep_candidate,16.2,False
+197,25INR0199,Bonham Solar SLF,138.4,8.55,26,deep_candidate,16.19,False
+198,24INR0058,Briggs Storage,336.0,20.89,20,deep_candidate,16.08,True
+199,23INR0425,Coneflower Storage Project,170.85,10.72,16,deep_candidate,15.94,False
+200,25INR0131,SOSA Storage,154.63,9.7,48,deep_candidate,15.94,False
+201,23INR0171,Goodalta Solar,221.36,14.05,20,deep_candidate,15.76,True
+202,23INR0059,Briggs Solar,323.7,20.89,26,deep_candidate,15.5,True
+203,16INR0049,Nazareth Solar,203.0,13.39,30,deep_candidate,15.16,False
+204,25INR0236,Austin Bayou Storage II,156.6,10.39,16,deep_candidate,15.07,False
+205,25INR0237,Austin Bayou Storage III,156.6,10.39,26,deep_candidate,15.07,False
+206,27INR0011,Dundee East B Wind,261.45,17.4,30,deep_candidate,15.03,False
+207,25INR0321,El Molino Solar SLF,201.32,13.42,10,deep_candidate,15.0,False
+208,25INR0046,Blue Skies BESS,306.26,20.43,26,deep_candidate,14.99,True
+209,24INR0570,Marcus Energy Storage,201.04,13.42,10,deep_candidate,14.98,False
+210,28INR0436,Englehardt BESS,200.51,13.42,0,deep_candidate,14.94,False
+211,24INR0155,Lupinus Storage 2,124.55,8.45,26,deep_candidate,14.74,False
+212,27INR0173,Trenno BESS,202.56,13.82,20,deep_candidate,14.66,False
+213,22INR0605,Camino Santiago Solar,196.3,13.42,28,deep_candidate,14.63,False
+214,25INR0247,Bluebonnet Prairie Wind,173.0,11.84,10,deep_candidate,14.61,False
+215,21INR0520,Yellow Viking Solar,171.13,11.78,26,deep_candidate,14.53,False
+216,25INR0656,Gilleys Energy Storage,306.4,21.09,0,deep_candidate,14.53,False
+217,25INR0657,O'Bannion Energy Storage,306.4,21.09,0,deep_candidate,14.53,True
+218,25INR0235,Austin Bayou Storage I,150.68,10.39,16,deep_candidate,14.5,False
+219,23INR0150,Cradle Solar,200.85,13.95,28,deep_candidate,14.4,False
+220,25INR0460,Acker BESS,301.04,20.95,6,deep_candidate,14.37,True
+221,24INR0137,Eagle Springs Solar,77.21,5.39,26,deep_candidate,14.32,False
+222,27INR0399,Resaca Oasis Storage,200.7,14.05,0,deep_candidate,14.28,False
+223,21INR0371,Pecan Prairie South,132.98,9.38,38,deep_candidate,14.18,False
+224,26INR0300,Whitewright Solar 2,301.69,21.45,26,deep_candidate,14.06,False
+225,25INR0494,Willow Beach Wind,202.33,14.41,15,deep_candidate,14.04,False
+226,25INR0370,Willis Storage,176.13,12.8,6,deep_candidate,13.76,False
+227,24INR0375,Possum Kingdom BESS,200.86,15.33,10,deep_candidate,13.1,False
+228,25INR0480,Bell Creek BESS ,200.9,15.36,15,deep_candidate,13.08,False
+229,23INR0349,Tokio Solar,170.45,13.19,26,deep_candidate,12.92,False
+230,26INR0474,Sorghum BESS,208.9,16.41,10,deep_candidate,12.73,False
+231,24INR0339,Mystic Springs Renewable Energy Solar SLF,258.83,20.39,8,deep_candidate,12.69,True
+232,24INR0453,Longfellow BESS I,54.99,4.38,28,deep_candidate,12.55,False
+233,23INR0485,Hacienda Storage,205.8,16.41,26,deep_candidate,12.54,False
+234,25INR0253,Whiskey BESS,153.72,12.37,26,deep_candidate,12.43,False
+235,27INR0139,Gatsby Energy Storage,103.36,8.36,10,deep_candidate,12.36,False
+236,27INR0501,Mesquite Creek Windpower Repower,212.91,17.4,0,deep_candidate,12.24,True
+237,25INR0422,Waterloo Solar 1,200.64,16.41,20,deep_candidate,12.23,False
+238,24INR0161,Miranda Solar Project,202.0,16.58,46,deep_candidate,12.18,False
+239,24INR0178,Cumulus Grid BESS,210.74,17.43,20,deep_candidate,12.09,True
+240,23INR0561,Cascabel Wind 2,197.75,16.41,16,deep_candidate,12.05,False
+241,24INR0424,Cascabel Wind 1,197.75,16.41,16,deep_candidate,12.05,False
+242,27INR0063,Supra Wind  ,205.86,17.14,10,deep_candidate,12.01,False
+243,24INR0505,Corralitos Wind 1,196.1,16.41,16,deep_candidate,11.95,False
+244,25INR0501,Longday Solar SLF,200.8,16.88,26,deep_candidate,11.9,False
+245,24INR0528,Blanquilla BESS,200.78,16.88,20,deep_candidate,11.89,False
+246,24INR0461, Augie BESS,200.81,16.94,26,deep_candidate,11.85,False
+247,26INR0143,Santa Garcias Solar,265.0,22.37,10,deep_candidate,11.85,True
+248,27INR0128,Bigway Solar II,206.0,17.4,20,deep_candidate,11.84,True
+249,24INR0150,Lupinus Solar 1,162.31,13.82,26,deep_candidate,11.74,False
+250,26INR0314,Brazos River BESS,180.36,15.36,15,deep_candidate,11.74,False
+251,26INR0364,Pollo Pinto Solar,150.8,12.86,20,deep_candidate,11.73,False
+252,27INR0321,Rock Island Generating (TEF -Due Diligence),121.8,10.39,10,deep_candidate,11.72,False
+253,25INR0229,OCI Cobb Creek Solar,203.1,17.4,10,deep_candidate,11.67,False
+254,25INR0441,Dios BESS,201.08,17.4,0,deep_candidate,11.56,False
+255,24INR0196,Dori BQ BESS,154.0,13.36,44,deep_candidate,11.53,False
+256,26INR0200,Vaughn Energy Storage,200.6,17.4,20,deep_candidate,11.53,False
+257,24INR0269,Bar Candela Solar SLF,200.3,17.4,10,deep_candidate,11.51,False
+258,25INR0384,Zorro BESS ,153.69,13.39,32,deep_candidate,11.48,False
+259,26INR0241,Sol Marina Energy Center,175.3,15.33,10,deep_candidate,11.44,False
+260,24INR0427,CPS AvR CT1 Rotor Replacement,11.3,0.53,40,deep_candidate,11.3,False
+261,24INR0506,Corralitos Wind 2,195.4,17.4,10,deep_candidate,11.23,False
+262,27INR0127,Bigway Solar I,195.2,17.4,20,deep_candidate,11.22,False
+263,23INR0289,Skull Creek Solar,136.98,12.34,40,deep_candidate,11.1,False
+264,27INR0488,Dry Creek Solar II,203.44,18.45,0,deep_candidate,11.03,False
+265,23INR0045,Caney Creek Solar,121.04,11.05,36,deep_candidate,10.95,False
+266,28INR0490,Vertus Energy Storage 2,204.93,18.91,0,deep_candidate,10.84,True
+267,20INR0246,Ryan Energy Storage,51.6,4.77,30,deep_candidate,10.82,False
+268,25INR0204,Cedar Range Solar,150.64,13.95,26,deep_candidate,10.8,False
+269,21INR0031,Indigo Solar,150.0,13.95,28,deep_candidate,10.75,False
+270,27INR0049,Darkwood Solar,150.76,14.05,0,deep_candidate,10.73,False
+271,25INR0169,Piedra BESS,103.65,9.67,20,deep_candidate,10.72,False
+272,20INR0247,Water Valley Wind Energy,180.0,16.88,42,deep_candidate,10.66,False
+273,26INR0098,Douie Solar,221.2,20.99,6,deep_candidate,10.54,True
+274,26INR0468,Basketflower Solar,183.0,17.4,20,deep_candidate,10.52,False
+275,23INR0089,Donegal Solar,201.57,19.41,43,deep_candidate,10.38,False
+276,23INR0278,Tucana BESS,201.3,19.41,30,deep_candidate,10.37,False
+277,24INR0206,Glasgow Solar,203.5,19.9,26,deep_candidate,10.23,False
+278,24INR0065,Keys Hollow Solar Phase II SLF,200.85,19.7,20,deep_candidate,10.2,False
+279,24INR0067,KEYS HOLLOW SOLAR SLF,200.85,19.7,20,deep_candidate,10.2,False
+280,24INR0117,Utley Solar,221.78,21.74,28,deep_candidate,10.2,True
+281,26INR0460,Lightning Ridge Energy Storage,204.7,20.07,10,deep_candidate,10.2,False
+282,26INR0116,Falcon Zapata Storage 138,200.79,19.74,10,deep_candidate,10.17,False
+283,26INR0426,Maderagemela BESS1,153.96,15.26,30,deep_candidate,10.09,False
+284,27INR0085,Eagle Claw Energy Center,204.58,20.39,0,deep_candidate,10.03,True
+285,26INR0682,North Edinburg BESS 1,9.99,0.59,22,deep_candidate,9.99,False
+286,27INR0400,Reforzar BESS 1,207.6,20.82,10,deep_candidate,9.97,False
+287,24INR0481,Little York BESS,9.96,0.23,26,deep_candidate,9.96,False
+288,24INR0632,Cedro Hill Wind Repower,9.93,0.36,30,deep_candidate,9.93,False
+289,23INR0231,Hoke Solar,95.29,9.61,46,deep_candidate,9.92,False
+290,25INR0144,Jasper BESS,201.13,20.39,16,deep_candidate,9.86,False
+291,25INR0122,Vial BESS,135.18,13.88,8,deep_candidate,9.74,False
+292,26INR0418,TE Smith Storage 2,125.32,12.89,0,deep_candidate,9.72,False
+293,25INR0174,Concho Pearl Solar,171.9,17.7,26,deep_candidate,9.71,False
+294,26INR0472,Bologna BESS,202.56,21.02,16,deep_candidate,9.64,False
+295,26INR0525,Bypass BESS II,205.86,21.38,6,deep_candidate,9.63,True
+296,25INR0338,Les Energy Storage,205.13,21.38,8,deep_candidate,9.59,False
+297,25INR0184,Legato BESS,202.65,21.18,10,deep_candidate,9.57,False
+298,25INR0190,Fortissimo BESS,202.65,21.18,10,deep_candidate,9.57,False
+299,26INR0215,JackGard BESS,200.59,20.95,10,deep_candidate,9.57,False
+300,23INR0091,Cascade Solar,171.0,17.89,30,deep_candidate,9.56,False
+301,26INR0691,Harlingen #1 BESS 1,9.99,1.05,24,deep_candidate,9.51,False
+302,23INR0361,Third Coast BESS,102.82,10.86,28,deep_candidate,9.47,False
+303,25INR0140,Seragio BESS,201.13,21.38,18,deep_candidate,9.41,False
+304,25INR0232,Isaac Solar,50.73,5.39,8,deep_candidate,9.41,False
+305,25INR0281,Cosper Solar,148.16,15.79,6,deep_candidate,9.38,False
+306,22INR0457,Anson BAT,153.55,16.41,32,deep_candidate,9.36,False
+307,23INR0367,Fewell Solar,203.5,21.88,20,deep_candidate,9.3,False
+308,26INR0619,Bonham Storage SLF,104.92,11.38,25,deep_candidate,9.22,False
+309,25INR0100,Goldeneye BESS,201.6,21.88,12,deep_candidate,9.21,False
+310,25INR0400,Maldives Solar,184.0,20.03,26,deep_candidate,9.19,False
+311,25INR0175,Concho Pearl Storage,162.4,17.7,26,deep_candidate,9.18,False
+312,25INR0293,TOCE BESS 1,205.2,22.4,20,deep_candidate,9.16,False
+313,20INR0162,Diamondback solar,203.8,22.4,22,deep_candidate,9.1,False
+314,25INR0143,Ariji BESS,100.32,11.28,10,deep_candidate,8.89,False
+315,28INR0337,Barrosos Creek Wind 3,197.75,22.4,0,deep_candidate,8.83,False
+316,28INR0338,Barrosos Creek Wind 4,197.75,22.4,0,deep_candidate,8.83,False
+317,26INR0130,Elm Flats Solar SLF,125.84,14.38,16,deep_candidate,8.75,False
+318,28INR0339,Corralitos Wind 3,196.1,22.4,0,deep_candidate,8.75,False
+319,28INR0340,Corralitos Wind 4,195.4,22.4,0,deep_candidate,8.72,False
+320,25INR0552,HarryoungBESS,190.01,21.88,10,deep_candidate,8.68,False
+321,26INR0296,Sherbino II BESS SLF,77.37,8.98,22,deep_candidate,8.62,False
+322,26INR0380,Pepper Solar Farm,120.72,14.05,10,deep_candidate,8.59,False
+323,24INR0387,PaleAle BESS,75.38,8.85,26,deep_candidate,8.52,False
+324,26INR0033,Fairway Storage,120.3,14.18,30,deep_candidate,8.48,False
+325,27INR0004,Dundee West Wind,146.49,17.4,30,deep_candidate,8.42,False
+326,24INR0124,High Noon Solar,182.0,21.68,38,deep_candidate,8.39,False
+327,25INR0376,Hawkins BESS,150.43,17.93,10,deep_candidate,8.39,False
+328,25INR0442,Happy Dog Storage,104.52,12.5,20,deep_candidate,8.36,False
+329,25INR0579,Albatross BESS 2,159.6,19.14,10,deep_candidate,8.34,False
+330,25INR0391,Purple Sage BESS 1,156.0,18.82,6,deep_candidate,8.29,False
+331,25INR0392,Purple Sage BESS 2,156.0,18.82,16,deep_candidate,8.29,False
+332,17INR0052,Horse13 CallD repower,44.0,5.39,40,deep_candidate,8.16,False
+333,25INR0655,Elm Street BESS,9.9,1.22,22,deep_candidate,8.11,False
+334,26INR0512,County Road BESS,9.9,1.22,22,deep_candidate,8.11,False
+335,26INR0520,Highway 6 BESS,9.9,1.22,22,deep_candidate,8.11,False
+336,26INR0736,Hovey Solar 2,8.05,-0.16,10,deep_candidate,8.05,False
+337,22INR0220,Lamkin Solar,101.5,12.63,46,deep_candidate,8.04,False
+338,24INR0425,Two Brothers ESS,154.65,19.38,32,deep_candidate,7.98,False
+339,25INR0497,Stegall Solar,81.57,10.33,20,deep_candidate,7.9,False
+340,25INR0466,Yooperlite Storage,175.65,22.4,0,deep_candidate,7.84,False
+341,26INR0189,Skipjack Energy Storage,150.6,19.34,10,deep_candidate,7.79,False
+342,25INR0170,Pinewood Solar,150.68,19.38,18,deep_candidate,7.78,False
+343,26INR0291,Cold Creek Storage 2,171.75,22.3,10,deep_candidate,7.7,False
+344,25INR0319,Northington Solar,125.9,16.38,26,deep_candidate,7.69,False
+345,24INR0440,Starling Solar,140.6,18.32,16,deep_candidate,7.67,False
+346,22INR0342,Matagorda Solar,101.0,13.19,48,deep_candidate,7.66,False
+347,26INR0714,Pavlov BESS2,9.99,1.32,20,deep_candidate,7.57,False
+348,23INR0194,Pequin Energy Storage,103.4,13.82,30,deep_candidate,7.48,False
+349,22INR0454,Wallace Solar,36.0,4.9,30,deep_candidate,7.35,False
+350,25INR0550,Carolina Storage Friendswood,105.08,14.38,0,deep_candidate,7.31,False
+351,24INR0040,Rosebud Solar SLF,130.0,17.89,30,deep_candidate,7.27,False
+352,26INR0452,Cannibal Draw Solar,149.5,20.72,20,deep_candidate,7.22,False
+353,26INR0409,Lucky 7 Solar,101.35,14.05,0,deep_candidate,7.21,False
+354,26INR0180,Cape Rich BESS,150.52,20.95,14,deep_candidate,7.18,False
+355,27INR0440,Wisdom BESS SLF,102.88,14.57,10,deep_candidate,7.06,False
+356,25INR0474,Solheim Solar,108.68,15.43,20,deep_candidate,7.04,False
+357,23INR0061,Noria Solar DCC,145.0,21.09,40,deep_candidate,6.88,False
+358,26INR0374,Cobra Clean Energy Center,100.4,14.64,10,deep_candidate,6.86,False
+359,25INR0382,HappyDogSolar,85.54,12.5,26,deep_candidate,6.84,False
+360,23INR0331,Orange Grove BESS,61.39,9.34,46,deep_candidate,6.57,False
+361,25INR0214,Burgos Solar,105.52,16.12,26,deep_candidate,6.55,False
+362,26INR0147,Seven Springs Solar,145.0,22.24,20,deep_candidate,6.52,False
+363,27INR0198,Musgravite Solar,100.6,15.43,10,deep_candidate,6.52,False
+364,23INR0181,Starling Storage,63.6,9.84,42,deep_candidate,6.46,False
+365,24INR0106,Payne Battlecreek,84.99,13.19,32,deep_candidate,6.44,False
+366,25INR0447,Waterloo BESS 1,105.64,16.41,30,deep_candidate,6.44,False
+367,26INR0327,Sleepy Hollow BESS,123.1,19.14,8,deep_candidate,6.43,False
+368,26INR0388,Aggie Solar Project SLF,103.7,16.38,0,deep_candidate,6.33,False
+369,24INR0136,Eagle Springs Storage,33.94,5.39,26,deep_candidate,6.3,False
+370,23INR0474,AP Greenport,100.45,16.02,18,deep_candidate,6.27,False
+371,26INR0111,Graphic Packaging Gas,43.36,6.91,26,deep_candidate,6.27,False
+372,25INR0482,Vault Solar,108.5,17.4,20,deep_candidate,6.24,False
+373,27INR0272,EMPower Odessa (TEF - Due Diligence) ,122.8,19.67,16,deep_candidate,6.24,False
+374,27INR0485,Blackland Prairie 1 Energy Storage,102.1,16.41,0,deep_candidate,6.22,False
+375,27INR0486,Blackland Prairie 2 Energy Storage,102.1,16.41,0,deep_candidate,6.22,False
+376,27INR0487,Blackland Prairie 3 Energy Storage,102.1,16.41,0,deep_candidate,6.22,False
+377,24INR0153,Lupinus Storage 1,84.01,13.82,36,deep_candidate,6.08,False
+378,28INR0074,Massey Storage,102.86,17.5,0,deep_candidate,5.88,False
+379,22INR0455,Blue Sky Sol,101.2,17.4,40,deep_candidate,5.82,False
+380,25INR0542,Hynes Bay Energy Storage,101.2,17.4,10,deep_candidate,5.82,False
+381,21INR0444,Long Point Storage,100.62,17.37,36,deep_candidate,5.79,False
+382,23INR0216,Venus Mill Storage,100.8,17.4,36,deep_candidate,5.79,False
+383,25INR0135,Hayrick BESS,113.9,19.87,6,deep_candidate,5.73,False
+384,25INR0650,Buda BESS,9.9,1.74,18,deep_candidate,5.69,False
+385,24INR0326,Blarney Solar,81.46,14.41,38,deep_candidate,5.65,False
+386,23INR0137,Diran BESS,103.0,18.42,18,deep_candidate,5.59,False
+387,26INR0467,Basketflower Storage,92.0,17.4,20,deep_candidate,5.29,False
+388,21INR0265,Sisters Solar,100.51,19.11,22,deep_candidate,5.26,False
+389,20INR0086,Arroyo Solar,100.0,19.14,36,deep_candidate,5.22,False
+390,26INR0295,Trinity Hills BESS SLF,94.0,18.19,28,deep_candidate,5.17,False
+391,23INR0200,Paradiso BESS,100.92,19.87,28,deep_candidate,5.08,False
+392,24INR0207,Glasgow Storage,101.0,19.9,36,deep_candidate,5.08,False
+393,23INR0556,IEP Orchard BESS,9.99,1.97,30,deep_candidate,5.07,False
+394,26INR0260,Evans Creek Energy Storage,102.96,20.43,10,deep_candidate,5.04,False
+395,24INR0485,Rutile BESS,100.65,20.39,6,deep_candidate,4.94,False
+396,25INR0498,Stegall Storage,50.47,10.33,0,deep_candidate,4.89,False
+397,26INR0252,Neutron Storage,104.5,21.35,6,deep_candidate,4.89,False
+398,25INR0405,Pledgor BESS,100.33,20.59,16,deep_candidate,4.87,False
+399,25INR0593,Escondido BESS,9.99,2.07,22,deep_candidate,4.83,False
+400,25INR0504,Lazy Frog Solar SLF,100.4,20.95,16,deep_candidate,4.79,False
+401,25INR0414,Rogers Creek BESS,100.33,21.02,16,deep_candidate,4.77,False
+402,26INR0453,Cannibal Draw Storage,98.6,20.72,10,deep_candidate,4.76,False
+403,25INR0304,Flying Kite Solar,80.38,17.37,20,deep_candidate,4.63,False
+404,24INR0275,Picadillo BESS,100.83,21.88,22,deep_candidate,4.61,False
+405,24INR0126,High Noon Storage,94.0,21.68,38,deep_candidate,4.34,False
+406,24INR0496,Indigo Storage,60.0,13.95,20,deep_candidate,4.3,False
+407,26INR0574,Apple BESS,9.9,2.53,10,deep_candidate,3.91,False
+408,25INR0227,SERENGETI SOLAR,76.18,21.05,8,deep_candidate,3.62,False
+409,24INR0502,Medina City BESS,9.99,2.86,20,deep_candidate,3.49,False
+410,26INR0313,Edens Solar,70.75,20.69,6,deep_candidate,3.42,False
+411,28INR0048,Findley BESS,51.74,17.43,10,deep_candidate,2.97,False
+412,23INR0548,Leakey BESS,9.9,3.62,10,deep_candidate,2.73,False
+413,25INR0601,East Bernard BESS,9.5,3.52,10,deep_candidate,2.7,False
+414,25INR0604,Pledger BESS,9.5,3.52,10,deep_candidate,2.7,False
+415,25INR0071,Albatross BESS,50.4,19.14,0,deep_candidate,2.63,False
+416,22INR0426,LUBIO SOLAR,54.47,21.05,30,deep_candidate,2.59,False
+417,25INR0768,Stafford Hill BESS,9.9,3.85,10,deep_candidate,2.57,False
+418,26INR0702,Bexar Martinez BESS,9.99,3.95,20,deep_candidate,2.53,False
+419,25INR0769,Kleimann BESS,9.9,4.38,20,deep_candidate,2.26,False
+420,21INR0029,Red Holly Storage 1,50.0,22.37,38,deep_candidate,2.24,False
+421,21INR0033,Red Holly Storage,50.0,22.37,40,deep_candidate,2.24,False
+422,25INR0711,Coyanosa Gas,9.9,4.93,20,deep_candidate,2.01,False
+423,26INR0345,NET Power Demonstration plant,25.5,13.06,6,deep_candidate,1.95,False
+424,18INR0069,Indian Mesa repower,9.3,5.39,40,deep_candidate,1.73,False
+425,25INR0583,Shannon Wind Repower,18.52,13.88,20,deep_candidate,1.33,False
+426,25INR0439,Stephens Ranch Wind Repower ,12.4,14.41,30,deep_candidate,0.86,False
+427,23INR0603,Damon BESS 2,9.99,13.06,28,deep_candidate,0.76,False
+428,27INR0392,Cernan BESS,10.04,14.41,10,deep_candidate,0.7,False
+429,24INR0627,Champion Wind Repower,0.31,0.39,10,deep_candidate,0.31,False
+430,26INR0726,Roadrunner Crossing Wind (Uprate),2.7,11.35,16,deep_candidate,0.24,False
+431,18INR0079,Woodward I repower,0.0,5.39,40,deep_candidate,0.0,False
+432,18INR0080,Woodward 2 repower,0.0,5.39,40,deep_candidate,0.0,False
+433,19INR0174,Elbow Creek repower,0.0,8.36,40,deep_candidate,0.0,False
+434,23INR0392,Honeycomb Storage SLF,0.0,3.26,44,deep_candidate,0.0,False
+435,24INR0066,Keys Hollow Storage Phase II SLF,0.0,19.7,20,deep_candidate,0.0,False
+436,24INR0068,KEYS HOLLOW STORAGE SLF,0.0,19.7,20,deep_candidate,0.0,False
+437,24INR0271,Bar Candela Storage SLF,0.0,17.4,20,deep_candidate,0.0,False
+438,24INR0340,Mystic Springs Renewable Energy Storage SLF,0.0,20.39,18,deep_candidate,0.0,False
+439,25INR0311,RIVERBEND STORAGE SLF,0.0,17.4,28,deep_candidate,0.0,False
+440,25INR0341,Rosebud Storage SLF,0.0,17.89,20,deep_candidate,0.0,False
+441,25INR0506,Lazy Frog Storage SLF,0.0,20.95,16,deep_candidate,0.0,False
+442,25INR0616,Bobcat Bluff Storage SLF,0.0,8.85,10,deep_candidate,0.0,False
+443,26INR0131,Elm Flats Storage SLF,0.0,14.38,26,deep_candidate,0.0,False
+444,26INR0389,AGGIE STORAGE PROJECT SLF,0.0,16.38,26,deep_candidate,0.0,False
+445,26INR0718,PHOTON SOLAR REPOWERING,0.0,12.93,15,deep_candidate,0.0,False
+446,24INR0372,GIGA AUSTIN SOLAR,-53.3,7.8,30,deep_candidate,-6.83,False
+447,20INR0019,Trinity Hills Wind repower,-27.0,-0.53,30,deep_candidate,-27.0,False

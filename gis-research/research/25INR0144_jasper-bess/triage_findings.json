@@ -1,0 +1,27 @@
+{
+  "inr": "25INR0144",
+  "project": "Jasper BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-03-31",
+    "plausible": true,
+    "why": "FIS only just approved 2026-04-21; IA not yet signed; 22-month runway to COD is tight but geometrically possible for a BESS if IA executes quickly"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate 'Pleasant Farms' / 'Pegasus South' 138kV substation coordinates via ERCOT transmission map or OpenInfraMap to enable imagery pass",
+    "Try PUCT Interchange with authenticated session — search FilingParty='Jasper BESS' and Description contains '25INR0144' — IA filing likely imminent given FIS approved Apr 2026",
+    "Texas SOS entity search for 'Jasper BESS LLC' to surface developer parent and registrant address",
+    "If developer name found, sweep for portfolio context (other ERCOT BESS projects, financing history)"
+  ],
+  "turns_used": 28
+}

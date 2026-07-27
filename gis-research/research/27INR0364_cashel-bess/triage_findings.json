@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0364",
+  "project": "Cashel BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 30.861,
+    "lon": -100.600,
+    "method": "POI name inference — 'Eldorado Live Oak AEP 138kV' → Eldorado TX county seat",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth failed; no imagery retrieved. No pins, no news, no IA — nothing confirms ground activity."
+  },
+  "cod_first_look": {
+    "reported": "2028-03-15",
+    "plausible": true,
+    "why": "COD slipped once (6mo), FIS not approved, IA not signed — 2028 is optimistic but not impossible for a lean BESS build if FIS clears soon"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange was 402-blocked — retry to check for IA filing under TIPPSOL LLC or 'Cashel BESS'",
+    "Confirm POI substation coordinates via AEP TDU transmission map or ERCOT GIS shapefiles, then re-run imagery",
+    "TIPPSOL LLC principal search (TX SOS direct) — unknown developer with no public profile warrants ownership check",
+    "JETI application watch — no abatement yet but Schleicher County has precedent (Cold Creek Solar+Storage / Doral)"
+  ],
+  "turns_used": 28
+}

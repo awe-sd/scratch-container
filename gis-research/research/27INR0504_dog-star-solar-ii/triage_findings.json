@@ -1,0 +1,36 @@
+{
+  "inr": "27INR0504",
+  "project": "Dog Star Solar II",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.55,
+    "lon": -99.85,
+    "method": "POI substation — Bluff Creek 345 kV, ~15 mi north of Bradshaw, Taylor County",
+    "confidence": "low — substation area only, no project boundary known"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery unavailable (401 auth error); project pre-IA in queue milestones; no construction start reported"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": false,
+    "why": "FIS not yet approved, IA not signed — at current pace a 2027-12-31 COD would require IA in ~2025-2026 and construction in under 2 years; COD stable across 13 snapshots but milestones are very early-stage"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Identify developer/parent company — 'Dog Star Solar LLC' name only, no parent surfaced; TX SOS lookup would resolve",
+    "Twin project 27INR0503 (Dog Star Solar I, same POI) — 1 GW combined may share developer and site; check both together",
+    "PUCT Interchange IA search — portal blocked (402) during triage; try authenticated session or direct docket search",
+    "CDSE imagery — configure credentials and image Bluff Creek substation area (32.55N, 99.85W) for site boundary and construction state",
+    "JETI registry — post-2022 project eligible; Taylor County search not completed due to CAPTCHA block"
+  ],
+  "turns_used": 18
+}

@@ -1,0 +1,28 @@
+{
+  "inr": "23INR0207",
+  "project": "El Patrimonio Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-04-29",
+    "plausible": true,
+    "why": "IA signed 2023-12, FIS approved 2024-10, 6.9 met 2026-05 — milestones support a ~12-month build window ending mid-2027, but COD already slipped ~3 years total and no construction dates reported yet"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF not retrieved (PUCT Interchange blocked 402) — retry PUCT session to get parties, POI page, and milestone-schedule exhibit",
+    "Developer unknown — no web presence found; IA parties page is the fastest path to developer identity",
+    "Site location unknown — Leon Creek substation in western Bexar County is urban/suburban; 152 MW solar in SA metro is unusual; verify actual parcel via IA map exhibit or county appraisal district",
+    "No construction start date in queue as of 2026-06 — project has all milestones met but zero construction activity logged; worth confirming whether project is advancing or stalled",
+    "Capacity grew 100→152 MW over queue life — may indicate project replanning; check IA MW vs current queue MW"
+  ],
+  "turns_used": 28
+}

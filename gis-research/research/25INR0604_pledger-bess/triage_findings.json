@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0604",
+  "project": "Pledger BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.188382,
+    "lon": -95.911558,
+    "method": "POI substation coords from ERCOT queue data (CNP Pledger Substation, Bus #43120)",
+    "confidence": "high"
+  },
+  "construction": {
+    "verdict": "not visible at S2 resolution",
+    "evidence": "6 Sentinel-2 chips (2025-04 to 2026-07) show agricultural land + substation; no gravel pad or container rows detected. At 10m/px, 9.5 MW BESS footprint (~40-80m) is near detection limit — absence inconclusive."
+  },
+  "cod_first_look": {
+    "reported": "2026-11-04",
+    "plausible": true,
+    "why": "IA signed 2024-04-29 (~27 months pre-COD); BESS build is 12-18 months; COD has not drifted across 2 snapshots; tight but achievable if equipment ordered and groundwork imminent"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA confirmed but PDF not retrieved — PUCT Interchange JS portal blocked; deep scan should pull IA PDF to extract milestone schedule and parties (developer identity unknown)",
+    "No developer identified — TX SOS LLC search for 'Pledger BESS, LLC' to confirm entity and identify sponsor",
+    "Construction not confirmed/denied at S2 resolution — high-res imagery (Planet or NAIP) centered on substation needed to detect BESS pad",
+    "COD 2026-11-04 is ~4 months out with no milestones beyond IA — check for construction-start or energization filings in PUCT or ERCOT"
+  ],
+  "turns_used": 28
+}

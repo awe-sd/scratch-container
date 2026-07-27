@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0446",
+  "project": "Guitar BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.374,
+    "lon": -99.205,
+    "method": "POI node inference — PUTN4C = Putnam TX substation, Callahan County",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no activity",
+    "evidence": "8 Sentinel-2 chips 2024-06-01 through 2026-06-01 at Putnam substation footprint; stable rural landscape, no gravel pad, no container rows, no land clearing"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": false,
+    "why": "COD already slipped ~22 months (2026-02 → 2027-12); FIS not approved as of 2026-06; no IA, no construction; 18-month build from FIS approval + permitting makes 2027-12 a stretch"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange: search FilingParty='Guitar BESS' in authenticated session — IA may exist but portal was blocked during triage",
+    "Texas SOS entity search for 'Guitar BESS LLC' — developer identity unknown; surfacing sponsor could unlock news/PR trail",
+    "Re-image closer to Abilene East substation (ABEAST4A node, ~32.47°N 99.74°W) — BESS could tap either POI endpoint",
+    "FIS approval watch: project unlikely to advance materially until FIS approved; re-triage after next queue snapshot"
+  ],
+  "turns_used": 28
+}

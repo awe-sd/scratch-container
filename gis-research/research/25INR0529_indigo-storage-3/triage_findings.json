@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0529",
+  "project": "Indigo Storage 3",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.5169,
+    "lon": -100.4166,
+    "method": "POI substation address lookup (Claytonville 345kV, 883 FM 611, Sweetwater TX)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery failed (401 auth); no visual check possible"
+  },
+  "cod_first_look": {
+    "reported": "2027-09-17",
+    "plausible": false,
+    "why": "FIS not yet approved as of Jun-2026; no IA signed; COD already slipped 13 months from 2026-08-17; 2027 COD requires IA + financing + construction start within ~12 months — very tight for FIS-pending stage"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT case 35077 (Standard GIA, Lone Star Transmission + Innovative Solar 245): retrieve IA PDF and milestone schedule — CEII may apply",
+    "Developer Innovative Solar 245, LLC: check if related Indigo Storage (24INR0496) or Indigo Solar & Storage share site land or IA; co-location could accelerate or indicate paper project",
+    "CDSE imagery at Claytonville substation (32.5169, -100.4166) once credentials restored — battery pad would be compact, adjacent to substation",
+    "JETI registry: Fisher County, Innovative Solar 245 — post-Ch.313 project, JETI application possible but not confirmed"
+  ],
+  "turns_used": 18
+}

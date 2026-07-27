@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0589",
+  "project": "Goat Mountain BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.054,
+    "lon": -100.812,
+    "method": "POI name 'Gasconades Creek 345 kV' -> creek geographic feature coordinates from web search",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no evidence",
+    "evidence": "Single Sentinel-2 chip at site candidate (2026-06-01) shows undeveloped scrubland and creek drainage. No cleared pad, container rows, or substation infrastructure visible. Grid scan blocked by CDSE 403. Site candidate coordinates are low-confidence (creek coords, not confirmed substation location)."
+  },
+  "cod_first_look": {
+    "reported": "2027-06-01",
+    "plausible": false,
+    "why": "No IA signed, FIS not approved — project is pre-IA with ~17 months to reported COD; developer Clearway is credible but queue milestones do not support a mid-2027 energization"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm Gasconades Creek 345 kV substation exact coordinates (ERCOT CIM/transmission maps or Oncor ArcGIS) then re-run imagery at correct location",
+    "PUCT Interchange was 402-blocked — retry for Goat Wind LLC or Clearway IA filing when portal accessible",
+    "Verify developer: Clearway (cleanview.co) vs Goat Wind LLC (ercotqueue.com snippet) — check TX SOS for Goat Mountain BESS LLC entity registration",
+    "Sibling project 26INR0611 Goat Mountain BESS 2 (~100.7 MW) — may share site and accelerate timeline lookup"
+  ],
+  "turns_used": 22
+}

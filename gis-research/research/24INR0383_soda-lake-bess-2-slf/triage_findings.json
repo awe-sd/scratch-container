@@ -1,0 +1,32 @@
+{
+  "inr": "24INR0383",
+  "project": "Soda Lake BESS 2 SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.40,
+    "lon": -102.40,
+    "method": "geographic inference — Soda Lake playa name + Crane County; no pin or IA map to anchor",
+    "confidence": "low"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": false,
+    "why": "FIS not approved, no IA, capacity was zeroed for ~32 months — project re-entered queue May 2025 with a 31-month COD target but has not cleared the first major milestone gate"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange IA search: portal returned 402 during triage — retry from a credentialed browser or use PUCT docket search for 'Soda Lake BESS 2' to confirm whether IA has been filed",
+    "Developer ID: no web presence found — Texas SOS entity search for 'Soda Lake BESS 2 SLF LLC' may surface parent developer and unlock additional threads",
+    "CDSE imagery: credentials unavailable this session — re-run 3x3 grid at ~31.40,-102.40 once CDSE auth is restored to get first construction look",
+    "FIS approval watch: project is stuck pre-FIS; check next monthly GIS snapshot (2026-07) for FIS approved date"
+  ],
+  "turns_used": 22
+}

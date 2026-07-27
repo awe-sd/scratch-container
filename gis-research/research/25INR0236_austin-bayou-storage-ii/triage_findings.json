@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0236",
+  "project": "Austin Bayou Storage II",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.2456,
+    "lon": -95.3317,
+    "method": "OSM geocode of Austin Bayou waterway near Alvin TX — project likely named for this feature",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no activity",
+    "evidence": "8-chip 3x3 grid (2 km buffer, 2026-06-01) shows rural/agricultural land with diagonal 345kV line visible; no gravel pad, container rows, or ground disturbance"
+  },
+  "cod_first_look": {
+    "reported": "2027-06-01",
+    "plausible": true,
+    "why": "IA signed Feb 2025, no construction start yet, 12-18 mo battery build time makes mid-2027 tight but not impossible if breaks ground imminently"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate Savana substation (bus 43180) precisely — ERCOT NOM data or EIA-860 — then re-run imagery centered on substation footprint (battery will be within 1 km)",
+    "Retrieve IA from PUCT (portal was 402-blocked during triage) — extract POI description and milestone schedule exhibit",
+    "Confirm developer entity: ercotqueue.com shows 'Austin Bayou Solar, LLC' vs identity packet's 'Austin Bayou Storage II, LLC' — TX SOS lookup",
+    "COD drift of ~2.3 years (2025-02 → 2027-06) with no FIS approval — verify FIS status and whether construction will start in 2026"
+  ],
+  "turns_used": 28
+}

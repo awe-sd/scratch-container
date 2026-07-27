@@ -1,0 +1,36 @@
+{
+  "inr": "18INR0080",
+  "project": "Woodward 2 repower",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.15,
+    "lon": -102.10,
+    "method": "original Woodward Mountain II facility location near McCamey TX from web sweep; companion 18INR0079 same county",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown — CDSE 401 blocked all imagery",
+    "evidence": "no imagery acquired; ercotqueue.com snippet claims 'Commissioned' but ERCOT queue shows no COD date and no construction milestones"
+  },
+  "cod_first_look": {
+    "reported": "2026-12-31",
+    "plausible": false,
+    "why": "12 COD drifts over 8 years since 2018; IA signed 2018-12; no construction start/end dates; ercotqueue.com claims already commissioned — suggests either long-stalled or already online and misclassified in queue"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Resolve commissioned-vs-queue conflict: ercotqueue.com says 'Commissioned' but ERCOT GIS still active with 2026-12-31 COD — check ERCOT operational data (approvedForCommercialOperation field, SCED presence) for Woodward I & II",
+    "IA PDF retrieval via PUCT Interchange (portal was 402 during triage) — extract milestone schedule from the 2018 IA",
+    "FAA OE/AAA obstruction filings for Woodward Mountain repower turbine coordinates — confirm exact site footprint",
+    "Imagery at confirmed turbine coordinates once CDSE creds restored — look for new turbine foundations vs legacy towers",
+    "Confirm LLC name via TX SOS: 'Woodward 2 repower, LLC' or NextEra entity"
+  ],
+  "turns_used": 28
+}

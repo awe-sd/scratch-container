@@ -1,0 +1,106 @@
+{
+ "inr": "24INR0481",
+ "generated": "2026-07-20",
+ "project": "Little York BESS",
+ "county": "Harris",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 9.96,
+ "queue_cod": "2026-07-27",
+ "milestones": {
+  "screeningStudyComplete": null,
+  "fisApproved": null,
+  "iaSigned": "2025-08-20",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ambiguous",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Prologis Logistics Services Incorporated BESS",
+    "detail": "plant=BESS TX Camarine - BSHOU001 9.9MW (U) Under construction, less than or equ @29.86648,-95.43066 planned=2026-11"
+   },
+   {
+    "source": "eia860m/Planned",
+    "entity": "Hockley LLC",
+    "detail": "plant=Hockley 9.9MW (V) Under construction, more than 50 per @30.02196,-95.84826 planned=2027-02"
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Prologis Logistics Services Incorporated BESS",
+    "detail": "plant=Crockett BESS 10.0MW (OP) Operating @29.77682,-95.37989 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Regis Hidden Valley LLC",
+    "detail": "plant=Regis Hidden Valley 9.9MW (OP) Operating @29.90963,-95.42364 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Regis Gears Harris LLC",
+    "detail": "plant=Regis Gears Harris 9.9MW (OP) Operating @29.96241,-95.44201 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Prologis Logistics Services Incorporated BESS",
+    "detail": "plant=BESS TX Top Gear - BSHOU002 10.0MW (OP) Operating @29.96307,-95.43693 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Prologis Logistics Services Incorporated BESS",
+    "detail": "plant=BESS TX Panda - BSHOU004 10.0MW (OP) Operating @29.83802,-95.35272 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Agilitas Energy, Inc.",
+    "detail": "plant=Telview ESS 10.0MW (OP) Operating @29.57954,-95.48749 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "financial_security_posted"
+ ],
+ "paper_score": 26,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  },
+  {
+   "factor": "no_verified_ia",
+   "points": 10,
+   "detail": "iaSigned claimed but no IA found on disk or in the docket join table"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 9.96,
+  "reason": "reality signal"
+ }
+}

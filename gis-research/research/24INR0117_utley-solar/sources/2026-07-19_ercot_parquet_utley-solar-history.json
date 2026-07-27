@@ -1,0 +1,43 @@
+{
+  "inr": "24INR0117",
+  "project": "Utley Solar",
+  "source": "ercot_generation_interconnect.parquet (local)",
+  "snapshots": 52,
+  "first_seen": "2022-03-01",
+  "last_seen": "2026-06-01",
+  "latest": {
+    "fileDate": "2026-06-01",
+    "projectCod": "2028-05-11",
+    "capacityMw": 221.78,
+    "ginrStudyPhase": "SS Completed, FIS Started, IA",
+    "iaSigned": "2025-12-18",
+    "fisApproved": "None",
+    "financialSecurity": "No",
+    "poiLocation": "Tap 345kV 3381 Big Brown Switch - 3391 Jewett",
+    "county": "Freestone",
+    "cdrReportingZone": "NORTH"
+  },
+  "cod_history": [
+    {
+      "fileDate": "2022-03-01",
+      "cod": "2024-04-15"
+    },
+    {
+      "fileDate": "2022-10-01",
+      "cod": "2025-02-14"
+    },
+    {
+      "fileDate": "2022-11-01",
+      "cod": "2025-04-15"
+    },
+    {
+      "fileDate": "2024-03-01",
+      "cod": "2027-09-30"
+    },
+    {
+      "fileDate": "2026-01-01",
+      "cod": "2028-05-11"
+    }
+  ],
+  "financial_security_ever_posted": false
+}

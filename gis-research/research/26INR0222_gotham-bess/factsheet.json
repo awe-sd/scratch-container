@@ -1,0 +1,64 @@
+{
+ "inr": "26INR0222",
+ "generated": "2026-07-20",
+ "project": "GOTHAM BESS",
+ "county": "Nueces",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 151.2,
+ "queue_cod": "2027-03-17",
+ "milestones": {
+  "screeningStudyComplete": "2023-10-27",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "ok",
+  "plant_id": 65589,
+  "entity": "GDF Suez North America",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   27.81922,
+   -97.53546
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Engie North America",
+    "detail": "plant=Carina 150.0MW (OP) Operating @27.81922,-97.53546 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_operating_date"
+ ],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 19.16,
+  "reason": "reality signal"
+ }
+}

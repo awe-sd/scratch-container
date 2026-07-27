@@ -1,0 +1,62 @@
+{
+  "inr": "22INR0437",
+  "project": "Tormes Solar",
+  "researched_at": "2026-07-19",
+  "site": {
+    "lat": 32.06334,
+    "lon": -96.59314,
+    "method": "osm_substation",
+    "confidence": "med",
+    "note": "Generation substation OSM way 1087366819 on Oncor Navarro-Watermill 345kV line; consistent with article 'two miles SE of Barry, TX' (~3 km SE of Barry centroid at 32.099, -96.636)"
+  },
+  "parcels": [],
+  "llc_chain": [
+    {"entity": "Tormes Solar, LLC", "relation": "SPV", "evidence": "ERCOT GIS queue; PUCT IA docket 207063 (control number extracted from PUCT keyword search HTML)"},
+    {"entity": "Matrix Renewables", "relation": "developer/owner", "evidence": "sources/2026-07-19_constructionreviewonline_tormes-solar-groundbreaking.html"},
+    {"entity": "TPG Rise", "relation": "parent/backer of Matrix Renewables", "evidence": "sources/2026-07-19_constructionreviewonline_tormes-solar-groundbreaking.html"}
+  ],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Article mentions 'landowner lease income' suggesting leased land; no CAD parcel data retrieved (Navarro CAD portal inaccessible via automated fetch)"
+  },
+  "construction": {
+    "verdict": "clearing",
+    "first_activity_seen": "2026-05-19",
+    "evidence": [
+      "sources/2026-07-19_constructionreviewonline_tormes-solar-groundbreaking.html — groundbreaking ceremony May 19, 2026",
+      "sources/2026-07-19_matrix-renewables_tormes-groundbreaking-photo.jpg — construction site photo showing open farmland with ceremony participants"
+    ],
+    "note": "CDSE Sentinel-2 imagery unavailable (invalid credentials); Google Static Maps/Places quota exceeded. Verdict 'clearing' inferred from May 2026 groundbreaking date (construction started but no satellite confirmation of extent)"
+  },
+  "cod_assessment": {
+    "reported": "2027-03-31",
+    "independent": "2027-Q2",
+    "drift_risk": "med",
+    "reasoning_evidence": [
+      "Financing closed Jun 2026 (MUFG/HSBC/Nomura/Santander construction-to-term + DESRI equity): sources/2026-07-19_constructionreviewonline_matrix-renewables-financing.html",
+      "Matrix Renewables publicly targets H1 2027 COD: sources/2026-07-19_constructionreviewonline_matrix-renewables-financing.html",
+      "Groundbreaking May 2026 — ~10-12 months to H1 2027 COD matches typical solar build timeline",
+      "Queue history: 3 prior COD slips (2023-12 → 2025-09 → 2027-05 → 2027-03); IA signed 2024-04-10",
+      "FIS approved 2026-06-23 — very recently approved; risk of interconnection delay remains"
+    ]
+  },
+  "real_project_verdict": "real_active",
+  "project_area": {
+    "acres": null,
+    "source": "Not obtained — no CAD or abatement doc retrieved",
+    "artifact": null,
+    "note": "457 MWdc solar at ~500-900 ac/100MW implies ~2,300-4,100 acres; reviewer should sanity-check imagery footprint"
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Interconnection Agreement (PUCT docket 207063)",
+        "signed": "2024-04-10",
+        "financial_security": "unknown — document not retrieved (PUCT Interchange 402 error)",
+        "artifact": null
+      }
+    ]
+  },
+  "negative_searches": 18,
+  "banned_source_violations": 0
+}

@@ -1,0 +1,27 @@
+{
+  "inr": "28INR0530",
+  "project": "Uva Creek Gas",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-01",
+    "plausible": false,
+    "why": "brand-new queue entry (June 2026), no milestones beyond screening-started + FIS-requested, 0.0 MW capacity logged, no public footprint — 2028 COD implausible without rapid permitting and turbine orders already in place"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "verify 0.0 MW capacity — data entry error vs. intentional placeholder",
+    "Texas SOS lookup for 'Uva Creek Gas, LLC' to confirm entity exists and identify developer",
+    "TCEQ air permit NSR search — mandatory for gas turbine; no permit found during triage",
+    "PUCT Interchange unblocked search for any IA or TEF docket tied to this project or developer"
+  ],
+  "turns_used": 28
+}

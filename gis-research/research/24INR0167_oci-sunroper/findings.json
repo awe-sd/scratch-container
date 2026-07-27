@@ -1,0 +1,115 @@
+{
+  "inr": "24INR0167",
+  "project": "OCI SunRoper",
+  "researched_at": "2026-07-19",
+  "site": {
+    "lat": 29.16,
+    "lon": -96.06,
+    "method": "POI substation inference: 'tap138kV #43190 South Lane City to #42985 Dyann' anchors to Lane City area, Wharton County",
+    "confidence": "low"
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "OCI SunRoper, LLC",
+      "relation": "SPV_project_entity",
+      "evidence": "ERCOT queue INR 24INR0167 filing party name; referenced on OCI Energy news page (sources/2026-07-19_ocienergy_news.html)"
+    },
+    {
+      "entity": "OCI Energy LLC (San Antonio TX, fka OCI Solar Power LLC; rebranded Jul 2024)",
+      "relation": "50pct_JV_lead_developer_operator",
+      "evidence": "Feb 2025 JV PR (sources/2025-02-20_ocienergy_arava-jv-sunroper.pdf) and Feb 2026 financing PR (sources/2026-02-23_ocienergy_sunroper-financing.pdf) both name OCI Energy as lead developer; OCI projects page lists SunRoper under construction (sources/2026-07-19_ocienergy_projects-portfolio.html)"
+    },
+    {
+      "entity": "Arava Power (Israeli IPP)",
+      "relation": "50pct_JV_partner",
+      "evidence": "Feb 2025 JV PR names Arava Power as co-developer; Feb 2026 financing PR confirms ongoing JV ownership (sources/2025-02-20_ocienergy_arava-jv-sunroper.pdf)"
+    },
+    {
+      "entity": "WHC, LLC",
+      "relation": "EPC_contractor",
+      "evidence": "Named in Feb 2026 construction financing press release as EPC contractor (sources/2026-02-23_ocienergy_sunroper-financing.pdf)"
+    },
+    {
+      "entity": "Black & Veatch",
+      "relation": "technical_advisor",
+      "evidence": "Named in Feb 2026 construction financing press release (sources/2026-02-23_ocienergy_sunroper-financing.pdf)"
+    },
+    {
+      "entity": "Fortune 100 company (unnamed)",
+      "relation": "offtaker_PPA_counterparty",
+      "evidence": "Feb 2026 financing PR: 'construction financing is supported by a 20-year power purchase agreement (PPA) with a Fortune 100 company' (sources/2026-02-23_ocienergy_sunroper-financing.pdf)"
+    },
+    {
+      "entity": "ING Capital LLC",
+      "relation": "lead_lender_construction_debt",
+      "evidence": "Sole coordinating lead arranger, sole bookrunner, sole green loan coordinator for construction-to-term loan + tax equity bridge + LCs; closed Feb 23, 2026 (sources/2026-02-23_ocienergy_sunroper-financing.pdf)"
+    },
+    {
+      "entity": "Greenprint Capital",
+      "relation": "tax_equity_investor",
+      "evidence": "$130M tax equity financing closed June 22, 2026 per OCI Energy news page (sources/2026-07-19_ocienergy_news.html)"
+    }
+  ],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Wharton CAD portal inaccessible on all URL attempts (wcad.org, wcad.net, wharton-cad.org, whartoncad.com, whartoncad.org) — no parcel data retrieved. No abatement document found (expected: Ch.313 expired post-2022, JETI not web-searchable)."
+  },
+  "project_area": {
+    "acres": null,
+    "source": "Not obtained — Wharton CAD portal inaccessible; PUCT IA blocked (402); no abatement doc found",
+    "artifact": null
+  },
+  "construction": {
+    "verdict": "unknown_from_imagery",
+    "first_activity_seen": null,
+    "evidence": [
+      "OCI Energy projects page (July 2026) lists SunRoper as 'Under Construction' — company-stated status (sources/2026-07-19_ocienergy_projects-portfolio.html)",
+      "Feb 2025 JV press release stated construction slated to begin in 2025 (sources/2025-02-20_ocienergy_arava-jv-sunroper.pdf)",
+      "Construction financing with ING Capital closed Feb 23, 2026; EPC contractor WHC LLC contracted; Black & Veatch as technical advisor — strong indicators project has entered construction phase (sources/2026-02-23_ocienergy_sunroper-financing.pdf)",
+      "Satellite imagery at POI candidate (29.16N, 96.06W, Lane City area): Mar 2026 frame clear — shows agricultural/Colorado River corridor with no grading or construction visible at this location. Site candidate NOT confirmed at this coordinate.",
+      "ERCOT queue Jun 2026 snapshot: no construction_start milestone logged through latest report — anomalous if construction began in 2025 as claimed"
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-10-01",
+    "independent": "2027-Q4",
+    "drift_risk": "medium",
+    "reasoning_evidence": [
+      "COD of Q3 2027 stated explicitly in Feb 2026 construction financing press release — this is the strongest contractual anchor available: 'slated to begin commercial operation in Q3 2027' (sources/2026-02-23_ocienergy_sunroper-financing.pdf). ERCOT queue currently shows 2027-10-01, consistent with Q4 end of Q3 boundary.",
+      "Full financing stack closed: construction-to-term debt (ING Capital, Feb 2026) + $130M tax equity (Greenprint Capital, Jun 2026). Finance-to-COD window ~17 months (Feb 2026 → Q3 2027) is tight but executable for a utility-scale solar project with EPC already contracted.",
+      "History of 5 COD drifts totaling ~3 years (original 2024-08-30, current 2027-10-01) indicates schedule risk is real. The project has slipped an average of ~7 months per revision.",
+      "No construction_start milestone in ERCOT queue through Jun 2026, despite JV announcement saying 'begin construction in 2025' — this is a negative signal. Either construction started but wasn't reported, or it started later than communicated.",
+      "Positive signals: 20-yr PPA with Fortune 100 signed, EPC contracted, full finance stack closed by Jun 2026 — multiple committed parties with financial stakes in the schedule. Independent estimate 2027-Q4 adds one quarter to account for the pattern of prior slippage and unverified construction stage."
+    ]
+  },
+  "real_project_verdict": "real_active",
+  "negative_searches": 18,
+  "banned_source_violations": 0,
+  "contractual_schedule": {
+    "source_docs": [],
+    "note": "PUCT IA not retrieved — interchange.puc.texas.gov returns 402 on all API endpoints. IA signed date 2025-07-10 from ERCOT queue milestone. Financial security amounts unknown. COD of Q3 2027 sourced from Feb 2026 ING Capital construction financing press release (sources/2026-02-23_ocienergy_sunroper-financing.pdf).",
+    "milestones": [
+      {
+        "name": "JV formed",
+        "press_release_2025": "2025-02-20"
+      },
+      {
+        "name": "IA signed (per ERCOT queue)",
+        "press_release_2025": "2025-07-10"
+      },
+      {
+        "name": "Construction financing close (ING Capital)",
+        "press_release_2025": "2026-02-23"
+      },
+      {
+        "name": "Tax equity close (Greenprint Capital $130M)",
+        "press_release_2025": "2026-06-22"
+      },
+      {
+        "name": "Scheduled Commercial Operation (per PR)",
+        "press_release_2025": "Q3 2027"
+      }
+    ]
+  }
+}

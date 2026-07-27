@@ -1,0 +1,36 @@
+{
+  "inr": "27INR0317",
+  "project": "Edgewood BESS 1",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.697,
+    "lon": -95.883,
+    "method": "POI substation name 'Edgewood 138kV bus' → Edgewood, TX town center proxy",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "Single Sentinel-2 chip (2026-06-01) at Edgewood town center shows rural/agricultural landscape, no gravel pad or container rows; auth failure limited coverage to 1 of 9 planned grid cells"
+  },
+  "cod_first_look": {
+    "reported": "2028-03-01",
+    "plausible": true,
+    "why": "FIS not yet approved as of Jun 2026; ~21 months to COD is tight but possible if IA executes promptly in 2026"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange IA search — portal was 402-blocked during triage; manual search for 'Edgewood BESS' or 'Edgewood 138kV' filing party",
+    "Oncor transmission planning documents for Edgewood 138kV bus upgrades or interconnection agreements",
+    "Texas SOS business entity search for 'Edgewood BESS 1 LLC' to identify developer",
+    "Full 3×3 imagery grid around Edgewood substation (CDSE auth was failing; retry with fresh credentials)",
+    "CANTNSW substation precise coordinates — would sharpen site candidate from low to medium confidence"
+  ],
+  "turns_used": 28
+}

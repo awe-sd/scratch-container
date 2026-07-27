@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0584",
+  "project": "Kegans BESS (Houston IV BESS)",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.712,
+    "lon": -95.610,
+    "method": "POI substation name '44140 CLODINE 138kV' → Clodine community → OSM Nominatim geocode of Alief-Clodine Road corridor",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery unavailable (401 Unauthorized — no real credentials in ~/.config/gis-research.env). No other visual evidence found."
+  },
+  "cod_first_look": {
+    "reported": "2026-09-05",
+    "plausible": true,
+    "why": "IA signed Nov-2024, all 6.9 milestones met Oct-2025, approved for energization May-2026, approved for synchronization Jun-2026 — project is at the final gate; 2026-09-05 COD is 90 days past sync approval and consistent with commissioning timeline"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA exists (signed 2024-11-07 per ERCOT queue) but not retrieved — PUCT Interchange returned 402; try PUCT docket search via authenticated session or direct docket number lookup",
+    "Developer identity unknown — 'Houston IV BESS' naming suggests a series (Houston I-IV); identify the developer/sponsor behind the series for corporate + financing intel",
+    "Imagery blocked by missing CDSE credentials — configure ~/.config/gis-research.env and run 3x3 grid at 29.712/-95.610 with buffer-km 2 to confirm site prep or container placement",
+    "Exact substation location: '44140 CLODINE 138kV' is a CenterPoint facility; pinpoint coordinates via HIFLD or EIA Form 860 to sharpen the imagery search center",
+    "COD 2026-09-05 is 90 days out and sync-approved — high priority to confirm whether commissioning is proceeding on schedule or slipping again"
+  ],
+  "turns_used": 22
+}

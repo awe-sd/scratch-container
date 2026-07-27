@@ -1,0 +1,35 @@
+{
+  "inr": "28INR0030",
+  "project": "Brela BESS LLC",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.1854,
+    "lon": -95.9922,
+    "method": "OSM Overpass — matched 'Bailey Substation' 345kV in Wharton County to POI '44040 Bailey SW 345 kV'",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "indeterminate",
+    "evidence": "Single Sentinel-2 chip 2026-06-01 at Bailey substation: ~60% cloud cover, agricultural fields in clear areas, substation pad visible, no BESS container rows or gravel staging pad detected"
+  },
+  "cod_first_look": {
+    "reported": "2028-05-29",
+    "plausible": true,
+    "why": "FIS only requested Jun 2024, not yet approved — ~2yr from FIS approval to COD is tight but possible for BESS; no hard evidence for or against"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange: retry FilingParty/Description search for IA once portal access restored — project has no IA yet, any filing would be the key development signal",
+    "Imagery: re-chip on a cloud-free date (try Nov–Feb dry season) to confirm whether BESS pad has appeared adjacent to Bailey substation",
+    "Developer identity: 'Brela BESS LLC' returns zero web footprint — TX SOS entity search may surface parent company or developer affiliation",
+    "FIS approval watch: project is early-stage (FIS requested Jun 2024, not approved); check next GIS monthly report for FIS approval date"
+  ],
+  "turns_used": 28
+}

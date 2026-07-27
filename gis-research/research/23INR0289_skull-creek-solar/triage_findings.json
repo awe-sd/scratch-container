@@ -1,0 +1,36 @@
+{
+  "inr": "23INR0289",
+  "project": "Skull Creek Solar",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.84,
+    "lon": -95.90,
+    "method": "POI description (Tennessee Colony 138kV tap, Anderson County TX)",
+    "confidence": "low — county-level estimate, no parcel coords"
+  },
+  "construction": {
+    "verdict": "reported active — groundbreaking March 2026, McCarthy EPC",
+    "evidence": "infrasure.ai cites groundbreaking March 2026 with McCarthy Building as EPC; satellite imagery blocked (CDSE 401/403), not visually confirmed"
+  },
+  "cod_first_look": {
+    "reported": "2027-07-30",
+    "plausible": true,
+    "why": "IA signed May 2024, groundbreaking March 2026, Meta PPA Feb 2026 with ~May 2027 target — 16-month construction window is tight but consistent with Zelestra/McCarthy EPC engagement"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT docket 35077: download original IA and Amendment No. 3 (2025-10-13) to extract milestone schedule — Amendment likely reflects COD slip from 2026-09-16 to 2027 range",
+    "Fix CDSE credentials and run imagery at confirmed site (groundbreaking March 2026 — construction should be visible in 2026 Sentinel-2)",
+    "Confirm precise parcel coordinates via Anderson County Appraisal District or hep Solar / Zelestra project page",
+    "Verify developer chain: cleanview lists hep Solar, infrasure/search list Zelestra — confirm relationship (Zelestra may be hep Solar brand or parent)",
+    "Meta PPA: confirm capacity, term, and whether COD milestone is contractually binding"
+  ],
+  "turns_used": 22
+}

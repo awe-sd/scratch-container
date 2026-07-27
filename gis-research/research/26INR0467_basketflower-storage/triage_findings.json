@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0467",
+  "project": "Basketflower Storage",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.088,
+    "lon": -98.965,
+    "method": "POI substation name 'Risingstar' → Rising Star, TX town center",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no activity",
+    "evidence": "Sentinel-2 chip 2026-06-01 at 2km buffer shows agricultural/rural landscape, no battery container rows, no gravel pad, no new substation work visible; queue has no construction-start milestone"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": true,
+    "why": "FIS approved Mar 2026; IA not yet signed; 18-month build window after IA would push to late 2027 at best — tight but not impossible if IA signed mid-2026"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "IA not yet signed — PUCT Interchange search when portal accessible (was 402 during triage); IA execution is the key binary for COD plausibility",
+    "Developer identity unknown — no web presence found; TX SOS entity search for 'Basketflower Storage LLC' to confirm sponsor and financial backing",
+    "Site not pinned — precise substation location needed; OSM/OpenInfraMap or ERCOT network model for Risingstar(285) coords to tighten imagery",
+    "Imagery site candidate is low-confidence town-center proxy; re-run chip 1km around actual substation once coords confirmed"
+  ],
+  "turns_used": 22
+}

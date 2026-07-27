@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0414",
+  "project": "Rogers Creek BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.857,
+    "lon": -95.231,
+    "method": "Nominatim geocode of Dialville community (POI-derived)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "Center chip 2026-06-15 at Dialville community (2km buffer): dense East Texas forest/agriculture, small rural settlement, no cleared pad or container rows visible; partial cloud cover; CDSE 401 prevented full 3x3 grid"
+  },
+  "cod_first_look": {
+    "reported": "2028-04-19",
+    "plausible": true,
+    "why": "FIS approved 2025-09, no IA yet — 2028 COD requires IA + construction start within ~12 months; tight but not impossible for BESS"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "IA not signed — PUCT Interchange search (fix 402 auth issue) to confirm whether IA filings exist under alternate party name 'Dialville BESS'",
+    "Developer identity gap — Rogers Creek BESS LLC registered Austin TX but ercotqueue.com lists 'Dialville BESS'; chase parent company",
+    "Imagery: CDSE 401 prevented full grid — re-run 3x3 chips with fresh token; substation exact coordinates (not community centroid) needed for better site candidate",
+    "3 COD slips in 3 years + no IA = high attrition risk; verify FIS approval letter in PUCT docket for any cost/scope conditions"
+  ],
+  "turns_used": 28
+}

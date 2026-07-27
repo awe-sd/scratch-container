@@ -1,0 +1,72 @@
+{
+ "inr": "24INR0234",
+ "generated": "2026-07-20",
+ "project": "Rock N' Roll Storage SLF",
+ "county": "Brazoria",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 0.0,
+ "queue_cod": "2028-05-01",
+ "milestones": {
+  "screeningStudyComplete": "2022-05-27",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 4,
+ "eia": {
+  "status": "ok",
+  "plant_id": 68583,
+  "entity": "Lydian Energy",
+  "planned_cod": "2027-10",
+  "cod_delta_quarters": -2.3,
+  "dropped_scope": null,
+  "coords": [
+   29.29937,
+   -95.42218
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Lydian Energy",
+    "detail": "plant=Rock N' Roll 250.0MW (L) Regulatory approvals pending. Not un @29.29937,-95.42218 planned=2027-10"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 1
+ },
+ "reality_signals": [],
+ "paper_score": 28,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 8,
+   "detail": "4 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 28 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

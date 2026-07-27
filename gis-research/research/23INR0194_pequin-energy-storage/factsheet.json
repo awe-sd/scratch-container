@@ -1,0 +1,74 @@
+{
+ "inr": "23INR0194",
+ "generated": "2026-07-20",
+ "project": "Pequin Energy Storage",
+ "county": "Brazoria",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 103.4,
+ "queue_cod": "2027-09-13",
+ "milestones": {
+  "screeningStudyComplete": "2021-04-16",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 5,
+ "eia": {
+  "status": "ok",
+  "plant_id": 64528,
+  "entity": "Gambit Energy Storage LLC",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   29.16801,
+   -95.44506
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Gambit Energy Storage LLC",
+    "detail": "plant=Gambit Energy Storage - Angleton Storage 100.0MW (OP) Operating @29.16801,-95.44506 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_operating_date"
+ ],
+ "paper_score": 30,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 10,
+   "detail": "5 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 7.48,
+  "reason": "reality signal"
+ }
+}

@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0400",
+  "project": "Maldives Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.5980,
+    "lon": -100.8611,
+    "method": "POI infrastructure — Scurry County South 345kV substation (ERCOT 11318, OSM way 171807050)",
+    "confidence": "low — substation tap point only, actual project parcel not located"
+  },
+  "construction": {
+    "verdict": "no activity",
+    "evidence": "Sentinel-2 chips at 2km buffer around substation; 2024-07-01 and 2026-07-01 show identical undisturbed rangeland/drainage terrain, no grading or panel arrays"
+  },
+  "cod_first_look": {
+    "reported": "2028-03-20",
+    "plausible": true,
+    "why": "IA signed 2023-12-01, 6.9(1) met 2024-07-17, no FIS yet — 2028 COD requires FIS + construction in ~18 months; tight but within range if FIS clears soon"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Developer identity unknown — Maldives Solar LLC has 0% completion rate and one dropped prior project; deep scan should identify parent company via TX SOS or ERCOT contacts",
+    "FIS never approved despite IA signed — unusual (IA without FIS); confirm sequence via PUCT IA filing (portal was 402-blocked in triage)",
+    "Actual project parcel unlocated — gmaps blocked, no pins; deep scan should try county appraisal district parcel search for solar-associated land leases near substation",
+    "Imagery centered on POI tap only; real construction site likely 1-5 miles away — expand search area once parcel is identified"
+  ],
+  "turns_used": 28
+}

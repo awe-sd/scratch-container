@@ -1,0 +1,37 @@
+{
+  "inr": "26INR0019",
+  "project": "HyFuels Green Lake Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.57,
+    "lon": -96.87,
+    "method": "Green Lake community centroid (Calhoun County, TX) — derived from project name geography; no PIN or IA map available",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery failed (401/403 auth error); no contact sheet produced. No queue construction milestones recorded."
+  },
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": false,
+    "why": "FIS requested 2023-06, not yet approved; no IA signed; 14-month COD slip already in record; 17 months to claimed COD with no IA in place is very aggressive for 347 MW"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Ch.313 application PDF (App 1925) for site coordinates, acreage, and legal description — file too large for triage WebFetch, use a local PDF reader",
+    "BNB Renewables developer profile — no web presence found; check LinkedIn/FERC eLibrary for other BNB projects to validate developer seriousness",
+    "Sibling projects: 1926 HyFuels Green Lake LLC + 1927 HyFuels Green Lake Wind LLC filed same day — likely hybrid solar+wind+storage campus; scope may be much larger than 347 MW",
+    "PUCT Interchange once portal access restored — search for HyFuels Green Lake IA filings",
+    "Imagery at ~28.57N -96.87W once CDSE creds are refreshed — abatement agreement signed 2022-12, so 3.5 years of potential site prep visible",
+    "FIS status — FIS requested 2023-06 with no approval; check current ERCOT study queue status"
+  ],
+  "turns_used": 28
+}

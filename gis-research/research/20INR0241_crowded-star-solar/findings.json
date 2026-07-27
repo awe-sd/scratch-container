@@ -1,0 +1,66 @@
+{
+  "inr": "20INR0241",
+  "project": "Crowded Star Solar",
+  "researched_at": "2026-07-19",
+  "site": {
+    "lat": 32.643,
+    "lon": -99.678,
+    "method": "POI_infrastructure_proximity",
+    "confidence": "low",
+    "note": "Estimated from Phantom Hill hamlet (Jones County, 32.6434, -99.6778) which matches 'Phantom Hill' bus in POI description. Exact tap point on Claytonville-Phantom Hill 345kV line unknown (CEII). Google Places quota exhausted; Jones CAD portal requires JS. Confidence low until imagery confirms."
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Crowded Star Solar, LLC",
+      "relation": "SPV",
+      "evidence": "Named in ERCOT GIS queue identity packet; IA signed 2023-07-27 per queue milestone data (timeline.md from local parquet)"
+    },
+    {
+      "entity": "Parent/developer unknown",
+      "relation": "developer_owner",
+      "evidence": "NEGATIVE: SEC EDGAR 0 results for 'Crowded Star Solar' or 'Crowded Star' (2026-07-19). No press releases found. No news articles found. Jones County commissioners court minutes 2020-2023 (~25 docs) contain no mention. TX Comptroller franchise search portal AJAX-only — direct query blocked. Developer identity could not be determined."
+    }
+  ],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Jones County CAD portal requires JS for owner-name search; could not query programmatically. No abatement agreement found in county minutes. Land tenure not determined."
+  },
+  "construction": {
+    "verdict": "substantially_complete",
+    "first_activity_seen": null,
+    "evidence": [
+      "ERCOT queue milestone: approvedForEnergization = 2026-04-22 (in 2026-04 snapshot)",
+      "ERCOT queue milestone: approvedForSynchronization = 2026-05-28 (in 2026-05 snapshot)",
+      "These milestones definitively confirm the physical plant exists, has been energized, and has been synchronized to the grid — the project is in final commissioning or operating",
+      "commercialOperationApproved not yet set as of 2026-06 snapshot — indicates formal COD not yet issued but project is otherwise complete",
+      "Satellite imagery: chip pulled for Phantom Hill area but site coordinates unverified; imagery interpretation pending"
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2026-08-17",
+    "independent": "2026-Q3",
+    "drift_risk": "low",
+    "reasoning_evidence": [
+      "approvedForSynchronization = 2026-05-28: the physical plant has been synchronized to the ERCOT grid as of May 2026 — this is definitive evidence the project is complete and in commissioning",
+      "approvedForEnergization = 2026-04-22: the project was energized April 2026, confirming substantial completion well before the reported 2026-08-17 COD",
+      "commercialOperationApproved is NOT set as of the June 2026 snapshot: formal commercial operation not yet issued, consistent with August 2026 target",
+      "The reported COD 2026-08-17 is credible: it is ~80 days after synchronization approval, typical for final testing, metering commissioning, and ERCOT commercial operation approval process",
+      "COD drift history: 13 changes from 2021-07-02 to 2026-08-17 — long history of slip, but current milestone status (energized + synchronized) makes another significant slip very unlikely",
+      "Independent estimate: 2026-Q3, drift risk LOW — synchronization achieved, only formal COD approval remains"
+    ]
+  },
+  "real_project_verdict": "real_active",
+  "negative_searches": 12,
+  "banned_source_violations": 0,
+  "project_area": {
+    "acres": null,
+    "source": "not_determined",
+    "artifact": null,
+    "note": "No abatement agreement or CAD parcel found; Jones CAD owner-name search requires JS. 218.79 MW solar implies approximately 1,200-2,000 acres at typical density."
+  },
+  "contractual_schedule": {
+    "documents": [],
+    "note": "PUCT Interchange search requires JavaScript execution — could not query by party name. IA signed 2023-07-27 per queue milestone but PUCT docket number not retrieved. NEGATIVE: PUCT portal JS-only; no document saved."
+  }
+}

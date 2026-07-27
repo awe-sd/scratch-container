@@ -1,0 +1,45 @@
+{
+  "source": "Haskell County Appraisal District",
+  "url": "https://haskellcad.org/Home/SearchTableV2",
+  "query_date": "2026-07-19",
+  "query": "ownerName=quantum, taxYear=all",
+  "records": [
+    {
+      "name": "IP QUANTUM BESS LLC",
+      "address": "140 NEW MONTGOMERY ST 11TH FL, SAN FRANCISCO CA 94105",
+      "legal": "BESS FACILITY-320 MWAC",
+      "lease_name": "COD JAN 1 2026 PAINT CREEK ISD",
+      "account": "0042066-0-9900010",
+      "market_value_usd": 173503020,
+      "property_type": "Mineral"
+    },
+    {
+      "name": "IP QUANTUM II BESS LLC",
+      "address": "140 NEW MONTGOMERY ST 11TH FL, SAN FRANCISCO CA 94105",
+      "legal": "BESS FACILTIY - 320MGAC",
+      "lease_name": "COD JAN 1 2026 HASKELL ISD",
+      "account": "0042067-0-9900010",
+      "market_value_usd": 175366370,
+      "property_type": "Mineral"
+    },
+    {
+      "name": "IP QUANTUM I LLC",
+      "address": "140 NEW MONTGOMERY ST 11TH FL, SAN FRANSICO CA 94105",
+      "legal": "200 MGW SOLAR PROJECT",
+      "lease_name": "CWIP 2026 PAINT CREEK",
+      "account": "0041849-0-9900010",
+      "market_value_usd": 85101670,
+      "property_type": "Mineral"
+    },
+    {
+      "name": "IP QUANTUM II LLC",
+      "address": "9450 SW GEMINI DR PMB#68743, BEAVERTON OR 97008",
+      "legal": "200MGW SOLAR PROJECT SPLIT",
+      "lease_name": "CWIP 2026 HASKELL ISD 53%",
+      "account": "0041848-0-9900010",
+      "market_value_usd": 46156830,
+      "property_type": "Mineral"
+    }
+  ],
+  "notes": "IP = Intersect Power. Two BESS entities total ~$349M value. Lease name 'COD JAN 1 2026' = assessment/tax effective date per CAD. Solar CWIP still listed as construction-in-progress. Address 140 New Montgomery St SF CA = Intersect Power headquarters."
+}

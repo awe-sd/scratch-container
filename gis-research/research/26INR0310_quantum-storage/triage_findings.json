@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0310",
+  "project": "Quantum Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": null,
+    "lon": null,
+    "method": "POI name only — Kilby Switching Station 345kV not found in OSM or public web; 345kV candidates in Haskell County identified but unconfirmed match",
+    "confidence": "none"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "No imagery run — site location unconfirmed. Construction start/end milestones null in queue data."
+  },
+  "cod_first_look": {
+    "reported": "2026-07-21",
+    "plausible": false,
+    "why": "COD is 3 days away; Commercial operation approved milestone still null; no construction reported in queue; 3 prior COD slips (12+ months total drift); zero public footprint suggests speculative or very early stage"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF retrieval — queue confirms iaSigned=2023-10-26 but PUCT portal was blocked (402); IA exists, get it to confirm POI, parties, and milestone schedule",
+    "Kilby Switching Station location — ERCOT ID 60089 not resolvable via public search; check ERCOT nodal maps or transmission planning docs to pin coordinates, then run imagery",
+    "Developer identity — zero web presence for 'Quantum Storage LLC'; check TX SOS entity search and ERCOT interconnection queue documents for applicant name",
+    "Approved for energization (2026-03-26) and synchronization (2026-04-10) milestones are complete but commercial operation approved is null — check if unit is already operational or if COD is imminent"
+  ],
+  "turns_used": 26
+}

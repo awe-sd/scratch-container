@@ -1,0 +1,27 @@
+{
+  "inr": "24INR0378",
+  "project": "Solara BESS 1",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-11-30",
+    "plausible": false,
+    "why": "3 prior COD slips over 4 years; no IA, no FIS approval, no construction dates — 2027 is optimistic with zero milestone progress beyond screening"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Hendrick 138kV substation coords (ERCOT network map or OpenInfraMap) then run imagery to establish site candidate",
+    "PUCT Interchange: access via authenticated session to search FilingParty='Solara BESS 1' for IA or study filings",
+    "TX SOS entity lookup for 'Solara BESS 1 LLC' to identify developer/parent company",
+    "JETI registry: check Jones County for any post-2022 incentive application"
+  ],
+  "turns_used": 28
+}

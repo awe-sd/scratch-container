@@ -1,0 +1,107 @@
+{
+  "source": "ercot_generation_interconnect.parquet (local)",
+  "note": "All active projects with Big Brown POI reference in latest snapshot (2026-06-01)",
+  "big_brown_poi_coords": "31.813367, -96.147730 (from BM Freestone Energy Center POI text)",
+  "projects": [
+    {
+      "INR": "24INR0117",
+      "name": "Utley Solar",
+      "county": "Freestone",
+      "MW": 221.78,
+      "fuel": "SOL",
+      "COD": "2028-05-11",
+      "iaSigned": "2025-12-18",
+      "POI": "Tap 345kV 3381 Big Brown Switch - 3391 Jewett"
+    },
+    {
+      "INR": "24INR0188",
+      "name": "Tehuacana Creek Solar",
+      "county": "Navarro",
+      "MW": 505.43,
+      "fuel": "SOL",
+      "COD": "2027-05-18",
+      "iaSigned": "2024-11-25",
+      "POI": "Tap 345kV 3381 Big Brown \u2013 68091 Navarro circuit "
+    },
+    {
+      "INR": "26INR0082",
+      "name": "Amerada Solar",
+      "county": "Freestone",
+      "MW": 301.57,
+      "fuel": "SOL",
+      "COD": "2028-12-30",
+      "iaSigned": "None",
+      "POI": "Tap 345kV 3133 RICHLND2_5 - 3381 BIGBRNW_5"
+    },
+    {
+      "INR": "26INR0084",
+      "name": "Amerada Storage",
+      "county": "Freestone",
+      "MW": 150.78,
+      "fuel": "OTH",
+      "COD": "2028-07-21",
+      "iaSigned": "None",
+      "POI": "Tap 345kV 3133 RICHLND2_5 - 3381 BIGBRNW_5"
+    },
+    {
+      "INR": "26INR0228",
+      "name": "Santa Monica Solar",
+      "county": "Navarro",
+      "MW": 105.85,
+      "fuel": "SOL",
+      "COD": "2028-09-20",
+      "iaSigned": "None",
+      "POI": "Tap 345 KV 68091 NAVARRO - 3381 BIGBRNW_5 Ckt 2"
+    },
+    {
+      "INR": "26INR0543",
+      "name": "Three Canes Solar",
+      "county": "Navarro",
+      "MW": 334.5,
+      "fuel": "SOL",
+      "COD": "2028-02-01",
+      "iaSigned": "2024-11-27",
+      "POI": "Tap 345kV 3381 Big Brown \u2013 68091 Navarro circuit "
+    },
+    {
+      "INR": "27INR0186",
+      "name": "Silver Dollar Solar",
+      "county": "Freestone",
+      "MW": 301.9,
+      "fuel": "SOL",
+      "COD": "2028-04-28",
+      "iaSigned": "None",
+      "POI": "Tap 345 kV Big Brown 3380 to Navarro 68091 ckt#2"
+    },
+    {
+      "INR": "27INR0187",
+      "name": "Silver Dollar Storage",
+      "county": "Freestone",
+      "MW": 153.1,
+      "fuel": "OTH",
+      "COD": "2028-04-28",
+      "iaSigned": "None",
+      "POI": "Tap 345 kV Big Brown 3380 to Navarro 68091 ckt#2"
+    },
+    {
+      "INR": "27INR0316",
+      "name": "Avant Prairie BESS ",
+      "county": "Freestone",
+      "MW": 201.72,
+      "fuel": "OTH",
+      "COD": "2029-04-16",
+      "iaSigned": "None",
+      "POI": "Tap 345kV BIGBRNE (#3380) - JEWETT (#3390) CKT 1"
+    },
+    {
+      "INR": "29INR0298",
+      "name": "BM Freestone Energy Center",
+      "county": "Freestone",
+      "MW": 990.6,
+      "fuel": "GAS",
+      "COD": "2029-09-20",
+      "iaSigned": "None",
+      "POI": "Loop Big Brown E to Navarro Ckt 1(PTI#3380-68091) and Big Brown W to Tarantulla Ckt 1 (PTI#3381-3344) at  31.813367\u00b0 -96.147730\u00b0"
+    }
+  ]
+}

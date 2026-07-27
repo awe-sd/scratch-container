@@ -1,0 +1,1288 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+        <meta name="search-token" content="MazsRI3EUg3Iv&#x2B;Y3/CCqLZ6WkCvCtwPtjdmAne/5G54=|2026-07-19T01:00:17.9263778Z" />
+
+
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/img/app-icons/ps/Bis/apple-touch-icon.png">
+        <meta property="og:image" content="https://esearch.graysonappraisal.org/img/app-icons/ps/Bis/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" href="/img/app-icons/ps/Bis/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/img/app-icons/ps/Bis/favicon-16x16.png" sizes="16x16">
+        <link rel="shortcut icon" href="/img/app-icons/ps/Bis/favicon.ico">
+
+    <link rel="manifest" href="/img/app-icons/ps/manifest.json">
+    <link rel="mask-icon" href="/img/app-icons/ps/safari-pinned-tab.svg" color="#e7655d">
+    <meta name="msapplication-config" content="/img/app-icons/ps/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="application-name" content="Property Search" />
+
+    <meta property="og:title" content="Grayson CAD Property Search" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://esearch.graysonappraisal.org" />
+
+    <title>Grayson CAD Property Search</title>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300">
+    <link rel="stylesheet" type="text/css" href="/css/blue-bis-theme.min.css?v=jAfyjMyWthBHykPMvxRdCxJHpYlg7RW9rWRZLdzsFRY" />
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css?v=gg4WnOJIJAZtmXP9S2Vhqunc1tvvZDXakF1aHWSCmXw" />
+    <link rel="stylesheet" type="text/css" href="/css/kendo.common.min.css?v=m8Ep4hSOiDy_ljAZJorGjYIKx4u3pK882rXJG7Mrpt8" />
+    <link rel="stylesheet" type="text/css" href="/css/kendo.common-bootstrap.min.css?v=ONblR1DdV18beREvFgCD0FFWSxSfxR2FKfjxNw-ur9s" />
+    <link rel="stylesheet" type="text/css" href="/css/blue-kendo-theme.min.css?v=ARH9eh8WId5adXanMsNSzngfaa2e4q7NIz6f-sUh3HM" />
+    <link rel="stylesheet" type="text/css" href="/css/_site.css?v=SiA0O4FwabZ6yOVrpLThTQVwce2Nyt4zo43eJAXYVNs" />
+    <link rel="stylesheet" type="text/css" href="/css/flatpickr.min.css?v=pndCqduSw_H7p6rYKMocVfCn01CE_I0r79MVpVbSuD0" />
+
+    <script src="/js/jquery.min.js?v=WoKHkbUuR0q1F7aIBUVmxixCQakDbEGlqKLRCKIms-A"></script>
+    <script src="/js/bootstrap.min.js?v=NkYOSU5MYoRDr97UCydDte3ppKdvtPe57yNFzH5Z_WQ"></script>
+    <script src="/js/jquery.cookie.min.js?v=I5AR3dADRWEYBtd0Z8gdxaTJDRX-xvZjV2cbc5ICh9w"></script>
+    <script src="/js/_site.js?v=xqV11HkYlRUrF0WTs7UB-QDRoUJFGrQpLUaz9_avKiA"></script>
+    <script src="/js/flatpickr.min.js?v=vQS7SXjTj84ZfaMJW_9o2hZfbeGNL8VqxfHX-2HI6Uc"></script>
+
+    <script>
+        $(document).ready(function() {
+            if (false === true) {
+                document.body.style.backgroundImage = "url('/img/backgrounds/mobile-alabama.jpg')";
+                document.body.style.backgroundSize = "100% 100%";
+            }
+
+            checkUserLogged();
+        });
+
+        document.addEventListener(
+            'visibilitychange',
+            function logData() {
+                if (document.visibilityState === 'hidden') {
+                    return;
+                }
+
+                checkUserLogged();
+            });
+
+        function checkUserLogged() {
+            $.ajax({
+                url: "/Account/CheckUserLogged",
+                success: function(data) {
+                    if (data === false) {
+                        window.location.href = "/Account/ReLogin?returnUrl="
+                            + encodeURIComponent(window.location.pathname + window.location.search);
+                    }
+                }
+            });
+        }
+    </script>
+
+
+    <script type="module">
+        import BugsnagPerformance from '//d2wy8f7a9ursnm.cloudfront.net/v1/bugsnag-performance.min.js'
+        BugsnagPerformance.start({ apiKey: 'dfa3c6429514d1040d1c301478f4434f' })
+    </script>
+</head>
+
+<body>
+    <div b-w5pg49eyc9 class="header-wrapper small hidden-print">
+        <div b-w5pg49eyc9 class="header">
+            <div b-w5pg49eyc9 class="container hidden-xs">
+                    <div b-w5pg49eyc9 class="pull-left site-icon ps-icon" ></div>
+                <a b-w5pg49eyc9 href="/">
+                    <h1 b-w5pg49eyc9 class="pull-left">Grayson CAD<br b-w5pg49eyc9 /><small b-w5pg49eyc9>Property Search</small></h1>
+                </a>
+                <div b-w5pg49eyc9 class="header-link-wrapper">
+                        <a b-w5pg49eyc9 target="_blank" href="https://forms.graysonappraisal.org" class="header-links">
+                                <div b-w5pg49eyc9 class="icon forms-icon"></div>
+                            <div b-w5pg49eyc9>Online Forms</div>
+                        </a>
+                        <a b-w5pg49eyc9 target="_blank" href="https://agentappeals.graysonappraisal.org/" class="header-links">
+                                <div b-w5pg49eyc9 class="icon op-icon"></div>
+                            <div b-w5pg49eyc9>Agent Portal</div>
+                        </a>
+                        <a b-w5pg49eyc9 target="_blank" href="https://portal.graysonappraisal.org/" class="header-links">
+                                <div b-w5pg49eyc9 class="icon op-icon"></div>
+                            <div b-w5pg49eyc9>Taxpayer Portal</div>
+                        </a>
+                        <a b-w5pg49eyc9 target="_blank" href="https://gis.bisclient.com/graysoncad/" class="header-links">
+                                <div b-w5pg49eyc9 class="icon map-icon"></div>
+                            <div b-w5pg49eyc9>Interactive Map</div>
+                        </a>
+                        <a b-w5pg49eyc9 target="_blank" href="https://www.graysonappraisal.org/" class="header-links">
+                                <div b-w5pg49eyc9 class="icon seal"></div>
+                            <div b-w5pg49eyc9>Homepage</div>
+                        </a>
+                </div>
+            </div>
+            <div b-w5pg49eyc9 class="visible-xs app-header">
+                <div b-w5pg49eyc9 class="site-icon ps-icon"></div>
+                <h1 b-w5pg49eyc9>Grayson CAD<br b-w5pg49eyc9 /><small b-w5pg49eyc9>Property Search</small></h1>
+                    <a b-w5pg49eyc9 href="https://www.graysonappraisal.org/" class="home-link">HOME</a>
+            </div>
+        </div>
+    </div>
+
+    <h3 b-w5pg49eyc9 class="visible-print">Grayson CAD Property Search</h3>
+        <div b-w5pg49eyc9 style="min-height: 40px; line-height: 20px; padding: 10px 0; width: 100%; color: black; background-color: white;text-align: center;">
+            <div b-w5pg49eyc9 class="container">
+                <p><br></p>
+            </div>
+        </div>
+    
+<link href="/css/select2.min.css" rel="stylesheet" />
+<script src="/js/select2.min.js"></script>
+<style>
+    #selectAbstract:hover {
+        background-color: red !important;
+        height: 50px
+    }
+
+    #subdivisionModal .modal-header,
+    #abstractModal .modal-header,
+    #condoModal .modal-header,
+    #neighborhoodModal .modal-header,
+    #mobileHomeParkModal .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #subdivisionModal .modal-pagination-container,
+    #abstractModal .modal-pagination-container,
+    #condoModal .modal-pagination-container,
+    #neighborhoodModal .modal-pagination-container,
+    #mobileHomeParkModal .modal-pagination-container {
+        display: flex;
+    }
+
+    #subdivisionModal .modal-body .modal-search-container,
+    #abstractModal .modal-body .modal-search-container,
+    #condoModal .modal-body .modal-search-container,
+    #neighborhoodModal .modal-body .modal-search-container,
+    #mobileHomeParkModal .modal-body .modal-search-container {
+        margin-bottom: 15px;
+    }
+
+    #subdivisionModal .modal-dialog,
+    #abstractModal .modal-dialog,
+    #condoModal .modal-dialog,
+    #neighborhoodModal .modal-dialog,
+    #mobileHomeParkModal .modal-dialog {
+        max-width: 600px;
+        margin: 30px auto;
+        display: flex;
+        align-items: center;
+        min-height: calc(100vh - 60px);
+        flex-direction: column;
+    }
+
+    #subdivisionModal .modal-content,
+    #abstractModal .modal-content,
+    #condoModal .modal-content,
+    #neighborhoodModal .modal-content,
+    #mobileHomeParkModal .modal-content {
+        width: 950px;
+        max-width: 150%;
+        height: auto;
+        max-height: 100%;
+        overflow-y: auto;
+        background-color: white;
+        border-radius: 5px;
+    }
+
+    #subdivisionModal .subdivision-item,
+    #abstractModal .abstract-item,
+    #condoModal .condo-item,
+    #neighborhoodModal .neighborhood-item,
+    #mobileHomeParkModal .mobileHomePark-item {
+        padding: 8px 15px;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+        color: black;
+        transition: background-color 0.3s ease;
+    }
+
+        #subdivisionModal .subdivision-item:hover,
+        #abstractModal .abstract-item:hover,
+        #condoModal .condo-item:hover,
+        #neighborhoodModal .neighborhood-item:hover,
+        #mobileHomeParkModal .mobileHomePark-item:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+            #subdivisionModal .subdivision-item.selected,
+            #subdivisionModal .subdivision-item:hover.selected,
+            #abstractModal .abstract-item.selected,
+            #abstractModal .abstract-item:hover.selected,
+            #condoModal .condo-item.selected,
+            #condoModal .condo-item:hover.selected,
+            #neighborhoodModal .neighborhood-item.selected,
+            #neighborhoodModal .neighborhood-item:hover.selected,
+            #mobileHomeParkModal .mobileHomePark-item.selected,
+            #mobileHomeParkModal .mobileHomePark-item:hover.selected {
+                background-color: #f0f0f0;
+                color: black;
+                font-weight: bold;
+            }
+
+                #subdivisionModal .subdivision-item.selected:hover,
+                #abstractModal .abstract-item.selected:hover,
+                #condoModal .condo-item.selected:hover,
+                #neighborhoodModal .neighborhood-item.selected:hover,
+                #mobileHomeParkModal .mobileHomePark-item.selected:hover {
+                    background-color: #007bff;
+                    color: white;
+                }
+
+        #subdivisionModal .subdivision-item:last-child,
+        #abstractModal .abstract-item:last-child,
+        #condoModal .condo-item:last-child,
+        #neighborhoodModal .neighborhood-item:last-child,
+        #mobileHomeParkModal .mobileHomePark-item:last-child {
+            border-bottom: none;
+        }
+
+    #subdivisionModal .modal-backdrop.show,
+    #abstractModal .modal-backdrop.show,
+    #condoModal .modal-backdrop.show,
+    #neighborhoodModal .modal-backdrop.show,
+    #mobileHomeParkModal .modal-backdrop.show {
+        opacity: 0.85;
+    }
+
+    #subdivisionModal .modal-backdrop.show,
+    #abstractModal .modal-backdrop.show,
+    #condoModal .modal-backdrop.show,
+    #neighborhoodModal .modal-backdrop.show,
+    #mobileHomeParkModal .modal-backdrop.show {
+        opacity: 0.85;
+    }
+
+    #subdivisionModal .modal-search-container,
+    #abstractModal .modal-search-container,
+    #condoModal .modal-search-container,
+    #neighborhoodModal .modal-search-container,
+    #mobileHomeParkModal .modal-search-container {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+        #subdivisionModal .modal-search-container input,
+        #abstractModal .modal-search-container input,
+        #condoModal .modal-search-container input,
+        #neighborhoodModal .modal-search-container input,
+        #mobileHomeParkModal .modal-search-container input {
+            margin-right: 10px;
+        }  
+
+</style>
+<div class="container float-body" style="width:1205px !important;">
+    <div class="row">
+        <div id="index-search" class="col-lg-8 col-lg-offset-2">
+            <div class="m-l-n-sm m-r-n-sm">
+                <ul id="home-page-tabs" class="nav nav-pills nav-justified">                   
+                    <li class="active">
+                        <a href="#" data-filter="search-owner"><i class="fa fa-user"></i> By Owner</a>
+                    </li>
+                    <li class="hidden-xs">
+                        <a style="padding: 5px 10px;" href="#" data-filter="search-address"><i class="fa fa-home"></i> By Address</a>
+                    </li>
+                    <li class="hidden-xs">
+                        <a href="#" data-filter="search-id"><i class="fa fa-tag "></i> By ID</a>
+                    </li>
+                        <li>
+                            <a href="#" data-filter="search-arb"><i class="fa fa-plus"></i> ARB Search</a>
+                        </li>
+                    <li>
+                        <a href="#" data-filter="search-options" id="search-option-advanced"><i class="fa fa-plus"></i> Advanced</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row search-main">
+                <div class="form-group col-md-12">
+                    <div id="main-search-controls" class="input-group input-group-lg search-box">
+                        <input class="form-control" id="keywords" name="keywords" type="text" value="" />
+                        <span class="input-group-btn">
+                            <button type="button" onclick="Search();" class="btn btn-default" value="Search"><i class="fa fa-search"></i> Search </button>
+                        </span>
+                    </div>
+                </div>
+            </div>           
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="form-group search-options search-owner" style="display: none;">
+                        <label for="OwnerName" class="control-label">Owner Name: (Last Name First Name) Ex: Smith John</label>
+                        <input class="form-control input-sm" id="OwnerName" name="OwnerName" tabindex="1" type="text" value="" />
+                    </div>
+
+                    <div class="form-group search-options search-address" style="display: none;">
+                        <label for="StreetNumber" class="control-label">Street Number:</label>
+                        <input class="form-control input-sm" id="StreetNumber" name="StreetNumber" tabindex="3" type="text" value="" />
+                    </div>
+                        <div class="form-group search-options search-address" style="display: none;">
+                            <label for="Abstract" class="control-label">Abstract:</label>
+                            <br />
+                            <div class="input-group">
+                                <input type="text" id="abstractValue" name="Abstract" class="form-control input-sm" readonly style='width: 100%;' tabindex="5">
+                                <span class="input-group-addon" id="searchAbstract"><i class="fa fa-search"></i></span>
+                            </div>
+                            <div id='selectAbstractResult'></div>
+                        </div>
+                        <div id="abstractModal" class="modal fade" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" style="text-align:center;"><b>Please Select Abstract List</b></h4>
+                                        <div class="modal-pagination-container ml-auto"></div>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="modal-search-container">
+                                            <input type="text" id="abstractSearch" class="form-control" placeholder="Search abstracts...">
+                                            <button onclick="searchAbstracts()" class="btn btn-primary">Search</button>
+                                        </div>
+                                        <div id="abstractListContainer">
+                                            <!-- Dynamic subdivision items will be loaded here -->
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!-- Pagination controls will be dynamically added here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group search-options search-address" style="display: none;">
+                            <label for="MobileHomePark" class="control-label">MobileHomePark:</label>
+                            <br />
+                            <div class="input-group">
+                                <input type="text" id="mobileHomeParkValue" name="MobileHomePark" class="form-control input-sm" readonly style='width: 100%;' tabindex="7">
+                                <span class="input-group-addon" id="searchMobileHomePark"><i class="fa fa-search"></i></span>
+                            </div>
+                            <div id='selectMobileHomeParkResult'></div>
+                        </div>
+                        <div id="mobileHomeParkModal" class="modal fade" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" style="text-align:center;"><b>Please Select Mobile Home Park List</b></h4>
+                                        <div class="modal-pagination-container ml-auto"></div>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="modal-search-container">
+                                            <input type="text" id="mobileHomeParkSearch" class="form-control" placeholder="Search mobile Home Parks...">
+                                            <button onclick="searchMobileHomeParks()" class="btn btn-primary">Search</button>
+                                        </div>
+                                        <div id="mobileHomeParkListContainer">
+                                            <!-- Dynamic subdivision items will be loaded here -->
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!-- Pagination controls will be dynamically added here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="form-group search-options search-arb search-id" style="display: none;">
+                        <label for="PropertyId" class="control-label">Property ID:</label>
+                        <input class="form-control input-sm" id="PropertyId" name="PropertyId" tabindex="9" type="text" value="" />
+                    </div>
+
+                    <div class="form-group search-options search-owner search-address search-id" style="display: none;">
+                        <label for="PropertyType" class="control-label">Property Type:</label>
+                        <br />
+                        <select class="form-control input-sm" id="PropertyType" name="PropertyType" style="width:100%;height:36px;font-size:14px;line-height:5px" tabindex="11">
+                                <option class="form selectOptionsValue" value=""></option>
+                                <option class="form selectOptionsValue" value="Real">Real</option>
+                                <option class="form selectOptionsValue" value="Personal">Personal</option>
+                                <option class="form selectOptionsValue" value="Mineral">Mineral</option>
+                                <option class="form selectOptionsValue" value="Auto">Auto</option>
+                                <option class="form selectOptionsValue" value="Mobile Home">Mobile Home</option>
+                        </select>
+                        <!-- Dropdown -->
+                    </div>
+                        <div class="form-group search-options search-agent-id" style="display: none;">
+                                <label for="AgentId" class="control-label">Agent Id:</label>
+                            <input class="form-control input-sm" id="AgentId" name="AgentId" tabindex="13" type="text" value="" />
+                        </div>
+
+                    <div class="form-group search-options" style="display: none;">
+                        <label for="ProtestStatus" class="control-label">Protest Status:</label>
+                        <input class="form-control input-sm" id="ProtestStatus" name="ProtestStatus" tabindex="15" type="text" value="" />
+                    </div>
+                    <div class="form-group search-options" style="display: none;">
+                        <label for="InformalDate" class="control-label">Informal Date:</label>
+                        <input class="form-control input-sm" id="InformalDate" name="InformalDate" tabindex="17" type="date" value="" />
+                    </div>                                      
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="form-group search-options search-owner" style="display: none;">
+                        <label for="DoingBusinessAs" class="control-label">Doing Business As:</label>
+                        <input class="form-control input-sm" id="DoingBusinessAs" name="DoingBusinessAs" tabindex="2" type="text" value="" />
+                    </div>
+
+                    <div class="form-group search-options search-address" style="display: none;">
+                        <label for="StreetName" class="control-label">Street Name:</label>
+                        <input class="form-control input-sm" id="StreetName" name="StreetName" tabindex="4" type="text" value="" />
+                    </div>
+                        <div class="form-group search-options search-address" style="display: none;">
+                            <label for="Subdivision" class="control-label">Subdivision:</label>
+                            <br />
+                            <div class="input-group">
+                                <input type="text" id="subdivisionValue" name="Subdivision" class="form-control input-sm" readonly style='width: 100%;' tabindex="6">
+                                <span class="input-group-addon" id="searchSubdivision"><i class="fa fa-search"></i></span>
+                            </div>
+                            <div id='selectSubdivisionResult'></div>
+                        </div>
+                        <div id="subdivisionModal" class="modal fade" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" style="text-align:center;"><b>Please Select Subdivision List</b></h4>
+                                        <div class="modal-pagination-container ml-auto"></div>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="modal-search-container">
+                                            <input type="text" id="subdivisionSearch" class="form-control" placeholder="Search subdivisions...">
+                                            <button onclick="searchSubdivisions()" class="btn btn-primary">Search</button>
+                                        </div>
+                                        <div id="subdivisionListContainer">
+                                            <!-- Dynamic subdivision items will be loaded here -->
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!-- Pagination controls will be dynamically added here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group search-options search-address" style="display: none;">
+                            <label for="Condo" class="control-label">Condo:</label>
+                            <br />
+                            <div class="input-group">
+                                <input type="text" id="condoValue" name="Condo" class="form-control input-sm" readonly style='width: 100%;' tabindex="8">
+                                <span class="input-group-addon" id="searchCondo"><i class="fa fa-search"></i></span>
+                            </div>
+                            <div id='selectCondoResult'></div>
+                        </div>
+                        <div id="condoModal" class="modal fade" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" style="text-align:center;"><b>Please Select Condo List</b></h4>
+                                        <div class="modal-pagination-container ml-auto"></div>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="modal-search-container">
+                                            <input type="text" id="condoSearch" class="form-control" placeholder="Search condos...">
+                                            <button onclick="searchCondos()" class="btn btn-primary">Search</button>
+                                        </div>
+                                        <div id="condoListContainer">
+                                            <!-- Dynamic subdivision items will be loaded here -->
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!-- Pagination controls will be dynamically added here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="form-group search-options search-id" style="display: none;">
+                        <label for="OwnerId" class="control-label">Owner ID:</label>
+                        <input class="form-control input-sm" id="OwnerId" name="OwnerId" tabindex="10" type="text" value="" />
+                    </div>
+                        <div class="form-group search-options search-id" style="display: none;">
+                                <label for="GeoId" class="control-label">Geographic ID:</label>
+                            <input class="form-control input-sm" id="GeoId" name="GeoId" tabindex="12" type="text" value="" />
+                        </div>
+                        <div class="form-group search-options search-owner search-address search-arb search-id" style="display: none;">
+                            <label for="Year" class="control-label">Tax Year:</label><br />
+                            <select class="form-control input-sm" id="Year" name="Year" onchange="yearChange()"
+                                    style="width:100%;height:36px;font-size:14px;line-height:5px" tabindex="14">
+                                        <option class="selectOptionsValue" value="2026" selected>2026</option>
+                                        <option class="selectOptionsValue" value="2025">2025</option>
+                                        <option class="selectOptionsValue" value="2024">2024</option>
+                                        <option class="selectOptionsValue" value="2023">2023</option>
+                                        <option class="selectOptionsValue" value="2022">2022</option>
+                                        <option class="selectOptionsValue" value="2021">2021</option>
+                                        <option class="selectOptionsValue" value="2020">2020</option>
+                                        <option class="selectOptionsValue" value="2019">2019</option>
+                                        <option class="selectOptionsValue" value="2018">2018</option>
+                                        <option class="selectOptionsValue" value="2017">2017</option>
+                            </select>
+                            <div id="YearResult"></div>
+                        </div>
+                        <div class="form-group search-options search-address" style="display: none;">
+                            <label for="Neighborhood" class="control-label">Neighborhood:</label>
+                            <br />
+                            <div class="input-group">
+                                <input type="text" id="neighborhoodText" name="Neighborhood" class="form-control input-sm" readonly style='width: 100%;' tabindex="16">
+                                <span class="input-group-addon" id="searchNeighborhood"><i class="fa fa-search"></i></span>
+                            </div>
+                            <div id='selectNeighborhoodResult'></div>
+                        </div>
+                        <div id="neighborhoodModal" class="modal fade" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" style="text-align:center;"><b>Please Select Neighborhood List</b></h4>
+                                        <div class="modal-pagination-container ml-auto"></div>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="modal-search-container">
+                                            <input type="text" id="neighborhoodSearch" class="form-control" placeholder="Search neighborhoods...">
+                                            <button onclick="searchNeighborhoods()" class="btn btn-primary">Search</button>
+                                        </div>
+                                        <div id="neighborhoodListContainer">
+                                            <!-- Dynamic items will be loaded here -->
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!-- Pagination controls will be dynamically added here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="form-group search-arb" style="display: none;">
+                        <label for="HearingDate" class="control-label">Hearing Date:</label>
+                        <input class="form-control input-sm" id="HearingDate" name="HearingDate" tabindex="20" type="date" value="" />
+                    </div>
+                    <div class="form-group search-arb" style="display: none;">
+                        <label for="BoardMember" class="control-label">Board Members:</label>
+                        <input class="form-control input-sm" id="BoardMember" name="BoardMember" tabindex="21" type="text" value="" />
+                    </div>
+                    <div class="form-group search-options" style="display: none;">
+                        <label for="FormalDate" class="control-label">Formal Date:</label>
+                        <input class="form-control input-sm" id="FormalDate" name="FormalDate" tabindex="18" type="date" value="" />
+                    </div>
+                </div>
+            </div>            
+            <div class="row search-options search-owner search-address search-id search-arb" style="display: none;">
+                <div class="form-group col-md-12 text-right">
+                    <div class="form-group">                       
+                        <!-- Search Button -->
+                        <button type="button" onclick="AdvancedSearch();" class="btn btn-default" value="Search">
+                            <i class="fa fa-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="row wrapper bg-white">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <h3>Disclaimer</h3>
+                    <p>
+                        <p>Information provided for research purposes only. Legal descriptions and acreage amounts are for Appraisal District use only and should be verified prior to using for legal purpose and or documents. Please contact the Appraisal District to verify all information for accuracy.</p>
+                    </p>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <h3>Helpful Hints</h3>
+
+                    <p>
+                        <strong><i class="fa fa-dot-circle-o text-success"></i> Know what you are looking for?</strong> Find results quickly by selecting the Owner, Address, ID or Advanced search tabs above.<br />
+                        <strong><i class="fa fa-dot-circle-o text-success"></i> Seeing too many results?</strong> Try using the Advanced Search above and add more info to narrow the field.<br />
+                        <strong><i class="fa fa-dot-circle-o text-success"></i> Having trouble searching by Address?</strong> Use a more simple search like just the street name.<br />
+                        <strong><i class="fa fa-dot-circle-o text-success"></i> Having trouble searching by Name?</strong> Use just the first or last name alone.<br />
+                        <strong><i class="fa fa-dot-circle-o text-success"></i> Looking for something else?</strong> <a href="/Search/Help">Click Here for our Help page</a> <br />
+                    </p>
+
+                    <p>
+                        By using this site you agree to the
+                        <a class="terms-of-use-link" href="/TermsOfUse">Terms and Conditions</a>
+                    </p>
+                </div>
+            </div>
+            <div class="row footer-logo">
+                    <a href="http://www.bisconsultants.com/" target="_blank">
+                        <img src="/img/icons/BIS-logo-46X46-new.svg" alt="Site Logo" />
+                        Powered by BIS Consultants
+                    </a>
+                <div class="pull-right hidden-xs" style="margin-top: 13px">
+                    <div class="btn-xs">
+                        <strong><i class="fa fa-check"></i> Version:</strong> 2.0.9678.37423
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Modal styling */
+    .modal {
+        display: none; /* Hide modal by default */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    }
+
+    .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: black;
+        text-decoration-color: black;
+        padding: 20px;
+    }
+
+    /* Close button styling */
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+</style>
+
+<script type="text/javascript">
+
+    window.AppSettings = {
+        DefaultYear: 2026,
+        IsCapitolClient: false,
+        RecaptchaEnterpriseKey: "6Ld1RZgqAAAAABK3hm5f-p6SlTY-hlqnWIsIzJWt",
+        EnableRecaptchaEnterprise: "false"
+    };
+
+
+    var selectedSubdivision = null;
+    var selectedAbstract = null;
+    var selectedNeighborhood = null;
+    var selectedCondo = null;
+    var selectedMHP = null;
+    $(document).ready(function () {
+        $('.search-main').hide();
+        var ownerElements = document.querySelectorAll('.search-owner');
+        ownerElements.forEach(function (element) {
+            element.style.display = 'block';
+        });
+        $('#searchSubdivision').click(function () {
+            $('#subdivisionSearch').val('');
+            $('#subdivisionModal').modal('show');
+            loadSubdivisions(1, 25);
+        });
+
+        $('#searchAbstract').click(function () {
+            $('#abstractSearch').val('');
+            $('#abstractModal').modal('show');
+            loadAbstracts(1, 25);
+        });
+
+        $('#searchCondo').click(function () {
+            $('#condoSearch').val('');
+            $('#condoModal').modal('show');
+            loadCondos(1, 25);
+        });
+
+        $('#searchMobileHomePark').click(function () {
+            $('#mobileHomeParkSearch').val('');
+            $('#mobileHomeParkModal').modal('show');
+            loadMobileHomeParks(1, 25);
+        });
+
+        $('#searchNeighborhood').click(function () {
+            $('#neighborhoodSearch').val('');
+            $('#neighborhoodModal').modal('show');
+            loadNeighborhoods(1, 25);
+        });
+
+
+        $('.nav-pills li a').click(function (e) {
+            e.preventDefault();
+            const filter = $(this).attr('data-filter');
+            if (filter != 'search-main') {
+                $('.search-main').hide();
+            }
+
+            $('.search-options').hide();
+            // Explicitly hide ARB-specific fields unless we're on the ARB tab
+            if (filter !== 'search-arb') {
+                $('.search-arb').hide();
+            }
+            $('.' + filter).show();
+            $('.nav-pills li').removeClass('active');
+            $(this).parent().addClass('active');
+
+            $('.form-control').each(function () {
+                if ($(this).val() != '') {
+                    $(this).val('');
+                }
+            });
+
+        });
+
+        $('input[type=text]').keypress(function (e) {
+            if (e.which == 13) {
+                if ($(this).attr("id") == 'keywords') {
+                    Search();
+                } else {
+                    AdvancedSearch();
+                }
+            }
+        });
+
+        resizeElementsAsNeeded();
+        $('#keywords').focus();
+
+        $(window).resize(function () {
+            resizeElementsAsNeeded();
+        });
+                });
+
+
+    function updatePaginationControls(totalPages, currentPage) {
+        var paginationHtml = '<ul class="pagination justify-content-center">';
+        var maxPageNumbersToShow = 10; // Maximum number of page numbers to display at a time
+        var startPage, endPage;
+
+        if (totalPages <= maxPageNumbersToShow) {
+            // If total pages is less or equal to the max display limit, show all pages
+            startPage = 1;
+            endPage = totalPages;
+        } else {
+            // Calculate start and end pages for sliding window
+            var maxPagesBeforeCurrentPage = Math.floor(maxPageNumbersToShow / 2);
+            var maxPagesAfterCurrentPage = Math.ceil(maxPageNumbersToShow / 2) - 1;
+            if (currentPage <= maxPagesBeforeCurrentPage) {
+                // Near the beginning; show first pages
+                startPage = 1;
+                endPage = maxPageNumbersToShow;
+            } else if (currentPage + maxPagesAfterCurrentPage >= totalPages) {
+                // Near the end; show last pages
+                startPage = totalPages - maxPageNumbersToShow + 1;
+                endPage = totalPages;
+            } else {
+                // Somewhere in the middle; show pages around the current page
+                startPage = currentPage - maxPagesBeforeCurrentPage;
+                endPage = currentPage + maxPagesAfterCurrentPage;
+            }
+        }
+
+        // Generate "Previous" button
+        paginationHtml += currentPage > 1
+            ? `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="loadSubdivisions(${currentPage - 1}, 25)">Previous</a></li>`
+            : '<li class="page-item disabled"><span class="page-link">Previous</span></li>';
+
+        // Generate starting "..." if needed
+        if (startPage > 1) {
+            paginationHtml += '<li class="page-item disabled"><span class="page-link">...</span></li>';
+        }
+
+        // Generate page number links
+        for (let i = startPage; i <= endPage; i++) {
+            paginationHtml += i === currentPage
+                ? `<li class="page-item active"><span class="page-link">${i}</span></li>`
+                : `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="loadSubdivisions(${i}, 25)">${i}</a></li>`;
+        }
+
+        // Generate ending "..." if needed
+        if (endPage < totalPages) {
+            paginationHtml += '<li class="page-item disabled"><span class="page-link">...</span></li>';
+        }
+
+        // Generate "Next" button
+        paginationHtml += currentPage < totalPages
+            ? `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="loadSubdivisions(${currentPage + 1}, 25)">Next</a></li>`
+            : '<li class="page-item disabled"><span class="page-link">Next</span></li>';
+
+        paginationHtml += '</ul>';
+
+        // Set the pagination in both the modal's header and footer
+        //$('#subdivisionModal .modal-header').html(paginationHtml);
+        //$('.modal-pagination-container').html(paginationHtml);
+        $('#subdivisionModal .modal-footer').html(paginationHtml);
+    }
+
+
+    // functions related to Abstracts ...
+    function loadAbstracts(page, pageSize = 25, searchQuery = '') {
+        const text = $('#Year :selected').text();
+        const Year = text == "" ? 2026 : text;
+        $.ajax({
+            url: `/Search/AbstractList?page=${page}&pageSize=${pageSize}&year=${Year}&searchQuery=${encodeURIComponent(searchQuery)}`,
+            success: function (data) {
+                // Assuming your API returns an object with these properties
+                var itemsHtml = '';
+
+                if (selectedAbstract) {
+                    itemsHtml += `<p class="abstract-item selected" data-id="${selectedAbstract.value}" data-name="${selectedAbstract.text}" onclick="selectAbstract('${selectedAbstract.value}', '${selectedAbstract.text}')">${selectedAbstract.text}</p>`;
+                }
+                data.items.forEach(function (item) {
+                    if (!selectedAbstract || item.value !== selectedAbstract.value) {
+                        const itemText = item.text.replace(/'/g, "\\'");
+                        itemsHtml += `<p class="abstract-item" data-id="${item.value}" data-name="${item.text}" onclick="selectAbstract('${item.value}', '${itemText}')">${item.text}</p>`;
+                    }
+                });
+
+                //$('#subdivisionModal .modal-body').html(itemsHtml);
+                $('#abstractModal #abstractListContainer').html(itemsHtml); // Update only the list container
+
+
+                // Update pagination controls
+                updateAbstractPaginationControls(data.totalPages, data.currentPage);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+    function updateAbstractPaginationControls(totalPages, currentPage) {
+        var paginationHtml = '<ul class="pagination justify-content-center">';
+        var maxPageNumbersToShow = 10; // Maximum number of page numbers to display at a time
+        var startPage, endPage;
+
+        if (totalPages <= maxPageNumbersToShow) {
+            // If total pages is less or equal to the max display limit, show all pages
+            startPage = 1;
+            endPage = totalPages;
+        } else {
+            // Calculate start and end pages for sliding window
+            var maxPagesBeforeCurrentPage = Math.floor(maxPageNumbersToShow / 2);
+            var maxPagesAfterCurrentPage = Math.ceil(maxPageNumbersToShow / 2) - 1;
+            if (currentPage <= maxPagesBeforeCurrentPage) {
+                // Near the beginning; show first pages
+                startPage = 1;
+                endPage = maxPageNumbersToShow;
+            } else if (currentPage + maxPagesAfterCurrentPage >= totalPages) {
+                // Near the end; show last pages
+                startPage = totalPages - maxPageNumbersToShow + 1;
+                endPage = totalPages;
+            } else {
+                // Somewhere in the middle; show pages around the current page
+                startPage = currentPage - maxPagesBeforeCurrentPage;
+                endPage = currentPage + maxPagesAfterCurrentPage;
+            }
+        }
+
+        // Generate "Previous" button
+        paginationHtml += currentPage > 1
+            ? `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="loadAbstracts(${currentPage - 1}, 25)">Previous</a></li>`
+            : '<li class="page-item disabled"><span class="page-link">Previous</span></li>';
+
+        // Generate starting "..." if needed
+        if (startPage > 1) {
+            paginationHtml += '<li class="page-item disabled"><span class="page-link">...</span></li>';
+        }
+
+        // Generate page number links
+        for (let i = startPage; i <= endPage; i++) {
+            paginationHtml += i === currentPage
+                ? `<li class="page-item active"><span class="page-link">${i}</span></li>`
+                : `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="loadAbstracts(${i}, 25)">${i}</a></li>`;
+        }
+
+        // Generate ending "..." if needed
+        if (endPage < totalPages) {
+            paginationHtml += '<li class="page-item disabled"><span class="page-link">...</span></li>';
+        }
+
+        // Generate "Next" button
+        paginationHtml += currentPage < totalPages
+            ? `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="loadAbstracts(${currentPage + 1}, 25)">Next</a></li>`
+            : '<li class="page-item disabled"><span class="page-link">Next</span></li>';
+
+        paginationHtml += '</ul>';
+
+        // Set the pagination in both the modal's header and footer
+        //$('#subdivisionModal .modal-header').html(paginationHtml);
+        //$('.modal-pagination-container').html(paginationHtml);
+        $('#abstractModal .modal-footer').html(paginationHtml);
+    }
+
+    function selectAbstract(value, text) {
+        $('#abstractText').val(text);
+        $('#abstractValue').val(value);
+        selectedAbstract = { value: value, text: text };
+        $('#abstractModal').modal('hide');
+    }
+
+    function searchAbstracts() {
+        var searchQuery = $('#abstractSearch').val();
+        loadAbstracts(1, 25, searchQuery);
+    }
+
+    $('#abstractText').on('click', function () {
+        $(this).select();
+    }).on('keydown', function (e) {
+        // allow TAB to move to next field
+    if (e.key === 'Tab') {
+        return; // very important
+    }
+        if (e.key === 'Escape' || e.key === 'Backspace') {
+            $(this).val('');
+            selectedAbstract = null;
+            e.preventDefault();
+        } else {
+            e.preventDefault();
+        }
+    });
+
+
+    // functions related to Neighborhoods ...
+    function loadNeighborhoods(page, pageSize = 25, searchQuery = '') {
+        const text = $('#Year :selected').text();
+        const Year = text == "" ? 2026 : text;
+        $.ajax({
+            url: `/Search/NeighborhoodCodeList?page=${page}&pageSize=${pageSize}&year=${Year}&searchQuery=${encodeURIComponent(searchQuery)}`,
+            success: function (data) {
+                var itemsHtml = '';
+
+                if (selectedNeighborhood) {
+                    itemsHtml += `<p class="neighborhood-item selected" data-id="${selectedNeighborhood.value}" data-name="${selectedNeighborhood.text}" onclick="selectNeighborhood('${selectedNeighborhood.value}', '${selectedNeighborhood.text}')">${selectedNeighborhood.text}</p>`;
+                }
+                data.items.forEach(function (item) {
+                    if (!selectedNeighborhood || item.value !== selectedNeighborhood.value) {
+                        const itemText = item.text.replace(/'/g, "\\'");
+                        itemsHtml += `<p class="neighborhood-item" data-id="${item.value}" data-name="${item.text}" onclick="selectNeighborhood('${item.value}', '${itemText}')">${item.text}</p>`;
+                    }
+                });
+
+                $('#neighborhoodModal #neighborhoodListContainer').html(itemsHtml);
+                updateNeighborhoodPaginationControls(data.totalPages, data.currentPage);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+    function updateNeighborhoodPaginationControls(totalPages, currentPage) {
+        var paginationHtml = '<ul class="pagination justify-content-center">';
+        var maxPageNumbersToShow = 10;
+        var startPage, endPage;
+
+        if (totalPages <= maxPageNumbersToShow) {
+            startPage = 1;
+            endPage = totalPages;
+        } else {
+            var maxPagesBeforeCurrentPage = Math.floor(maxPageNumbersToShow / 2);
+            var maxPagesAfterCurrentPage = Math.ceil(maxPageNumbersToShow / 2) - 1;
+            if (currentPage <= maxPagesBeforeCurrentPage) {
+                startPage = 1;
+                endPage = maxPageNumbersToShow;
+            } else if (currentPage + maxPagesAfterCurrentPage >= totalPages) {
+                startPage = totalPages - maxPageNumbersToShow + 1;
+                endPage = totalPages;
+            } else {
+                startPage = currentPage - maxPagesBeforeCurrentPage;
+                endPage = currentPage + maxPagesAfterCurrentPage;
+            }
+        }
+
+        paginationHtml += currentPage > 1
+            ? `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="loadNeighborhoods(${currentPage - 1}, 25)">Previous</a></li>`
+            : '<li class="page-item disabled"><span class="page-link">Previous</span></li>';
+
+        if (startPage > 1)
+            paginationHtml += '<li class="page-item disabled"><span class="page-link">...</span></li>';
+
+        for (let i = startPage; i <= endPage; i++) {
+            paginationHtml += i === currentPage
+                ? `<li class="page-item active"><span class="page-link">${i}</span></li>`
+                : `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="loadNeighborhoods(${i}, 25)">${i}</a></li>`;
+        }
+
+        if (endPage < totalPages)
+            paginationHtml += '<li class="page-item disabled"><span class="page-link">...</span></li>';
+
+        paginationHtml += currentPage < totalPages
+            ? `<li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="loadNeighborhoods(${currentPage + 1}, 25)">Next</a></li>`
+            : '<li class="page-item disabled"><span class="page-link">Next</span></li>';
+
+        paginationHtml += '</ul>';
+
+        $('#neighborhoodModal .modal-footer').html(paginationHtml);
+    }
+
+    function selectNeighborhood(value, text) {
+        $('#neighborhoodText').val(text);
+        selectedNeighborhood = { value: value, text: text };
+        $('#neighborhoodModal').modal('hide');
+    }
+
+    function searchNeighborhoods() {
+        var searchQuery = $('#neighborhoodSearch').val();
+        loadNeighborhoods(1, 25, searchQuery);
+    }
+
+    $('#neighborhoodText').on('click', function () {
+        $(this).select();
+    }).on('keydown', function (e) {
+        // allow TAB to move to next field
+    if (e.key === 'Tab') {
+        return; // very important
+    }
+        if (e.key === 'Escape' || e.key === 'Backspace') {
+            $(this).val('');
+            selectedNeighborhood = null;
+            e.preventDefault();
+        } else {
+            e.preventDefault();
+        }
+    });
+
+
+
+    // functions related to Mobile Home Parks ...
+
+
+    function resizeElementsAsNeeded() {
+        if ($(window).width() < 480) {
+            $('#main-search-controls').removeClass('input-group');
+            $('#main-search-controls .input-group-btn').addClass('top-spacing');
+            $('#main-search-controls .input-group-btn').removeClass('input-group-btn');
+            $('#main-search-controls button').addClass('btn-block');
+        } else {
+            $('#main-search-controls').addClass('input-group');
+            $('#main-search-controls .top-spacing').addClass('input-group-btn');
+            $('#main-search-controls .top-spacing').removeClass('top-spacing');
+            $('#main-search-controls button').removeClass('btn-block');
+        }
+    }
+
+
+
+
+
+    function filterByYear() {
+        return {
+            year: $("#Year").val()
+        };
+    }
+
+    function yearChange() {
+        getAbstractData();
+        getMobileHomePark();
+        getCondo();
+        getSubdivision();
+        getNeighborhoodCode();
+        const selectAbstract = document.getElementById("selectAbstract");
+        selectAbstract.selectedIndex = 0;
+        const selectMobileHomePark = document.getElementById("selectMobileHomePark");
+        selectMobileHomePark.selectedIndex = 0;
+        const selectSubdivision = document.getElementById("selectSubdivision");
+        selectSubdivision.selectedIndex = 0;
+        const selectNeighborhoodCode = document.getElementById("selectNeighborhoodCode");
+        selectNeighborhoodCode.selectedIndex = 0;
+        const selectCondo = document.getElementById("selectCondo");
+        selectCondo.selectedIndex = 0;
+        $("#selectAbstract").value('');
+        $("#selectMobileHomePark").value('');
+        $("#selectSubdivision").value('');
+        $("#selectCondo").value('');
+        $("#selectNeighborhoodCode").value('');
+    }
+
+    function getAbstractData() {
+        $('#selectAbstract').empty()
+        const options = [];
+        const select = document.getElementById("selectAbstract");
+        const text = $('#Year :selected').text();
+        const Year = text == "" ? 2026 : text;
+        $.ajax({
+            url: "Search/AbstractList?year=" + Year, success: function (result) {
+                for (let i = 0; i < result.length; i++) {
+                    const opt = result[i].text;
+                    const el = document.createElement("option");
+                    el.textContent = opt;
+                    el.className = "selectOptionsValue";
+                    el.value = opt;
+                    select.appendChild(el);
+                }
+            }
+        });
+    }
+
+    function getMobileHomePark() {
+        $('#selectMobileHomePark').empty()
+        const options = [];
+        const select = document.getElementById("selectMobileHomePark");
+        const Year = $('#Year :selected').text() == "" ? 2026 : $('#Year :selected').text();
+        $.ajax({
+            url: "Search/MobileHomeParkList?year=" + Year, success: function (result) {
+                for (let i = 0; i < result.length; i++) {
+                    const opt = result[i].text;
+                    const el = document.createElement("option");
+                    el.textContent = opt;
+                    el.className = "selectOptionsValue";
+                    el.value = opt;
+                    select.appendChild(el);
+                }
+            }
+        });
+    }
+
+    function getCondo() {
+        $('#selectCondo').empty()
+        const options = [];
+        const select = document.getElementById("selectCondo");
+        const Year = $('#Year :selected').text() == "" ? 2026 : $('#Year :selected').text();
+        $.ajax({
+            url: "Search/CondoList?year=" + Year, success: function (result) {
+                for (let i = 0; i < result.length; i++) {
+                    const opt = result[i].text;
+                    const el = document.createElement("option");
+                    el.textContent = opt;
+                    el.className = "selectOptionsValue";
+                    el.value = opt;
+                    select.appendChild(el);
+                }
+            }
+        });
+    }
+
+    function getSubdivision() {
+        $('#selectSubdivision').empty();
+        const options = [];
+        const select = document.getElementById("selectSubdivision");
+        const text = $('#Year :selected').text();
+        const Year = text == "" ? 2026 : text;
+        $.ajax({
+            url: "Search/SubdivisionList?year=" + Year, success: function (result) {
+                for (let i = 0; i < result.length; i++) {
+                    const opt = result[i].text;
+                    const el = document.createElement("option");
+                    el.textContent = opt;
+                    el.className = "selectOptionsValue";
+                    el.value = opt;
+                    select.appendChild(el);
+                }
+            }
+        });
+    }
+
+    function getNeighborhoodCode() {
+        $('#selectNeighborhoodCode').empty();
+        const options = [];
+        const select = document.getElementById("selectNeighborhoodCode");
+        const text = $('#Year :selected').text();
+        const Year = text == "" ? 2026 : text;
+        $.ajax({
+            url: "Search/NeighborhoodCodeList?year=" + Year, success: function (result) {
+               for (let i = 0; i < result.length; i++) {
+                    const opt = result[i].text;
+                    const el = document.createElement("option");
+                    el.textContent = opt;
+                    el.className = "selectOptionsValue";
+                    el.value = opt;
+                    select.appendChild(el);
+                }
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        //Year
+        $("#selectYear").select2();
+        $('#selectYearRead').click(function () {
+            const valueYear = $('#selectYear option:selected').text();
+            const idYear = $('#selectYear').val();
+            $('#selectYearResult').html("id : " + idYear + ", name : " + valueYear);
+        });
+
+        //Abstract
+        $("#selectAbstract").select2();
+        $('#selectAbstractRead').click(function () {
+            var value = $('#selectAbstract option:selected').text();
+            var id = $('#selectAbstract').val();
+            $('#selectAbstractResult').html("id : " + id + ", name : " + value);
+        });
+
+        //MobileHomePark
+        $("#selectMobileHomePark").select2();
+        $('#selectMobileHomeParkRead').click(function () {
+            var valueMobileHomePark = $('#selectMobileHomePark option:selected').text();
+            var idMobileHomePark = $('#selectMobileHomePark').val();
+            $('#selectMobileHomeParkResult').html("id : " + idMobileHomePark + ", name : " + valueMobileHomePark);
+        });
+
+        //Subdivision
+        $("#selectSubdivision").select2();
+        $('#selectSubdivisionRead').click(function () {
+            var valueSubdivision = $('#selectSubdivision option:selected').text();
+            var idSubdivision = $('#selectSubdivision').val();
+            $('#selectSubdivisionResult').html("id : " + idSubdivision + ", name : " + valueSubdivision);
+        });
+
+        //Neighborhood Code
+        $("#selectNeighborhoodCode").select2();
+        $('#selectNeighborhoodCodeRead').click(function () {
+            var valueNeighborhoodCode = $('#selectNeighborhoodCode option:selected').text();
+            var idNeighborhoodCode = $('#selectNeighborhoodCode').val();
+            $('#selectNeighborhoodCodeResult').html("id : " + idNeighborhoodCode + ", name : " + valueNeighborhoodCode);
+        });
+
+
+        //Condo
+        $("#selectCondo").select2();
+        $('#selectCondoRead').click(function () {
+            var valueCondo = $('#selectCondo option:selected').text();
+            var idCondo = $('#selectCondo').val();
+            $('#selectCondoResult').html("id : " + idCondo + ", name : " + valueCondo);
+        });
+
+        $("#PropertyType").select2({
+            minimumResultsForSearch: -1
+        });
+
+        $("#Year").select2({
+            minimumResultsForSearch: -1
+        });
+    });
+</script>
+
+    <div b-w5pg49eyc9 class="alert-modal snackbar">
+        <div b-w5pg49eyc9 class="snackbar-message">
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.hover-popover').popover({ trigger: 'hover', container: 'body', placement: 'auto' });
+
+            $('.back-top')
+                .click(function () {
+                    $('body,html')
+                        .animate({
+                            scrollTop: 0
+                        },
+                            800);
+                    return false;
+                });
+
+            updatedBadge();
+        });
+    </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1WRCW1XD2M"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-1WRCW1XD2M');
+        </script>
+</body>
+</html>

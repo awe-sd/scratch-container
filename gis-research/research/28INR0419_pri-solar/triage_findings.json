@@ -1,0 +1,28 @@
+{
+  "inr": "28INR0419",
+  "project": "PRI Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-01-31",
+    "plausible": false,
+    "why": "FIS not yet approved, no IA signed; ~18 months to COD from current milestone is very tight for 63 MW solar"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Falcon Seaboard substation coordinates (Oncor GIS / OpenInfraMap) to enable imagery",
+    "Retry PUCT Interchange search for 'PRI Solar' and 'PRI Solar LLC' when portal is accessible",
+    "Identify developer behind 'PRI' acronym — no LLC confirmed, no developer surfaced",
+    "Monitor for FIS approval and IA signing milestones — project is early-stage (post-screening only)",
+    "Check TX SOS for PRI Solar LLC registration to confirm entity and developer"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,35 @@
+{
+  "inr": "21INR0534",
+  "project": "Midlothian Unit 2 repower",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.482,
+    "lon": -96.994,
+    "method": "POI city name inference (Midlothian TX center)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "not visible",
+    "evidence": "2 of 9 CDSE chips returned (others dropped); both show suburban residential area only — no turbine hall, cooling structures, laydown yard, or cranes"
+  },
+  "cod_first_look": {
+    "reported": "2027-06-03",
+    "plausible": false,
+    "why": "12 COD slips over 5 years; no FIS approval, no IA signed, no construction milestones; zero web presence; 2027 COD with no permits or IA by mid-2026 is implausible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "TCEQ air permit (NSR) search by facility name / address in Midlothian TX — no permit = paper project confirmed",
+    "PUCT Interchange direct search for dockets with 'Midlothian Unit 2' when portal becomes accessible",
+    "TX Secretary of State business entity lookup for 'Midlothian Unit 2 repower LLC' to identify developer",
+    "Identify existing Midlothian-area gas plant (EIA Form 860 / EPA CAMD) that 'Unit 2' refers to — repower of existing unit vs. greenfield matters"
+  ],
+  "turns_used": 28
+}

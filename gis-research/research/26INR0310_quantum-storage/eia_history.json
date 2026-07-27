@@ -1,0 +1,89 @@
+{
+ "inr": "26INR0310",
+ "plant_id": 63905,
+ "plant_name": "Azure Sky Solar",
+ "entity": "Azure Sky Solar Project, LLC",
+ "matched_by": "county+prime-mover+MW within 5% (316.2 vs 321.75)",
+ "first_report": "2022-04-01",
+ "last_report": "2026-05-01",
+ "planned_cod_history": [
+  {
+   "value": "2022-06",
+   "from": "2022-04-01",
+   "to": "2022-05-01"
+  },
+  {
+   "value": null,
+   "from": "2022-06-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 302.0,
+   "from": "2022-04-01",
+   "to": "2023-05-01"
+  },
+  {
+   "value": 302.6,
+   "from": "2023-06-01",
+   "to": "2025-01-01"
+  },
+  {
+   "value": 316.2,
+   "from": "2025-02-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "status_history": [
+  {
+   "value": "(V) Under construction, more than 50 percent complete",
+   "from": "2022-04-01",
+   "to": "2022-04-01"
+  },
+  {
+   "value": "(TS) Construction complete, but not yet in commercial operation",
+   "from": "2022-05-01",
+   "to": "2022-05-01"
+  },
+  {
+   "value": "(OP) Operating",
+   "from": "2022-06-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "queue_reported_cod": "2026-07-21",
+ "energy_capacity_mwh_history": [
+  {
+   "value": null,
+   "from": "2022-04-01",
+   "to": "2023-01-01"
+  },
+  {
+   "value": 77.6,
+   "from": "2023-02-01",
+   "to": "2024-05-01"
+  },
+  {
+   "value": 80.5,
+   "from": "2024-06-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "operating_date_history": [
+  {
+   "value": "2021-07",
+   "from": "2022-04-01",
+   "to": "2022-05-01"
+  },
+  {
+   "value": "2022-07",
+   "from": "2022-06-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "eia_county": "Haskell",
+ "eia_lat": 33.0216,
+ "eia_lon": -99.61463,
+ "dropped_from_860m": null
+}

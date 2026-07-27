@@ -1,0 +1,76 @@
+{
+ "inr": "25INR0281",
+ "generated": "2026-07-20",
+ "project": "Cosper Solar",
+ "county": "Bell",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 148.16,
+ "queue_cod": "2027-11-12",
+ "milestones": {
+  "screeningStudyComplete": "2023-03-30",
+  "fisApproved": "2024-11-01",
+  "iaSigned": "2025-07-31",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ok",
+  "plant_id": 67773,
+  "entity": "Gransolar Texas Twenty LLC",
+  "planned_cod": "2027-11",
+  "cod_delta_quarters": 0.0,
+  "dropped_scope": null,
+  "coords": [
+   30.99423,
+   -97.79588
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Gransolar Texas Twenty LLC",
+    "detail": "plant=Cosper Solar 148.2MW (L) Regulatory approvals pending. Not un @30.99423,-97.79588 planned=2027-11"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Gransolar Texas Twenty, LLC",
+    "detail": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Gransolar Texas "
+   },
+   {
+    "source": "puct-index",
+    "entity": "Gransolar Texas Twenty, LLC",
+    "detail": "Amendment No. 1 to the Standard Generation Interconnection Agreement between Oncor Electric Delivery Company L"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 2,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 6,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 9.38,
+  "reason": "reality signal"
+ }
+}

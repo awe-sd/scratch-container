@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0306",
+  "project": "Arroyo Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 26.2354,
+    "lon": -97.5819,
+    "method": "POI line endpoint (Rio Hondo TX city center — New Gulch substation unresolved)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "probable — off-satellite",
+    "evidence": "NADBank certified 2024-05-08 with 'under construction' status; $85M loan funded; approved-for-synchronization 2026-06-25 per ERCOT queue; satellite chip cloud-obscured, no visual confirmation"
+  },
+  "cod_first_look": {
+    "reported": "2026-10-23",
+    "plausible": true,
+    "why": "Sync approval granted 2026-06-25; 14 prior COD drifts but project has cleared all 6.9 gates and is now in commissioning window"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate New Gulch substation exact coords (ERCOT transmission map or AEP Texas facilities) to anchor BESS pad imagery",
+    "Re-run imagery with correct POI coords on cloud-free date — 7 BESS units should be visible as parallel container rows",
+    "Confirm Goshe Energy Storage LLC vs BT Cantwell Solar LLC — corporate lineage, developer track record",
+    "USDA RBCS financial assistance PDF (surfaced in T3) — retrieve and check for milestone commitments",
+    "IA signed 2022-08-10 — retrieve from PUCT Interchange; schedule exhibit may show COD commitment"
+  ],
+  "turns_used": 29
+}

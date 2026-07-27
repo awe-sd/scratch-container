@@ -1,0 +1,91 @@
+{
+ "inr": "23INR0235",
+ "project": "Hoyte Solar",
+ "research_date": "2026-07-20",
+ "verdict": "real_active",
+ "confidence": "high",
+ "site": {
+  "lat": 30.783,
+  "lon": -96.865,
+  "method": "IA Exhibit C text: 'Cannon Switch ~5.0 miles north of the town of Milano, Milam County' \u2192 approx position",
+  "confidence": "low-medium",
+  "map_artifacts": []
+ },
+ "developer": {
+  "spv": "Milano Solar, LLC",
+  "parent": "Ferrovial Energy US, LLC \u2192 Ferrovial SE (NYSE: FER; acquired Jun 30, 2025 for USD 19M)",
+  "original_developer": "Electerra (Austin TX; dan@electerra.dev per orig IA Exhibit D)",
+  "epc": null,
+  "offtaker": null
+ },
+ "construction": {
+  "stage": "active_construction",
+  "first_activity_seen": null,
+  "imagery_latest": "2026-07-10",
+  "imagery_verdict": "Active construction visible \u2014 bright white road grid + graded area (lower-left of chip) and dark parallel rows consistent with racking/modules (lower-center). Site confirmed real and active as of 2026-07-10."
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Original IA (35077-1514)",
+    "signed": "2022-10-14",
+    "financial_security": "LC $3,662,558 by Oct 14 2022; $8,142,020 by Jul 7 2023",
+    "artifact": "sources/2026-07-19_puct_35077-1514_interconnection-agreement-between-oncor-electric.pdf",
+    "in_service": "2024-04-18",
+    "trial_op": "2024-05-01",
+    "cod": "2024-06-01"
+   },
+   {
+    "doc": "Amendment No. 1 (35077-2462)",
+    "signed": "2023-11-16",
+    "financial_security": "LC $3,662,558 \u2192 $9,793,633",
+    "artifact": "sources/2026-07-19_puct_35077-2462_amendment-no-1-to-the-standard-generator-interco.pdf",
+    "in_service": "2025-05-08",
+    "trial_op": "2025-05-18",
+    "cod": "2025-09-30"
+   },
+   {
+    "doc": "Amendment No. 2 (35077-2503)",
+    "signed": "2026-05-27",
+    "financial_security": "not replaced in Amendment 2 (Exhibit E unchanged from Amend 1)",
+    "artifact": "sources/2026-07-19_puct_35077-2503_amendment-no-2-to-the-standard-generation-interc.pdf",
+    "in_service": "2025-12-12",
+    "trial_op": "2026-12-16",
+    "cod": "2027-04-15"
+   }
+  ]
+ },
+ "project_area": {
+  "acres": null,
+  "source": null,
+  "artifact": null
+ },
+ "eia": {
+  "ambiguous": true,
+  "note": "No exact EIA match. Best candidate: Two Rivers Solar 214MW at 30.869,-96.736, status Planned, COD 2027-08. Yaupon Solar 200MW at 31.044,-96.851 also possible. Neither is a confirmed match.",
+  "plant_id_candidate": 68198,
+  "plant_name_candidate": "Two Rivers Solar",
+  "planned_cod_candidate": "2027-08",
+  "coords_candidate": [
+   30.86849,
+   -96.7357
+  ]
+ },
+ "independent_cod": "2027-Q2",
+ "cod_drift_risk": "medium",
+ "cod_drift_notes": "Contractual COD Apr 15 2027 per Amendment 2 (signed May 2026). In-Service was Dec 12, 2025 \u2014 already past, likely missed (construction active in Jul 2026 imagery). Trial Op due Dec 16 2026, COD Apr 15 2027. 5 prior COD slips total (3y 4mo total drift from 2024-06 to 2027-04). Ferrovial institutional backing (EUR 32M guarantees, EUR 174M PP&E committed) reduces abandonment risk. PPA/financing not confirmed in SEC 6-K as of Jun 2025 acquisition. Risk factors: In-Service date already passed, tight Trial Op \u2192 COD window, PPA status unconfirmed.",
+ "queue_cod": "2027-04-15",
+ "cod_slips": 5,
+ "sources": [
+  "sources/2026-07-19_puct_35077-1514_interconnection-agreement-between-oncor-electric.pdf",
+  "sources/2026-07-19_puct_35077-2462_amendment-no-1-to-the-standard-generator-interco.pdf",
+  "sources/2026-07-19_puct_35077-2503_amendment-no-2-to-the-standard-generation-interc.pdf",
+  "sources/2026-07-19_sec_ferrovial_20F_subsidiary-list.html",
+  "sources/2026-07-19_sec_ferrovial_6K_june2025_milano-solar-acquisition.html",
+  "sources/2026-07-19_sec_ferrovial_20F_annual2025_milano-solar.html",
+  "sources/2026-07-19_sec_ferrovial_IAI2025_milano-solar.html",
+  "sources/2026-07-19_ercot_tpit_cannon-switch.xlsx",
+  "imagery/s2_2026-07-10_center.png"
+ ],
+ "real_project_verdict": "real_active"
+}

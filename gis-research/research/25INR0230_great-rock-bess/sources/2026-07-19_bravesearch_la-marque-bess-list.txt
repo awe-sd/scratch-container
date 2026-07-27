@@ -1,0 +1,12 @@
+Source: Brave search snippet from La Marque, TX city agenda document (ci.la-marque.tx.us AgendaCenter ViewFile Item/1841)
+Date retrieved: 2026-07-19
+Content snippet:
+"Great Rock BESS · Planned · Black Mountain Energy Storage II · Tap 345kV 46020 Limestone - 967 Gibbon Creek Ckt 18 · Leon · NORTH · 7/30/2024 · 307.14 · 25INR0231 · Apache Hill BESS · Planned · Black Mountain Energy Storage II · 363 Hood 138kV · Hood · NORTH"
+
+Note: Full document had expired certificate and could not be fetched directly.
+Key facts confirmed:
+- Great Rock BESS developer = Black Mountain Energy Storage II (LLC entity)
+- POI matches queue data: 345kV 46020 Limestone - 967 Gibbon Creek Ckt 18
+- County: Leon, Zone: NORTH
+- Date listed: 7/30/2024 (likely filing or report date)
+- Original capacity: 307.14 MW (later changed to 300.9 MW)

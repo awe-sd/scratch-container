@@ -1,0 +1,34 @@
+{
+  "inr": "25INR0655",
+  "project": "Elm Street BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.4275,
+    "lon": -103.4994,
+    "method": "InfraSure aggregator (INR + 138kV bus match)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth failed (401/403); no imagery retrieved. InfraSure reports status=Testing, sync approved 2026-05-04, suggesting installation likely complete."
+  },
+  "cod_first_look": {
+    "reported": "2026-08-26",
+    "plausible": true,
+    "why": "IA signed Jan-2025, energization approved Jan-2026, sync approved May-2026, InfraSure=Testing; 6 prior slips but project appears in commissioning phase ~5 weeks from COD"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "CDSE imagery at 31.4275,-103.4994 once creds restored — tight chip to confirm container pad visible",
+    "PUCT Interchange IA PDF (FilingParty=Elm St Infra LLC) — retrieve milestone schedule exhibit",
+    "Verify operator entity: InfraSure says 'Elm St Infra LLC', not 'Elm Street BESS LLC' — check TX SOS for registration/parent"
+  ],
+  "turns_used": 22
+}

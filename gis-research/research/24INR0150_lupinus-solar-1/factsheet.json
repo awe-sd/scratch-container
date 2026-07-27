@@ -1,0 +1,85 @@
+{
+ "inr": "24INR0150",
+ "generated": "2026-07-20",
+ "project": "Lupinus Solar 1",
+ "county": "Franklin",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 162.31,
+ "queue_cod": "2027-09-13",
+ "milestones": {
+  "screeningStudyComplete": "2022-03-04",
+  "fisApproved": null,
+  "iaSigned": "2025-06-26",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ok",
+  "plant_id": 66895,
+  "entity": "Sunraycer Assets I LLC",
+  "planned_cod": "2027-09",
+  "cod_delta_quarters": 0.0,
+  "dropped_scope": null,
+  "coords": [
+   30.30338,
+   -95.25692
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Sunraycer Assets I LLC",
+    "detail": "plant=Lupinus Solar 1, LLC 165.0MW (P) Planned for installation, but regula @30.30338,-95.25692 planned=2027-09"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Lupinus Solar, LLC",
+    "detail": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Lupinus Solar, L"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Lupinus Solar, LLC",
+    "detail": "Amendment No. 1 to the Standard Generation Interconnection Agreement between Oncor Electric Delivery Company L"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 2,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "financial_security_posted"
+ ],
+ "paper_score": 26,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 11.74,
+  "reason": "reality signal"
+ }
+}

@@ -1,0 +1,81 @@
+{
+  "inr": "21INR0223",
+  "project": "Tulsita Solar",
+  "researched_at": "2026-07-19",
+  "site": {
+    "lat": 28.51,
+    "lon": -97.68,
+    "method": "POI corridor (Tuleta bus #8590 + Berclair VFD anchor)",
+    "confidence": "low-medium"
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Ray Ranch Solar LLC (f/k/a Tulsita Solar, LLC)",
+      "relation": "SPV",
+      "evidence": "TX Comptroller Ch.313 App.1839 lists 'Ray Ranch Solar LLC (f/k/a Tulsita Solar, LLC)' as applicant for Goliad ISD; ERCOT queue shows project name 'Tulsita Solar'"
+    },
+    {
+      "entity": "ENGIE North America",
+      "relation": "developer_owner",
+      "evidence": "southtexasnews.com article: ENGIE donated $65,000 to Berclair VFD 'on behalf of the Tulsita/Ray Ranch Solar Project'; ENGIE named alongside Blattner as project principals"
+    },
+    {
+      "entity": "Blattner Company",
+      "relation": "EPC_contractor",
+      "evidence": "southtexasnews.com article: Blattner named alongside ENGIE in VFD donation on behalf of the Tulsita/Ray Ranch Solar Project"
+    },
+    {
+      "entity": "AEP Texas Central Company",
+      "relation": "transmission_service_provider_IA_counterparty",
+      "evidence": "PUCT interchange filing reference identified in triage: 'AEP Texas Inc. and Ray Ranch Solar LLC (Tulsita Solar Project)'"
+    }
+  ],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Goliad CAD portal under maintenance; PUCT IA PDF inaccessible (402 paywall); Ch.313 PDF inaccessible; no parcel search completed"
+  },
+  "construction": {
+    "verdict": "substantially_complete",
+    "first_activity_seen": "unknown",
+    "evidence": [
+      "ERCOT queue milestone approved-for-synchronization 2024-10-30: ERCOT grants sync approval only after energization testing — implies construction physically complete by Oct 2024",
+      "ERCOT queue milestone approved-for-energization 2024-10-22: physical connection to grid energized",
+      "TX Comptroller Ch.313 App.1839 first qualifying tax year 2025: under Texas law, first qualifying year = year property is placed in service; implies commercial-quality assets in service before Jan 1, 2025",
+      "Sentinel-2 chips across Goliad County (6 frames) did not visually confirm the solar array — site not located in search grid; absence of imagery confirmation does not contradict queue milestones"
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2026-09-15",
+    "independent": "2026-Q3",
+    "drift_risk": "low",
+    "reasoning_evidence": [
+      "Approved-for-synchronization (Oct 2024) is the definitive construction-complete indicator; any remaining delay is administrative/commercial, not physical",
+      "Ch.313 first qualifying year 2025 implies assets placed in service by Jan 2025; commercial operation may have already occurred in H1 2025 with the ERCOT commercial-operation-approved milestone pending only billing/settlement clearance",
+      "12 reported-COD changes (5+ year total slip) but last 10 are monthly 1-month increments since Oct 2025 — this pattern is characteristic of last-mile metering/settlement delay, not construction risk",
+      "No major jump in COD (>3 months) since the IA was signed in Sep 2022; COD has been stable in the 2025-2027 range since then",
+      "ENGIE is a large public utility with financial incentive to clear commercial operation quickly; prolonged metering delay for a commissioned plant is unusual but not unprecedented under ERCOT settlement rules"
+    ]
+  },
+  "real_project_verdict": "real_active",
+  "negative_searches": 18,
+  "banned_source_violations": 0,
+  "project_area": {
+    "acres": null,
+    "source": null,
+    "artifact": null,
+    "note": "PUCT IA PDF inaccessible (402); Ch.313 PDF inaccessible; Goliad CAD portal down; 256.2 MW solar implies ~1,300-2,500 acres typical footprint"
+  },
+  "contractual_schedule": {
+    "source_docs": [],
+    "note": "PUCT interchange portal returns 402 on all document requests; IA parties confirmed (AEP Texas Central + Ray Ranch Solar LLC) but PDF not downloaded. IA signed 2022-09-19 per ERCOT queue milestone.",
+    "documents": [
+      {
+        "doc": "Original IA (AEP Texas Central + Ray Ranch Solar LLC, Tulsita Solar Project)",
+        "signed": "2022-09-19",
+        "financial_security": "unknown — document not retrieved",
+        "artifact": null
+      }
+    ]
+  }
+}

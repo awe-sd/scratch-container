@@ -1,0 +1,35 @@
+{
+  "inr": "23INR0137",
+  "project": "Diran BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.09,
+    "lon": -96.06,
+    "method": "POI town-center estimate (Lane City TX near 'South Lane City 138kV' substation)",
+    "confidence": "low — substation exact coords not confirmed; web search blocked"
+  },
+  "construction": {
+    "verdict": "not visible",
+    "evidence": "Grid chips at Lane City area show agricultural/forested land only; no BESS pad, gravel clearing, or container rows observed. Likely off-target — substation lat/lon unconfirmed."
+  },
+  "cod_first_look": {
+    "reported": "2028-01-31",
+    "plausible": true,
+    "why": "IA signed Jan 2025, meets 6.9(1) Jul 2025; 18-month build window from mid-2026 start could reach Jan 2028 but construction not yet started per queue milestones."
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Confirm South Lane City 138kV substation exact coordinates via ERCOT network model or county GIS — imagery was likely off-target",
+    "PUCT Interchange IA retrieval (portal returned 402 during triage) — IA signed 2025-01-07, schedule exhibit not yet accessed",
+    "Identify BRP Diran BESS LLC corporate parent — 'BRP' prefix from aggregator sources not verified against primary registration",
+    "Construction milestone watch: no start/end dates in queue yet — re-check imagery once substation coords confirmed"
+  ],
+  "turns_used": 28
+}

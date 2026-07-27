@@ -1,0 +1,35 @@
+{
+  "inr": "21INR0349",
+  "project": "Pearl Crescent Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.60,
+    "lon": -96.40,
+    "method": "POI infrastructure — Rock Island (57640) 138kV substation, Colorado County TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth blocked (401/403); no imagery acquired"
+  },
+  "cod_first_look": {
+    "reported": "2026-12-08",
+    "plausible": false,
+    "why": "FIS never approved, IA never signed, no 6.9 milestones, 6th COD revision — implausible in 5 months"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Fix CDSE credentials and run imagery at Rock Island area to confirm no ground disturbance",
+    "Search TX SOS business registry for 'Pearl Crescent Solar LLC' to confirm developer and parent company",
+    "PUCT Interchange search once portal is accessible — IA absent in queue but worth one direct check",
+    "If developer identified, check their portfolio for other active/cancelled ERCOT projects as signal of seriousness"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,35 @@
+{
+  "inr": "23INR0077",
+  "project": "Cachena Storage SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.13,
+    "lon": -98.16,
+    "method": "county-centroid (Floresville, Wilson County) — no better pin available; POI line Elmcreek-Old Hickory 345kV passes through this area",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery blocked (401/403) — no chips obtained; no other construction signal found"
+  },
+  "cod_first_look": {
+    "reported": "2027-04-29",
+    "plausible": false,
+    "why": "Capacity dropped to 0.0 MW in 2022 and stayed there; FIS never approved in 6 years; no IA, no news, no PUCT filings — project appears dormant or placeholder"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm 0 MW capacity meaning (true withdrawal vs. data artifact) — check raw queue xlsx",
+    "TX SOS business search for 'Cachena Storage SLF LLC' to identify developer and confirm active entity",
+    "Rerun imagery once CDSE creds are renewed — Elmcreek-Old Hickory corridor is checkable"
+  ],
+  "turns_used": 22,
+  "note_2026_07_21": "Companion-project retraction pointer (light touch, no deep scan exists here to rewrite): this project shares the same POI/SPV as 23INR0027 Cachena Solar SLF. That project's site was re-derived 2026-07-21 to 29.2579,-97.8057 (TCEQ stormwater-NOI address, geocoded by two independent services) after retracting a wrong footprint that actually belonged to Hoke Solar (23INR0231, unrelated project, Gonzales County). If this project goes to deep scan, start from that point rather than the site_candidate (29.13,-98.16, low-confidence county centroid) above. See research/23INR0027_cachena-solar-slf/findings.json (site, retraction)."
+}

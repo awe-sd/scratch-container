@@ -1,0 +1,27 @@
+{
+  "inr": "27INR0440",
+  "project": "Wisdom BESS SLF",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-10-06",
+    "plausible": false,
+    "why": "FIS approved Oct-2025 but IA not yet signed; 12-month IA-to-COD for BESS is tight; no construction signals"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Holiday Sub / Soaptree TNP coordinates (ERCOT GIS or FERC Form 715) — prerequisite for imagery",
+    "PUCT Interchange search for IA filing once portal access available (session-gated during triage)",
+    "Texas SOS for 'Wisdom BESS SLF LLC' or parent developer — may surface developer name for news/PR sweep",
+    "If IA found: extract milestone schedule exhibit for IA-NTP date to re-assess COD plausibility"
+  ],
+  "turns_used": 28
+}

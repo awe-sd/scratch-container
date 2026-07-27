@@ -1,0 +1,42 @@
+{
+  "inr": "26INR0625",
+  "project": "Buffalo Gap 2 Wind Repower",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.310556,
+    "lon": -100.149167,
+    "method": "thewindpower.net record for existing Buffalo Gap Wind Farm 2 (155x GE 1.5sle, 232.5 MW, Nolan County TX); confirmed by imagery showing operational turbine array",
+    "confidence": "high"
+  },
+  "construction": {
+    "verdict": "not visible",
+    "evidence": "2x Sentinel-2 chips (2026-06-01 ±20d) show operational turbine pads with no disturbed soil, new staging areas, or fresh earthworks. 7 of 9 grid chips blocked by CDSE auth expiry — partial coverage."
+  },
+  "cod_first_look": {
+    "reported": "2027-02-01",
+    "plausible": false,
+    "why": "No construction visible in June 2026; 231 MW wind repower typically requires 12-18 months construction; 7 months to COD with no visible ground activity is a stretch"
+  },
+  "developer": {
+    "llc": "Buffalo Gap Wind Farm 2, LLC",
+    "parent_candidate": "AES",
+    "source": "DDG search — 'part of a broader AES redevelopment across Taylor and Nolan counties'"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Retrieve IA document from PUCT Interchange (portal was 402-blocked during triage; IA signed flag IS set in queue) — parties, POI, and milestone schedule exhibit are key",
+    "FAA OE/AAA obstruction filings for turbine coordinates — decisive for repower; search by county (Nolan TX) and applicant (AES/Buffalo Gap) for 2024-2026 filings",
+    "Full 9-chip imagery grid with refreshed CDSE credentials — only 2/9 retrieved; need NW/N/NE/center/SE/S/SW tiles to assess full footprint for construction activity",
+    "TX Comptroller JETI application search — AES may have filed for the repower; Nolan County + Buffalo Gap + wind",
+    "Nolan County CAD parcel search (owner = Buffalo Gap Wind Farm 2 LLC or AES variant) — confirm land parcels and acreage",
+    "AES press releases / project pages for Buffalo Gap repower announcement — T3 hit 'broader AES redevelopment' but no primary source retrieved"
+  ],
+  "turns_used": 32
+}

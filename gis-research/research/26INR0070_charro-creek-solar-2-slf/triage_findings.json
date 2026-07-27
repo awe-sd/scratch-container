@@ -1,0 +1,26 @@
+{
+  "inr": "26INR0070",
+  "project": "Charro Creek Solar 2 SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-07-01",
+    "plausible": false,
+    "why": "No IA signed, no construction milestones in 41 snapshots — COD already past with zero gate progress"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Verify parent company behind Charro Creek Solar LLC (foreign LLC, Austin TX address) — other 5 sibling ERCOT projects may share a developer identity worth tracking",
+    "Confirm no JETI application in Karnes County once JETI registry becomes searchable",
+    "Re-run gmaps.py when rate limit clears to get a site pin — POI tap on PAWNEESW5-COLETO7A 345kV line is only geographic anchor"
+  ],
+  "turns_used": 18
+}

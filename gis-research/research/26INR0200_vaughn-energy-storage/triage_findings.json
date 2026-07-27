@@ -1,0 +1,36 @@
+{
+  "inr": "26INR0200",
+  "project": "Vaughn Energy Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 30.6452,
+    "lon": -96.1013,
+    "method": "POI name 'Keith 138kV' → OSM hamlet 'Keith, Grimes County'",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "2 Sentinel-2 chips at Keith hamlet (2026-07-01 composite): rural agricultural/wooded land, no gravel pad, no container rows visible"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": false,
+    "why": "No IA signed as of Jun 2026; battery build is 12-18 months minimum post-IA; 2027-12-31 requires IA + NTP by ~Q1 2027 — very tight"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Confirm developer identity: infrasure.ai says 'Vaughn Battery Storage LLC', cleanview says 'Valor Infrastructure Partners', OCI Hillsboro Solar listed as related — resolve true parent/sponsor",
+    "Locate Keith 138kV substation precisely (ERCOT transmission map or county parcel search) and re-run imagery on confirmed pad",
+    "Grimes County granicus PDF (binary in triage) likely contains abatement/county court approval details — fetch with PDF-capable tool",
+    "IA status: FIS approved Dec 2025, watch for IA execution in next 1-2 quarterly ERCOT updates",
+    "OCI Solar connection: OCI is a credible Korean industrial sponsor — verify if this is OCI's first Texas storage project and what their typical timeline looks like"
+  ],
+  "turns_used": 28
+}

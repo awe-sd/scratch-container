@@ -1,0 +1,36 @@
+{
+  "inr": "21INR0334",
+  "project": "Nightfall Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.2,
+    "lon": -99.95,
+    "method": "POI line corridor (Dryfrio-Uvalde 138kV) + nightfallsolar.com 300ft HWY90 setback",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "not started",
+    "evidence": "nightfallsolar.com FAQ (as of triage date): 'construction begins once all permits received'; no construction-start date in ERCOT queue; CDSE imagery unavailable (credentials absent)"
+  },
+  "cod_first_look": {
+    "reported": "2026-11-30",
+    "plausible": false,
+    "why": "Financial close March 2026; site FAQ says construction not started; 12-16 month build window puts earliest COD at mid-2027; COD has slipped 4+ years across 5 prior revisions"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2023-10-26 — retrieve PUCT IA PDF (docket search via interchange.puc.texas.gov with authenticated session) for milestone schedule and POI/Meil station coordinates",
+    "Site pinning — CDSE imagery of US-90 corridor west of Uvalde (29.15-29.25°N, 99.85-100.05°W) once credentials configured; look for cleared land or panel rows",
+    "COD realism — financial close March 2026 + FAQ 'not started' = 2026-11-30 COD is almost certainly stale; verify latest queue snapshot and any amendment filings",
+    "JETI / property tax incentive — check Uvalde CAD for Sol Systems / Nightfall Solar LLC parcel records as proxy for site boundary",
+    "Sol Systems press release (solsystems.com) details on Nightfall specifically vs. Blossom Solar combined announcement"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0189",
+  "project": "Staccato BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 30.055,
+    "lon": -96.914,
+    "method": "POI substation name 'WARDA #7312' geocoded via Nominatim to Warda, Fayette County TX",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "Imagery blocked (CDSE 401 auth failure); no construction dates in queue; site candidate is Warda substation area"
+  },
+  "cod_first_look": {
+    "reported": "2026-12-31",
+    "plausible": true,
+    "why": "IA signed 2024-08-27, all 6.9 gates cleared 2026-05-01, FIS approved 2026-03-11 — pre-construction milestones complete; 2 prior COD slips (18 months total drift) but project is actively advancing"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA PDF: retrieve directly (session-authenticated browser) to confirm milestone schedule and construction NTP date",
+    "Imagery: CDSE creds need refresh — run cdse.py chip at Warda (30.055, -96.914) with --buffer-km 1 for compact BESS pad detection",
+    "Developer identity: no LLC/developer surfaced in web sweep — TX SOS business search for 'Staccato BESS LLC' to identify sponsor/parent",
+    "gmaps.py: retry when rate limit clears to confirm or deny site pin near Warda substation"
+  ],
+  "turns_used": 28
+}

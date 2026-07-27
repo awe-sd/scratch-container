@@ -1,0 +1,12 @@
+{
+  "source": "OpenStreetMap via Overpass API",
+  "date": "2026-07-19",
+  "query": "power=substation in bbox 29.62,-95.35,29.70,-95.20",
+  "result": {
+    "name": "Garden Villas",
+    "voltage": "138000;69000;12000",
+    "lat": 29.6510,
+    "lon": -95.3144,
+    "note": "CenterPoint Energy 138kV/69kV/12kV substation in SE Houston, near Hobby Airport"
+  }
+}

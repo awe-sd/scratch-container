@@ -1,0 +1,89 @@
+{
+  "inr": "26INR0625",
+  "project": "Buffalo Gap 2 Wind Repower",
+  "researched_at": "2026-07-19",
+  "site": {
+    "lat": 32.310556,
+    "lon": -100.149167,
+    "method": "thewindpower.net record #3211 (32°18'38\"N, 100°8'57\"W); confirmed by Sentinel-2 showing existing 155-turbine array",
+    "confidence": "high"
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Buffalo Gap Wind Farm 2, LLC",
+      "relation": "SPV (existing operating entity)",
+      "evidence": "ERCOT queue projectName and INR filing; triage EDGAR search"
+    },
+    {
+      "entity": "AES DevCo HoldCo, LLC",
+      "relation": "repower SPV holdco (Renewables SBU)",
+      "evidence": "AES FY2025 10-K (accession 0000874761-26-000063): HASI investment into AES DevCo HoldCo LLC for the Buffalo Gap wind repowering project"
+    },
+    {
+      "entity": "AES Corp (NYSE: AES)",
+      "relation": "developer/owner 100%",
+      "evidence": "AES FY2025 10-K construction pipeline: 'Buffalo Gap Repowering US-TX Wind 527 MW 100% 1H 2027'; Q3 2025 10-Q: AES Renewable Holdings completed buyout of all tax equity partners at BG I/II/III in Q3 2025"
+    },
+    {
+      "entity": "HASI (HA Sustainable Infrastructure Capital)",
+      "relation": "preferred equity investor ($200M)",
+      "evidence": "AES FY2025 10-K: 'In December 2025, AES entered into agreements with HASI, including an investment agreement under which HASI invested $200 million in the Buffalo Gap wind repowering project in exchange for a preferred membership interest'"
+    }
+  ],
+  "land_tenure": {
+    "status": "leased",
+    "evidence": "Wind farms universally use long-term land leases in TX; Nolan County CAD returns 0 real-property hits for all AES/Buffalo Gap variants — consistent with turbines assessed as industrial personal property, parcels remaining on landowner rolls"
+  },
+  "construction": {
+    "verdict": "pre-construction",
+    "first_activity_seen": null,
+    "evidence": [
+      "Sentinel-2 contact sheet (Oct 2025, Jan 2026, Apr 2026, Jul 2026): existing 155-turbine operational array visible throughout; no staging, no new earthworks, no turbine removal at 10 m/px",
+      "AES Q1 2026 10-Q (period ending 2026-03-31, filed 2026-05-05) does not mention Buffalo Gap by name — no construction start announcement in most recent quarterly",
+      "No FAA OE/AAA obstruction filings retrieved (portal 404 during government shutdown) — absence does not rule out pending filings"
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-02-01",
+    "independent": "2027-Q3",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "AES FY2025 10-K (public SEC commitment as of 2025-12-31): 'Buffalo Gap Repowering US-TX Wind 527 MW 100% 1H 2027' — AES own guidance is 1H 2027 (Jan–Jun 2027), not the Feb 1 ERCOT queue date; gap already exists between AES guidance and reported COD",
+      "No construction visible through 2026-07-01 — with Feb 1, 2027 being only 7 months away, the reported COD is not achievable; even AES 1H 2027 guidance requires construction to begin by mid-2026 with an unusually fast 6–8 month execution for 231 MW wind",
+      "Typical 100–250 MW wind repower takes 12–15 months from first turbine down to COD; HASI financing closed Dec 2025 but no groundbreaking public announcement found",
+      "Queue COD already slipped once: 2026-12-01 → 2027-02-01 (~2 month slip, Dec 2024 → Jan 2026 reports); single slip on a not-yet-started project suggests further movement",
+      "Positive signals: financing committed ($200M HASI Dec 2025), all pre-construction gates passed (IA signed, all 6.9 milestones met by May 2026), AES 100% ownership consolidated Q3 2025, sister WFs (BG1+BG3) advancing in parallel — substantive project with committed capital, just behind schedule"
+    ]
+  },
+  "real_project_verdict": "real_early",
+  "negative_searches": 14,
+  "banned_source_violations": 0,
+  "project_area": {
+    "acres": null,
+    "source": "Not obtained — PUCT IA inaccessible (JS-only portal); no JETI/abatement filing found; Nolan County CAD 0 hits for wind personal property",
+    "artifact": null
+  },
+  "contractual_schedule": {
+    "source_docs": [],
+    "note": "IA signed ~2025-02-28 per ERCOT queue milestone (displayed as '2005-02-28' — known data artifact for 2025-02-28; first appeared in 2025-10-01 snapshot). PUCT Interchange portal requires JS rendering; IA document not retrieved by headless HTTP. Financial security amount unknown.",
+    "milestones": [
+      {
+        "name": "IA Signed",
+        "queue_data": "~2025-02-28"
+      },
+      {
+        "name": "Meets 6.9(1)",
+        "queue_data": "2026-03-25"
+      },
+      {
+        "name": "Meets All 6.9",
+        "queue_data": "2026-05-05"
+      },
+      {
+        "name": "Scheduled COD (reported)",
+        "queue_data": "2027-02-01"
+      }
+    ]
+  }
+}

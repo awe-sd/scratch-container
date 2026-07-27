@@ -1,0 +1,36 @@
+{
+  "inr": "26INR0023",
+  "project": "Leon Solar Park",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.315,
+    "lon": -95.902,
+    "method": "POI infrastructure — Pleasant Springs, TX (Jewett-Crockett 138kV Line tap, bus #3357)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unconfirmed — CDSE auth failed",
+    "evidence": "Queue data reports construction start 2024-12-06 (backdated, first appeared 2026-04-01); approved for energization 2026-05-13 and synchronization 2026-06-01; imagery unavailable due to CDSE 401 error"
+  },
+  "cod_first_look": {
+    "reported": "2026-07-01",
+    "plausible": true,
+    "why": "Zero COD drift across 46 snapshots; all 6.9 milestones cleared by Oct 2025; approved for sync 2026-06-01 — COD 17 days later is consistent with final commissioning timeline"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Fix CDSE credentials and run imagery — queue data says construction started Dec 2024, site may already show completed panels; COD was 17 days ago so this could be fully online",
+    "Confirm IA document via PUCT Interchange — portal returned 402 during triage; IA signed 2024-05-21 per queue data, need schedule exhibit and POI confirmation",
+    "Verify Ferrovial link — press release describes 257 MWdc solar in Leon County TX; confirm whether Ferrovial is EPC contractor or project acquirer from Misae Solar IV LLC",
+    "Confirm commercial operation: COD claimed 2026-07-01 but 'commercial operation approved' milestone not yet stamped in 2026-06-01 snapshot; check July 2026 GIS report when available",
+    "JETI abatement: Ch.313 expired before this project could qualify; JETI registry 404'd — search alternate registry or ERCOT's tax abatement database"
+  ],
+  "turns_used": 18
+}

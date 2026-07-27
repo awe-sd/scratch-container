@@ -1,0 +1,28 @@
+{
+  "inr": "25INR0078",
+  "project": "Peregrine BESS 2",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-07-01",
+    "plausible": false,
+    "why": "No FIS approval or IA after ~3.5 years in queue; COD already slipped once (2025→2027); 12-18 month BESS build from bare ground leaves ~12 months — tight even if IA signed today"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA search — portal returned 402 during triage; try authenticated access or alternate URL for FilingParty=Peregrine BESS 2 / Peregrine Energy Solutions",
+    "RAPTOR7A substation coordinates — ERCOT nodal model or AEP TX GIS; needed to unlock imagery; RWE Peregrine Solar (Goliad) may share the same substation corridor",
+    "23INR0206 Peregrine BESS (related project, same developer, same county) — check if co-located at RAPTOR7A; co-location would raise site confidence",
+    "Developer financials — Peregrine Energy Solutions has active League City BESS ($317M); confirm same entity owns 25INR0078 SPV and has capital for a second project",
+    "Texas SOS / Delaware corp search for Peregrine BESS 2 LLC SPV registration"
+  ],
+  "turns_used": 28
+}

@@ -1,0 +1,83 @@
+{
+ "inr": "20INR0069",
+ "generated": "2026-07-20",
+ "project": "Danish Fields Solar",
+ "county": "Wharton",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 602.8,
+ "queue_cod": "2026-08-29",
+ "milestones": {
+  "screeningStudyComplete": "2018-06-05",
+  "fisApproved": "2022-07-25",
+  "iaSigned": "2020-02-24",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 19,
+ "eia": {
+  "status": "ok",
+  "plant_id": 66914,
+  "entity": "Danish Fields Solar, LLC",
+  "planned_cod": "2026-06",
+  "cod_delta_quarters": -0.7,
+  "dropped_scope": null,
+  "coords": [
+   29.01364,
+   -96.22054
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Danish Fields Solar, LLC",
+    "detail": "plant=Danish Fields Solar, LLC 600.0MW (TS) Construction complete, but not yet  @29.01364,-96.22054 planned=2026-06"
+   },
+   {
+    "source": "puct-index",
+    "entity": "DANISH FIELDS SOLAR, LLC",
+    "detail": "AMENDMENT TO ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN CENTERPOINT ENERGY HOUSTON ELECTRIC, "
+   },
+   {
+    "source": "puct-index",
+    "entity": "DANISH FIELDS SOLAR, LLC",
+    "detail": "AMENDMENT TWO TO ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN CENTERPOINT ENERGY HOUSTON ELECTR"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": [
+   {
+    "program": "Ch.313",
+    "applicant": "Danish Fields Solar, LLC",
+    "district": "Tidehaven ISD",
+    "score": 19
+   }
+  ]
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 3,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 20,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 20,
+   "detail": "19 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 456.67,
+  "reason": "reality signal"
+ }
+}

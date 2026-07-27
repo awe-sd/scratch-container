@@ -1,0 +1,27 @@
+{
+  "inr": "24INR0118",
+  "project": "Possum Kingdom Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-10-29",
+    "plausible": true,
+    "why": "IA signed 2025-07-25; COD drifted 3x over 4 years; ~27 months post-IA is within normal range for a 262 MW solar project, but construction-end date of 2026-05-08 still trails in queue suggesting schedule slippage risk"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Retrieve IA PDF from PUCT Interchange (PUCT 402 during triage — try authenticated session or direct docket number lookup); extract parties, developer name, POI map, and milestone schedule exhibit",
+    "Locate Willow Creek Switch 345kV substation coordinates to establish a site candidate; try ERCOT transmission maps or Oncor GIS",
+    "Run satellite imagery once site candidate is established; construction-end date 2026-05-08 has passed per queue but COD is Oct 2027 — check for panel installation or civil activity",
+    "Identify developer/parent company — zero web presence is anomalous for a 262 MW project with signed IA; try TX SOS entity search for 'Possum Kingdom Solar'"
+  ],
+  "turns_used": 22
+}

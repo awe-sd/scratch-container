@@ -1,0 +1,28 @@
+{
+  "inr": "20INR0019",
+  "project": "Trinity Hills Wind repower",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-07-04",
+    "plausible": false,
+    "why": "31 COD drifts over 6 years (2020-07 → 2026-07), no construction dates in queue, no commercial op approval — pattern is chronic delay not imminent completion"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2018-10-17 per queue — retrieve PDF from PUCT interchange (portal was 402-blocked during triage) to get parties, developer, and milestone schedule",
+    "FAA OE/AAA obstruction database: search Young County for turbine filings to get exact turbine coordinates (decisive for site candidate + imagery)",
+    "Sync-approved 2020-05-22 but no commercial op — determine if project actually energized and is running (ERCOT SCED cross-ref) or stalled post-sync",
+    "Identify developer/owner — no corporate hits surfaced; try Texas SOS entity search for 'Trinity Hills Wind' and check EIA Form 860",
+    "With turbine coords from FAA, run cdse.py imagery to confirm repower activity (new nacelles, staging areas) vs dormant existing turbines"
+  ],
+  "turns_used": 18
+}

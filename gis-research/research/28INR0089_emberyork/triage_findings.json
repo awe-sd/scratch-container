@@ -1,0 +1,38 @@
+{
+  "inr": "28INR0089",
+  "project": "EmberYork",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.724109,
+    "lon": -96.136980,
+    "method": "google_maps_address_geocode",
+    "confidence": "medium",
+    "address": "132 Machala Rd, Sealy, TX 77474 (reported in web sources)"
+  },
+  "construction": {
+    "verdict": "no activity",
+    "evidence": "3×3 Sentinel-2 contact sheet (2026-07-01 ±20d, 2km buffer) centered on reported address. Center chip shows agricultural/rural land, no ground clearing, laydown, or industrial development. Pre-existing unrelated industrial sites visible ~3km east and SE."
+  },
+  "cod_first_look": {
+    "reported": "2028-01-01",
+    "plausible": false,
+    "why": "TEF loan denied (PUCT docket 56896, EYEC response 2025-04-16) — primary financing vehicle failed due diligence; no TCEQ air permit confirmed; no construction activity visible mid-2026; construction start target was Q1/Q2 2026 per media but site shows undisturbed agricultural land."
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "TEF denial (docket 56896): pull the due-diligence failure order and EYEC response — understand what failed (financial wherewithal, corporate disclosure, technical?) and whether EmberClear has reapplied or found alternative financing",
+    "TCEQ air permit: cover letter found (records dID=8484637) but not fetched — pull the NSR application to verify permit stage and confirm TCEQ has actually received/processed it",
+    "IA details: docket 35077 filing (CenterPoint, ~Dec 2025) — download the IA PDF; extract POI confirmation (TAP 138kV WALLIS 44740-GERBHRT) and milestone schedule to see contracted COD vs. reported",
+    "Alternative financing: if TEF denied, how is $750-800M being sourced? Any private equity, debt facility, or revised TEF application? Check EmberClear press releases post-April 2025",
+    "Turbine OEM: 'leading gas turbine manufacturer' unnamed publicly — any GE/Siemens/Mitsubishi contract would be strong reality signal; check procurement announcements",
+    "Site verification: imagery showed clear land at reported address — confirm 132 Machala Rd is correct parcel vs. possible alternative site; county appraisal records may show recent land purchase/option"
+  ],
+  "turns_used": 28
+}

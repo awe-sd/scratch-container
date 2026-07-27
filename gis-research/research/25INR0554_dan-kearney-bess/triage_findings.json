@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0554",
+  "project": "Dan Kearney BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.0644,
+    "lon": -95.7349,
+    "method": "OSM substation name match: 'FM 524 Substation' 138kV/69kV — matches POI 'TNFM524 138kV'",
+    "confidence": "high"
+  },
+  "construction": {
+    "verdict": "inconclusive",
+    "evidence": "CDSE imagery failed at token refresh mid-run; 2 off-center chips acquired were heavily cloud-obscured (coastal TX June 2026); center chip at FM 524 substation not retrieved"
+  },
+  "cod_first_look": {
+    "reported": "2027-10-01",
+    "plausible": true,
+    "why": "IA signed Oct 2024; 36-month build window to Oct 2027 is tight but within BESS norms; COD already slipped 16 months from 2025-06 original"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA document (iaSigned=2024-10-18 confirmed in queue; document blocked during triage — try direct PUCT docket search for 'Dan Kearney')",
+    "Center-chip imagery at 29.0644,-95.7349 on a clear date (CDSE auth failed; try winter/dry-season date e.g. 2026-02-01 or 2025-02-01 for less cloud cover)",
+    "Developer identity unknown — 'Dan Kearney' may be a landowner not a developer; IA or TX SOS LLC search could surface the actual developer",
+    "No web presence at all — zero news/PR hits — warrants SOS entity search for 'Dan Kearney BESS LLC' to confirm entity exists and is active"
+  ],
+  "turns_used": 28
+}

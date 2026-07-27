@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0510",
+  "project": "Pecos Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 30.96,
+    "lon": -103.10,
+    "method": "POI corridor midpoint (Solstice sub 30.9483,-103.3617 to Bakersfield sub 30.9759,-102.2891)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "No imagery run — site candidate spans ~100km corridor, insufficient to place a 3x3 chip grid"
+  },
+  "cod_first_look": {
+    "reported": "2027-09-30",
+    "plausible": true,
+    "why": "IA signed 2026-03-18, ~18 months to COD; one prior slip of 6 months; no construction milestones yet — tight but possible for wind"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "FAA OE/AAA turbine filings for Pecos County — decisive for exact turbine coordinates and site boundary",
+    "PUCT Interchange IA PDF (iaSigned 2026-03-18) — extract milestone schedule exhibit and POI tap coordinates",
+    "Developer: Midnight Energy Center LLC is single-project shop; prior entity RES Pecos Wind LLC (defunct) — check if RES Group (renewable developer) connection exists for corporate parent",
+    "Imagery once FAA coordinates in hand — run cdse.py chips at actual turbine pad locations"
+  ],
+  "turns_used": 22
+}

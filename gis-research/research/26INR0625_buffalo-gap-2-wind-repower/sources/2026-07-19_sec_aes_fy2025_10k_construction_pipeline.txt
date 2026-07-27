@@ -1,0 +1,17 @@
+Source: AES Corp FY2025 10-K (filed 2026-03-02), Accession 0000874761-26-000063
+URL: https://www.sec.gov/Archives/edgar/data/874761/000087476126000063/aes-20251231.htm
+
+KEY EXCERPT — AES Clean Energy construction pipeline table:
+
+"Buffalo Gap Repowering  US-TX  Wind  527 [MW]  100% [AES equity interest]  1H 2027"
+
+Context: Table lists projects under construction or in advanced development with expected
+COD dates. Other 1H 2027 projects: Baldy Mesa Energy Storage (US-CA), Vientos Bonaerenses
+3 and 4 (Argentina), Cristales (Chile Solar 287 MW), Pampas (Chile Solar+Storage), Atacama
+(Chile Storage)
+
+SIGNIFICANCE:
+- AES own guidance as of Dec 31, 2025 = 1H 2027 COD for combined 527 MW repower
+- All 3 INRs (BG1: 120 MW + BG2: 231 MW + BG3: 168 MW = ~519 MW; AES rounds to 527 MW)
+- This is a public commitment in a SEC filing — AES is obligated to disclose if it changes
+- No construction start date stated; financing (HASI $200M) closed December 2025

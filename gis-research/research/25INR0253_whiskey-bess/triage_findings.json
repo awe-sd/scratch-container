@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0253",
+  "project": "Whiskey BESS",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.554,
+    "lon": -95.865,
+    "method": "POI substation approximation — Canton Tap 138 kV (Rayburn Country Electric Cooperative), IA text references VZ County Road 1110; no precise substation coords found",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "inconclusive",
+    "evidence": "Single Sentinel-2 chip (2026-06-01, 3 km buffer, Canton TX center) acquired; ~50% cloud cover obscured site; no BESS container-row pad pattern identifiable"
+  },
+  "cod_first_look": {
+    "reported": "2027-07-31",
+    "plausible": true,
+    "why": "IA signed 2025-03-28, FIS approved 2024-06-03 — all major pre-construction gates cleared; 3 COD slips over ~2 years but trajectory is slow-moving, not cancelled; 2027-07 is ~27 months post-IA which is within normal BESS build range"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA exists (35077_2099_1484476) but PDF is 402-blocked — retrieve full IA to extract milestone schedule exhibit and POI one-line diagram",
+    "Precise Canton Tap substation coordinates needed — use POI geometry to re-run imagery at tight 1-km buffer",
+    "Developer UR-Silo DevCo LLC has no public web presence — check TX SOS entity search for registration date, registered agent, and affiliated projects",
+    "No construction-start milestone in queue as of 2026-06 — verify against latest ERCOT GIS report and check for PUCT energization/interconnection amendment filings",
+    "Imagery re-run: clear-sky chip at confirmed POI coords + 2023 baseline to detect any ground disturbance"
+  ],
+  "turns_used": 22
+}

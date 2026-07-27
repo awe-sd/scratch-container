@@ -1,0 +1,76 @@
+{
+ "inr": "22INR0552",
+ "generated": "2026-07-20",
+ "project": "Sowers Storage",
+ "county": "Kaufman",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 208.89,
+ "queue_cod": "2027-07-01",
+ "milestones": {
+  "screeningStudyComplete": "2021-11-05",
+  "fisApproved": null,
+  "iaSigned": "2022-04-22",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 9,
+ "eia": {
+  "status": "ok",
+  "plant_id": 63892,
+  "entity": "Lily Solar, LLC",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   32.53327,
+   -96.42899
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "puct-index",
+    "entity": "(parse failed \u2014 read description)",
+    "detail": "Solar Generation Interconnection Agreement between REC and Belltown Power Texas (Sowers Storage 22INR0552)"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "verified_ia_on_disk",
+  "financial_security_posted"
+ ],
+ "paper_score": 38,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 18,
+   "detail": "9 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 18.36,
+  "reason": "reality signal"
+ }
+}

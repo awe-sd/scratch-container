@@ -1,0 +1,156 @@
+{
+  "inr": "23INR0171",
+  "project": "Goodalta Solar",
+  "research_date": "2026-07-19",
+  "real_project_verdict": "real_early",
+  "verdict": "real_early",
+  "confidence": "high",
+
+  "site": {
+    "lat": 32.085,
+    "lon": -96.165,
+    "method": "Ch.313 agreement Exhibit B boundary map — project polygon SE of Kerens, Navarro County, TX; center read from survey map dated 5/2/2022",
+    "confidence": "medium-high",
+    "cross_checks": [
+      "Ch.313 app map p24 (8/10/2021) — same polygon, consistent",
+      "Parcel legal descriptions: centroid of parcels anchors to W Henderson Abst Tract 1 (1,148 ac) in southeast quadrant of boundary",
+      "No delivery pin (Google Maps 429 rate-limited)",
+      "No PUCT IA to confirm POI coordinates"
+    ]
+  },
+
+  "project_area": {
+    "acres": 1500,
+    "source": "Ch.313 application #1694 (filed Jan 2022) p15: 'cover a surface area approximately 1,500 acres'; agreement Exhibit 3 confirms same",
+    "artifact": "sources/2026-07-19_comptroller_ch313_1694-goodalta-app.pdf"
+  },
+
+  "ownership": {
+    "spv": "Goodalta Power Center LLC (TX Taxpayer ID 32069326430)",
+    "developer": "Greenfields Solar LLC / Greenfields Renewables",
+    "developer_evidence": "Ch.313 cover letter cc: mlaterza@greenfields-solar.com (Matt Laterza, CFO); app p16 text: 'Greenfields Solar LLC, acting as parent company of the project'",
+    "epc": null,
+    "ppa_offtaker": null,
+    "financing_status": "no financing announcement found; $0 qualified investment in 2024 Form 772 (Tax Year 2024)",
+    "contacts": [
+      {"name": "Matt Laterza", "title": "CFO, Greenfields Solar LLC", "email": "mlaterza@greenfields-solar.com"},
+      {"name": "Troy Reed", "phone": "(713) 859-9770"}
+    ]
+  },
+
+  "land": {
+    "tenure": "leased",
+    "evidence": "Ch.313 app Checklist #9: 'applicant will lease approximately 1,500 acres'",
+    "parcels": [
+      {"geo_id": "10333.00.00010.000.00.0", "legal": "ABS A10333 W HENDERSON ABST TRACT 1", "acres": 1148.12},
+      {"geo_id": "10531.00.00140.000.00.0", "legal": "ABS A10531 B MIDDLETON ABST TRACT 14", "acres": 241.5},
+      {"geo_id": "10531.00.00090.000.00.0", "legal": "ABS A10531 B MIDDLETON ABST TRACT 9", "acres": 280.73},
+      {"geo_id": "10808.00.00040.000.00.0", "legal": "ABS A10808 L THOMAS ABST TRACT 4", "acres": 207.74},
+      {"geo_id": "10119.00.00010.000.00.0", "legal": "ABS A10119 J BRYDON ABST TRACT 1", "acres": 242.5}
+    ],
+    "cad_search": "Navarro CAD blocked by DNS filter — no direct owner-name search completed"
+  },
+
+  "abatements": [
+    {
+      "type": "Ch.313",
+      "application_number": "1694",
+      "school_district": "Kerens ISD",
+      "county": "Navarro",
+      "filed": "2022-01-24",
+      "agreement_executed": "2022-09-26",
+      "investment": "$176.5M",
+      "limitation_amount": "$40M/year M&O",
+      "qualifying_time_period": "2024-08-01 to 2026-12-31",
+      "tax_limitation_period": "2026-01-01 to 2035-12-31",
+      "artifact": "sources/2026-07-19_comptroller_ch313_1694-goodalta-agmt.pdf"
+    }
+  ],
+
+  "interconnection": {
+    "ia_found": false,
+    "ia_signed_date": null,
+    "fis_approved": "2026-02-17",
+    "poi": "138kV tap 3127 Trinidad – 212 Winkler (from ERCOT queue; not independently verified via IA)",
+    "transmission_provider": "Oncor (inferred from POI in NORTH CDR zone)",
+    "puct_search": "No PUCT Interchange filing found for Goodalta Power Center LLC or Greenfields Solar (402 on WebFetch; 0 curl hits)"
+  },
+
+  "contractual_schedule": {
+    "documents": []
+  },
+
+  "construction": {
+    "verdict": "no_activity",
+    "first_activity_seen": null,
+    "evidence": [
+      "Sentinel-2 2024-03-01 (imagery/key/s2_2024-03-01.png): undisturbed farmland and woodland over the entire ~1,500-acre project footprint SE of Kerens; no grading, no cleared polygons",
+      "Sentinel-2 2025-03-01 (imagery/s2_2025-03-01_xwide.png): same undisturbed appearance, no change from 2024",
+      "Sentinel-2 2026-06-15 (imagery/key/s2_2026-06-15.png): undisturbed farmland/woodland, cloud cover ~40% but clear portions confirm no solar construction activity",
+      "Form 772 Tax Year 2024 (sources/2026-07-19_comptroller_ch313_1694-goodalta-form772-2024.pdf): $0 qualified investment reported for TY 2024, signed by Greenfields Solar CFO Matt Laterza on 2024-06-13 — consistent with zero on-site activity"
+    ]
+  },
+
+  "queue_history": {
+    "first_report": "2021-01-01",
+    "snapshots": 66,
+    "cod_drifts": [
+      {"cod": "2023-02-28", "from": "2021-01-01", "to": "2021-09-01"},
+      {"cod": "2024-04-15", "from": "2021-10-01", "to": "2022-11-01"},
+      {"cod": "2025-04-15", "from": "2022-12-01", "to": "2023-05-01"},
+      {"cod": "2025-08-26", "from": "2023-06-01", "to": "2024-08-01"},
+      {"cod": "2027-04-17", "from": "2024-09-01", "to": "2025-04-01"},
+      {"cod": "2027-09-20", "from": "2025-05-01", "to": "2026-06-01"}
+    ],
+    "total_cod_drifts": 6,
+    "original_cod": "2023-02-28",
+    "current_reported_cod": "2027-09-20",
+    "ia_signed": null,
+    "fis_approved": "2026-02-17"
+  },
+
+  "cod_assessment": {
+    "reported": "2027-09-20",
+    "independent": "2029-Q2 or later",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "No IA signed as of June 2026; typical IA-to-COD for 180 MW solar is ≥ 24 months — even an IA signed Q3 2026 puts best-case COD at Q3 2028+",
+      "Zero construction activity in any imagery frame (2024-03 through 2026-06); $0 qualified investment in TY 2024 (Form 772)",
+      "Six COD slips over 5.4 years: 2023-02-28 → current 2027-09-20, total drift 4.6 years",
+      "FIS only approved 2026-02-17 — still at an early milestone 5 years after queue entry",
+      "No financing announcement, no EPC award, no PPA found; developer (Greenfields Solar LLC) has minimal public footprint",
+      "Ch.313 limitation period start was Jan 2026 per agreement but commercial operation not achieved — agreement at risk of expiration/default",
+      "Original Ch.313 schedule called for NTP Q3 2023, completion Q4 2024 — both missed by years; investor capital still not committed as of TY 2024"
+    ]
+  },
+
+  "sources": [
+    {
+      "artifact": "sources/2026-07-19_comptroller_ch313_1694-goodalta-app.pdf",
+      "url": "https://assets.comptroller.texas.gov/ch313/1694/1694-kerens-goodalta-app.pdf",
+      "description": "Ch.313 application #1694 — Goodalta Power Center LLC / Kerens ISD, filed Jan 2022"
+    },
+    {
+      "artifact": "sources/2026-07-19_comptroller_ch313_1694-goodalta-agmt.pdf",
+      "url": "https://assets.comptroller.texas.gov/ch313/1694/1694-kerens-goodalta-agmt.pdf",
+      "description": "Ch.313 agreement between Kerens ISD and Goodalta Power Center LLC, executed Sep 2022"
+    },
+    {
+      "artifact": "sources/2026-07-19_comptroller_ch313_1694-goodalta-form772-2024.pdf",
+      "url": "https://assets.comptroller.texas.gov/dat/ch313/1694/01694-772-2024-0804-SLA-175907-Kerens.pdf",
+      "description": "Form 772 Annual Eligibility Report (Tax Year 2024) — $0 investment, signed Laterza 2024-06-13"
+    },
+    {
+      "artifact": "imagery/key/s2_2024-03-01.png",
+      "description": "Sentinel-2 true-color chip 2024-03-01, 6km buffer, site: undisturbed farmland"
+    },
+    {
+      "artifact": "imagery/key/s2_2026-06-15.png",
+      "description": "Sentinel-2 true-color chip 2026-06-15, 6km buffer, site: undisturbed farmland"
+    },
+    {
+      "artifact": "timeline.md",
+      "description": "Queue-history COD drift timeline from local parquet"
+    }
+  ]
+}

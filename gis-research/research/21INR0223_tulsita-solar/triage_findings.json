@@ -1,0 +1,35 @@
+{
+  "inr": "21INR0223",
+  "project": "Tulsita Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.53,
+    "lon": -97.58,
+    "method": "POI substring 'Tuleta' + Berclair VFD donation (southtexasnews.com)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown — CDSE creds not configured, no imagery obtained",
+    "evidence": "ERCOT queue shows approved-for-synchronization 2024-10-30 but no construction-start/end dates reported; ercotqueue.com claims 'Currently Commissioned'"
+  },
+  "cod_first_look": {
+    "reported": "2026-09-15",
+    "plausible": true,
+    "why": "IA signed 2022, approved-for-sync 2024-10-30, Ch.313 first tax year 2025; monthly COD slipping since Oct 2025 but project infrastructure milestones complete — last-mile commissioning delay likely"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA PDF (portal 402 during triage) — retrieve Ray Ranch Solar LLC IA docket for milestone schedule and POI coordinates",
+    "Imagery at ~28.53N,-97.58W with valid CDSE creds — approved-for-sync Oct 2024 means panels should be visible; confirm commissioning vs stall",
+    "Ch.313 App.1839 PDF — first full tax year 2025 implies commercial ops started or were expected; extract exact schedule commitments",
+    "Clarify 'Currently Commissioned' claim on ercotqueue.com vs no ERCOT commercial-operation-approved date — gap may reflect metering/settlement delay only"
+  ],
+  "turns_used": 22
+}

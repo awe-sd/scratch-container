@@ -1,0 +1,32 @@
+{
+  "inr": "21INR0470",
+  "project": "Pearl Crescent Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.5303,
+    "lon": -96.5749,
+    "method": "POI substation name matched to Rock Island, TX community via OSM",
+    "confidence": "medium"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-12-15",
+    "plausible": false,
+    "why": "5 COD slips over 5 years; FIS never approved, no IA, no web presence — near-term COD implausible without undiscovered IA"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Verify FIS status directly with ERCOT — FIS requested 2020-04-10 but never approved; project may be stalled or withdrawn",
+    "PUCT Interchange manual search for Pearl Crescent Storage — portal blocked via WebFetch, IA existence unconfirmed",
+    "TX SOS entity search for Pearl Crescent Storage LLC — no developer identified; parent company unknown",
+    "Imagery once CDSE credentials configured — Rock Island TX (29.5303, -96.5749) is the only site candidate; check for gravel pad near substation"
+  ],
+  "turns_used": 28
+}

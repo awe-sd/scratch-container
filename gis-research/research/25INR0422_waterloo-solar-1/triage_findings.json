@@ -1,0 +1,31 @@
+{
+  "inr": "25INR0422",
+  "project": "Waterloo Solar 1",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": true
+  },
+  "site_candidate": null,
+  "construction": {
+    "verdict": "underway (news-sourced)",
+    "evidence": "Community Impact article 2026-01-27: 'Construction progresses on 2 Waterloo Solar sites' in Bastrop County; two sites ~10 miles apart; construction consistent with late-2025 start"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": true,
+    "why": "IA signed Sep 2024, construction underway Jan 2026 per news, 18-month build for 200 MW solar is tight but achievable; single prior COD slip of +18 months already absorbed"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Retrieve PUCT Control 35077 / Item 1940 IA document — schedule exhibit may show CEII-redacted milestones; try amendment filings for any schedule updates",
+    "Locate exact site coordinates for both Bastrop County parcels (two sites ~10 miles apart) — check Bastrop CAD parcel records, FAA obstruction filings, or LCRA GIS",
+    "Run Sentinel-2 imagery once site coords obtained — construction confirmed via news but satellite baseline + current view would quantify clearing/racking progress",
+    "Confirm Waterloo Solar I, LLC entity in TX SOS; verify RWE Clean Energy parent chain",
+    "JETI registry check — Ch.313 closed 2022 but JETI is the replacement; project may have applied post-2023"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0485",
+  "project": "Blackland Prairie 1 Energy Storage",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 30.22,
+    "lon": -97.52,
+    "method": "POI substation inference — 'Austrop 138kV' east of Hornsby Bend per web clue; no OSM/Overpass hit, no GMaps pin",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials unavailable this session; no chips generated; site location only estimated from POI substation"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": true,
+    "why": "IA signed 2026-04-10 → 18-month window to COD; normal for BESS (12-18 months build); one prior COD slip of +6mo suggests soft schedule"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA PDF — retrieve milestone schedule exhibit (CEII-redacted?); try filing search via PUCT e-filing portal directly",
+    "Pin the Austrop 138kV substation precisely (OpenInfraMap, LCRA GIS, or ERCOT transmission map) then run tight imagery grid",
+    "Developer identity: confirm Balcones Ridge Resiliency LLC vs Tempus Power Management LLC parent/owner split; TX SOS lookup",
+    "Series structure: Blackland Prairie 3 (Balcones Ridge Resiliency III LLC) also 102 MW Travis — check if land parcels overlap or if IA covers both"
+  ],
+  "turns_used": 28
+}

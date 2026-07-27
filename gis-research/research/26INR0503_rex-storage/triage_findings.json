@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0503",
+  "project": "Rex Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.6028,
+    "lon": -95.1929,
+    "method": "POI substation name — Scarsdale Blvd, Houston (ZIP 77089) as proxy for Scarsdale 138kV substation",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "No imagery obtained — T6 budget consumed by coordinate research; cdse.py not run"
+  },
+  "cod_first_look": {
+    "reported": "2027-09-15",
+    "plausible": false,
+    "why": "FIS not approved, IA not signed as of Jun 2026 — no construction milestones; 14-month runway to COD with no IA is very tight for 256 MW BESS"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange was 402-blocked — retry in a browser session for IA and any Rex BESS LLC filings",
+    "Developer identity: Rex BESS, LLC — find parent/sponsor (no public profile found); Texas SOS corporate lookup",
+    "Locate El Dorado and Scarsdale substation coordinates precisely, then run cdse.py imagery at 1-km buffer",
+    "FIS approval status: queue shows FIS requested 2024-06-04 but not approved as of Jun 2026 (2+ year delay) — check ERCOT study queue"
+  ],
+  "turns_used": 22
+}

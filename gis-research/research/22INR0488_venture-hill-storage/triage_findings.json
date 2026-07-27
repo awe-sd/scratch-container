@@ -1,0 +1,27 @@
+{
+  "inr": "22INR0488",
+  "project": "Venture Hill Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-12-01",
+    "plausible": false,
+    "why": "No IA signed, no FIS approved, no construction milestones — 4 prior COD slips; 5-month runway to Dec 2026 COD is implausible from pre-IA state"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm whether PUCT IA filing exists under alternate developer/parent company name (project name returned zero PUCT hits)",
+    "Identify developer/owner — no LLC registration or press coverage found; parent company unknown",
+    "If developer identified, check for any recent IA execution or FIS approval that may have entered ERCOT queue post June-2026 snapshot",
+    "Substation candidate: Gilleland Creek 138kV (Austin Energy, NE Austin) — imagery not attempted due to missing CDSE credentials; configure credentials and run 1-km chip once identified"
+  ],
+  "turns_used": 22
+}

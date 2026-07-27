@@ -1,0 +1,36 @@
+{
+  "inr": "20INR0143",
+  "project": "Tri-X Solar 1 SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.175,
+    "lon": -102.374,
+    "method": "POI name 'Soda Lake' resolved via Nominatim OSM to geographic feature in Crane County",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery blocked (credentials not configured); no alternative imagery source available in triage"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": false,
+    "why": "6 COD slips over 8 years; IA signed Feb 2022 but FIS never approved and zero construction milestones — 18-month runway to COD with no FIS/6.9 clearance is implausible"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA filing (Feb 2022) — retrieve PDF to verify milestone schedule and check for amendments/terminations",
+    "FIS approval status — queue shows FIS requested 2017 but never approved despite IA signed; investigate if waived or pending",
+    "Developer identity — 'Crane I Solar Electric, LLC' surfaces but parent company/developer unknown; TX SOS lookup needed",
+    "Imagery at Soda Lake area (31.175, -102.374) once CDSE creds configured — no construction signals obtained",
+    "JETI application — Ch.313 expired 2022; check JETI registry for any active incentive application"
+  ],
+  "turns_used": 28
+}

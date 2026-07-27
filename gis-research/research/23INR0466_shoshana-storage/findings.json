@@ -1,0 +1,179 @@
+{
+ "inr": "23INR0466",
+ "project": "Shoshana Storage",
+ "research_date": "2026-07-19",
+ "verdict": "real_early",
+ "confidence": "medium",
+ "verdict_rationale": "Credible developer (Acciona), real POI infrastructure (Refuge 345kV ERCOT bus #42400 operational since \u22652025-02), dual political abatements secured (county + hospital district), but FIS not approved after 4+ years and IA not signed \u2014 project is real but firmly pre-construction and stuck in interconnection study queue",
+ "developer_chain": [
+  {
+   "entity": "Shoshana Storage Project LLC",
+   "role": "SPV",
+   "evidence": "ERCOT queue registry; Bay City Tribune article",
+   "artifact": "sources/t3_web_sweep.md"
+  },
+  {
+   "entity": "Acciona (ACCIONA Energ\u00eda S.A.)",
+   "role": "developer/owner/operator",
+   "evidence": "Bay City Tribune article: 'Shoshana Storage's parent company, Acciona, is the world's largest renewable energy company'",
+   "artifact": "sources/2026-07-19_baycitytribune_county-abatement.html"
+  }
+ ],
+ "site": {
+  "lat": 28.8,
+  "lon": -96.05,
+  "method": "POI inference: 'Tap STP \u2013 Refuge ckt 27' \u2192 ERCOT bus 42400 (Refuge 345kV) in Matagorda County, near STP nuclear plant (28.79556N, 96.04889W). Refuge substation not in OSM or public GIS databases; coordinates are POI-proximity estimate only.",
+  "confidence": "low",
+  "cross_checks": "STP plant at 28.79556N, 96.04889W (Wikipedia). Peyton Creek Wind II (20INR0155) also connects to Refuge 345kV and was approved-for-sync 2025-02-05; that wind farm is in Matagorda County confirming the substation is real and operational. No Google Maps pin, no parcel address, no CAD result found.",
+  "not_obtainable": "Exact Refuge substation coordinates not in OSM, Nominatim, ERCOT public GIS, or ArcGIS substation layers; Peyton Creek Wind turbine coordinates not accessible via USGS WTDB or Overpass"
+ },
+ "construction_stage": "no_activity",
+ "construction_evidence": "No construction milestones in ERCOT queue (constructionStart = null, constructionEnd = null). IA not signed. FIS not approved. 5 Sentinel-2 chips around STP plant show undisturbed farmland/industrial area with no BESS pad; note Refuge substation exact location unknown so chips may not cover the actual site.",
+ "imagery": {
+  "chips": [
+   {
+    "date": "2026-07-01",
+    "file": "imagery/s2_2026-07-01_stp_center.png",
+    "observation": "STP nuclear plant complex, no BESS pad visible within 2km of STP",
+    "buffer_km": 2
+   },
+   {
+    "date": "2026-07-01",
+    "file": "imagery/s2_2026-07-01_stp_xwide.png",
+    "observation": "STP + 6km radius, farmland NW, heavy clouds south; no BESS pad visible",
+    "buffer_km": 6
+   },
+   {
+    "date": "2026-07-01",
+    "file": "imagery/s2_2026-07-01_stp_ne.png",
+    "observation": "2km NE of STP: farmland/wetlands, no BESS activity",
+    "buffer_km": 2
+   },
+   {
+    "date": "2026-07-01",
+    "file": "imagery/s2_2026-07-01_stp_nw.png",
+    "observation": "2km NW of STP: farmland with transmission corridors, no BESS pad",
+    "buffer_km": 2
+   },
+   {
+    "date": "2026-07-01",
+    "file": "imagery/s2_2026-07-01_s_stp.png",
+    "observation": "2km south of STP: cloud-covered, transmission towers visible; no BESS",
+    "buffer_km": 2
+   }
+  ],
+  "coverage_note": "CDSE auth failed after initial chips; Refuge substation location unknown (not in OSM/GIS) so imagery did not cover the actual POI tap point. No timelapse acquired.",
+  "verdict": "no_activity (from STP vicinity chips; Refuge substation area not imaged)"
+ },
+ "county_records": {
+  "cad_search": "0 parcels found for Shoshana Storage or Acciona at Matagorda CAD (propaccess.trueautomation.com cid=235) \u2014 session timeout; likely no filed parcel transfer yet since land tenure is expected to be leased or optioned",
+  "abatements": [
+   {
+    "body": "Matagorda County Commissioners Court",
+    "type": "Ch.312",
+    "status": "approved unanimously 2024-04-28",
+    "terms": "100% abatement, 5 years, ~$2M total to county over 2 years",
+    "artifact": "sources/2026-07-19_baycitytribune_county-abatement.html"
+   },
+   {
+    "body": "Matagorda Regional Medical Center Hospital District",
+    "type": "Tax abatement (hospital district levy)",
+    "status": "Public hearing held November 2024",
+    "artifact": "sources/2026-07-19_mchd_nov2024_abatement-hearing.pdf",
+    "note": "PDF content not extractable (poppler not installed); meeting notice only confirms hearing was scheduled"
+   }
+  ],
+  "jeti_ch313": "Ch.313 ended 2022; project entered queue May 2022 (post-cutoff). No JETI application found."
+ },
+ "interconnection": {
+  "ia_signed": false,
+  "ia_signed_date": null,
+  "ia_puct_control": null,
+  "poi": "Tap STP \u2013 Refuge ckt 27 (ERCOT bus #5915 STP to bus #42400 Refuge, 345kV circuit 27)",
+  "poi_infrastructure_status": "Operational \u2014 Peyton Creek Wind II (20INR0155) approved-for-synchronization 2025-02-05 at same Refuge 345kV bus",
+  "fis_status": "FIS requested 2022-05-16; NOT approved as of 2026-06-01 (50 snapshots, 4+ years). No approval date in queue.",
+  "financial_security": null
+ },
+ "contractual_schedule": {
+  "documents": [],
+  "note": "IA not signed; no contractual schedule or financial security exists"
+ },
+ "queue_history": {
+  "first_snapshot": "2022-05-01",
+  "snapshot_count": 50,
+  "cod_changes": [
+   {
+    "cod": "2023-12-31",
+    "held_from": "2022-05-01",
+    "until": "2022-07-01"
+   },
+   {
+    "cod": "2024-06-01",
+    "held_from": "2022-08-01",
+    "until": "2023-03-01"
+   },
+   {
+    "cod": "2025-06-01",
+    "held_from": "2023-04-01",
+    "until": "2023-08-01"
+   },
+   {
+    "cod": "2026-08-28",
+    "held_from": "2023-09-01",
+    "until": "2025-09-01"
+   },
+   {
+    "cod": "2028-05-30",
+    "held_from": "2025-10-01",
+    "until": "2026-06-01"
+   }
+  ],
+  "total_slips": 5,
+  "total_slip_months": 65,
+  "milestones_achieved": [
+   "screening_started_2022-03-30",
+   "screening_complete_2022-06-26",
+   "fis_requested_2022-05-16"
+  ],
+  "milestones_not_achieved": [
+   "fis_approved",
+   "ia_signed",
+   "meetsSection691",
+   "construction_start"
+  ]
+ },
+ "cod_assessment": {
+  "reported_cod": "2028-05-30",
+  "independent_estimate": "2029-Q2 to 2030-Q2",
+  "drift_risk": "high",
+  "rationale": [
+   "FIS not approved after 4+ years \u2014 the study has been stalled since May 2022; FIS approval is a prerequisite to IA negotiation",
+   "IA not signed \u2014 cannot begin final engineering, equipment procurement, or construction until IA is in place (typically 6-12 months after FIS)",
+   "Construction must start from zero: BESS build is fast (~12-18 months) once IA signed, but FIS approval + IA negotiation alone likely takes 12-24 months from today",
+   "5 prior COD slips totaling 65 months suggest systemic study-queue delays rather than one-time adjustment",
+   "2028-05-30 is plausible only if FIS is approved ~2026-Q3 and IA signed ~2027-Q1 \u2014 aggressive but not impossible; no evidence this is imminent",
+   "For: Acciona is a credible developer with US operating portfolio; dual abatements signal real local commitment; Refuge 345kV substation is operational"
+  ]
+ },
+ "project_area": {
+  "acres": null,
+  "source": "Not determinable \u2014 MCHD PDF not extractable; no Ch.313 application; no CAD parcels; no IA to check exhibits",
+  "artifact": null,
+  "note": "221 MW BESS \u2248 20-50 acres expected at 10 m/px; site not imaged at Refuge substation"
+ },
+ "sources": [
+  {
+   "file": "sources/t3_web_sweep.md",
+   "description": "Triage web sweep notes: Acciona parent, county abatement, SPV name confirmed"
+  },
+  {
+   "file": "sources/2026-07-19_baycitytribune_county-abatement.html",
+   "description": "Bay City Tribune Apr 30 2024: county unanimously approves 100% 5yr abatement; Acciona parent named"
+  },
+  {
+   "file": "sources/2026-07-19_mchd_nov2024_abatement-hearing.pdf",
+   "description": "MCHD meeting notice for Nov 2024 hospital district abatement hearing; PDF text not extractable"
+  }
+ ],
+ "real_project_verdict": "real_early"
+}

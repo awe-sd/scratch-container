@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0624",
+  "project": "Helion BESS",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.73,
+    "lon": -100.90,
+    "method": "POI substation inference: GALVANI 345kV substation in Scurry County near Snyder TX (PUCT case 57477)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery auth failed (401/403); no contact sheet generated"
+  },
+  "cod_first_look": {
+    "reported": "2027-09-16",
+    "plausible": true,
+    "why": "~15-month lead from queue entry (May 2026); feasible for BESS build time but no IA, no milestones beyond FIS-request — highly speculative at this stage"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT case 57477 (Galvani 345 substation filing) — may name developer/owner and confirm exact substation coords for imagery",
+    "PUCT Interchange: search FilingParty=Helion BESS once portal access available — IA likely not yet filed but worth confirming",
+    "TX SOS business search for 'Helion BESS LLC' — developer identity unknown, needed to assess sponsor credibility",
+    "CDSE imagery once auth is restored — site is compact, check 1-km buffer around confirmed Galvani substation coords"
+  ],
+  "turns_used": 22
+}

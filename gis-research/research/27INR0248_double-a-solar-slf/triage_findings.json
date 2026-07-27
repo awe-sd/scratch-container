@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0248",
+  "project": "Double A Solar SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.87,
+    "lon": -97.38,
+    "method": "POI infrastructure: 'Tap 69kV 5678 Schroeder - 5675 Big Oak' → Schroeder community, Goliad County TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth blocked (401/403) — no imagery retrieved"
+  },
+  "cod_first_look": {
+    "reported": "2028-05-31",
+    "plausible": true,
+    "why": "FIS requested but not approved; no IA; one COD slip already (2027→2028); 2028 is tight but not impossible if FIS clears in late 2026"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Fix CDSE credentials then run imagery on Schroeder area (~28.87, -97.38) — only open signal thread",
+    "PUCT Interchange returned 402 — try via browser/authenticated session for IA or filing confirmation",
+    "No developer identity surfaced — TX SOS lookup for 'Double A Solar SLF LLC' to find sponsor/developer",
+    "Watch for FIS approval in next monthly GIS report — that gate will signal whether 2028 COD is real"
+  ],
+  "turns_used": 22
+}

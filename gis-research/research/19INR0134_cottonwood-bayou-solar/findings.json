@@ -1,0 +1,114 @@
+{
+ "inr": "19INR0134",
+ "project": "Cottonwood Bayou Solar",
+ "research_date": "2026-07-19",
+ "verdict": "real_active",
+ "verdict_summary": "TotalEnergies-owned 455 MW project; 17 OSM solar-plant polygons confirm footprint between Liverpool and Petson 138kV substations; energization approved May 2024; timelapse shows construction 2023-Q1 through 2024-Q1, modules installed and stable through 2026-Q2.",
+ "ownership": {
+  "spv": "Cottonwood Bayou Solar, LLC",
+  "parent_chain": [
+   {
+    "entity": "Cottonwood Solar Cash Equity HoldCo, LLC",
+    "role": "direct owner (100%)",
+    "source": "TotalEnergies FY2024 20-F (SEC 0001104659-25-029751)"
+   },
+   {
+    "entity": "TotalEnergies SE",
+    "role": "ultimate parent / operator",
+    "source": "TotalEnergies FY2024 20-F; TotalEnergies 6-K 2024-01-02"
+   },
+   {
+    "entity": "Cottonwood Solar Class B HoldCo, LLC",
+    "role": "50% equity investor (sold Dec 2024 in 3-project portfolio)",
+    "source": "TotalEnergies FY2024 20-F"
+   },
+   {
+    "entity": "Cottonwood Bayou Storage, LLC",
+    "role": "storage SPV (100% TotalEnergies)",
+    "source": "TotalEnergies FY2024/2025 20-F XBRL"
+   }
+  ],
+  "offtaker": "LyondellBasell \u2014 12-year CPPA signed 2022, 150 MWac (195 MW)",
+  "offtaker_source": "sources/2024-01-02_totalenergies_6k_lyondellbasell_cppa.htm"
+ },
+ "site": {
+  "lat": 29.2512,
+  "lon": -95.2589,
+  "method": "17 unnamed OSM solar-plant polygons in cluster between Liverpool substation (29.2791,-95.2949) and Petson substation (29.2530,-95.2203), matching POI description 'tap 138kV 42870 Liverpool - 43070 Petson'; centroid of polygon cluster",
+  "confidence": "high",
+  "substation_liverpool": {
+   "lat": 29.2791,
+   "lon": -95.2949,
+   "source": "OSM way/336253179 (CenterPoint Energy 138kV)"
+  },
+  "substation_petson": {
+   "lat": 29.253,
+   "lon": -95.2203,
+   "source": "OSM way/336253275 (138kV)"
+  },
+  "cross_checks": "POI matches both substations; OSM cluster spans 29.227-29.267N, -95.242 to -95.277 \u2014 consistent with 455 MW (~2,500 acres)"
+ },
+ "project_area": {
+  "acres": null,
+  "source": "No Ch.313/JETI or IA obtained to state explicit acreage; OSM polygon cluster bounding box suggests 3,000-4,000 acres; TotalEnergies documents state 455 MW capacity",
+  "artifact": "sources/2026-07-19_osm_overpass_solar_plants_brazoria.json"
+ },
+ "construction": {
+  "verdict": "substantially_complete",
+  "first_activity_seen": "2023-01",
+  "modules_visible_from": "2024-01",
+  "energization_approved": "2024-05-01",
+  "sync_approved": "2024-05-29",
+  "timelapse_artifact": "imagery/contact_sheet.png",
+  "key_frames": [
+   {
+    "date": "2024-01-01",
+    "observation": "Uniform dark rectangular blocks \u2014 modules installed",
+    "artifact": "imagery/cluster_2024-01.png"
+   },
+   {
+    "date": "2026-06-01",
+    "observation": "Same dark panel footprint, stable \u2014 not dismantled",
+    "artifact": "imagery/cluster_centroid_4km.png"
+   }
+  ]
+ },
+ "interconnection": {
+  "ia_signed": "2019-11-13",
+  "ia_source": "ERCOT queue data (milestone column iaSigned); PUCT interchange portal JS-blocked \u2014 document not retrieved",
+  "poi": "tap 138kV 42870 Liverpool - 43070 Petson (per identity packet)",
+  "fis_approved": "2023-04-27",
+  "meets_section69": "2023-04-27",
+  "approved_for_energization": "2024-05-01",
+  "approved_for_synchronization": "2024-05-29",
+  "commercial_operation_approved": null
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Interconnection Agreement (original)",
+    "signed": "2019-11-13",
+    "financial_security": null,
+    "artifact": "not retrieved \u2014 PUCT portal JS-dependent (402/blocked)"
+   }
+  ]
+ },
+ "cod_assessment": {
+  "reported_cod": "2026-08-29",
+  "independent_estimate": "2026-Q3 to 2026-Q4",
+  "drift_risk": "high",
+  "drift_history": "25 changes since 2018; original 2020-11-01; continuous monthly slipping since mid-2024; TotalEnergies itself announced 'end of 2024' COD in Dec 2023 \u2014 that slipped a full year+",
+  "key_factor": "Project is physically complete and energized (May 2024) but COD approval not yet granted by ERCOT; likely commissioning/testing/contractual delay, not construction. Pattern suggests ERCOT approval is the near-term gating item.",
+  "rationale": "Energization + sync both approved May 2024; 14+ months of monthly slipping with no ERCOT commercial operation sign-off; could be ERCOT operating test, LyondellBasell PPA commercial terms, or regulatory hold; physical construction is done"
+ },
+ "timeline_artifact": "timeline.md",
+ "sources": [
+  "sources/2024-01-02_totalenergies_6k_lyondellbasell_cppa.htm",
+  "sources/2024-02-07_totalenergies_6k_results.htm",
+  "sources/2026-07-19_osm_overpass_solar_plants_brazoria.json",
+  "imagery/contact_sheet.png",
+  "imagery/cluster_2024-01.png",
+  "imagery/cluster_centroid_4km.png"
+ ],
+ "real_project_verdict": "real_active"
+}

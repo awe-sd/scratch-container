@@ -1,0 +1,141 @@
+{
+  "inr": "21INR0520",
+  "project": "Yellow Viking Solar",
+  "research_date": "2026-07-20",
+  "verdict": "real_early",
+  "confidence": "high",
+  "site": {
+    "lat": 32.317,
+    "lon": -97.629,
+    "method": "EIA-860M plant coordinates (Lydian Energy / plant 67222 'Yellow Vikings' -- name is a near-exact match to the queue project, not a coincidental county+MW fallback bind); corroborated by IA Exhibit C text (Nautilus Switch on FM 2174, Hood County side of the interconnect) and by OSM/Overpass: FM 2174 and a 345kV line both found within 5 km of the coordinate, and the point itself falls in Somervell County -- matching the ERCOT queue's own county field (queue says Somervell; GEM wiki's 'Hood County' claim is likely referring to the switchyard side of the county line, a documented tri-county convergence in this area)",
+    "confidence": "high (independently corroborated)",
+    "map_artifacts": [
+      "sources/2026-07-19_puct_35077-1523_interconnection-agreement-between_p30.png"
+    ]
+  },
+  "project_area": {
+    "acres": 4078,
+    "source": "Global Energy Monitor (gem.wiki/Yellow_Vikings_solar_farm) \u2014 search snippet",
+    "artifact": null
+  },
+  "construction": {
+    "stage": "pre_construction",
+    "first_activity_date": null,
+    "latest_observation": "2026-07-04",
+    "imagery_artifacts": [
+      "imagery/key/s2_2022-06-01.png",
+      "imagery/key/s2_2024-06-01.png",
+      "imagery/key/s2_2025-07-01.png",
+      "imagery/key/s2_2026-06-15.png"
+    ],
+    "note": "AWS Open Data Sentinel-2 chips (s2aws.py) obtained this run at the verified site coordinate, replacing the prior triage-stage imagery which was centered on a since-rejected POI guess (Comanche Peak Nuclear Plant, ~12-19 km off) and never refreshed after the deep scan found the correct EIA coordinate (CDSE 402'd at the time). All 4 years (2022/2024/2025/2026) plus a wider 7km check show only pre-existing sand/limestone quarry operations near the interconnect point -- no solar array, staging, or grading visible. Consistent with EIA status '(L) Regulatory approvals pending. Not under construction' as of 2026-05, and with the NTP construction deadline (2025-07-01) having passed with no queue construction-start milestone."
+  },
+  "ownership": {
+    "spv": "Yellow Viking Development One, LLC",
+    "developer": "Lydian Energy (backed by Excelsior Energy Capital; 4.4 GW portfolio of 18 projects)",
+    "prior_developer": "European Energy (Denmark; project manager Knud Erik Andersen)",
+    "epc": null,
+    "offtaker": "investment-grade counterparty (100 MW PPA, identity not disclosed)",
+    "financing": "$689M construction-to-term + tax credit bridge + co-investment bridge + LC facility closed 2026-02-17; lenders CIBC + MUFG",
+    "note_osaka_gas": "Somervell CC minutes (2024-02-12) put the SPV's notice address under OSAKA GAS USA CORPORATION as of Feb 2024 \u2014 between the European Energy origin and the Lydian Energy entity EIA-860M reports (first report 2024-02). Sequence is consistent with European Energy -> Osaka Gas USA -> Lydian Energy (Excelsior) transfers, but only the Osaka Gas Feb-2024 datapoint is document-verified; do not state the full chain as fact."
+  },
+  "land": {
+    "tenure": "leased (inferred \u2014 0 CAD hits under LLC or developer; land held under landowner names)",
+    "abatement": "SOMERVELL COUNTY (primary, minutes-verified): TWO Ch.312 abatement agreements with Yellow Viking Development One, LLC (dated 2021-10-29 and 2023-08-14). Commissioners Court 2024-02-12: public hearing + vote on First Amendments \u2014 PASSED (signed motion + signed amendments attached to the meeting record) \u2014 extending the completion date from 2024-12-31 to ON OR BEFORE 2026-12-31, and changing the company notice address to Tomohiko Ono / VP, 1 N Lexington Ave, White Plains NY, renewables-grid-solutions@osakausa.com, with copy to OSAKA GAS USA CORPORATION, Houston TX (artifacts: sources/2024-02-12_somervell-cc_yellow-viking-abatement-hearing-agenda.pdf, sources/2024-02-12_somervell-cc_yellow-viking-abatement-amendment-meeting.pdf). HOOD COUNTY: abatement with the same LLC voted 'no longer active' Feb 2025 (hcnews.com snippet; the project footprint is Somervell-side, consistent with dropping the Hood agreement).",
+    "cad_parcels": "0 hits under LLC or developer name in Hood CAD or Somervell CAD"
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Original IA (PUCT 35077-1523)",
+        "signed": "2022-10-25",
+        "filed": "2022-11-22",
+        "in_service": "2024-04-18",
+        "trial_op": "2024-05-01",
+        "cod": "2024-07-26",
+        "financial_security": "$4,724,586 LC by 2022-10-18",
+        "equipment_mw": 288.99,
+        "inverters": "78 x SMA SC4400UP = 312.3 MVA",
+        "poi": "Hood County, Nautilus Switch, Comanche Peak\u2013Timberview Switch 345kV, FM 2174 ~25 mi W of Cleburne",
+        "artifact": "sources/2026-07-19_puct_35077-1523_interconnection-agreement-between-oncor-electric.pdf"
+      },
+      {
+        "doc": "Amendment No. 1 (PUCT 35077-2154)",
+        "signed": null,
+        "filed": "2025-06-13",
+        "in_service": "2027-05-13",
+        "trial_op": "2027-05-28",
+        "cod": "2027-07-13",
+        "ntp_construction_deadline": "2025-07-01",
+        "financial_security": "$4,724,586 LC by 2022-10-18; steps up to $13,784,627 by 2025-07-01",
+        "artifact": "sources/2026-07-19_puct_35077-2154_amendment-no-1-to-the-standard-generation-interc.pdf"
+      },
+      {
+        "doc": "Amendment No. 2 (PUCT 35077-2493)",
+        "signed": null,
+        "filed": "2026-05-27",
+        "in_service": "2027-05-13",
+        "trial_op": "2027-05-28",
+        "cod": "2027-07-13",
+        "financial_security": "unchanged from Amend 1",
+        "artifact": "sources/2026-07-19_puct_35077-2493_amendment-no-2-to-the-standard-generation-interc.pdf"
+      },
+      {
+        "doc": "Amendment No. 3 (PUCT 35077-2523)",
+        "signed": "2026-07-02",
+        "filed": "2026-07-09",
+        "in_service": "2027-05-13",
+        "trial_op": "2027-05-28",
+        "cod": "2027-07-13",
+        "financial_security": "unchanged",
+        "equipment_mw": 172.8,
+        "inverters": "45 x 4.312 MVA = 194.04 MVA nameplate, 172.80 MW dispatched",
+        "note": "Equipment-only update signed 18 days before research date; schedule unchanged",
+        "artifact": "sources/2026-07-19_puct_35077-2523_amendment-no-3-to-the-standard-generation-interc.pdf"
+      }
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-07-13",
+    "eia_planned": "2027-10",
+    "independent_estimate": "2027-Q4",
+    "drift_risk": "high",
+    "rationale": "Contractual COD 2027-07-13 confirmed in IA Amend 1+2+3; EIA reports '(L) not under construction' as of 2026-05. NTP construction deadline 2025-07-01 is 12 months past. In-Service deadline 2027-05-13 gives only 10 months from today. No construction milestone in ERCOT queue. Hood County abatement terminated Feb 2025. 3 prior COD slips (~4.5 year total drift). For: $689M financing closed Feb 2026; Amend 3 signed 2026-07-02 (active); LC at $13.8M. Independent estimate: 2027-Q4 at earliest if construction starts now; high drift risk toward 2028. County-abatement completion deadline (Somervell First Amendments, voted 2024-02-12) is 2026-12-31 \u2014 ~6.5 months before the contractual COD 2027-07-13; if construction has not started by early 2027 the abatement lapses too, compounding drift risk."
+  },
+  "queue_history": {
+    "cod_slips": 3,
+    "first_in_reports": "2020-10-01",
+    "snapshots": 69,
+    "capacity_changes": [
+      {
+        "mw": 288.99,
+        "from": "2020-10-01",
+        "until": "2025-04-01"
+      },
+      {
+        "mw": 170.86,
+        "from": "2025-05-01",
+        "until": "2026-02-01"
+      },
+      {
+        "mw": 171.13,
+        "from": "2026-03-01",
+        "until": "2026-06-01"
+      }
+    ],
+    "milestones": {
+      "ia_signed": "2022-10-25",
+      "fis_approved": null,
+      "construction_start": null,
+      "construction_end": null
+    }
+  },
+  "sources": [
+    "sources/2026-07-19_puct_35077-1523_interconnection-agreement-between-oncor-electric.pdf",
+    "sources/2026-07-19_puct_35077-2154_amendment-no-1-to-the-standard-generation-interc.pdf",
+    "sources/2026-07-19_puct_35077-2493_amendment-no-2-to-the-standard-generation-interc.pdf",
+    "sources/2026-07-19_puct_35077-2523_amendment-no-3-to-the-standard-generation-interc.pdf",
+    "sources/lydian_financing_businesswire.md"
+  ],
+  "real_project_verdict": "real_early"
+}

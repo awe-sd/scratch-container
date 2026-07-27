@@ -1,0 +1,27 @@
+{
+  "inr": "27INR0343",
+  "project": "Plant Road BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-03-01",
+    "plausible": true,
+    "why": "Screening done 2025-01, FIS pending; 2028-03 gives ~3 years from entry — tight but not impossible if FIS/IA resolve quickly; capacity has been trimmed 3x suggesting active negotiation, not abandoned"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange: search FilingParty='Plant Road BESS' directly in browser (portal was 402/blocked this session) — IA filing is the single most valuable document",
+    "ODEHV substation coordinates: locate via ERCOT NOM data or Oncor service territory maps to enable imagery chip",
+    "LLC registration: search Texas SOS for 'Plant Road BESS LLC' to identify developer and any related projects",
+    "FIS approval status: if FIS approved by next queue report, project is advancing and warrants deeper look"
+  ],
+  "turns_used": 28
+}

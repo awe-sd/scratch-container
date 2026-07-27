@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0420",
+  "project": "Houston BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.9109,
+    "lon": -95.3213,
+    "method": "POI substation — Lauder 138kV (FCC record, 4711 Lauder Rd Houston TX)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "inconclusive",
+    "evidence": "Press confirmed groundbreaking May 2025 (Irby Construction + CenterPoint). Sentinel-2 Jun 2026 chip at Lauder substation center shows dense suburban/industrial area; no distinct BESS pad visible, but 5/9 grid tiles dropped to remote disconnect — insufficient spatial coverage to clear or confirm"
+  },
+  "cod_first_look": {
+    "reported": "2027-08-01",
+    "plausible": true,
+    "why": "3 prior COD slips; financing closed Feb 2025 + groundbreaking May 2025 support active construction, but no IA signed in 40 months of queue history — IA delay is the main risk to COD"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA status critical: PUCT Interchange blocked during triage — run deep PUCT search for SMT Houston IV filings; IA absence in a project with confirmed groundbreaking is a major anomaly to resolve",
+    "MW discrepancy: queue shows 227.9 MW but press/financing describe 160 MW / 320 MWh — clarify whether queue MW was never updated or project was rescoped",
+    "Imagery gap: 5/9 Lauder area tiles failed; retry full 3×3 grid + tighter 1km buffer centered on substation property itself to find the BESS pad",
+    "Developer/SPV verification: confirm 'SMT Houston IV' as the ERCOT queue applicant name vs 'Houston BESS LLC' as listed in the identity packet",
+    "gmaps.py was 429-blocked — retry delivery pin search when rate limit clears"
+  ],
+  "turns_used": 28
+}

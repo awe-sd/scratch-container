@@ -1,0 +1,75 @@
+{
+ "inr": "24INR0404",
+ "project": "Tres Rios Ranch Solar",
+ "research_date": "2026-07-19",
+ "verdict": "real_early",
+ "verdict_confidence": "medium",
+ "verdict_rationale": "IA signed 2025-12-30 is primary evidence of commitment; LLC formed 2025-12-23; Upton CAD shows candidate landowner (Cielo Land & Cattle LP) has ~2,124 acres labeled 'SOLAR PROJECT' in MK&T Blk 2-3 sections consistent with project scale; no construction visible (imagery skipped \u2014 site not pinned); paper-project indicators absent (IA real, COD slipped from 2025\u21922027 is normal early-stage behavior, FIS gap unusual but precedented).",
+ "signals": {
+  "ia_found": true,
+  "ia_source": "ERCOT queue milestone data (iaSigned=2025-12-30); PUCT portal returned HTTP 402 \u2014 full IA PDF not retrieved",
+  "abatement_found": false,
+  "abatement_note": "No Ch.312/313/JETI found; expected for post-2022 project in Ch.313 expiry era",
+  "pins_found": 0,
+  "news_found": false,
+  "construction_visible": false,
+  "construction_note": "Imagery not run \u2014 site pin not obtained (gmaps 429, no parcel coords)",
+  "cad_landowner_found": true,
+  "cad_note": "Cielo Land & Cattle LP (Austin TX) has ~2,124 acres in 7 MK&T Blk 2-3 parcels labeled 'SOLAR PROJECT'; plausible lessor for 508 MW project"
+ },
+ "developer": {
+  "llc": "LectricWind LLC",
+  "llc_verified": true,
+  "llc_source": "Bizapedia DDG snippet 2026-07-19 \u2014 TX file #0806359695, formed 2025-12-23, RA Darrell Corzine, Odessa TX 79762",
+  "parent": null,
+  "parent_note": "No parent company identified; LLC formed 7 days before IA signing; minimal public footprint; Odessa TX address consistent with Permian Basin operator"
+ },
+ "site_candidate": {
+  "lat": null,
+  "lon": null,
+  "method": "not_obtained",
+  "confidence": "none",
+  "notes": "POI is Twelvemile 345kV (ERCOT bus 76008); DDG snippet places 'Twelvemile Substation' in Crockett County TX (borders Upton to SW); MK&T Blk 2-3 Upton County sections are candidate parcels per CAD 'SOLAR PROJECT' labels on Cielo Land & Cattle LP parcels"
+ },
+ "construction": {
+  "stage": "not_started_or_unknown",
+  "first_activity_date": null,
+  "imagery_dates": [],
+  "notes": "No satellite imagery run; no ground signals"
+ },
+ "project_area": {
+  "acres": 2124,
+  "source": "Upton CAD 2026 certified roll \u2014 Cielo Land & Cattle LP 'SOLAR PROJECT' parcels in MK&T Blk 2-3",
+  "artifact": "sources/upton_cad_2026_roll_excerpt.md",
+  "note": "Estimated; 7 parcels \u00d7 project-scale sections; 508 MW solar typically ~2,000-4,500 acres; matches lower end"
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Interconnection Agreement (original)",
+    "signed": "2025-12-30",
+    "financial_security": null,
+    "artifact": null,
+    "note": "Signing date from ERCOT queue milestone; PDF not retrieved (PUCT portal HTTP 402); parties, POI exhibit, and milestone schedule not confirmed from primary document"
+   }
+  ],
+  "fis_approved": false,
+  "fis_note": "FIS never approved despite IA signed \u2014 unusual ordering but ERCOT milestones are independent gates; FIS waiver or alternative path possible"
+ },
+ "cod_first_look": {
+  "reported": "2027-12-31",
+  "independent_estimate": "2028-Q3",
+  "independent_estimate_rationale": "IA signed 2025-12-30; no construction started per available evidence; 508 MW solar requires ~18-24 months from NTP to COD; typical NTP ~6-12 months post-IA for first-time developer; FIS still open adds risk; Permian Basin labor/grid congestion adds ~1-2 months; reported 2027-12-31 is aggressive; 2028-Q3 is base case, 2029 if FIS drags",
+  "drift_history": "COD drifted +2 years: 2025-12-31 \u2192 2027-12-31 (seen at 2024-08 snapshot)",
+  "drift_risk": "high",
+  "drift_risk_rationale": "New/unproven developer (LLC formed days before IA); FIS not approved; no EPC or offtake identified; COD already slipped 2 years; construction not started"
+ },
+ "poc_description": "76008 Twelvemile 345kV",
+ "poc_county_hint": "Twelvemile Substation referenced in Crockett County TX archaeological survey (adjacent to Upton County SW border)",
+ "turns_used": "~40",
+ "sources": [
+  "sources/upton_cad_2026_roll_excerpt.md",
+  "sources/README.md"
+ ],
+ "real_project_verdict": "real_early"
+}

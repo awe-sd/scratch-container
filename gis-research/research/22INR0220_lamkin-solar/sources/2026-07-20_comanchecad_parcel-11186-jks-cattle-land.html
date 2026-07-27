@@ -1,0 +1,986 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/img/app-icons/ps/Bis/apple-touch-icon.png">
+        <meta property="og:image" content="https://esearch.comanchecad.org/img/app-icons/ps/Bis/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" href="/img/app-icons/ps/Bis/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/img/app-icons/ps/Bis/favicon-16x16.png" sizes="16x16">
+        <link rel="shortcut icon" href="/img/app-icons/ps/Bis/favicon.ico">
+
+    <link rel="manifest" href="/img/app-icons/ps/manifest.json">
+    <link rel="mask-icon" href="/img/app-icons/ps/safari-pinned-tab.svg" color="#e7655d">
+    <meta name="msapplication-config" content="/img/app-icons/ps/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="application-name" content="Property Search" />
+
+    <meta property="og:title" content="Comanche CAD Property Search" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://esearch.comanchecad.org" />
+
+    <title>Comanche CAD Property Search</title>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300">
+    <link rel="stylesheet" type="text/css" href="/css/blue-bis-theme.min.css?v=jAfyjMyWthBHykPMvxRdCxJHpYlg7RW9rWRZLdzsFRY" />
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css?v=gg4WnOJIJAZtmXP9S2Vhqunc1tvvZDXakF1aHWSCmXw" />
+    <link rel="stylesheet" type="text/css" href="/css/kendo.common.min.css?v=m8Ep4hSOiDy_ljAZJorGjYIKx4u3pK882rXJG7Mrpt8" />
+    <link rel="stylesheet" type="text/css" href="/css/kendo.common-bootstrap.min.css?v=ONblR1DdV18beREvFgCD0FFWSxSfxR2FKfjxNw-ur9s" />
+    <link rel="stylesheet" type="text/css" href="/css/blue-kendo-theme.min.css?v=ARH9eh8WId5adXanMsNSzngfaa2e4q7NIz6f-sUh3HM" />
+    <link rel="stylesheet" type="text/css" href="/css/_site.css?v=SiA0O4FwabZ6yOVrpLThTQVwce2Nyt4zo43eJAXYVNs" />
+    <link rel="stylesheet" type="text/css" href="/css/flatpickr.min.css?v=pndCqduSw_H7p6rYKMocVfCn01CE_I0r79MVpVbSuD0" />
+
+    <script src="/js/jquery.min.js?v=WoKHkbUuR0q1F7aIBUVmxixCQakDbEGlqKLRCKIms-A"></script>
+    <script src="/js/bootstrap.min.js?v=NkYOSU5MYoRDr97UCydDte3ppKdvtPe57yNFzH5Z_WQ"></script>
+    <script src="/js/jquery.cookie.min.js?v=I5AR3dADRWEYBtd0Z8gdxaTJDRX-xvZjV2cbc5ICh9w"></script>
+    <script src="/js/_site.js?v=xqV11HkYlRUrF0WTs7UB-QDRoUJFGrQpLUaz9_avKiA"></script>
+    <script src="/js/flatpickr.min.js?v=vQS7SXjTj84ZfaMJW_9o2hZfbeGNL8VqxfHX-2HI6Uc"></script>
+
+    <script>
+        $(document).ready(function() {
+            if (false === true) {
+                document.body.style.backgroundImage = "url('/img/backgrounds/mobile-alabama.jpg')";
+                document.body.style.backgroundSize = "100% 100%";
+            }
+
+            checkUserLogged();
+        });
+
+        document.addEventListener(
+            'visibilitychange',
+            function logData() {
+                if (document.visibilityState === 'hidden') {
+                    return;
+                }
+
+                checkUserLogged();
+            });
+
+        function checkUserLogged() {
+            $.ajax({
+                url: "/Account/CheckUserLogged",
+                success: function(data) {
+                    if (data === false) {
+                        window.location.href = "/Account/ReLogin?returnUrl="
+                            + encodeURIComponent(window.location.pathname + window.location.search);
+                    }
+                }
+            });
+        }
+    </script>
+
+
+    <script type="module">
+        import BugsnagPerformance from '//d2wy8f7a9ursnm.cloudfront.net/v1/bugsnag-performance.min.js'
+        BugsnagPerformance.start({ apiKey: 'dfa3c6429514d1040d1c301478f4434f' })
+    </script>
+</head>
+
+<body>
+    <div b-w5pg49eyc9 class="header-wrapper small hidden-print">
+        <div b-w5pg49eyc9 class="header">
+            <div b-w5pg49eyc9 class="container hidden-xs">
+                    <div b-w5pg49eyc9 class="pull-left site-icon ps-icon" ></div>
+                <a b-w5pg49eyc9 href="/">
+                    <h1 b-w5pg49eyc9 class="pull-left">Comanche CAD<br b-w5pg49eyc9 /><small b-w5pg49eyc9>Property Search</small></h1>
+                </a>
+                <div b-w5pg49eyc9 class="header-link-wrapper">
+                        <a b-w5pg49eyc9 target="_blank" href="https://portal.comanchecad.org/" class="header-links">
+                                <div b-w5pg49eyc9 class="icon op-icon"></div>
+                            <div b-w5pg49eyc9>Taxpayer Portal</div>
+                        </a>
+                        <a b-w5pg49eyc9 target="_blank" href="https://gis.bisclient.com/comanchecad/" class="header-links">
+                                <div b-w5pg49eyc9 class="icon map-icon"></div>
+                            <div b-w5pg49eyc9>Interactive Map</div>
+                        </a>
+                        <a b-w5pg49eyc9 target="_blank" href="https://www.comanchecad.org/" class="header-links">
+                                <div b-w5pg49eyc9 class="icon seal"></div>
+                            <div b-w5pg49eyc9>Homepage</div>
+                        </a>
+                </div>
+            </div>
+            <div b-w5pg49eyc9 class="visible-xs app-header">
+                <div b-w5pg49eyc9 class="site-icon ps-icon"></div>
+                <h1 b-w5pg49eyc9>Comanche CAD<br b-w5pg49eyc9 /><small b-w5pg49eyc9>Property Search</small></h1>
+                    <a b-w5pg49eyc9 href="https://www.comanchecad.org/" class="home-link">HOME</a>
+            </div>
+        </div>
+    </div>
+
+    <h3 b-w5pg49eyc9 class="visible-print">Comanche CAD Property Search</h3>
+    
+
+
+<div class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" id="sign-out-confirmation">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Are you sure you want to log out?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                <a class="btn dropdown-toggle btn-primary" href="/Account/Logout?returnUrl=https%3A%2F%2Fesearch.comanchecad.org%2FProperty%2FView%2F11186">
+                    Yes
+                </a>
+                <button type="button" class="btn dropdown-toggle btn-primary" data-dismiss="modal">
+                    No
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="search-header hidden-print">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="btn-toolbar pull-right" role="toolbar">
+                    <div class="btn-group btn-justify-xs">
+                    </div>
+                    <div class="btn-group btn-justify-xs">
+
+                            <a href="mailto:?body=https://esearch.comanchecad.org/Property/View/11186" class="btn btn-primary"><i class="fa fa-envelope"></i> Email</a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fesearch.comanchecad.org%2FProperty%2FView%2F11186" target="_blank" class="btn btn-primary"><i class="fa fa-facebook"></i> Share</a>
+                            <a href="https://twitter.com/share?url=https://esearch.comanchecad.org/Property/View/11186" target="_blank" class="btn btn-primary"><i class="fa fa-twitter"></i> Tweet</a>
+                    </div>
+                    <div class="btn-group btn-justify-xs" style="display:none">
+                    </div>
+                    <div class="btn-group hidden-xs">
+                        <a href="/Search/Help" data-html="true" title="About Online Data" data-delay="500" data-content="Online records are not official and can be changed. Changes made with the appraisal district may take time to be visible online. If you have questions about any data, please contact the appraisal district for verification. Please view the <a href='/Search/Help'>Help</a> section for more information. <br /><strong>Version:</strong> 2.0.9678.37423" class="btn btn-warning hover-popover" style="font-size: 14px; padding: 6px 12px;">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                    </div>
+
+
+                    <div class="btn-group btn-justify-xs">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function showConfirmation() {
+        $("#sign-out-confirmation").modal('show');
+    }
+
+    function logout() {
+        $.get({
+            url: "Account/Logout?returnUrl=https://esearch.comanchecad.org/Property/View/11186"
+        });
+    }
+</script><div>
+
+
+<script type="text/javascript">
+    const propertyView = new PropertyView();
+</script>
+
+
+<div id="detail-page" class="container main-content">
+    <div class="row page-title">
+        <dv class="col-lg-6 visible-print">
+            <h3>Property ID: 11186 For Year 2026</h3>
+        </dv>
+        <div class="col-md-5 hidden-print">
+            <h3 class="pull-left hidden-xs m-r-sm m-t-xs">
+                Property ID: 11186 For Year
+            </h3>
+
+            <h3 class="visible-xs" style="vertical-align: bottom;">
+                Property ID: 11186
+            </h3>
+
+                <div id="year-selector" class="btn-group header-buttons pull-left">
+                    <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-calendar"></i> 2026 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="javascript:void(0);"
+                                class="year-link"
+                                data-url="/Property/View/11186?year=2026">
+                                    2026
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                class="year-link"
+                                data-url="/Property/View/11186?year=2025">
+                                    2025
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                class="year-link"
+                                data-url="/Property/View/11186?year=2024">
+                                    2024
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                class="year-link"
+                                data-url="/Property/View/11186?year=2023">
+                                    2023
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                class="year-link"
+                                data-url="/Property/View/11186?year=2022">
+                                    2022
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                class="year-link"
+                                data-url="/Property/View/11186?year=2021">
+                                    2021
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                class="year-link"
+                                data-url="/Property/View/11186?year=2020">
+                                    2020
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                class="year-link"
+                                data-url="/Property/View/11186?year=2019">
+                                    2019
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                class="year-link"
+                                data-url="/Property/View/11186?year=2018">
+                                    2018
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                class="year-link"
+                                data-url="/Property/View/11186?year=2017">
+                                    2017
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+        </div>
+
+        <div class="col-md-7 hidden-print">
+            <div class="btn-toolbar pull-right hidden-print header-buttons" role="toolbar">
+                
+                                <div class="btn-group">
+                                    <a href="javascript:void(0);" onclick="downloadHarrisAppraisalNotice(11186, 2026, event)" id="DownloadNoticeLink" class="btn btn-sm btn-primary hidden-print">
+                                        <i class="fa fa-fw fa-download"></i>Appraisal Notice
+                                    </a>
+                                </div>
+
+
+
+
+
+
+                <div id="map-links" class="btn-group">
+                        <button type="button" class="btn btn-sm dropdown-toggle btn-primary" data-toggle="dropdown">
+                            <i class="fa fa-map-marker"></i> View Map&nbsp;&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a target="_blank" href="https://gis.bisclient.com/comanchecad/go.html?prop_id_text=11186">Interactive Map</a>
+                                </li>
+                                <li>
+                                    <a target="_blank" href="https://maps.google.com/maps?q=CR 287 , TX, comanche county, tx">Google Maps</a>
+                                </li>
+                                <li>
+                                    <a target="_blank" href="http://bing.com/maps/default.aspx?where1=CR 287 , TX, comanche county, tx">Bing Maps</a>
+                                </li>
+                        </ul>
+                </div>
+
+                <div class="btn-group">
+    <button id="btnPrint" type="button" class="btn btn-sm dropdown-toggle btn-primary" data-toggle="dropdown">
+        <i class="fa fa-print"></i> Print&nbsp;&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li>
+            <a href="javascript:void(0)" onclick="onPrintClick('summary')">Print Summary View</a>
+            <a href="javascript:void(0)" onclick="onPrintClick('detail')">Print Detailed View</a>
+        </li>
+    </ul>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-8 col-md-8">
+            <div class="panel panel-primary">
+    <div class="panel-heading">
+        <i class="fa fa-bookmark"></i> Property Details
+        <a class="pull-right back-top visible-sm hidden-print btn btn-xs btn-default" href="#top"><i class="fa fa-arrow-up"></i> Back to Top</a>
+    </div>
+
+    <table class="table table-bordered table-condensed">
+        <tr class="active form-table-title"><th colspan="4">Account</th></tr>
+        <tr>
+            <th class="tblthwidth">Property ID:</th>
+            <td class="tbltrwidth">11186</td>
+                <td><strong> Geographic ID: </strong> SGU-04-136</td>
+        </tr>
+        <tr>
+            <th>Type:</th>
+                <td>R</td>
+                <td><strong>Zoning: </strong></td>
+        </tr>
+            <tr>
+                    <th>Property Use:</th>
+                    <td class="wordbreak">  </td>
+                    <td><strong>Condo: </strong> </td>
+            </tr>
+
+
+        <tr class="active form-table-title"><th colspan="4">Location</th></tr>
+        <tr><th>Situs Address:</th><td colspan="3">CR 287 &#xD;&#xA;TX</td></tr>
+        <tr>
+            <th>Map ID:</th>
+                <td>16-09</td>
+                <td class="wordbreak"><strong>Mapsco: </strong></td>
+        </tr>
+            <tr>
+                <th>Legal Description:</th>
+                <td colspan="3">A01698 WHITT, E. J., ACRES 552.92</td>
+            </tr>
+            <tr><th>Abstract/Subdivision:</th><td colspan="3">A01698</td></tr>
+            <tr><th>Neighborhood:</th><td colspan="3" class="wordbreak">(SHA-AG) SHA MKT ADJ</td></tr>
+
+        <tr class="active form-table-title">
+            <th colspan="4">
+                Owner
+            </th>
+        </tr>
+            <tr><th>Owner ID:</th><td colspan="3">58262</td></tr>
+        <tr><th>Name:</th><td colspan="3">JKS CATTLE & LAND, LLC</td></tr>
+        <tr><th>Agent:</th><td colspan="3"></td></tr>
+        <tr><th>Mailing Address:</th><td colspan="3">115 ADA CT<br />GRANBURY, TX 76048-4325 </td></tr>
+        <tr><th>% Ownership:</th><td colspan="3">100.0%</td></tr>
+            <tr>
+                <th>Exemptions:</th>
+                <td colspan="3">
+                    <span style="color: #ff0000;">For privacy reasons not all exemptions are shown online.</span>
+                    
+                </td>
+            </tr>
+    </table>
+</div>
+
+ 
+        </div>
+
+        
+<div class="col-lg-4 col-md-4">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <i class="fa fa-bookmark"></i> Property Values
+            <a class="pull-right back-top visible-sm hidden-print btn btn-xs btn-default" href="#top"><i class="fa fa-arrow-up"></i> Back to Top</a>
+        </div>
+
+                <table class="table table-bordered table-condensed">
+                    <tr class="active empty-row"><td colspan="2">&nbsp;</td></tr>
+                    <tr><th>Improvement Homesite Value:</th><td class="table-number">$0 (+)</td></tr>
+                    <tr><th>Improvement Non-Homesite Value:</th><td class="table-number">$0 (+)</td></tr>
+                    <tr><th>Land Homesite Value:</th><td class="table-number">$0 (+)</td></tr>
+                    <tr><th>Land Non-Homesite Value:</th><td class="table-number">$0 (+)</td></tr>
+                    <tr><th>Agricultural Market Valuation:</th><td class="table-number">$3,676,920 (+)</td></tr>
+                    <tr class="active empty-row"><td colspan="2">&nbsp;</td></tr>
+                    <tr><th>Market Value:</th><td class="table-number">$3,676,920 (=)</td></tr>
+
+                    <tr>
+                        <th>Agricultural Value Loss:<i class="fa fa-question-circle hover-popover" data-html="true" data-content="Agricultural Market Valuation - Ag Use Value = Agricultural Value Loss"></i></th>
+                        <td class="table-number">$3,631,030 (-)</td>
+                    </tr>
+
+                    <tr class="active empty-row"><td colspan="2">&nbsp;</td></tr>
+                        <tr><th>Appraised Value:<i class="fa fa-question-circle hover-popover" data-html="true" data-content="Appraised Value"></i></th><td class="table-number">$45,890 (=)</td></tr>
+                    <tr>
+                        <th>
+                            HS Cap Loss:
+                            <i class="fa fa-question-circle hover-popover" data-html="true" data-content="Tax Code Sec. 23.23 - Limitation on Appraised Value of Residence Homestead"></i>
+                        </th>
+                        <td class="table-number">$0 (-)</td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Circuit Breaker:
+                            <i class="fa fa-question-circle hover-popover" data-html="true" data-content="Tax Code Sec. 23.231 - Limitation on Appraised Value of Real Property"></i>
+                        </th>
+                        <td class="table-number">$0 (-)</td>
+                    </tr>
+                    <tr class="active empty-row">
+                        <td colspan="3">&nbsp;</td>
+                    </tr>
+                        <tr><th>Assessed Value:</th><td class="table-number">$45,890</td></tr>
+                        <tr><th>Ag Use Value:</th><td class="table-number">$45,890</td></tr>
+                </table>
+    </div>
+
+    <style type="text/css">
+        .protest-deadline-date {
+            font-weight: bold;
+            width: 100%;
+            text-align: center;
+            color: #ff0000;
+            margin-bottom: 20px;
+        }
+    </style>
+    
+</div>
+
+<div class="col-lg-4 col-md-4">
+    <div class="alert alert-info"><p><br></p><p>Information provided for research purposes only. Legal descriptions and acreage amounts are for Appraisal District use only and should be verified prior to using for legal purpose and or documents. Please contact the Appraisal District to verify all information for accuracy.</p></div>
+</div>
+
+    </div>
+
+
+            <div id="propertyTaxJurisdictionContainer">
+                <div class="spinnerel" style="display:none;width: 100%;height: 100%;background: black;opacity: 0.2;line-height: 100px;text-align: center;">
+
+                    <img src="/img/kendo-bootstrap/loading-image.gif" alt="Loading...">
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        var isHideValues = false;
+                        propertyView.getTaxJurisdiction('False', '58262');
+
+                    });
+
+                </script>
+            </div>
+
+
+                <div id="propertyImprovementContainer">
+
+                    <div class="spinnerel" style="display:none;width: 100%;height: 100%;background: black;opacity: 0.2;line-height: 100px;text-align: center;">
+
+                        <img src="/img/kendo-bootstrap/loading-image.gif" alt="Loading...">
+                    </div>
+
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        var isHideValues = false;
+                        propertyView.getImprovements('False','C');
+
+                    });
+                </script>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <i class="fa fa-bookmark"></i> Property Land
+        <a class="pull-right back-top hidden-xs hidden-print btn btn-xs btn-default hidden-print" href="#top"><i class="fa fa-arrow-up"></i> Back to Top</a>
+
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-condensed">
+            <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                <th class="table-number">Acreage</th>
+                <th class="table-number">Sqft</th>
+                <th class="table-number">Eff Front</th>
+                <th class="table-number">Eff Depth</th>
+                <th class="table-number">Market Value</th>
+                <th class="table-number">Prod. Value</th>
+            </tr>
+                <tr>
+                        <td>NP</td>
+                        <td>NATIVE PASTURE</td>
+                        <td class="table-number">552.92</td>
+                    <td class="table-number">24,085,195.20</td>
+                    <td class="table-number">
+0.00                    </td>
+                    <td class="table-number">
+0.00                    </td>
+                    <td class="table-number">$3,676,920</td>
+                    <td class="table-number">$45,890</td>
+                </tr>
+        </table>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.acreage').each(function () {
+            var $cell = $(this);
+            var acres = parseFloat($cell.data('acres'));
+            var decimalPlaces = parseInt($cell.data('decimal-places'), 10);
+            if (!isNaN(acres) && !isNaN(decimalPlaces)) {
+                $cell.text(acres.toFixed(decimalPlaces));
+            } else {
+                $cell.text(acres);
+            }
+        });
+    });
+</script>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <i class="fa fa-bookmark"></i> Property Roll Value History
+        <a class="pull-right back-top hidden-xs hidden-print btn btn-xs btn-default hidden-print" href="#top"><i class="fa fa-arrow-up"></i> Back to Top</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-condensed">
+            <tr>
+                <th class="table-number">Year</th>
+                <th class="table-number">Improvements</th>
+                <th class="table-number">Land Market</th>
+                    <th class="table-number">Ag Valuation</th>
+                    <th class="table-number">Appraised</th>
+                    <th class="table-number">HS Cap Loss</th>
+                    <th class="table-number">Assessed</th>
+            </tr>
+                    <tr>
+                        <td class="table-number">2026</td>
+                        <td class="table-number">$0</td>
+                        <td class="table-number">$3,676,920</td>
+                            <td class="table-number">$45,890</td>
+                            <td class="table-number">$45,890</td>
+                            <td class="table-number">$0</td>
+                        <td class="table-number">$45,890</td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">2025</td>
+                        <td class="table-number">$0</td>
+                        <td class="table-number">$3,676,920</td>
+                            <td class="table-number">$48,100</td>
+                            <td class="table-number">$48,100</td>
+                            <td class="table-number">$0</td>
+                        <td class="table-number">$48,100</td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">2024</td>
+                        <td class="table-number">$0</td>
+                        <td class="table-number">$3,676,920</td>
+                            <td class="table-number">$47,550</td>
+                            <td class="table-number">$47,550</td>
+                            <td class="table-number">$0</td>
+                        <td class="table-number">$47,550</td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">2023</td>
+                        <td class="table-number">$0</td>
+                        <td class="table-number">$3,400,460</td>
+                            <td class="table-number">$47,000</td>
+                            <td class="table-number">$47,000</td>
+                            <td class="table-number">$0</td>
+                        <td class="table-number">$47,000</td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">2022</td>
+                        <td class="table-number">$0</td>
+                        <td class="table-number">$2,283,560</td>
+                            <td class="table-number">$45,890</td>
+                            <td class="table-number">$45,890</td>
+                            <td class="table-number">$0</td>
+                        <td class="table-number">$45,890</td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">2021</td>
+                        <td class="table-number">$0</td>
+                        <td class="table-number">$1,892,090</td>
+                            <td class="table-number">$46,450</td>
+                            <td class="table-number">$46,450</td>
+                            <td class="table-number">$0</td>
+                        <td class="table-number">$46,450</td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">2020</td>
+                        <td class="table-number">$0</td>
+                        <td class="table-number">$1,599,460</td>
+                            <td class="table-number">$44,790</td>
+                            <td class="table-number">$44,790</td>
+                            <td class="table-number">$0</td>
+                        <td class="table-number">$44,790</td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">2019</td>
+                        <td class="table-number">$0</td>
+                        <td class="table-number">$1,509,470</td>
+                            <td class="table-number">$44,790</td>
+                            <td class="table-number">$44,790</td>
+                            <td class="table-number">$0</td>
+                        <td class="table-number">$44,790</td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">2018</td>
+                        <td class="table-number">$0</td>
+                        <td class="table-number">$1,466,340</td>
+                            <td class="table-number">$43,680</td>
+                            <td class="table-number">$43,680</td>
+                            <td class="table-number">$0</td>
+                        <td class="table-number">$43,680</td>
+                    </tr>
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <i class="fa fa-bookmark"></i> Property Deed History
+        <a class="pull-right back-top hidden-xs hidden-print btn btn-xs btn-default " href="#top"><i class="fa fa-arrow-up"></i> Back to Top</a>
+    </div>
+
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-condensed">
+            <tr>
+                <th class="table-number">Deed Date</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Grantor</th>
+                <th>Grantee</th>
+                <th class="table-number">Volume</th>
+                <th class="table-number">Page</th>
+                    <th class="table-number">Number</th>
+            </tr>
+                    <tr>
+                        <td class="table-number">4/23/2010</td>
+                        <td>WD</td>
+                        <td>WARRANTY DEED</td>
+                        <td>YATES, MARY NEAL</td>
+                        <td>HARDY, NANCY &amp; RANDY &amp; NEAL YATES</td>
+                        <td class="table-number">924                 </td>
+                        <td class="table-number">445                 </td>
+                            <td class="table-number"></td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">9/23/1994</td>
+                        <td>WD</td>
+                        <td>WARRANTY DEED</td>
+                        <td>NEAL, BILL JR</td>
+                        <td>YATES, MARY NEAL</td>
+                        <td class="table-number">724                 </td>
+                        <td class="table-number">283                 </td>
+                            <td class="table-number">0</td>
+                    </tr>
+                    <tr>
+                        <td class="table-number">8/24/2018</td>
+                        <td>WD</td>
+                        <td>WARRANTY DEED</td>
+                        <td>HARDY, NANCY &amp; RANDY &amp; NEAL YATES</td>
+                        <td>JKS CATTLE &amp; LAND, LLC</td>
+                        <td class="table-number">1043                </td>
+                        <td class="table-number">153                 </td>
+                            <td class="table-number"></td>
+                    </tr>
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <i class="fa fa-bookmark"></i> ARB Data
+        <a class="pull-right back-top hidden-xs hidden-print btn btn-xs btn-default hidden-print" href="#top"><i class="fa fa-arrow-up"></i> Back to Top</a>
+
+    </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-condensed">
+                <tr>
+                    <th>Hearing Date and Time</th>
+                        <th>Category</th>
+                    <th>Board Members</th>
+                    <th>Owner’s Opinion of Value</th>
+                        <th>Cad Value</th>
+                    <th>Board’s Determination of value</th>
+                    <th>ARB Determination</th>
+                </tr>
+            </table>
+        </div>
+</div>
+
+</div>
+
+
+<div class="modal fade" id="TaxPayModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header h4">
+                Payment Disclaimer
+            </div>
+            <div class="modal-body">
+                <p style="font-size: larger;">
+                    <b>
+                        <span id="taxesDueMessage"></span>
+                    </b>
+                </p>
+                <p>
+                    <b>The taxes due listed on this website are only an estimate and should not be used to determine your tax bill.</b>
+                <p>
+                    <b>
+                        Online transactions are securely processed by Certified Payments. You may use the amount on your tax bill to pay your taxes. You are responsible for verifying your payment amounts with the district before paying.
+                        if you are unsure of the amount please call <span id="realPhoneNumber">(830) 232-6210</span> for tax payment questions.
+                    </b>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="OpenDoc('/Content/docs/RealCad-Payment-Guide.pdf')" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-file-pdf-o fa-fw"></i>Pay Taxes Guide</button>
+                <button type="button" onclick="PayRealCAD();" class="btn btn-primary pull-right">Proceed To Certified Payments</button>
+                <span class="clearfix"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-body request-modal">
+    <div id="apply-online-modal"></div>
+</div>
+
+<script type="text/javascript">
+
+    const _siteKey = '6Ld1RZgqAAAAABK3hm5f-p6SlTY-hlqnWIsIzJWt';
+
+    //Depricate this method in future...
+    function PayRealCAD() {
+        if (!window.bureauCode)
+            window.bureauCode = "0000001";
+
+        var url = "https://certifiedpayments.net/Index.aspx?BureauCode=" + window.bureauCode + "&PaymentAmount=" + window.taxDue + "&ReferenceData01=" + window.propID;
+        var win = window.open(url, '_blank');
+        win.focus();
+    }
+
+
+    $(document).ready(function () {
+        // Links or year drop-down
+        $('.year-link').on('click', function (e) {
+            e.preventDefault();
+
+            const baseUrl = $(this).data('url');
+            shouldUseRecaptcha().then(useRecaptcha => {
+                if (!useRecaptcha) {
+                    window.location.href = baseUrl;
+                    return;
+                }
+                if (typeof grecaptcha !== 'undefined' && grecaptcha.enterprise && grecaptcha.enterprise.ready) {
+                    grecaptcha.enterprise.ready(function () {
+                        grecaptcha.enterprise.execute(_siteKey, { action: 'ViewProperty' }).then(function (token) {
+                            const redirectUrl = `${baseUrl}&recaptchaToken=${encodeURIComponent(token)}`;
+                            window.location.href = redirectUrl;
+                        });
+                    });
+                }
+                else{
+                    console.warn("reCAPTCHA not loaded. Redirecting without token.");
+                     window.location.href = baseUrl;
+                }
+            });
+        });
+
+        function getRenditionExtensionModal(propId, taxYear, ownerId) {
+
+            $.ajax({
+                url: "/Search/GetApplyOnlineModalView?propertyIdPublic=" + propId + "&year=" + taxYear + "&ownerId=" + ownerId, success: function (data) {
+                    $(".modal-body #apply-online-modal").empty();
+                    $(".modal-body #apply-online-modal").html(data);
+                    $("#apply-online-dialog").modal('show');
+                }
+            });
+        }
+
+        $("#bpp-request").on("click", function () {
+            getRenditionExtensionModal(11186, 2026, 58262);
+        });
+    });
+
+</script></div>
+<style>
+    #payPrevYrsTaxes{
+        overflow:scroll;
+    }
+</style>
+<div class="modal fade" id="processing" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="margin-top:20%">
+        <center>
+            <img src="/img/kendo-bootstrap/loading-image.gif" alt="Loading..." />
+        </center>
+    </div>
+</div>
+<div class="modal fade" id="payPrevYrsTaxes" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="width:95%;">
+        <div class="modal-content container">
+            <div class="modal-header">
+                <span style="font-size:20px">Pay</span>
+            </div>
+            <div class="modal-body" onclick="UpdateCart()">
+                <div id="payPrevYrsTaxes_content" class="table-responsive"></div>
+            </div>
+            <div class="modal-footer">
+                <div class="cols-md-12">
+                    <table style="width:100%">
+                        <tr style="width:100%">
+                            <td>
+                                <a href="/cart" class="btn btn-primary" style="width:100%;height:40px" data-dismiss="modal" onclick="NavigateToCart()">Cart</a>
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" style="width:100%;height:40px" data-dismiss="modal">Close</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+      </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    var propId = '11186';
+    var propYear = 2026;
+
+    function PayPreviousYears() {
+        const $processing = $("#processing");
+        
+        $processing.modal('show');
+        try {
+            const propId = '11186';
+            const propYear = '2026';
+            const allowPayPrevious = 'false';
+            if (allowPayPrevious === "true") {
+                $.ajax({
+
+                        url: "/Property/GetPropertyTaxDueModalResult?id=" + propId + "&year=" + propYear, success: function(data) {
+
+                        $processing.modal('hide');
+                        $(".modal-body #payPrevYrsTaxes_content").empty();
+                        $(".modal-body #payPrevYrsTaxes_content").html(data);
+                        $("#payPrevYrsTaxes").modal('show');
+                    }
+                });
+            }
+            else {
+                $processing.modal('hide');
+            }
+        }
+        catch (ex) { 
+            $processing.modal('hide');
+        }
+    }
+
+    function scrollToPaymentOptions() {
+        $('html, body').animate({
+            scrollTop: $("#addOrPay").offset().top
+        }, 1000);
+    }
+
+    function AddOrPay(year = propYear) {
+        if('True' === 'True') {
+            $.ajax({
+                url: '/Cart/AddOrPay?propId=' + propId + '&propYear=' + propYear, success: function() {
+                    $.ajaxSetup({ cache: false });
+                    window.location.href = '/Cart'
+                }
+            })
+        } else {
+            window.location.href = '/Cart/AddOrPay?propId=' + propId + '&propYear=' + year;
+            updatedBadge();
+        }
+    }
+
+    function NavigateToCart() {
+        updatedBadge()
+        $("#processing").modal('show');
+        window.location.href = '/Cart'
+    }
+    
+    function UpdateCart() {
+        updatedBadge()
+    }
+
+$(window).resize(function () {
+    if ($(window).width() < 952) {
+        $(".PreviousYearsModalView_BaseTax").hide();
+        $(".PreviousYearsModalView_BaseTaxPaid").hide();
+        $(".PreviousYearsModalView_BaseTaxDue").hide();
+        $(".PreviousYearsModalView_DiscountPenaltyAndInterest").hide();
+        $(".PreviousYearsModalView_AttorneyFees").hide();
+        $(".PreviousYearsModalView_TaxableValue").hide();
+    }
+    else { 
+        $(".PreviousYearsModalView_BaseTax").show();
+        $(".PreviousYearsModalView_BaseTaxPaid").show();
+        $(".PreviousYearsModalView_BaseTaxDue").show();
+        $(".PreviousYearsModalView_DiscountPenaltyAndInterest").show();
+        $(".PreviousYearsModalView_AttorneyFees").show();        
+        $(".PreviousYearsModalView_TaxableValue").show();        
+    }
+});
+</script>
+
+<div id="footerBr" hidden>
+    <br />
+</div>
+<div id="FooterDisclaimer" class="container footer hidden-print">
+    <h4 class="footer-title">DISCLAIMER</h4> 
+    <div class="m-b"><p><br></p><p>Information provided for research purposes only. Legal descriptions and acreage amounts are for Appraisal District use only and should be verified prior to using for legal purpose and or documents. Please contact the Appraisal District to verify all information for accuracy.</p></div>
+</div>
+
+<div id="FooterCopyRight" class="container footer-logo clearfix hidden-print"> 
+    <a href="http://www.bisconsultants.com/" target="_blank">
+        <img class="pull-left" width="46px" height="46px" src="/img/icons/BIS-logo-46X46-new.svg" alt="Site Logo" /> 
+            <span class="pull-left m-t-xs">Powered By: BIS Consultants<br />
+        <i class="fa fa-copyright"></i> Copyright Comanche CAD</span> 
+    </a>
+</div>
+
+    <div b-w5pg49eyc9 class="alert-modal snackbar">
+        <div b-w5pg49eyc9 class="snackbar-message">
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.hover-popover').popover({ trigger: 'hover', container: 'body', placement: 'auto' });
+
+            $('.back-top')
+                .click(function () {
+                    $('body,html')
+                        .animate({
+                            scrollTop: 0
+                        },
+                            800);
+                    return false;
+                });
+
+            updatedBadge();
+        });
+    </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-46N0ZZDBE6"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-46N0ZZDBE6');
+        </script>
+</body>
+</html>

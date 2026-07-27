@@ -1,0 +1,67 @@
+{
+ "inr": "20INR0083",
+ "generated": "2026-07-20",
+ "project": "Baird North Wind",
+ "county": "Callahan",
+ "fuel": "WIN",
+ "technology": "WT",
+ "capacity_mw": 340.0,
+ "queue_cod": "2026-12-31",
+ "milestones": {
+  "screeningStudyComplete": "2018-06-12",
+  "fisApproved": "2020-10-30",
+  "iaSigned": "2019-05-31",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 11,
+ "eia": {
+  "status": "ok",
+  "plant_id": 62809,
+  "entity": "BMP Wind LLC",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   32.28938,
+   -99.2916
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "BMP Wind LLC",
+    "detail": "plant=BMP Wind (TX) 340.0MW (OP) Operating @32.28938,-99.2916 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "faa",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 7,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 20,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 20,
+   "detail": "11 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 63.08,
+  "reason": "reality signal"
+ }
+}

@@ -1,0 +1,28 @@
+{
+  "inr": "24INR0506",
+  "project": "Corralitos Wind 2",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": true,
+    "why": "IA signed Jun 2025, FIS never approved; COD already slipped 3 years (2024→2027); 2.5 years to COD from IA is tight but possible if construction starts soon"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Resolve developer identity discrepancy: T3 surfaces Vaquero Wind Energy LLC, T4 surfaces Las Crestas Wind Energy LLC as IA counterparty — clarify relationship (SPV vs. parent) before further research",
+    "PUCT case 35077: IA was found but portal blocked (402) — retrieve PDF to get milestone schedule exhibit and project map; IA covers both Wind 1 and Wind 2 jointly",
+    "FAA OE/AAA obstruction filings in Zapata County: decisive for exact turbine-pad coordinates; portal was in shutdown during triage — retry when live",
+    "FIS never approved despite IA signed — unusual milestone ordering; verify whether FIS was waived or is outstanding; impacts COD plausibility",
+    "No imagery run: no site candidate found during triage; once coordinates are established from FAA/IA map, run Sentinel-2 construction activity check"
+  ],
+  "turns_used": 30
+}

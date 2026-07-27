@@ -1,0 +1,28 @@
+{
+  "inr": "23INR0070",
+  "project": "Chillingham Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-08-31",
+    "plausible": false,
+    "why": "15 COD slips over 3+ years; approved-for-sync Sep 2024 but no commercial operation approved and construction dates never reported — project stalled post-energization for 10+ months"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA filing: retrieve schedule exhibit and milestone dates (portal blocked at triage — use authenticated session)",
+    "Site location: IA filing typically includes POI map / legal description — use to get coordinates for imagery",
+    "Construction status: approved-for-sync 2024-09-04 but COD still slipping monthly; check ERCOT SCED/GenUnit for operational status",
+    "Developer identity: no public footprint found — TX SOS entity search (paid) for 'Chillingham Solar LLC' to identify developer/parent company",
+    "Ch.313/JETI abatement: Bell County school district records or JETI registry for any property tax incentive linked to this project"
+  ],
+  "turns_used": 22
+}

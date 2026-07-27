@@ -1,0 +1,128 @@
+{
+ "inr": "26INR0143",
+ "project": "Santa Garcias Solar",
+ "researched": "2026-07-19",
+ "verdict": "unclear",
+ "verdict_reason": "IA signed 2025-12-31 per queue; FIS not approved; zero developer identity, zero web presence, zero CAD/abatement records; site not pinpointed; no construction visible at POI anchor",
+ "developer": {
+  "spv": "Santa Garcias Solar, LLC",
+  "parent": null,
+  "epc": null,
+  "offtaker": null,
+  "source": "ERCOT GIS queue only \u2014 no independent corroboration found"
+ },
+ "site": {
+  "lat": 27.5599,
+  "lon": -97.5022,
+  "method": "POI infrastructure anchor only \u2014 Alazan Substation (AEP 138kV, OSM way 487230433); actual array centroid unknown",
+  "confidence": "low",
+  "note": "Project site NOT pinpointed; lat/lon is the POI substation, not the array. 265 MW array = ~1200-1800 acres somewhere along the Alazan-Barney Davis 138kV corridor in Kleberg County."
+ },
+ "project_area": {
+  "acres": null,
+  "source": null,
+  "artifact": null
+ },
+ "construction": {
+  "stage": "no_activity",
+  "first_activity_seen": null,
+  "note": "No construction visible at POI anchor (2026-07-01 Sentinel-2 chip). Site footprint not located; verdict applies to 3km radius of Alazan Sub only."
+ },
+ "interconnection": {
+  "poi_text": "Tap 138kV 8515 Alazan - 8458 Barney Davis",
+  "poi_lat": 27.5599,
+  "poi_lon": -97.5022,
+  "tsp": "AEP Texas",
+  "ia_signed_queue": "2025-12-31",
+  "ia_pdf_retrieved": false,
+  "ia_pdf_note": "PUCT Interchange returns HTTP 402 (auth required) \u2014 IA PDF not accessible without login",
+  "fis_approved": false
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Interconnection Agreement (signed per queue; PDF not retrieved)",
+    "signed": "2025-12-31",
+    "financial_security": null,
+    "artifact": null
+   }
+  ],
+  "milestones": [
+   {
+    "name": "IA signed",
+    "queue": "2025-12-31"
+   },
+   {
+    "name": "FIS approved",
+    "queue": null
+   },
+   {
+    "name": "Construction start",
+    "queue": null
+   },
+   {
+    "name": "In-Service",
+    "queue": null
+   },
+   {
+    "name": "Trial Operation",
+    "queue": null
+   },
+   {
+    "name": "Scheduled COD",
+    "queue": "2028-05-30"
+   }
+  ],
+  "note": "Queue milestones only \u2014 IA PDF not retrieved (PUCT Interchange HTTP 402)"
+ },
+ "land": {
+  "tenure": "unknown",
+  "cad_parcels": 0,
+  "cad_search": "klebergcad.org owner-name search 'Santa Garcias', 2026-07-19 \u2014 0 results",
+  "abatement": null
+ },
+ "cod_assessment": {
+  "reported": "2028-05-30",
+  "independent_estimate": "2029-Q2 to 2030-Q4",
+  "drift_risk": "high",
+  "drift_reason": "FIS not approved (gate still open); 2 prior COD slips; no developer identity or financing signal; all pre-construction gates outstanding",
+  "queue_cod_changes": 2,
+  "cod_history": [
+   {
+    "cod": "2026-05-31",
+    "held_from": "2023-06-01",
+    "until": "2024-11-01"
+   },
+   {
+    "cod": "2029-02-01",
+    "held_from": "2024-12-01",
+    "until": "2025-06-01"
+   },
+   {
+    "cod": "2028-05-30",
+    "held_from": "2025-07-01",
+    "until": "2026-06-01"
+   }
+  ]
+ },
+ "imagery": [
+  {
+   "date": "2026-07-01",
+   "observation": "Undisturbed green agricultural land at Alazan Sub POI anchor; no grading, no solar signature; ~30% cloud cover",
+   "stage": "no_activity",
+   "artifact": "imagery/s2_2026-07-01.png"
+  }
+ ],
+ "sources": [],
+ "negative_evidence": [
+  "TX Comptroller franchise tax API: 0 hits for 'Santa Garcias Solar' (2026-07-19)",
+  "OpenCorporates API (us_tx): 0 hits for 'Santa Garcias Solar' (2026-07-19)",
+  "Kleberg CAD owner-name search 'Santa Garcias': 0 results (2026-07-19)",
+  "TX Comptroller JETI registry: 0 hits for Santa Garcias Solar or Kleberg County solar (2026-07-19)",
+  "Web search (DDG, Bing, Google): zero press releases, zero developer attribution, zero news for 'Santa Garcias Solar' (2026-07-19)",
+  "PUCT Interchange search: HTTP 402 auth required \u2014 IA PDF not accessible (2026-07-19)",
+  "GMaps Places API: HTTP 429 rate-limited throughout session \u2014 0 delivery pins retrieved",
+  "OSM Nominatim: 0 results for 'Alazan substation Texas' (Overpass found the substation directly as way 487230433)"
+ ],
+ "real_project_verdict": "unclear"
+}

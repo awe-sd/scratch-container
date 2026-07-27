@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0425",
+  "project": "Aldrin 345 BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.4603,
+    "lon": -95.2580,
+    "method": "POI substation name (Meadow 345kV, Bus 43030) → OSM way 583408103 centroid",
+    "confidence": "high"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials not configured; no imagery retrieved; no pins or news corroborating site activity"
+  },
+  "cod_first_look": {
+    "reported": "2028-03-01",
+    "plausible": true,
+    "why": "IA signed Jun-2024, FIS approved Apr-2025, 6.9(1) met Feb-2025; 2.7-year COD drift but milestones progressing; Vesper Energy is an active developer; no construction reported yet but ~12-18mo build window still allows 2028 COD"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA exists (signed 2024-06-15) but PUCT Interchange 402-blocked during triage — pull IA PDF for parties, POI page, and milestone schedule exhibit",
+    "Imagery at Meadow 345kV substation (29.4603, -95.2580) once CDSE credentials configured — check for cleared/graded land or container rows adjacent to substation",
+    "Vesper Energy parent — check Vesper portfolio announcements, press releases, or financing news for Aldrin 345 BESS specifically",
+    "Capacity discrepancy: website claims 550 MW vs 362 MW in ERCOT queue — clarify whether project was downsized or website is stale",
+    "6.9 all-conditions milestone NOT yet achieved despite 6.9(1) met Feb-2025 — check what is blocking full 6.9 satisfaction"
+  ],
+  "turns_used": 27
+}

@@ -1,0 +1,35 @@
+{
+  "inr": "28INR0048",
+  "project": "Findley BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.6521,
+    "lon": -96.7754,
+    "method": "OSM Prairie Hill Substation (Brazos Electric, 69kV, Way 461754867) — matches POI description exactly",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery unavailable (401 — no credentials configured); site candidate confirmed at POI substation but no visual check possible"
+  },
+  "cod_first_look": {
+    "reported": "2028-01-01",
+    "plausible": true,
+    "why": "COD stable across all 30 snapshots; FIS approved 2026-01; no IA yet but 18-month runway to 2028 COD is tight but not impossible for a 52 MW BESS"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "EIA co-project 67778_GR16B 'Findley PV and BESS' (Gransolar Texas Sixteen LLC, ~100 MW solar+BESS) — likely same site; reconcile capacity, confirm same developer",
+    "Developer identity: 'Adon Texas Sixteen LLC' (ERCOT queue) vs 'Gransolar Texas Sixteen LLC' (EIA) — determine parent entity and development history",
+    "IA status: FIS approved 2026-01-21 but no IA signed; check PUCT Interchange directly for recent filings under either LLC name",
+    "Imagery: CDSE credentials needed — run chip at lat=31.6521 lon=-96.7754 buffer-km 1 to check for pad/container activity near Prairie Hill substation"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,64 @@
+{
+ "inr": "26INR0345",
+ "generated": "2026-07-20",
+ "project": "NET Power Demonstration plant",
+ "county": "Harris",
+ "fuel": "GAS",
+ "technology": "GT",
+ "capacity_mw": 25.5,
+ "queue_cod": "2027-08-21",
+ "milestones": {
+  "screeningStudyComplete": "2024-03-08",
+  "fisApproved": "2025-07-10",
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ok",
+  "plant_id": 60910,
+  "entity": "NET Power, LLC",
+  "planned_cod": "2027-09",
+  "cod_delta_quarters": 0.3,
+  "dropped_scope": null,
+  "coords": [
+   29.64679,
+   -95.05415
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "NET Power, LLC",
+    "detail": "plant=NET Power La Porte Station 25.5MW (OT) Other @29.64679,-95.05415 planned=2027-09"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "tceq",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "fis_approved"
+ ],
+ "paper_score": 6,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 1.95,
+  "reason": "reality signal"
+ }
+}

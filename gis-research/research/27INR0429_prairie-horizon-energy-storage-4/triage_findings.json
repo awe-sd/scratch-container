@@ -1,0 +1,27 @@
+{
+  "inr": "27INR0429",
+  "project": "Prairie Horizon Energy Storage 4",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": false,
+    "why": "Pre-IA project with FIS not yet approved; 4% build-chance per trackers; 17 months to COD with no construction milestones achieved"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate TNP ONE PLANT / Twin Oak 345kV substation coordinates (ERCOT transmission map or EIA-860) to enable imagery scan",
+    "Check sibling projects Prairie Horizon 1-3 (25INR and 26INR series) for any shared IA or developer announcements that could confirm Tempus Power commitment",
+    "Re-run gmaps.py when rate-limit clears — project cluster may have a registered site address in Robertson County",
+    "PUCT Interchange direct search when portal access available — no IA found but worth confirming via authenticated session"
+  ],
+  "turns_used": 28
+}

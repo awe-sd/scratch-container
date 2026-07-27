@@ -1,0 +1,37 @@
+{
+  "inr": "28INR0090",
+  "project": "EmberGreen",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.400,
+    "lon": -96.080,
+    "method": "POI name inference — 'Tap 138kV 48050 Caney - 44150 Hungerford'; Hungerford CDP, NE Wharton County",
+    "confidence": "low-medium"
+  },
+  "construction": {
+    "verdict": "none visible",
+    "evidence": "2026-06-15 Sentinel-2 chip (2km buffer, Hungerford center): agricultural land, small town, highway interchange; no cleared site, no laydown yard, no industrial activity; partial cloud but unobscured ground shows no construction"
+  },
+  "cod_first_look": {
+    "reported": "2028-01-01",
+    "plausible": false,
+    "why": "FIS only approved 2026-04-21; no IA signed; TCEQ permit filed Dec 2024 but likely still in review; turbine OEM unnamed/unordered as of Aug 2024 press; ~18 months to COD from current state is aggressive for 1 GW+ gas project"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT TEF docket 56455 — retrieve loan application NOI and any due-diligence status/decision from PUCT (Interchange portal was 402-blocked during triage)",
+    "TCEQ air permit NSR status — application filed Dec 2024 for two simple-cycle CTGs; check permit number, current review stage, any public comment period",
+    "Turbine OEM — Aug 2024 press described 'discussions ongoing with leading manufacturer'; check for any announced order or supply agreement (GE Vernova / Siemens / Mitsubishi lead times critical for 2028 COD)",
+    "Exact site parcel — POI pins to Caney-Hungerford 138kV line segment; deeper GIS search needed to identify specific land parcel (potential agricultural land acquisition not yet visible in imagery)",
+    "EmberClear corporate track record — Lincoln Land Energy Centre IL status; confirm developer financial standing and prior Texas experience",
+    "EmberYork (sister project, Austin County) — parallel tracking; common IA/permit milestones may signal developer velocity"
+  ],
+  "turns_used": 23
+}

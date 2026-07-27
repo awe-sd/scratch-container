@@ -1,0 +1,37 @@
+{
+  "inr": "26INR0386",
+  "project": "Zeus Spade Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.35,
+    "lon": -100.95,
+    "method": "POI infrastructure — Morgan Creek substation ~5 mi SW of Colorado City TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no activity",
+    "evidence": "9-chip Sentinel-2 grid (July 2026) around Morgan Creek/Colorado City shows undisturbed ranchland and reservoir; no turbine pads, no road networks, no graded ground"
+  },
+  "cod_first_look": {
+    "reported": "2027-03-20",
+    "plausible": false,
+    "why": "FIS not yet approved and no IA as of June 2026; COD 9 months out with no construction visible is implausible"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "FAA OE/AAA obstruction filings — search by county (Mitchell) and applicant (Spade Wind) for exact turbine coordinates",
+    "Developer identity — ercotqueue.com names 'Spade Wind, LLC', not 'Zeus Spade Wind, LLC'; verify TX SOS registration and parent entity",
+    "Companion BESS project 26INR0387 (Zeus Spade BESS, 446 MW) — check if same IA or parallel queue track",
+    "Federal permit pause (Trump DoD wind review) — determine if this project is among 54 TX projects affected and if FAA OE filings exist",
+    "JETI/Chapter 403 abatement — JETI registry DNS failed during triage; retry with correct URL for post-2022 tax incentives in Mitchell County",
+    "Imagery re-center — site candidate is POI-inferred, low confidence; FAA coordinates would unlock a real site check"
+  ],
+  "turns_used": 28
+}

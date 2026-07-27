@@ -1,0 +1,62 @@
+{
+ "inr": "25INR0195",
+ "generated": "2026-07-20",
+ "project": "Photo Solar 2",
+ "county": "Uvalde",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 300.0,
+ "queue_cod": "2028-05-31",
+ "milestones": {
+  "screeningStudyComplete": "2022-12-13",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "ok",
+  "plant_id": 66309,
+  "entity": "RWE Clean Energy",
+  "planned_cod": "2027-12",
+  "cod_delta_quarters": -1.7,
+  "dropped_scope": null,
+  "coords": [
+   29.22577,
+   -99.69913
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "RWE Clean Energy",
+    "detail": "plant=Uvalde Solar 2 300.0MW (P) Planned for installation, but regula @29.22577,-99.69913 planned=2027-12"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 10 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

@@ -1,0 +1,28 @@
+{
+  "inr": "22INR0426",
+  "project": "LUBIO SOLAR",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-04-20",
+    "plausible": true,
+    "why": "IA signed Nov 2024; 5 COD slips total; no construction milestones yet; 2028 target requires NTP + ~2yr build — tight but not implausible if FIS clears in 2026"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT IA docket: retrieve milestone schedule exhibit (CEII or public) — need Oncor docket number for interchange.puc.texas.gov session auth",
+    "Site pinning: gmaps.py rate-limit will clear; retry 'BDPU Solar Lubio' + 'Lubio Solar Kaufman' + Oncor line 2724/2727 to locate tap point and probable acreage",
+    "FIS status: queue shows FIS requested 2021-06-28 but never approved — confirm whether FIS is still pending or was waived/bypassed (IA signed without FIS approved is unusual)",
+    "Developer portfolio: BDPU Solar has multiple Texas LLCs (Tormes, Aquamarine) — check if any are further advanced to gauge developer execution track record",
+    "JETI: Kaufman County school districts (Kaufman ISD, Crandall ISD) — check for JETI applications filed 2023+ for ~54 MW solar"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,27 @@
+{
+  "inr": "25INR0621",
+  "project": "Anagram Solar",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": false,
+    "why": "FIS only requested 2025-01-02, not yet approved; no IA, no construction — 18-month COD from triage date is aggressive for a project still in FIS review"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "TX SOS entity search for 'Anagram Solar LLC' to find registered agent and parent developer — gmaps was rate-limited in triage",
+    "Live Oak County CAD parcel search by owner 'Anagram Solar' to establish site geometry",
+    "PUCT Interchange filing search once portal auth is available — 402 blocked entire T4",
+    "POI 'Charter 138 kV' geo-resolution via AEP Texas transmission maps or ERCOT GIS to bound site to a sub-county radius before imagery"
+  ],
+  "turns_used": 22
+}

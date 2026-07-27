@@ -1,0 +1,27 @@
+{
+  "inr": "25INR0321",
+  "project": "El Molino Solar SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-09-01",
+    "plausible": false,
+    "why": "No FIS approval, no IA, no construction — 14 months to reported COD with no milestones beyond FIS request is implausible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange was blocked (402) — retry with authenticated session to confirm IA absent vs. unreachable",
+    "Locate tap coordinates on LaQuinta–Bruni 138kV corridor to enable site imagery (ERCOT transmission maps or SUDs filing)",
+    "Developer identity: only 'El Molino Solar, LLC' from aggregators — check TX SOS for registered agent / parent company",
+    "JETI application: verify via direct Comptroller DB search, not landing pages"
+  ],
+  "turns_used": 18
+}

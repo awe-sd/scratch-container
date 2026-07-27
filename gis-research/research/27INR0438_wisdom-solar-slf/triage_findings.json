@@ -1,0 +1,28 @@
+{
+  "inr": "27INR0438",
+  "project": "Wisdom Solar SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-10-06",
+    "plausible": false,
+    "why": "Pre-IA in ERCOT queue as of Jun 2026; IA filed Mar 2026 per PUCT but not yet reflected in queue; ~16 months to COD with no construction milestones is very tight"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA content inaccessible (PUCT 402) — retrieve PUCT filing 35077/2435 (Mar 2026) via authenticated session to get parties, POI, and milestone schedule",
+    "Queue data lag: iaSigned still blank in Jun 2026 snapshot but PUCT IA filed Mar 2026 — confirm IA is signed vs. only filed",
+    "Developer Wisdom Green Energy LLC is very new (holdings inc. Apr 2025, Missouri City TX) — no track record found; assess developer credibility",
+    "Holiday Sub TNMP coordinates needed to establish site candidate for imagery; try ERCOT network model or PUCT CCN filings for substation lat/lon",
+    "COD 2027-10-06 implausibility: 16 months from pre-IA to COD with no construction milestones — assess whether project is on a realistic timeline or speculative paper filing"
+  ],
+  "turns_used": 22
+}

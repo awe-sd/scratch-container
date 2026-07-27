@@ -1,0 +1,35 @@
+{
+  "inr": "28INR0327",
+  "project": "18-BRAVO BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.2457,
+    "lon": -95.9002,
+    "method": "POI city-center proxy (Commerce TX) — Commerce Switch Substation 138kV; no pin, no IA map",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "not visible",
+    "evidence": "3/9 grid chips obtained (CDSE token expiry); rural/agricultural land, heavy cloud in center chip, no BESS pad or gravel clearing visible in retrieved frames"
+  },
+  "cod_first_look": {
+    "reported": "2028-02-01",
+    "plausible": true,
+    "why": "Screening done 2025-06, FIS requested but not approved — ~18-month build window is tight but possible if FIS/IA clear by late 2026"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange IA search (portal blocked during triage — check manually for FilingParty '18-BRAVO BESS')",
+    "Identify developer/owner — name not surfaced anywhere; TX SOS entity search for '18-BRAVO BESS LLC'",
+    "Confirm exact substation coordinates for Commerce Switch Sub #1816 to enable tight imagery rerun",
+    "Re-run imagery once auth token refreshed — only 3/9 grid cells obtained, center chip cloud-obscured"
+  ],
+  "turns_used": 28
+}

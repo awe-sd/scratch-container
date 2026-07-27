@@ -1,0 +1,105 @@
+{
+  "inr": "26INR0357",
+  "project": "Operation Sunshine Storage",
+  "researched_at": "2026-07-19",
+  "verdict": "real_active",
+  "site": {
+    "lat": 31.4956,
+    "lon": -99.7062,
+    "method": "amos_creek_road_nominatim",
+    "confidence": "low",
+    "notes": "Amos Creek Road, Concho County TX per Nominatim/OSM (31.4956, -99.7062). POI substation '7077 Amos Creek 345kV' is a new substation on LCRA TSC T424 line; exact substation coords are CEII-protected and not in OSM. No Google pin, no parcel GIS obtained. Actual substation may be 2-5 km along T424 from this road reference."
+  },
+  "project_area": {
+    "acres": null,
+    "source": "not_obtained",
+    "artifact": null,
+    "notes": "Ch.312 abatement application is scanned-image PDF; no text extraction. Battery BESS of this scale typically 40-80 acres. No CAD parcels retrieved."
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Concho Duck Creek Storage, LLC",
+      "relation": "spv",
+      "evidence": "Concho County public meeting notice 2025-07-08 item 3: 'Public Meeting on proposed Concho Duck Creek Storage, LLC Tax Abatement Agreement'",
+      "artifact": "sources/2025-07-08_concho-cc_public-meeting-notice_p1.png"
+    },
+    {
+      "entity": "Duck Creek Storage, LLC",
+      "relation": "developer_registered_entity",
+      "evidence": "TX LLC file 0805304599, Fort Worth TX, filed 2023-11-14; PUCT Interchange filings reference 'Duck Creek Storage / Duck Creek Solar'",
+      "artifact": "sources/t3_web_sweep.md"
+    },
+    {
+      "entity": "Concord New Energy Group Limited",
+      "relation": "likely_parent_or_acquirer",
+      "evidence": "Concho County CC agenda 2026-06-09 Item 6: Road Use Agreement for Concho Pearl Solar, LLC / Don Battenfelder with Concord New Energy Group Limited — same site cluster as Duck Creek projects; Concord is HKEX-listed (stock 182) clean energy developer",
+      "artifact": "sources/2026-06-09_concho-cc_agenda.pdf"
+    },
+    {
+      "entity": "Energy Capital Partners",
+      "relation": "possible_parent_unconfirmed",
+      "evidence": "infrasure.ai note only — unconfirmed; may be superseded by Concord New Energy appearance in county records",
+      "artifact": "sources/2026-07-18_infrasure_sister-project-summary.md"
+    },
+    {
+      "entity": "Primoris Renewable Energy",
+      "relation": "epc",
+      "evidence": "Concho County CC agenda 2026-01-13 Item 9: 'Bore Regulations on Utility Right of Way Permit by Brian Cooper with Primoris Renewable Energy' — bore permit for underground collection cable installation at same site cluster",
+      "artifact": "sources/2026-01-13_concho-cc_agenda_p1.png"
+    }
+  ],
+  "land_tenure": {
+    "status": "easement_or_leased",
+    "evidence": "Concho Solar 1, LLC easement/ROW on Frank & Katy Smith Living Trust UDT parcels, Concho County (CC agenda 2026-01-13 Item 8); solar and storage co-located on same land cluster",
+    "artifact": "sources/2026-01-13_concho-cc_agenda_p1.png"
+  },
+  "construction": {
+    "verdict": "early_civil",
+    "first_activity_seen": "2026-01",
+    "evidence": [
+      "2026-01-13 Concho CC agenda Item 9: Primoris Renewable Energy bore permit for utility ROW — underground collection cable boring underway",
+      "2026-01-13 Concho CC agenda Item 8: Concho Solar 1 LLC easement/ROW on Smith Trust parcels — land access secured",
+      "2025-07-08 public meeting: Ch.312 abatement public hearing held for Concho Duck Creek Storage LLC — pre-construction regulatory step"
+    ],
+    "imagery_verdict": "no_imagery_obtained",
+    "notes": "CDSE credentials invalid; no Sentinel-2 imagery. Construction stage inferred from county records only. Bore permit (collection cable) = early civil for battery system; pad preparation and container installation likely concurrent or slightly later."
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Interconnection Agreement (original)",
+        "signed": "2025-08-27",
+        "financial_security": null,
+        "artifact": null,
+        "notes": "IA existence confirmed via ERCOT queue milestone iaSigned=2025-08-27. PUCT Interchange portal returned HTTP 402 on all access attempts; document text not retrieved. PUCT control number referenced as 35077 but not confirmed directly."
+      }
+    ]
+  },
+  "poi": {
+    "description": "7077 Amos Creek 345kV",
+    "owner": "LCRA TSC",
+    "line": "T424",
+    "notes": "New substation built on existing LCRA TSC T424 345kV line in Concho County TX. Substation coordinates CEII-protected, not in OSM. Amos Creek Road (31.4956, -99.7062) provides nearest public geographic anchor."
+  },
+  "cod_assessment": {
+    "reported": "2028-03-12",
+    "independent": "2028-Q2",
+    "drift_risk": "med",
+    "reasoning_evidence": [
+      "IA signed 2025-08-27; bore permit Jan 2026 = ~5 months post-IA, consistent with early NTP and mobilization",
+      "Primoris Renewable Energy is a credible large-scale EPC (real signal); active bore work Jan 2026",
+      "Battery BESS build: 12-18 months from NTP; NTP likely late 2025 / early 2026 → COD ~mid-2027 to mid-2028",
+      "COD drifted twice: 2026-07-01 → 2026-09-29 → 2028-03-12 (total ~20 months); history suggests schedule optimism",
+      "FIS approved: NOT in queue as of 2026-06 snapshot — unusual post-IA; may reflect substation construction dependency",
+      "Meets 6.9(1) achieved 2025-09-11 but Meets All 6.9 not yet achieved — some study milestone gaps remain",
+      "Concord New Energy road use agreement Jun 2026 shows developer still active at site cluster; positive momentum signal",
+      "Ch.312 abatement not publicly approved through Jul 2026 (but public hearing complete Jul 2025) — minor risk if county approval still pending"
+    ]
+  },
+  "real_project_verdict": "real_active",
+  "negative_searches": 18,
+  "banned_source_violations": 0,
+  "imagery_obtained": false,
+  "imagery_reason": "CDSE credentials returned invalid_grant; no Sentinel-2 chips obtained"
+}

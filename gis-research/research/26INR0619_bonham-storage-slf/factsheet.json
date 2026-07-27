@@ -1,0 +1,63 @@
+{
+ "inr": "26INR0619",
+ "generated": "2026-07-20",
+ "project": "Bonham Storage SLF",
+ "county": "Limestone",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 104.92,
+ "queue_cod": "2027-07-01",
+ "milestones": {
+  "screeningStudyComplete": "2025-04-15",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "Yes"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "ok",
+  "plant_id": 67778,
+  "entity": "Gransolar Texas Sixteen, LLC",
+  "planned_cod": "2028-01",
+  "cod_delta_quarters": 2.0,
+  "dropped_scope": null,
+  "coords": [
+   31.64339,
+   -96.77961
+  ]
+ },
+ "spv": {
+  "resolved": false,
+  "candidates": []
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "financial_security_posted"
+ ],
+ "paper_score": 25,
+ "score_factors": [
+  {
+   "factor": "eia_cod_divergence",
+   "points": 15,
+   "detail": "EIA planned COD 2.0 quarters after queue COD"
+  },
+  {
+   "factor": "spv_unresolvable",
+   "points": 10,
+   "detail": "no SPV via spv.py or any registry"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 9.22,
+  "reason": "reality signal"
+ }
+}

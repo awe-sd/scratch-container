@@ -1,0 +1,35 @@
+{
+  "inr": "23INR0232",
+  "project": "Hoke Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.2697,
+    "lon": -97.7625,
+    "method": "POI substation (7621 Nixon, 138kV Deer Creek–Nixon tap)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "5-chip Sentinel-2 contact sheet (2026-06-01, 2km buffer around Nixon TX): rural/agricultural; partial cloud cover; no pale gravel pad or BESS container rows visible in clear areas"
+  },
+  "cod_first_look": {
+    "reported": "2027-03-16",
+    "plausible": true,
+    "why": "IA signed 2022, 6.9(1) posted 2026-03-25, 7 prior slips suggest chronic delay but project remains active with financial security posted"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA PDF — portal blocked in triage; retrieve IA (signed 2022-04-25) to get POI coordinates, milestone schedule, and developer/counterparty names",
+    "Developer identity unknown — no web presence found; IA parties page should name the interconnecting entity and any parent company",
+    "Imagery: cloud-obscured triage chips; retry with lower cloud threshold or earlier/later date window; substation exact coords from IA will improve targeting",
+    "COD slip pattern (7 slips, ~4 years) warrants checking latest ERCOT GIS report amendment filings for any NTP or construction-start update"
+  ],
+  "turns_used": 28
+}

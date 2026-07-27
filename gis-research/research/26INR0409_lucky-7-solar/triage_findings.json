@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0409",
+  "project": "Lucky 7 Solar",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.28,
+    "lon": -95.73,
+    "method": "POI name inference — '2464 CASH SWITCH' → Cash community, Hopkins County TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials not configured; no imagery retrieved"
+  },
+  "cod_first_look": {
+    "reported": "2027-09-20",
+    "plausible": true,
+    "why": "IA signed 2025-08-13, ~26 months to COD; no construction milestones yet; moderate slip risk but within normal range for a project at this stage"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2025-08-13 confirmed in queue data — retrieve IA PDF from PUCT Interchange (requires browser session or authenticated tool) to extract parties, POI details, and milestone schedule exhibit",
+    "Identify developer/sponsor — no LLC registration or web presence found; try TX SOS business search for 'Lucky 7 Solar LLC'",
+    "Imagery: configure CDSE credentials then run 3×3 grid centered on ~33.28N 95.73W (Cash, TX) to check for site prep or panel installation",
+    "Refine site location: POI 'Sandy Ranch Switch / Cash Switch' — look up ERCOT transmission map or PUCT line filings to get precise substation coordinates"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,171 @@
+{
+  "inr": "25INR0434",
+  "project": "Bluegill BESS",
+  "researched_at": "2026-07-19",
+  "researched_date": "2026-07-19",
+  "verdict": "real_early",
+  "real_project_verdict": "real_early",
+  "verdict_confidence": "medium",
+  "verdict_rationale": "Site identified (plat submitted to Houston Planning Commission), land parcel confirmed (APN 1461570010002, ~28.82 ac), developer Eolian likely via LLC address. But no IA signed, no FIS approval, no construction visible in Apr 2026 imagery. Project is real (site, developer, plat) but pre-construction with no milestones beyond screening.",
+
+  "llc_chain": [
+    {
+      "entity": "Bluegill BESS, LLC (TX #0805105887)",
+      "relation": "SPV",
+      "evidence": "Facebook plat post names LLC; triage T3 web sweep confirms TX corp number"
+    },
+    {
+      "entity": "Eolian, L.P. (Burlingame CA; GIP/BlackRock)",
+      "relation": "developer candidate (not confirmed)",
+      "evidence": "LLC address 155 Fleet St Portsmouth NH shared with Eolian entities in 2022-23; direct confirmation blocked (TX SOS paid access, OpenCorporates CAPTCHA)"
+    }
+  ],
+
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Plat submitted to Houston Planning Commission (real planning action). LoopNet listing was for-sale industrial land. HCAD lookup of APN 1461570010002 blocked (404/403). Current owner name not verified."
+  },
+
+  "site": {
+    "lat": 29.9497,
+    "lon": -95.0891,
+    "method": "Road intersection estimate — Facebook plat post names 'NWC FM-2100 Rd and Atascocita Rd'; LoopNet APN 1461570010002 at same corner; coordinates estimated from road intersection (not verified from parcel geometry or independent pin)",
+    "confidence": "medium",
+    "cross_checks": [
+      "Facebook Huffman TX Developments plat post: 'NWC FM-2100 Rd and Atascocita Rd, 25 acres' — matches LoopNet parcel at same corner",
+      "LoopNet listing: 28.82 ac at NWC FM-2100 and Old Atascocita Rd, Huffman TX 77336, APN 1461570010002",
+      "POI 'Tap 138kV 40130 Atascocita - 40690 East Gate': site is ~7 km east of Atascocita substation, consistent with tap on the connecting 138kV line"
+    ]
+  },
+
+  "project_area": {
+    "acres": 28.82,
+    "source": "LoopNet listing NWC FM-2100 Old Atascocita Rd Huffman TX 77336 (APN 1461570010002)",
+    "artifact": "sources/2026-07-19_loopnet_nwc-fm2100-atascocita-listing.md"
+  },
+
+  "construction": {
+    "verdict": "no_activity",
+    "stage": "pre_construction",
+    "first_activity_seen": null,
+    "evidence": [
+      "Sentinel-2 2km chip Apr 2026 (29.9497,-95.0891): no BESS pad, no gravel staging, no container rows — undisturbed mixed commercial/agricultural land",
+      "No construction permits found in any public search",
+      "Queue financial security: No; no 6.9 milestones; study phase stuck since Sep 2023"
+    ]
+  },
+
+  "cod_assessment": {
+    "reported": "2027-10-31",
+    "independent": "2029-Q4",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "No IA signed, no FIS approval, no financial security posted — 15 months to Oct 2027 is not enough time to complete FIS, sign IA, and build 251 MW BESS from bare ground (12-18 month build minimum)",
+      "COD already drifted twice: 2025-07-31 → 2026-10-01 → 2027-10-31 (+24 months from original target)",
+      "Capacity halved Jun 2024 (501.9 → 251 MW) — scope reduction, not progress signal",
+      "Study phase stuck 'SS Complete, FIS Started, No IA' since Sep 2023 (22+ months)",
+      "Earliest plausible path: FIS approval 2026, IA signed late 2026, construction start 2027, 18-month build → 2029-Q4"
+    ]
+  },
+
+  "interconnection": {
+    "ia_signed": false,
+    "ia_found": false,
+    "ia_source": null,
+    "poi_description": "Tap 138 kV 40130 Atascocita - 40690 East Gate",
+    "transmission_provider": "CenterPoint Energy (Harris County)",
+    "puct_docket": null,
+    "puct_note": "PUCT Interchange portal returned HTTP 402 on all URL patterns — blocked throughout research"
+  },
+
+  "contractual_schedule": {
+    "documents": [],
+    "milestones": null,
+    "note": "No IA found — PUCT Interchange portal blocked (402) throughout research"
+  },
+
+  "county_records": {
+    "hcad_parcel": "1461570010002",
+    "hcad_acres": 28.82,
+    "hcad_owner_current": "unknown",
+    "plat_submitted": true,
+    "plat_body": "Houston Planning Commission",
+    "plat_source": "sources/2026-07-19_facebook_huffman-tx-developments-plat-post.md",
+    "abatement": null,
+    "abatement_note": "Ch.313 expired 2022-12-31 (project ineligible). JETI database not machine-readable. No abatement found."
+  },
+
+  "queue_history": {
+    "cod_drift_count": 2,
+    "cod_first": "2025-07-31",
+    "cod_current": "2027-10-31",
+    "capacity_halved_date": "2024-06-01",
+    "capacity_mw_original": 501.9,
+    "capacity_mw_current": 251.0,
+    "study_phase_current": "SS Completed, FIS Started, No IA",
+    "financial_security": "No"
+  },
+
+  "imagery_timeline": [
+    {
+      "date": "2026-04",
+      "observation": "No BESS pad, no construction activity — undisturbed mixed land",
+      "frame": "imagery/key/s2_2026-04_tight_key.png",
+      "buffer_km": 2,
+      "coords": [29.9497, -95.0891]
+    },
+    {
+      "date": "2026-05",
+      "observation": "Wide view (6km) — FM-2100 corridor, no activity visible",
+      "frame": "imagery/key/s2_2026-05_wide_key.png",
+      "buffer_km": 6,
+      "coords": [29.9497, -95.0891]
+    }
+  ],
+
+  "could_not_determine": [
+    "IA filing (PUCT Interchange portal blocked — HTTP 402 throughout)",
+    "Current HCAD owner of APN 1461570010002 (lookup blocked — 404/403)",
+    "Developer identity confirmed (TX SOS paid access required; Eolian link is address inference only)",
+    "JETI tax abatement (database not machine-readable)",
+    "Exact site coordinates (estimated from road intersection only, ±500 m uncertainty)",
+    "CenterPoint East Gate substation location (not in public sources)",
+    "Offtaker, EPC, financing status"
+  ],
+
+  "sources": [
+    {
+      "id": "plat-post",
+      "type": "social_media_post",
+      "url": "https://www.facebook.com/groups/1012994366302482/posts/2023582345243674/",
+      "artifact": "sources/2026-07-19_facebook_huffman-tx-developments-plat-post.md",
+      "key_fact": "Bluegill BESS LLC submitted 25-acre plat to Houston Planning Commission at NWC FM-2100 & Atascocita Rd"
+    },
+    {
+      "id": "loopnet-parcel",
+      "type": "commercial_listing",
+      "url": "https://www.loopnet.com/property/old-atascocita-rd-huffman-tx-77336/48201-1461570010002/",
+      "artifact": "sources/2026-07-19_loopnet_nwc-fm2100-atascocita-listing.md",
+      "key_fact": "APN 1461570010002, 28.82 acres, NWC FM-2100 & Old Atascocita Rd, Huffman TX 77336"
+    },
+    {
+      "id": "eolian-pr",
+      "type": "press_release",
+      "url": "https://finance.yahoo.com/news/eolian-natixis-corporate-investment-banking-120000774.html",
+      "artifact": "sources/2026-07-19_eolian_padua-financing-pr.md",
+      "key_fact": "Eolian active TX BESS developer (Padua 2+3 350MW, Ferdinand 200MW); GIP/BlackRock portfolio; Burlingame CA"
+    },
+    {
+      "id": "imagery-apr2026",
+      "type": "satellite_imagery",
+      "artifact": "imagery/key/s2_2026-04_tight_key.png",
+      "key_fact": "No BESS construction activity at site candidate as of Apr 2026"
+    },
+    {
+      "id": "queue-timeline",
+      "type": "queue_history",
+      "artifact": "timeline.json",
+      "key_fact": "2 COD drifts, capacity halved 2024-06, stuck at SS Complete/FIS Started since Sep 2023"
+    }
+  ]
+}

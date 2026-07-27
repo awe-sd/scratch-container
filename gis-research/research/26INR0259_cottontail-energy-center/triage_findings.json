@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0259",
+  "project": "Cottontail Energy Center",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.875,
+    "lon": -96.49,
+    "method": "newspaper article — '18.3 acres NW of Hwy 71 / I-10 intersection, near Glidden'",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "no evidence",
+    "evidence": "CDSE credentials not configured; no imagery acquired. Developer stated groundbreaking 2027 at July 2025 commissioners meeting."
+  },
+  "cod_first_look": {
+    "reported": "2027-10-19",
+    "plausible": false,
+    "why": "FIS not approved after 2+ years in queue; no IA; developer told commissioners groundbreaking is 2027 implying COD well after 2027-10-19; county denied abatement"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange IA search when portal accessible — queue shows no IA but project is pre-construction stage",
+    "Imagery at 29.875, -96.49 once CDSE creds configured — site precisely identified, check for ground disturbance",
+    "Mission Clean Energy developer profile — ~3-year-old company, plans to sell post-construction; assess track record",
+    "FIS approval status — stuck pre-FIS for 2+ years is a red flag; check if ERCOT study in progress"
+  ],
+  "turns_used": 22
+}

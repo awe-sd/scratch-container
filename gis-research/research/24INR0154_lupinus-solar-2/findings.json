@@ -1,0 +1,165 @@
+{
+  "inr": "24INR0154",
+  "project": "Lupinus Solar 2",
+  "researched_at": "2026-07-19",
+  "real_project_verdict": "real_active",
+  "site": {
+    "lat": 33.305,
+    "lon": -95.275,
+    "method": "imagery re-center: wide 2026-07 chip revealed graded polygon ~2.5 km SSW of Hagansport community; tight chip confirms footprint with road grid and substation pad. Corroborated by IA Exhibit C POI (Hagansport Switch, Franklin County, ~31 mi NE Sulphur Springs).",
+    "confidence": "medium-high",
+    "derivation_chain": "1) IA Exhibit C (PUCT 35077-2101, Oncor x Lupinus Solar 2 LLC) \u2014 text only, no map: POI = 'Hagansport Switch in TSP's 138 kV, ~31 miles NE of Sulphur Springs, Franklin County'. 2) Nominatim geocode of the Hagansport community: 33.3415,-95.2494 (TX-37/FM-71 junction) \u2014 POI-community anchor, LOW confidence, explicitly not the array. 3) Wide 2026-07 Sentinel-2 chip around that anchor revealed a graded polygon ~2.5 km SSW of Hagansport with road grid + substation pad; site re-centered onto the observed footprint = 33.305,-95.275 (medium-high). Same pattern as Moccasin: no parcel map exists in any filing, so the visible construction footprint is the boundary evidence."
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Lupinus Solar 2, LLC",
+      "role": "SPV / Generator",
+      "source": "sources/2026-07-19_puct_35077-2101_oncor-lupinus-solar-2-IA.pdf"
+    },
+    {
+      "entity": "Sunraycer Renewables",
+      "role": "developer/owner",
+      "source": "sources/2026-07-19_pvtech_sunraycer-google-lupinus-ppas.html"
+    },
+    {
+      "entity": "Crayhill Capital Management (Annapolis, MD)",
+      "role": "parent/backer (portfolio company)",
+      "source": "sources/2026-07-19_pvtech_sunraycer-google-lupinus-ppas.html"
+    },
+    {
+      "entity": "Google",
+      "role": "PPA offtaker (~400 MWac dual PPA, LevelTen LEAP, signed March 2026)",
+      "source": "sources/2026-07-19_pvtech_sunraycer-google-lupinus-ppas.html"
+    }
+  ],
+  "land_tenure": {
+    "status": "leased (presumed)",
+    "evidence": "Franklin CAD returns 0 parcels under Lupinus Solar 2 or Sunraycer \u2014 consistent with leased farmland remaining on tax roll under original landowner names. No abatement application found to confirm tenure type directly."
+  },
+  "construction": {
+    "verdict": "clearing_grading_active",
+    "first_activity_seen": "2026-Q1",
+    "evidence": [
+      "2025-12 Sentinel-2 chip (imagery/key/s2_2025-12_pre.png) shows undisturbed winter farmland across the site footprint \u2014 no clearing or grading",
+      "2026-07 Sentinel-2 wide chip (imagery/s2_2026-07-10.png) shows large multi-polygon graded footprint in SW quadrant; tight re-centered chip (imagery/s2_2026-07-10_tight.png) confirms road grid, cleared soil, and prominent white pad (substation/switchyard) \u2014 classic early-stage solar site preparation",
+      "PV-Tech 2026-03-24 article (sources/2026-07-19_pvtech_sunraycer-google-lupinus-ppas.html): 'Earlier in March 2026, Sunraycer broke ground on three Texas solar-plus-storage projects, including the two-phase Lupinus project' \u2014 confirms construction began ~March 2026",
+      "SHARED-CAMPUS SERIES (fetched 2026-07-21, centered 33.317,-95.283, 8km frames): one contiguous Sunraycer campus hosts Lupinus Solar 1+2 (and their paired Storage 1+2 queue positions) at the Hagansport Switch. 2024-07/2025-07: undisturbed; 2026-01: pre-groundbreaking baseline; 2026-04 (one month after the 2026-03-17 groundbreaking PR): clearing underway in the NW section + a large bright cleared block SE with access roads; 2026-07-15: one contiguous ~4km earthworks operation \u2014 block outlines forming NW, laydown/pads SE. No racking/panels yet at 10m/px. The two solar INRs cannot be separated visually until array blocks are energized \u2014 do not attribute sub-areas to 1 vs 2 without a plot plan."
+    ],
+    "latest_observation": "2026-07-15",
+    "imagery_artifacts": [
+      "imagery/key/s2_2024-07-01.png",
+      "imagery/key/s2_2025-07-01.png",
+      "imagery/key/s2_2026-01-15.png",
+      "imagery/key/s2_2026-04-15.png",
+      "imagery/key/s2_2026-07-15.png"
+    ]
+  },
+  "project_area": {
+    "acres": null,
+    "source": "Not obtainable \u2014 no Ch.313/JETI filed (program expired 2022); CAD 0 hits; IA Exhibit C does not state acreage. Imagery footprint roughly consistent with ~800-1000 acres for 242 MW solar.",
+    "artifact": null
+  },
+  "contractual_schedule": {
+    "source_docs": [
+      "sources/2026-07-19_puct_35077-2101_oncor-lupinus-solar-2-IA.pdf",
+      "sources/2026-07-19_puct_35077-2427_oncor-lupinus-solar-2-IA-amend1.pdf"
+    ],
+    "note": "Oncor\u2013Lupinus Solar 2 SGIA (PUCT Control No. 35077); original IA signed 2025-03-04, filed 2025-03-31 (Item 2101); Amendment 1 signed 2026-02-12, filed 2026-03-12 (Item 2427). Amendment 1 only changed Exhibit E bank rating criteria (added Fitch); schedule unchanged.",
+    "documents": [
+      {
+        "doc": "Original IA (PUCT 35077-2101)",
+        "signed": "2025-03-04",
+        "financial_security": "$13,841,916 irrevocable standby LC (effective on/before 2025-03-03)",
+        "artifact": "sources/2026-07-19_puct_35077-2101_oncor-lupinus-solar-2-IA.pdf"
+      },
+      {
+        "doc": "Amendment 1 (PUCT 35077-2427)",
+        "signed": "2026-02-12",
+        "financial_security": "$13,841,916 irrevocable standby LC \u2014 unchanged; amendment added Fitch rating criterion only",
+        "artifact": "sources/2026-07-19_puct_35077-2427_oncor-lupinus-solar-2-IA-amend1.pdf"
+      }
+    ],
+    "milestones": [
+      {
+        "name": "In-Service Date",
+        "original_ia_2025": "2026-12-03"
+      },
+      {
+        "name": "Scheduled Trial Operation",
+        "original_ia_2025": "2026-12-13"
+      },
+      {
+        "name": "Scheduled COD",
+        "original_ia_2025": "2027-04-03"
+      }
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-04-03",
+    "independent": "2027-Q2",
+    "drift_risk": "medium",
+    "reasoning_evidence": [
+      "Reported COD 2027-04-03 is the exact Scheduled Commercial Operation Date in the signed Oncor IA Exhibit B (PUCT 35077-2101) \u2014 date is contractually grounded, not merely a developer claim",
+      "3 prior COD slips totaling ~27 months (2024-12 \u2192 2025-12 \u2192 2026-09 \u2192 2027-04) before construction began \u2014 track record of delays is a risk factor",
+      "As of 2026-07, site is in clearing/grading stage with 5 months to the In-Service Date (2026-12-03); racking, module installation, and electrical commissioning still ahead \u2014 schedule is achievable but tight",
+      "Google PPA signed March 2026 (via LevelTen LEAP) and groundbreaking same month creates commercial urgency to hold schedule",
+      "No financing close announced publicly; Crayhill Capital/Sunraycer have not issued a debt-close press release \u2014 this is a gap but not disqualifying"
+    ]
+  },
+  "negative_searches": [
+    {
+      "source": "Franklin CAD (franklin-cad.org)",
+      "query": "owner=lupinus solar 2",
+      "result": "0 results"
+    },
+    {
+      "source": "Franklin CAD (franklin-cad.org)",
+      "query": "owner=sunraycer",
+      "result": "0 results"
+    },
+    {
+      "source": "TX Comptroller franchise search",
+      "query": "lupinus solar",
+      "result": "portal redirect loop, no data returned"
+    },
+    {
+      "source": "TX Comptroller Ch.313/JETI registry",
+      "query": "lupinus solar franklin county",
+      "result": "no results \u2014 expected post-2022"
+    },
+    {
+      "source": "DDG web search",
+      "query": "sunraycer lupinus financing OR financial close OR construction loan",
+      "result": "CAPTCHA block, no results"
+    },
+    {
+      "source": "DDG web search",
+      "query": "sunraycer lupinus groundbreaking march 2026 EPC",
+      "result": "CAPTCHA block, no results"
+    },
+    {
+      "source": "PUCT interchange portal",
+      "query": "direct portal fetch",
+      "result": "402 throughout; PDFs retrieved via document ID guessing from DDG search results"
+    },
+    {
+      "source": "gmaps.py places",
+      "query": "Lupinus Solar 2",
+      "result": "429 rate-limit throughout session"
+    },
+    {
+      "source": "CDSE imagery",
+      "query": "2026-04 chip (to bracket first activity)",
+      "result": "401/403 \u2014 credentials invalid (example env file); only 3 chips obtained before lockout"
+    }
+  ],
+  "banned_source_violations": [],
+  "tax_incentives": {
+    "ch313_jeti": "structural negative \u2014 2024 queue entry postdates Ch.313's 2022-12-31 sunset; no JETI application (checked by INR + 'Lupinus'/'Sunraycer').",
+    "ch312": [
+      "negative across all three datasets (live 1,398 + post-abatement reports 888 + Wayback-recovered 170) by INR, SPV name, developer name, AND county \u2014 Franklin County has ZERO rows in the registry (non-reporting county), so this is a WEAK negative on registry grounds alone. HOWEVER, context makes a real abatement genuinely unlikely: Franklin County attempted a 180-day commercial-solar MORATORIUM in 2023 (rescinded after the county attorney warned it was unenforceable; interim AG Colmenero then ruled counties lack authority to ban solar \u2014 ksstradio.com 2023-08). A county hostile enough to attempt a moratorium was not granting Ch.312 abatements; the project proceeded without one."
+    ],
+    "commissioners_minutes": "VERIFIED NEGATIVE for online records (2026-07-21): Franklin County's commissioners-court page (co.franklin.tx.us, ezTask) publishes NO meeting minutes or agendas at all -- a minutes.py harvest returned only 3 procedural documents (rules of procedure 2018, public-participation form, a 2021 transfer-station item). Any abatement/road-use votes for this project exist only in the paper minute books at the county clerk -- reachable via TPIA/open-records request, not online. Given the county's 2023 anti-solar moratorium attempt, the minutes would likely document opposition rather than incentives."
+  }
+}

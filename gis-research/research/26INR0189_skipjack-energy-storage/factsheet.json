@@ -1,0 +1,87 @@
+{
+ "inr": "26INR0189",
+ "generated": "2026-07-20",
+ "project": "Skipjack Energy Storage",
+ "county": "Brazoria",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 150.6,
+ "queue_cod": "2028-02-28",
+ "milestones": {
+  "screeningStudyComplete": "2023-10-27",
+  "fisApproved": null,
+  "iaSigned": "2024-08-13",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "ambiguous",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Bocanova Power II LLC",
+    "detail": "plant=Bocanova Energy Storage II 150.0MW (V) Under construction, more than 50 per @29.43542,-95.2511 planned=2026-08"
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Myrtle Storage, LLC",
+    "detail": "plant=Myrtle Storage 150.0MW (OP) Operating @29.22775,-95.42806 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Bocanova Power LLC",
+    "detail": "plant=Bocanova Energy Storage 150.0MW (OP) Operating @29.43542,-95.2511 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "Cottonwood Bayou Storage, LLC",
+    "detail": "plant=Cottonwood Bayou Storage 150.0MW (OP) Operating @29.24264,-95.25994 planned="
+   },
+   {
+    "source": "puct-index",
+    "entity": "Skipper Energy Storage, LLC - Skipjack Energy Storage",
+    "detail": "ERCOT Standard Generation Interconnection Agreement (SGIA) between CenterPoint Energy Houston Electric, LLC an"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Skipper Energy Storage, LLC - Skipjack Energy Storage",
+    "detail": "Amendment One to ERCOT Standard Generation Interconnection Agreement between CenterPoint Energy Houston Electr"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 2,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "financial_security_posted"
+ ],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 7.79,
+  "reason": "reality signal"
+ }
+}

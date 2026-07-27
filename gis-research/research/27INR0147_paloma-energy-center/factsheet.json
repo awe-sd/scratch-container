@@ -1,0 +1,79 @@
+{
+ "inr": "27INR0147",
+ "generated": "2026-07-20",
+ "project": "Paloma Energy Center",
+ "county": "Colorado",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 193.8,
+ "queue_cod": "2027-12-31",
+ "milestones": {
+  "screeningStudyComplete": "2024-05-01",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "puct-index",
+    "entity": "La Paloma Energy Center, LLC Filing Pursuant to Substantive Rule 25.195",
+    "detail": "First Amended and Restated ERCOT Standard Generation Interconnection Agreement between AEP Texas Central Compa"
+   },
+   {
+    "source": "puct-index",
+    "entity": "LA PALOMA ENERGY CENTER, LLC",
+    "detail": "SECOND AMENDED AND RESTATED ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN AEP TEXAS CENTRAL COMP"
+   },
+   {
+    "source": "puct-index",
+    "entity": "La Paloma Energy Center, LLC Filing Pursuant to 16 Tex. Admin. Code \u00a7 25.195",
+    "detail": "Third Amended and Restated ERCOT Standard Generation Interconnection Agreement between AEP Texas Central Compa"
+   },
+   {
+    "source": "puct-index",
+    "entity": "La Paloma Energy Center, LLC",
+    "detail": "Fourth Amended and Restated ERCOT Standard Generation Interconnection Agreement between AEP Texas Central Comp"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [],
+ "paper_score": 20,
+ "score_factors": [
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 20 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

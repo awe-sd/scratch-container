@@ -1,0 +1,28 @@
+{
+  "inr": "24INR0042",
+  "project": "Yaupon Solar SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-11-18",
+    "plausible": true,
+    "why": "Approved for energization 2026-05-27 and meets all 6.9 conditions 2025-10-24; 6-month gap to COD is tight but feasible"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange: FilingDescription=Yaupon Solar — JS-blocked during triage; retry with a browser-capable tool to find the Oncor or other TSP IA and extract POI + milestone schedule",
+    "TX Comptroller Ch.313 / JETI registry for Milam County — not checked; post-2022 projects may have JETI",
+    "Site pinpoint: Gibson Switch (3706) / TNP One (39950) 345 kV infrastructure — cross-ref OpenInfraMap to get POI coords; then imagery sweep within ~5 miles",
+    "Google Maps delivery-pin search — gmaps.py was 429-blocked during triage; retry to find construction-gate pin",
+    "Developer identity: 'Yaupon Solar SLF LLC' — zero web presence found; TX SOS SOSDirect search for registered agent / parent company"
+  ],
+  "turns_used": 18
+}

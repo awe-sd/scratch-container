@@ -1,0 +1,35 @@
+{
+  "inr": "23INR0279",
+  "project": "Trivor BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.427,
+    "lon": -102.782,
+    "method": "POI 'Fullerton 138kV' -> web search -> Frankel City coords + ~3mi north offset",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "Single 2km chip at estimated substation location (2026-05) shows Permian Basin well-pad grid only; no gravel pad or container rows visible. Site candidate uncertain — no precise substation coordinates obtained."
+  },
+  "cod_first_look": {
+    "reported": "2028-03-01",
+    "plausible": false,
+    "why": "3 COD slips over 5 years; FIS requested 2021 but never approved; no IA; build-chance cited at 4% by aggregator — highly speculative paper project"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Verify Fullerton 138kV substation exact coordinates (OpenStreetMap/OSM overpass or ERCOT CRR nodal map) then re-run imagery with correct pin",
+    "Confirm developer parent behind BRP Trivor BESS LLC (Texas SOS entity search) — BRP entity family may have other active projects",
+    "PUCT Interchange retry when portal is accessible — search 'BRP Trivor BESS' and 'Trivor' in Description; FIS application may exist even without approval",
+    "Monitor for FIS approval or IA execution in future queue snapshots — project has been stalled since 2021"
+  ],
+  "turns_used": 22
+}

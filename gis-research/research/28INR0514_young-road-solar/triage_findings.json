@@ -1,0 +1,35 @@
+{
+  "inr": "28INR0514",
+  "project": "Young Road Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.67,
+    "lon": -99.20,
+    "method": "POI infrastructure anchor — tap on 69 kV line between Westover (784) and Lake Kemp Switch (782) substations",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery blocked (403 at token endpoint on both attempts); no contact sheet produced"
+  },
+  "cod_first_look": {
+    "reported": "2028-04-30",
+    "plausible": true,
+    "why": "Queue entered May 2026, screening just started; 2028-04 COD is ~23 months out — tight but not impossible for 101.7 MW solar if development moves fast; no milestone completions yet to validate pace"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange is blocked via WebFetch (402) — try with authenticated session or PUCT search UI to find any IA or transmission service request filing",
+    "Fix CDSE credentials (~/.config/gis-research.env) then run 3x3 grid around 33.67N,99.20W (Westover–Lake Kemp corridor) to check for any site prep or land clearing",
+    "TX SOS business search for 'Young Road Solar LLC' to identify developer/sponsor and surface any news",
+    "Ch.313/JETI check for Baylor County — comptroller list accessible only through browser session; worth a manual check given 101.7 MW size"
+  ],
+  "turns_used": 22
+}

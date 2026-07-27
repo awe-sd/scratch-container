@@ -1,0 +1,27 @@
+{
+  "inr": "25INR0622",
+  "project": "Turkey Creek Solar SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-10-26",
+    "plausible": true,
+    "why": "3 COD slips in 21 months (~3mo each); no IA yet; FIS still pending; 2027-Q4 plausible but at risk of further slip"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate ODLASW 138kV substation coordinates to anchor site candidate for imagery",
+    "PUCT Interchange search for Greenray Solar Corp (control #58077) — IA or FIS study filings",
+    "Verify LLC registration for 'Turkey Creek Solar SLF, LLC' via Texas SOS",
+    "JETI application check if developer files one ahead of construction start (2026-04-01 reported)"
+  ],
+  "turns_used": 22
+}

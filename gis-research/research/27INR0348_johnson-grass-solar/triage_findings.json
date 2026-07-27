@@ -1,0 +1,27 @@
+{
+  "inr": "27INR0348",
+  "project": "Johnson Grass Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-04-19",
+    "plausible": true,
+    "why": "COD slipped once (Jul 2027 → Apr 2028); no IA signed yet so 2028 is aggressive but not impossible for a 2027-queue entry if study cycle moves fast"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Navigation + Cattlemen 138kV substations (ERCOT NTP shapefiles or AEP Texas maps) to get a site candidate, then run imagery",
+    "PUCT Interchange IA search requires a logged-in browser session — check manually for any filing under 'Johnson Grass Solar' or developer alias",
+    "TX SOS business entity search for 'Johnson Grass Solar LLC' to identify developer and parent company",
+    "FIS approval is the critical next milestone — monitor monthly GIS report for fisApproved date"
+  ],
+  "turns_used": 22
+}

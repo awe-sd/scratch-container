@@ -1,0 +1,28 @@
+{
+  "inr": "21INR0406",
+  "project": "Buffalo Creek",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-08-31",
+    "plausible": false,
+    "why": "19 COD drifts over 5 years; approved-for-sync Jan 2022 but not commercial after 4.5 years; no construction dates reported; implausible in 6 weeks"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2020-04-16 — retrieve PUCT Interchange filing to get POI coords and milestone schedule",
+    "Approved-for-sync 2022-01-06 but no COD after 4.5 years — investigate why (equipment, permitting, offtake?)",
+    "No construction start/end ever reported in GIS queue — check whether project is truly under construction or stalled",
+    "gmaps.py rate-limited during triage — retry delivery pin search in deep scan",
+    "T4/T5/T6 not executed due to budget — PUCT IA filing + abatement check + imagery all outstanding"
+  ],
+  "turns_used": 12
+}

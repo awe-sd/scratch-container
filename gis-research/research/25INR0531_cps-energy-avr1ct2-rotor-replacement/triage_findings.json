@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0531",
+  "project": "CPS Energy AvR1CT2 Rotor Replacement",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.3072,
+    "lon": -98.3664,
+    "method": "POI inference — 'Braunig 345kV' = J.T. Braunig Power Plant, CPS Energy, Bexar County",
+    "confidence": "high"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials not configured; no imagery acquired. Site is an existing operating gas plant — construction activity expected but not verified."
+  },
+  "cod_first_look": {
+    "reported": "2026-08-05",
+    "plausible": true,
+    "why": "Rotor replacement at existing plant; approved-for-synchronization already achieved 2024-11-22; COD 18 days out — plausible for commissioning/paperwork completion but 7 prior COD slips raise caution"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA filing — portal blocked during triage (402); search FilingParty=CPS Energy AvR1CT2 or 25INR0531 from a browser session",
+    "Interpret 'Approved for synchronization 2024-11-22' with no COD achieved: unit may already be operating; COD queue entry may be administrative/cleanup",
+    "CDSE imagery once credentials configured: confirm rotor replacement work at Braunig plant (turbine hall, laydown yard)",
+    "TCEQ air permit NSR search for Braunig CT2 unit modification — mandatory for thermal, not yet checked"
+  ],
+  "turns_used": 15
+}

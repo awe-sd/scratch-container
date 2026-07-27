@@ -1,0 +1,26 @@
+{
+  "inr": "25INR0135",
+  "project": "Hayrick BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-03-15",
+    "plausible": false,
+    "why": "No IA signed; FIS only approved Dec 2025; 3 COD slips already; no construction signals; ercotqueue.com snippet cites build-chance 4%"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "If recommissioned: locate Nicole 138kV substation coords (try ERCOT nodal map or AEP Texas infrastructure data) to enable imagery",
+    "Check Gransolar Texas Five LLC corporate filings (TX SOS) to confirm entity is active and funded",
+    "Monitor for IA execution — this is the key gate; revisit if iaSigned date appears in queue"
+  ],
+  "turns_used": 22
+}

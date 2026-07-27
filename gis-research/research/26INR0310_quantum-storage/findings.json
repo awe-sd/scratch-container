@@ -1,0 +1,122 @@
+{
+ "inr": "26INR0310",
+ "project": "Quantum Storage",
+ "research_date": "2026-07-19",
+ "verdict": "real_active",
+ "construction_stage": "operating",
+ "site": {
+  "lat": 33.0,
+  "lon": -99.612,
+  "method": "Sentinel-2 imagery centroid: large operating solar+BESS complex confirmed at these coords; corroborated by Paint Creek ISD CAD lease name + TPIT Kilby station in Haskell County",
+  "confidence": "high",
+  "artifact": "imagery/key/s2_2026-07-01_solar_3km.png"
+ },
+ "developer": {
+  "spv": "IP Quantum BESS LLC / IP Quantum II BESS LLC",
+  "parent": "Intersect Power (acquired by Alphabet/Google, March 2026)",
+  "address": "140 New Montgomery St 11th Fl, San Francisco CA 94105",
+  "evidence": "sources/2026-07-19_haskell_cad_quantum_owners.json"
+ },
+ "project_area": {
+  "acres": null,
+  "source": "Not found \u2014 no abatement doc or IA exhibit retrieved; BESS footprint estimated 30-80 acres based on imagery",
+  "artifact": null
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Interconnection Agreement (IA) \u2014 original",
+    "signed": "2023-10-26",
+    "financial_security": "Yes (confirmed present in queue milestone; amount not retrieved \u2014 PUCT portal returned 402)",
+    "artifact": null
+   }
+  ]
+ },
+ "milestones": {
+  "ia_signed": "2023-10-26",
+  "fis_approved": "2025-06-16",
+  "meets_6_9": "2025-08-04",
+  "approved_for_energization": "2026-03-26",
+  "approved_for_synchronization": "2026-04-10",
+  "commercial_operation_approved": null
+ },
+ "reported_cod": "2026-07-21",
+ "reported_cod_drift": [
+  {
+   "cod": "2026-03-31",
+   "held_from": "2024-02-01",
+   "until": "2024-11-01"
+  },
+  {
+   "cod": "2026-06-30",
+   "held_from": "2024-12-01",
+   "until": "2025-11-01"
+  },
+  {
+   "cod": "2026-06-01",
+   "held_from": "2025-12-01",
+   "until": "2026-02-01"
+  },
+  {
+   "cod": "2026-07-21",
+   "held_from": "2026-03-01",
+   "until": "2026-06-01"
+  }
+ ],
+ "independent_cod_estimate": "2026-Q3",
+ "cod_drift_risk": "low",
+ "cod_drift_risk_reason": "Developer confirmed operations June 2026; approved for sync April 2026; site fully built in July 2026 imagery; ERCOT approvedForCommercialOperation null likely administrative lag not construction delay",
+ "imagery": [
+  {
+   "date": "2026-07-01",
+   "observation": "Large solar array substantially complete/operating; parallel dark module rows across multiple graded polygons; O&M building + substation visible; compact gravel pad with structures consistent with BESS containers",
+   "artifact": "imagery/key/s2_2026-07-01_solar_3km.png"
+  },
+  {
+   "date": "2026-07-01",
+   "observation": "1km substation chip: white O&M building, gravel pad, dense module rows immediately adjacent \u2014 consistent with operating BESS co-located with substation",
+   "artifact": "imagery/key/s2_2026-07-01_substation_1km.png"
+  }
+ ],
+ "key_sources": [
+  {
+   "title": "Intersect Power press release \u2014 Quantum begins operations June 2026",
+   "url": "https://www.intersect.com/news/google-and-intersect-deepen-texas-roots-with-new-data-center-and-energy-investments-in-gray-and-roberts-counties",
+   "date": "2026-06-04",
+   "artifact": "sources/2026-07-19_intersect_quantum-operations-PR.html",
+   "quote": "Quantum will begin operations this month"
+  },
+  {
+   "title": "Haskell CAD \u2014 IP Quantum BESS LLC property records",
+   "url": "https://haskellcad.org/Home/SearchTableV2",
+   "date": "2026-07-19",
+   "artifact": "sources/2026-07-19_haskell_cad_quantum_owners.json",
+   "quote": "BESS FACILITY-320 MWAC, market value $173.5M + $175.4M = $349M total"
+  },
+  {
+   "title": "ERCOT TPIT July 2026 \u2014 Kilby 345kV station In-Service",
+   "url": "https://www.ercot.com/files/docs/2022/03/02/ERCOT-July-Ad-Hoc-TPIT-No-Cost-071326-UPDATE.xlsx",
+   "date": "2026-07-13",
+   "artifact": "sources/2026-07-13_ercot_TPIT.xlsx",
+   "quote": "Kilby: Construct New 345kV Station \u2014 Interconnect Quantum Solar \u2014 IN-SERVICE 2026-01-27"
+  },
+  {
+   "title": "Sentinel-2 imagery \u2014 operating solar+BESS complex, July 2026",
+   "date": "2026-07-01",
+   "artifact": "imagery/key/s2_2026-07-01_solar_3km.png"
+  },
+  {
+   "title": "ERCOT queue timeline (parquet)",
+   "date": "2026-07-19",
+   "artifact": "timeline.md"
+  }
+ ],
+ "negative_evidence": [
+  "IA PDF not retrieved \u2014 PUCT interchange portal returned 402 on all attempts",
+  "Google Maps Static API not enabled \u2014 no site map generated",
+  "No JETI/Ch.313 abatement found \u2014 expected for post-2022 BESS, not evidence of paper project",
+  "ERCOT approvedForCommercialOperation milestone remains null as of 2026-06-01 snapshot \u2014 7 weeks before today; likely administrative lag given developer stated operations began June 2026",
+  "Exact parcel acreage not retrieved \u2014 no IA exhibit or abatement doc"
+ ],
+ "real_project_verdict": "real_active"
+}

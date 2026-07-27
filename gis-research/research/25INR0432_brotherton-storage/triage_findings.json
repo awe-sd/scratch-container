@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0432",
+  "project": "Brotherton Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.6735,
+    "lon": -95.7480,
+    "method": "Nominatim lookup of 'Tucker' hamlet, Anderson County — matches POI 'Tucker Sub 138kV'",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth failed (401); no imagery retrieved. Queue data shows no construction-start date reported."
+  },
+  "cod_first_look": {
+    "reported": "2027-05-01",
+    "plausible": true,
+    "why": "IA signed 2024-08-06 + 6.9(1) met 2025-09-15; ~18 months to COD is tight but within BESS build window; COD has already drifted twice (~2 years total), so further slip is plausible"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA dated 2024-08-06 confirmed in queue but PUCT Interchange portal was 402-blocked — retrieve IA PDF to extract milestone schedule and POI substation coordinates",
+    "CDSE credentials failing (401) — fix auth and run tight 1-km chips around Tucker Sub (31.6735, -95.7480) to check for graded pad or container placement",
+    "No developer/LLC identity surfaced — Texas SOS entity search for 'Brotherton Storage' or 'Brotherton Energy' to identify sponsor and backcheck against known BESS developers",
+    "Meets 6.9(1) but NOT all 6.9 — determine what remaining 6.9 condition(s) are outstanding; this is the key permitting gate before COD"
+  ],
+  "turns_used": 30
+}

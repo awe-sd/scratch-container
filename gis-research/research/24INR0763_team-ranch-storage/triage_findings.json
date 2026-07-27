@@ -1,0 +1,35 @@
+{
+  "inr": "24INR0763",
+  "project": "Team Ranch Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.673,
+    "lon": -97.461,
+    "method": "Nominatim city geocode for Benbrook TX (POI name: 1869 Benbrook Switch 345kV)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "inconclusive",
+    "evidence": "2/9 CDSE chips obtained (north of center); CDSE auth degraded, center POI area not captured; no BESS pad visible in partial coverage"
+  },
+  "cod_first_look": {
+    "reported": "2027-03-01",
+    "plausible": true,
+    "why": "FIS not yet approved as of Jun-2026; ~9 months to COD requires IA + construction in parallel — tight but not impossible for BESS"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange: search for IA filing under 'Team Ranch Storage' or 'Benbrook' — portal was 402-blocked during triage",
+    "CDSE imagery at POI center (32.673, -97.461) once auth recovers — center chips not obtained",
+    "TX SOS entity lookup for 'Team Ranch Storage LLC' to confirm developer identity",
+    "FIS approval status — FIS requested Jun-2024 but not approved by Jun-2026 (2-year gap); confirm still active"
+  ],
+  "turns_used": 28
+}

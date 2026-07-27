@@ -1,0 +1,27 @@
+{
+  "inr": "26INR0633",
+  "project": "Betel Storage II",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-12-17",
+    "plausible": false,
+    "why": "No IA signed, FIS not approved, 0 of 6 milestones met — cannot COD in ~5 months from this state"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Identify parent developer behind both Betel Storage I (26INR0630) and II (26INR0633) — same queue date, same county, same POI bus 3377 Little Pond Switch 345kV; check TX SOS for LLC registrant",
+    "PUCT Interchange was 402-blocked during triage — check for IA filings under 'Betel Storage' or developer name once portal accessible",
+    "4 projects share Little Pond 345kV bus (26INR0630, 26INR0633, 27INR0216 Champs Elysees BESS, 29INR0120 MilamStation) — locate substation coordinates (OSM bus 3377) for imagery",
+    "gmaps.py was 429-rate-limited — retry delivery pin search when quota resets"
+  ],
+  "turns_used": 28
+}

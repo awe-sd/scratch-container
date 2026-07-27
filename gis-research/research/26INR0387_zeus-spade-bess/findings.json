@@ -1,0 +1,72 @@
+{
+  "inr": "26INR0387",
+  "project": "Zeus Spade BESS",
+  "researched_at": "2026-07-19",
+  "real_project_verdict": "paper",
+
+  "site": {
+    "lat": 32.33583,
+    "lon": -100.91556,
+    "method": "Wikipedia List of power stations in Texas — Morgan Creek Steam Electric Station at 32°20'09\"N 100°54'56\"W; POI 'Tap 345 kV 1030 Morgan Creek' matches ERCOT bus #1030 at that station",
+    "confidence": "high for substation location; exact BESS pad within site unknown"
+  },
+
+  "parcels": [],
+
+  "llc_chain": [
+    {
+      "entity": "Zeus Spade BESS, LLC",
+      "relation": "SPV (queue registrant)",
+      "evidence": "Queue record only; not found in TX Comptroller franchise tax search; TX SOS requires paid access"
+    },
+    {
+      "entity": "unknown parent",
+      "relation": "developer",
+      "evidence": "Only 'Spade BESS' named on tracker aggregators (banned sources); no primary source — no press release, no PUCT filing, no SEC Form D, no LinkedIn announcement found"
+    }
+  ],
+
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Mitchell CAD requires OAuth login — no parcel records accessible. No abatement or IA filed. Likely at or adjacent to existing Morgan Creek Steam Electric Station (former Luminant gas plant) — land tenure and lessor/owner unknown."
+  },
+
+  "construction": {
+    "verdict": "no_activity",
+    "first_activity_seen": null,
+    "evidence": [
+      "s2_center_2026-06-15.png (1 km buffer at 32.33, -100.91): Morgan Creek Steam Electric Station visible — existing power plant building, cooling tower, lake edge; no BESS pad, grading, or container rows",
+      "s2_xwide_2026-06-15.png (3 km buffer): Lake Colorado City (Morgan Creek Reservoir) + power plant footprint + ranchland; no new construction or disturbed ground anywhere in frame",
+      "Triage eastern chips (s2_32.33_-100.88_2026-06-01, s2_32.36_-100.88_2026-06-01): farmland and creek drainage east of the substation; no activity",
+      "CDSE auth expired before fresh chips at corrected coords (32.33583, -100.91556) — 4 chips retrieved total, all showing no_activity at or adjacent to site"
+    ]
+  },
+
+  "cod_assessment": {
+    "reported": "2028-03-20",
+    "independent": "2029-Q2 at earliest; more likely 2029-H2 or cancellation",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "No signed IA exists — COD 2028-03-20 is a queue placeholder with no contractual grounding; PUCT Interchange confirms 0 records for Zeus Spade as filing party or utility name as of 2026-07-19",
+      "FIS not approved as of latest queue snapshot (2026-06-01), 17 months after FIS request (2025-01-24); typical FIS turnaround is 6-12 months — already overdue; until FIS clears, IA cannot be signed",
+      "Even optimistic: FIS Q3-2026 + IA execution 6 months (Q1-2027) + NTP + BESS build 15 months → COD ~2028-Q4; but no evidence FIS is imminent; realistically 2029 or beyond",
+      "COD slipped 1 year (2027-03-20 → 2028-03-20) in Jun 2026 snapshot while no milestones advanced — pattern consistent with speculative project extending timeline rather than executing",
+      "Zero real-project signals: no developer identity, no financing, no PPA, no land rights, no abatement, no construction"
+    ]
+  },
+
+  "project_area": {
+    "acres": null,
+    "source": "not found — no IA, no abatement, CAD inaccessible",
+    "artifact": null
+  },
+
+  "contractual_schedule": {
+    "documents": [],
+    "note": "No signed IA found. PUCT Interchange search confirmed 0 records for Zeus Spade (both FilingParty and UtilityName) as of 2026-07-19.",
+    "milestones": []
+  },
+
+  "negative_searches": 18,
+  "banned_source_violations": 0
+}

@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0485",
+  "project": "Rutile BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.745,
+    "lon": -99.948,
+    "method": "POI substation — Ballinger TX county seat, 138kV BALLINGER-WEISS tap",
+    "confidence": "low — county-level only, no precise coordinates confirmed"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "3/9 CDSE chips retrieved (BALLINGER area), no contact sheet built due to budget; groundbreaking reportedly occurred (mk.co.kr, blocked) but no imagery confirmation"
+  },
+  "cod_first_look": {
+    "reported": "2028-03-31",
+    "plausible": true,
+    "why": "IA signed 2025-07-17, FIS approved 2025-10-20, EPC contracted Sep 2025 — 28-month runway to COD is tight but credible for BESS; COD drifted 3x (2025-12-31→2028-03-31→2026-06-30→2028-03-31), schedule instability noted"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF via PUCT Interchange (PUCT blocked during triage — retry with authenticated session); extract milestone schedule exhibit",
+    "Precise site coordinates: mk.co.kr groundbreaking article blocked — try Korean-language sources or HD Hyundai Electric investor filings for site address",
+    "CDSE imagery re-run with correct substation pin: need BALLINGER 138kV substation exact lat/lon (OpenInfraMap/HIFLD), then tight 1-km chip + 2023 baseline to confirm groundbreak activity",
+    "JETI application: JETI registry page errored during triage — check when site recovers; KOSPO/Alpha JV is a plausible JETI applicant",
+    "Developer confirmation: verify which entity of KOSPO/Alpha Asset/KBI is the PUCT filing party and IA counterparty"
+  ],
+  "turns_used": 28
+}

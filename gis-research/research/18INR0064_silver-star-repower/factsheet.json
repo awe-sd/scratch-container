@@ -1,0 +1,71 @@
+{
+ "inr": "18INR0064",
+ "generated": "2026-07-20",
+ "project": "Silver Star repower",
+ "county": "Eastland",
+ "fuel": "WIN",
+ "technology": "WT",
+ "capacity_mw": -7.2,
+ "queue_cod": "2026-07-01",
+ "milestones": {
+  "screeningStudyComplete": "2017-05-08",
+  "fisApproved": "2018-04-26",
+  "iaSigned": "2018-10-16",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 32,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": false,
+  "candidates": []
+ },
+ "registry": {
+  "tool": "faa",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 50,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 20,
+   "detail": "32 COD slips"
+  },
+  {
+   "factor": "no_verified_ia",
+   "points": 10,
+   "detail": "iaSigned claimed but no IA found on disk or in the docket join table"
+  },
+  {
+   "factor": "spv_unresolvable",
+   "points": 10,
+   "detail": "no SPV via spv.py or any registry"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "paper_kill",
+  "priority": null,
+  "reason": "paper_score 50 >= 50"
+ }
+}

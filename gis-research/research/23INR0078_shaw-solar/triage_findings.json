@@ -1,0 +1,36 @@
+{
+  "inr": "23INR0078",
+  "project": "Shaw Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.7365,
+    "lon": -99.1116,
+    "method": "POI substation inference — Bandera Substation (OSM W320757401) on the Verde Creek–Bandera 138kV tap; solar farm will be somewhere along this line in Bandera County",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE 401 auth failure — no imagery acquired"
+  },
+  "cod_first_look": {
+    "reported": "2026-10-16",
+    "plausible": true,
+    "why": "Energization approval granted 2026-06-04; all 6.9 milestones met 2025-04-30; COD has slipped 3 years but late-stage milestones are real"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF via PUCT Interchange (portal returned 402 during triage — retry with browser/session; IA signed 2023-02-17 per queue, PDF will name parties, POI exact location, and schedule exhibit)",
+    "Developer Rio Lago Solar — confirm LLC registration (TX SOS), corporate structure, track record, other projects",
+    "Site pinpoint: run cdse.py chips once CDSE creds are loaded; Bandera Substation at 29.7365/-99.1116 is the anchor but actual site may be 10-20km along the Verde Creek–Bandera 138kV corridor",
+    "PUCT TEF or other PUCT dockets under Shaw Solar LLC / Rio Lago Solar",
+    "CAD parcel search in Bandera County Appraisal District for large acreage optioned or sold to Rio Lago / Shaw Solar"
+  ],
+  "turns_used": 28
+}

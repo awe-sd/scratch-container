@@ -1,0 +1,74 @@
+{
+ "inr": "26INR0417",
+ "generated": "2026-07-20",
+ "project": "GAMAY ENERGY STORAGE",
+ "county": "Brazoria",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 418.6,
+ "queue_cod": "2028-01-01",
+ "milestones": {
+  "screeningStudyComplete": "2024-04-30",
+  "fisApproved": null,
+  "iaSigned": "2025-05-27",
+  "financial_security": "No"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ok",
+  "plant_id": 69200,
+  "entity": "ESTX-PLD-HOUSTON2, LLC",
+  "planned_cod": "2026-06",
+  "cod_delta_quarters": -6.3,
+  "dropped_scope": null,
+  "coords": [
+   29.45207,
+   -95.30828
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "ESTX-PLD-HOUSTON2, LLC",
+    "detail": "plant=SAHARA BESS (SOHO BESS) 408.7MW (TS) Construction complete, but not yet  @29.45207,-95.30828 planned=2026-06"
+   },
+   {
+    "source": "puct-index",
+    "entity": "GAMAY ENERGY STORAGE LLC",
+    "detail": "ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT Between GAMAY ENERGY STORAGE LLC and Texas-New Mexico Powe"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "verified_ia_on_disk"
+ ],
+ "paper_score": 16,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 24.02,
+  "reason": "reality signal"
+ }
+}

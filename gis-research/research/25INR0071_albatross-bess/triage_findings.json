@@ -1,0 +1,32 @@
+{
+  "inr": "25INR0071",
+  "project": "Albatross BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.438,
+    "lon": -97.394,
+    "method": "POI description references McGregor substation (Bus #161 McGregor), McLennan County TX",
+    "confidence": "low"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-02-22",
+    "plausible": true,
+    "why": "FIS approved Oct 2025; no IA yet; 2028 COD allows ~2 years for IA + 12-18 month BESS build — tight but not impossible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "IA filing: no IA signed yet; once IA executes, PUCT Interchange and ERCOT milestone will update — poll quarterly",
+    "Developer ID: no parent company surfaced at all; TX SOS lookup for 'Albatross BESS LLC' would establish sponsor lineage",
+    "Imagery: CDSE creds needed; once available, run tight chip around McGregor substation (31.44N, -97.40W) to check pad prep",
+    "Windsor Switch substation (Bus #165): locate via ERCOT transmission GIS to sharpen site candidate before imagery"
+  ],
+  "turns_used": 22
+}

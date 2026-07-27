@@ -1,0 +1,28 @@
+{
+  "inr": "24INR0386",
+  "project": "Black & Gold Energy Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-07-30",
+    "plausible": true,
+    "why": "IA signed Aug 2024 and 6.9(1) met Feb 2025; ~12-18 month BESS build window makes 2027-Q3 tight but not impossible — COD has already slipped 2.5 years from original 2024-12 target and capacity was trimmed, so schedule discipline is uncertain"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2024-08-14 per queue data but PDF not retrieved (PUCT Interchange blocked 402) — obtain IA to confirm POI, schedule milestones, and CEII redaction status",
+    "Yellow Jacket Sub 138kV (ERCOT bus 6364) coordinates unknown — locate substation on ERCOT transmission maps or AEP Texas GIS to pin the site for imagery",
+    "Developer identity entirely absent from web — LLC registration search via TX SOS and any parent-company press releases is the priority lead",
+    "FIS never approved despite IA being signed — unusual gate sequence; deep scan should check if FIS waiver or Phase II study is in play",
+    "Meets 6.9(1) but not all 6.9 — outstanding 6.9 conditions could be a COD blocker; extract from IA schedule exhibit"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,1029 @@
+{
+"source": "data.texas.gov Central Registry Files",
+"fetched": "2026-07-19",
+"datasets": {
+"North Texas": "5eqq-7nad",
+"Dallas/Fort Worth": "t34q-qzi3",
+"Central Texas": "msah-s2rv",
+"Coastal & East Texas": "tzyg-j7q4",
+"Border & Permian Basin": "9iad-hrn8"
+},
+"routes": {
+"ARCHER": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"ARMSTRONG": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"BAILEY": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"BAYLOR": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"BRISCOE": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"BROWN": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"CALLAHAN": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"CARSON": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"CASTRO": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"CHILDRESS": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"CLAY": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"COCHRAN": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"COKE": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"COLEMAN": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"COLLINGSWORTH": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"COMANCHE": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"CONCHO": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"COTTLE": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"CROCKETT": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"CROSBY": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"DALLAM": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"DEAF SMITH": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"DICKENS": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"DONLEY": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"EASTLAND": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"FISHER": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"FLOYD": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"FOARD": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"GARZA": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"GRAY": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"HALE": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"HALL": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"HANSFORD": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"HARDEMAN": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"HARTLEY": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"HASKELL": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"HEMPHILL": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"HOCKLEY": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"HUTCHINSON": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"IRION": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"JACK": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"JONES": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"KENT": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"KIMBLE": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"KING": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"KNOX": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"LAMB": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"LIPSCOMB": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"LUBBOCK": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"LYNN": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"MASON": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"MCCULLOCH": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"MENARD": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"MITCHELL": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"MONTAGUE": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"MOORE": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"MOTLEY": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"NOLAN": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"OCHILTREE": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"OLDHAM": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"PARMER": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"POTTER": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"RANDALL": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"REAGAN": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"ROBERTS": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"RUNNELS": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"SCHLEICHER": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"SCURRY": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"SHACKELFORD": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"SHERMAN": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"STEPHENS": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"STERLING": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"STONEWALL": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"SUTTON": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"SWISHER": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"TAYLOR": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"TERRY": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"THROCKMORTON": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"TOM GREEN": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"WHEELER": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"WICHITA": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"WILBARGER": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"YOAKUM": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"YOUNG": {
+"region": "North Texas",
+"dataset": "5eqq-7nad"
+},
+"COLLIN": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"COOKE": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"DALLAS": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"DENTON": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"ELLIS": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"ERATH": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"FANNIN": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"GRAYSON": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"HOOD": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"HUNT": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"JOHNSON": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"KAUFMAN": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"NAVARRO": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"PALO PINTO": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"PARKER": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"ROCKWALL": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"SOMERVELL": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"TARRANT": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"WISE": {
+"region": "Dallas/Fort Worth",
+"dataset": "t34q-qzi3"
+},
+"ATASCOSA": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"BANDERA": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"BASTROP": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"BELL": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"BEXAR": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"BLANCO": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"BOSQUE": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"BRAZOS": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"BURLESON": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"BURNET": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"CALDWELL": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"COMAL": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"CORYELL": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"EDWARDS": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"FALLS": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"FAYETTE": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"FREESTONE": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"FRIO": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"GILLESPIE": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"GRIMES": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"GUADALUPE": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"HAMILTON": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"HAYS": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"HILL": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"KARNES": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"KENDALL": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"KERR": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"LAMPASAS": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"LEE": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"LEON": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"LIMESTONE": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"LLANO": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"MADISON": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"MCLENNAN": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"MEDINA": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"MILAM": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"MILLS": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"REAL": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"ROBERTSON": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"SAN SABA": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"TRAVIS": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"UVALDE": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"WASHINGTON": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"WILLIAMSON": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"WILSON": {
+"region": "Central Texas",
+"dataset": "msah-s2rv"
+},
+"ANDERSON": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"ANGELINA": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"ARANSAS": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"AUSTIN": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"BEE": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"BOWIE": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"BRAZORIA": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"CALHOUN": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"CAMP": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"CASS": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"CHAMBERS": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"CHEROKEE": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"COLORADO": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"DELTA": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"DEWITT": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"FORT BEND": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"FRANKLIN": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"GALVESTON": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"GOLIAD": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"GONZALES": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"GREGG": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"HARDIN": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"HARRIS": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"HARRISON": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"HENDERSON": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"HOPKINS": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"HOUSTON": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"JACKSON": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"JASPER": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"JEFFERSON": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"JIM WELLS": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"KLEBERG": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"LAMAR": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"LAVACA": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"LIBERTY": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"LIVE OAK": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"MARION": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"MATAGORDA": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"MONTGOMERY": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"MORRIS": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"NACOGDOCHES": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"NEWTON": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"NUECES": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"ORANGE": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"PANOLA": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"POLK": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"RAINS": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"RED RIVER": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"REFUGIO": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"RUSK": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"SABINE": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"SAN AUGUSTINE": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"SAN JACINTO": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"SAN PATRICIO": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"SHELBY": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"SMITH": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"TITUS": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"TRINITY": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"TYLER": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"UPSHUR": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"VAN ZANDT": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"VICTORIA": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"WALKER": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"WALLER": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"WHARTON": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"WOOD": {
+"region": "Coastal & East Texas",
+"dataset": "tzyg-j7q4"
+},
+"ANDREWS": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"BORDEN": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"BREWSTER": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"BROOKS": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"CAMERON": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"CRANE": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"CULBERSON": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"DAWSON": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"DIMMIT": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"DUVAL": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"ECTOR": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"EL PASO": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"GAINES": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"GLASSCOCK": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"HIDALGO": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"HOWARD": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"HUDSPETH": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"JEFF DAVIS": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"JIM HOGG": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"KENEDY": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"KINNEY": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"LA SALLE": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"LOVING": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"MARTIN": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"MAVERICK": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"MCMULLEN": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"MIDLAND": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"PECOS": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"PRESIDIO": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"REEVES": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"STARR": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"TERRELL": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"UPTON": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"VAL VERDE": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"WARD": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"WEBB": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"WILLACY": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"WINKLER": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"ZAPATA": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+},
+"ZAVALA": {
+"region": "Border & Permian Basin",
+"dataset": "9iad-hrn8"
+}
+}
+}

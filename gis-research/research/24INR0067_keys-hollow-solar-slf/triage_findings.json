@@ -1,0 +1,29 @@
+{
+  "inr": "24INR0067",
+  "project": "KEYS HOLLOW SOLAR SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-03-10",
+    "plausible": true,
+    "why": "IA signed Oct 2024; ~3.5yr to COD is tight but within range for 200MW solar with no FIS approved yet"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA confirmed in queue data (2024-10-29) but PUCT Interchange blocked — retrieve IA document for parties, POI detail, and milestone schedule",
+    "FIS never approved despite IA being signed — unusual; clarify study status in IA or ERCOT GIS notes",
+    "No developer identity surfaced — search TX SOS for 'Keys Hollow Solar SLF LLC' to identify sponsor",
+    "Sibling project 24INR0065 (Keys Hollow Solar Phase II SLF) in same queue — likely same site; pull both IAs together",
+    "Site location unknown — PUCT IA exhibit or TX appraisal district parcel search for Goliad County could yield a site polygon",
+    "COD 2028-03-10 has slipped 3.5 years already with no 6.9 milestones; re-evaluate plausibility after IA schedule review"
+  ],
+  "turns_used": 18
+}

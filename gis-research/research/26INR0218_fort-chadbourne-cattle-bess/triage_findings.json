@@ -1,0 +1,32 @@
+{
+  "inr": "26INR0218",
+  "project": "Fort Chadbourne Cattle BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.001,
+    "lon": -100.289,
+    "method": "POI name 'Fort Chadbourne 138 kv' resolved via Nominatim to Fort Chadbourne hamlet, Coke County TX",
+    "confidence": "low"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-06-29",
+    "plausible": false,
+    "why": "No IA signed, no FIS approved; BESS build ~12-18 months means IA+NTP needed by end-2025 to hit Jun-2027 — not evidenced; COD already drifted twice (2026→2028→2027)"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange search for IA filing once portal accessible (all T4 attempts returned 402)",
+    "CDSE imagery at 32.001,-100.289 once credentials restored — confirm or deny bare-ground pad near Fort Chadbourne substation",
+    "gmaps.py places once rate-limit clears — pin would upgrade site confidence from low",
+    "Developer identity unknown — no web footprint found; ERCOT GINR Study Phase field in queue data may name applicant/representative"
+  ],
+  "turns_used": 28
+}

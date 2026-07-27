@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0396",
+  "project": "Kodiak AGR1",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.422,
+    "lon": -103.493,
+    "method": "web-sweep (gem.wiki city-level mention: Pecos, Reeves County TX)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery unavailable (auth failure); no IA signed; project pre-construction per gem.wiki and ercotqueue.com"
+  },
+  "cod_first_look": {
+    "reported": "2027-06-15",
+    "plausible": false,
+    "why": "FIS not yet approved as of Jun-2026 snapshot; no IA; diesel ICE peakers typically need 12-18 mo from IA to COD; 4% build probability per ercotqueue.com"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Texas Energy Fund In-ERCOT Loan application (180 MW vs 132 MW queue discrepancy — capacity change may signal scope revision)",
+    "TCEQ air permit application by Kodiak Generation LLC — get permit number and status to confirm site location",
+    "Locate precise site via TCEQ permit or ERCOT transmission map for Coyote Springs substation (38113 TNCOYOTSPG1)",
+    "Re-run imagery once CDSE credentials are restored"
+  ],
+  "turns_used": 22
+}

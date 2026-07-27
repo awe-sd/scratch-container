@@ -1,0 +1,119 @@
+{
+  "inr": "23INR0150",
+  "project": "Cradle Solar",
+  "researched_at": "2026-07-20",
+  "site": {
+    "lat": 29.28494,
+    "lon": -95.43309,
+    "method": "Google Places pin 'Cradle Solar Plant' (7HM8+XQ Angleton TX 77515); corroborated by IA Exhibit C POI structure coords 29.29293,-95.41503 (~1.6 km NNE — expected gate vs. interconnection structure offset); TCEQ stormwater NOI site desc '1 mile off Highway 48 and left into frontage rd' matches County Road 48, Angleton TX 77515 (same ZIP)",
+    "confidence": "high (pin/POI/TCEQ-address triangulation) — but imagery footprint NOT independently located within a searched 6x6km window (see construction notes)",
+    "map_artifacts": [
+      "sources/2026-07-20_puct_35077-1580_ercot-standard-generation-interco_p5.png",
+      "sources/ia_exhibit_b_schedule_p45.png",
+      "sources/ia_exhibit_c_coords_p46.png"
+    ]
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Cradle Solar, LLC",
+      "relation": "SPV",
+      "evidence": "Party on PUCT 35077-1580 SGIA; address 6688 N Central Expy Ste 500 Dallas TX 75206; email AssetMgmt@LeewardEnergy.com — IA Exhibit D"
+    },
+    {
+      "entity": "Leeward Renewable Energy (LRE)",
+      "relation": "developer/owner",
+      "evidence": "Email domain @LeewardEnergy.com on IA Exhibit D; LRE HQ = 6688 N Central Expy Ste 500 Dallas TX 75206 per Places pin; sources/leeward_microsoft_ppa_summary.md"
+    },
+    {
+      "entity": "Microsoft Corporation",
+      "relation": "PPA offtaker",
+      "evidence": "~200 MW PPA announced ~March 2024; sources/leeward_microsoft_ppa_summary.md"
+    }
+  ],
+  "land_tenure": {
+    "status": "leased",
+    "evidence": "IA p52 references 'existing land lease with fee owner(s)' and TSP reimbursing generator 'up to market value of the acquired land rights' — confirms leased land"
+  },
+  "construction": {
+    "verdict": "construction_started_per_regulatory_filing",
+    "first_activity_seen": "2024-10-03",
+    "evidence": [
+      "TCEQ Central Registry (live SoQL query, data.texas.gov table tzyg-j7q4, queried 2026-07-20): facility 'CRADLE SOLAR' (RN112058680), 2 ACTIVE construction-stormwater NOIs (TXR1539SI, TXR1573SY), affil_begin_dt/status_dt = 2024-10-03, site desc '1 MILE OFF OF HIGHWAY 48 AND LEFT INTO FRONTAGE RD.' — matches County Road 48, Angleton TX 77515 (same ZIP as the Places-pin site); owner/contractor of record = PCL Solar Constructors USA Inc. (a known utility-scale solar EPC) — this is direct regulatory evidence of an active >1-acre construction site, dated",
+      "CONTRADICTS EIA-860M for the same plant/period: plant 65822 'Cradle Solar' (entity 'Infigen Asset Management LLC') shows status regressing FROM (U) Under construction ≤50% (through 2024-05) TO (T) Regulatory approvals received/not under construction (2024-06 to 2024-11) TO (L) Regulatory approvals PENDING/not under construction (2024-12 through the last-seen 2026-04 report) — i.e. EIA says NOT under construction for the exact window (Oct 2024 onward) the TCEQ stormwater permit says IS under construction",
+      "Plant 65822 vanished entirely from the newest EIA-860M snapshot (2026-05-01) after being present every month through 2026-04-01 — meets DROPPED_FROM_860M definition",
+      "cradlesolartx.com (official project site, fetched 2026-07-20): displays a 'Targeted Operational' date of 2026, project described as still in development phase with a timeline progress graphic (not machine-readable); 1,600 acres, no EPC/PPA/module-brand disclosed",
+      "sources/leeward_microsoft_ppa_summary.md: news ~March 2024 described project as 'actively under construction'/'currently under development'",
+      "Satellite imagery: obtained via background (nohup) chip calls after foreground calls hung on shared fleet CDSE contention (other concurrent research agents were also hitting CDSE this session). 5 chips + a 9-tile grid around the pin/POI (Mar 2026, low cloud) show NO large-scale grading/racking signature in a ~6x6km window — inconclusive (early sitework may be sub-resolution, or the true footprint may sit outside the searched box) rather than a clean negative. See log.md and dossier §6."
+    ],
+    "resolution_of_eia_vs_tceq_contradiction": "TCEQ wins: it is a dated, site-addressed regulatory filing naming a specific EPC (PCL Solar Constructors), filed AFTER the EIA status regressed to 'not under construction' and kept ACTIVE through the present. EIA-860M self-reported status for this entity looks stale/understated for this project — plausible explanations: (a) Infigen Asset Management LLC (the EIA-reporting entity, a 2016-era holding name later absorbed into Leeward's US portfolio) may not have kept the 860M filing current after an internal reorg, or (b) the (L)/pending EIA status describes a paperwork/interconnection-approval lag distinct from physical site work, which TCEQ's stormwater permit (triggered purely by disturbed acreage) does not require. The whole-plant disappearance from the 2026-05 EIA snapshot is NOT read as cancellation given the active TCEQ permit and the developer's own site still marketing a 2026 target COD; more likely an EIA reporting/matching gap than a real withdrawal — flagged, not resolved with certainty."
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "ERCOT SGIA CenterPoint Houston Electric LLC + Cradle Solar LLC (PUCT 35077-1580)",
+        "signed": "2023-03-15",
+        "financial_security": "$21,237,000 TIF security estimate — LC or cash per Exhibit E",
+        "artifact": "sources/2026-07-20_puct_35077-1580_ercot-standard-generation-interconnection-agreem.pdf"
+      }
+    ],
+    "scheduled_start_date": "2023-03-30",
+    "tif_in_service_date": "2024-10-02 (or 18 mo after start, whichever later — Exhibit B)",
+    "scheduled_cod": "2025-01-02 (or 3 mo after TIF In-Service — Exhibit B)"
+  },
+  "project_area": {
+    "acres": 1600,
+    "source": "official project website cradlesolartx.com (fetched 2026-07-20)",
+    "artifact": "sources/2026-07-20_cradlesolartx_official-site.html"
+  },
+  "poi": {
+    "description": "tap 345kV 42500 Dow - 43035 Oasis ckt 18",
+    "substation_name": "SPEEDWAY Substation (CenterPoint TSP system)",
+    "generator_substation": "CRADLE Substation (customer-owned)",
+    "poi_coords_dd": "29.29293, -95.41503",
+    "delivery_voltage": "345 kV",
+    "source": "IA Exhibit C p46"
+  },
+  "equipment": {
+    "inverters": "310 TMEIC PVU-L0840GR solar inverters; 62 groups of 5, each with 4.2 MVA step-up transformer",
+    "planned_capacity_mw_terminal": 225,
+    "source": "IA Exhibit C (ia_exhibit_c_coords_p46.png)"
+  },
+  "eia_match": {
+    "status": "CORRECTED 2026-07-20 refresh — prior run false-bound to plant 66046 (Danciger, unrelated operating project); true match is EXACT NAME on plant 65822 'Cradle Solar', entity 'Infigen Asset Management LLC' (Infigen = predecessor name later absorbed into Leeward Renewable Energy portfolio), coords 29.295201,-95.42685 (matches IA POI area)",
+    "plant_id": 65822,
+    "status_history_summary": "(U) Under construction ≤50% 2022-08 through 2024-05 (with a brief (T) blip 2023-01/02) → (T) Regulatory approvals received, not under construction 2024-06 through 2024-11 → (L) Regulatory approvals PENDING, not under construction 2024-12 through 2026-04 (16 straight months)",
+    "planned_cod_history": "2024-06 → slipped to 2024-12 → 2025-12 → 2026-05 → 2027-05 (as of 2025-11 report) — EIA's own planned-COD has slipped in lockstep with the queue's",
+    "dropped_from_860m": "plant 65822 present through the 2026-04-01 report, ABSENT from the newest 2026-05-01 snapshot — meets the DROPPED_FROM_860M definition (vanished from newest snapshot)",
+    "note": "Contradicts a straight 'construction active' narrative: EIA regressed from (U) under-construction back to (L) not-under-construction in Dec 2024 and stayed there 16 months, then the whole plant record vanished from the 2026-05 snapshot. This is the central tension the REFRESH_DIRECTIVE flagged — resolve against TCEQ storm NOIs next."
+  },
+  "cod_assessment": {
+    "reported": "2027-09-17",
+    "independent": "2027-Q4",
+    "drift_risk": "medium",
+    "reasoning_evidence": [
+      "timeline.md: 4 COD slips — original 2023-08-31 → current 2027-09-17; ~4-year total slip",
+      "Original IA Exhibit B Sched COD = Jan 2 2025; queue now claims 2027-09-17 = 33-month contractual slip; NO amendment has been filed in docket 35077 as of this refresh (puct.py match still returns only the original SGIA) — the 2027 date is a self-reported queue update, not yet contractually re-papered",
+      "All milestones cleared: IA signed 2023-03, FIS approved 2025-03, all 6.9 gates met 2025-04",
+      "Microsoft PPA signed ~March 2024 creates commercial COD pressure",
+      "EIA-860M's OWN planned-COD (plant 65822, corrected match) has independently slipped in step: 2024-06 -> 2024-12 -> 2025-12 -> 2026-05 -> 2027-05 (last 7 reports); 2027-05 EIA vs 2027-09 queue are ~4 months apart, i.e. two independent self-reported sources now roughly agree on a 2027 COD",
+      "TCEQ active construction-stormwater NOI since 2024-10-03 with a named EPC (PCL Solar Constructors) is direct regulatory evidence physical site work has started — the strongest single 'real, not paper' signal",
+      "Official project site (cradlesolartx.com) still shows a development-phase progress indicator and a 'Targeted Operational' year of 2026, one year ahead of the queue's own 2027-09-17 claim — an unreconciled discrepancy between the developer's public marketing and its own ERCOT filing",
+      "Satellite imagery (Mar 2026, ~6x6km search window around pin/POI, 5 usable chips + 9-tile grid): NO large-scale grading/racking signature found — could mean early-stage sitework not yet visible at 10m/px, OR the true array footprint sits outside the searched window; NOT resolved this session",
+      "Pattern: slips have been ~6-12 mo at a time historically; two independent sources (EIA self-report, queue self-report) now cluster around mid/late-2027"
+    ]
+  },
+  "real_project_verdict": "real_active",
+  "negative_searches": 7,
+  "banned_source_violations": 0,
+  "refresh_2026-07-20": {
+    "central_question_resolved": "TCEQ construction-stormwater NOI (active, filed 2024-10-03, EPC PCL Solar Constructors, site matches project ZIP) is treated as ground truth over the EIA-860M 'not under construction'/dropped signal for plant 65822 — see construction.resolution_of_eia_vs_tceq_contradiction",
+    "eia_false_bind_corrected": "prior run's eia_history.json was bound to --plant-id 66046 (Danciger, unrelated OPERATING project since 2022) — a false bind per playbook D5 EIA BIND RULE. Correct match is exact-name plant 65822 'Cradle Solar' / entity 'Infigen Asset Management LLC'. eia_history.json on disk needs regeneration with --plant-id 65822.",
+    "new_sources_this_run": [
+      "sources/2026-07-20_cradlesolartx_official-site.html (official project site: 1,600 ac, 'Targeted Operational' 2026, dev-phase progress bar)",
+      "sources/2026-07-20_lreus_cradle-solar-project-page.html (LRE project page: 200 MW, ~35mi S of Houston, no COD)",
+      "TCEQ live SoQL query result (2 STORM NOI rows, RN112058680) — not yet saved as a file artifact, see log.md for full JSON"
+    ],
+    "cdse_status": "5 chips + 9-tile grid obtained via background (nohup) calls (foreground hung on shared fleet CDSE contention from other concurrent research agents). Pin/POI area visually unchanged 2025-03 to 2026-03, no grading/racking signature found within a ~6x6km search window (imagery/grid_contact_sheet.png). Monthly timelapse job failed outright (RemoteDisconnected, retries exhausted) — no monthly bracket obtained. Result: imagery is INCONCLUSIVE, not a clean negative — the true footprint may be outside the searched window or too early-stage for 10m/px. Final frames copied to imagery/key/."
+  }
+}

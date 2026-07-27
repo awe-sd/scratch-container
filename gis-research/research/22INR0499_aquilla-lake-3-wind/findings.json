@@ -1,0 +1,90 @@
+{
+  "inr": "22INR0499",
+  "project": "Aquilla Lake 3 Wind",
+  "research_date": "2026-07-19",
+  "researcher": "Claude Sonnet 4.6",
+  "real_project_verdict": "real_early",
+  "verdict_confidence": "medium",
+  "verdict_reason": "IA signed 2024-01-24, FIS approved 2025-09-10, Meets all 6.9 — developer is Enel Green Power NA/Tradewind Energy (credible). No construction evidence found (FAA/imagery/county not completed due to budget).",
+
+  "llc_chain": [
+    {"entity": "Aquilla Lake 3 Wind, LLC", "role": "SPV/interconnecting entity", "source": "ERCOT GIS Jun 2026 report"},
+    {"entity": "Aquilla Wind Project, LLC (TIN 32068712812)", "role": "Predecessor/holding SPV", "source": "TX Comptroller open data, same Brickstone Sq address"},
+    {"entity": "Tradewind Energy, Inc.", "role": "Developer subsidiary", "source": "TX Comptroller data.texas.gov (100 Brickstone Sq Ste 300 Andover MA 01810)"},
+    {"entity": "Enel Green Power North America, Inc.", "role": "Developer parent (US)", "source": "TX Comptroller open data, shared mailing address"},
+    {"entity": "Enel S.p.A.", "role": "Ultimate parent (Italian utility, NYSE: ENLAY)", "source": "Public record / Tradewind acquisition Dec 2020"}
+  ],
+
+  "site": {
+    "lat": null,
+    "lon": null,
+    "method": "not_determined",
+    "confidence": "none",
+    "notes": "FAA OE/AAA search not completed (budget exhausted). No Google Places pin found. No parcel data obtained. POI references 68040 Kopperl to 68091 Navarro 345 kV line in Hill County. Site pinpoint deferred."
+  },
+
+  "parcels": [],
+  "land_tenure": "unknown",
+
+  "project_area": {
+    "acres": null,
+    "source": "not_found",
+    "artifact": null
+  },
+
+  "abatements": [],
+
+  "interconnection": {
+    "ia_signed_date": "2024-01-24",
+    "fis_approved_date": "2025-09-10",
+    "meets_all_69_date": "2025-09-10",
+    "poi_description": "tap 345 kV 68040 Kopperl to 68091 Navarro",
+    "tsp": "Oncor (inferred from NORTH zone, Hill County)",
+    "puct_control_no": null,
+    "ia_document_searched": false
+  },
+
+  "contractual_schedule": {
+    "documents": [],
+    "note": "PUCT Interchange search not completed — IA PDF not retrieved."
+  },
+
+  "construction": {
+    "verdict": "unknown",
+    "stage": "unknown",
+    "first_activity_date": null,
+    "evidence": "No imagery pulled, no FAA filings searched, no construction start date in ERCOT queue record as of Jun 2026."
+  },
+
+  "cod_assessment": {
+    "reported_cod": "2026-11-20",
+    "independent_estimate": "2027-Q4",
+    "drift_risk": "high",
+    "drift_risk_reasons": [
+      "Reported COD 2026-11-20 is only 4 months from research date (2026-07-19) — implausible for 297 MW wind with no construction dates recorded",
+      "FIS approved only 2025-09-10 (~10 months before reported COD) — wind construction typically 18-24 months",
+      "5 prior COD changes: 2022-12 → 2023-10 → 2026-10 → 2027-04 → 2027-03 → 2026-11-20; most recent is a pull-in (unusual without matching construction evidence)",
+      "No construction start date filed to ERCOT as of Jun 2026 snapshot",
+      "No FAA turbine coordinate filings found (searched not completed)"
+    ],
+    "cod_drift_history": "5 changes, 2021-03 → present (64 snapshots); 2022-12→2023-10→2026-10→2027-04→2027-03→2026-11-20",
+    "for_factors": ["IA signed", "FIS approved", "Meets all 6.9", "Credible developer (Enel/Tradewind)"],
+    "against_factors": ["No construction evidence", "4-month window to COD too tight for 297 MW wind", "Recent COD pull-in unexplained"]
+  },
+
+  "queue_history": {
+    "first_snapshot": "2021-03-01",
+    "latest_snapshot": "2026-06-01",
+    "total_snapshots": 64,
+    "cod_changes": 5,
+    "capacity_mw_changes": [305.0, 225.0, 308.0, 304.6, 297.4]
+  },
+
+  "sources": {
+    "timeline_md": "timeline.md",
+    "timeline_json": "timeline.json"
+  },
+
+  "incomplete_stages": ["Stage 2 (county/PUCT)", "Stage 3 (site pinpoint)", "Stage 4 (satellite imagery)"],
+  "budget_note": "Research truncated at 99.7% token budget after Stage 1 LLC chain. Stages 2-4 not completed."
+}

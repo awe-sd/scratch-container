@@ -1,0 +1,1566 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-07-20T03:20:30Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 9982307195,
+  "lat": 31.8902741,
+  "lon": -96.6593838,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-A3",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982319189,
+  "lat": 31.8327505,
+  "lon": -96.7135681,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-E5",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982319193,
+  "lat": 31.8372771,
+  "lon": -96.7046283,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-E6",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982335721,
+  "lat": 31.8610704,
+  "lon": -96.6456099,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-C1",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982335723,
+  "lat": 31.8310039,
+  "lon": -96.6859237,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-E1",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982335728,
+  "lat": 31.8355873,
+  "lon": -96.6743359,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-F4",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982335729,
+  "lat": 31.8328203,
+  "lon": -96.6814653,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-F3",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982336641,
+  "lat": 31.7909112,
+  "lon": -96.6440935,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-K4",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982336648,
+  "lat": 31.7879776,
+  "lon": -96.6497137,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-K5",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982347241,
+  "lat": 31.8515396,
+  "lon": -96.7071276,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-D3",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982347252,
+  "lat": 31.8518665,
+  "lon": -96.7224075,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-D4",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982347254,
+  "lat": 31.8487268,
+  "lon": -96.7171261,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-D4",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982347255,
+  "lat": 31.8272497,
+  "lon": -96.6931622,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-E2",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982350954,
+  "lat": 31.8810954,
+  "lon": -96.6487591,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-A2",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982350957,
+  "lat": 31.8765880,
+  "lon": -96.6561074,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-B1",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982352988,
+  "lat": 31.8835647,
+  "lon": -96.6781510,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-A6",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982398592,
+  "lat": 31.8861824,
+  "lon": -96.6666367,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-A4",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982398657,
+  "lat": 31.8797465,
+  "lon": -96.6848312,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-A7",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982398863,
+  "lat": 31.7809864,
+  "lon": -96.6688974,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-G2",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982403713,
+  "lat": 31.8754466,
+  "lon": -96.6404716,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-A1",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982403716,
+  "lat": 31.8850586,
+  "lon": -96.6733941,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-A5",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982405658,
+  "lat": 31.7848497,
+  "lon": -96.6629355,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-G1",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982408744,
+  "lat": 31.8734751,
+  "lon": -96.6621909,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-B2",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982408747,
+  "lat": 31.8709529,
+  "lon": -96.6672404,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-B3",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982423046,
+  "lat": 31.8644720,
+  "lon": -96.6881618,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-B6",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982430115,
+  "lat": 31.8589583,
+  "lon": -96.6004437,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-L5",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982435229,
+  "lat": 31.8661653,
+  "lon": -96.6816890,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-B5",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982435237,
+  "lat": 31.8623084,
+  "lon": -96.6975966,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-B7",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982435241,
+  "lat": 31.8588889,
+  "lon": -96.6520051,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-C2",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982435244,
+  "lat": 31.8522787,
+  "lon": -96.6794131,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-C6",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982439668,
+  "lat": 31.8495578,
+  "lon": -96.6583958,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-C3",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982439681,
+  "lat": 31.8465404,
+  "lon": -96.6698367,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-C5",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982441314,
+  "lat": 31.8851390,
+  "lon": -96.5723930,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-M3",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982445611,
+  "lat": 31.8592626,
+  "lon": -96.5947739,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-L6",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982448114,
+  "lat": 31.8494870,
+  "lon": -96.6960886,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-D2",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982449726,
+  "lat": 31.8684526,
+  "lon": -96.6735621,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-B4",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982452503,
+  "lat": 31.8518195,
+  "lon": -96.6910801,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-D1",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982453493,
+  "lat": 31.8479584,
+  "lon": -96.6641410,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-C4",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982454147,
+  "lat": 31.8381472,
+  "lon": -96.7211194,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-D6",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982454150,
+  "lat": 31.8242217,
+  "lon": -96.7014671,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-E3",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982454157,
+  "lat": 31.8220396,
+  "lon": -96.7086024,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-E4",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982456919,
+  "lat": 31.8834728,
+  "lon": -96.5812884,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-M2",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982457042,
+  "lat": 31.8243643,
+  "lon": -96.6671645,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-F5",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982457047,
+  "lat": 31.8291483,
+  "lon": -96.6558867,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-F7",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982457048,
+  "lat": 31.8262054,
+  "lon": -96.6614913,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-F6",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982457071,
+  "lat": 31.8404324,
+  "lon": -96.6180580,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-K1",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982457075,
+  "lat": 31.8424590,
+  "lon": -96.6137947,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-K2",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982457889,
+  "lat": 31.8526912,
+  "lon": -96.6124138,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-L1",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982458454,
+  "lat": 31.8924206,
+  "lon": -96.5935589,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-M5",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982458462,
+  "lat": 31.8942080,
+  "lon": -96.5885430,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982461606,
+  "lat": 31.8399286,
+  "lon": -96.6408127,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-F1",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982461612,
+  "lat": 31.8433537,
+  "lon": -96.6308731,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-J1",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982461613,
+  "lat": 31.8416676,
+  "lon": -96.6358477,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-J2",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982472458,
+  "lat": 31.8348038,
+  "lon": -96.6478785,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-F2",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982474603,
+  "lat": 31.8908695,
+  "lon": -96.5982272,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-M6",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982475173,
+  "lat": 31.8197015,
+  "lon": -96.6342917,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-K3",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982478134,
+  "lat": 31.8644052,
+  "lon": -96.6179985,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-L3",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982478146,
+  "lat": 31.8656691,
+  "lon": -96.6130224,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982478147,
+  "lat": 31.8624798,
+  "lon": -96.6224698,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-L4",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982479428,
+  "lat": 31.8807079,
+  "lon": -96.5865518,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-M1",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982489496,
+  "lat": 31.8565953,
+  "lon": -96.5973719,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-PMM1",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982494925,
+  "lat": 31.8603215,
+  "lon": -96.5889017,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-L7",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 9982494926,
+  "lat": 31.8880749,
+  "lon": -96.6036019,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "ref": "LMSTN-M6",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942768,
+  "lat": 31.7783452,
+  "lon": -96.7331855,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942769,
+  "lat": 31.7723226,
+  "lon": -96.7370523,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942770,
+  "lat": 31.7642551,
+  "lon": -96.7335979,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942771,
+  "lat": 31.7666267,
+  "lon": -96.7264311,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942772,
+  "lat": 31.7701385,
+  "lon": -96.7210881,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942773,
+  "lat": 31.7740971,
+  "lon": -96.7161850,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942774,
+  "lat": 31.7552113,
+  "lon": -96.7362734,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942775,
+  "lat": 31.7472768,
+  "lon": -96.7339494,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942776,
+  "lat": 31.7502063,
+  "lon": -96.7282244,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942777,
+  "lat": 31.7443824,
+  "lon": -96.7399798,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942778,
+  "lat": 31.7550256,
+  "lon": -96.7195895,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942779,
+  "lat": 31.7568271,
+  "lon": -96.7142324,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942780,
+  "lat": 31.7564464,
+  "lon": -96.7047588,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942781,
+  "lat": 31.7642049,
+  "lon": -96.7077350,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942782,
+  "lat": 31.7596211,
+  "lon": -96.6957895,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942783,
+  "lat": 31.7625219,
+  "lon": -96.6917984,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942784,
+  "lat": 31.7695091,
+  "lon": -96.6783681,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942785,
+  "lat": 31.7699470,
+  "lon": -96.6842936,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942786,
+  "lat": 31.7725421,
+  "lon": -96.6748907,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942787,
+  "lat": 31.7780380,
+  "lon": -96.6444193,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942788,
+  "lat": 31.7728293,
+  "lon": -96.6492013,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942789,
+  "lat": 31.7397682,
+  "lon": -96.7087366,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942790,
+  "lat": 31.7427974,
+  "lon": -96.7010333,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "node",
+  "id": 11036942792,
+  "lat": 31.7351512,
+  "lon": -96.6961838,
+  "tags": {
+    "frequency": "60",
+    "generator:method": "wind_turbine",
+    "generator:output:electricity": "3.4 MW",
+    "generator:source": "wind",
+    "manufacturer": "GE",
+    "model": "3.4-140",
+    "name": "Limestone Wind",
+    "power": "generator",
+    "start_date": "2022"
+  }
+},
+{
+  "type": "way",
+  "id": 1188600264,
+  "center": {
+    "lat": 31.8534454,
+    "lon": -96.6219567
+  },
+  "tags": {
+    "name": "Limestone Wind Substation",
+    "power": "substation",
+    "substation": "generation",
+    "voltage": "345000"
+  }
+}
+
+  ]
+}

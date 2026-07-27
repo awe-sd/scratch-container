@@ -1,0 +1,33 @@
+{
+  "inr": "24INR0065",
+  "project": "Keys Hollow Solar Phase II SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.706,
+    "lon": -97.234,
+    "method": "POI infrastructure (Coleto Creek 345kV substation area, Goliad County)",
+    "confidence": "low"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-03-10",
+    "plausible": true,
+    "why": "IA signed Oct 2024; 3+ year runway to 2028 COD is consistent with typical ERCOT solar construction timeline; two prior COD slips (2024→2027→2028) suggest schedule pressure but project remains active"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA PDF (AEP Texas + Keys Hollow Solar, LLC, Nov 2024) — portal blocked at triage; retrieve milestone schedule exhibit and POI details",
+    "Precise site location — developer LLC address records, county appraisal district, or plat filings may yield parcel coordinates better than POI infrastructure proxy",
+    "Imagery at confirmed site — CDSE creds unavailable at triage; 2024–2026 chips needed to check for ground disturbance or panel installation",
+    "FIS not approved despite IA signed — unusual gap; confirm via ERCOT queue or PUCT whether FIS was waived or is outstanding",
+    "Parent company / investor — Keys Hollow Solar LLC registration details and any financing announcements"
+  ],
+  "turns_used": 18
+}

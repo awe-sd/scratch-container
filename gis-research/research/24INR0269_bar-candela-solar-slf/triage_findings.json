@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0269",
+  "project": "Bar Candela Solar SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.92,
+    "lon": -96.06,
+    "method": "POI name inference: Long Lake Sub (Bus 3280) -> Long Lake geographic feature in Freestone County per OpenStreetMap",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials blocked (401/403); no imagery obtained. No construction milestones in queue data (start/end/energization all null). Project is post-IA, pre-construction per reported data."
+  },
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": true,
+    "why": "IA signed 2025-05-06; 2.5 years to COD is tight but within range for a 200 MW greenfield solar; two prior COD slips (from 2026-01 -> 2026-06 -> 2027-12) suggest schedule pressure, but project has cleared all pre-construction gates"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA document content: PUCT Control 35077 Item 2149 — fetch parties/POI page and milestone schedule exhibit (session-authenticated browser required)",
+    "Confirm exact site location: substation search for 'Long Lake Sub' (Bus 3280) in Oncor transmission maps to pin a precise site candidate for imagery",
+    "Imagery at confirmed site: run cdse.py chips once CDSE creds are refreshed — site is post-IA, pre-construction so ground-disturbance signal would be definitive",
+    "Developer track record: Candela Renewables has no other completed ERCOT projects visible in this triage; verify portfolio and financing status",
+    "SPV name discrepancy: DDG returned 'Bar Candela Solar Project LLC'; identity packet says 'Bar Candela Solar SLF, LLC' — confirm legal entity in IA"
+  ],
+  "turns_used": 22
+}

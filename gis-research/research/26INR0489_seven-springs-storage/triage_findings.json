@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0489",
+  "project": "Seven Springs Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.07,
+    "lon": -98.00,
+    "method": "POI substation inference — Kempner 138kV substation node 7260 near Kempner TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE auth failed (401/403); no imagery retrieved; no pins or news corroborating ground activity"
+  },
+  "cod_first_look": {
+    "reported": "2028-05-16",
+    "plausible": true,
+    "why": "Pre-IA, Facility Study stage; 2-year slip already baked in; 2028 COD requires IA+NTP by mid-2026 — tight but not impossible if FIS is imminent"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "FIS completion and IA execution — monitor queue for iaSigned date; project stalls without it",
+    "Hancock Reservoir LLC developer track record — no web presence found; check TX SOS for entity registration and any other ERCOT queue projects",
+    "PUCT Interchange IA filing — retry when portal access is available; search docket for 'Seven Springs Storage' or 'Hancock Reservoir'",
+    "Imagery retry with valid CDSE credentials — Kempner area (31.07N, 98.00W), tight 2km chips; BESS pad would appear as pale gravel near substation"
+  ],
+  "turns_used": 28
+}

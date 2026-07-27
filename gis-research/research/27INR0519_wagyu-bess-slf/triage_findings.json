@@ -1,0 +1,26 @@
+{
+  "inr": "27INR0519",
+  "project": "Wagyu BESS SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-12-31",
+    "plausible": false,
+    "why": "No IA signed as of 2026-06-01 snapshot; FIS not yet approved; 6-month window to COD is implausible for a project with no milestones past screening"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Burke_POI_8 138kV substation coordinates (ERCOT transmission maps, PUCT GIS layer) — needed before any imagery run is possible",
+    "Identify parent/sponsor behind Wagyu BESS LLC — no developer or financier surfaced; look in Texas SOS entity search and PUCT docket filings once portal access is restored",
+    "PUCT Interchange IA search — portal returned 402 during triage; retry when accessible to confirm IA truly absent vs blocked"
+  ],
+  "turns_used": 28
+}

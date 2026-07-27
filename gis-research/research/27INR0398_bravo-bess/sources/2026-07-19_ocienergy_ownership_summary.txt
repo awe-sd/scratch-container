@@ -1,0 +1,18 @@
+Source: https://ocienergy.com/about (fetched 2026-07-19 via WebFetch)
+Relevant extract from OCI Energy's About page:
+
+OCI Energy LLC is a subsidiary of OCI Enterprises Inc.
+OCI Enterprises Inc. is a subsidiary of OCI Holdings (Korean global conglomerate,
+"100 countries," clean energy + fine chemicals + urban development + biopharma, 60+ yr history).
+OCI Energy was established in 2012 in San Antonio, TX by OCI Enterprises.
+Rebranded from OCI Solar Power to OCI Energy in July 2024.
+Sister company: Mission Solar Energy (solar panel manufacturer, San Antonio, est. 2014).
+
+Recent BESS news (from ocienergy.com/news, confirmed public):
+- Dec 2024: OCI + CPS Energy announce 120 MW / 480 MWh Alamo City BESS
+- May 2025: OCI + CPS + LG Energy Solution Vertech partnership for ERCOT BESS
+- Sep 2025: OCI + ING finalized construction financing for "major battery project in Texas" (unnamed)
+- May 2026: OCI + CPS broke ground on Alamo City BESS (Bexar County)
+- Jun 2026: OCI closed $130M tax equity with Greenprint Capital for Alamo City BESS
+
+Ownership chain: OCI Holdings (Korea) → OCI Enterprises Inc. (USA) → OCI Energy (San Antonio, TX)

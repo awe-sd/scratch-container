@@ -1,0 +1,35 @@
+{
+  "inr": "27INR0426",
+  "project": "Prairie Horizon Energy Storage 1",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.580,
+    "lon": -95.850,
+    "method": "POI name inference — Twin Oak 345kV substation general knowledge; may be Leon County not Robertson County",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "not detected",
+    "evidence": "6-chip 3×3 grid (2026-06, 2km buffer) around estimated POI substation; 50-70% cloud cover; no gravel pad or container rows visible; site location uncertain"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": true,
+    "why": "FIS not yet approved as of 2026-06 — IA execution and construction still ahead; 2027-12 is aggressive but technically possible if FIS approves in late 2026"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm Twin Oak substation coordinates (ERCOT nodal map or PUCT transmission filings) — current site estimate may be wrong county",
+    "PUCT Interchange IA search when portal access available (currently 402-blocked) — project may have an IA filed post-2026-06",
+    "JETI registry search with direct portal access — post-2022 project, Ch.313 expired; JETI application possible",
+    "Re-run imagery at confirmed substation coords with low-cloud date selection (current run was cloud-obstructed)"
+  ],
+  "turns_used": 30
+}

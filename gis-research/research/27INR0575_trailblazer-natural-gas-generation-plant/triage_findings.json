@@ -1,0 +1,28 @@
+{
+  "inr": "27INR0575",
+  "project": "Trailblazer Natural Gas Generation Plant",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-12",
+    "plausible": false,
+    "why": "Only 3 months in queue; screening not complete, no FIS approved, no IA signed — 18-month COD is implausible for a 1026 MW gas project with zero milestones complete"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "TCEQ air permit (NSR) search — mandatory for any gas turbine; absence = strong paper-project signal; run tceq.texas.gov air-permit database",
+    "PUCT Interchange via authenticated session — 402 blocked during triage; search FilingParty='Trailblazer Natural Gas Generation Plant'",
+    "TX SOS entity search for LLC registration — no corporate footprint found; no registration = paper project red flag",
+    "Sweetwater East 345kV substation coordinates via ERCOT Network Model or utility GIS — needed before imagery is viable",
+    "Developer identity — no sponsor/developer surfaced; total web opacity for a 1026 MW project suggests early concept or shell filing"
+  ],
+  "turns_used": 22
+}

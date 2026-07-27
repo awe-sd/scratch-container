@@ -1,0 +1,134 @@
+{
+  "inr": "26INR0269",
+  "project": "Moccasin Solar",
+  "public_name": "Swenson Ranch Solar",
+  "researched_at": "2026-07-18",
+  "site": {
+    "lat": 33.021,
+    "lon": -100.0217,
+    "method": "ia_text_plus_imagery",
+    "confidence": "high",
+    "footprint_centroid": {
+      "lat": 33.011,
+      "lon": -100.038,
+      "note": "observed centroid of the graded footprint, ~1.5 km SW of the recorded point; the recorded point sits at the NE interior/edge of the footprint. Fully captured with margin in all 4.5 km-buffer frames, so the point was not re-fetched/re-centered."
+    },
+    "derivation_notes": "See sources/SITE_DERIVATION.md for the full chain. NO retrievable public filing delineates the project parcel: IA Exhibit C is TEXT-ONLY ('Generator's Moccasin Substation will be located in Stonewall County approximately fourteen (14) miles southeast of Aspermont, Texas') in BOTH the original (PUCT 35077-1924) and First Amended & Restated (35077-2454) SGIA; Exhibit C-1 is a POI electrical one-line (not a land map); an ALTA survey of the property is named as a Generator->TSP deliverable but is not attached to the filing. No Ch.313/JETI reinvestment-zone map exists (structurally ineligible). A Ch.312-type COUNTY reinvestment zone + abatement DOES exist (news-confirmed) but its primary instrument is not retrievable (Stonewall non-reporting; minutes page HTTP 403). Point derivation: text-only estimate 32.9911,-100.0552 (14 mi SE of Aspermont) -> corrected onto the 2026 graded footprint visible in Sentinel-2 -> recorded 33.0210,-100.0217 (footprint centroid ~1.5 km SW). Confidence 'high' is grounded in the CONVERGENCE of location evidence (IA Exhibit C text + SE bearing + Meta PPA 'Stonewall County' + KTXS ~5,000-ac Swenson-Ranch lease narrative all point to this spot), independent of the exact construction-stage read of the footprint. The visible construction footprint IS the best available boundary evidence."
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Swenson Solar LLC",
+      "relation": "SPV_generator",
+      "evidence": "Named as Generator party in signed ETT IA (PUCT Control 35077, sources/2026-07-18_puct_35077_swenson-solar-IA.pdf, Exhibit D)"
+    },
+    {
+      "entity": "ENGIE IR Holdings LLC / ENGIE North America",
+      "relation": "developer_owner_parent",
+      "evidence": "IA Exhibit D bank wire instructions: payable to 'ENGIE IR HOLDINGS LLC' at Bank of America Dallas; admin contact Eric Tarantino address is ENGIE NA Houston HQ (1 South Wacker Dr is public ENGIE NA address); PV-Tech Oct 2025 names ENGIE as developer of 'Swenson Ranch Solar' (sources/2026-07-18_pvtech_meta-engie-600mw-ppa.html)"
+    },
+    {
+      "entity": "Meta Platforms",
+      "relation": "PPA_offtaker",
+      "evidence": "PV-Tech Oct 27 2025 article: 'ENGIE and Meta sign 600 MW PPA for Swenson Ranch Solar, Stonewall County, $900M, 2027 COD' (sources/2026-07-18_pvtech_meta-engie-600mw-ppa.html)"
+    }
+  ],
+  "land_tenure": {
+    "status": "leased",
+    "evidence": "KTXS-TV April 2025 article describes ~5,000 acres in western Stonewall County; no purchase mentions; Stonewall CAD has no online portal — parcels not confirmed under LLC name (sources/2026-07-18_ktxs_stonewall-swenson-solar.html)"
+  },
+  "project_area": {
+    "acres": 5000,
+    "source": "KTXS-TV April 2025 article ('approximately 5,000 acres')",
+    "artifact": "sources/2026-07-18_ktxs_stonewall-swenson-solar.html"
+  },
+  "tax_incentives": {
+    "summary": "No state-level value-limitation/incentive filing exists for this project, and none can delineate the parcel as a reinvestment zone. The applicable mechanism is a Ch.312 COUNTY reinvestment zone + abatement, which DOES exist per news reporting, but its primary instrument is not publicly retrievable through the channels available here.",
+    "ch313": {
+      "status": "strong_negative_structural",
+      "detail": "ch313.py resolve NEGATIVE by INR and by 'Swenson'; JETI arm also negative. Structurally ineligible: the queue entry postdates Ch.313's 2022-12-31 statutory expiry, so no Ch.313 application (which would carry a reinvestment-zone boundary map) exists or can exist. Absence is expected, not merely unfound.",
+      "strength": "strong (structural)"
+    },
+    "jeti": {
+      "status": "negative_structural",
+      "detail": "JETI (Jobs, Energy, Technology & Innovation Act; Tax Code ch.403 subch.T, the post-Ch.313 successor effective 2024) resolve NEGATIVE — no agreement registered for Swenson (this registry check is the hard evidence). JETI is also understood to exclude standalone solar generation from its eligible-project scope (not statute-verified this pass), so a JETI agreement/reinvestment-zone map is not expected in any case.",
+      "strength": "strong (structural)"
+    },
+    "ch312": {
+      "status": "weak_negative_registry",
+      "detail": "ch312.py resolve NEGATIVE, but Stonewall is a NON-REPORTING county — absence from the Comptroller Ch.312 registry proves nothing. Independent evidence shows a Ch.312-type county reinvestment zone + abatement does exist (see county_abatement).",
+      "strength": "weak (non-reporting county)"
+    },
+    "county_abatement": {
+      "status": "confirmed_exists_not_retrievable",
+      "detail": "Stonewall County approved a ~10-year abatement / PILOT for the project — backstopped by the on-disk KTXS source (Apr 2025); search.py also surfaced Double Mountain Chronicle headlines 'Commissioners Finalize Swenson Solar Deal' + 'Stonewall County Approves Tax Deal' (per search-result snippets, not fetched). The county's reinvestment-zone designation order is the ONE instrument that would highlight the parcel as a reinvestment zone, but it is a COUNTY record, not state-registered, and not retrievable here (commissioners-court minutes page HTTP 403; no online CAD portal). Avenue not yet exhausted: LGS county-clerk records portal public.lgsonlinesolutions.com (probe HTTP 200, form-based deed search).",
+      "sources": ["sources/2026-07-18_ktxs_stonewall-swenson-solar.html (on disk)", "Double Mountain Chronicle (headline snippets via search.py, not fetched)"],
+      "note": "The NewsBreak '50,000 acre' search hit is an aggregator typo re-publishing KTXS's 5,000-acre figure; disregard."
+    },
+    "minutes_hunt": {
+      "county": "Stonewall",
+      "platform": "custom/ezTask (in the SUPPORTED set)",
+      "result": "NEGATIVE (NOT HARVESTED): minutes page https://www.stonewallcounty.org/page/Public.Notices returned HTTP 403 Forbidden; 0 PDFs harvested; resolve = COUNTY NOT HARVESTED.",
+      "search_fallback": "search.py 'Stonewall County commissioners Swenson Solar abatement' -> Double Mountain Chronicle + KTXS confirm the abatement exists (see county_abatement); no primary boundary instrument obtained.",
+      "banned_domains_cited": false
+    }
+  },
+  "construction": {
+    "verdict": "grading",
+    "first_activity_seen": "between 2026-02 and 2026-04",
+    "evidence": [
+      "NO filed parcel/boundary map exists (both IAs text-only; no Ch.313/JETI; Ch.312 non-reporting county) — the visible 2026 construction footprint is the best available boundary evidence. Full chain: sources/SITE_DERIVATION.md.",
+      "Sentinel-2 progression brackets construction start to Feb-Apr 2026: undisturbed through 2026-01-31, large bare-soil graded footprint present by 2026-04-26 (imagery/key/s2_2026-01-15.png -> imagery/key/s2_2026-04-15.png).",
+      "By 2026-07-20 the footprint is organized into blocks with an established internal access-road grid (imagery/key/s2_2026-07-15.png); civil/earthwork stage, no racking/panels/substation resolvable at 10 m/px.",
+      "Identity as solar earthwork (not newly-broken cropland) rests on CONVERGENCE, not pixel proof: previously-undisturbed native brush with intact drainage (2024/2025/Jan-2026) was converted to a geometric graded area precisely at the documented location, timing (KTXS: construction late-2025/early-2026) and ~5,000-ac scale; the W/S perimeter is straight and cuts across former drainage (vs the terrain-following contour rows of the in-frame E-edge cropland); a 5,000-ac conversion of native rangeland to dryland cropland in marginal-rainfall Stonewall Co is implausible.",
+      "Footprint sits ~1.5 km SW of the recorded point (33.0210,-100.0217) and is fully captured with the 4.5 km-buffer framing (no clipping)."
+    ],
+    "progression": [
+      "2024-07-15 (imagery/key/s2_2024-07-01.png, 0% cloud): undisturbed rangeland/brush; natural drainage; pre-existing farm fields only at frame edges (SW corner, E-edge pivots) — no geometric grid at the site.",
+      "2025-07-20 (imagery/key/s2_2025-07-01.png, 1.4% cloud): still undisturbed, green growing season; no site earthwork.",
+      "2026-01-31 (imagery/key/s2_2026-01-15.png, 9.4% cloud): still undisturbed / pre-construction; dormant brown terrain, no grading visible.",
+      "2026-04-26 (imagery/key/s2_2026-04-15.png, 3.7% cloud): LARGE bare-soil cleared footprint has appeared center/SW of the recorded point — sharp rectangular boundaries, multi-km, not agricultural; clearing well underway.",
+      "2026-07-20 (imagery/key/s2_2026-07-15.png, 1.7% cloud): footprint organized into a block grid with an established internal road network; scattered fair-weather cumulus but blocks readable; no racking/panels/electrical resolvable at 10 m/px. The bare-soil(Apr)->green(Jul) shift is graded ground greening under West-TX summer rain (matching the surrounding rangeland's own seasonal greening), not evidence of cultivation."
+    ],
+    "imagery_artifacts": [
+      "imagery/key/s2_2024-07-01.png",
+      "imagery/key/s2_2025-07-01.png",
+      "imagery/key/s2_2026-01-15.png",
+      "imagery/key/s2_2026-04-15.png",
+      "imagery/key/s2_2026-07-15.png"
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-07-06",
+    "independent": "2027-Q4 to 2028-Q1",
+    "drift_risk": "medium",
+    "reasoning_evidence": [
+      "As of Jul 2026 the site is in earthwork/clearing stage; road grid established, rectangular pads being graded; no racking or electrical work visible at 10 m/px resolution",
+      "From earthwork-start (~Q1–Q2 2026) to COD for a 600 MW solar project typically requires 18–24 months (civil, foundations, racking, collection, substation, commissioning); reported 2027-07-06 implies ~14–16 months — aggressive but feasible with strong developer execution",
+      "IA Exhibit B gives relative schedule: In-Service +26 months, COD +28 months from conditions precedent satisfaction; 'Meets all 6.9' date is 2026-04-21 (likely the final gate) → if anchored there, contractual COD = ~Aug 2028; if anchored to IA execution (Sep 2024), contractual COD = ~Jan 2027 — this ambiguity is material",
+      "Queue-history: 2 reported-COD changes (2027-07-06 → 2027-06-01 → 2027-07-06), capacity downscaled 25% in Aug 2025 (809.6 → 603.59 MW) — project resized mid-development",
+      "Positive signals: ENGIE developer, Meta PPA signed ($900M scale), $23M financial security posted, Stonewall County 10-yr abatement approved April 2025, FIS approved Jan 2026, meets all 6.9 milestones April 2026",
+      "Risk factors: EPC not identified, no NTP/financing-close announcement, IA relative schedule anchor ambiguous, 25% capacity downsize may indicate design changes that affect schedule"
+    ]
+  },
+  "real_project_verdict": "real_active",
+  "negative_searches": 6,
+  "banned_source_violations": 0,
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "ETT–Swenson Solar Interconnection Agreement (original)",
+        "signed": "2024-09-04",
+        "financial_security": "$23,000,000",
+        "artifact": "sources/2026-07-18_puct_35077_swenson-solar-IA.pdf"
+      }
+    ],
+    "poi": "Cascabel Station (new ETT station) tapping the 345 kV Kirchhoff (Bus# 60707) to Clear Crossing (Bus# 60515) line",
+    "milestones_relative": [
+      {"name": "In-Service Date", "offset_months_from_conditions_precedent": 26},
+      {"name": "Trial Operation", "offset_months_from_conditions_precedent": 27},
+      {"name": "Scheduled Commercial Operation", "offset_months_from_conditions_precedent": 28}
+    ],
+    "milestone_anchor_note": "Absolute dates depend on conditions precedent satisfaction date; 'Meets all 6.9' = 2026-04-21 (likely final gate) implies contractual COD ~Aug 2028; IA execution date (2024-09-04) as alternative anchor implies ~Jan 2027"
+  }
+}

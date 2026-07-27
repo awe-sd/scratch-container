@@ -1,0 +1,150 @@
+{
+  "inr": "26INR0519",
+  "project": "Sky Global West Houston",
+  "research_date": "2026-07-19",
+  "real_project_verdict": "real_active",
+  "verdict": "real_active",
+  "confidence": "high",
+  "verdict_rationale": "TCEQ NSR air permit EFFECTIVE (176331, issued 2024-05-24) at confirmed site address 978 FM 3013 Rd Sealy TX; construction visible in 2026 Sentinel-2 imagery vs 2023 baseline; developer has commissioned operating plant (Power One, 2016); IA signed 2025-03-25.",
+
+  "llc_chain": [
+    {"entity": "Sky Global Power Two LLC", "role": "SPV/operator", "evidence": "TCEQ NSR permit CN605770015"},
+    {"entity": "Sky Global Partners LLC", "role": "developer (est. 2007)", "evidence": "triage web sweep; EIA 860M track record"}
+  ],
+
+  "site": {
+    "lat": 29.7412,
+    "lon": -96.1577,
+    "method": "TCEQ facility address (978 FM 3013 Rd, Sealy TX) → OSM Nominatim geocode",
+    "confidence": "high",
+    "address": "978 FM 3013 Rd, Sealy, Austin County, TX 77474",
+    "cross_checks": [
+      "TCEQ NSR permit RN111020285 at 978 FM 3013 Rd — authoritative facility address",
+      "OSM Nominatim geocode: 29.7412, -96.1577 (FM 3013, Sealy, Austin County)",
+      "POI 'Gebhardt-Wallis 138kV circuit' — Wallis TX ~9 km SW, consistent with 138kV tap",
+      "Sky Global Power One (EIA 860M) at 29.5503, -96.5378 (Colorado County, ~40 km SW) confirms developer corridor"
+    ]
+  },
+
+  "project_area": {
+    "acres": null,
+    "source": "not_obtained",
+    "artifact": null,
+    "notes": "Austin CAD parcel search JS-blocked; PUCT IA not retrieved (402). Imagery footprint: compact industrial pad ~5-15 acres visible in 2km Sentinel-2 chip, consistent with IC engine plant."
+  },
+
+  "permits": {
+    "tceq_nsr": {
+      "permit_number": "176331",
+      "type": "STDPMT",
+      "status": "EFFECTIVE",
+      "project_number": "373915",
+      "cn_number": "CN605770015",
+      "rn_number": "RN111020285",
+      "issued": "2024-05-24",
+      "expires": "2034-05-24",
+      "rule": "6005",
+      "address": "978 FM 3013 Rd, Sealy, Austin County TX",
+      "notes": "Multiple prior permits cancelled after NSR void filings (design changes 2020-2024). Final config issued 2024-05-24.",
+      "artifact": "sources/2026-07-19_tceq_airperm_sky-global-nsr-results.html"
+    }
+  },
+
+  "existing_facility": {
+    "name": "Sky Global Power One",
+    "eia_plant_code": 59938,
+    "operator": "Sky Global Power One Pledgor, LLC",
+    "county": "Colorado",
+    "address": "3217 US HWY 90A, Rock Island, Colorado County TX",
+    "lat": 29.550278,
+    "lon": -96.53778,
+    "capacity_mw": 50.4,
+    "units": 6,
+    "technology": "Natural Gas Internal Combustion Engine",
+    "in_service_year": 2016,
+    "status": "Operating",
+    "artifact": "sources/2026-07-19_eia_860m_may2026_sky-global-power-one.txt"
+  },
+
+  "construction": {
+    "verdict": "construction_active",
+    "stage": "construction_active",
+    "first_activity_seen": "pre-2023",
+    "evidence": [
+      "2km Sentinel-2 2026-07-01: large rectangular industrial building visible at 978 FM 3013 Rd site",
+      "2km Sentinel-2 2023-06-01 baseline: smaller footprint — clear expansion 2023→2026",
+      "TCEQ NSR permit obtained May 2024 confirms active permitting for gas engines"
+    ]
+  },
+
+  "cod_assessment": {
+    "reported_cod": "2027-06-01",
+    "independent_estimate": "2027-Q2",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "Active NSR permit obtained May 2024; IA signed March 2025",
+      "Construction visible by 2026-07; 16 IC engines at 325 MW is 18-24 month build",
+      "One prior COD slip of 6 months already (2026-12 → 2027-06)"
+    ]
+  },
+
+  "queue_history": {
+    "snapshots": 25,
+    "first_report": "2024-06-01",
+    "latest_report": "2026-06-01",
+    "cod_changes": 1,
+    "cod_history": [
+      {"cod": "2026-12-15", "held_from": "2024-06-01", "until": "2024-07-01"},
+      {"cod": "2027-06-01", "held_from": "2024-08-01", "until": "2026-06-01"}
+    ],
+    "milestones_achieved": {
+      "screening_started": "2024-07-01",
+      "screening_complete": "2024-10-04",
+      "fis_requested": "2024-06-04",
+      "fis_approved": "2025-03-12",
+      "ia_signed": "2025-03-25"
+    },
+    "artifact": "timeline.md"
+  },
+
+  "contractual_schedule": {
+    "ia_signed": "2025-03-25",
+    "note": "IA confirmed signed 2025-03-25 from ERCOT queue milestone; PUCT Interchange portal returned HTTP 402, PDF not retrieved. Financial security amounts and milestone schedule unknown.",
+    "documents": [
+      {
+        "doc": "IA (signed 2025-03-25 per ERCOT queue)",
+        "signed": "2025-03-25",
+        "financial_security": "unknown",
+        "artifact": null
+      }
+    ]
+  },
+
+  "sources": [
+    {
+      "type": "tceq_nsr_search",
+      "artifact": "sources/2026-07-19_tceq_airperm_sky-global-nsr-results.html",
+      "description": "TCEQ NSR air permit search results for 'sky global' — full permit history Power One and Two"
+    },
+    {
+      "type": "eia_860m",
+      "artifact": "sources/2026-07-19_eia_860m_may2026_sky-global-power-one.txt",
+      "description": "EIA Form 860M May 2026 — Sky Global Power One operating plant coordinates and details"
+    },
+    {
+      "type": "sentinel2_imagery",
+      "artifact": "imagery/s2_2026-07-01_tight.png",
+      "description": "Sentinel-2 2km chip 2026-07-01 — construction compound visible"
+    },
+    {
+      "type": "sentinel2_imagery_baseline",
+      "artifact": "imagery/s2_2023-06-01_tight.png",
+      "description": "Sentinel-2 2km chip 2023-06-01 — baseline before current construction phase"
+    },
+    {
+      "type": "queue_timeline",
+      "artifact": "timeline.md",
+      "description": "ERCOT queue milestone history 2024-2026 from local parquet"
+    }
+  ]
+}

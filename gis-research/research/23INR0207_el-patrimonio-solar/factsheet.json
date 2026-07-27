@@ -1,0 +1,85 @@
+{
+ "inr": "23INR0207",
+ "generated": "2026-07-20",
+ "project": "El Patrimonio Solar",
+ "county": "Bexar",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 152.32,
+ "queue_cod": "2027-04-29",
+ "milestones": {
+  "screeningStudyComplete": "2021-05-28",
+  "fisApproved": "2024-10-17",
+  "iaSigned": "2023-12-11",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ok",
+  "plant_id": 69660,
+  "entity": "Heritage Solar LLC",
+  "planned_cod": "2027-07",
+  "cod_delta_quarters": 1.0,
+  "dropped_scope": null,
+  "coords": [
+   29.2405,
+   -98.51006
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Heritage Solar LLC",
+    "detail": "plant=El Patrimonio 150.0MW (L) Regulatory approvals pending. Not un @29.2405,-98.51006 planned=2027-07"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Heritage Solar, LLC",
+    "detail": "Interconnection Agreement by and between Heritage Solar, LLC and The City Public Service Board of San Antonio,"
+   },
+   {
+    "source": "puct-index",
+    "entity": "through the City Public Service Board",
+    "detail": "First Amendment to Generation Interconnection Agreement by and between the City of San Antonio acting by and t"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 26,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  },
+  {
+   "factor": "no_verified_ia",
+   "points": 10,
+   "detail": "iaSigned claimed but no IA found on disk or in the docket join table"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 16.36,
+  "reason": "reality signal"
+ }
+}

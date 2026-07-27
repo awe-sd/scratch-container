@@ -1,0 +1,32 @@
+{
+  "inr": "22INR0383",
+  "project": "BRP Musca BESS",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.2282,
+    "lon": -101.6565,
+    "method": "OSM node lookup of Santa Rita 138kV substation (way 503429665, node 4937421350)",
+    "confidence": "high"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": false,
+    "why": "FIS never approved after 6 years; no IA; COD slipped 3x with 5-yr cumulative drift; third-party tracker rates build-chance at 5%"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm CDSE credentials and run imagery chip at 31.2282/-101.6565 (Santa Rita substation) to check for any site prep — 2-km buffer is sufficient for BESS",
+    "PUCT Interchange: attempt direct portal search (interchange.puc.texas.gov) once credentials available — portal blocked in this run",
+    "Identify BRP parent entity — '5444 Westheimer' Houston address may link to a known developer; check TX SOS and FERC filings for other BRP-prefix projects",
+    "Re-run in 6-12 months if FIS approval surfaces in queue snapshots"
+  ],
+  "turns_used": 22
+}

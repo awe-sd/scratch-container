@@ -1,0 +1,36 @@
+{
+  "inr": "26INR0296",
+  "project": "Sherbino II BESS SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 30.8860,
+    "lon": -102.4235,
+    "method": "POI substation name match — 'TNMP White Baker Switching Station 138kV' resolved via OpenStreetMap Overpass to White Baker Substation at 30.8860, -102.4235",
+    "confidence": "high"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials returned HTTP 401; no Sentinel-2 imagery obtained. Site candidate confirmed but no visual check performed."
+  },
+  "cod_first_look": {
+    "reported": "2027-04-19",
+    "plausible": true,
+    "why": "IA signed Aug 2024, all 6.9 gates met May 2025 — technically on-track for a mid-2027 COD, though 6 prior COD slips (2 years of drift) and no construction start reported yet make execution risk high"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA exists (signed 2024-08-01 per queue) but no document located — fetch from PUCT Interchange once portal is accessible; extract parties, POI page, and milestone-schedule exhibit",
+    "Developer 'Phoenix Battery Storage LLC' unverified — check TX Secretary of State for entity registration; look for parent company or EPC contractor",
+    "CDSE credentials expired (HTTP 401) — refresh and run 3×3 imagery grid at White Baker Substation (30.8860, -102.4235) to check for grading or container placement",
+    "Sherbino II Wind Farm co-location angle — existing wind farm in same county/area; check if BESS is sited on same land parcel (possible land-use efficiency play)",
+    "COD drift pattern — 6 slips over 2 years; verify whether current 2027-04-19 target has any recent public commitment (developer statement, financing close) or is just a rolling estimate"
+  ],
+  "turns_used": 22
+}

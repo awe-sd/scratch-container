@@ -1,0 +1,28 @@
+{
+  "inr": "27INR0071",
+  "project": "Sandow Lakes Energy Station",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-04-01",
+    "plausible": null,
+    "why": "No steps completed — triage aborted at T1 due to token budget exhaustion"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "RUN THIS TRIAGE AGAIN — all steps failed due to path error; zero signal collected",
+    "T1: run queue_history.py from correct working dir (.claude/worktrees/GIS-research)",
+    "T4: PUCT Interchange IA search for 1291.6 MW gas project at Sandow Switch 138kV",
+    "T5: TCEQ NSR air permit search — mandatory for gas turbine; absence = paper-project flag",
+    "T6: site near Sandow Switch substation in Milam County"
+  ],
+  "turns_used": 4
+}

@@ -1,0 +1,34 @@
+{
+  "inr": "18INR0031",
+  "project": "Maryneal Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.22,
+    "lon": -100.46,
+    "method": "town namesake (Maryneal, TX, Nolan County)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "already operational",
+    "evidence": "Multiple public sources (ercotqueue.com, power-technology.com, cleanview.co, Deriva Energy) confirm commissioning July 2021. ERCOT queue shows approvedForSynchronization 2021-04-23 but no approvedForCommercialOperation date — queue record is stale/lagging. 38 × Nordex Acciona 4.8 MW turbines; Sprint/T-Mobile 12-yr VPPA; EPC Wanzek Construction."
+  },
+  "cod_first_look": {
+    "reported": "2026-08-31",
+    "plausible": false,
+    "why": "Project already commissioned July 2021 per Deriva Energy and multiple third-party sources; 23 COD slips in queue history are a tracking artifact, not real future COD"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm ERCOT queue record cleanup — why no approvedForCommercialOperation date despite operational status since 2021",
+    "Verify whether a different INR or split project exists that is NOT yet operational (capacity/scope check)",
+    "PUCT Interchange IA retrieval (portal blocked during triage) — could confirm exact interconnection terms and any unresolved issues"
+  ],
+  "turns_used": 22
+}

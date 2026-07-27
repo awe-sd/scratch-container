@@ -1,0 +1,131 @@
+{
+ "inr": "22INR0251",
+ "project": "Shaula I Solar",
+ "first_seen_in_reports": "2019-11-01",
+ "last_seen_in_reports": "2026-06-01",
+ "snapshots": 80,
+ "milestones": [
+  {
+   "milestone": "Screening started",
+   "achieved": "2019-12-03",
+   "first_in_report": "2019-12-01"
+  },
+  {
+   "milestone": "Screening complete",
+   "achieved": "2020-03-08",
+   "first_in_report": "2020-03-01"
+  },
+  {
+   "milestone": "FIS requested",
+   "achieved": "2019-11-20",
+   "first_in_report": "2019-11-01"
+  },
+  {
+   "milestone": "FIS approved",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "IA signed",
+   "achieved": "2022-02-16",
+   "first_in_report": "2022-02-01"
+  },
+  {
+   "milestone": "Meets 6.9(1)",
+   "achieved": "2023-03-27",
+   "first_in_report": "2023-03-01"
+  },
+  {
+   "milestone": "Meets all 6.9",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Construction start (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Construction end (reported)",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Approved for energization",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Approved for synchronization",
+   "achieved": null,
+   "first_in_report": null
+  },
+  {
+   "milestone": "Commercial operation approved",
+   "achieved": null,
+   "first_in_report": null
+  }
+ ],
+ "reported_cod_history": [
+  {
+   "value": "2022-01-31",
+   "from": "2019-11-01",
+   "to": "2020-08-01"
+  },
+  {
+   "value": "2022-08-01",
+   "from": "2020-09-01",
+   "to": "2021-02-01"
+  },
+  {
+   "value": "2023-08-01",
+   "from": "2021-03-01",
+   "to": "2021-07-01"
+  },
+  {
+   "value": "2024-03-28",
+   "from": "2021-08-01",
+   "to": "2022-02-01"
+  },
+  {
+   "value": "2024-06-28",
+   "from": "2022-03-01",
+   "to": "2023-03-01"
+  },
+  {
+   "value": "2025-10-30",
+   "from": "2023-04-01",
+   "to": "2024-09-01"
+  },
+  {
+   "value": "2026-03-31",
+   "from": "2024-10-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 205.2,
+   "from": "2019-11-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "study_phase_history": [
+  {
+   "value": "SS Started, FIS Started, No IA",
+   "from": "2019-11-01",
+   "to": "2020-02-01"
+  },
+  {
+   "value": "SS Completed, FIS Started, No IA",
+   "from": "2020-03-01",
+   "to": "2022-01-01"
+  },
+  {
+   "value": "SS Completed, FIS Started, IA",
+   "from": "2022-02-01",
+   "to": "2026-06-01"
+  }
+ ],
+ "financial_security_latest": "Yes"
+}

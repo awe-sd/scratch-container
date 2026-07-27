@@ -1,0 +1,173 @@
+{
+  "inr": "21INR0324",
+  "queue_name": "Board Creek Wind",
+  "public_name": "Limestone Wind",
+  "capacity_mw": 299.2,
+  "technology": "Wind",
+  "fuel": "WIN",
+  "county": "Navarro",
+  "state": "TX",
+  "market": "ERCOT",
+  "poi": "345kV Outlaw Switch (Navarro Co, ~6 mi SE of Richland TX), within Navarro Switch - Limestone SES 345 kV double-circuit line",
+  "cdr_zone": "NORTH",
+  "reported_cod": "2026-07-01",
+
+  "verdict": "real_active",
+  "real_project_verdict": "real_active",
+  "construction_stage": "operating",
+  "confidence": "high",
+
+  "construction": {
+    "verdict": "operating",
+    "first_activity_seen": "2022-09-19",
+    "evidence": [
+      "EIA-860M plant 65306 'Limestone Wind Project': status Operating from 2023-01 report; operating date 2022-12 (stable across 40 monthly reports 2023-01 to 2026-05)",
+      "ERCOT approved for energization 2022-09-19; approved for synchronization 2022-10-06",
+      "88 turbines tagged 'Limestone Wind' in OpenStreetMap (Overpass query 2026-07-20), centroid 31.82707,-96.66834",
+      "ENGIE press release 2023-03-20 explicitly states 'COD end-2022' with three named VPPA offtakers",
+      "PUCT PGC registration for Limestone Wind Project LLC filed 2022-03-29 (pre-energization); approved 2022-04-18"
+    ]
+  },
+
+  "site": {
+    "lat": 31.82707,
+    "lon": -96.66834,
+    "method": "OSM turbine centroid — 88 turbines tagged 'Limestone Wind' in OpenStreetMap; substation 'Limestone Wind Substation' @ 31.8534,-96.6219; EIA plant 65306 @ 31.85346,-96.62446 corroborates. Physical address 803 SW CR 4260, Dawson TX 76639 (PUCT PGC filing) consistent with this area (~5 km W of substation).",
+    "confidence": "high",
+    "cross_checks": [
+      "OSM: 88 turbines tagged 'Limestone Wind', centroid 31.82707,-96.66834, lat range 31.77-31.88 (~12 km N-S spread)",
+      "OSM: 'Limestone Wind Substation' way at 31.8534454,-96.6219567",
+      "EIA plant 65306 'Limestone Wind Project' @ 31.85346,-96.62446 (county+prime-mover+MW exact match)",
+      "PUCT PGC filing (53424-1): physical address 803 SW County Road 4260, Dawson TX 76639 (Navarro Co)",
+      "IA: POI = Outlaw Switch, Navarro County, ~6 mi SE of Richland TX",
+      "IA: 99 GE 3.03-140 turbines dispatched at 301 MW"
+    ],
+    "map_artifacts": []
+  },
+
+  "project_area": {
+    "acres": null,
+    "source": null,
+    "artifact": null
+  },
+
+  "developer": "ENGIE North America",
+  "parent_chain": [
+    "Limestone Wind Project, LLC (Delaware LLC) — SPV, confirmed IA party + PUCT PGC registration",
+    "ENGIE IR Holdings, LLC (holding company, 100% owner) — per PUCT PGC 53424-1",
+    "ENGIE North America Inc. — parent of ENGIE IR Holdings, LLC (Houston TX, 1360 Post Oak Blvd Suite 400)",
+    "ENGIE S.A. — Paris France (ultimate parent)"
+  ],
+  "offtake_parties": [
+    "LyondellBasell (VPPA — ENGIE press release 2023-03-20)",
+    "Stanley Black & Decker (VPPA — announced ~2021-08-03, Business Wire PR 20210803005388)",
+    "Whirlpool Corporation (VPPA — ENGIE press release 2023-03-20)"
+  ],
+  "spv_name": "Limestone Wind Project, LLC (Delaware LLC) — confirmed as Generator party on signed IA 35077-1306 and PUCT PGC registration 53424",
+
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Original IA 35077-1306 — Oncor / Limestone Wind Project LLC (Board Creek WP)",
+        "signed": "2021-08-19",
+        "financial_security": "Irrevocable Standby Letter of Credit — amount not extractable from PDF (Exhibit E text did not include dollar value)",
+        "artifact": "sources/2026-07-19_puct_35077-1306_interconnection-agreement-between-oncor-electric.pdf"
+      }
+    ],
+    "milestones": [
+      {"name": "In-Service Date", "original_ia_2021": "2022-05-19"},
+      {"name": "Trial Operation", "original_ia_2021": "2022-09-23"},
+      {"name": "Scheduled Commercial Operation", "original_ia_2021": "2022-11-04"}
+    ],
+    "amendments_note": "no amendments found in PUCT docket 35077 — only item 1306 matches this project"
+  },
+
+  "equipment": {
+    "turbines": 99,
+    "model": "GE 3.03-140",
+    "mva_each": 3.367,
+    "gross_mva": 333.30,
+    "dispatched_mw": 301
+  },
+
+  "eia": {
+    "plant_id": 65306,
+    "entity": "Limestone Wind Project, LLC",
+    "status_history": "Under construction ≤50% (2022-04 to 2022-07) → Under construction >50% (2022-08) → Construction complete not in commercial op (2022-09) → Operating (2023-01 onward through 2026-05)",
+    "operating_date_reported": "2022-12",
+    "planned_cod_history": "2022-12 (reported 2022-04 to 2022-09), then null (2023-01 onward — already operating)",
+    "coords": [31.85346, -96.62446]
+  },
+
+  "ercot_milestones": {
+    "approved_for_energization": "2022-09-19",
+    "approved_for_synchronization": "2022-10-06",
+    "approved_for_commercial_operation": null,
+    "note": "No approvedForCommercialOperation in ERCOT GIS — this is why queue COD 2026-07-01 is stale; project never formally closed out in queue"
+  },
+
+  "puct_dockets": [
+    "35077-1306 — IA (2021-09-09)",
+    "53424 — PGC Registration for Limestone Wind Project LLC (filed 2022-03-29, approved 2022-04-18)",
+    "53650 — REC Generator Certification application",
+    "55749, 59131 — PGC renewal registrations"
+  ],
+
+  "imagery": {
+    "verdict": "operating — inferred from EIA status + 88 OSM turbines tagged 'Limestone Wind'; CDSE satellite service unreachable (RemoteDisconnected on identity endpoint); no imagery chips obtained",
+    "first_activity_date": null,
+    "frames": [],
+    "osm_turbine_count": 88,
+    "osm_turbine_centroid": [31.82707, -96.66834],
+    "osm_substation": {"name": "Limestone Wind Substation", "lat": 31.8534454, "lon": -96.6219567}
+  },
+
+  "independent_cod": "2022-Q4",
+  "drift_risk": "none",
+  "cod_assessment": {
+    "reported": "2026-07-01",
+    "independent": "2022-Q4",
+    "drift_risk": "none",
+    "reasoning_evidence": [
+      "EIA-860M plant 65306 reports Operating from 2023-01 onward (40 consecutive monthly reports); EIA operating date = 2022-12",
+      "ERCOT approved for synchronization 2022-10-06 — grid-connected and generating",
+      "IA scheduled COD 2022-11-04; EIA reports construction complete (TS status) in 2022-09 and Operating from 2023-01 — on-schedule execution",
+      "ENGIE press release 2023-03-20 explicitly confirms 'COD end-2022' with three named commercial VPPA offtakers (LyondellBasell, Stanley Black & Decker, Whirlpool)",
+      "Queue COD 2026-07-01 is stale: ERCOT GIS has no approvedForCommercialOperation date — queue entry was never formally closed, not evidence of a problem",
+      "22 queue COD slips are all pre-energization: original 2021-10-15 slipped repeatedly during 2019-2022 permitting/supply-chain phase; once synchronized Oct 2022, no further queue updates needed"
+    ]
+  },
+
+  "sources": [
+    {
+      "artifact": "sources/2026-07-19_puct_35077-1306_interconnection-agreement-between-oncor-electric.pdf",
+      "description": "PUCT Control 35077-1306, Oncor / Limestone Wind Project LLC (Board Creek WP) IA, signed 2021-08-19, CONFIRMED (INR in document text). SPV name, equipment (99 GE 3.03-140), schedule, POI."
+    },
+    {
+      "artifact": "sources/2026-07-20_puct_53424-1_filing.pdf",
+      "description": "PUCT 53424-1 PGC Registration: Limestone Wind Project LLC, 803 SW CR 4260 Dawson TX 76639, ONCOR North, 299.2 MW. Parent: ENGIE IR Holdings LLC -> ENGIE North America Inc."
+    },
+    {
+      "artifact": "sources/2026-07-20_osm_overpass_limestone-wind-turbines.json",
+      "description": "OSM Overpass: 88 turbines tagged name='Limestone Wind', Navarro Co TX, centroid 31.82707,-96.66834"
+    },
+    {
+      "url": "https://www.engie-na.com/limestone/",
+      "description": "ENGIE NA Limestone Wind project page: 301 MW wind, Navarro County TX, ERCOT, COD 2022"
+    },
+    {
+      "url": "https://www.engie-na.com/engie-adds-more-than-650-mw-to-u-s-operations/",
+      "description": "ENGIE NA press release 2023-03-20: Limestone Wind COD end-2022, PPAs with LyondellBasell, Stanley Black & Decker, Whirlpool"
+    }
+  ],
+
+  "gaps": [
+    "CDSE satellite imagery unavailable (RemoteDisconnected on CDSE identity endpoint — service outage)",
+    "Financial security LC dollar amount (Exhibit E PDF did not extract the value)",
+    "FAA OE/AAA turbine coords (live sources blocked 2026-07; no local cache hit for Navarro county — 12 fewer turbines than IA's 99 in OSM)",
+    "Exact COD date within 2022-Q4 (EIA shows 2022-12, IA scheduled 2022-11-04 — likely ~Nov-Dec 2022)",
+    "Navarro/Limestone CAD parcel ownership search not run (BLOCKED by JS-only portal)"
+  ],
+
+  "log": "D0: skeleton 2026-07-20. D1: IA (35077-1306) extracted — SPV=Limestone Wind Project LLC, 99 GE 3.03-140, 301MW, IA COD 2022-11-04. PGC registration (53424-1) confirms physical address 803 SW CR 4260 Dawson TX, parent chain ENGIE IR Holdings->ENGIE NA. D2: EIA history — Operating 2023-01+, op date 2022-12. D3: OSM 88 turbines 'Limestone Wind', substation at 31.8534,-96.6219. CDSE imaging unavailable (service outage). No IA amendments found. Queue COD 2026-07-01 confirmed stale — project operating since 2022-Q4. Verdict: real_active/operating."
+}

@@ -1,0 +1,27 @@
+{
+  "inr": "25INR0142",
+  "project": "Sagewood BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-03-31",
+    "plausible": true,
+    "why": "No IA yet; FIS only requested; 4 prior COD slips totaling ~31 months — 2028 is achievable only if IA executes soon and build starts by mid-2027"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange was 402-blocked — retry when portal accessible; IA filing is the single highest-value document given FIS-requested status",
+    "Geolocate McDonald Road Switch (ERCOT 1333) or Pastores Switch (ERCOT 10121) via ERCOT transmission maps or AEP Texas GIS to get a site candidate for imagery",
+    "Texas SOS / Secretary of State entity search for 'Sagewood BESS LLC' to identify developer and sponsor chain",
+    "Check ERCOT GIS report for any FIS approval date that may have appeared after June 2026 snapshot"
+  ],
+  "turns_used": 22
+}

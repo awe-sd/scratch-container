@@ -1,0 +1,26 @@
+{
+  "inr": "22INR0237",
+  "project": "Dragan Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-09-15",
+    "plausible": false,
+    "why": "No FIS approval after 7 years in queue; 5 COD slips totaling ~5 years; IA not signed — 2027 COD requires near-immediate FIS approval and IA execution"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "FIS approval status — queue shows FIS requested (2019-08-23) but never approved; check if ERCOT study results were issued or if project is stalled in study queue",
+    "PUCT Interchange — portal was 402-blocked during triage; retry for IA or preliminary interconnection filings under Hecate Comanche Solar LLC",
+    "Hecate Energy portfolio check — confirm Dragan Solar is still an active Hecate project vs. sold/abandoned; developer identity via T3 is aggregator-sourced, not primary"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0447",
+  "project": "Waterloo BESS 1",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 30.25,
+    "lon": -97.50,
+    "method": "DDG snippet for Austrop 345-kV substation (Travis/Bastrop border); POI = tap on Austrop-Zorn 345-kV line",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "2 of 9 grid chips returned valid imagery around Austrop sub; agricultural/rural land visible, no gravel pad or container rows; site coords uncertain"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": true,
+    "why": "IA signed 2024-09-04; COD already slipped 18 months once; 2027-12 gives ~39 months from IA — feasible but requires construction start soon; no FIS approved yet is a mild flag"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA content: queue confirms iaSigned=2024-09-04 but PUCT Interchange was 402-blocked — retrieve IA PDF for milestone schedule and POI details (Austrop sub exact location)",
+    "Austrop substation exact coords: OSM/USGS lookup or ERCOT CIM data to pin the POI and re-run imagery on the correct footprint",
+    "Developer identity: 'Waterloo BESS LLC' has no web presence beyond tracker sites — check TX SOS business entity search and any parent company / EPC relationships",
+    "FIS status: FIS requested 2023-05 but never approved in 38 snapshots — unusual to have IA without FIS approval; warrants verification",
+    "Possible Solar+Battery misclassification: one tracker flagged as Solar+Battery; queue says Battery-only — confirm fuel type in latest GIS report snapshot"
+  ],
+  "turns_used": 28
+}

@@ -1,0 +1,56 @@
+{
+  "inr": "24INR0494",
+  "project": "Hana Springs BESS",
+  "triage_date": "2026-07-20",
+  "verdict": "ambiguous",
+  "paper_score": 26,
+  "score_adjustment": {
+    "delta": 0,
+    "citation": null
+  },
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.0845,
+    "lon": -98.1837,
+    "method": "OSM Overpass substation lookup matched to POI '7064 LAMPASAS 138KV'",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "2km-buffer chip (2026-07-01) around Lampasas substation shows established town fabric; no BESS pad, container rows, or ground disturbance visible"
+  },
+  "cod_first_look": {
+    "reported": "2028-05-15",
+    "plausible": false,
+    "why": "4 COD slips over 4 years (2024-08-01 → 2025-05-31 → 2027-12-15 → 2028-05-15); no FIS approval and no IA after ~44 months; no construction visible"
+  },
+  "spv": {
+    "resolved": false,
+    "candidates": [],
+    "notes": "ch313: no Ch.313/JETI match for 'Hana Springs BESS'; PUCT exact-name match: 0 filings under 'Hana Springs' or 'Hana Springs BESS'; Black Mountain Energy Storage (bmenergystorage.com) appeared in search result #5 but could not be confirmed as developer — no supporting evidence found"
+  },
+  "eia": {
+    "status": "not_in_eia"
+  },
+  "searches": [
+    {"query": "Hana Springs BESS LLC Texas battery storage", "result": "queue trackers suppressed; Black Mountain Energy Storage appeared as result #5 — unconfirmed developer lead"},
+    {"query": "24INR0494 ERCOT interconnection", "result": "FAILED all backends — negative evidence"},
+    {"query": "Black Mountain Energy Storage Hana Springs BESS Lampasas Texas", "result": "FAILED all backends — negative evidence"},
+    {"query": "\"Hana Springs\" battery energy storage Texas developer", "result": "FAILED all backends — negative evidence"},
+    {"query": "Black Mountain Energy Storage Texas battery projects Lampasas", "result": "FAILED all backends — negative evidence"},
+    {"query": "\"Hana Springs\" BESS cancellation withdrawn suspended", "result": "FAILED all backends — negative evidence"}
+  ],
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Developer identity: Black Mountain Energy Storage is an unconfirmed lead — if IA surfaces via PUCT, developer parties page would confirm",
+    "PUCT Interchange: retry with any confirmed SPV/developer legal name; IA filing would be the swing factor",
+    "Imagery at tighter buffer (1km) around exact substation footprint could confirm no cleared land nearby"
+  ],
+  "turns_used": 15
+}

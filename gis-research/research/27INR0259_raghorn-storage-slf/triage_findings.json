@@ -1,0 +1,32 @@
+{
+  "inr": "27INR0259",
+  "project": "Raghorn Storage SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 27.96,
+    "lon": -98.05,
+    "method": "POI line inference — 69kV #5658 Orange Grove substation, Jim Wells County TX",
+    "confidence": "low"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-31",
+    "plausible": false,
+    "why": "Capacity zeroed to 0.0 MW Mar 2025, COD already slipped 1yr, no IA signed, FIS not yet approved — likely stalled or placeholder"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Verify capacity drop to 0.0 MW — check if project was restructured or split; 91.7 MW → 0.0 MW is anomalous for a battery",
+    "FIS approval status — project has been in FIS-requested limbo since May 2024 with no approval; check ERCOT queue notes",
+    "TX SOS LLC search for 'Raghorn Storage SLF' to confirm entity existence and developer identity",
+    "PUCT Interchange search via authenticated session — portal blocked via WebFetch but IA may exist under alternate name"
+  ],
+  "turns_used": 28
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EmberGreen — research brief</title><style>
+:root{--bg:#fff;--sur:#f6f7f9;--ink:#191c20;--ink2:#555b64;--mut:#899;--line:#e1e5ea;
+--good:#0a7d33;--warn:#b45309;--bad:#b91c1c;--acc:#2563eb}
+@media(prefers-color-scheme:dark){:root{--bg:#14171c;--sur:#1c2027;--ink:#eceff3;
+--ink2:#b3bac4;--mut:#7d8590;--line:#2a2f38;--good:#34d399;--warn:#fbbf24;--bad:#f87171;--acc:#6ea8fe}}
+*{box-sizing:border-box}body{margin:0 auto;max-width:1080px;padding:20px;background:var(--bg);
+color:var(--ink);font:14px/1.45 -apple-system,"Segoe UI",Roboto,sans-serif}
+h1{font-size:19px;margin:0}h2{font-size:13px;text-transform:uppercase;letter-spacing:.05em;
+color:var(--mut);margin:22px 0 8px}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-weight:700;font-size:12px}
+.b-good{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+.b-warn{background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--warn)}
+.b-bad{background:color-mix(in srgb,var(--bad) 15%,transparent);color:var(--bad)}
+.hdr{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.sub{color:var(--ink2);font-size:13px;margin:4px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.card{background:var(--sur);border:1px solid var(--line);border-radius:9px;padding:10px 13px}
+.card .k{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+.card .v{font-weight:650;margin-top:2px}.card .v small{font-weight:400;color:var(--ink2)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:5px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:13px}
+th{color:var(--mut);font-size:11px;text-transform:uppercase}
+.imgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.imgs figure{margin:0}.imgs img{width:100%;border-radius:8px;border:1px solid var(--line)}
+.imgs figcaption{font-size:12px;color:var(--ink2);margin-top:2px}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.small{font-size:12px;color:var(--ink2)}
+</style></head><body>
+<div class="hdr"><h1>EmberGreen <span class="small">(28INR0090)</span></h1>
+<span class="badge b-warn">real_early</span>
+<span class="badge b-bad">COD drift: high</span></div>
+<div class="sub">researched 2026-07-18 ·
+<a href="https://www.google.com/maps/@29.3695,-96.0912,5000m/data=!3m1!1e3" target="_blank">site 29.3695, -96.0912</a> (TCEQ air permit address text (&#x27;Ray Road, County Road 229, Wharton, TX 77488&#x27;) geocoded via OSM Nominatim (Ray Rd at 29.3706,-96.0921; CR 229 seg at 29.3689,-96.0904) — intersection lat/lon, medium-high conf) ·
+<a href="dossier.md">dossier</a> · <a href="log.md">log</a> · <a href="timeline.md">timeline</a></div>
+<div class="grid">
+<div class="card"><div class="k">Construction</div><div class="v">no_activity
+<small>since —</small></div></div>
+<div class="card"><div class="k">COD reported → independent</div>
+<div class="v">2028-01-01 → 2031-Q1</div></div>
+<div class="card"><div class="k">Owner chain</div><div class="v">EmberGreen Energy Center LLC → EmberClear Corp → ConocoPhillips + Matterhorn pipeline</div></div>
+<div class="card"><div class="k">Land</div><div class="v">unknown</div></div>
+
+</div>
+
+<h2>Site imagery (Sentinel-2, key dates)</h2><div class="imgs"><figure><a href="imagery/key/s2_2026-06-01_rayroad.png"><img src="imagery/key/s2_2026-06-01_rayroad.png" loading="lazy"></a><figcaption>2026-06-01_rayroad</figcaption></figure></div>
+<h2>Interconnection agreement — signed, security, schedule</h2><div class="small">No signed interconnection agreement on file at ERCOT (iaSigned null through 2026-06-01 snapshot). PUCT TEF loan docket for EmberGreen NOI (referenced by power-technology.com as &#x27;$432M under In-ERCOT Generation Loans Program NOI APP 00000130&#x27;) could not be located: triage claim of docket 56455 is confirmed WRONG (Interchange shows 56455 = &#x27;Sky2 TEF NOI Filing Sky2 Summary Page&#x27;, a different applicant); Interchange search does not support party-name reverse lookup without a known control number. No verifiable contractual schedule exists yet.</div>
+
+<h2>Reported-COD drift (queue history, 18 monthly reports since 2025-01-01)</h2>
+<table><tr><th>Reported COD</th><th>Held from</th><th>Until</th></tr><tr><td>2028-01-01</td><td>2025-01-01</td><td>2026-06-01</td></tr></table>
+<h2>Milestones achieved (latest report)</h2>
+<table><tr><th>Milestone</th><th>Date</th></tr><tr><td>Screening started</td><td>2024-06-13</td></tr><tr><td>Screening complete</td><td>2024-09-10</td></tr><tr><td>FIS requested</td><td>2024-12-18</td></tr><tr><td>FIS approved</td><td>2026-04-21</td></tr></table>
+<h2>Key evidence</h2><ul><li>Sentinel-2 chip at 29.3695,-96.0912 (Ray Rd / CR 229 intersection) for 2026-06-01, ±30 day window, 3 km buffer (imagery/key/s2_2026-06-01_rayroad.png): agricultural land with mixed dark/tan fields, small rural roads, US-59 highway visible NE, no cleared site, no laydown yard, no cranes, no pad, no substation activity</li><li>Triage 2026-06-15 chip at 29.400,-96.080 (Hungerford CDP, ~3.5 km NE of actual site — off-target due to erroneous initial site guess) also shows only agricultural land and small-town infrastructure (imagery/s2_2026-06-15.png)</li><li>Baseline pre-permit chip (2024-10) at Ray Rd/CR 229 could not be retrieved due to CDSE OAuth 401/403 during the synthesis window; the 2026-06-01 present-day chip alone establishes no_activity 18 months into the permit lifetime and 6 months before the reported COD</li><li>Reported COD 2028-01-01 has zero queue-history drift across 18 monthly snapshots (2025-01 to 2026-06) — but zero drift on a pre-IA project with no downstream milestones is not achievement evidence, it is placeholder stability</li><li>No signed IA on file with ERCOT (iaSigned null through 2026-06-01); typical Oncor IA negotiation post-FIS runs 9-15 months, and Amendment 1 typically adds another 6-12 months of schedule slip</li><li>No confirmed turbine OEM order: Aug 2024 press (&#x27;discussions ongoing with leading manufacturer&#x27;) is the most recent public signal, and no announcement has surfaced through 2026-07. Heavy-frame simple-cycle CTGs (F/H/HA class, ~450 MW each) have firm-order-to-delivery lead times of 3-5 years — a Jan 2028 COD would require a PO already in place</li></ul>
+<h2>Saved sources (3)</h2><h3 class='small'>Documents (2)</h3><ul><li><a href="sources/2026-07-18_tceq_notification-letter_178642.pdf">2026-07-18_tceq_notification-letter_178642.pdf</a></li><li><a href="sources/2026-07-18_tceq_technical-review_178642.pdf">2026-07-18_tceq_technical-review_178642.pdf</a></li></ul><h3 class='small'>Other (1)</h3><ul><li><a href="sources/power_technology_emberclear.md">power_technology_emberclear.md</a></li></ul>
+</body></html>

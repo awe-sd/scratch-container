@@ -1,0 +1,68 @@
+{
+ "inr": "25INR0237",
+ "generated": "2026-07-20",
+ "project": "Austin Bayou Storage III",
+ "county": "Brazoria",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 156.6,
+ "queue_cod": "2027-06-01",
+ "milestones": {
+  "screeningStudyComplete": "2023-06-05",
+  "fisApproved": null,
+  "iaSigned": "2025-02-14",
+  "financial_security": "No"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ok",
+  "plant_id": 3594,
+  "entity": "Lower Colorado River Authority",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   30.29342,
+   -97.78441
+  ]
+ },
+ "spv": {
+  "resolved": false,
+  "candidates": []
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "eia_operating_date"
+ ],
+ "paper_score": 26,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "spv_unresolvable",
+   "points": 10,
+   "detail": "no SPV via spv.py or any registry"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 15.07,
+  "reason": "reality signal"
+ }
+}

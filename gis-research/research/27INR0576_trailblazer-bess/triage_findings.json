@@ -1,0 +1,32 @@
+{
+  "inr": "27INR0576",
+  "project": "Trailblazer BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.47,
+    "lon": -100.35,
+    "method": "POI inference — 'Sweetwater East Switch 345 kV' is an AEP Texas switching station east of Sweetwater TX; estimated center ~3 km east of city",
+    "confidence": "low"
+  },
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-12",
+    "plausible": true,
+    "why": "Entered queue 2026-03, screening just completed 2026-06; no IA yet but 18-month build window for BESS is feasible if IA signed by late 2026"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange IA search for 'Trailblazer Infrastructure LLC' — portal was 402-blocked during triage; IA existence/schedule is the key unknown",
+    "TX SOS entity search for 'Trailblazer Infrastructure LLC' to establish parent/developer chain",
+    "CDSE imagery once credentials installed — tight 1-km chips around Sweetwater East Switch 345 kV substation for any gravel pad or container rows",
+    "Google Places delivery-pin search once GMaps API rate-limit clears — BESS sites often register before groundbreaking"
+  ],
+  "turns_used": 28
+}

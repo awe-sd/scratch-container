@@ -1,0 +1,36 @@
+{
+  "inr": "21INR0380",
+  "project": "Charolais Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.794,
+    "lon": -96.047,
+    "method": "POI inference — 'STP' in POI description points to South Texas Project area, Matagorda County",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery 401 Unauthorized; no imagery obtained; cannot assess"
+  },
+  "cod_first_look": {
+    "reported": "2026-12-15",
+    "plausible": false,
+    "why": "No FIS approval, no IA signed after 5+ years in queue; 3 prior COD slips (2022->2023->2025->2026); 5% build probability per ercotqueue.com"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm developer activity: check RWE Solar Development LLC for any Charolais Solar advancement announcements",
+    "Form D equity raise Dec 2022 ($8.57M) is the only positive signal — verify if additional raises followed",
+    "Fix CDSE credentials and run imagery at STP-area coords (~28.794N, 96.047W) to rule out ground prep",
+    "PUCT Interchange requires authenticated session — confirm IA absence with browser session",
+    "If any of the above turn positive, re-evaluate for deep scan"
+  ],
+  "turns_used": 28
+}

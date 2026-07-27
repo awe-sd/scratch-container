@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0546",
+  "project": "Hobby BESS I",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.664,
+    "lon": -95.295,
+    "method": "POI inference: 'Garden Villas' substation neighborhood via gmaps; consistent with Hobby Airport proximity implied by project name",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "not detected",
+    "evidence": "2-km-buffer Sentinel-2 chip at 29.664/-95.295 (2026-07-01) shows dense urban grid with no pale gravel pad or container rows; CDSE rate-limited (2/9 chips returned); resolution insufficient to resolve compact BESS pad without a tighter chip on the exact substation parcel"
+  },
+  "cod_first_look": {
+    "reported": "2027-10-15",
+    "plausible": true,
+    "why": "FIS approved Jan 2026; no IA yet; 21-month window to COD is tight but achievable if IA closes mid-2026 and build starts Q3 2026"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT interchange inaccessible this run (402) — retry IA search by FilingParty='Hobby BESS I' and Description contains '26INR0546'; IA signed date is the key gate",
+    "Exact substation parcel: locate CenterPoint 'Garden Villas 138kV' (#42680) on OpenStreetMap or HCAD parcel map, then run tight 0.5-km chip to check for graded pad",
+    "Developer identity: no LLC registration or news found — try Texas SOS business search for 'Hobby BESS' and FERC eLibrary for any IA filing",
+    "Chocolate Bayou substation (#48013) also named in POI — check if alternate site candidate (southern Harris Co vs. SE Houston)"
+  ],
+  "turns_used": 26
+}

@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0485",
+  "project": "Prospector Energy Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.2365,
+    "lon": -101.6671,
+    "method": "OSM geocode of Natural Dam Salt Lake — geographic feature likely naming the POI substation; substation itself not located",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery returned 401 on all 9 grid chips; site candidate is low-confidence (no IA map, no pin, no abatement parcel)"
+  },
+  "cod_first_look": {
+    "reported": "2026-09-30",
+    "plausible": false,
+    "why": "COD held ~26 months with no FIS approval and no IA signed; <3 months to reported COD with no construction dates in queue; almost certainly a placeholder date"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange IA search once portal accessible — no IA in queue but may exist as a recent filing not yet reflected",
+    "Locate Natural Dam 138kV substation (ERCOT facility #23836) precise coordinates — enables tight imagery search",
+    "Developer identity search — 'Prospector Energy Storage LLC' returns zero web footprint; could be a nominee/shelf entity for a larger developer",
+    "JETI registry search for Howard County storage applicants post-2022 — may surface the sponsor behind this name"
+  ],
+  "turns_used": 22
+}

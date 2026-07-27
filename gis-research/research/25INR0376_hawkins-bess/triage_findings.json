@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0376",
+  "project": "Hawkins BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 26.16,
+    "lon": -98.11,
+    "method": "POI substation ELGATO4A 138kV inferred from OSM way W513155541 (~4 mi SE of San Juan TX); no address or pin confirmed",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unconfirmed — imagery blocked",
+    "evidence": "GridStor press release Dec 2025 states construction commenced; CDSE auth failure prevented Sentinel-2 verification"
+  },
+  "cod_first_look": {
+    "reported": "2028-01-16",
+    "plausible": true,
+    "why": "GridStor targets end-of-2026 ops (per Dec 2025 PR + tolling agreement) — reported 2028 COD is conservative; 2027 more likely if construction on track"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "CDSE credentials need refresh — imagery is the highest-value open thread; construction reportedly started Dec 2025, Sentinel-2 chip at ELGATO substation should show pad/container activity",
+    "PUCT Interchange: search under 'GridStor' and 'Gunnar' (project was renamed post-acquisition Feb 2025) — IA almost certainly exists given financing + tolling deal",
+    "Confirm exact site coordinates: GridStor press release or PUCT filing map should pin the pad; OSM ELGATO substation estimate (~26.16N, 98.11W) needs validation",
+    "BRP Blue Topaz 7 LLC: check TX SOS for entity status + any assignment/transfer filings to GridStor",
+    "COD gap: ERCOT says 2028-01-16 but developer targets end-2026 — worth confirming whether an IA amendment or COD update has been filed"
+  ],
+  "turns_used": 22
+}

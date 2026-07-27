@@ -1,0 +1,68 @@
+{
+ "inr": "25INR0164",
+ "generated": "2026-07-20",
+ "project": "Star Dairy Solar",
+ "county": "Lamar",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 115.61,
+ "queue_cod": "2027-07-12",
+ "milestones": {
+  "screeningStudyComplete": "2023-02-17",
+  "fisApproved": null,
+  "iaSigned": "2024-12-09",
+  "financial_security": "No"
+ },
+ "cod_slips": 5,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": false,
+  "candidates": []
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 0,
+  "join_items": 2
+ },
+ "reality_signals": [],
+ "paper_score": 40,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 10,
+   "detail": "5 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "spv_unresolvable",
+   "points": 10,
+   "detail": "no SPV via spv.py or any registry"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "ambiguous",
+  "priority": null,
+  "reason": "paper_score 40 < 50 but no reality signal (near-COD/large-MW alone no longer trigger deep_candidate)"
+ }
+}

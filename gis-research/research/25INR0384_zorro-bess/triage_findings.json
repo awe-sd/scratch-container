@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0384",
+  "project": "Zorro BESS",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.4744,
+    "lon": -95.7156,
+    "method": "Web sources (EIA-860M via Wikidata, local opposition site) place Zorro BESS co-located with BT Kellum Solar at 9990 FM 773, Ben Wheeler TX 75754",
+    "confidence": "high"
+  },
+  "construction": {
+    "verdict": "no visible signal at Sentinel-2 resolution",
+    "evidence": "2026-06-15 chip shows BT Kellum Solar array unchanged vs 2023 baseline; no new gravel pad or container rows at 10 m/px. March 2026 Facebook post claims pad and interconnect locations complete — unverifiable at this resolution."
+  },
+  "cod_first_look": {
+    "reported": "2027-08-31",
+    "plausible": true,
+    "why": "IA signed Mar 2025; COD has drifted 6 times (~2.5 yr slip from 2025-07-01 original); co-located site at existing solar facility reduces land/permitting friction; 15-18 month build window from mid-2026 could support ~2027 Q3 COD if procurement is advancing"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange blocked during triage — retry IA filing for Rayburn Country Electric Cooperative docket to get milestone schedule and COD commitments",
+    "Developer UR-Silo DevCo LLC / 'Project Fox' — search for financing announcements, EPC contracts, or procurement filings",
+    "Higher-resolution imagery (Planet/Maxar) at BT Kellum Solar site to confirm or deny gravel pad and container staging claimed in Mar 2026 Facebook post",
+    "Van Zandt CAD parcel lookup for 9990 FM 773 — check for any new improvement filings or ownership transfer to Zorro BESS LLC",
+    "JETI abatement application check via direct Comptroller contact (thin online registry for post-2022 BESS)"
+  ],
+  "turns_used": 28
+}

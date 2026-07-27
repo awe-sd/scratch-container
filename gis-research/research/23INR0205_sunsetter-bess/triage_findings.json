@@ -1,0 +1,26 @@
+{
+  "inr": "23INR0205",
+  "project": "SUNSETTER BESS",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-11-30",
+    "plausible": false,
+    "why": "COD drifted x2 (2024→2025→2027); no FIS approval, no IA after 4+ years at FIS-requested — 2027 COD requires IA + FS + construction all in ~18 months, extremely unlikely"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Resolve Downie 138kV substation coordinates via AEP Texas transmission maps or ERCOT bus node lookup — prerequisite for any imagery",
+    "Check PUCT Interchange with alternate spellings or developer name if IA ever surfaces (portal was 402-blocked during triage)",
+    "TX SOS lookup for SUNSETTER BESS LLC to identify developer/sponsor — zero web presence is a red flag for paper project"
+  ],
+  "turns_used": 28
+}

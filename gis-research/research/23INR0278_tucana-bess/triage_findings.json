@@ -1,0 +1,27 @@
+{
+  "inr": "23INR0278",
+  "project": "Tucana BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-03-01",
+    "plausible": true,
+    "why": "FIS approved 2025-06-18; IA not signed; 5 prior COD slips (~4.5 yr total); 2028 COD would require IA + construction within ~18 months of FIS approval — tight but not impossible for BESS"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate 'Andrews County South 138kV' substation coordinates via ERCOT GIS or Oncor transmission maps to enable imagery run",
+    "Search PUCT Interchange via a session-authenticated browser for IA filing under 'Tucana BESS' or any alternate developer name",
+    "Identify developer/owner via Texas SOS entity search for 'Tucana BESS LLC' or similar",
+    "Return to imagery once substation coords obtained — BESS pads can be pre-staged even without IA"
+  ],
+  "turns_used": 30
+}

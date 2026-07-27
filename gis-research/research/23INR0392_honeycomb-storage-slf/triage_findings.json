@@ -1,0 +1,35 @@
+{
+  "inr": "23INR0392",
+  "project": "Honeycomb Storage SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.18,
+    "lon": -97.82,
+    "method": "Tynan TX town centroid from OSM reference (Mapcarta W489376566); substation #8107 not pinned precisely",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "Two Sentinel-2 chips (2026-06-01, 2026-03-01) at 2km buffer around Tynan TX: agricultural fields + center-pivot irrigation visible in clear patches; no pale gravel pad, no container rows, no disturbed earth consistent with BESS construction. Both chips had partial cloud cover limiting certainty."
+  },
+  "cod_first_look": {
+    "reported": "2026-10-27",
+    "plausible": false,
+    "why": "7 COD drifts over 3 years; no construction milestones in queue; capacity oscillates near 0 MW; no imagery signal — ~4 months to COD with zero construction evidence is implausible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "IA signed 2023-05-01 — retrieve PUCT Interchange PDF (session-authenticated; blocked during triage) to confirm POI, schedule exhibit, and milestone dates",
+    "Honeycomb Solar 22INR0559 co-location — check if BESS is auxiliary to a solar project; may explain 0 MW net capacity",
+    "Precise substation coordinates — OpenStreetMap W489376566 or AEP Texas transmission map; re-run imagery with tight 1km buffer on substation pin",
+    "Developer identity — Honeycomb BESS LLC parent not identified; Texas SOS lookup"
+  ],
+  "turns_used": 28
+}

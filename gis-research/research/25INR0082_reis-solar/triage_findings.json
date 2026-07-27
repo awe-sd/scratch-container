@@ -1,0 +1,27 @@
+{
+  "inr": "25INR0082",
+  "project": "Reis Solar",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-08-03",
+    "plausible": false,
+    "why": "No FIS approval or IA after 4 years; EIA tracker shows 2029-04-30; 5% build-chance rating; COD already drifted twice"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Verify Greenalia (developer) corporate activity: any US project completions, financing news, or SEC/FERC filings to gauge developer credibility",
+    "PUCT Interchange direct search when portal is accessible — check for any IA or FIS approval filing under 'Greenalia Solar Power Reis' or 'Reis Solar'",
+    "JETI registry once portal is restored — post-2022 project may have an incentive application",
+    "Site location: OpenInfraMap or ERCOT transmission GIS to trace line 5689 (Choke Canyon–San Miguel) and identify landowner parcels along the route in Atascosa County"
+  ],
+  "turns_used": 22
+}

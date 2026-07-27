@@ -1,0 +1,80 @@
+{
+ "inr": "23INR0349",
+ "generated": "2026-07-20",
+ "project": "Tokio Solar",
+ "county": "McLennan",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 170.45,
+ "queue_cod": "2027-08-25",
+ "milestones": {
+  "screeningStudyComplete": "2021-11-01",
+  "fisApproved": null,
+  "iaSigned": "2023-11-06",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "ok",
+  "plant_id": 66397,
+  "entity": "Gransolar Texas Eight, LLC",
+  "planned_cod": "2027-08",
+  "cod_delta_quarters": 0.0,
+  "dropped_scope": null,
+  "coords": [
+   31.42742,
+   -97.31086
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Gransolar Texas Eight, LLC",
+    "detail": "plant=Tokio Solar 170.4MW (P) Planned for installation, but regula @31.42742,-97.31086 planned=2027-08"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Gransolar Texas Eight, LLC",
+    "detail": "Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Gransolar Texas Eight, LL"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "financial_security_posted"
+ ],
+ "paper_score": 26,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 12.92,
+  "reason": "reality signal"
+ }
+}

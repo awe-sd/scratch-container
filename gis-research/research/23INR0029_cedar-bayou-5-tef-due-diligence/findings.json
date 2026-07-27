@@ -1,0 +1,102 @@
+{
+  "inr": "23INR0029",
+  "project": "Cedar Bayou 5 (TEF - Due Diligence)",
+  "researched_at": "2026-07-18",
+  "site": {
+    "lat": 29.75126,
+    "lon": -94.92088,
+    "method": "ia_document",
+    "confidence": "high"
+  },
+  "parcels": [],
+  "project_area": {
+    "acres": null,
+    "source": "not_disclosed",
+    "artifact": null,
+    "note": "Site is inside the operating NRG Cedar Bayou Station (existing 2065.5 MW gas plant, EIA IDs 3460/56806, operating since 1970-12 per OSM way/39979635 sources/2026-07-18_osm_overpass_cedar-bayou-poi-3km.json). CB5 is a co-sited expansion, not greenfield. No Ch313/Ch312/JETI abatement retrieved (post-2022 gas + TEF financing model); Chambers County CAD eSearch TLS-blocked this session (curl 0A000126); IA exhibits do not state acreage."
+  },
+  "llc_chain": [
+    {
+      "entity": "NRG Cedar Bayou 5 LLC",
+      "relation": "SPV_generator",
+      "evidence": "Signatory on IA (sources/2026-07-18_puct_35077-1362_centerpoint-nrg-cedar-bayou-5-IA.pdf) and Amendment 1 (sources/2026-07-18_puct_35077-1807_centerpoint-nrg-cedar-bayou-5-IA-amend1.pdf); TEF applicant APP-016"
+    },
+    {
+      "entity": "NRG Energy, Inc.",
+      "relation": "parent_developer",
+      "evidence": "PUCT NOI (sources/2026-07-18_puct_56455-9_nrg-cedar-bayou-5-NOI.pdf) signed by Matthew J. Pistner, SVP Generation NRG Energy; NRG owns/operates existing Cedar Bayou Station per OSM operator tag (sources/2026-07-18_osm_overpass_cedar-bayou-poi-3km.json way/39979635)"
+    },
+    {
+      "entity": "CenterPoint Energy Houston Electric, LLC",
+      "relation": "interconnecting_TSP",
+      "evidence": "IA counterparty and CenterPoint owns adjacent Cedar Bayou Plant Substation (OSM way/39962537, 345/138 kV) per sources/2026-07-18_osm_overpass_cedar-bayou-poi-3km.json"
+    }
+  ],
+  "land_tenure": {
+    "status": "owned",
+    "evidence": "GIFSUB coordinates 29.7512636, -94.9208826 from IA Amendment 1 Exhibit C place the plant terminating structure inside OSM 'Cedar Bayou Station' industrial polygon (way/39979635, operator=NRG Energy, sources/2026-07-18_osm_overpass_cedar-bayou-poi-3km.json). Existing plant land in operation since 1970 under NRG/predecessor ownership. Chambers CAD parcel confirmation deferred (TLS-blocked)."
+  },
+  "construction": {
+    "verdict": "no_activity",
+    "first_activity_seen": null,
+    "evidence": [
+      "imagery/s2_2026-07-01_corrected.png — 2026-07 Sentinel-2 shows the existing plant complex (cooling reservoir, transformer yard, industrial buildings) unchanged; no adjacent laydown yards, cranes, or fresh grading visible NNW of the plant at 10 m resolution",
+      "imagery/s2_2023-06-01_baseline.png — 2023 baseline shows same industrial footprint; no visible new construction between baseline and 2026-07",
+      "CDSE token invalid_grant this session (401) prevented a fresh 2 km-buffer chip at the exact GIFSUB coords (29.7512636, -94.9208826); a small pad or footprint smaller than ~1 acre could be present but subtle at 10 m — a limit, not evidence"
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-12-15",
+    "independent": "2028-Q2",
+    "drift_risk": "med",
+    "reasoning_evidence": [
+      "Reported 2027-12-15 is the contractually scheduled Commercial Operation Date in signed IA Amendment 1 (sources/2026-07-18_puct_35077-1807_centerpoint-nrg-cedar-bayou-5-IA-amend1.pdf Exhibit B ¶4) — grounded in a countersigned document, not merely a queue-report claim",
+      "Amendment 1 (signed Apr 2024) already slipped Scheduled COD from original IA's 'later of 2025-06-01 or +6mo after ISD' (sources/2026-07-18_puct_35077-1362_centerpoint-nrg-cedar-bayou-5-IA.pdf) to 2027-12-15 — ~2.5 yr pre-construction slip; queue history shows 4 COD changes 2023-07 → 2027-12 (timeline.md), a project pattern of drift",
+      "TIF ISD is later of 2027-07-14 or +38mo after prerequisites (Amend 1 Exhibit B ¶3), leaving ≤5 months slack to the 2027-12-15 COD — thin buffer for a 1×1 M501JAC CCGT that typically requires 28-34 months mobilization-to-COD even on brownfield sites",
+      "No mobilization visible in 2026-07 imagery; 29 months to reported COD from a no-activity start is achievable for a brownfield 1×1 CCGT if EPC mobilizes in H2 2026, but any further schedule slip (e.g., TEF financial close pushes into 2027, Mitsubishi delivery delay) trims that headroom to zero",
+      "Positive credibility signals: (a) PUCT TEF Staff advanced NRG APP-016 to due-diligence 2024-12-12 (sources/2026-07-18_puct_56896-60_cedar-bayou-DD-memo.pdf) requiring signed EPC + equity attestation + equipment arrangements; (b) CB5 did NOT file for schedule extension in PUCT 56896 while ~10 sibling TEF applicants (Greens Bayou 6, Bulldog, Homestead, Pecos, Permian I/II, etc.) did; (c) LC nearly doubled from $4.9M to $9.4M with Amendment 1; (d) NRG contractually committed to Mitsubishi M501JAC by signature Apr 2024 (Amend 1 Exhibit C ¶5); (e) TCEQ RE RN110333184 registered as distinct entity for the expansion consistent with active NSR permitting; (f) NRG NOI attests 'necessary environmental permits and water rights'",
+      "Independent estimate 2028-Q2 reflects the base-rate slip of a project with no visible mobilization 29 mo before reported COD, offset by strong developer + institutional TEF pathway + brownfield expansion (no greenfield permitting/land assembly overhead)"
+    ]
+  },
+  "real_project_verdict": "real_early",
+  "negative_searches": 15,
+  "banned_source_violations": 0,
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Original IA (SGIA)",
+        "signed": "2021-12-01",
+        "financial_security": "$4,900,000 LC",
+        "artifact": "sources/2026-07-18_puct_35077-1362_centerpoint-nrg-cedar-bayou-5-IA.pdf"
+      },
+      {
+        "doc": "Amendment One",
+        "signed": "2024-04-24 (NRG) / 2024-04-26 (CenterPoint)",
+        "financial_security": "$9,423,000 LC or cash",
+        "artifact": "sources/2026-07-18_puct_35077-1807_centerpoint-nrg-cedar-bayou-5-IA-amend1.pdf"
+      }
+    ],
+    "source_docs": [
+      "sources/2026-07-18_puct_35077-1362_centerpoint-nrg-cedar-bayou-5-IA.pdf",
+      "sources/2026-07-18_puct_35077-1807_centerpoint-nrg-cedar-bayou-5-IA-amend1.pdf"
+    ],
+    "note": "CenterPoint–NRG Cedar Bayou 5 SGIA (PUCT Control No. 35077, CenterPoint contract INT-21-224A). Amendment 1 replaced Exhibits B, C, D, E; scheduled start reset to 2024-05-15 (backdated — filed 2024-05-06). Amendment 1 Exhibit C ¶5 names equipment: one Mitsubishi Power M501JAC 1×1 single-shaft CCGT, 674 MW at generator terminals. Financial security nearly doubled from original.",
+    "milestones": [
+      {
+        "name": "Scheduled Start",
+        "original_ia_2021": "2026-12-01",
+        "amendment1_2024": "2024-05-15"
+      },
+      {
+        "name": "TIF In-Service",
+        "original_ia_2021": "later of 2023-05-03 or +18 mo after Prerequisites",
+        "amendment1_2024": "later of 2027-07-14 or +38 mo after Prerequisites"
+      },
+      {
+        "name": "Scheduled Commercial Operation",
+        "original_ia_2021": "later of 2025-06-01 or +6 mo after TIF ISD",
+        "amendment1_2024": "later of 2027-12-15 or +4 mo after TIF ISD"
+      }
+    ]
+  }
+}

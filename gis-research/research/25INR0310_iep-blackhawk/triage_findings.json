@@ -1,0 +1,34 @@
+{
+  "inr": "25INR0310",
+  "project": "IEP Blackhawk",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.38,
+    "lon": -95.00,
+    "method": "text description — POI 'Heights Substation 138kV', ~2 mi NE of La Marque per web search",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials unavailable (401); no imagery acquired; no construction signals from any other source"
+  },
+  "cod_first_look": {
+    "reported": "2026-12-01",
+    "plausible": false,
+    "why": "No IA signed, no FIS approval, no construction dates in queue; COD already slipped once from 2025-01-01; third-party tracker rates build-chance at 5%; ~5 months to COD with no IA is implausible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Verify PUCT Interchange for IA filings under 'IEP Texas Verde II' (portal blocked this run — 402)",
+    "Confirm Heights Substation exact coords via CenterPoint/ERCOT network map, then re-run imagery with valid CDSE credentials",
+    "Check Texas SOS for IEP Texas Verde II LLC registration to identify parent developer"
+  ],
+  "turns_used": 28
+}

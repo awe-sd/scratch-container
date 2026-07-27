@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0071",
+  "project": "Charro Creek Storage 2 SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.71,
+    "lon": -97.88,
+    "method": "POI substation name (PAWNEESW5 = Pawnee Southwest, Karnes County)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery 401 Unauthorized — no chips retrieved; no other visual evidence available"
+  },
+  "cod_first_look": {
+    "reported": "2026-07-01",
+    "plausible": false,
+    "why": "COD was 17 days ago; FIS never approved, no IA signed, no construction milestones — physically impossible without those gates"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange inaccessible this session — check manually for IA filing under 'Charro Creek Storage 2' or '26INR0071'",
+    "0 MW capacity since Mar 2023 is anomalous — verify whether this is a placeholder/reformulation or a data error vs the original 102 MW entry",
+    "No developer identity surfaced — Texas SOS search for 'Charro Creek Storage 2 SLF LLC' may reveal sponsor",
+    "If IA found: extract milestone schedule to assess whether COD has any revised target"
+  ],
+  "turns_used": 28
+}

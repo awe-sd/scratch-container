@@ -1,0 +1,29 @@
+{
+  "inr": "27INR0536",
+  "project": "Siete Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-01-03",
+    "plausible": false,
+    "why": "FIS not yet approved (only requested 2025-06-24); no IA; COD already drifted once; 18-month window from today to COD implausible given study stage"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate Triada substation coordinates via ETT/ERCOT transmission maps to anchor imagery search",
+    "FAA OE/AAA obstruction filings for Webb County — Apex projects typically file early, may yield turbine coordinates",
+    "Check ERCOT FIS approval date when available — this is the gating milestone before IA",
+    "Confirm Apex Clean Energy as developer via TX SOS entity search for 'Siete Wind LLC'",
+    "PUCT Interchange: search for ETT docket related to 'Triada' or '8718' new 345kV construction — may have siting maps",
+    "Re-run imagery once a site candidate is established (prior shelved entry 20INR0047 may have land lease footprint)"
+  ],
+  "turns_used": 25
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Musgravite Solar — research brief</title><style>
+:root{--bg:#fff;--sur:#f6f7f9;--ink:#191c20;--ink2:#555b64;--mut:#899;--line:#e1e5ea;
+--good:#0a7d33;--warn:#b45309;--bad:#b91c1c;--acc:#2563eb}
+@media(prefers-color-scheme:dark){:root{--bg:#14171c;--sur:#1c2027;--ink:#eceff3;
+--ink2:#b3bac4;--mut:#7d8590;--line:#2a2f38;--good:#34d399;--warn:#fbbf24;--bad:#f87171;--acc:#6ea8fe}}
+*{box-sizing:border-box}body{margin:0 auto;max-width:1080px;padding:20px;background:var(--bg);
+color:var(--ink);font:14px/1.45 -apple-system,"Segoe UI",Roboto,sans-serif}
+h1{font-size:19px;margin:0}h2{font-size:13px;text-transform:uppercase;letter-spacing:.05em;
+color:var(--mut);margin:22px 0 8px}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-weight:700;font-size:12px}
+.b-good{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+.b-warn{background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--warn)}
+.b-bad{background:color-mix(in srgb,var(--bad) 15%,transparent);color:var(--bad)}
+.hdr{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.sub{color:var(--ink2);font-size:13px;margin:4px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.card{background:var(--sur);border:1px solid var(--line);border-radius:9px;padding:10px 13px}
+.card .k{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+.card .v{font-weight:650;margin-top:2px}.card .v small{font-weight:400;color:var(--ink2)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:5px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:13px}
+th{color:var(--mut);font-size:11px;text-transform:uppercase}
+.imgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.imgs figure{margin:0}.imgs img{width:100%;border-radius:8px;border:1px solid var(--line)}
+.imgs figcaption{font-size:12px;color:var(--ink2);margin-top:2px}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.small{font-size:12px;color:var(--ink2)}
+</style></head><body>
+<div class="hdr"><h1>Musgravite Solar <span class="small">(27INR0198)</span></h1>
+<span class="badge b-warn">real_early</span>
+<span class="badge b-bad">COD drift: high</span></div>
+<div class="sub">researched 2026-07-20 ·
+<a href="https://www.google.com/maps/@32.16995,-95.5803,5000m/data=!3m1!1e3" target="_blank">site 32.16995, -95.5803</a> (eia860m_coords_cross_checked_vs_poi_geography — EIA-860M plant-name match (spv.py resolve) gives 32.16995,-95.5803. Independently cross-checked against the queue&#x27;s own POI text (&#x27;Tap 138kV (6855) Coffee - (6849) New York&#x27;): Coffee City, TX (Wikipedia, 32.1160,-95.4994) and New York, TX (Wikipedia via WebFetch, 32.1700,-95.6700) are both real Henderson Co communities named on real transmission infrastructure. The EIA point sits only 3.0 km from the Coffee-New York midpoint and is roughly equidistant from both endpoints (9.7 km / 8.4 km) -- consistent with a tap mid-span on the line connecting them. The triage&#x27;s LaRue web-aggregator guess (32.1169,-95.6747) is off-axis (16.5 km from Coffee, 5.9 km from New York) and not corroborated by any primary doc -- SUPERSEDED., medium conf) ·
+<a href="dossier.md">dossier</a> · <a href="log.md">log</a> · <a href="timeline.md">timeline</a></div>
+<div class="grid">
+<div class="card"><div class="k">Construction</div><div class="v">unknown_cdse_outage
+<small>since —</small></div></div>
+<div class="card"><div class="k">COD reported → independent</div>
+<div class="v">2027-11-01 → 2028-Q1</div></div>
+<div class="card"><div class="k">Owner chain</div><div class="v">BT Thompson Solar, LLC → Belltown Power Texas LLC</div></div>
+<div class="card"><div class="k">Land</div><div class="v">—</div></div>
+
+</div>
+
+<h2>Site imagery (Sentinel-2, key dates)</h2><div class="imgs"><figure><a href="imagery/s2_32.1169_-95.6747_2026-06-01.png"><img src="imagery/s2_32.1169_-95.6747_2026-06-01.png" loading="lazy"></a><figcaption>32.1169_-95.6747_2026-06-01</figcaption></figure><figure><a href="imagery/s2_32.1469_-95.6747_2026-06-01.png"><img src="imagery/s2_32.1469_-95.6747_2026-06-01.png" loading="lazy"></a><figcaption>32.1469_-95.6747_2026-06-01</figcaption></figure><figure><a href="imagery/s2_32.1469_-95.7047_2026-06-01.png"><img src="imagery/s2_32.1469_-95.7047_2026-06-01.png" loading="lazy"></a><figcaption>32.1469_-95.7047_2026-06-01</figcaption></figure></div>
+<h2>Interconnection agreement — signed, security, schedule</h2><div class="small">No IA document obtained. Queue claims iaSigned=2025-05-20 with financial security posted (&#x27;Yes&#x27;), but an exhaustive PUCT Interchange search (systematic ladder rungs 0-3 + an ad-hoc +/-5-day all-TSP docket window scan around the claimed signing date) found zero confirmed or probable filings under &#x27;Musgravite Solar&#x27;, &#x27;Musgravite&#x27;, &#x27;BT Thompson Solar&#x27;, or &#x27;Thompson&#x27; as party/description text. Two coincidental matches (Tanzanite/Sowers Storage via Belltown Power Texas; Sol Marina Energy Center via Adapture Solar, filed the same day) were verified as different INRs/projects and discarded. Either the IA was filed under an unidentified legal name, or the queue&#x27;s iaSigned flag is not yet corroborated by a public filing as of the docket index&#x27;s last refresh (2026-07-19).</div>
+
+<h2>Reported-COD drift (queue history, 28 monthly reports since 2024-03-01)</h2>
+<table><tr><th>Reported COD</th><th>Held from</th><th>Until</th></tr><tr><td>2027-05-28</td><td>2024-03-01</td><td>2025-09-01</td></tr><tr><td>2027-11-01</td><td>2025-10-01</td><td>2026-06-01</td></tr></table>
+<h2>Milestones achieved (latest report)</h2>
+<table><tr><th>Milestone</th><th>Date</th></tr><tr><td>Screening started</td><td>2024-03-22</td></tr><tr><td>Screening complete</td><td>2024-06-19</td></tr><tr><td>FIS requested</td><td>2024-03-06</td></tr><tr><td>FIS approved</td><td>2025-10-06</td></tr><tr><td>IA signed</td><td>2025-05-20</td></tr></table>
+
+<h2>EIA-860M second source — plant 'Musgravite Solar', entity BT Thompson Solar, LLC</h2>
+<div class="small">matched by name match · reports 2025-05-01 → 2026-05-01 ·
+queue-reported COD <b>2027-11-01</b> vs latest EIA planned COD <b>2027-12</b> · <a href="https://www.google.com/maps/@32.16995,-95.5803,5000m/data=!3m1!1e3" target="_blank">EIA site 32.16995, -95.5803</a> (Henderson Co)</div>
+
+<table><tr><th>EIA planned COD</th><th>Held from</th><th>Until</th></tr><tr><td>2027-12</td><td>2025-05-01</td><td>2026-05-01</td></tr></table>
+
+<table><tr><th>EIA status</th><th>From</th><th>Until</th></tr><tr><td>(L) Regulatory approvals pending. Not under construction</td><td>2025-05-01</td><td>2026-05-01</td></tr></table>
+<h2>Key evidence</h2><ul><li>Triage T6 (2026-07-19): 3 chips at LaRue centroid (superseded site), 2026-06-01, 50-70% cloud cover, no arrays/grading/staging visible in clear windows -- but wrong site coordinates, low evidentiary value now</li><li>Deep D2 (2026-07-20): CDSE fleet-wide outage -- every chip/chips call at the corrected EIA/POI-cross-validated site (32.16995,-95.5803) returned RemoteDisconnected after 15s/45s/120s backoff escalation, both foreground (90s and 150s timeouts) and background jobs (killed after 12+ min with zero output). A separate probe-watchdog process observed running in the container confirms this is a known, fleet-wide, temporary CDSE capacity outage, not a query-specific failure. NO IMAGERY OBTAINED for the corrected site coordinates.</li><li>Queue-history (timeline.md): 1 COD change (2027-05-28 -&gt; 2027-11-01, shifted at the 2025-10-01 snapshot) -- one prior slip of ~5 months, before any construction evidence exists either way</li><li>EIA-860M second source (eia_history.json): entity BT Thompson Solar, LLC / plant &#x27;Musgravite Solar&#x27; reports planned COD 2027-12 consistently across all 13 monthly snapshots on file (2025-05-01 -&gt; 2026-05-01) -- 1 month later than the queue&#x27;s 2027-11-01, materially in agreement</li><li>EIA-860M status field UNCHANGED for the full 13-month reporting window: &#x27;(L) Regulatory approvals pending. Not under construction&#x27; -- this is the most recent independent status (as of the 2026-05-01 EIA report) and it says construction has NOT started</li></ul>
+<h2>Saved sources (0)</h2>
+</body></html>

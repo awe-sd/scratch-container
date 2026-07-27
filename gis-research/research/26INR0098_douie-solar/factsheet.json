@@ -1,0 +1,63 @@
+{
+ "inr": "26INR0098",
+ "generated": "2026-07-20",
+ "project": "Douie Solar",
+ "county": "Freestone",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 221.2,
+ "queue_cod": "2028-04-18",
+ "milestones": {
+  "screeningStudyComplete": "2023-08-11",
+  "fisApproved": "2025-07-07",
+  "iaSigned": "2026-03-08",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 3,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "puct-index",
+    "entity": "Buffalo Spring Solar, LLC",
+    "detail": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Buffalo Spring S"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 6,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 6,
+   "detail": "3 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 10.54,
+  "reason": "reality signal"
+ }
+}

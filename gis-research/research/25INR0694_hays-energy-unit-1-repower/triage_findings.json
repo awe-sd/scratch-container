@@ -1,0 +1,28 @@
+{
+  "inr": "25INR0694",
+  "project": "Hays Energy Unit 1 Repower",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-07-01",
+    "plausible": true,
+    "why": "Pre-IA, FIS only requested Jan 2026; COD already slipped once (Dec 2026 → Jul 2027); 18 MW gas repower is small-scope but no IA or permits confirmed yet"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate existing Hays Energy plant: EIA-860 download or ERCOT plant registry to get lat/lon; this is a repower so the site EXISTS — missing from all web searches only due to portal rendering failures",
+    "TCEQ air permit (NSR mandatory for gas repower): TCEQ Central Registry blocked during triage — check directly for RN/air permit for Hays Energy in Hays County; absence of permit = paper-project flag",
+    "PUCT Interchange blocked (402) — retry in authenticated session for IA or FIS-related filings under 'Hays Energy' or '25INR0694'",
+    "Texas SOS business search for 'Hays Energy Unit 1 Repower LLC' — no registration footprint found",
+    "ERCOT CRR/node data: confirm POI node 7043 exists and has active capacity — validates that the existing plant is real"
+  ],
+  "turns_used": 28
+}

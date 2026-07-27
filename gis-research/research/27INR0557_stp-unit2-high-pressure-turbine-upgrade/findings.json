@@ -1,0 +1,74 @@
+{
+ "inr": "27INR0557",
+ "project": "STP Unit2 High Pressure Turbine Upgrade",
+ "researched_at": "2026-07-18",
+ "site": {
+  "lat": 28.79556,
+  "lon": -96.04889,
+  "method": "wikipedia_infobox_existing_licensed_plant",
+  "confidence": "high"
+ },
+ "parcels": [],
+ "llc_chain": [
+  {
+   "entity": "STP Nuclear Operating Company (STPNOC)",
+   "relation": "plant_operator",
+   "evidence": "Wikipedia STP article infobox names STPNOC as operator (sources/2026-07-18_wikipedia_south-texas-nuclear.html); STPNOC is the licensed operator of NRC dockets 05000498 (Unit 1) and 05000499 (Unit 2); INR applicant entity not independently confirmed this session (PUCT Interchange blocked HTTP 402; TX Comptroller taxable-entity search is a JS SPA and returned no data via WebFetch)"
+  },
+  {
+   "entity": "Constellation Energy",
+   "relation": "owner_44pct",
+   "evidence": "Wikipedia STP article infobox and body list Constellation Energy at 44% ownership (sources/2026-07-18_wikipedia_south-texas-nuclear.html); acquired stake from NRG Energy per Wikipedia footnote citing World Nuclear News 'NRG exits nuclear with sale of South Texas Project stake' (WNN URL 404 in this environment; date per Wikipedia citation retrieved 2023-06-28)"
+  },
+  {
+   "entity": "CPS Energy (City of San Antonio)",
+   "relation": "owner_40pct",
+   "evidence": "Wikipedia STP article infobox (sources/2026-07-18_wikipedia_south-texas-nuclear.html)"
+  },
+  {
+   "entity": "Austin Energy (City of Austin)",
+   "relation": "owner_16pct",
+   "evidence": "Wikipedia STP article infobox (sources/2026-07-18_wikipedia_south-texas-nuclear.html)"
+  }
+ ],
+ "land_tenure": {
+  "status": "purchased",
+  "evidence": "12,200-acre plant site with 7,000-acre cooling reservoir purchased/developed for original construction in the 1970s-80s; the HPT upgrade is an internal modification of the existing Unit 2 turbine building and requires no new land (sources/2026-07-18_wikipedia_south-texas-nuclear.html)"
+ },
+ "construction": {
+  "verdict": "operating",
+  "first_activity_seen": null,
+  "evidence": [
+   "Underlying asset is an operating licensed Westinghouse PWR nuclear unit; Unit 2 in commercial operation since 1989-06-19 (Wikipedia infobox) with NRC operating license expiring 2048-12-15",
+   "HPT rotor replacement is an internal-to-turbine-building modification performed during a scheduled refueling outage; typical outage window is ~30-45 days on an ~18-month cycle; Sentinel-2 10 m resolution is unlikely to reveal this work beyond a modest laydown yard",
+   "Triage-phase Sentinel-2 chips (2026-06-01, imagery/s2_2026-06-01_SE.png / _W.png) were off-center from the plant island (SE = ~28.824N -96.018W, W = ~28.794N -96.078W) and both partly cloud-obscured; the plant island itself is not in either frame",
+   "Attempted re-fetch of centered chip this session failed: CDSE token endpoint returned invalid_grant on this session's credentials; no fresh Sentinel-2 imagery obtainable",
+   "No paper-project imagery test applies here: the site is a well-documented operating nuclear plant, not a greenfield build to be spotted from orbit"
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2027-04-23",
+  "independent": "2027-Q2",
+  "drift_risk": "medium",
+  "reasoning_evidence": [
+   "Physical constraint anchor: an HP-turbine rotor swap is performed only during a scheduled refueling outage (US PWR cycle ~18-24 months, outage duration ~30-45 days). The 2027-04-23 reported COD sits inside a plausible spring-2027 outage window, giving it structural plausibility that a pure calendar-based COD would lack",
+   "Contractual pipeline is at zero: 3 monthly snapshots in queue (2026-04-01 to 2026-06-01), screening started 2026-04-30, FIS requested 2026-04-29 but not yet approved, NO IA signed, NO financial security posted (financialSecurityAndNoticeToProceedProvided = 'No'). Independent evidence: gis-research/research/27INR0557_stp-unit2-high-pressure-turbine-upgrade/timeline.json",
+   "1,336.52 MW capacity claim is consistent with a full re-registration of Unit 2's gross capacity (Wikipedia list of largest US power stations gives STP at 2,760 MW total = ~1,380 MW/unit; STP infobox gives 1,354 MW gross per unit); the ERCOT number is NOT a marginal uprate delta but a re-registration of the modified unit. Standard ERCOT practice for material generator modifications",
+   "COD drift direction: pulled IN 3 months (2027-07-31 -> 2027-04-23) between the first and second snapshots. Unusual direction (most projects slip out, not in); suggests the operator firmed up a specific outage window between April and May 2026 filings",
+   "Absent-evidence bounds: no news, PR, or NRC ADAMS docket found for a specific STP U2 HPT project this session, but web-search access was severely degraded (DDG CAPTCHA, Bing false-positive, Google error, NRC 403, PUCT 402); their absence in the search results is not confirmed absence in reality",
+   "Fuel-specific paper trail: no TCEQ NSR air permit is expected (no new combustion source); no TEF; no county abatement (existing industrial property, not new investment); no CAD parcel change (no new land) - the absence of these MANDATORY-for-thermal signals is EXPECTED here and is not paper-project evidence"
+  ]
+ },
+ "real_project_verdict": "real_early",
+ "negative_searches": 24,
+ "banned_source_violations": 0,
+ "project_area": {
+  "acres": 12200,
+  "source": "Wikipedia STP article (site total; the HPT project itself uses only interior turbine building and adjacent laydown - dedicated project footprint not separately documented)",
+  "artifact": "sources/2026-07-18_wikipedia_south-texas-nuclear.html"
+ },
+ "contractual_schedule": {
+  "documents": [],
+  "note": "PUCT Interchange filings search returned HTTP 402 across all endpoints this session; no signed IA obtained. NRC ADAMS (adams.nrc.gov) DNS unresolved. Contractual schedule for the ERCOT interconnection amendment is therefore undocumented in this dossier."
+ }
+}

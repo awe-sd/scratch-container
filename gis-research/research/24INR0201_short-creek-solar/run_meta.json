@@ -1,0 +1,27 @@
+{
+ "exit_code": 0,
+ "subtype": "success",
+ "is_error": false,
+ "duration_ms": 1539898,
+ "num_turns": 208,
+ "total_cost_usd": 13.701762750000006,
+ "usage": {
+  "input_tokens": 1537,
+  "cache_creation_input_tokens": 256713,
+  "cache_read_input_tokens": 20647285,
+  "output_tokens": 65081,
+  "server_tool_use": {
+   "web_search_requests": 0,
+   "web_fetch_requests": 0
+  },
+  "service_tier": "standard",
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 256713
+  },
+  "inference_geo": "",
+  "iterations": [],
+  "speed": "standard"
+ },
+ "session_id": "8bac5967-e92e-4405-9d4a-2705880c3d3f"
+}

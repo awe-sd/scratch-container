@@ -1,0 +1,28 @@
+{
+  "inr": "26INR0718",
+  "project": "PHOTON SOLAR REPOWERING",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-08-17",
+    "plausible": true,
+    "why": "COD drifted 3x in 9 months (+7 months total); FIS not yet approved; existing GulfStar Wharton County portfolio (Photon Solar 3/4) makes site credible but schedule is slipping"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT docket 35077: retrieve Amendment Three IA PDF (parties page + milestone schedule exhibit) — portal requires session auth, try direct PDF enumeration or alternate access",
+    "GulfStar Photon Solar 3/4 facility coords in Wharton County — existing commissioned projects are the most likely repowering site; locate via FAA OE/AAA, county appraisal district, or FERC eLibrary",
+    "Once site coords found: Sentinel-2 imagery at existing facility to confirm active vs decommissioned panels",
+    "Companion BESS Repowering project (same IA, same INR family) — identify its INR and cross-check milestones",
+    "FIS approval status: queue shows FIS requested 2025-10-02, not yet approved — check ERCOT GIS study phase"
+  ],
+  "turns_used": 22
+}

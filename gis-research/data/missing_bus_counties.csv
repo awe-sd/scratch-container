@@ -1,0 +1,4 @@
+BusID_SSWG,BusName_SSWG,DataCenterName,kV,NmmsStationName,NewLoad,OldLoad,OnlineDate,County
+909,CORE_SW,CoreScientificDentonTX,138,CALVERT,260,60,2027-01-01,Denton
+6230,ABMULCE7A,LanciumAbilene,345,ABILENE MULBERRY CREEK,560,300,2027-07-01,Taylor
+6235,ABMULCW7A,OpenAIStargate1,345,SCOTLAND,320,0,2028-01-01,Taylor

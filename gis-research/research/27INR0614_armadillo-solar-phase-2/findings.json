@@ -1,0 +1,102 @@
+{
+  "inr": "27INR0614",
+  "project": "Armadillo Solar Phase 2",
+  "researched_at": "2026-07-23",
+  "site": {
+    "lat": 32.008418,
+    "lon": -96.374303,
+    "method": "google_places_pin cross-checked with TCEQ physical-location text + Sentinel-2 imagery shape match. gmaps.py places 'Armadillo Solar Center Navarro Texas' returned 'Armadillo Solar | 5950 SE 2050, Corsicana, TX 75109' at 32.008418,-96.374303 — matches TCEQ RN112015482 description 'SOUTH OF THE INTERSECTION OF STATE HIGHWAY 287 AND SE COUNTY ROAD 2040 BETWEEN THE CITIES OF MILDRED AND NAVARRO TX' (SE 2050 = SE CR 2040 area). Sentinel-2 imagery at this point shows multiple large graded/racked solar polygons appearing 2025-2026 exactly here.",
+    "confidence": "high",
+    "map_artifacts": ["sources/armadillo_row_p6_map.png"]
+  },
+  "project_area": {
+    "acres": 2300,
+    "source": "Corsicana Daily Sun (2020-11-02): 'Armadillo Solar Center, owned by global energy company Orsted Onshore North America LLC, plans to construct a 200 megawatt solar farm across 2,300 acres about a mile north of Mildred High School on Hwy. 287' — this 2,300-acre figure is the ORIGINAL COMBINED project area (predates Phase 1/Phase 2 split); Navarro County ROW agreement map (2021) shows this combined area as TWO adjoining polygons, 8.91 total miles of adjacent county roads",
+    "artifact": "sources/2026-07-23_corsicanadailysun_solar-center-planned.html"
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Armadillo Solar Center, LLC",
+      "relation": "SPV",
+      "evidence": "TCEQ Central Registry (data.texas.gov t34q-qzi3) regulated entity RN112015482 'ARMADILLO SOLAR PROJECT', Navarro Co — owner/customer legal name; confirmed as IA party PROBABLE match (county+MW in text) on PUCT 35077-1230 original IA sources/2026-07-23_puct_35077-1230_interconnection-agreement-between-oncor-electric.pdf"
+    },
+    {
+      "entity": "The AES Corporation",
+      "relation": "developer_owner",
+      "evidence": "TCEQ Central Registry RN111934428, same site description, princ_legal_name 'The AES Corporation', storm permit TXR1543QE (cancelled 2024-03-08 start) — predecessor/parent NOI before project-entity SPV took over registration; also AES public project page sources/t3_aes_project_page.md"
+    },
+    {
+      "entity": "Hanwha Q Cells EPC USA LLC",
+      "relation": "EPC_contractor",
+      "evidence": "TCEQ Central Registry RN112015482 co-owner on ACTIVE storm permit TXR1538TO, affil begin 2025-02-07"
+    }
+  ],
+  "land_tenure": {
+    "status": "leased",
+    "evidence": "Corsicana Daily Sun (2020-11-02): 'reinvestment zone includes connected properties under lease from six property owners within the Mildred Independent School District' — 6 leased parcels for the combined Armadillo Solar project area (sources/2026-07-23_corsicanadailysun_solar-center-planned.html)"
+  },
+  "construction": {
+    "verdict": "racking",
+    "first_activity_seen": "2025-06_to_2025-11_bracket",
+    "evidence": [
+      "imagery/grid_current/s2_2024-06-01.png: undisturbed farmland at site",
+      "imagery/grid_current/s2_2025-01-01.png: still undisturbed/no grading visible",
+      "imagery/grid_current/s2_2025-08-15.png: partial cloud, ambiguous",
+      "imagery/grid_current/s2_2025-11-01.png: multiple large graded polygons with visible internal rows (racking-stage) at site",
+      "imagery/grid_current/s2_2026-07-20.png (=imagery/s2_2026-07-20_wide.png): graded polygons persist, similar extent to 2025-11, tan/white racking rows visible",
+      "imagery/contact_sheet2.png: full 6-frame progression 2024-06 -> 2026-07",
+      "NOTE: this imagery site (32.008418,-96.374303) is the Armadillo Solar SITE broadly (Phase 1 + Phase 2 share footprint/POI); imagery cannot yet distinguish which polygon belongs to 27INR0614 (Phase 2) vs 21INR0421 (Phase 1) construction — Phase 1's own IA Amendment 7 schedule (In-Service 2026-04-16, Trial Op 2026-06-01, COD 2026-12-31) is consistent with the observed racking-stage activity being PHASE 1's build"
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-03-04",
+    "independent": "2027-Q4 (low confidence — no signed IA for this specific INR)",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "27INR0614 (Phase 2, 200.71 MW) has NO signed IA of its own — queue milestones (screeningStudyComplete, fisApproved, iaSigned, construction) are all null except FIS requested 2026-06-26; a queue entry at this stage is normally 18-36 months from IA execution, let alone COD",
+      "The sibling/co-located project at the identical POI ('Revolution Switch' 138kV, adjacent to Navarro Sub) — 21INR0421 'Armadillo Solar' Phase 1, same SPV shell Armadillo Solar Center LLC, same EPC Hanwha Q Cells — took from original IA (2021-02-02, COD then 2022-12-31) through 6 more amendments to its CURRENT schedule of COD 2026-12-31, a slip of exactly 4 years from its first contractual date. If Phase 2 follows a similar arc from FIS-requested (2026-06) to IA signature (unknown, likely 2026-Q4/2027 at earliest) to construction to COD, 2027-03-04 is not plausible as a hard date; it reads as an early placeholder in the queue rather than a grounded schedule",
+      "Positive reality signals: TCEQ construction-stormwater registration RN112015482 IS ACTIVE (permit TXR1538TO) with EPC Hanwha Q Cells on board since 2025-02-07, and Sentinel-2 imagery shows active grading/racking-stage construction at the shared site since ~2025-Q3/Q4 — but this activity is attributable to Phase 1 (whose IA schedule matches it almost exactly), not confirmed for Phase 2 specifically",
+      "Phase 1's own history of schedule slippage (2022-12-31 -> 2025-10-21-equivalent -> 2026-12-31 in successive amendments) plus the original abatement agreement's targeted 2024-12-31 COD (also missed) establishes a strong PATTERN of multi-year COD slip at this site/developer — applied to Phase 2's claimed 2027-03-04, a comparable slip pattern implies a REAL independent estimate is closer to late 2027 or 2028, contingent on when Phase 2's own IA is executed (not yet observed)",
+      "Not in EIA-860M (eia_history.py 27INR0614 --write) — expected for a pre-IA project, but confirms no independent third-party COD signal exists yet beyond the queue's own self-reported date",
+      "queue_history.py: only 1 snapshot on record (2026-06-01), 0 COD changes — the queue has not yet had a chance to show drift for this specific INR; this is a projection risk, not an observed-drift risk"
+    ]
+  },
+  "real_project_verdict": "real_early",
+  "negative_searches": 6,
+  "banned_source_violations": 0,
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Original IA — Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Armadillo Solar Center, LLC, for 21INR0421 'Armadillo Solar' (PHASE 1, NOT the target 27INR0614) (PUCT 35077-1230)",
+        "signed": "2021-02-02",
+        "financial_security": "$4,086,825 (2021-02-08) -> $9,081,832 (2022-02-14) schedule",
+        "artifact": "sources/2026-07-23_puct_35077-1230_interconnection-agreement-between-oncor-electric.pdf"
+      },
+      {
+        "doc": "Amendment No. 5 to Phase 1 IA (21INR0421) — new Exhibits B/D/E",
+        "signed": "2024-08-14",
+        "financial_security": "$10,833,691 as of 2024-12-04 (LC schedule, Exhibit E)",
+        "artifact": "sources/unverified_2026-07-23_puct_35077-1926_amendment-no-5-to-the-standard-generation-interc.pdf"
+      },
+      {
+        "doc": "Amendment No. 6 to Phase 1 IA (21INR0421) — updated Exhibit B Time Schedule",
+        "signed": "2025-08-01",
+        "financial_security": "not restated in this amendment (Exhibit E untouched)",
+        "artifact": "sources/unverified_2026-07-23_puct_35077-2216_amendment-no-6-to-the-standard-generation-interc.pdf"
+      },
+      {
+        "doc": "Amendment No. 7 to Phase 1 IA (21INR0421) — updated Exhibit B Time Schedule + Exhibit C inverter spec change",
+        "signed": "2025-10-31",
+        "financial_security": "not restated in this amendment",
+        "artifact": "sources/unverified_2026-07-23_puct_35077-2295_amendment-no-7-to-the-standard-generation-interc.pdf"
+      }
+    ],
+    "milestones": [
+      {"name": "In-Service Date", "original_2021": "2022-11-17", "amend5_2024": "2025-12-04", "amend6_2025": "2026-04-16", "amend7_2025": "2026-04-16"},
+      {"name": "Trial Operation", "original_2021": "2022-11-27", "amend5_2024": "2026-07-01", "amend6_2025": "2026-07-01", "amend7_2025": "2026-06-01"},
+      {"name": "Scheduled COD", "original_2021": "2022-12-31", "amend5_2024": "2026-12-31", "amend6_2025": "2026-12-31", "amend7_2025": "2026-12-31"}
+    ],
+    "note": "ALL 4 IA filings found (via puct.py match --key 'Armadillo Solar Center') are captioned GINR 21INR0421 (Phase 1), never 27INR0614 (Phase 2, the target of this research). No IA has been located for 27INR0614 itself — consistent with queue data (iaSigned=null) and PLAYBOOK D1 'no IA on disk' path. POI for Phase 1: 'Revolution Switch at 138kV...adjacent to TSP's existing 69kV Navarro Sub on Main St in the town of Navarro' — matches target's POI text '3387 Revolution 138kV' (same substation/interconnection point), strongly suggesting Phase 2 is a real co-located expansion at the same POI, riding the same SPV shell (Armadillo Solar Center, LLC) and EPC (Hanwha Q Cells EPC USA LLC per TCEQ)."
+  }
+}

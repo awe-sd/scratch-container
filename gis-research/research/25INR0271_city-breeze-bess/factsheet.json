@@ -1,0 +1,78 @@
+{
+ "inr": "25INR0271",
+ "generated": "2026-07-20",
+ "project": "City Breeze BESS",
+ "county": "Matagorda",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 143.1,
+ "queue_cod": "2027-03-18",
+ "milestones": {
+  "screeningStudyComplete": "2023-03-11",
+  "fisApproved": "2026-06-02",
+  "iaSigned": "2024-05-15",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 4,
+ "eia": {
+  "status": "not_in_eia",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "puct-index",
+    "entity": "Zenobe City Breeze BESS LLC",
+    "detail": "ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN AEP TEXAS INC. AND Zenobe City Breeze BESS LLC (Ci"
+   },
+   {
+    "source": "puct-index",
+    "entity": "City Breeze BESS LLC",
+    "detail": "FIRST AMENDED & RESTATED ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN AEP TEXAS INC. AND City B"
+   },
+   {
+    "source": "puct-index",
+    "entity": "City Breeze BESS LLC",
+    "detail": "SECOND AMENDED AND RESTATED ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN AEP TEXAS INC. AND Cit"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 3,
+  "join_items": 3
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 18,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 8,
+   "detail": "4 COD slips"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 18.05,
+  "reason": "reality signal"
+ }
+}

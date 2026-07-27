@@ -1,0 +1,103 @@
+{
+ "inr": "23INR0045",
+ "project": "Caney Creek Solar",
+ "researched_at": "2026-07-20",
+ "site": {
+  "lat": 32.5658,
+  "lon": -95.9953,
+  "method": "IA POI text (Exhibit C: 'approximately 8.3 miles west of Canton, TX on County Road 2120 in Van Zandt County... tapping the Glen Pine-Explorer 138kV transmission line') geocoded via OSM Nominatim: CR 2120 way centroid (32.5658,-95.9953) sits ~8.0mi due west of Canton centroid (32.5386,-95.8618) -- matches IA distance/bearing closely. Matches identity-packet POI 'Tap 138kV 6829 Glen Pine - 6833 Explorer' exactly (same 2 named substations). Cross-check: savevzcounty.org independently describes 'East of FM 47 and South of I20' -- FM 47 runs N-S roughly 5-6mi east of CR 2120 candidate point, broadly consistent quadrant-wise though not a tight match. IMAGERY NOT OBTAINED: CDSE openEO /result endpoint returned RemoteDisconnected on 8+ retries with backoff over ~15 min (shared infra saturated -- 8-10 other concurrent deep-scan agents running in this container per pgrep). Google Places (gmaps.py places) also HTTP 429 on 5 attempts across the session. No delivery pin, no satellite confirmation.",
+  "confidence": "medium (POI-text + geocode cross-check only; no parcel doc, no imagery, no delivery pin -- CDSE/Places both unavailable all session due to shared-infra contention, not investigator choice)",
+  "map_artifacts": []
+ },
+ "project_area": {
+  "acres": null,
+  "source": null,
+  "artifact": null
+ },
+ "parcels": [],
+ "llc_chain": [
+  {
+   "entity": "HEP Caney Creek Solar, LLC",
+   "relation": "SPV",
+   "evidence": "Named Generator party on signed IA (sources/2026-07-19_puct_35077-1353_solar-generation-interconnection-agreement-betwe.pdf); signed by Ilan Caplan, 'Authorized Signatory', email domain hep.global"
+  },
+  {
+   "entity": "HEP (Hull Street Energy / hep.global) / HEP Aquamarine Holdings LLC",
+   "relation": "developer",
+   "evidence": "Signatory email domain hep.global on IA; savevzcounty.org (sources/savevzcounty_caney_creek.md) names HEP Aquamarine Holdings LLC and Louisville, CO TX-foreign-LLC registration 2020-09-11 (unverified against SOS directly)"
+  },
+  {
+   "entity": "Solareit",
+   "relation": "financing (unverified)",
+   "evidence": "savevzcounty.org / local Facebook post claim only (sources/savevzcounty_caney_creek.md) — no primary-document corroboration found"
+  }
+ ],
+ "developer_verification": {
+  "entity": "hep North America (us.hep.global), part of hep global GmbH (Germany)",
+  "evidence": "IA Generator signatory Ilan Caplan signs as 'Authorized Signatory' with email domain @hep.global -- matches IA party name 'HEP CANEY CREEK SOLAR LLC' exactly and hep's own site tagline 'We develop, build and operate solar farms across the United States and Canada' (us.hep.global/company/). PRIMARY-document + corporate-site match, not just a secondary claim.",
+  "caveat": "hep's own public solar-farms/projects listing pages (us.hep.global/solar-farms/; /projects/ = 404) do NOT name 'Caney Creek' or 'Van Zandt' -- project not in their visible portfolio (inconclusive: could be a pre-construction omission, or the page is simply incomplete)"
+ },
+ "land_tenure": {
+  "status": "unknown",
+  "evidence": "savevzcounty.org claims six property owners leased easements to HEP Caney Creek Solar LLC (sources/savevzcounty_caney_creek.md) — secondary source, not verified against CAD/county deed records this session. Van Zandt CAD (esearch.vzcad.org) unreachable from this container (TLS handshake failure) -- 0 parcel records obtained, logged as tooling negative evidence, not a project-reality signal."
+ },
+ "construction": {
+  "verdict": "unknown",
+  "first_activity_seen": null,
+  "evidence": [
+   "No satellite imagery obtained this session -- CDSE openEO endpoint returned RemoteDisconnected on every attempt (10+ retries, ~20 min elapsed, escalating container contention from 5 to 18 concurrent deep-scan agent processes sharing the same CDSE credentials/endpoint) and gmaps.py staticmap returned HTTP 403 (Maps Static API not enabled on this project's key -- permanent gap, not contention)",
+   "savevzcounty.org (opposition group, closest thing to a ground observer) still lists Caney Creek as 'Est Build start: Summer 2026' as of 2026-07-20 -- i.e. construction has NOT started per the one non-imagery ground-level source available",
+   "No PUCT IA amendment, no Ch.313/JETI filing, no EIA-860M listing -- absence of ALL the paper trails that typically accompany active/near-construction projects (compare Hanson Solar dossier, which had 2 IA amendments + Ch313 + EIA all present pre-construction)"
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2027-06-21",
+  "independent": "2027-Q3 to 2028-Q2 (wide band, low confidence)",
+  "drift_risk": "high",
+  "reasoning_evidence": [
+   "The only legally binding COD on file with PUCT is the ORIGINAL IA's 2023-06-01 Scheduled Commercial Operation Date (sources/2026-07-19_puct_35077-1353_..., Exhibit B) -- three years stale. No amendment renegotiating this schedule exists anywhere in docket 35077 despite an exhaustive sweep (see contractual_schedule.note) even though the queue's self-reported COD has moved three times since (2023-06 -> 2024-06 -> 2025-05 -> 2027-06, timeline.md)",
+   "This pattern -- queue COD updates with no corresponding IA amendment on file -- differs from Hanson Solar (23INR0086), where each queue slip was backed by a filed, countersigned Amendment. Here the queue COD looks like a developer/ERCOT-administrative update UNBACKED by a renegotiated interconnection contract, a materially weaker basis for the claim",
+   "Positive reality signals do exist: $4.28M in real cash security was posted on schedule in 2022 (Exhibit E), and the project remains an active line item in queue reports through 2026-06-01 (not cancelled/inactive)",
+   "Negative reality signals: not in EIA-860M (eia_history.json), no Ch.313/JETI value-limitation filing, no Google Places delivery pin, no satellite-confirmed construction, and the opposition group's own tracker still says 'Est Build start: Summer 2026' (i.e. not started) as of this week",
+   "Given a 4-year total slip already, an un-amended contractual schedule, and zero independent confirmation of construction activity, the reported 2027-06-21 COD should be treated as a soft developer estimate, not a grounded contractual date. A defensible independent estimate widens the band past the reported date: if the Summer-2026 build-start estimate holds and a ~12-18mo solar build cadence applies (per playbook fuel-signature guidance), COD lands in the 2027-Q3-2028-Q2 range -- but this is a schedule-logic estimate, not an imagery-confirmed one"
+  ]
+ },
+ "registry": {
+  "ch313_jeti": {
+   "hits": 0,
+   "detail": "ch313.py resolve 23INR0045 -- 0 Ch.313 agreements, 0 JETI applications matching Caney Creek/Van Zandt/HEP. Confirms triage T5. Pre-2023 signing (IA 2021-12) with Ch.313 sunset Sep 2022 means the project could have filed but apparently didn't -- consistent with a landowner-lease deal that skipped the incentive route, not necessarily a paper-project signal on its own."
+  },
+  "eia860m": {
+   "hits": 0,
+   "detail": "spv.py resolve: no EIA-860M candidate. Confirms factsheet.json eia.status=not_in_eia. Will re-verify with eia_history.py in D5 wrap-up."
+  }
+ },
+ "real_project_verdict": "unclear",
+ "negative_searches": 9,
+ "banned_source_violations": 0,
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Original SGIA — Solar Generation Interconnection Agreement between Rayburn Country Electric Cooperative, Inc. and HEP Caney Creek Solar, LLC (PUCT Control No. 35077, filing 35077-1353)",
+    "signed": "2021-12-24 (Generator) / 2021-12-29 (TSP)",
+    "financial_security": "$50,000 cash (NTP, 2021-12-13) -> $1,450,000 cash by 2022-01-14 -> $3,000,000 by 2022-04-01 -> $4,277,047 final tier by 2022-06-01 (Exhibit E)",
+    "artifact": "sources/2026-07-19_puct_35077-1353_solar-generation-interconnection-agreement-betwe.pdf"
+   }
+  ],
+  "milestones": [
+   {
+    "name": "In-Service Date",
+    "original_ia_2021": "2023-01-20"
+   },
+   {
+    "name": "Trial Operation",
+    "original_ia_2021": "2023-02-03"
+   },
+   {
+    "name": "Scheduled Commercial Operation",
+    "original_ia_2021": "2023-06-01"
+   }
+  ],
+  "note": "NO AMENDMENT ON FILE at PUCT despite 3 subsequent queue COD slips (2023-06 -> 2024-06 -> 2025-05 -> 2027-06). Exhaustive docket sweep (puct.py match INR-join + name-key; manual review of all 35 Rayburn-party filings in docket 35077; --match Caney/HEP; date-range grep) found only the single original 2022-01-03 filing. Other Rayburn projects (BT Signal Ranch, Sowers, Tanzanite, Amador) have 2-6 amendments each in the same docket over the same period -- the absence for Caney Creek is a real signal, not a search-tooling gap. The only legally binding schedule on file still says COD 2023-06-01, three years stale vs the queue's current 2027-06-21 claim."
+ }
+}

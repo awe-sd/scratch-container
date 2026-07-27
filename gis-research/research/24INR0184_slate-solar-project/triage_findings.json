@@ -1,0 +1,35 @@
+{
+  "inr": "24INR0184",
+  "project": "Slate Solar Project",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 27.03,
+    "lon": -99.44,
+    "method": "POI name inference — 'San Ygancio' is a town in Zapata County; used as proxy for San Ygancio substation area",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "4/9 grid chips acquired (CDSE token expired); south/SW quadrant of San Ygnacio area; all chips show undisturbed brush and ranch land, no grading or panel installation"
+  },
+  "cod_first_look": {
+    "reported": "2027-10-30",
+    "plausible": false,
+    "why": "No FIS approved, no IA signed after 4+ years in queue; COD drifted twice (+1yr, +2yr); 16 months to reported COD with zero construction milestones is implausible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Verify developer Ignis TX Solar Three LLC — parent company unknown; may surface active/inactive development signal",
+    "PUCT Interchange: session-authenticated search for 'Slate Solar' or 'Ignis' as filing party — no IA found via queue but worth confirming no shadow IA",
+    "gmaps.py when rate limit clears: try exact project name and LLC name for delivery pins",
+    "If pin found: re-run full 3×3 imagery grid centered on pin; current imagery was county-proxy only"
+  ],
+  "turns_used": 28
+}

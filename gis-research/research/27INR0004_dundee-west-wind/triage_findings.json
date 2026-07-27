@@ -1,0 +1,29 @@
+{
+  "inr": "27INR0004",
+  "project": "Dundee West Wind",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": true,
+    "why": "IA signed Feb 2025, partial 6.9 met, but no construction reported and FIS not confirmed; 18-month runway is tight but not impossible if ground breaks soon"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Retrieve IA document from PUCT Interchange (site was 402-blocked during triage) — extract parties, milestone schedule, CEII status, and identify developer behind 'Felix 2, LLC'",
+    "Resolve Riley Substation (#6101) coordinates via ERCOT transmission map or AEP Texas filing — this unlocks FAA OE/AAA turbine coordinate lookup and imagery",
+    "FAA OE/AAA search for Wilbarger County wind turbine obstruction filings 2024-2026 — decisive for confirming site layout and construction progress",
+    "Verify 'Felix 2, LLC' developer identity via TX Secretary of State or FERC entity filings — parent company unknown",
+    "Check JETI registry for Wilbarger County post-2022 wind project incentives — project entered queue 2022-12, Ch.313 expired; JETI plausible but not confirmed",
+    "Capacity halved Oct 2025 (307→146 MW) — investigate whether this is a project split, scope reduction, or agreement renegotiation"
+  ],
+  "turns_used": 22
+}

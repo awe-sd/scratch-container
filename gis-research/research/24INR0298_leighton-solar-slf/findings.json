@@ -1,0 +1,90 @@
+{
+ "inr": "24INR0298",
+ "project": "Leighton Solar SLF",
+ "research_date": "2026-07-20",
+ "verdict": "real_early",
+ "confidence": "medium",
+ "site": {
+  "lat": 31.53,
+  "lon": -96.73,
+  "method": "IA Exhibit C text: ~2 mi north of FM339/CR616 intersection, ~8.5 mi west of Groesbeck, off CR 616, Limestone County; Ben Hur TX locality pin 31.510,-96.728 (Google Maps); single-line diagram confirms LEIGHTON generator POI at Ben Hur Switching Station",
+  "confidence": "medium-low \u2014 IA text is specific but no parcel map rendered; no satellite imagery (CDSE 402); no parcel map retrieved from CAD",
+  "map_artifacts": [
+   "sources/2026-07-20_puct_35077-2221_brazos-lavender-solar-leighton-IA_p35.png"
+  ]
+ },
+ "construction": {
+  "stage": "unknown",
+  "first_activity_date": null,
+  "latest_observation": "2026-07-20: CDSE 402 Payment Required \u2014 no imagery available in triage or deep scan. Developer page (Sep 2025) claims construction 2025-2027.",
+  "evidence": "Construction LC date extended 5 months in Second Amendment (May 2025) \u2192 suggests delayed mobilization. No ERCOT construction start/end milestones. Not in EIA-860M."
+ },
+ "ownership": {
+  "spv": "Lavender Solar LLC",
+  "developer": "Pine Gate Renewables (Asheville NC; pgrenewables.com)",
+  "epc": null,
+  "offtaker": null,
+  "parent": "FP 2021 Dev Holdco, LLC (IA Exhibit D bank account entity)"
+ },
+ "project_area": {
+  "acres": null,
+  "source": "Developer page references 'Abatement Rehearing Site Orientation Map' (Jan 2025) \u2014 abatement proceeding exists but docs not retrieved",
+  "artifact": null
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Original IA (PUCT 35077-2221)",
+    "signed": "2024-05-28",
+    "financial_security": "$3,600,000 LC engineering/design/procurement (eff. 2024-05-31); $8,902,500 LC construction (eff. 2025-05-30)",
+    "artifact": "sources/2026-07-20_puct_35077-2221_brazos-lavender-solar-leighton-IA.pdf",
+    "in_service": "2026-05-16",
+    "trial_operation": "2026-08-31",
+    "scheduled_cod": "2026-10-31"
+   },
+   {
+    "doc": "First Amendment (PUCT 35077-2221, signed 2025-01-21)",
+    "signed": "2025-01-21",
+    "financial_security": "$3,600,000 LC engineering (eff. 2024-05-31 unchanged); $8,902,500 LC construction (eff. 2025-05-30 unchanged) \u2014 Exhibit E revised but amounts/dates same",
+    "artifact": "sources/2026-07-20_puct_35077-2221_brazos-lavender-solar-leighton-IA.pdf",
+    "notes": "Revises only security Exhibit E; schedule (Exhibit B) unchanged"
+   },
+   {
+    "doc": "Second Amendment (PUCT 35077-2221, signed 2025-05-14)",
+    "signed": "2025-05-14",
+    "financial_security": "$3,600,000 LC engineering (eff. 2024-05-31 unchanged); $8,902,500 LC construction eff. date slipped 2025-05-30 \u2192 2025-10-31 (+5 months)",
+    "artifact": "sources/2026-07-20_puct_35077-2221_brazos-lavender-solar-leighton-IA.pdf",
+    "notes": "Construction LC due pushed 5 months \u2014 confirms construction start delayed. Schedule (Exhibit B: COD 2026-10-31) not amended."
+   }
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2027-11-01",
+  "independent_estimate": "2028-Q1",
+  "drift_risk": "high",
+  "drift_risk_reason": "6 queue COD slips; original contractual COD 2026-10-31 already passed without Exhibit B amendment; construction LC slipped 5 months in May 2025; not in EIA-860M; no ERCOT construction milestones achieved; developer claims Q2 2027 but queue says Nov 2027"
+ },
+ "sources": [
+  "sources/pine_gate_lavender_solar.md",
+  "sources/2026-07-20_puct_35077-2221_brazos-lavender-solar-leighton-IA.pdf",
+  "sources/2026-07-20_puct_35077-2221_brazos-lavender-solar-leighton-IA_p35.png",
+  "sources/2026-07-20_puct_35077-2221_brazos-lavender-solar-leighton-IA_p36.png",
+  "sources/2026-07-20_puct_35077-2221_brazos-lavender-solar-leighton-IA_p42.png",
+  "sources/2026-07-20_puct_35077-2221_brazos-lavender-solar-leighton-IA_p45.png",
+  "sources/2026-07-20_puct_35077-2221_brazos-lavender-solar-leighton-IA_p47.png",
+  "sources/2026-07-20_puct_35077-2221_brazos-lavender-solar-leighton-IA_p49.png",
+  "sources/2026-07-20_puct_35077-2221_brazos-lavender-solar-leighton-IA_p50.png"
+ ],
+ "_negative_evidence": {
+  "eia_860m": "NOT in EIA-860M TX slice \u2014 negative evidence for project with claimed COD 18 months out",
+  "ch313_jeti": "ch313.py \u2014 no Ch.313 or JETI agreement for any name variant; JETI current agreements list has no solar/Limestone County/Mart ISD",
+  "imagery": "CDSE 402 Payment Required \u2014 credits exhausted; no Sentinel-2 imagery in triage or deep scan",
+  "search_backends": "All DDG/search backends failed (ConnectionError) this session",
+  "cad": "Limestone CAD portal inaccessible; no parcel records retrieved",
+  "news": "No press releases, financing announcements, or EPC contract news found",
+  "epc": "No EPC contractor identified",
+  "offtaker": "No PPA counterparty identified",
+  "construction_pins": "No Google Maps construction site pins found for any project name variant"
+ },
+ "real_project_verdict": "real_early"
+}

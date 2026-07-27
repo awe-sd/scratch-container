@@ -1,0 +1,17 @@
+Source: thewindpower.net Wind Farm Record #3211 — Buffalo Gap Wind Farm 2
+URL: https://www.thewindpower.net/windfarm_en_3211_buffalo-gap-2.php
+Retrieved: 2026-07-19
+
+EXTRACTED DATA:
+- Turbine Model: GE Vernova 1.5sle
+- Capacity: 232.5 MW (operational, existing)
+- Number of turbines: 155 units
+- Coordinates: 32°18'38"N (lat 32.310556), 100°8'57"W (lon -100.149167)
+- Location: Nolan County, Texas, USA
+- Technology: Onshore wind
+
+SIGNIFICANCE:
+- Primary site-location source for existing Buffalo Gap WF2
+- 32.310556N, -100.149167W confirmed as plant center
+- 155x GE 1.5sle = the turbines to be decommissioned in the repower
+- Capacity 232.5 MW existing ≈ 231.49 MW in new INR (small rounding diff, same plant)

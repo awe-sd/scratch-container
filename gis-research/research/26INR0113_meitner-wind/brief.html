@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Meitner Wind — research brief</title><style>
+:root{--bg:#fff;--sur:#f6f7f9;--ink:#191c20;--ink2:#555b64;--mut:#899;--line:#e1e5ea;
+--good:#0a7d33;--warn:#b45309;--bad:#b91c1c;--acc:#2563eb}
+@media(prefers-color-scheme:dark){:root{--bg:#14171c;--sur:#1c2027;--ink:#eceff3;
+--ink2:#b3bac4;--mut:#7d8590;--line:#2a2f38;--good:#34d399;--warn:#fbbf24;--bad:#f87171;--acc:#6ea8fe}}
+*{box-sizing:border-box}body{margin:0 auto;max-width:1080px;padding:20px;background:var(--bg);
+color:var(--ink);font:14px/1.45 -apple-system,"Segoe UI",Roboto,sans-serif}
+h1{font-size:19px;margin:0}h2{font-size:13px;text-transform:uppercase;letter-spacing:.05em;
+color:var(--mut);margin:22px 0 8px}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-weight:700;font-size:12px}
+.b-good{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+.b-warn{background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--warn)}
+.b-bad{background:color-mix(in srgb,var(--bad) 15%,transparent);color:var(--bad)}
+.hdr{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.sub{color:var(--ink2);font-size:13px;margin:4px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.card{background:var(--sur);border:1px solid var(--line);border-radius:9px;padding:10px 13px}
+.card .k{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+.card .v{font-weight:650;margin-top:2px}.card .v small{font-weight:400;color:var(--ink2)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:5px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:13px}
+th{color:var(--mut);font-size:11px;text-transform:uppercase}
+.imgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.imgs figure{margin:0}.imgs img{width:100%;border-radius:8px;border:1px solid var(--line)}
+.imgs figcaption{font-size:12px;color:var(--ink2);margin-top:2px}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.small{font-size:12px;color:var(--ink2)}
+</style></head><body>
+<div class="hdr"><h1>Meitner Wind <span class="small">(26INR0113)</span></h1>
+<span class="badge b-warn">real_early</span>
+<span class="badge b-warn">COD drift: medium</span></div>
+<div class="sub">researched 2026-07-18 ·
+<a href="https://www.google.com/maps/@35.58,-100.48,5000m/data=!3m1!1e3" target="_blank">site 35.58, -100.48</a> (abatement Exhibit B map + IA POI text (&#x27;near Laketon at Ghost Town Substation, ~10 mi from shared switchyard, ~14 mi 345 kV line to Gray Sub&#x27;) + OSM anchors (Laketon 35.5437,-100.6329; Gray Sub 35.4078,-100.8199), medium conf) ·
+<a href="dossier.md">dossier</a> · <a href="log.md">log</a> · <a href="timeline.md">timeline</a></div>
+<div class="grid">
+<div class="card"><div class="k">Construction</div><div class="v">no_activity
+<small>since —</small></div></div>
+<div class="card"><div class="k">COD reported → independent</div>
+<div class="v">2028-05-24 → 2028-Q3</div></div>
+<div class="card"><div class="k">Owner chain</div><div class="v">Meitner Wind, LLC (per queue identity packet) → IP Meitner, LLC (Delaware LLC) → Intersect Power → Google (Alphabet) → Cross Texas Transmission, LLC (LS Power Grid company)</div></div>
+<div class="card"><div class="k">Land</div><div class="v">purchased_and_leased_mixed</div></div>
+<div class="card"><div class="k">Project area (per docs)</div><div class="v">1744.24 acres <small>Gray County / IP Meitner Tax Abatement Agreement, Exhibit A (Legal Description of the Property), executed 2025-10-31</small></div></div>
+</div>
+
+<h2>Site imagery (Sentinel-2, key dates)</h2><div class="imgs"><figure><a href="imagery/s2_east_swyd_candidate.png"><img src="imagery/s2_east_swyd_candidate.png" loading="lazy"></a><figcaption>east_swyd_candidate</figcaption></figure><figure><a href="imagery/s2_gray_south.png"><img src="imagery/s2_gray_south.png" loading="lazy"></a><figcaption>gray_south</figcaption></figure><figure><a href="imagery/s2_laketon_present.png"><img src="imagery/s2_laketon_present.png" loading="lazy"></a><figcaption>laketon_present</figcaption></figure></div>
+<h2>Interconnection agreement — signed, security, schedule</h2><table><tr><th>IA document</th><th>Signed</th><th>Financial security posted</th></tr><tr><td>Original IA (executed 2024-04-19; filed 2024-05-17 as item 1825)</td><td>2024-04-19</td><td><b>$92.7M total required (Wind IA Exhibit E) — borne by Meitner Solar IA under shared-TIF arrangement; Wind requires no separate posting unless Solar defaults</b></td></tr><tr><td>First Amendment (executed 2025-02-04; filed 2025-02-05 as item 2061)</td><td>2025-02-04</td><td><b>raised to $97.3M total (Wind Amend 1 Exhibit E); reshuffled installment schedule to 6 tranches ending 2026-05-27</b></td></tr><tr><td>Second Amendment (executed 2025-06-12; filed 2025-07-02 as item 2179)</td><td>2025-06-12</td><td><b>unchanged $97.3M (schedule not modified); adds Large Load 840 MW BTM connection to Shared Facilities</b></td></tr><tr><td>Third Amendment (executed 2026-01-30; filed 2026-02-11 as item 2406)</td><td>2026-01-30</td><td><b>$97.3M total; new schedule broken into 9 installments: $1.7M/$1.2M/$1.35M/$1.35M/$2.5M/$7.5M/$28.3M/$7.5M/$45.9M through 2026-08-31; clause 4 declares all pre-Amend-3 milestones deemed satisfied</b></td></tr><tr><td>Fourth &amp; Fifth Amendments (executed 2026-05-28; filed 2026-06-04 as item 2497)</td><td>2026-05-28</td><td><b>$97.3M total (Wind Amend 4 Exhibit E); Phase 2 420 MW BTM added; Security Effective Date fixed to 2024-02-14 by Fifth Amendment (housekeeping)</b></td></tr></table><table><tr><th>Milestone</th><th>original ia 2024</th><th>amendment1 2025</th><th>amendment2 2025</th><th>amendment3 2026</th><th>amendment4 2026</th></tr><tr><td>In-Service Date</td><td>2026-12-30</td><td>2027-04-30</td><td>2027-04-30</td><td>2027-10-26</td><td>2027-10-26</td></tr><tr><td>Trial Operation Date</td><td>2027-01-30</td><td>2027-05-30</td><td>2027-05-30</td><td>2027-11-26</td><td>2027-11-26</td></tr><tr><td>Scheduled Commercial Operation</td><td>2027-12-30</td><td>2028-04-30</td><td>2028-04-30</td><td>2028-04-30</td><td>2028-04-30</td></tr><tr><td>Large Load Expected In-Service (Phase 1 840 MW)</td><td>—</td><td>—</td><td>2027-10-26</td><td>2027-10-26</td><td>2027-10-26</td></tr><tr><td>Large Load Expected In-Service (Phase 2 420 MW)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>2028-10-01</td></tr></table><div class="small">10 total Meitner filings under PUCT Control No. 35077 (Oncor/CTT informational docket under Subst. R. §25.195(e)); the 5 above are the Wind IA + all 4 amendments (plus a bundled 5th). Wind-side security is borne by the companion Meitner Solar IA under the Shared Facilities arrangement — the numbers ($92.7M → $97.3M and installment schedules) mirror the Solar IA Exhibit E, and Wind Exhibit E only triggers Generator posting if the Solar counterparty defaults.<br>Source: </div>
+
+<h2>Reported-COD drift (queue history, 36 monthly reports since 2023-07-01)</h2>
+<table><tr><th>Reported COD</th><th>Held from</th><th>Until</th></tr><tr><td>2026-09-17</td><td>2023-07-01</td><td>2024-06-01</td></tr><tr><td>2027-12-20</td><td>2024-07-01</td><td>2026-05-01</td></tr><tr><td>2028-05-24</td><td>2026-06-01</td><td>2026-06-01</td></tr></table>
+<h2>Milestones achieved (latest report)</h2>
+<table><tr><th>Milestone</th><th>Date</th></tr><tr><td>Screening started</td><td>2023-07-18</td></tr><tr><td>Screening complete</td><td>2023-10-15</td></tr><tr><td>FIS requested</td><td>2023-06-29</td></tr><tr><td>IA signed</td><td>2024-04-19</td></tr></table>
+
+<h2>EIA-860M second source — plant 'IP Meitner Wind', entity Intersect USA, LLC</h2>
+<div class="small">matched by name match · reports 2024-11-01 → 2026-05-01 ·
+queue-reported COD <b>2028-05-24</b> vs latest EIA planned COD <b>2028-02</b> · <a href="https://www.google.com/maps/@35.69697,-100.8213,5000m/data=!3m1!1e3" target="_blank">EIA site 35.69697, -100.8213</a> (Roberts Co)</div>
+
+<table><tr><th>EIA planned COD</th><th>Held from</th><th>Until</th></tr><tr><td>2027-12</td><td>2024-11-01</td><td>2026-01-01</td></tr><tr><td>2028-02</td><td>2026-02-01</td><td>2026-05-01</td></tr></table>
+
+<table><tr><th>EIA status</th><th>From</th><th>Until</th></tr><tr><td>(P) Planned for installation, but regulatory approvals not initiated</td><td>2024-11-01</td><td>2026-01-01</td></tr><tr><td>(L) Regulatory approvals pending. Not under construction</td><td>2026-02-01</td><td>2026-05-01</td></tr></table>
+<h2>Key evidence</h2><ul><li>S2 chip 2026-07-05 at Laketon anchor 35.5437,-100.6329 (imagery/s2_laketon_present.png) shows only unaltered ranchland + center-pivot ag with no substation earthworks, pad strings, or graded access roads</li><li>S2 chip 2026-07-05 at east-of-Laketon 35.55,-100.48 (imagery/s2_east_swyd_candidate.png) shows the characteristic center-pivot cluster + rugged canyons that match the Exhibit B aerial texture — but again no visible construction signatures at 10 m/px</li><li>S2 chip 2026-07-05 south of Laketon (imagery/s2_gray_south.png) — pure rangeland, no activity</li><li>Wind IA Amend 3 (effective 2026-01-30) recorded Generator notice-to-proceed as 2026-01-28 and substation parcel deed conveyance by 2026-06-01 → the TIF site is only weeks-old in the ground; Vestas V163 pads (~50 m) sit at Sentinel-2&#x27;s visibility threshold and any activity begun mid-2026 would not yet dominate a monthly composite</li><li>Reported queue COD (2028-05-24) tracks the contractual Scheduled COD in Wind IA Amend 4 (2028-04-30) with a ~1-month pad — grounded, not fabricated, but grounded ≠ achievable</li><li>COD already drifted 2× in queue reports (2026-09-17 → 2027-12-20 → 2028-05-24) and the IA itself amended the schedule 4 times in 25 months (Orig COD 2027-12-30 → Amend 1 2028-04-30 → held through Amends 2-4) — a pattern of 4-9 month re-anchoring per revision</li><li>Grid works are lagging: Ghost Town Substation is a new-build (not in OSM), no CTT groundwork visible in imagery, and the 14-mi 345 kV double-circuit line ROW deed only due 2026-11-01 per Amend 3/4</li></ul>
+<h2>Saved sources (10)</h2><h3 class='small'>Documents (8)</h3><ul><li><a href="sources/2026-07-18_gray-county_notice-datacenter-abatement-2025-09.pdf">2026-07-18_gray-county_notice-datacenter-abatement-2025-09.pdf</a></li><li><a href="sources/2026-07-18_gray-county_road-use-ip-meitner.pdf">2026-07-18_gray-county_road-use-ip-meitner.pdf</a></li><li><a href="sources/2026-07-18_gray-county_tax-abatement-ip-meitner.pdf">2026-07-18_gray-county_tax-abatement-ip-meitner.pdf</a></li><li><a href="sources/2026-07-18_puct_35077-1825_ctt-meitner-wind-IA.pdf">2026-07-18_puct_35077-1825_ctt-meitner-wind-IA.pdf</a></li><li><a href="sources/2026-07-18_puct_35077-2061_ctt-meitner-wind-IA-amend1.pdf">2026-07-18_puct_35077-2061_ctt-meitner-wind-IA-amend1.pdf</a></li><li><a href="sources/2026-07-18_puct_35077-2179_ctt-meitner-wind-IA-amend2.pdf">2026-07-18_puct_35077-2179_ctt-meitner-wind-IA-amend2.pdf</a></li><li><a href="sources/2026-07-18_puct_35077-2406_ctt-meitner-wind-IA-amend3.pdf">2026-07-18_puct_35077-2406_ctt-meitner-wind-IA-amend3.pdf</a></li><li><a href="sources/2026-07-18_puct_35077-2497_ctt-meitner-IA-amend4-5.pdf">2026-07-18_puct_35077-2497_ctt-meitner-IA-amend4-5.pdf</a></li></ul><h3 class='small'>Other (2)</h3><ul><li><a href="sources/meitner_datacenter_reinvestment_zone_map.jpg">meitner_datacenter_reinvestment_zone_map.jpg</a></li><li><a href="sources/newprojectmedia_data_center_pivot.md">newprojectmedia_data_center_pivot.md</a></li></ul>
+</body></html>

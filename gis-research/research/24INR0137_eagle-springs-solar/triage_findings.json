@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0137",
+  "project": "Eagle Springs Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.38,
+    "lon": -95.47,
+    "method": "web_sources",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "UNDERWAY (web evidence only; satellite unavailable)",
+    "evidence": "Sunraycer Renewables PR (March 17, 2026): Eagle Springs described as 'already underway' at time of Lupinus groundbreaking. EPC = McCarthy Building Companies. Target COD late 2026."
+  },
+  "cod_first_look": {
+    "reported": "2026-12-31",
+    "plausible": true,
+    "why": "Construction underway as of Mar 2026 per developer PR; 9 months to target COD is tight but consistent with 100 MWdc scale; IA signed Apr 2024, all 6.9 gates passed Oct 2025."
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA schedule exhibit — portal blocked (402) during triage; IA exists (iaSigned=2024-04-17); retrieve PDF for contractual in-service/COD dates and any amendment",
+    "Satellite imagery — CDSE 401 during triage; site candidate is Lake Creek TX (~33.38N, 95.47W); run 3x3 chip grid to confirm active construction footprint",
+    "Capacity discrepancy — ERCOT queue shows 77.21 MW (AC); Sunraycer PR cites 100 MWdc; clarify AC/DC rating mismatch",
+    "JETI / abatement search — Delta County; post-2022 so Ch.313 unlikely but JETI possible; direct Comptroller portal query needed",
+    "Financing details — $901M package covers Eagle Springs + Lupinus combined; PV Magazine May 2026 article may have project-level debt/equity splits"
+  ],
+  "turns_used": 24
+}

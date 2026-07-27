@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0547",
+  "project": "Indigo Solar 2",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.60,
+    "lon": -100.25,
+    "method": "news description (southeastern Fisher County) + sub-region estimate",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal in 3/9 chips sampled",
+    "evidence": "3 Sentinel-2 chips (Jul 2026, southeastern Fisher County) show undisturbed ranch/agricultural land; 6 of 9 chips failed to download; site coordinate is sub-region only"
+  },
+  "cod_first_look": {
+    "reported": "2027-07-15",
+    "plausible": false,
+    "why": "FIS not yet approved as of Jun 2026; no IA; no construction milestones — 12 months to COD is implausible without a signed IA"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Pin the exact parcel: Fisher County Appraisal District search for Innovative Solar 245 / IS245 landowner filings — abatement agreement should list legal description",
+    "PUCT Interchange IA search via authenticated session: FilingParty = 'Innovative Solar 245' or 'GGS Energy' (infrasure named GGS as developer)",
+    "Confirm developer identity: ISS (Innovative Solar Solutions) vs GGS Energy — two different names surfaced, could indicate project transfer",
+    "Re-run imagery with pinned parcel coordinates and full 3x3 grid; current chips had 3/9 coverage and uncertain center",
+    "Check Indigo Solar 1 (21INR0031) status for developer track record and shared infrastructure clues"
+  ],
+  "turns_used": 28
+}

@@ -1,0 +1,35 @@
+{
+  "inr": "26INR0691",
+  "project": "Harlingen #1 BESS 1",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 26.2068,
+    "lon": -97.7090,
+    "method": "POI substation — Harlingen #1 Substation (69kV) confirmed via OSM Overpass API",
+    "confidence": "high"
+  },
+  "construction": {
+    "verdict": "not visible",
+    "evidence": "3x3 Sentinel-2 grid (2026-07-01, buffer-km 2) around substation; significant cloud cover; no gravel pad or container rows detected. At 9.99 MW footprint is tiny and may fall below S2 resolution."
+  },
+  "cod_first_look": {
+    "reported": "2026-08-21",
+    "plausible": false,
+    "why": "7 rightward COD slips in 13 months (avg ~1.5 months each); no construction milestone reported; no visible site activity — COD 34 days out is implausible"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2025-06-18 but PUCT Interchange was inaccessible (HTTP 402) — retrieve IA PDF to confirm parties, POI detail, and milestone schedule",
+    "Developer identity unknown — no web results, no LLC registration found; check Texas SOS directly for 'Harlingen #1 BESS 1 LLC'",
+    "Re-run imagery on a cloud-free date (current composite ~30-50% cloud); try Oct-Feb window for South Texas",
+    "No construction milestone in queue despite IA being 13 months old — check ERCOT GIS for any NTP or 6.9 milestone updates"
+  ],
+  "turns_used": 28
+}

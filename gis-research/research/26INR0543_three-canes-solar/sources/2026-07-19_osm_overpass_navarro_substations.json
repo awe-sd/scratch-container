@@ -1,0 +1,787 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-07-19T05:42:42Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "way",
+  "id": 172475137,
+  "center": {
+    "lat": 31.8195171,
+    "lon": -96.0574480
+  },
+  "nodes": [
+    1833805905,
+    1833805903,
+    1833805896,
+    1833805866,
+    1833805872,
+    1833805905
+  ],
+  "tags": {
+    "barrier": "fence",
+    "frequency": "60",
+    "name": "Big Brown Station",
+    "operator": "Oncor",
+    "operator:wikidata": "Q7092125",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "345000"
+  }
+},
+{
+  "type": "way",
+  "id": 172583750,
+  "center": {
+    "lat": 31.8902584,
+    "lon": -96.1134069
+  },
+  "nodes": [
+    1834731422,
+    1834731423,
+    1834731412,
+    1834731413,
+    1834731328,
+    1834731317,
+    1834731312,
+    1834731310,
+    1834731422
+  ],
+  "tags": {
+    "barrier": "fence",
+    "frequency": "60",
+    "name": "Richland Chambers Substation",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "345000"
+  }
+},
+{
+  "type": "way",
+  "id": 454919461,
+  "center": {
+    "lat": 31.9639930,
+    "lon": -96.5179966
+  },
+  "nodes": [
+    4514031677,
+    4514031674,
+    4514031672,
+    4514031673,
+    4514031675,
+    4514031676,
+    4514031677
+  ],
+  "tags": {
+    "barrier": "fence",
+    "frequency": "60",
+    "name": "Navarro Switching Station",
+    "operator": "NextEra Energy",
+    "operator:wikidata": "Q967868",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "345000"
+  }
+},
+{
+  "type": "way",
+  "id": 461754865,
+  "center": {
+    "lat": 31.9588105,
+    "lon": -96.6868970
+  },
+  "nodes": [
+    4572182754,
+    4572182751,
+    4572182752,
+    4572182753,
+    4572182754
+  ],
+  "tags": {
+    "barrier": "fence",
+    "frequency": "60",
+    "name": "Navarro Mills Substation",
+    "operator": "Brazos Electric",
+    "operator:wikidata": "Q4959009",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "69000"
+  }
+},
+{
+  "type": "way",
+  "id": 461754866,
+  "center": {
+    "lat": 31.9512482,
+    "lon": -96.6723176
+  },
+  "nodes": [
+    4572182758,
+    4572182755,
+    4572182756,
+    4572182757,
+    4572182758
+  ],
+  "tags": {
+    "barrier": "fence",
+    "frequency": "60",
+    "power": "substation",
+    "substation": "industrial",
+    "voltage": "69000"
+  }
+},
+{
+  "type": "way",
+  "id": 461754875,
+  "center": {
+    "lat": 31.9780158,
+    "lon": -96.6419689
+  },
+  "nodes": [
+    4572183025,
+    4572183024,
+    4572183023,
+    4572183022,
+    4572183025
+  ],
+  "tags": {
+    "barrier": "fence",
+    "frequency": "60",
+    "name": "Purdon Substation",
+    "operator": "Brazos Electric",
+    "operator:wikidata": "Q4959009",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "69000"
+  }
+},
+{
+  "type": "way",
+  "id": 504308810,
+  "center": {
+    "lat": 32.0012587,
+    "lon": -96.3757698
+  },
+  "nodes": [
+    4944799667,
+    4944799666,
+    4944799665,
+    4944799664,
+    4944799663,
+    4944799662,
+    4944799661,
+    4944799660,
+    4944799659,
+    4944799658,
+    4944799657,
+    4944799656,
+    12368929805,
+    4944799667
+  ],
+  "tags": {
+    "barrier": "fence",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "138000;69000"
+  }
+},
+{
+  "type": "way",
+  "id": 553839629,
+  "center": {
+    "lat": 32.0895711,
+    "lon": -96.5169458
+  },
+  "nodes": [
+    5345622969,
+    5345622968,
+    5345622967,
+    5345622966,
+    5345622969
+  ],
+  "tags": {
+    "addr:city": "Corsicana",
+    "addr:housenumber": "1103",
+    "addr:state": "TX",
+    "addr:street": "Northwest County Road 1020",
+    "barrier": "fence",
+    "power": "substation",
+    "source": "esri_USDOT_NavarroCountyTX",
+    "substation": "distribution",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 588164541,
+  "center": {
+    "lat": 32.0622956,
+    "lon": -96.4285071
+  },
+  "nodes": [
+    5617801149,
+    5617801148,
+    5617801147,
+    5617801146,
+    5617801149
+  ],
+  "tags": {
+    "barrier": "fence",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 771501428,
+  "center": {
+    "lat": 31.9381825,
+    "lon": -96.1346925
+  },
+  "nodes": [
+    7202150072,
+    7202150073,
+    7202150074,
+    7202150075,
+    7202150072
+  ],
+  "tags": {
+    "barrier": "fence",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 1018394162,
+  "center": {
+    "lat": 31.9424824,
+    "lon": -96.5252682
+  },
+  "nodes": [
+    9393213169,
+    9393213168,
+    9393213172,
+    9393213171,
+    9393213170,
+    9393213169
+  ],
+  "tags": {
+    "barrier": "fence",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 1087366819,
+  "center": {
+    "lat": 32.0634180,
+    "lon": -96.5931434
+  },
+  "nodes": [
+    9962853137,
+    9962853136,
+    9962853135,
+    9962853139,
+    9962853137
+  ],
+  "tags": {
+    "power": "substation",
+    "substation": "generation",
+    "voltage": "345000"
+  }
+},
+{
+  "type": "way",
+  "id": 1087366820,
+  "center": {
+    "lat": 32.0625804,
+    "lon": -96.5930039
+  },
+  "nodes": [
+    9962853141,
+    9962853140,
+    9962853139,
+    9962853137,
+    9962853138,
+    9962853141
+  ],
+  "tags": {
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "345000"
+  }
+},
+{
+  "type": "way",
+  "id": 1162794463,
+  "center": {
+    "lat": 31.8971748,
+    "lon": -96.4698686
+  },
+  "nodes": [
+    10814431376,
+    12121273167,
+    12121273166,
+    10814431377,
+    10814431378,
+    10814431379,
+    10814431380,
+    12121273165,
+    12121273164,
+    12121273163,
+    12121273162,
+    12121273161,
+    12121273160,
+    10814431381,
+    10814431376
+  ],
+  "tags": {
+    "power": "substation",
+    "substation": "yes",
+    "voltage": "345000"
+  }
+},
+{
+  "type": "way",
+  "id": 1188600264,
+  "center": {
+    "lat": 31.8534454,
+    "lon": -96.6219567
+  },
+  "nodes": [
+    11036942793,
+    11036942794,
+    11036942795,
+    11036942796,
+    11036942793
+  ],
+  "tags": {
+    "name": "Limestone Wind Substation",
+    "power": "substation",
+    "substation": "generation",
+    "voltage": "345000"
+  }
+},
+{
+  "type": "way",
+  "id": 1302309144,
+  "center": {
+    "lat": 32.0774437,
+    "lon": -96.4439134
+  },
+  "nodes": [
+    12061537729,
+    12061537730,
+    12061537731,
+    12061537732,
+    12061537733,
+    12061537729
+  ],
+  "tags": {
+    "barrier": "fence",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 1308932799,
+  "center": {
+    "lat": 32.0719197,
+    "lon": -96.4637691
+  },
+  "nodes": [
+    12121361386,
+    12121361387,
+    12121361388,
+    12121361389,
+    12121361390,
+    12121361391,
+    12121361386
+  ],
+  "tags": {
+    "barrier": "fence",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 1308932801,
+  "center": {
+    "lat": 32.0709859,
+    "lon": -96.4753989
+  },
+  "nodes": [
+    12121361400,
+    12121390001,
+    12121390002,
+    12121390003,
+    12121390004,
+    12121390005,
+    12121390006,
+    12121390007,
+    12121361400
+  ],
+  "tags": {
+    "barrier": "fence",
+    "power": "substation",
+    "substation": "industrial",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 1308932804,
+  "center": {
+    "lat": 32.0760842,
+    "lon": -96.5182564
+  },
+  "nodes": [
+    12121390022,
+    12121390023,
+    12121390024,
+    12121390025,
+    12121390026,
+    12121390027,
+    12121390028,
+    12121390029,
+    12121390022
+  ],
+  "tags": {
+    "barrier": "fence",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 1308932805,
+  "center": {
+    "lat": 32.0300563,
+    "lon": -96.3722812
+  },
+  "nodes": [
+    12121390037,
+    235668376,
+    12121390038,
+    12121390039,
+    12121390040,
+    12121390037
+  ],
+  "tags": {
+    "barrier": "fence",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 1337286944,
+  "center": {
+    "lat": 31.7112384,
+    "lon": -96.2141450
+  },
+  "nodes": [
+    12368874758,
+    12368874759,
+    12368874760,
+    12368874761,
+    12368874758
+  ],
+  "tags": {
+    "barrier": "fence",
+    "power": "substation",
+    "substation": "industrial",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 1337286947,
+  "center": {
+    "lat": 31.7101027,
+    "lon": -96.1807618
+  },
+  "nodes": [
+    12368874785,
+    12368874786,
+    12368874787,
+    12368874788,
+    12368874789,
+    12368874790,
+    12368874791,
+    12368874792,
+    12368874793,
+    12368874794,
+    12368874785
+  ],
+  "tags": {
+    "power": "substation",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 1337287723,
+  "center": {
+    "lat": 31.7701235,
+    "lon": -96.4029998
+  },
+  "nodes": [
+    12368848044,
+    12368848045,
+    12368848046,
+    12368848047,
+    12368848044
+  ],
+  "tags": {
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "69000"
+  }
+},
+{
+  "type": "way",
+  "id": 1337287725,
+  "center": {
+    "lat": 31.7775427,
+    "lon": -96.3952833
+  },
+  "nodes": [
+    12368848054,
+    12368848055,
+    12368848056,
+    12368848057,
+    12368848054
+  ],
+  "tags": {
+    "power": "substation",
+    "voltage": "69000"
+  }
+},
+{
+  "type": "way",
+  "id": 1337287729,
+  "center": {
+    "lat": 31.7811706,
+    "lon": -96.4686763
+  },
+  "nodes": [
+    12368909608,
+    12368909609,
+    12368909610,
+    12368909607,
+    12368909608
+  ],
+  "tags": {
+    "power": "substation",
+    "voltage": "69000"
+  }
+},
+{
+  "type": "way",
+  "id": 1337287731,
+  "center": {
+    "lat": 31.9258466,
+    "lon": -96.4273066
+  },
+  "nodes": [
+    12368909632,
+    12368909633,
+    12368909637,
+    12368909636,
+    12368909634,
+    12368909635,
+    12368909632
+  ],
+  "tags": {
+    "power": "substation",
+    "voltage": "69000"
+  }
+},
+{
+  "type": "way",
+  "id": 1337288957,
+  "center": {
+    "lat": 31.9156517,
+    "lon": -96.3500366
+  },
+  "nodes": [
+    12368929801,
+    12368929802,
+    12368929803,
+    12368929804,
+    12368929801
+  ],
+  "tags": {
+    "power": "substation",
+    "voltage": "69000"
+  }
+},
+{
+  "type": "way",
+  "id": 1337288962,
+  "center": {
+    "lat": 32.0389726,
+    "lon": -96.2810644
+  },
+  "nodes": [
+    12368929844,
+    12368929845,
+    12368929846,
+    12368929847,
+    12368929844
+  ],
+  "tags": {
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 1337288964,
+  "center": {
+    "lat": 32.0412794,
+    "lon": -96.2061631
+  },
+  "nodes": [
+    12368929857,
+    12368929858,
+    12368929859,
+    12368929860,
+    12368929861,
+    12368929862,
+    12368929857
+  ],
+  "tags": {
+    "barrier": "fence",
+    "power": "substation",
+    "substation": "industrial",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 1458638586,
+  "center": {
+    "lat": 32.0728478,
+    "lon": -96.2239497
+  },
+  "nodes": [
+    13377373806,
+    13377373808,
+    13377373809,
+    13377373810,
+    13377373815,
+    13377373812,
+    13377373811,
+    13377373806
+  ],
+  "tags": {
+    "barrier": "fence",
+    "power": "substation",
+    "substation": "generation",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 1458638587,
+  "center": {
+    "lat": 32.0722027,
+    "lon": -96.2235326
+  },
+  "nodes": [
+    13377373812,
+    13377373813,
+    13377373814,
+    13377373815,
+    13377373812
+  ],
+  "tags": {
+    "barrier": "fence",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "138000"
+  }
+},
+{
+  "type": "way",
+  "id": 1475136417,
+  "center": {
+    "lat": 31.7098367,
+    "lon": -96.1847642
+  },
+  "nodes": [
+    13533086056,
+    13533086057,
+    13533086058,
+    13533086059,
+    13533086060,
+    13533086056
+  ],
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 1495698572,
+  "center": {
+    "lat": 31.7459512,
+    "lon": -96.6371527
+  },
+  "nodes": [
+    13702313358,
+    13702313357,
+    13702313356,
+    13702313355,
+    13702313358
+  ],
+  "tags": {
+    "power": "substation",
+    "voltage": "69000"
+  }
+},
+{
+  "type": "way",
+  "id": 1495698576,
+  "center": {
+    "lat": 31.7743683,
+    "lon": -96.1800841
+  },
+  "nodes": [
+    13702313381,
+    13702313380,
+    13702313379,
+    13702313378,
+    13702313377,
+    13702313376,
+    13702313375,
+    13702313374,
+    13702313373,
+    13702313372,
+    13702313381
+  ],
+  "tags": {
+    "power": "substation"
+  }
+}
+
+  ]
+}

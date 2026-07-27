@@ -1,0 +1,28 @@
+{
+  "inr": "23INR0057",
+  "project": "Duffy Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": true,
+    "why": "IA signed Apr-2023, Meets 6.9(1) May-2023, COD drifted 3× already — 18-month slip pattern suggests 2027-12-31 is optimistic but not implausible for a project still pre-construction"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA exists (signed 2023-04-12) but PUCT Interchange blocked (402) — retrieve IA PDF via authenticated session to get POI coordinates and milestone schedule exhibit",
+    "No FIS approved in queue — clarify whether FIS was waived or is outstanding; FIS gap is a red flag for 2027 COD",
+    "gmaps blocked during triage — run delivery-pin search to locate site and enable imagery",
+    "No web presence / developer name found — identify SPV parent company via TX SOS business search for Duffy Solar LLC",
+    "Capacity reduced 550→502 MW in Oct-2024 snapshot — check if tied to a restudy or partial withdrawal"
+  ],
+  "turns_used": 22
+}

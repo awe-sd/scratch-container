@@ -1,0 +1,27 @@
+{
+  "inr": "22INR0503",
+  "project": "Tidwell Prairie II Batt",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2026-08-04",
+    "plausible": false,
+    "why": "COD is 17 days out but no construction start/end milestones reported; IA signed 2025-01, 6.9 gates met 2025-08 — battery build would need to be essentially complete already with zero queue evidence of that"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate Twin Oak / TNP One substation coordinates to enable imagery — try ERCOT nodal model files or PUCT CCN filings for the tap line",
+    "PUCT Interchange IA filing — IA signed 2025-01-13, document should exist; PUCT portal was 402-blocked during triage, retry with session auth",
+    "Developer identity — project is dark on web, no LLC registration or press coverage found; try SEC EDGAR, TX SOS entity search, or ERCOT project contacts for 'Tidwell Prairie II Batt LLC'",
+    "COD credibility — 11 COD slips over 4+ years; 2026-08-04 is 17 days away with no construction milestones; pull latest ERCOT project details page to check for any energization approvals"
+  ],
+  "turns_used": 22
+}

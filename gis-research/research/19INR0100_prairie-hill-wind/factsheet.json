@@ -1,0 +1,67 @@
+{
+ "inr": "19INR0100",
+ "generated": "2026-07-20",
+ "project": "Prairie Hill Wind",
+ "county": "McLennan",
+ "fuel": "WIN",
+ "technology": "WT",
+ "capacity_mw": 297.2,
+ "queue_cod": "2027-09-30",
+ "milestones": {
+  "screeningStudyComplete": "2017-08-11",
+  "fisApproved": "2020-04-03",
+  "iaSigned": "2018-09-17",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 29,
+ "eia": {
+  "status": "ok",
+  "plant_id": 63100,
+  "entity": "GDF Suez North America",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   31.54987,
+   -96.90407
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "puct-index",
+    "entity": "Prairie Hill Wind Project, LLC",
+    "detail": "Interconnection Agreement between Oncor Electric Delivery Company LLC and Prairie Hill Wind Project, LLC"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "faa",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 1
+ },
+ "reality_signals": [
+  "eia_operating_date",
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 20,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 20,
+   "detail": "29 COD slips"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 20.67,
+  "reason": "reality signal"
+ }
+}

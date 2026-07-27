@@ -1,0 +1,36 @@
+{
+  "inr": "22INR0499",
+  "project": "Aquilla Lake 3 Wind",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.85,
+    "lon": -97.19,
+    "method": "project name references Aquilla Lake + Hill County; lake centroid",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials not configured; no imagery obtained; queue milestones show no construction start/end dates reported"
+  },
+  "cod_first_look": {
+    "reported": "2026-11-20",
+    "plausible": false,
+    "why": "FIS only approved 2025-09-10; no construction start milestone; 5 prior COD slips; 14 months from FIS to COD is extremely tight for 297 MW wind"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA exists (signed 2024-01-24) but PDF not retrieved — access PUCT Interchange docket for milestone schedule exhibit and POI coordinates",
+    "Developer identity unconfirmed — likely NextEra Energy Resources ('Hubbard Wind' in Hill County per JETI search); verify via TX SOS entity search for 'Aquilla Lake 3 Wind, LLC'",
+    "FAA OE/AAA filings: search for obstruction filings near Aquilla Lake / Hill County for exact turbine coordinates",
+    "CDSE imagery blocked by missing credentials — configure and run 3x3 grid once credentials available; site candidate (31.85N, 97.19W) is low-confidence",
+    "COD 2026-11-20 implausible given no construction start; assess whether a COD extension/amendment has been filed"
+  ],
+  "turns_used": 27
+}

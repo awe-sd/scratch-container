@@ -1,0 +1,64 @@
+{
+ "inr": "25INR0542",
+ "generated": "2026-07-20",
+ "project": "Hynes Bay Energy Storage",
+ "county": "Wharton",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 101.2,
+ "queue_cod": "2027-12-31",
+ "milestones": {
+  "screeningStudyComplete": "2024-01-22",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 2,
+ "eia": {
+  "status": "ok",
+  "plant_id": 68149,
+  "entity": "Raven Storage, LLC",
+  "planned_cod": "2026-10",
+  "cod_delta_quarters": -4.7,
+  "dropped_scope": null,
+  "coords": [
+   29.57562,
+   -96.08872
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Raven Storage, LLC",
+    "detail": "plant=Raven Storage 100.0MW (U) Under construction, less than or equ @29.57562,-96.08872 planned=2026-10"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_under_construction"
+ ],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 5.82,
+  "reason": "reality signal"
+ }
+}

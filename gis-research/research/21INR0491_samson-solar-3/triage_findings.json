@@ -1,0 +1,35 @@
+{
+  "inr": "21INR0491",
+  "project": "Samson Solar 3",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.66,
+    "lon": -95.55,
+    "method": "web_sources_county_center",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "likely_operating",
+    "evidence": "Multiple independent web sources (infrasure.ai, ercotqueue.com, samsonsolarenergycenter.com) state facility is fully operational since 2022. ERCOT queue lacks approvedForCommercialOperation date — queue data lag suspected. No satellite confirmation due to CDSE credential failure."
+  },
+  "cod_first_look": {
+    "reported": "2026-09-30",
+    "plausible": false,
+    "why": "Web sources indicate already operating since 2022; 18 COD drifts over 5 years; approved-for-sync Oct 2021 but no ERCOT COD stamp — queue record likely stale/unclosed"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "CRITICAL: Reconcile queue open vs. web sources 'operating since 2022' — pull ERCOT settlement data or CEMS to confirm generation; check if this is a partial-phase issue (Samson Solar 3 = one phase of 1,310 MW complex)",
+    "IA signed 2020-08-27 — retrieve from PUCT (PUCT portal blocked during triage) for milestone schedule exhibit and any amendments",
+    "Fix CDSE credentials and run satellite imagery at 33.66N/95.55W to confirm solar array footprint and distinguish from sister projects (Samson 1, Delilah 1) on same complex",
+    "Clarify ownership: Invenergy developed, WEC Energy Group reportedly acquired — confirm via SEC/FERC filings"
+  ],
+  "turns_used": 28
+}

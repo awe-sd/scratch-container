@@ -1,0 +1,27 @@
+{
+  "inr": "25INR0029",
+  "project": "Whistle Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-15",
+    "plausible": false,
+    "why": "3 COD slips over 4 years; stuck pre-FIS-approval since FIS requested Aug 2022 with no FIS approval milestone achieved; no IA signed; 2028 COD requires FIS approval + IA + construction start within ~18 months from now — very tight given current queue position"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Identify Haney 138kV substation coordinates (ERCOT NOM/EIA-860) to enable imagery run",
+    "Texas SOS entity search for 'Whistle Solar LLC' to confirm existence and developer identity",
+    "PUCT interchange search (in-browser session) for FilingParty=Whistle Solar to confirm IA status",
+    "Check ERCOT FIS study queue for 25INR0029 to assess how far back in study queue it sits"
+  ],
+  "turns_used": 22
+}

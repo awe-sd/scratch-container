@@ -1,0 +1,36 @@
+{
+  "inr": "22INR0504",
+  "project": "Barton Branch IA",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 31.18,
+    "lon": -96.49,
+    "method": "OSM power plant proximity — Oak Grove Power Plant, Robertson County; POI names 'TNP One' (Tenaska NaturalGas Power Plant #1) in same county; substation not directly geolocated",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE satellite imagery auth failed (401/403); no visual confirmation possible this pass"
+  },
+  "cod_first_look": {
+    "reported": "2026-10-01",
+    "plausible": false,
+    "why": "8 COD drifts over 5 years; IA signed only 2025-06-18 with no construction dates in queue; ~15 months to COD is very tight for a 203 MW BESS with zero reported construction start"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange: retrieve IA filing (signed 2025-06-18) — PUCT returned 402 during triage; IA may contain milestone schedule exhibit and exact POI/parties confirming developer identity",
+    "Developer ID: no parent company surfaced; TX Comptroller taxable-entity search and TX SOS for 'Barton Branch IA LLC' to establish developer chain",
+    "Substation location: 'Twin Oak 345kV' + 'TNP One' — confirm exact substation coordinates (likely Robertson Co. near Oak Grove/Hearne area) to enable a targeted imagery run",
+    "Imagery: CDSE creds failed; retry with valid credentials — 1-km buffer around confirmed substation tap location for gravel-pad/container-row construction signal",
+    "Construction start date: queue shows no reported construction start; check ERCOT 'Notice to Proceed' or PUCT IA schedule exhibit for contractual dates that bound the COD plausibility"
+  ],
+  "turns_used": 28
+}

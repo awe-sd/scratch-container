@@ -1,0 +1,35 @@
+{
+  "inr": "28INR0100",
+  "project": "Digital Ranch Gas",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.4335,
+    "lon": -97.1025,
+    "method": "POI inference — Venus Switch 345 kV substation is near Venus TX town center",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "2 of 9 grid chips retrieved (CDSE auth expired); center chip shows Venus TX town core + farmland, no industrial footprint, no cleared site, no laydown yard. Coverage incomplete."
+  },
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": false,
+    "why": "FIS only requested 2026-06-26; no FIS approval, no IA, no screening complete — 18-month COD for a 378 MW gas recip plant from FIS-request stage is not credible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Identify developer/LLC via TX SOS search — no developer surfaced in web sweep",
+    "PUCT Interchange requires browser session; check FilingParty='Digital Ranch Gas' and Description='28INR0100' manually",
+    "Locate Venus Switch 345 kV substation exact coordinates (not town center) and re-run full 9-chip grid with valid CDSE auth",
+    "TCEQ NSR air permit search — mandatory for gas thermal; no permit found during triage (budget exhausted before TCEQ check)"
+  ],
+  "turns_used": 28
+}

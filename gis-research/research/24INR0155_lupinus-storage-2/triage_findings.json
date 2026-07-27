@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0155",
+  "project": "Lupinus Storage 2",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.3415,
+    "lon": -95.2494,
+    "method": "POI name → Hagansport community (SH 37/FM 71 junction, Franklin County); substation likely co-located",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown — imagery unavailable",
+    "evidence": "CDSE 401 (no credentials); web sources claim Q3 2026 construction start, unverified visually"
+  },
+  "cod_first_look": {
+    "reported": "2027-04-03",
+    "plausible": true,
+    "why": "IA signed 2025-03, FIS 2026-03, $901M financing closed May 2026, construction reportedly starting Q3 2026 — 12-18 month build fits Q2 2027 COD"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA PDF from PUCT Interchange (portal blocked here, try direct download or alternate access) — extract milestone schedule and capacity guarantee dates",
+    "Confirm construction start Q3 2026 via Sentinel-2 imagery at Hagansport Switch coords (CDSE creds needed — check against bare-ground baseline)",
+    "Verify LLC name: Lupinus BESS 2 LLC vs Lupinus Solar 2 LLC — TX SOS entity search to confirm registered agent and formation date",
+    "Sunraycer $901M financing: constructionfront.com (403 here) or power-technology.com — confirm Lupinus 2 is explicitly covered and closing was final",
+    "Canadian Solar e-STORAGE partnership: scope of supply agreement if public (EPC or module supply) — signals procurement stage"
+  ],
+  "turns_used": 22
+}

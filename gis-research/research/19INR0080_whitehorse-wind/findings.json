@@ -1,0 +1,60 @@
+{
+  "inr": "19INR0080",
+  "project": "Whitehorse Wind",
+  "researched_at": "2026-07-19",
+  "site": {
+    "lat": 32.6281,
+    "lon": -100.5456,
+    "method": "poi_anchor",
+    "confidence": "low",
+    "notes": "Claytonville Substation (OSM) matches queue POI '68001 Clayton 345kV'. Actual turbine field unknown — no construction ever started."
+  },
+  "parcels": [],
+  "llc_chain": [],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Fisher CAD owner-name search returned no results for 'whitehorse'; Ch.313 portal inaccessible."
+  },
+  "construction": {
+    "verdict": "no_activity",
+    "first_activity_seen": null,
+    "evidence": [
+      "8 Sentinel-2 tiles across Fisher County (2026-07) show undisturbed rangeland/farmland with no turbine pads or access road strings anywhere in the county",
+      "Historical chip (2020-01) at the time of approved-for-synchronization status shows identical undisturbed landscape — project never broke ground",
+      "Queue data confirms construction milestones (start, end) were NEVER set across 101 monthly snapshots (2018-02 to 2026-06)"
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2026-12-31",
+    "independent": null,
+    "drift_risk": "extreme",
+    "reasoning_evidence": [
+      "14 COD slips over 8 years (2019-10-01 → 2026-12-31); original COD was Oct 2019",
+      "Project reached 'approved for synchronization' Dec 2019 (~7 years ago) but has never achieved commercial operation",
+      "Satellite imagery (2020-01 and 2026-07) confirms no ground disturbance at any point — project never broke ground",
+      "A 418.9 MW wind farm requires 18-30 months of construction; with 5 months to reported COD and zero site activity, the 2026-12-31 target is impossible",
+      "Financial security is posted ('Yes' per queue), meaning the project has not defaulted — deliberately held dormant, not abandoned outright",
+      "No independent COD estimate is defensible; if construction started today, earliest possible COD ~2029"
+    ]
+  },
+  "real_project_verdict": "paper",
+  "negative_searches": 22,
+  "banned_source_violations": 0,
+  "project_area": {
+    "acres": null,
+    "source": null,
+    "artifact": null
+  },
+  "contractual_schedule": {
+    "source_docs": [],
+    "note": "IA signed 2018-12-05 per queue data. PDF not retrieved (PUCT interchange HTTP 402 on all queries). Financial security posted per queue ('Yes') but amount unknown. Milestone schedule unknown.",
+    "documents": [
+      {
+        "doc": "Original IA",
+        "signed": "2018-12-05",
+        "financial_security": "posted (amount unknown)",
+        "artifact": null
+      }
+    ]
+  }
+}

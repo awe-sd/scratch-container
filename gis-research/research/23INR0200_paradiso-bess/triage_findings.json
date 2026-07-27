@@ -1,0 +1,35 @@
+{
+  "inr": "23INR0200",
+  "project": "Paradiso BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 28.963,
+    "lon": -98.476,
+    "method": "POI infrastructure — ERCOT bus 8203 Pleasanton 138kV, Atascosa County TX",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "2/9 chips obtained (south row only, CDSE auth failure); partial south-row imagery shows rural farmland, no gravel pad or container rows; POI center area not imaged"
+  },
+  "cod_first_look": {
+    "reported": "2028-03-15",
+    "plausible": true,
+    "why": "IA signed April 2025; 4 prior COD slips; 2028 target allows ~3 years post-IA, feasible for BESS"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA document: PUCT portal blocked during triage — obtain IA PDF to extract milestone schedule and POI exact location",
+    "Imagery: CDSE auth failed on center/north grid rows — re-run T6 with refreshed credentials targeting 28.963,-98.476 (the actual POI substation center)",
+    "Developer identity: no LLC registration or news found — search TX SOS for 'Paradiso BESS LLC' and any parent developer",
+    "FIS not approved despite IA signed — check if ERCOT has issued FIS or if project is IA-before-FIS outlier"
+  ],
+  "turns_used": 22
+}

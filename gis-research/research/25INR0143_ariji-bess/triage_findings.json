@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0143",
+  "project": "Ariji BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": true,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.25,
+    "lon": -101.48,
+    "method": "POI name inference: BIGSPRIG_8 = Big Spring TX substation, Howard County seat",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials not available in session; no imagery retrieved"
+  },
+  "cod_first_look": {
+    "reported": "2027-06-28",
+    "plausible": true,
+    "why": "IA signed 2025-08-01, Meets 6.9(1) 2026-03-24, BESS builds 12-18 months — 2027-06 is tight but achievable if construction starts imminently"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Docket 35077 (Oncor IA) — retrieve milestone-schedule exhibit; portal requires session auth (HTTP 402 during triage)",
+    "CDSE imagery around Big Spring substation (~32.25, -101.48) — fix credentials, run 3x3 tight grid to confirm or refute construction start",
+    "Howard County Ch.381 agreement PDF (assets.comptroller.texas.gov/dat/ch380/0011284/0011284-Howard.pdf) — confirm applicant is Ariji BESS LLC and extract completion deadline",
+    "Identify precise substation location for BIGSPRIG_8 / GTTYVTAP_8 via ERCOT network model or Oncor GIS to sharpen imagery search center"
+  ],
+  "turns_used": 22
+}

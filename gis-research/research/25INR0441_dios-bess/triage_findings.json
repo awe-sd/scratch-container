@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0441",
+  "project": "Dios BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.044,
+    "lon": -96.503,
+    "method": "POI substation inference (8117 GANADO138kV, Ganado TX, Jackson County)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials not configured; no imagery retrieved. No construction start date in queue. gmaps blocked (rate-limit)."
+  },
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": true,
+    "why": "IA signed 2025-04-03, FIS approved 2025-12-02, 6.9(1) met 2025-09-08; COD drifted once from 2025-12-31 to ~2028 then settled at 2027-12-31; 18-month build window from mid-2026 makes end-2027 plausible but tight given no reported construction start."
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT docket 35077 IA PDF (requires authenticated PUCT session) — extract milestone schedule and POI details",
+    "CDSE imagery (need creds configured) — 3x3 chip grid at 29.044N, 96.503W to check for pad clearing near Ganado substation",
+    "Developer/parent company identity — no parent found; TX SOS entity search for 'Dios BESS LLC' registration and registered agent",
+    "COD discrepancy — one tracking source shows 2027-03-01 vs queue 2027-12-31; verify against IA milestone schedule"
+  ],
+  "turns_used": 22
+}

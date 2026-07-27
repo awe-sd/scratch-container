@@ -1,0 +1,27 @@
+{
+  "inr": "24INR0066",
+  "project": "Keys Hollow Storage Phase II SLF",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-03-10",
+    "plausible": true,
+    "why": "IA signed Oct 2024; FIS not yet approved; 3-year runway to COD is tight but not impossible for battery if FIS clears soon"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "IA signed 2024-10-29 — retrieve PUCT Interchange IA PDF (portal was 402 during triage) to confirm POI, milestone schedule, and developer/counterparty identity",
+    "Developer identity unknown — TX SOS business entity search for 'Keys Hollow Storage Phase II SLF LLC' to surface parent/sponsor",
+    "No web presence found — once developer identified, search developer portfolio for project announcements or financing news",
+    "Site location unknown — once IA in hand, extract substation coordinates for targeted imagery near 345kV Coleto Creek–RAPTOR7A tap"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,28 @@
+{
+  "inr": "24INR0206",
+  "project": "Glasgow Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-03-16",
+    "plausible": true,
+    "why": "IA signed 2023-11, meets 6.9(1) 2025-02, but COD slipped 47 months from 2024-05 original — 2028 is consistent with delayed FIS (not yet approved) and no construction activity visible in queue"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange blocked during triage — find IA filing by docket (search PUCT for 24INR0206 or 'Glasgow Solar' to get parties/POI page and milestone schedule exhibit)",
+    "Developer identity unknown — no LLC found via web; try TX SOS entity search directly for 'Glasgow Solar' and parent company lookup",
+    "FIS not yet approved despite IA signed Nov 2023 — determine whether FIS request is pending or stalled (key COD risk factor)",
+    "Site location unknown — 'Big Onion 345kV #2466' substation not found; locate via ERCOT transmission map or OpenInfraMap, then run imagery on ±5km radius",
+    "Abatement status inconclusive — TX Comptroller site blocked; check Navarro Central Appraisal District or local press for JETI application"
+  ],
+  "turns_used": 18
+}

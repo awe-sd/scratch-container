@@ -1,0 +1,89 @@
+{
+ "inr": "25INR0319",
+ "project": "Northington Solar",
+ "researched_at": "2026-07-20",
+ "site": {
+  "lat": null,
+  "lon": null,
+  "method": "text_only_no_geocode: IA Exhibit C (sources/..._p35.png) states Generator's own 'Northington' substation is ~3 mi east of Louise, TX (Louise CDP center 29.1091,-96.4084 per OSM Nominatim, not used as site coord). Exhibit C-1 one-line (sources/..._p53.png) shows the POI at AEP's 'Ursidae Station', ~8.9 mi from the El Campo (#8102) tap and ~4.3 mi from the Pulsar (#8192) tap along the same 138kV line -- textually consistent with the queue's own POI description, cross-checking the two documents against each other. Could NOT independently geocode Ursidae Station or the Northington substation to coordinates: not in OSM/Nominatim/Overpass, no PUCT filing besides the one IA, CDSE imagery unavailable (processing credits exhausted, confirmed via direct 402 response), gmaps.py places/staticmap 429 rate-limited on every attempt.",
+  "confidence": "low",
+  "map_artifacts": [
+   "sources/2026-07-19_puct_35077-1964_ercot-standard-generation-interco_p35.png",
+   "sources/2026-07-19_puct_35077-1964_ercot-standard-generation-interco_p53.png"
+  ]
+ },
+ "project_area": {
+  "acres": null,
+  "source": "not stated in IA (no acreage exhibit); no Ch313/JETI application (0 hits) or CAD parcel record obtained to cross-check imagery footprint",
+  "artifact": null
+ },
+ "parcels": [],
+ "llc_chain": [
+  {
+   "entity": "Northington Solar LLC",
+   "relation": "SPV",
+   "evidence": "Named Generator party on signed IA (PUCT 35077-1964)"
+  },
+  {
+   "entity": "Matrix Renewables USA LLC",
+   "relation": "manager_of_SPV",
+   "evidence": "Signature block: 'Northington Solar LLC, By: Matrix Renewables USA LLC, its Manager' — signed by Cindy Tindell (Managing Director) and Philipp Rusch (CFO), both matrixrenewables.com; notice address 800 Brickell Avenue Suite 901 Miami FL 33131 (Matrix Renewables' known HQ)"
+  }
+ ],
+ "land_tenure": {
+  "status": "unknown",
+  "evidence": "No Ch313/JETI application (0 hits, ch313.py resolve) and no CAD parcel record obtained (Wharton CAD portal is a JS-rendered SPA, not queryable via WebFetch/curl) to determine leased vs purchased. Typical for solar ranchland to be leased (cf. Hanson Solar precedent) but unconfirmed here."
+ },
+ "construction": {
+  "verdict": null,
+  "first_activity_seen": null,
+  "evidence": [
+   "NO SATELLITE IMAGERY OBTAINED: cdse.py chip failed 3x with a clean HTTP 402 'insufficient credits' from the CDSE openEO endpoint (confirmed via direct curl with a valid cached token) -- account-level processing-credit exhaustion, not a transient auth/network fault; will not resolve on retry this session.",
+   "gmaps.py places/staticmap returned HTTP 429 (rate-limited) on every attempt -- no Places delivery pin or static map image obtainable either.",
+   "Queue milestone data (factsheet.json/timeline.md) shows construction start/end fields both NOT reported as of the 2026-06 snapshot.",
+   "Construction stage cannot be determined this session; verdict left null rather than guessed, per the honesty-over-coverage rule."
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2027-11-30",
+  "independent": "2027-Q3",
+  "drift_risk": "medium",
+  "reasoning_evidence": [
+   "Signed IA Exhibit B (sources/..._p33.png, p34.png): In-Service 32mo / Trial Operation 33mo / Scheduled COD 34mo from Execution Date 2024-10-02 -> contractual Scheduled COD = 2027-08-02",
+   "Queue COD history (timeline.md) held 2027-07-15 from the 2024-12 snapshot through 2026-04 -- matches the contractual calc within ~2 weeks, i.e. the queue faithfully tracked the signed IA for 16 months",
+   "Current queue COD 2027-11-30 (since the 2026-05 snapshot) is a ~4-month slip beyond the signed contractual schedule; puct.py search 'Northington' returns exactly 1 filing (the original IA) -- NO amendment exists on PUCT docket 35077 to contractually support this later date",
+   "FIS not yet approved as of the 2026-06 snapshot despite being requested 2023-02 (~3.3 years pending) -- an unusual, unexplained regulatory delay that is the more likely true schedule risk than the COD date itself",
+   "Not in EIA-860M (eia_history.py, confirmed 2026-07-20) -- no independent second-source cross-check available; consistent with pre-construction/pre-financing stage, not necessarily paper-project evidence",
+   "No construction imagery obtainable this session (CDSE credits exhausted) -- independent estimate rests on contractual-schedule analysis alone, not on observed build pace",
+   "Verdict: lean toward the countersigned contractual date (2027-Q3) over the self-reported 2027-Q4 queue claim, since the latter has no paper trail yet; flag medium drift risk given the stalled FIS and the unexplained slip"
+  ]
+ },
+ "real_project_verdict": "real_early",
+ "negative_searches": 14,
+ "banned_source_violations": 0,
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "ERCOT Standard Generation Interconnection Agreement between AEP Texas Inc. and Northington Solar LLC (PUCT Control No. 35077, filing 35077-1964)",
+    "signed": "2024-10-02",
+    "financial_security": "$11,000,000 (LC, corporate guaranty, or other TSP-acceptable collateral per Exhibit E)",
+    "artifact": "sources/2026-07-19_puct_35077-1964_ercot-standard-generation-interconnection-agreem.pdf"
+   }
+  ],
+  "milestones": [
+   {
+    "name": "In-Service Date",
+    "original_ia_2024": "2027-06-02 (32 months from Execution Date 2024-10-02, per Exhibit B)"
+   },
+   {
+    "name": "Trial Operation",
+    "original_ia_2024": "2027-07-02 (33 months from Execution Date)"
+   },
+   {
+    "name": "Scheduled Commercial Operation",
+    "original_ia_2024": "2027-08-02 (34 months from Execution Date)"
+   }
+  ],
+  "note": "POI: TSP's first dead-end structure outside fence of AEP's 'Ursidae Station', terminating Generator's 138kV line from Generator's own 'Northington' substation, Wharton County ~3 mi east of Louise, TX (Exhibit C). Plant: nominal 129.81 MW at inverter terminal, 39x Sungrow SG3600UD units at 3.3285 MW each. No amendment on file as of this scan."
+ }
+}

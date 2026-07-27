@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0196",
+  "project": "Dori BQ BESS",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.664,
+    "lon": -95.368,
+    "method": "web sweep — Reed Rd & Comal St, Sunnyside neighborhood, Houston TX (240-acre former landfill identified in T3)",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "Sentinel-2 chip 2026-05-01 at 2km buffer shows dense urban residential; no cleared pad, container rows, or construction footprint visible"
+  },
+  "cod_first_look": {
+    "reported": "2027-08-30",
+    "plausible": false,
+    "why": "7 COD slips over 3+ years (2024-01 → 2027-08); IA signed but FIS never approved; no construction signal in latest imagery; urban landfill site in Houston adds entitlement complexity"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA signed 2023-05 but FIS never approved — pull PUCT Interchange IA filing for Sunnyside Energy / Dori Wolfe to check schedule exhibit and any amendments",
+    "Companion solar project 23INR0040 Dori BQ Solar may share site and IA — cross-check its queue history and any PUCT filings",
+    "Imagery re-center: confirm exact landfill footprint coordinates (city of Houston permit records or Harris County appraisal parcel for Reed Rd site) then run tighter chip",
+    "Corporate registry: verify Sunnyside Energy LLC / Dori BQ BESS LLC registration in TX SOS and check any name changes or address updates since 2022",
+    "Mayor Turner's Sunnyside landfill redevelopment program — check city council approvals, ground-lease status, and whether the landfill remediation prerequisite blocks construction start"
+  ],
+  "turns_used": 22
+}

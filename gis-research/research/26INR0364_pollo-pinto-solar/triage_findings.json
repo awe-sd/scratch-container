@@ -1,0 +1,28 @@
+{
+  "inr": "26INR0364",
+  "project": "Pollo Pinto Solar",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-08-15",
+    "plausible": false,
+    "why": "FIS only cleared Apr 2026, no IA signed — 16 months to COD with no IA is extremely tight for 150.8 MW solar"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Locate IA filing via PUCT Interchange when portal is accessible (was 402-blocked during triage)",
+    "Identify and geolocate RWMILLER and JAYBIRD 138kV substations to establish site candidate for imagery",
+    "Confirm developer identity: TX Palo Pinto SB 6 LLC vs Pollo Pinto Solar LLC (Houston TX / Wilmington DE) — check TX SOS for parent/sponsor",
+    "Verify Palo Pinto County Reinvestment Zone (Dec 2024 public hearing) — determine if project is the beneficiary and if JETI application followed",
+    "Re-run gmaps.py when API rate limit clears to get delivery pin"
+  ],
+  "turns_used": 22
+}

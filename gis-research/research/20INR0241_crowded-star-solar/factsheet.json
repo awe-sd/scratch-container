@@ -1,0 +1,123 @@
+{
+ "inr": "20INR0241",
+ "generated": "2026-07-20",
+ "project": "Crowded Star Solar",
+ "county": "Jones",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 218.79,
+ "queue_cod": "2026-08-17",
+ "milestones": {
+  "screeningStudyComplete": "2019-04-19",
+  "fisApproved": "2024-11-05",
+  "iaSigned": "2023-07-27",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 13,
+ "eia": {
+  "status": "ambiguous",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Planned",
+    "entity": "Lightsource Renewable Energy Asset Management, LLC",
+    "detail": "plant=Jones City 1 Solar 215.0MW (V) Under construction, more than 50 per @32.78117,-100.0065 planned=2026-06"
+   },
+   {
+    "source": "eia860m/Planned",
+    "entity": "Anson Solar Center 2, LLC",
+    "detail": "plant=Anson 2 Solar 218.5MW (V) Under construction, more than 50 per @32.80561,-99.91901 planned=2026-07"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Jones City Solar, LLC",
+    "detail": "ERCOT Standard Generation Interconnection Agreement between Lone Star Transmission, LLC and Jones City Solar, "
+   },
+   {
+    "source": "puct-index",
+    "entity": "Jones City Solar II, LLC",
+    "detail": "ERCOT Standard Generation Interconnection Agreement between Lone Star Transmission, LLC and Jones City Solar I"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Jones City Solar II",
+    "detail": "Amendment No 1 to the IA between Lone Star Transmission, LLC and Jones City Solar II for the Crowded Star Sola"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Jones City Solar",
+    "detail": "Amendment No 1 to the IA between Lone Star Transmission, LLC and Jones City Solar for the Crowded Star Solar P"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Jones City Solar",
+    "detail": "Amendment No. 3 to the SGIA between Lone Star Transmission, LLC and Jones City Solar for the Crowded Star Sola"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Jones City Solar II",
+    "detail": "Amendment No. 3 to the SGIA between Lone Star Transmission, LLC and Jones City Solar II for the Crowded Star S"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Jones City Solar, LLC",
+    "detail": "First Amended and Restated Generation Interconnection Agreement between Lone Star Transmission, LLC and Jones "
+   },
+   {
+    "source": "puct-index",
+    "entity": "Jones City Solar II, LLC",
+    "detail": "First Amended and Restated Generation Interconnection Agreement between Lone Star Transmission, LLC and Jones "
+   },
+   {
+    "source": "puct-index",
+    "entity": "Jones City Solar, LLC",
+    "detail": "Third Amendment to the Standard Generation Interconnection Agreement between Lone Star Transmission, LLC and J"
+   },
+   {
+    "source": "puct-index",
+    "entity": "Jones City Solar II, LLC",
+    "detail": "Third Amendment to the Standard Generation Interconnection Agreement between Lone Star Transmission, LLC and J"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 6,
+  "join_items": 13
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 30,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 20,
+   "detail": "13 COD slips"
+  },
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 218.79,
+  "reason": "reality signal"
+ }
+}

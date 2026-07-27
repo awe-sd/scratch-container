@@ -1,0 +1,146 @@
+{
+ "inr": "24INR0355",
+ "project": "Anatole Renewable Energy Storage",
+ "research_date": "2026-07-19",
+ "verdict": "real_early",
+ "verdict_rationale": "IA signed 2024-05-10, Meets 6.9(1) 2025-02-12, queue reports construction start 2026-06-01; Vesper Energy confirmed as developer with live project website; COD target on website stated as '2026' (queue claim 2027-06-01). No imagery confirmation of construction due to CDSE session expiry before correct location was searched.",
+ "developer_chain": [
+  {
+   "entity": "Anatole Renewable Energy LLC",
+   "role": "project LLC / TX Foreign LLC",
+   "evidence": "TX SOS File #0805410802, registered 2024-02-01, Irving TX (triage web_sweep.md)"
+  },
+  {
+   "entity": "Eustace Storage LLC",
+   "role": "interconnection-party SPV",
+   "evidence": "infrasure.ai listing (sources/web_sweep.md)"
+  },
+  {
+   "entity": "Vesper Energy",
+   "role": "developer/owner",
+   "evidence": "anatoleenergystorage.com \u00a9 2025 Vesper Energy, Dallas TX (sources/2026-07-19_vesperenergy_project_page.md)"
+  }
+ ],
+ "site": {
+  "lat": 32.275,
+  "lon": -95.975,
+  "method": "POI name inference \u2014 'Eustace Southeast 138kV Substation' is SE of Eustace TX (confirmed at 32.307N, 96.007W via Nominatim)",
+  "confidence": "low",
+  "cross_checks": [
+   "Nominatim confirms Eustace TX at 32.307N, 96.007W (not 32.010N, 95.975W as in triage \u2014 ~33km error corrected)",
+   "Rayburn Electric Cooperative confirmed as substation owner (rayburnelectric.com battery farms page)",
+   "Site described as 'up to 20 acres near a substation' (project website) \u2014 consistent with compact BESS footprint"
+  ],
+  "not_obtainable": "Exact substation coordinates (CEII/gmaps rate-limited/Overpass timeout); parcel address"
+ },
+ "project_area": {
+  "acres": 20,
+  "source": "Project website (upper bound: 'up to 20 acres')",
+  "artifact": "sources/2026-07-19_vesperenergy_project_page.md"
+ },
+ "land": {
+  "tenure": "leased (inferred)",
+  "evidence": "Website states 'privately owned land' \u2014 not developer-owned; no parcel found in Henderson CAD",
+  "abatements": "None found; expected for post-2022 BESS (Ch.313 expired, JETI inapplicable to most storage)",
+  "cad_parcels": "0 hits \u2014 search blocked by CAD system issues; low acreage BESS may not show under LLC name yet"
+ },
+ "interconnection": {
+  "ia_signed": "2024-05-10",
+  "ia_pdf_retrieved": false,
+  "ia_pdf_note": "PUCT Interchange portal returned HTTP 402 on all attempts",
+  "poi": "Bus# 6951, Eustace Southeast 138kV Substation, Rayburn Electric Cooperative",
+  "contractual_schedule": {
+   "documents": [
+    {
+     "doc": "Original IA (Eustace Storage LLC / Rayburn Electric Cooperative / ERCOT)",
+     "signed": "2024-05-10",
+     "financial_security": "unknown \u2014 IA PDF not retrieved",
+     "artifact": null
+    }
+   ],
+   "milestones_from_queue": {
+    "construction_start_reported": "2026-06-01",
+    "construction_end_reported": "2027-04-01",
+    "cod_reported": "2027-06-01"
+   }
+  }
+ },
+ "queue_history": {
+  "first_snapshot": "2022-12-01",
+  "total_snapshots": 43,
+  "cod_drift_count": 4,
+  "cod_history": [
+   {
+    "cod": "2025-07-09",
+    "held_from": "2022-12-01",
+    "until": "2023-01-01"
+   },
+   {
+    "cod": "2026-06-01",
+    "held_from": "2023-02-01",
+    "until": "2024-06-01"
+   },
+   {
+    "cod": "2026-01-11",
+    "held_from": "2024-07-01",
+    "until": "2025-02-01"
+   },
+   {
+    "cod": "2027-03-31",
+    "held_from": "2025-03-01",
+    "until": "2026-03-01"
+   },
+   {
+    "cod": "2027-06-01",
+    "held_from": "2026-04-01",
+    "until": "2026-06-01"
+   }
+  ],
+  "milestones": {
+   "screening_started": "2022-06-02",
+   "screening_complete": "2022-08-30",
+   "fis_requested": "2022-12-02",
+   "fis_approved": "2024-01-22",
+   "ia_signed": "2024-05-10",
+   "meets_6_9_1": "2025-02-12",
+   "meets_all_6_9": null,
+   "construction_start_reported": "2026-06-01"
+  }
+ },
+ "satellite": {
+  "verdict": "unknown",
+  "note": "CDSE session expired before correct location (SE of 32.307N, 96.007W) could be imaged at sufficient resolution. All 9 frames retrieved show rural/undisturbed land, but the actual substation vicinity was not definitively covered.",
+  "imagery_dir": "imagery/",
+  "frames_reviewed": [
+   {
+    "file": "imagery/s2_20260701_eustace_correct_se.png",
+    "date": "2026-07",
+    "lat": 32.28,
+    "lon": -95.98,
+    "obs": "rural, no construction visible, substation not identified"
+   },
+   {
+    "file": "imagery/s2_20260701_eustace_town.png",
+    "date": "2026-07",
+    "lat": 32.307,
+    "lon": -96.007,
+    "obs": "Eustace town center, no industrial signatures in SE quadrant"
+   }
+  ]
+ },
+ "independent_cod": {
+  "estimate": "2027-Q3",
+  "reported_cod": "2027-06-01",
+  "drift_risk": "medium",
+  "rationale": [
+   "IA signed May 2024 \u2014 solid milestone, 3+ years in queue",
+   "Meets 6.9(1) achieved Feb 2025 \u2014 financial security posted, project committed",
+   "Queue-reported construction start Jun 2026; BESS build time ~12-18 months \u2192 COD Q2-Q4 2027",
+   "COD drift: 4 changes over 3.5 years (aggressive early dates \u2192 2027); latest drift smaller (Mar\u2192Jun 2027 shift)",
+   "Website still says 'COD 2026' while queue says 2027-06-01 \u2014 minor inconsistency but website may be stale",
+   "No imagery confirmation of construction start; cannot verify the queue's 2026-06-01 start date",
+   "Drift risk medium: milestone progression strong, but no physical confirmation of construction activity"
+  ]
+ },
+ "real_project_verdict": "real_early"
+}

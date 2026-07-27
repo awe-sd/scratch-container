@@ -1,0 +1,27 @@
+{
+  "inr": "25INR0192",
+  "project": "Palmvalley Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-05-01",
+    "plausible": false,
+    "why": "FIS not approved, IA not signed — no evidence of advancement beyond screening; 2-year COD slip already logged; <12 months to reported COD with zero milestones cleared is implausible"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Identify developer/owner: no name surfaced via web sweep — try TX SOS entity search for 'Palmvalley Storage LLC' and ERCOT PGC/NOIE filings",
+    "PUCT Interchange IA search: portal blocked in triage; retry with authenticated session for FilingParty='Palmvalley Storage' or Description='25INR0192'",
+    "Frontera substation (#8980) coords: needed to enable imagery — try ERCOT network map or OpenInfraMap interactively",
+    "FIS status: no FIS approval after ~4 years in queue; verify if study is actively progressing or project is dormant"
+  ],
+  "turns_used": 25
+}

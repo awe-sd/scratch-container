@@ -1,0 +1,34 @@
+{
+  "inr": "26INR0472",
+  "project": "Bologna BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.9401,
+    "lon": -98.5948,
+    "method": "POI substation name 'Pleasant Valley Switch' resolved to Pleasant Valley village centroid via OSM Nominatim",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "no signal",
+    "evidence": "4 Sentinel-2 chips (2024-06 through 2026-06) at Pleasant Valley centroid show agricultural/rural land; no gravel pad or container rows visible; caveat: imagery centered on village centroid, not confirmed substation location"
+  },
+  "cod_first_look": {
+    "reported": "2028-04-19",
+    "plausible": true,
+    "why": "FIS approved 2025-03; no IA yet; 3 COD slips over 2 years; 2028 target requires IA + construction start within ~12 months — tight but not impossible for BESS"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm substation coordinates for Pleasant Valley Switch #1450 — imagery was centered on village centroid, not actual POI; re-run T6 once pinned",
+    "Check PUCT Interchange for IA filing — portal blocked during triage; IA expected within ~6-12 months given FIS approved 2025-03",
+    "Identify developer/LLC — zero public web footprint; Texas SOS entity search for 'Bologna BESS LLC' or related names could surface a developer and improve all downstream signals"
+  ],
+  "turns_used": 28
+}

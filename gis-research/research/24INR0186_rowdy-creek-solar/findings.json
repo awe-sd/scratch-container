@@ -1,0 +1,156 @@
+{
+ "inr": "24INR0186",
+ "project": "Rowdy Creek Solar",
+ "research_date": "2026-07-19",
+ "verdict": "real_early",
+ "confidence": "medium",
+ "verdict_rationale": "IA signed, tax abatement executed, real developer (Parliament Energy / EnCap / Mercuria) with operational track record; but no construction visible as of July 2026 (GEM: pre-construction), 14 months past NTP deadline with no grading evidence",
+ "developer_chain": [
+  {
+   "entity": "Rowdy Creek Solar, LLC",
+   "role": "SPV / Generator",
+   "evidence": "IA party; abatement signatory; Delaware LLC",
+   "artifact": "sources/2026-07-19_puct_35077-2148_oncor-rowdy-creek-solar-IA.pdf"
+  },
+  {
+   "entity": "Solar Proponent, LLC",
+   "role": "Sole Member of Rowdy Creek Solar LLC",
+   "evidence": "Abatement signatory; Jeffrey Sabins CDO signed 5/30/2023",
+   "artifact": "sources/2026-07-19_lamarcounty_rowdy-creek-solar-PILOT-2023-05-22.pdf"
+  },
+  {
+   "entity": "Parliament Energy",
+   "role": "Developer / Platform",
+   "evidence": "parliamentenergy.us email domain on IA Exhibit D; project listed on parliamentenergy.com",
+   "artifact": "sources/2026-07-19_parliamentenergy_rowdy-creek-project-page.html"
+  },
+  {
+   "entity": "EnCap Investments L.P. (Energy Transition Fund II)",
+   "role": "Equity backer",
+   "evidence": "parliamentenergy.com homepage; 2.7 GWdc portfolio",
+   "artifact": "sources/2026-07-19_parliamentenergy_homepage.html"
+  },
+  {
+   "entity": "Mercuria Energy Group",
+   "role": "Co-backer / operator partner",
+   "evidence": "parliamentenergy.com homepage",
+   "artifact": "sources/2026-07-19_parliamentenergy_homepage.html"
+  },
+  {
+   "entity": "NovaSource Power (NSCR)",
+   "role": "O&M operator (designated)",
+   "evidence": "IA Exhibit D control-room contact: NSCR-Ops@novasourcepower.com",
+   "artifact": "sources/2026-07-19_puct_35077-2148_oncor-rowdy-creek-solar-IA.pdf"
+  }
+ ],
+ "site": {
+  "lat": 33.74,
+  "lon": -95.67,
+  "method": "county-road triangulation: CR 35200 (near Sumner TX, 33.7403\u00b0N 95.6728\u00b0W) in abatement Attachment E; IA Exhibit C states 'west of Paris, TX'; Woodfin Switch is new greenfield on project land",
+  "confidence": "medium \u2014 5 km radius estimate; no delivery pin, no parcel map obtained",
+  "cross_checks": "CR 35200 \u2192 Sumner TX 33.74/-95.67 (RoadOnMap); IA 'west of Paris TX'; Paris Switch (POI anchor) is near Paris TX in Lamar County"
+ },
+ "project_area": {
+  "acres": 3840,
+  "source": "Parliament Energy project page: '6 square miles (~3,840 acres)'",
+  "artifact": "sources/2026-07-19_parliamentenergy_rowdy-creek-project-page.html"
+ },
+ "construction_stage": "pre-construction",
+ "first_activity_seen": null,
+ "imagery_verdict": "no_activity (inferred) \u2014 CDSE credentials not configured; GEM Wiki July 2026 labels project 'pre-construction'; no construction news or EPC announcements",
+ "contractual_schedule": {
+  "ia_signed": "2025-05-02",
+  "ia_filed": "2025-05-30",
+  "ntp_deadline": "2025-05-05",
+  "documents": [
+   {
+    "doc": "Original IA (PUCT 35077-2148)",
+    "signed": "2025-05-02",
+    "financial_security": "Irrevocable Standby LC required by 2025-05-05; amount redacted (CEII)",
+    "artifact": "sources/2026-07-19_puct_35077-2148_oncor-rowdy-creek-solar-IA.pdf"
+   }
+  ],
+  "milestones": [
+   {
+    "name": "In-Service Date",
+    "original_ia_2025": "2027-04-15"
+   },
+   {
+    "name": "Trial Operation",
+    "original_ia_2025": "2027-05-03"
+   },
+   {
+    "name": "Scheduled Commercial Operation",
+    "original_ia_2025": "2027-07-18"
+   }
+  ],
+  "note": "Queue shows 2027-12-29 COD; IA shows 2027-07-18 \u2014 ~5.5 mo gap suggests possible amendment not retrievable (PUCT 402 throughout). Abatement deadline July 31, 2027 aligns with IA COD, not queue COD."
+ },
+ "cod_assessment": {
+  "reported": "2027-12-29",
+  "independent": "2028-Q2",
+  "drift_risk": "high",
+  "reasoning_evidence": [
+   "IA contractual Scheduled COD is 2027-07-18, ~5.5 months earlier than the queue's 2027-12-29 \u2014 gap likely reflects an unretreived amendment (PUCT 402 blocked); abatement deadline July 31, 2027 aligns with IA, not queue",
+   "NTP deadline per IA was 2025-05-05; GEM pre-construction as of ~July 2026 = ~14 months past NTP with no visible ground break",
+   "351.78 MW solar at 3,840 acres requires ~18-22 months of construction from civil mobilization; ground break today (July 2026) implies earliest COD ~Q1-Q2 2028",
+   "5 prior COD drifts (2024-06 \u2192 2024-12 \u2192 2025-05 \u2192 2026-03 \u2192 2027-04 \u2192 2027-12); capacity halved from 715 to 352 MW in July 2024 \u2014 project re-scoped once already",
+   "Financing not announced (sister project Tehuacana Creek Solar closed $747M June 2026; Rowdy Creek has no comparable announcement); no EPC, no PPA publicly disclosed",
+   "For: Parliament Energy has proven execution (Parliament Solar 640 MWdc online early 2025); IA signed; abatement active; O&M operator designated"
+  ]
+ },
+ "land_tenure": {
+  "status": "leased",
+  "evidence": "Abatement p.8: 'County acknowledges that Owner has entered into confidential agreements with each landowner'; Solar Proponent LLC is lessee; 0 CAD parcels under LLC or developer names (expected for leased ranchland)"
+ },
+ "abatement": {
+  "type": "Ch.312 Tax Abatement + PILOT",
+  "executed": "2023-05-30",
+  "county": "Lamar County, TX",
+  "term": "10-year abatement + 5-year post-abatement = 15 years total",
+  "pilot_solar": "$1,576/MW AC/year",
+  "pilot_storage": "$620/MWh/year",
+  "artifact": "sources/2026-07-19_lamarcounty_rowdy-creek-solar-PILOT-2023-05-22.pdf"
+ },
+ "poi": {
+  "name": "Woodfin Switch (proposed, greenfield)",
+  "line": "Paris Switch \u2013 Valley Switch 345 kV",
+  "tsp": "Oncor Electric Delivery Company LLC",
+  "location_text": "Lamar County, Texas, west of Paris TX",
+  "coordinates_redacted": true,
+  "delivery_voltage": "345 kV"
+ },
+ "equipment": {
+  "solar_inverters": "96 \u00d7 Power Electronics HEM FS4200M, 388.8 MVA total, 351.78 MW net",
+  "bess_inverters": "48 \u00d7 Power Electronics PCSM FP4200M, 194.4 MVA, 175.89 MW net (companion 24INR0187)"
+ },
+ "negative_evidence": [
+  "No construction news, press releases, or groundbreaking announcements found",
+  "No delivery/EPC pins on Google Maps (HTTP 429 rate block; no prior hit at triage)",
+  "0 CAD parcels under LLC or developer names (expected: leased land)",
+  "PUCT Interchange HTTP 402 \u2014 no amendment search possible",
+  "GEM Wiki (Global Energy Monitor): 'pre-construction' as of ~July 13, 2026",
+  "No EPC contractor announced",
+  "No PPA/offtake announced publicly",
+  "No financing announced (contrast: sister project Tehuacana Creek Solar had $747M financing June 2026)"
+ ],
+ "sources": [
+  {
+   "artifact": "sources/2026-07-19_puct_35077-2148_oncor-rowdy-creek-solar-IA.pdf",
+   "desc": "Signed IA between Oncor and Rowdy Creek Solar LLC, May 2, 2025"
+  },
+  {
+   "artifact": "sources/2026-07-19_lamarcounty_rowdy-creek-solar-PILOT-2023-05-22.pdf",
+   "desc": "Lamar County Ch.312 Tax Abatement Agreement, executed May 30, 2023"
+  },
+  {
+   "artifact": "sources/2026-07-19_parliamentenergy_homepage.html",
+   "desc": "Parliament Energy homepage: portfolio, EnCap/Mercuria backing"
+  },
+  {
+   "artifact": "sources/2026-07-19_parliamentenergy_rowdy-creek-project-page.html",
+   "desc": "Parliament Energy Rowdy Creek project page: 455 MWdc, 3,840 ac, Q4 2027"
+  }
+ ],
+ "real_project_verdict": "real_early"
+}

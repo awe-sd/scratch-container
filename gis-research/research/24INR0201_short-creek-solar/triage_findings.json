@@ -1,0 +1,36 @@
+{
+  "inr": "24INR0201",
+  "project": "Short Creek Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.887,
+    "lon": -98.431,
+    "method": "POI infrastructure — Fisher Road, Wichita Falls area; Nominatim geocode of POI description '1425 Fisher Road Switch'",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "not visible",
+    "evidence": "16 Sentinel-2 frames 2022-07 through 2026-07 show uniform agricultural/rangeland; no grading, no panels, no construction signatures"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-17",
+    "plausible": true,
+    "why": "IA signed Oct 2024, meets 6.9(1) Feb 2025, ~3 yr build window to Dec 2027 is tight but within range for 628 MW if construction starts imminently; no start milestone yet is a risk flag"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA exists (queue-confirmed iaSigned=2024-10-02) but PUCT Interchange portal blocked — retrieve IA PDF to confirm parties, POI, and milestone schedule",
+    "Construction start milestone still unreported as of Jun 2026 — Dec 2027 COD requires imminent mobilization; verify via fresher imagery once CDSE creds restored",
+    "No developer name surfaced in web sweep — identify parent company/developer via TX SOS SOSDirect search for 'Short Creek Solar LLC'",
+    "Site candidate is POI-infrastructure-only (low confidence) — cross-reference IA map exhibit or county CAD parcel data to pin the actual footprint",
+    "COD was 2029-03 for 8 months (2024-10 to 2025-05) then pulled back to 2027-12 — investigate what triggered the acceleration"
+  ],
+  "turns_used": 28
+}

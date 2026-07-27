@@ -1,0 +1,35 @@
+{
+  "inr": "21INR0280",
+  "project": "Edgewater Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 32.3288,
+    "lon": -96.7608,
+    "method": "POI community centroid — Reagor Springs hamlet, Ellis County (Nominatim); substation not separately geocoded",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "Imagery chips acquired (2026-06-01, 2023-06-01) but contact sheet not read before budget exhausted; no construction milestone dates in queue history"
+  },
+  "cod_first_look": {
+    "reported": "2028-02-29",
+    "plausible": false,
+    "why": "4 COD slips over 7 years; no IA, no FIS approval, no 6.9 milestones — project has cleared only screening; 18-month build from today impossible without IA first"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Confirm site: locate actual Reagor Springs 69kV substation coordinates (not community centroid) and re-run imagery at correct POI",
+    "Read contact sheet chips already on disk (2026-06-01, 2023-06-01) to check for any bare-ground/pad activity near substation",
+    "Identify parent company of Edgewater Battery Storage LLC (Delaware-registered, no parent surfaced) — try TX SOS or DE Division of Corporations",
+    "PUCT Interchange: try authenticated session search for any FIS or IA filing under 'Edgewater' or 'Reagor Springs'"
+  ],
+  "turns_used": 28
+}

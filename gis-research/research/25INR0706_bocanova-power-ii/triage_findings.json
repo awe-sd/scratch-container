@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0706",
+  "project": "Bocanova Power II",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": true,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 29.4238,
+    "lon": -95.2441,
+    "method": "POI town center (Alvin TX) — substation exact coords not resolved",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE credentials unavailable; no imagery obtained; site candidate is town-level only"
+  },
+  "cod_first_look": {
+    "reported": "2026-07-31",
+    "plausible": true,
+    "why": "Approved-for-sync milestone hit 2026-06-12; all pre-commercial gates cleared; COD 13 days out is tight but consistent with sync approval"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange blocked (402) — try direct docket search for IA and milestone schedule exhibit",
+    "Exact TNMP Alvin 138kV substation coords needed — deep scan should resolve via EIA/HIFLD or TNMP service maps, then run tight imagery chip",
+    "CDSE credentials need to be set; imagery pass is the highest-value next step given battery site compactness",
+    "Sibling project Bocanova Power I (operating Aug 2025) — pull developer identity from that IA to confirm Oakland CA entity",
+    "gmaps.py 429 rate-limit — retry T2 pins in deep scan for site confirmation"
+  ],
+  "turns_used": 28
+}

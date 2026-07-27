@@ -1,0 +1,35 @@
+{
+  "inr": "23INR0486",
+  "project": "Lamar Unit 1 Repower",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.663,
+    "lon": -95.528,
+    "method": "developer inference — La Frontera Holdings operates existing Lamar Power Plant in Paris TX; POI = Paris Switch Station 345kV confirms area",
+    "confidence": "medium"
+  },
+  "construction": {
+    "verdict": "no activity detected",
+    "evidence": "3/9 grid chips captured (CDSE rate-limited); Paris TX area imagery 2026-06-15 shows suburban/agricultural land; no laydown yard, cranes, or turbine hall visible; coverage incomplete"
+  },
+  "cod_first_look": {
+    "reported": "2027-12-18",
+    "plausible": false,
+    "why": "FIS not approved, no IA, no 6.9 milestones, no construction start — 18 months to COD with no IA is implausible for a gas CC"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange IA search — portal blocked from container; try from authenticated session for La Frontera Holdings filings",
+    "TCEQ NSR air permit search for Lamar County gas generation — no permit = strong paper-project signal",
+    "Confirm exact Lamar Power Plant site coords and run full 3×3 Sentinel-2 grid + 2023 baseline",
+    "La Frontera Holdings corporate status and any turbine order disclosures"
+  ],
+  "turns_used": 28
+}

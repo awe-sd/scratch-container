@@ -1,0 +1,74 @@
+{
+ "inr": "24INR0094",
+ "generated": "2026-07-20",
+ "project": "Dovetail Solar 1",
+ "county": "Jack",
+ "fuel": "SOL",
+ "technology": "PV",
+ "capacity_mw": 666.1,
+ "queue_cod": "2028-04-12",
+ "milestones": {
+  "screeningStudyComplete": "2021-12-09",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 4,
+ "eia": {
+  "status": "ok",
+  "plant_id": 68839,
+  "entity": "Repsol Renewables NA",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   33.04417,
+   -98.34052
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Repsol Renewables NA",
+    "detail": "plant=Hecate Energy Longhorn Solar LLC 650.0MW (OP) Operating @33.04417,-98.34052 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_operating_date"
+ ],
+ "paper_score": 28,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 8,
+   "detail": "4 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "queue_aged_no_sync",
+   "points": 10,
+   "detail": "in queue >4y without sync approval"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 32.04,
+  "reason": "reality signal"
+ }
+}

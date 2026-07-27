@@ -1,0 +1,27 @@
+{
+  "inr": "26INR0425",
+  "project": "Twinwood Solar 1",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-10-27",
+    "plausible": true,
+    "why": "IA signed Nov 2025, Meets 6.9(1) May 2026, FIS not yet approved — ~18 months to COD is tight but possible if FIS clears quickly; only 1 COD drift event, settled since Oct 2024"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA filing exists (signed 2025-11-07) but PUCT Interchange blocked (402) — retrieve IA PDF to get milestone schedule and developer/offtake parties",
+    "No public web presence at all — deep scan should try TX SOS business entity search for 'Twinwood Solar 1 LLC' to identify developer",
+    "FIS not yet approved despite IA being signed — unusual milestone sequence worth flagging in deep scan",
+    "POI is FULSHR_S25_8/TWINWD_S25_8 tap on 138kV line near Fulshear; deep scan should locate TWINWD substation on OpenInfraMap or ERCOT CIM to anchor site candidate for imagery"
+  ],
+  "turns_used": 18
+}

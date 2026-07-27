@@ -1,0 +1,24 @@
+SOURCE: NRG Energy Inc. 10-K for fiscal year ending December 31, 2025
+Filed: 2026-02-24 | CIK: 0001013871 | Accession: 0001013871-26-000004
+URL: https://www.sec.gov/Archives/edgar/data/1013871/000101387126000004/nrg-20251231.htm
+
+DEFINITION TABLE:
+"Greens Bayou 6 — Greens Bayou Unit 6 generation facility, a 443 MW natural gas-fueled peaker plant"
+
+PLANT ASSET TABLE (existing, separate from Unit 6):
+"Greens Bayou  ERCOT  Fossil  Natural Gas  TX  327  327  100.0" (existing plant 327 MW)
+
+BUSINESS DESCRIPTION (p. ~30 of 10-K):
+"The projects include a 415 MW peaker plant at T.H. Wharton, expected to be operational in June 2026, plus a 689 MW combined cycle generating facility at Cedar Bayou 5, and a 443 MW peaker plant at Greens Bayou 6, both of which are expected to be operational in mid-2028."
+
+TEF LOAN SECTION:
+"On November 20, 2025, the Company entered into the Third TEF Loan to support the development of Greens Bayou 6, which is currently under construction. Commercial operation of the 443 MW facility is expected mid-2028. [...] The loan bears interest at a fixed rate of 3.000% per annum and has a final maturity date of November 20, 2045. As of January 31, 2026, $95 million of disbursements for the Third TEF Loan have occurred."
+
+NOTES TO FINANCIAL STATEMENTS:
+"On November 20, 2025, NRG Greens Bayou 6 LLC, an indirect wholly-owned subsidiary of the Company, entered into the Third TEF Loan to support the development of Greens Bayou 6, which is currently under construction. The Company signed an equity contribution agreement and guaranty with respect to the Third TEF Loan. The loan bears interest at a fixed rate of 3.000 % per annum and has a final maturity date of November 20, 2045. As of January 31, 2026, $95 million of disbursements for the Third TEF Loan have occurred."
+
+LONG-TERM DEBT TABLE:
+"3.000% Greens Bayou 6 TEF loan, due 2045 — [balance as of 12/31/2025: ~$90M carried value]"
+
+RISK FACTORS (construction risks):
+"...risk of significant cost overruns may be exacerbated in the current environment of elevated inflation, supply chain disruption and changing tariff and trade policies, which may cause actual construction costs to be significantly higher than initial estimates..."

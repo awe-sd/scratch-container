@@ -1,0 +1,77 @@
+PUCT INTERCHANGE FILING - TOLIVAR POWER PLANT PHASE 2
+Interconnection Agreement (IA)
+=====================================================================
+
+SOURCE URLs:
+  Filing search: https://interchange.puc.texas.gov/search/filings/?ControlNumber=35077&UtilityType=A&ItemMatch=Equal&FilingDescription=Tolivar
+  Document listing: https://interchange.puc.texas.gov/search/documents/?controlNumber=35077&itemNumber=2460
+  PDF (66 pages): https://interchange.puc.texas.gov/Documents/35077_2460_1622353.PDF
+  ZIP: https://interchange.puc.texas.gov/Documents/35077_2460_1622352.ZIP
+
+FILING METADATA:
+  PUCT Docket (Control Number): 35077
+  Item Number: 2460
+  File Stamp: 4/15/2026
+  Filing Party: TEXAS-NEW MEXICO POWER (TNMP)
+  Item Type: PRJ
+  Case Style: INFORMATIONAL FILING OF ERCOT INTERCONNECTION AGREEMENTS PURSUANT TO SUBST. R. §25.195(e)
+  Filing Description: ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT Between Pecos Power Plant, LLC
+                      and Texas-New Mexico Power Company for Tolivar Power Plant Phase 2 April 14, 2026
+
+ERCOT GIS REFERENCE:
+  GINR Number: 28INR0413
+
+DOCUMENT SUMMARY (Exhibit C - Interconnection Details):
+  Plant Name: Tolivar Power Plant Phase 2
+  Generator (Owner): Pecos Power Plant, LLC
+  TSP (Transmission Service Provider): Texas-New Mexico Power Company (TNMP)
+  Agreement Effective Date: April 14, 2026
+  DocuSign Envelope ID: 2EBEDD6E-1F1F-8FDB-81C8-4EA90A82F1F1
+
+  Point of Interconnection (POI): 31°22'59.56"N, 103°29'41.22"W (Reeves County, Texas)
+  Delivery Voltage: 138 kV
+  Planned Capacity: 224.5 MW AC at POI
+  Fuel/Technology: Internal Combustion Engine (Gas / Reciprocating)
+  Generating Units: 12 x Wartsila 18V50DF (or 18V50SG), each 23.54 MVA, 13.8 kV
+  Bus arrangement: 3 main 13.8 kV buses x 4 engines each; each bus -> Virginia GSU transformer 138/13.8kV 60/80/100 MVA
+  TSP Facility: New "Mosquito Lake Switching Station" at ~31°22'58.51"N, 103°29'37.64"W
+  TSP Scope: 138 kV transmission line from POI to Mosquito Lake Switching Station + 1 metered line terminal position
+
+  Metering: ERCOT-polled Settlement meter (EPS) at TSP's Mosquito Lake Switching Station (138 kV instrument transformers)
+  Communications: ~72-strand single-mode fiber optic cable between Mosquito Lake SS and GIFSUB control house
+
+TIME SCHEDULE (Exhibit B):
+  Notice to Proceed (NTP) Date: No later than May 15, 2026
+  ROW Deadline: December 1, 2026
+  Construction Authorization Date: January 1, 2027
+  In-Service Date: June 1, 2027
+  Scheduled Trial Operation Date: June 15, 2027
+  Scheduled Commercial Operation Date: July 30, 2027
+  Interconnection Option selected: Subsection 4.1.A
+
+SECURITY / COLLATERAL (Exhibit E):
+  Collateral Amount: $4,228,265.00 (irrevocable standby letter of credit or cash)
+  Security due: by May 15, 2026 (same as NTP date)
+
+ALLOWANCE (Exhibit G):
+  2026 interconnection allowance at 138 kV or less: $14,408,000 (per PUCT Project No. 58718)
+
+PARTIES / CONTACTS:
+  Generator: Pecos Power Plant, LLC
+    Contact: Edward Torres (Managing Director) or Jack Mettler
+    Address: 20 Greenway Plaza, Suite 650, Houston, Texas 77046
+    Phone: (832) 525-9633
+    Email: etorres@p-r-energy.com
+    Billing contact: Trina Conway, tconway@mercuria.com, (832) 209-2400
+
+  TSP: Texas-New Mexico Power Company (TNMP)
+    Engineering Director: 577 N Garden Ridge Blvd, Lewisville, TX 75067
+    Phone: (214) 222-4144  Fax: (972) 420-7628
+    Email: EngineeringDirector@tnmp.com
+    System Operations: 2641 Hwy 6, Alvin, TX 77511, (281) 581-4705
+    Interconnection email: TNMPInterconnection@txnmenergy.com
+    Billing contact: Karen Corrigan, Karen.Corrigan@tnmp.com, (281) 581-4717
+
+NOTE: This is the Phase 2 IA filed 4/15/2026. A Phase 1 IA (Tolivar Power Plant, no "Phase 2") also exists:
+  Item 2176, filed 7/1/2025, 54 pages, PDF: https://interchange.puc.texas.gov/Documents/35077_2176_1515296.PDF
+  Same parties (Pecos Power Plant, LLC / TNMP), same docket 35077.

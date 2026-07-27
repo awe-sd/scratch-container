@@ -1,0 +1,26 @@
+{
+  "inr": "27INR0466",
+  "project": "Wolfram Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-01",
+    "plausible": false,
+    "why": "FIS not yet approved after 14 months in queue; no IA signed; COD stable with zero drift suggests placeholder date, not a live schedule"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate Dokmai 138kV substation (bus #80090) coordinates via ERCOT NTP/CRR nodal data or AEP Texas transmission maps — enables imagery pass",
+    "Search TX SOS for 'Wolfram Storage LLC' registration to identify developer/parent company",
+    "Check PUCT Interchange once portal is accessible — IA filing unlikely given FIS not approved, but worth one pass"
+  ],
+  "turns_used": 28
+}

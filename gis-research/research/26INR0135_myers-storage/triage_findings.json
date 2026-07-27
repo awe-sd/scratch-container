@@ -1,0 +1,27 @@
+{
+  "inr": "26INR0135",
+  "project": "Myers Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-22",
+    "plausible": true,
+    "why": "screening only but 2-year COD slip already logged; 2028 is achievable if IA signed in 2026-2027"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "PUCT Interchange IA search — portal was HTTP 402 during triage, try authenticated session for FilingParty='Myers Storage' or Description contains '26INR0135'",
+    "Baez 8629 69kV substation location — ERCOT nodal/network map or AEP transmission data to get coords for imagery",
+    "Developer/sponsor identity — no LLC or developer name surfaced; TX SOS entity search for 'Myers Storage LLC' may reveal sponsor and trigger news hits",
+    "FIS approval status — FIS requested but not approved as of 2026-06 snapshot; re-check queue on next monthly release"
+  ],
+  "turns_used": 28
+}

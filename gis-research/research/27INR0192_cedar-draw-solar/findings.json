@@ -1,0 +1,141 @@
+{
+ "inr": "27INR0192",
+ "project": "Cedar Draw Solar",
+ "researched_date": "2026-07-19",
+ "verdict": "unclear",
+ "verdict_confidence": "medium",
+ "verdict_rationale": "County abatement initiated (Inadale RZ#1, ~10,500 acres) and companion BESS project (27INR0193) show paired planning; but no developer identity, no FIS approval in 28 months, no delivery pin, no press release, no IA signed. Cannot confirm real project without developer identity or site coordinates.",
+ "developer_chain": [
+  {
+   "entity": "Cedar Draw Solar LLC",
+   "role": "SPV",
+   "evidence": "ERCOT GIS queue party name",
+   "confidence": "confirmed \u2014 queue only"
+  },
+  {
+   "entity": "Parent company",
+   "role": "developer/owner",
+   "evidence": "NOT IDENTIFIED \u2014 TX Comptroller COA search JS-only, no press release found, no EDGAR filing",
+   "confidence": "unknown"
+  }
+ ],
+ "site": {
+  "lat": null,
+  "lon": null,
+  "method": "No site coordinates obtained \u2014 gmaps rate-limited, no IA filed, POI substation (Nebula7A 345kV) not in public geo databases",
+  "confidence": "none",
+  "county": "Scurry",
+  "area_description": "Inadale community area, western Scurry County, ~15 mi west of Snyder near US-180/US-84"
+ },
+ "project_area": {
+  "acres": 10500,
+  "source": "Scurry County Commissioners Court agenda Apr 16 2024 \u2014 '2024 Inadale Reinvestment Zone #1 (Scurry)', ~10,500-acre reinvestment zone (full project); ~2,500-acre phase 1",
+  "artifact": "sources/2026-07-19_scurry-agenda-apr16-2024.doc",
+  "notes": "10,500 ac is the full reinvestment zone; 2,500 ac is phase 1. At 451 MW, ~5 ac/MW implies ~2,250 ac for the solar field \u2014 consistent with phase 1 footprint"
+ },
+ "construction_stage": "no_activity",
+ "construction_stage_note": "No imagery taken \u2014 no site coordinates. No construction milestones in queue data.",
+ "first_activity_seen": null,
+ "imagery_artifacts": [],
+ "queue_history": {
+  "snapshots": 28,
+  "first_report": "2024-03-01",
+  "last_report": "2026-06-01",
+  "cod_changes": 0,
+  "current_cod": "2027-12-31",
+  "ia_signed": null,
+  "fis_approved": null,
+  "study_phase": "SS Completed, FIS Started, No IA",
+  "artifact": "timeline.md"
+ },
+ "contractual_schedule": {
+  "documents": [],
+  "notes": "No IA signed as of 2026-06-01. No PUCT docket found. PUCT Interchange search blocked (HTTP 402)."
+ },
+ "county_records": {
+  "abatement": {
+   "zone_name": "2024 Inadale Reinvestment Zone #1 (Scurry)",
+   "statute": "Texas Tax Code \u00a7312",
+   "hearing_date": "2024-04-16",
+   "source_url": "https://co.scurry.tx.us/upload/page/0121/AGENDA%20REGULAR%20WITH%20EXECUTIVE%20APRIL%2016%202024.doc",
+   "artifact": "sources/2026-07-19_scurry-agenda-apr16-2024.doc",
+   "confidence": "HIGH \u2014 timing, scale, and geography match; no competing solar project of this size in Scurry County in 2024; agenda confirms \u00a7312 abatement process initiated",
+   "exhibit_a_retrieved": false,
+   "notes": "Exhibit A (property description / legal boundary) attached to agenda but not posted separately; not retrieved"
+  },
+  "cad_parcels": {
+   "result": "No results for 'Cedar Draw' or 'Cedar Draw Solar' in Scurry CAD (esearch.scurrytex.com)",
+   "interpretation": "Consistent with leased land \u2014 LLC does not own assessed parcels; landowner names unidentified"
+  },
+  "comptroller_312": {
+   "result": "NOT in TX Comptroller Ch.312 abatement database (last submission 2023-12-15). April 2024 hearing is newer than last data pull.",
+   "artifact": "TX Comptroller API query 2026-07-19 (api.comptroller.texas.gov/open-data/v1/tables/ch312-abatement)"
+  }
+ },
+ "poi_analysis": {
+  "poi": "60011 Nebula7A 345kV",
+  "operator": "likely ETT / Wind Energy Transmission Texas",
+  "status": "New/under-construction substation \u2014 not in OpenStreetMap or public geo databases as of 2026-07-19",
+  "shared_projects": [
+   "26INR0517 Andromeda Storage II (320 MW)",
+   "26INR0540 Andromeda Storage IIB (320 MW)",
+   "27INR0193 Cedar Draw BESS (225.7 MW)"
+  ],
+  "nearby_ett_substations": {
+   "Long Draw": {
+    "lat": 32.721,
+    "lon": -101.633,
+    "voltage": "345kV",
+    "bus": "59900"
+   },
+   "Faraday": {
+    "lat": 32.648,
+    "lon": -101.396,
+    "voltage": "345kV",
+    "bus": "59905"
+   },
+   "MHOS": {
+    "bus": "59911",
+    "note": "In Scurry County WEST zone"
+   },
+   "Galvani": {
+    "bus": "59912",
+    "note": "In Scurry County WEST zone"
+   }
+  },
+  "location_estimate": "Based on ETT bus numbering sequence and Inadale community geography: est. 32.73-32.78, -101.35 to -101.50 (\u00b10.2\u00b0)"
+ },
+ "companion_project": {
+  "inr": "27INR0193",
+  "name": "Cedar Draw BESS",
+  "capacity_mw": 225.7,
+  "fuel": "OTH (Battery Storage)",
+  "poi": "60011 Nebula7A 345kV",
+  "cod": "2027-12-31",
+  "ia_signed": null,
+  "fis_approved": null,
+  "study_phase": "SS Completed, FIS Started, No IA"
+ },
+ "cod_assessment": {
+  "reported_cod": "2027-12-31",
+  "independent_cod": "2030-Q1",
+  "drift_risk": "high",
+  "reasoning": [
+   "No FIS approval in 28 months (as of 2026-06-01) \u2014 FIS approval is prerequisite for IA",
+   "Typical path from no-FIS to commercial operation for 451 MW solar: 2-3+ years minimum",
+   "Nebula substation itself is not yet in service \u2014 site depends on POI infrastructure being built",
+   "0 reported COD drift does not indicate schedule confidence \u2014 project has never moved from pre-IA status",
+   "FIS approval could come soon given SS completed; but IA \u2192 construction \u2192 COD still ~24-30 months",
+   "If FIS approved 2026-H2, IA could be 2027, construction 2027-2028, COD 2029-2030"
+  ]
+ },
+ "could_not_determine": [
+  "Parent developer / LLC owner identity",
+  "Site coordinates (no IA map, no delivery pin, no news photo)",
+  "Actual acreage / parcel IDs (Exhibit A not retrieved from county)",
+  "Whether Nebula substation is under active construction",
+  "Financing status",
+  "Land tenure (lease vs purchase \u2014 presumed lease based on no CAD hits)"
+ ],
+ "real_project_verdict": "unclear"
+}

@@ -1,0 +1,27 @@
+{
+  "inr": "26INR0499",
+  "project": "Mineral Springs BESS",
+  "triage_date": "2026-07-19",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-11-02",
+    "plausible": true,
+    "why": "FIS requested Oct 2024 but not yet approved; COD already slipped 1 year; 2027-11 is achievable only if FIS approves and IA signs in next ~6 months"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Locate DOBVI 138kV substation coordinates (ERCOT transmission map or Oncor/PEC GIS) to enable imagery",
+    "Try PUCT Interchange search for IA when portal access is restored — FilingParty and Description search on 'Mineral Springs'",
+    "Identify developer/owner — no LLC or sponsor surfaced; Texas SOS entity search for 'Mineral Springs BESS LLC'",
+    "Check JETI registry when site is accessible for Burnet County battery applications post-2022"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,68 @@
+{
+ "inr": "26INR0295",
+ "generated": "2026-07-20",
+ "project": "Trinity Hills BESS SLF",
+ "county": "Archer",
+ "fuel": "OTH",
+ "technology": "BA",
+ "capacity_mw": 94.0,
+ "queue_cod": "2028-01-24",
+ "milestones": {
+  "screeningStudyComplete": "2024-02-26",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 4,
+ "eia": {
+  "status": "ok",
+  "plant_id": 57520,
+  "entity": "Trinity Hills Wind Farm LLC",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   33.38361,
+   -98.71194
+  ]
+ },
+ "spv": {
+  "resolved": false,
+  "candidates": []
+ },
+ "registry": {
+  "tool": "ch313",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_operating_date"
+ ],
+ "paper_score": 28,
+ "score_factors": [
+  {
+   "factor": "cod_slips",
+   "points": 8,
+   "detail": "4 COD slips"
+  },
+  {
+   "factor": "fis_stalled",
+   "points": 10,
+   "detail": "FIS requested >2y ago, never approved"
+  },
+  {
+   "factor": "spv_unresolvable",
+   "points": 10,
+   "detail": "no SPV via spv.py or any registry"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 5.17,
+  "reason": "reality signal"
+ }
+}

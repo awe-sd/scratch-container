@@ -1,0 +1,73 @@
+{
+ "inr": "26INR0625",
+ "generated": "2026-07-20",
+ "project": "Buffalo Gap 2 Wind Repower",
+ "county": "Nolan",
+ "fuel": "WIN",
+ "technology": "WT",
+ "capacity_mw": 231.49,
+ "queue_cod": "2027-02-01",
+ "milestones": {
+  "screeningStudyComplete": "2025-02-20",
+  "fisApproved": "2026-03-17",
+  "iaSigned": "2005-02-28",
+  "financial_security": "Yes"
+ },
+ "cod_slips": 1,
+ "eia": {
+  "status": "ambiguous",
+  "plant_id": null,
+  "entity": null,
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": null
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Leeward Asset Management, LLC",
+    "detail": "plant=Sweetwater Wind 4 LLC 241.0MW (OP) Operating @32.3122,-100.5303 planned="
+   },
+   {
+    "source": "eia860m/Operating",
+    "entity": "AES Distributed Energy",
+    "detail": "plant=Buffalo Gap 2 Wind Farm 232.5MW (OP) Operating @32.31822,-100.177 planned="
+   },
+   {
+    "source": "puct-index",
+    "entity": "BUFFALO GAP WIND FARM 2, LLC",
+    "detail": "SECOND AMENDED AND RESTATED ERCOT STANDARD GENERATION INTERCONNECTION AGREEMENT BETWEEN AEP TEXAS INC. AND BUF"
+   }
+  ]
+ },
+ "registry": {
+  "tool": "faa",
+  "hits": []
+ },
+ "ia": {
+  "signed": true,
+  "verified_pdfs": 1,
+  "join_items": 2
+ },
+ "reality_signals": [
+  "verified_ia_on_disk",
+  "fis_approved",
+  "financial_security_posted"
+ ],
+ "paper_score": 10,
+ "score_factors": [
+  {
+   "factor": "not_in_eia_near_cod",
+   "points": 10,
+   "detail": "absent from EIA with claimed COD <18mo out"
+  }
+ ],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 35.89,
+  "reason": "reality signal"
+ }
+}

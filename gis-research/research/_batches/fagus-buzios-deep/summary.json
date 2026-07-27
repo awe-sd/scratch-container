@@ -1,0 +1,43 @@
+{
+ "batch": "fagus-buzios-deep",
+ "mode": "deep",
+ "selected": 3,
+ "ran": 3,
+ "skipped_done": 0,
+ "total_cost_usd": 16.33,
+ "projects": [
+  {
+   "inr": "24INR0399",
+   "project": "Buzios Solar",
+   "cost_usd": 6.3303306000000035,
+   "turns": 129,
+   "violations": "image_reads 20 > 6",
+   "status": "ok",
+   "verdict": "real_active",
+   "construction": "operating",
+   "cod_independent": "2025-Q4"
+  },
+  {
+   "inr": "25INR0672",
+   "project": "Fagus Solar Park 2 SLF",
+   "cost_usd": 5.139132599999998,
+   "turns": 114,
+   "violations": "image_reads 11 > 6",
+   "status": "ok",
+   "verdict": "real_active",
+   "construction": "substantially_complete",
+   "cod_independent": "2025-Q4"
+  },
+  {
+   "inr": "20INR0091",
+   "project": "Fagus Solar Park 1 SLF",
+   "cost_usd": 4.865299949999997,
+   "turns": 107,
+   "violations": "image_reads 8 > 6",
+   "status": "ok",
+   "verdict": "real_active",
+   "construction": "substantially_complete",
+   "cod_independent": "2025-12"
+  }
+ ]
+}

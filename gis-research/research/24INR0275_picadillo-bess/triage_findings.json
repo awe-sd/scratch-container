@@ -1,0 +1,27 @@
+{
+  "inr": "24INR0275",
+  "project": "Picadillo BESS",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2028-05-15",
+    "plausible": true,
+    "why": "IA signed 2024-01-23; 6 prior COD slips over 4 years; 2028 COD allows ~18-month build window from a 2026 NTP — tight but achievable for BESS if financing closes soon"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "Retrieve IA from PUCT Interchange (FilingParty = 'Picadillo BESS') — IA signed 2024-01-23 per queue, milestone schedule and parties not yet seen",
+    "Identify developer/sponsor — zero web presence; parent company unknown; TX SOS entity search for 'Picadillo BESS LLC'",
+    "Resolve POI substation coords: 'Buffalo 138kV' in Martin County — find on ERCOT transmission map or ArcGIS, then run imagery",
+    "Check for JETI application despite post-2022 vintage — 100 MW BESS in Martin County may still have filed"
+  ],
+  "turns_used": 14
+}

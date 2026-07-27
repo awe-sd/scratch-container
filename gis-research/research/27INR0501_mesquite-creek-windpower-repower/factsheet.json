@@ -1,0 +1,58 @@
+{
+ "inr": "27INR0501",
+ "generated": "2026-07-20",
+ "project": "Mesquite Creek Windpower Repower",
+ "county": "Dawson",
+ "fuel": "WIN",
+ "technology": "WT",
+ "capacity_mw": 212.91,
+ "queue_cod": "2027-12-31",
+ "milestones": {
+  "screeningStudyComplete": "2025-07-26",
+  "fisApproved": null,
+  "iaSigned": null,
+  "financial_security": "No"
+ },
+ "cod_slips": 0,
+ "eia": {
+  "status": "ok",
+  "plant_id": 59332,
+  "entity": "Duke Energy Renewables Services",
+  "planned_cod": null,
+  "cod_delta_quarters": null,
+  "dropped_scope": null,
+  "coords": [
+   32.7,
+   -101.7411
+  ]
+ },
+ "spv": {
+  "resolved": true,
+  "candidates": [
+   {
+    "source": "eia860m/Operating",
+    "entity": "Duke Energy Renewables Services",
+    "detail": "plant=Mesquite Creek Wind 211.2MW (OP) Operating @32.7,-101.7411 planned="
+   }
+  ]
+ },
+ "registry": {
+  "tool": "faa",
+  "hits": []
+ },
+ "ia": {
+  "signed": false,
+  "verified_pdfs": 0,
+  "join_items": 0
+ },
+ "reality_signals": [
+  "eia_operating_date"
+ ],
+ "paper_score": 0,
+ "score_factors": [],
+ "gate": {
+  "decision": "deep_candidate",
+  "priority": 12.24,
+  "reason": "reality signal"
+ }
+}

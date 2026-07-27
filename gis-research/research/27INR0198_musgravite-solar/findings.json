@@ -1,0 +1,65 @@
+{
+ "inr": "27INR0198",
+ "project": "Musgravite Solar",
+ "researched_at": "2026-07-20",
+ "site": {
+  "lat": 32.16995,
+  "lon": -95.5803,
+  "method": "eia860m_coords_cross_checked_vs_poi_geography — EIA-860M plant-name match (spv.py resolve) gives 32.16995,-95.5803. Independently cross-checked against the queue's own POI text ('Tap 138kV (6855) Coffee - (6849) New York'): Coffee City, TX (Wikipedia, 32.1160,-95.4994) and New York, TX (Wikipedia via WebFetch, 32.1700,-95.6700) are both real Henderson Co communities named on real transmission infrastructure. The EIA point sits only 3.0 km from the Coffee-New York midpoint and is roughly equidistant from both endpoints (9.7 km / 8.4 km) -- consistent with a tap mid-span on the line connecting them. The triage's LaRue web-aggregator guess (32.1169,-95.6747) is off-axis (16.5 km from Coffee, 5.9 km from New York) and not corroborated by any primary doc -- SUPERSEDED.",
+  "confidence": "medium",
+  "map_artifacts": []
+ },
+ "project_area": {
+  "acres": null,
+  "source": null,
+  "artifact": null
+ },
+ "parcels": [],
+ "llc_chain": [
+  {
+   "entity": "BT Thompson Solar, LLC",
+   "relation": "SPV_candidate_unverified",
+   "evidence": "EIA-860M plant-name match: plant='Musgravite Solar' 100.6MW, entity='BT Thompson Solar, LLC', planned COD 2027-12, coords 32.16995,-95.5803 (spv.py resolve). NOT yet confirmed against any INR-bearing document — no IA on disk, puct.py match returned 0 candidates for keys ['Musgravite Solar','Musgravite','BT Thompson Solar']. TX SOS File #0805261272 filed 2023-10-11, address 13612 Midway Rd Ste 200, Farmers Branch TX (from triage web sweep, unverified/no artifact saved)."
+  },
+  {
+   "entity": "Belltown Power Texas LLC",
+   "relation": "possible_parent_unverified",
+   "evidence": "Naming pattern 'BT <Surname> Solar, LLC' (BT Thompson, BT Martin, BT Brown, BT Cantwell, BT Cooke solar LLCs all in Farmers Branch/Dallas TX) matches 'BT' = Belltown Power Texas, a known multi-project TX solar developer (belltownpower.com PRs: 330MWdc portfolio 2021, 750MW sold 2020). LEAD ONLY — no direct document linking BT Thompson Solar LLC to Belltown Power found yet; bizapedia listing not fetched (needs verification)."
+  }
+ ],
+ "land_tenure": {
+  "status": null,
+  "evidence": null
+ },
+ "construction": {
+  "verdict": "unknown_cdse_outage",
+  "first_activity_seen": null,
+  "evidence": [
+   "Triage T6 (2026-07-19): 3 chips at LaRue centroid (superseded site), 2026-06-01, 50-70% cloud cover, no arrays/grading/staging visible in clear windows -- but wrong site coordinates, low evidentiary value now",
+   "Deep D2 (2026-07-20): CDSE fleet-wide outage -- every chip/chips call at the corrected EIA/POI-cross-validated site (32.16995,-95.5803) returned RemoteDisconnected after 15s/45s/120s backoff escalation, both foreground (90s and 150s timeouts) and background jobs (killed after 12+ min with zero output). A separate probe-watchdog process observed running in the container confirms this is a known, fleet-wide, temporary CDSE capacity outage, not a query-specific failure. NO IMAGERY OBTAINED for the corrected site coordinates."
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2027-11-01",
+  "independent": "2028-Q1",
+  "drift_risk": "high",
+  "reasoning_evidence": [
+   "Queue-history (timeline.md): 1 COD change (2027-05-28 -> 2027-11-01, shifted at the 2025-10-01 snapshot) -- one prior slip of ~5 months, before any construction evidence exists either way",
+   "EIA-860M second source (eia_history.json): entity BT Thompson Solar, LLC / plant 'Musgravite Solar' reports planned COD 2027-12 consistently across all 13 monthly snapshots on file (2025-05-01 -> 2026-05-01) -- 1 month later than the queue's 2027-11-01, materially in agreement",
+   "EIA-860M status field UNCHANGED for the full 13-month reporting window: '(L) Regulatory approvals pending. Not under construction' -- this is the most recent independent status (as of the 2026-05-01 EIA report) and it says construction has NOT started",
+   "Queue's own milestone timeline shows an anomaly: iaSigned=2025-05-20 but that milestone did not first appear in the monthly queue report until 2026-02-01 -- a 9-month lag between claimed signing and its first appearance in ERCOT's own report, which is unusually long for a self-reported field",
+   "No IA obtained despite an exhaustive systematic search (PUCT rung 0 INR-join, rung 1 exact-name incl. SPV, rung 2 registry resolvers, rung 3 name variants, plus an ad-hoc +/-5-day docket window scan across ALL TSPs around the claimed signing date) -- two coincidental county/date matches were caught and discarded as false positives (Tanzanite/Sowers Storage; Sol Marina Energy Center), not cited",
+   "No satellite imagery obtained (CDSE fleet-wide outage for the full session) to visually corroborate or contradict the 'not under construction' EIA status",
+   "For a 100.6 MW solar project with no confirmed construction start as of the most recent EIA report (2026-05), reaching COD by 2027-11/12 requires breaking ground within roughly the next few months and completing a fast (~18-month) build -- achievable but leaves little schedule slack, especially with the IA itself unverified",
+   "Independent estimate: 2028-Q1 (roughly one quarter later than the queue claim), reflecting the EIA's slightly later planned COD plus the lack of any confirmed construction start; HIGH drift risk because no primary document (signed IA) or visual evidence grounds either date -- both the queue and EIA figures are self-reported planning dates, not contractually verified milestones"
+  ]
+ },
+ "real_project_verdict": "real_early",
+ "negative_searches": 20,
+ "banned_source_violations": 0,
+ "contractual_schedule": {
+  "documents": [],
+  "milestones": [],
+  "note": "No IA document obtained. Queue claims iaSigned=2025-05-20 with financial security posted ('Yes'), but an exhaustive PUCT Interchange search (systematic ladder rungs 0-3 + an ad-hoc +/-5-day all-TSP docket window scan around the claimed signing date) found zero confirmed or probable filings under 'Musgravite Solar', 'Musgravite', 'BT Thompson Solar', or 'Thompson' as party/description text. Two coincidental matches (Tanzanite/Sowers Storage via Belltown Power Texas; Sol Marina Energy Center via Adapture Solar, filed the same day) were verified as different INRs/projects and discarded. Either the IA was filed under an unidentified legal name, or the queue's iaSigned flag is not yet corroborated by a public filing as of the docket index's last refresh (2026-07-19)."
+ }
+}

@@ -1,0 +1,27 @@
+{
+  "inr": "24INR0404",
+  "project": "Tres Rios Ranch Solar",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-12-31",
+    "plausible": true,
+    "why": "IA signed 2025-12-30; ~24 months to COD is tight but plausible for solar if construction starts soon; COD already slipped +2 years from original 2025-12-31"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "PUCT Interchange IA PDF — portal blocked during triage; IA signed 2025-12-30 per queue data, document should exist; extract parties/POI page and milestone schedule",
+    "Twelvemile 345kV substation geolocation — ERCOT bus 76008; pin the substation then run Sentinel-2 contact sheet over 3x3 grid to check for ground disturbance",
+    "LectricWind LLC developer verification — TX SOS entity search, website, other projects; only known from third-party trackers",
+    "FIS approved still missing despite IA signed — unusual; check if FIS was waived or if queue data has a lag"
+  ],
+  "turns_used": 22
+}

@@ -1,0 +1,35 @@
+{
+  "inr": "25INR0392",
+  "project": "Purple Sage BESS 2",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 33.3497,
+    "lon": -96.5547,
+    "method": "POI town center — Anna, TX (Anna 345 kV Bus# 2373 is in/near Anna, Collin County); substation precise coords not resolved",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "CDSE imagery blocked (401 auth error); no other site photos or reports found"
+  },
+  "cod_first_look": {
+    "reported": "2028-02-12",
+    "plausible": true,
+    "why": "IA signed Oct 2024; 3 prior COD slips (total ~3 yr drift); 2028-02-12 gives ~3.5 yr from IA which is tight but plausible for BESS if construction starts 2026-2027"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA exists (signed 2024-10-11) but PUCT Interchange portal blocked during triage — retrieve IA PDF for parties, POI details, and milestone schedule",
+    "CDSE creds expired — re-run 3x3 chip grid around Anna TX (33.35, -96.55) once creds refreshed; BESS pad should be visible within 1-2 km of Anna 345 kV substation",
+    "Developer identity unknown — no web presence found; check TX SOS entity search for 'Purple Sage BESS 2 LLC' to identify parent developer and assess track record",
+    "Meets 6.9(1) achieved 2025-02-13 but Meets all 6.9 still open — identify which 6.9 conditions remain and whether that is blocking COD timeline"
+  ],
+  "turns_used": 22
+}

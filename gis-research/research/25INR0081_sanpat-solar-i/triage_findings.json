@@ -1,0 +1,36 @@
+{
+  "inr": "25INR0081",
+  "project": "SanPat Solar I",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": true,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": {
+    "lat": 27.98,
+    "lon": -97.40,
+    "method": "POI substation corridor midpoint (Naismith ~Gregory TX / Angstrom ~Sinton TX, ~19mi apart on 345kV line)",
+    "confidence": "low"
+  },
+  "construction": {
+    "verdict": "unknown",
+    "evidence": "No imagery obtained during triage; no construction start/end milestones in queue; no pins or news indicating ground activity"
+  },
+  "cod_first_look": {
+    "reported": "2027-07-08",
+    "plausible": true,
+    "why": "IA signed Oct 2023, partial 6.9 met Feb 2025, but no construction start reported — 12 months to COD from today is very tight with no groundbreaking signal"
+  },
+  "deep_scan_recommended": true,
+  "deep_scan_focus": [
+    "IA exists (signed 2023-10-18) but PUCT portal was 402-blocked — retrieve IA PDF to get POI coordinates, milestone schedule, and parties",
+    "Developer is Padre Solar LLC (not SanPat Solar I LLC) — identify parent company / sponsor for credibility assessment",
+    "Run imagery along Angstrom–Naismith 345kV corridor to identify any ground disturbance or panel activity",
+    "Check Meets all 6.9 milestone and FIS approval gap — neither achieved, both needed before construction can proceed",
+    "COD 2027-07-08 is implausible without near-term construction start — verify if project is active or stalled"
+  ],
+  "turns_used": 28
+}

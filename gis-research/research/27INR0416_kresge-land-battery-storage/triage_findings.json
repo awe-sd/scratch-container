@@ -1,0 +1,27 @@
+{
+  "inr": "27INR0416",
+  "project": "Kresge Land Battery Storage",
+  "triage_date": "2026-07-18",
+  "signals": {
+    "ia_found": false,
+    "abatement_found": false,
+    "pins_found": 0,
+    "news_found": false,
+    "construction_visible": false
+  },
+  "site_candidate": null,
+  "construction": null,
+  "cod_first_look": {
+    "reported": "2027-06-01",
+    "plausible": true,
+    "why": "FIS approved Jun 2026; ~12-18 months to build is tight but physically possible if IA closes soon"
+  },
+  "deep_scan_recommended": false,
+  "deep_scan_focus": [
+    "Nighthawk Substation coordinates — planned TNMP 138kV facility near PH Robinson→Meadow 345kV line; locate via ERCOT EIR PDF or PUCT substation filing to enable imagery",
+    "Developer identity — LLC name known but parent company/developer unknown; check TX SOS or FERC interconnection application",
+    "IA status — FIS approved 2026-06-16, IA not yet signed; monitor queue for IA execution as the next material milestone",
+    "PUCT Interchange — portal returned 402; retry with correct endpoint or alternative access to check for any IA or project filings"
+  ],
+  "turns_used": 28
+}
