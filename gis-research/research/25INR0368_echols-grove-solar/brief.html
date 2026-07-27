@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Echols Grove Solar — research brief</title><style>
+:root{--bg:#fff;--sur:#f6f7f9;--ink:#191c20;--ink2:#555b64;--mut:#899;--line:#e1e5ea;
+--good:#0a7d33;--warn:#b45309;--bad:#b91c1c;--acc:#2563eb}
+@media(prefers-color-scheme:dark){:root{--bg:#14171c;--sur:#1c2027;--ink:#eceff3;
+--ink2:#b3bac4;--mut:#7d8590;--line:#2a2f38;--good:#34d399;--warn:#fbbf24;--bad:#f87171;--acc:#6ea8fe}}
+*{box-sizing:border-box}body{margin:0 auto;max-width:1080px;padding:20px;background:var(--bg);
+color:var(--ink);font:14px/1.45 -apple-system,"Segoe UI",Roboto,sans-serif}
+h1{font-size:19px;margin:0}h2{font-size:13px;text-transform:uppercase;letter-spacing:.05em;
+color:var(--mut);margin:22px 0 8px}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-weight:700;font-size:12px}
+.b-good{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+.b-warn{background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--warn)}
+.b-bad{background:color-mix(in srgb,var(--bad) 15%,transparent);color:var(--bad)}
+.hdr{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.sub{color:var(--ink2);font-size:13px;margin:4px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.card{background:var(--sur);border:1px solid var(--line);border-radius:9px;padding:10px 13px}
+.card .k{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+.card .v{font-weight:650;margin-top:2px}.card .v small{font-weight:400;color:var(--ink2)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:5px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:13px}
+th{color:var(--mut);font-size:11px;text-transform:uppercase}
+.imgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.imgs figure{margin:0}.imgs img{width:100%;border-radius:8px;border:1px solid var(--line)}
+.imgs figcaption{font-size:12px;color:var(--ink2);margin-top:2px}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.small{font-size:12px;color:var(--ink2)}
+</style></head><body>
+<div class="hdr"><h1>Echols Grove Solar <span class="small">(25INR0368)</span></h1>
+<span class="badge b-good">real_active</span>
+<span class="badge b-bad">COD drift: high</span></div>
+<div class="sub">researched — ·
+<a href="https://www.google.com/maps/@33.61647,-95.45837,5000m/data=!3m1!1e3" target="_blank">site 33.61647, -95.45837</a> (Imagery-verified EIA-860M plant 68902 &#x27;Echols Creek Solar&#x27; (entity BT Ferguson Solar, LLC) point, corroborated by independent Google Places business pin &#x27;Echols Grove Solar&#x27; at 3018 U.S. Hwy 271 S, Paris TX 75462 (33.611368,-95.445060, 1.35 km away). Re-checked the two candidate PUCT map_artifacts below: p43 is a one-line electrical diagram (project name/GINR/MW only, no georeference) and Amendment Exhibit C p7&#x27;s POI-location paragraph is CEII-REDACTED in the filed text — neither is an actual geo-referenced map, so the site does NOT reach the map-exhibit or IA-Exhibit-C-text provenance rungs. Rung achieved: imagery-verified EIA. 5x Sentinel-2 dates (2024-07 → 2026-07, s2aws.py) at this anchor (3.5–4.5km buffer) show a new access-road/civil-grading footprint appearing between 2025-07 and 2025-11, centered ~2.6 km SE of the EIA point (approx. 33.598,-95.441) — a plausible offset for a single reported plant centroid vs. a &gt;1,200-acre multi-parcel array. Confirmed NOT a neighbor-plant misattribution: nearest operating solar (Eiffel Solar, 240MW) is 6.5km W, Chisum (10MW) is 6.5km NE, Rowdy Creek Solar 24INR0186 (the other Lamar County queue project) is 23km N — none coincide with the observed construction footprint, and neither pre-existing operating neighbor shows any change across the imagery series., high conf) ·
+<a href="dossier.md">dossier</a> · <a href="log.md">log</a> · <a href="timeline.md">timeline</a></div>
+<div class="grid">
+<div class="card"><div class="k">Construction</div><div class="v">—
+<small>since —</small></div></div>
+<div class="card"><div class="k">COD reported → independent</div>
+<div class="v">2027-04-03 → —</div></div>
+<div class="card"><div class="k">Owner chain</div><div class="v">unknown</div></div>
+<div class="card"><div class="k">Land</div><div class="v">—</div></div>
+
+</div>
+<h2>Parcel / boundary maps from filings — basis for the site fix</h2><div class="imgs"><figure><a href="sources/2026-07-20_puct_35077-2030_standard-generation-interconnecti_p43.png"><img src="sources/2026-07-20_puct_35077-2030_standard-generation-interconnecti_p43.png" loading="lazy"></a><figcaption>2026-07-20_puct_35077-2030_standard-generation-interconnecti_p43.png</figcaption></figure><figure><a href="sources/2026-07-20_puct_35077-2335_amendment-no-1-to-the-standard-ge_p7.png"><img src="sources/2026-07-20_puct_35077-2335_amendment-no-1-to-the-standard-ge_p7.png" loading="lazy"></a><figcaption>2026-07-20_puct_35077-2335_amendment-no-1-to-the-standard-ge_p7.png</figcaption></figure></div>
+<h2>Site imagery (Sentinel-2, key dates)</h2><div class="imgs"><figure><a href="imagery/key/s2_2024-07-01.png"><img src="imagery/key/s2_2024-07-01.png" loading="lazy"></a><figcaption>2024-07-01</figcaption></figure><figure><a href="imagery/key/s2_2025-07-01.png"><img src="imagery/key/s2_2025-07-01.png" loading="lazy"></a><figcaption>2025-07-01</figcaption></figure><figure><a href="imagery/key/s2_2025-10-15.png"><img src="imagery/key/s2_2025-10-15.png" loading="lazy"></a><figcaption>2025-10-15</figcaption></figure><figure><a href="imagery/key/s2_2026-01-15.png"><img src="imagery/key/s2_2026-01-15.png" loading="lazy"></a><figcaption>2026-01-15</figcaption></figure><figure><a href="imagery/key/s2_2026-04-15.png"><img src="imagery/key/s2_2026-04-15.png" loading="lazy"></a><figcaption>2026-04-15</figcaption></figure><figure><a href="imagery/key/s2_2026-07-15.png"><img src="imagery/key/s2_2026-07-15.png" loading="lazy"></a><figcaption>2026-07-15</figcaption></figure></div>
+<h2>Interconnection agreement — signed, security, schedule</h2><table><tr><th>IA document</th><th>Signed</th><th>Financial security posted</th></tr><tr><td>Original IA (PUCT 35077-2030)</td><td>2024-12-05</td><td><b>$8,596,091 Irrevocable Standby LC (due 2024-12-06)</b></td></tr><tr><td>Amendment No. 1 (PUCT 35077-2335)</td><td>2025-12-07</td><td><b>$11,711,125 Irrevocable Standby LC (due 2025-12-09) — 36% increase; storage removed</b></td></tr></table><table><tr><th>Milestone</th><th>Original IA (2024)</th><th>Amendment 1 (2025)</th></tr><tr><td>Milestone</td><td>Date</td><td>Date</td></tr><tr><td>In-Service</td><td>2026-12-03</td><td>2026-12-03</td></tr><tr><td>Trial Operation</td><td>2027-01-03</td><td>2027-01-03</td></tr><tr><td>Scheduled COD</td><td>2027-04-03</td><td>2027-04-03</td></tr></table><div class="small"><br>Source: </div>
+
+<h2>Reported-COD drift (queue history, 40 monthly reports since 2023-03-01)</h2>
+<table><tr><th>Reported COD</th><th>Held from</th><th>Until</th></tr><tr><td>2025-12-09</td><td>2023-03-01</td><td>2023-03-01</td></tr><tr><td>2025-12-31</td><td>2023-04-01</td><td>2023-06-01</td></tr><tr><td>2026-04-15</td><td>2023-07-01</td><td>2024-06-01</td></tr><tr><td>2026-12-31</td><td>2024-07-01</td><td>2025-03-01</td></tr><tr><td>2027-10-13</td><td>2025-04-01</td><td>2025-05-01</td></tr><tr><td>2027-04-03</td><td>2025-06-01</td><td>2026-06-01</td></tr></table>
+<h2>Milestones achieved (latest report)</h2>
+<table><tr><th>Milestone</th><th>Date</th></tr><tr><td>Screening started</td><td>2023-04-07</td></tr><tr><td>Screening complete</td><td>2023-07-05</td></tr><tr><td>FIS requested</td><td>2023-03-22</td></tr><tr><td>FIS approved</td><td>2026-06-18</td></tr><tr><td>IA signed</td><td>2024-07-06</td></tr><tr><td>Meets 6.9(1)</td><td>2025-07-08</td></tr></table>
+
+<h2>EIA-860M second source — plant 'Echols Creek Solar', entity BT Ferguson Solar, LLC</h2>
+<div class="small">matched by --plant-id · reports 2025-05-01 → 2026-05-01 ·
+queue-reported COD <b>2027-04-03</b> vs latest EIA planned COD <b>2028-12</b> · <a href="https://www.google.com/maps/@33.61647,-95.45837,5000m/data=!3m1!1e3" target="_blank">EIA site 33.61647, -95.45837</a> (Lamar Co)</div>
+
+<table><tr><th>EIA planned COD</th><th>Held from</th><th>Until</th></tr><tr><td>2025-12</td><td>2025-05-01</td><td>2025-05-01</td></tr><tr><td>2028-12</td><td>2025-06-01</td><td>2026-05-01</td></tr></table>
+
+<table><tr><th>EIA status</th><th>From</th><th>Until</th></tr><tr><td>(L) Regulatory approvals pending. Not under construction</td><td>2025-05-01</td><td>2026-05-01</td></tr></table>
+<h2>Key evidence</h2><ul></ul>
+<h2>Saved sources (3)</h2><h3 class='small'>Documents (3)</h3><ul><li><a href="sources/2026-07-19_puct_35077-2335_amendment-no-1-to-the-standard-generation-interc.pdf">2026-07-19_puct_35077-2335_amendment-no-1-to-the-standard-generation-interc.pdf</a></li><li><a href="sources/2026-07-20_puct_35077-2030_standard-generation-interconnection-agreement-be.pdf">2026-07-20_puct_35077-2030_standard-generation-interconnection-agreement-be.pdf</a></li><li><a href="sources/2026-07-20_puct_35077-2335_amendment-no-1-to-the-standard-generation-interc.pdf">2026-07-20_puct_35077-2335_amendment-no-1-to-the-standard-generation-interc.pdf</a></li></ul>
+</body></html>

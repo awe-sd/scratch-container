@@ -1,0 +1,120 @@
+{
+  "inr": "22INR0455",
+  "project": "Blue Sky Sol",
+  "researched_at": "2026-07-20",
+  "site": {
+    "lat": 30.744,
+    "lon": -101.065,
+    "method": "Ch.313 App #1821 Tab-11 'Project Boundary' map (recovered 2026-07-21 from Wayback Machine after the live Comptroller CDN purged the 1821 asset folder): red boundary NORTH of I-10, SW tip touching the interstate at a pad ~5.5 mi east of Ozona (matching IA Exhibit C's 'Blue Sky Substation... 5.5 miles east of Ozona' and the OSM-verified Friend Ranch Substation interconnect), extending ~5 mi ENE x ~3.5 mi N. Boundary-bbox center 30.744,-101.065 replaces the earlier bearing-estimate point 30.7096,-101.1108 (which was the I-10/substation end, cropping most of the plant site out of frame).",
+    "confidence": "high (parcel boundary from recovered Ch.313 application)",
+    "map_artifacts": [
+      "sources/2026-07-21_wayback_ch313-1821-crockett-blue-app_p22.png",
+      "sources/2026-07-21_wayback_ch313-1821-crockett-blue-app_p24.png",
+      "sources/2026-07-19_puct_35077-2358_second-amended-and-restated-ercot_p58.png"
+    ]
+  },
+  "project_area": {
+    "acres": null,
+    "source": "not directly stated in any obtained artifact; energycentral.com 2023 article gives 240,732 PV panels + 29 central inverters + $85mn total investment but no acreage figure",
+    "artifact": "sources/2026-07-20_energycentral_uka-blue-sky-sale-2023.html"
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Blue Sky Solar LLC",
+      "relation": "SPV",
+      "evidence": "Named Generator party on all 3 IA documents (PUCT 35077-1379/2277/2358); INR #22INR0455 quoted verbatim in each recital; also Ch.313 applicant, Crockett County Consolidated CSD app #1821 (comptroller.texas.gov/economy/development/prop-tax/ch313/agreement-docs-details.php?id=1821, exists per search index, PDF blocked HTTP 403 at source -- not independently read)"
+    },
+    {
+      "entity": "UKA North America (subsidiary of UKA Group, Germany)",
+      "relation": "developer_owner",
+      "evidence": "nacleanenergy.com 2026-02-23: 'UKA North America...has executed a 15-year power purchase agreement (PPA) with Google for the Blue Sky Solar Project, a 100 MWac utility-scale solar facility located in Crockett County, Texas' (sources/2026-07-20_nacleanenergy_uka-google-blue-sky-solar-ppa.html); energycentral.com ~2023-05: 'UKA Group's North American subsidiary seeks to sell its 101.2 MW Blue Sky solar project in Texas' via Fractal Advisory, citing 'UKA Group's regulatory filings with the Texas Comptroller' (sources/2026-07-20_energycentral_uka-blue-sky-sale-2023.html) -- 29 central inverters figure in this 2023 article matches IA Exhibit C exactly (29x GE LV5+-1569), confirming same project"
+    },
+    {
+      "entity": "Google",
+      "relation": "offtaker_PPA",
+      "evidence": "15-year PPA executed, announced 2026-02-23, brokered by LevelTen (sources/2026-07-20_nacleanenergy_uka-google-blue-sky-solar-ppa.html); Google quoted (Will Conkling, Director of Energy and Power) on affordability/reliability rationale tied to Google's Texas data centers"
+    }
+  ],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Crockett CAD (crockettcad.com, crockettcad.org) portals are session/JS-based, not scrapeable for an owner-name parcel search this run; Ch.313 application (which would state land tenure/tract description) exists (app #1821) but PDF blocked HTTP 403 at source -- inconclusive, not a true negative"
+  },
+  "construction": {
+    "verdict": "unclear_no_construction_visible",
+    "first_activity_seen": null,
+    "evidence": [
+      "CDSE Sentinel-2 imagery UNOBTAINABLE this run -- fleet-wide CDSE capacity outage observed (RemoteDisconnected on repeated attempts across multiple concurrent research sessions in this container, not project-specific); no satellite ground-truth collected",
+      "Queue milestones: no construction start/end date reported in 67 monthly snapshots since 2020-12 (timeline.md)",
+      "TCEQ storm-water NOI check (tceq.py --storm, Crockett County): NEGATIVE -- no 'Blue Sky' active stormwater construction permit found",
+      "nacleanenergy.com 2026-02-23 describes project as 'late-stage development,' NOT under construction, planned online 'late 2027'",
+      "energycentral.com 2023 describes project as 'ready-to-build' with expected COD 'mid-2024' (missed by ~3.5 years vs current queue COD) -- shows the project has been perpetually 'about to start' for years",
+      "AWS Open Data chips REFRAMED to the full Ch.313 project boundary (11x8km, 2022/2024/2025 + 2026-07-10 wide): the entire boundary interior is unbroken rangeland with oil-lease pads/roads only -- no grading, racking, or laydown anywhere inside the boundary through 2026-07-10. The earlier chip series was centered on the substation end of the site and cropped most of the plant area; superseded by this boundary-framed series."
+    ],
+    "imagery_artifacts": [
+      "imagery/key/s2_2022-06-01.png",
+      "imagery/key/s2_2024-06-01.png",
+      "imagery/key/s2_2025-07-01.png",
+      "imagery/key/s2_2026-07-10_boundary-wide.png"
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-12-31",
+    "independent": "2028-Q2",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "Latest signed IA (Second A&R, PUCT 35077-2358, exec 2025-12-11) sets contractual Scheduled COD at 71 months from the 2022-02-01 conditions-satisfied anchor = 2028-01 -- already 1 month past the queue's reported 2027-12-31, and this is the THIRD contractual COD (orig 2024-03 -> 1st A&R 2027-04 -> 2nd A&R 2028-01), each one later than the last",
+      "Independent trade press (nacleanenergy.com, 2026-02-23) describes the project as 'late-stage development' -- not under construction -- and gives a vaguer 'late 2027' target, already inconsistent by ~1 quarter with the project's OWN latest signed IA (2028-01)",
+      "No independent construction-start evidence obtained: no active TCEQ storm-water NOI, no queue-reported construction start/end date in 67 monthly snapshots, no satellite imagery (CDSE outage this run)",
+      "Financial security frozen at $2,200,000 across all 3 IA versions despite ~46 months of total schedule slippage since the original agreement -- contrasts with comparable projects (e.g. Hanson Solar 23INR0086) where security rises with each amendment, tracking real capital commitment; flat security here is a soft signal the slips are administrative/queue-driven rather than accompanied by escalating construction financial exposure",
+      "Positive grounding: signed/amended IA with security intact (not lapsed or terminated), Ch.313 tax-abatement filing exists (app #1821, Crockett Co Consolidated CSD), and a genuine 15-year PPA with Google (brokered by LevelTen, announced 2026-02-23) -- this is a real commercial project with an anchor customer, not vaporware",
+      "Track record: this project has NEVER met a COD it set for itself across 5 prior queue-reported slips (2022-12 -> 2023-11 -> 2024-06 -> 2025-02 -> 2027-04 -> 2027-12) plus 2 more slips visible only in the IA amendments -- independent estimate weights this pattern over the letter of the latest contract date"
+    ]
+  },
+  "real_project_verdict": "real_early",
+  "negative_searches": 8,
+  "banned_source_violations": 0,
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Original IA \u2014 ERCOT Standard Generation Interconnection Agreement between AEP Texas Inc. and Blue Sky Solar LLC (PUCT Control No. 35077, filing 35077-1379)",
+        "signed": "2022-02-01",
+        "financial_security": "$2,200,000 LC/guaranty (Exhibit E, Sec.1)",
+        "artifact": "sources/2026-07-19_puct_35077-1379_ercot-standard-generation-interconnection-agreem.pdf"
+      },
+      {
+        "doc": "First Amended and Restated IA (PUCT Control No. 35077, filing 35077-2277) \u2014 deferred In-Service/Trial Op/COD dates",
+        "signed": "2025-09-17 (filed 2025-10-10)",
+        "financial_security": "$2,200,000 LC/guaranty, unchanged (Exhibit E, Sec.1)",
+        "artifact": "sources/2026-07-19_puct_35077-2277_ercot-standard-generation-interconnection-agreem.pdf"
+      },
+      {
+        "doc": "Second Amended and Restated IA (PUCT Control No. 35077, filing 35077-2358) \u2014 further deferred In-Service/Trial Op/COD dates",
+        "signed": "2025-12-11 (filed 2026-01-09)",
+        "financial_security": "$2,200,000 LC/guaranty, unchanged (Exhibit E, Sec.1)",
+        "artifact": "sources/2026-07-19_puct_35077-2358_second-amended-and-restated-ercot-standard-gener.pdf"
+      }
+    ],
+    "milestones": [
+      {
+        "name": "In-Service Date",
+        "original_ia_2022": "24 months from conditions-satisfied date -> 2024-02-01",
+        "first_ar_2025": "59 months from conditions-satisfied date -> 2027-01-01",
+        "second_ar_2026": "68 months from conditions-satisfied date -> 2027-10-01"
+      },
+      {
+        "name": "Trial Operation",
+        "original_ia_2022": "24 months -> 2024-02-01",
+        "first_ar_2025": "60 months -> 2027-02-01",
+        "second_ar_2026": "69 months -> 2027-11-01"
+      },
+      {
+        "name": "Scheduled Commercial Operation",
+        "original_ia_2022": "25 months -> 2024-03-01",
+        "first_ar_2025": "62 months -> 2027-04-01",
+        "second_ar_2026": "71 months -> 2028-01-01"
+      }
+    ],
+    "note": "All 3 documents state months-from-conditions-satisfied rather than fixed calendar dates in Exhibit B; conditions were satisfied on the Original Agreement's Execution Date (2022-02-01) per each Exhibit B's carryover text, so month-counts were computed off that anchor. AEP Texas is TSP; POI = Friend Ranch Station 138kV (Exhibit C, all 3 docs, verbatim: 'approximately Five and one Half (5.5) miles east of Ozona, Texas'). Financial security identical $2.2M across all 3 versions \u2014 schedule slipped without a security increase, unlike Hanson Solar's rising-LC pattern."
+  }
+}

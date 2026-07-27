@@ -1,0 +1,126 @@
+{
+  "inr": "16INR0049",
+  "project": "Nazareth Solar",
+  "researched_at": "2026-07-20",
+  "site": {
+    "lat": 34.4884,
+    "lon": -101.9728,
+    "method": "Google Places delivery pin (1291 Co Rd 2, Tulia TX 79088) cross-checked with EIA-860M coords (34.49,-101.97) \u2014 both Swisher County; agree within 0.002\u00b0; parcel boundary: Ch.313 App #1592 Tab-11 'Project Area' map (Westwood, 2021-04-23, rendered to _p24.png) \u2014 red Project Boundary immediately EAST of the Castro/Swisher county line, south of SH-86, straddling South Tule Draw, with PV blocks, project substation at the NW corner, and a gen-tie running west into Castro County to an existing utility substation (explains the queue's 'Castro' county field vs the Ch.313 app's '100% within Swisher County' \u2014 the POI is Castro-side, the plant Swisher-side)",
+    "confidence": "high",
+    "map_artifacts": [
+      "sources/2026-07-20_comptroller_ch313-1592_nazareth-app_p24.png",
+      "sources/2026-07-20_comptroller_ch313-1592_nazareth-app_p25.png"
+    ]
+  },
+  "project_area": {
+    "acres": 2000,
+    "source": "Ch.313 App #1592 to Tulia ISD (TX Nazareth Solar LLC, 2021-04-26): 'will cover a surface area approximately 2,000 acres\u2026 100% within Swisher County'",
+    "artifact": "sources/2026-07-20_comptroller_ch313-1592_nazareth-app.pdf"
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "TX Nazareth Solar, LLC / TX Nazareth Solar Project, LLC",
+      "relation": "SPV (project entity)",
+      "evidence": "PUCT 35077-1643 IA parties page; Ch.313 #1592 applicant"
+    },
+    {
+      "entity": "Hornet Solar II, LLC",
+      "relation": "renamed from TX Nazareth Solar, LLC",
+      "evidence": "Ch.313 #1592 Tulia ISD \u2014 entity history: f/k/a TX Nazareth Solar; PUCT 35077-1929 co-tenant IA"
+    },
+    {
+      "entity": "Hornet Solar LLC",
+      "relation": "further rename of same entity",
+      "evidence": "Ch.313 #1592 current applicant name: 'Hornet Solar LLC f/k/a Hornet Solar II, LLC f/k/a TX Nazareth Solar, LLC'"
+    },
+    {
+      "entity": "Vesper Energy Development LLC",
+      "relation": "developer/parent",
+      "evidence": "Ch.313 #1592 franchise tax entity; IA Exhibit D contact email craig.carson@vesperenergy.com; EIA-860M entity name"
+    },
+    {
+      "entity": "Generate Capital",
+      "relation": "project financier (~$236M, closed Jan 2025)",
+      "evidence": "sources/infrasure_project_page.md"
+    }
+  ],
+  "land_tenure": {
+    "status": "leased",
+    "evidence": "Ch.313 #1592 Section 8: 'applicant has entered into... longterm lease option agreements with area landowners'; Section 12: land not classified as qualified investment (lessee not owner)"
+  },
+  "construction": {
+    "verdict": "no_activity_for_this_position",
+    "first_activity_seen": null,
+    "imagery_artifacts": [
+      "imagery/key/s2_2022-06-01.png",
+      "imagery/key/s2_2024-06-01.png",
+      "imagery/key/s2_2025-07-01.png",
+      "imagery/key/s2_2026-01-15.png",
+      "imagery/key/s2_2026-02-15.png",
+      "imagery/key/s2_2026-03-15.png",
+      "imagery/key/s2_2026-04-15.png",
+      "imagery/key/s2_2026-05-15.png",
+      "imagery/key/s2_2026-06-15.png",
+      "imagery/key/s2_2026-07-15.png"
+    ],
+    "evidence": [
+      "PREDECESSOR-PLANT WARNING: the large operating array filling the eastern half of every 2026 frame is the BUILT-OUT original project (the 2021 'Nazareth Solar Project' boundary/PV-block map matches its footprint; the SPV chain TX Nazareth Solar LLC -> Hornet Solar II LLC -> Hornet Solar LLC ties it to the completed Hornet Solar plant, which is no longer in the active queue because it reached commercial operation). It must NOT be cited as construction progress for 16INR0049, which is a successor/expansion position at the same campus.",
+      "Timeline of the built sibling (AWS chips): 2022-06 bare cropland -> 2024-06 full road/racking grid -> 2026 fully paneled with substation pads \u2014 matching a 2023-2025 build and ~2025 COD for Hornet Solar.",
+      "THIS position (203 MW, IA signed only 2026-03-05): monthly 2026 series (Jan/Feb/Mar/Apr/May/Jun/Jul) shows NO new grading, clearing, or laydown anywhere around the built plant or in the western boundary fields \u2014 clean cropland through 2026-07-13.",
+      "EIA-860M status 2025-06 through 2026-05: '(T) Regulatory approvals received. Not under construction' \u2014 consistent with the imagery.",
+      "Co-located active sibling positions in the queue: 25INR0282 Hornet Solar II SLF (201.49 MW, Swisher, IA 2024-08-21) and others \u2014 future construction at this campus needs careful attribution among them."
+    ]
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Original IA (PUCT 35077-1643, Oncor\u2013TX Nazareth Solar Project LLC)",
+        "signed": "2023-06-06",
+        "financial_security": "$4,174,433 LC due 2023-06-12",
+        "artifact": "sources/2026-07-20_puct_35077-1643_interconnection-agreement-between-oncor-electric.pdf",
+        "schedule": {
+          "in_service": "2024-12-17",
+          "trial_operation": "2024-12-27",
+          "scod": "2025-04-26"
+        }
+      },
+      {
+        "doc": "Amendment No. 1 (PUCT 35077-2431, Oncor\u2013TX Nazareth Solar LLC)",
+        "signed": "2026-03-05",
+        "financial_security": "not stated in Amendment (LC structure carried forward from original IA)",
+        "artifact": "sources/2026-07-20_puct_35077-2431_amendment-no-1-to-the-standard-generation-interc.pdf",
+        "schedule": {
+          "in_service": "2027-04-01",
+          "trial_operation": "2027-04-11",
+          "scod": "2027-08-31"
+        }
+      },
+      {
+        "doc": "Hornet Solar II co-tenant IA (PUCT 35077-1929, Oncor\u2013Hornet Solar II LLC)",
+        "signed": "2024-08-19",
+        "financial_security": "not read \u2014 separate project co-located at Ozark Trail Switch",
+        "artifact": "sources/2026-07-20_puct_35077-1929_interconnection-agreement-between-oncor-and-horn.pdf",
+        "note": "Confirms TX Nazareth Solar LLC (16INR0049) as co-tenant at same POI"
+      }
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-08-31",
+    "independent": "2028-Q2",
+    "drift_risk": "med",
+    "reasoning_evidence": [
+      "Amendment No. 1 (signed 2026-03-05) sets SCOD 2027-08-31 \u2014 contractually grounded, not speculative",
+      "EIA status through May 2026 is 'regulatory approvals received, not under construction' \u2014 construction has not started as of ~6 months before planned in-service date (Apr 2027)",
+      "IA construction notice deadline was August 2025 \u2014 presumably met (financing closed Jan 2025), but EIA non-construction status through May 2026 raises questions about actual NTP",
+      "COD drift history: 15 changes, 2016 \u2192 2027; pattern of ~12-18 month slips; most recent slip was 2025-12\u21922027-08 (8-month jump signed Mar 2026)",
+      "Equipment upgraded in Amendment (SG3600UD \u2192 SG4400UD): suggests design maturity, but re-contracting in Mar 2026 for a project that was to start construction Aug 2025 implies delays",
+      "EIA planned COD: 2025-06 \u2192 2025-12 \u2192 2027-06 (last report May 2026) \u2014 EIA tracks queue but independently; latest EIA shows 2027-06 vs queue 2027-08-31",
+      "Independent estimate: ~2028-Q2. Basis: EIA non-construction May 2026 + 18-month typical build for 203 MW + 3-month commissioning. If NTP given mid-2026, COD = mid-2028"
+    ]
+  },
+  "real_project_verdict": "real_early",
+  "negative_searches": 3,
+  "banned_source_violations": 0,
+  "notes": "Queue lists Castro County but site is in Swisher County (confirmed by IA Exhibit C, Ch.313/Tulia ISD, EIA coords, Google Places pin). Triage linked Ch.313 App #1784 (Castro Solar One / Nazareth ISD) incorrectly \u2014 that is a different project. Entity chain: TX Nazareth Solar LLC renamed to Hornet Solar II LLC then Hornet Solar LLC (same entity, Ch.313 #1592 history)."
+}

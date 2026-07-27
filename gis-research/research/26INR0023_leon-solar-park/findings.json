@@ -1,137 +1,133 @@
 {
-  "inr": "26INR0023",
-  "project": "Leon Solar Park",
-  "researched": "2026-07-19",
-  "verdict": "real_active",
-  "confidence": "high",
-  "verdict_rationale": "Ferrovial acquired the project for $72M (May 2024 press release); construction started Q2 2024; all ERCOT 6.9 milestones cleared by Oct 2025; approved for synchronization 2026-06-01; zero COD drift across 46 snapshots; COD 2026-07-01 was 18 days before research date.",
-
-  "site": {
-    "lat": 31.329,
-    "lon": -95.889,
-    "method": "OSM 138kV infrastructure — Pleasant Springs Tap (bus #3355) at 31.3292N, -95.8886W; project taps this point on Jewett-Crockett 138kV line; array within ~5-10 km",
-    "confidence": "medium-low",
-    "cross_checks": [
-      "OSM confirms 'Pleasant Springs Tap' at 31.3292N, -95.8886W on Jewett-Crockett 138kV line",
-      "OSM confirms 'Pleasant Springs Substation' (downstream POI) at 31.1748N, -95.8525W",
-      "Queue data county = Leon, TX; consistent with this corridor in south Leon County",
-      "No delivery pin found (Google Places API quota exhausted)",
-      "No parcel data found (Leon CAD under maintenance)"
-    ],
-    "not_obtainable": "Exact array centroid; Google Places 429/quota; Leon CAD unavailable; PUCT IA not accessible (402)"
-  },
-
-  "ownership": {
-    "spv": "Misae Solar IV LLC",
-    "spv_evidence": "ERCOT queue developer field; triage web sweep",
-    "acquirer": "Ferrovial Energy",
-    "acquirer_role": "Owner/operator (acquired pre-COD)",
-    "acquirer_evidence": "sources/2026-07-19_ferrovial_acquires_257mwdc_pv_texas.html",
-    "acquisition_date": "2024-05-28",
-    "acquisition_price_usd": 72000000,
-    "epc": "Unknown — Ferrovial press release does not name an EPC; Ferrovial may be self-performing",
-    "offtaker": "Unknown"
-  },
-
-  "construction": {
-    "verdict": "substantially_complete_or_operating",
-    "stage_confidence": "high (documentary)",
-    "evidence": [
-      "Approved for synchronization 2026-06-01 (ERCOT queue)",
-      "Approved for energization 2026-05-13 (ERCOT queue)",
-      "Construction start reported 2024-12-06 in queue (backdated; Ferrovial PR says Q2 2024)",
-      "All 6.9 milestones cleared by Oct 2025",
-      "Reported COD 2026-07-01 — 18 days before research date"
-    ],
-    "imagery_verdict": "no_activity_confirmed — 17 Sentinel-2 chips across Leon County including corridor chips show no solar array visible; east Texas summer cloud cover + dense pine canopy complicates composite quality; absence is NOT confirmed absence — documentary evidence strongly contradicts no-activity conclusion",
-    "first_activity_seen": "Not confirmed by imagery",
-    "imagery_note": "July 2026 east Texas: heavy cloud cover degrades composites; Oct 2025 chip at triage candidate location shows no clearing — confirms wrong initial location; corridor chips at POI infrastructure anchor show no array but poor composite quality prevents definitive negative"
-  },
-
-  "cod": {
-    "reported": "2026-07-01",
-    "independent_estimate": "2026-Q3",
-    "drift_risk": "low",
-    "drift_rationale": "Zero COD drift across 46 monthly snapshots (2022-09-01 to 2026-06-01); all milestones cleared on schedule; approved for synchronization June 2026; $72M Ferrovial acquisition puts commercial skin in the game; COD may already be achieved (17 days past reported date)"
-  },
-
-  "project_area": {
-    "acres": null,
-    "source": "Could not determine — Leon CAD under maintenance; PUCT IA not accessible; no abatement document found",
-    "artifact": null,
-    "note": "210 MW solar ≈ 600-900 acres expected; no documentary source obtained"
-  },
-
-  "contractual_schedule": {
-    "documents": [
-      {
-        "doc": "IA (Interconnection Agreement)",
-        "signed": "2024-05-21",
-        "financial_security": "Unknown — PUCT Interchange returns HTTP 402",
-        "artifact": null,
-        "note": "IA signed date from ERCOT queue data only; document not retrieved"
-      }
-    ]
-  },
-
-  "queue_history": {
-    "snapshots": 46,
-    "first_snapshot": "2022-09-01",
-    "last_snapshot": "2026-06-01",
-    "cod_changes": 0,
-    "cod_history": [
-      {"cod": "2026-07-01", "held_from": "2022-09-01", "held_until": "2026-06-01"}
-    ],
-    "milestones": {
-      "screening_started": "2022-09-15",
-      "screening_complete": "2022-12-13",
-      "fis_requested": "2022-08-27",
-      "fis_approved": "2025-09-09",
-      "ia_signed": "2024-05-21",
-      "meets_6_9_1": "2025-02-12",
-      "meets_all_6_9": "2025-10-30",
-      "construction_start_reported": "2024-12-06",
-      "approved_for_energization": "2026-05-13",
-      "approved_for_synchronization": "2026-06-01",
-      "commercial_operation_approved": null
-    }
-  },
-
-  "sources": [
-    {
-      "artifact": "sources/2026-07-19_ferrovial_acquires_257mwdc_pv_texas.html",
-      "url": "https://newsroom.ferrovial.com/en-us/press-releases/ferrovial-acquires-a-257mwdc-pv-project-in-texas/",
-      "date": "2024-05-28",
-      "description": "Ferrovial press release confirming $72M acquisition of 257 MWdc Leon County TX solar project; construction Q2 2024; COD 2026"
-    },
-    {
-      "artifact": "timeline.md",
-      "url": null,
-      "date": "2026-07-19",
-      "description": "Queue milestone/COD-drift timeline from local parquet (all 46 snapshots)"
-    },
-    {
-      "artifact": "imagery/s2_2026-07-01_center.png",
-      "url": null,
-      "date": "2026-07-19",
-      "description": "Sentinel-2 chip at triage candidate (31.315N, -95.902W) — no solar visible, confirms wrong location"
-    },
-    {
-      "artifact": "imagery/s2_2026-07-01_PS_tap_wide.png",
-      "url": null,
-      "date": "2026-07-19",
-      "description": "Sentinel-2 6km chip at Pleasant Springs Tap (31.329N, -95.889W) — confirmed POI infrastructure anchor; no solar array visible in July composite"
-    }
+ "inr": "26INR0023",
+ "project": "Leon Solar Park",
+ "researched": "2026-07-19",
+ "verdict": "real_active",
+ "confidence": "high",
+ "verdict_rationale": "Ferrovial acquired the project for $72M (May 2024 press release); construction started Q2 2024; all ERCOT 6.9 milestones cleared by Oct 2025; approved for synchronization 2026-06-01; zero COD drift across 46 snapshots; COD 2026-07-01 was 18 days before research date.",
+ "site": {
+  "lat": 31.329,
+  "lon": -95.889,
+  "method": "OSM 138kV infrastructure \u2014 Pleasant Springs Tap (bus #3355) at 31.3292N, -95.8886W; project taps this point on Jewett-Crockett 138kV line; array within ~5-10 km",
+  "confidence": "medium-low",
+  "cross_checks": [
+   "OSM confirms 'Pleasant Springs Tap' at 31.3292N, -95.8886W on Jewett-Crockett 138kV line",
+   "OSM confirms 'Pleasant Springs Substation' (downstream POI) at 31.1748N, -95.8525W",
+   "Queue data county = Leon, TX; consistent with this corridor in south Leon County",
+   "No delivery pin found (Google Places API quota exhausted)",
+   "No parcel data found (Leon CAD under maintenance)"
   ],
-
-  "negative_evidence": [
-    "PUCT Interchange: HTTP 402 on all URL variants — IA document not retrievable",
-    "Leon CAD: server maintenance — parcels not searchable",
-    "TX SOS SOSDirect: requires paid account ($1/search) — LLC officers/registered agent not retrieved",
-    "JETI/Ch.313: Ch.313 expired 2022-12-31 before project qualified; JETI registry inaccessible",
-    "Google Places API: quota exhausted (100/day limit) — no delivery pin found",
-    "CDSE auth: get_token() was URL-encoding @ in username; fixed in this session; prior triage imagery failures due to this bug",
-    "Ferrovial newsroom: no searchable press release index; only found press release via direct URL guessing and ferrovial.com/en-us/ferrovial-energy/ project gallery link",
-    "Satellite imagery: 17 chips across Leon County, no solar array visible — likely due to east Texas summer cloud cover in July composites; Oct 2025 center chip also negative (confirmed wrong location)"
+  "not_obtainable": "Exact array centroid; Google Places 429/quota; Leon CAD unavailable; PUCT IA not accessible (402)"
+ },
+ "ownership": {
+  "spv": "Misae Solar IV LLC",
+  "spv_evidence": "ERCOT queue developer field; triage web sweep",
+  "acquirer": "Ferrovial Energy",
+  "acquirer_role": "Owner/operator (acquired pre-COD)",
+  "acquirer_evidence": "sources/2026-07-19_ferrovial_acquires_257mwdc_pv_texas.html",
+  "acquisition_date": "2024-05-28",
+  "acquisition_price_usd": 72000000,
+  "epc": "Unknown \u2014 Ferrovial press release does not name an EPC; Ferrovial may be self-performing",
+  "offtaker": "Unknown"
+ },
+ "construction": {
+  "verdict": "substantially_complete_or_operating",
+  "stage_confidence": "high (documentary)",
+  "evidence": [
+   "Approved for synchronization 2026-06-01 (ERCOT queue)",
+   "Approved for energization 2026-05-13 (ERCOT queue)",
+   "Construction start reported 2024-12-06 in queue (backdated; Ferrovial PR says Q2 2024)",
+   "All 6.9 milestones cleared by Oct 2025",
+   "Reported COD 2026-07-01 \u2014 18 days before research date"
+  ],
+  "imagery_verdict": "no_activity_confirmed \u2014 17 Sentinel-2 chips across Leon County including corridor chips show no solar array visible; east Texas summer cloud cover + dense pine canopy complicates composite quality; absence is NOT confirmed absence \u2014 documentary evidence strongly contradicts no-activity conclusion",
+  "first_activity_seen": "Not confirmed by imagery",
+  "imagery_note": "July 2026 east Texas: heavy cloud cover degrades composites; Oct 2025 chip at triage candidate location shows no clearing \u2014 confirms wrong initial location; corridor chips at POI infrastructure anchor show no array but poor composite quality prevents definitive negative"
+ },
+ "cod": {
+  "reported": "2026-07-01",
+  "independent_estimate": "2026-Q3",
+  "drift_risk": "low",
+  "drift_rationale": "Zero COD drift across 46 monthly snapshots (2022-09-01 to 2026-06-01); all milestones cleared on schedule; approved for synchronization June 2026; $72M Ferrovial acquisition puts commercial skin in the game; COD may already be achieved (17 days past reported date)"
+ },
+ "project_area": {
+  "acres": null,
+  "source": "Could not determine \u2014 Leon CAD under maintenance; PUCT IA not accessible; no abatement document found",
+  "artifact": null,
+  "note": "210 MW solar \u2248 600-900 acres expected; no documentary source obtained"
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "IA (Interconnection Agreement)",
+    "signed": "2024-05-21",
+    "financial_security": "Unknown \u2014 PUCT Interchange returns HTTP 402",
+    "artifact": null,
+    "note": "IA signed date from ERCOT queue data only; document not retrieved"
+   }
   ]
+ },
+ "queue_history": {
+  "snapshots": 46,
+  "first_snapshot": "2022-09-01",
+  "last_snapshot": "2026-06-01",
+  "cod_changes": 0,
+  "cod_history": [
+   {
+    "cod": "2026-07-01",
+    "held_from": "2022-09-01",
+    "held_until": "2026-06-01"
+   }
+  ],
+  "milestones": {
+   "screening_started": "2022-09-15",
+   "screening_complete": "2022-12-13",
+   "fis_requested": "2022-08-27",
+   "fis_approved": "2025-09-09",
+   "ia_signed": "2024-05-21",
+   "meets_6_9_1": "2025-02-12",
+   "meets_all_6_9": "2025-10-30",
+   "construction_start_reported": "2024-12-06",
+   "approved_for_energization": "2026-05-13",
+   "approved_for_synchronization": "2026-06-01",
+   "commercial_operation_approved": null
+  }
+ },
+ "sources": [
+  {
+   "artifact": "sources/2026-07-19_ferrovial_acquires_257mwdc_pv_texas.html",
+   "url": "https://newsroom.ferrovial.com/en-us/press-releases/ferrovial-acquires-a-257mwdc-pv-project-in-texas/",
+   "date": "2024-05-28",
+   "description": "Ferrovial press release confirming $72M acquisition of 257 MWdc Leon County TX solar project; construction Q2 2024; COD 2026"
+  },
+  {
+   "artifact": "timeline.md",
+   "url": null,
+   "date": "2026-07-19",
+   "description": "Queue milestone/COD-drift timeline from local parquet (all 46 snapshots)"
+  },
+  {
+   "artifact": "imagery/s2_2026-07-01_center.png",
+   "url": null,
+   "date": "2026-07-19",
+   "description": "Sentinel-2 chip at triage candidate (31.315N, -95.902W) \u2014 no solar visible, confirms wrong location"
+  },
+  {
+   "artifact": "imagery/s2_2026-07-01_PS_tap_wide.png",
+   "url": null,
+   "date": "2026-07-19",
+   "description": "Sentinel-2 6km chip at Pleasant Springs Tap (31.329N, -95.889W) \u2014 confirmed POI infrastructure anchor; no solar array visible in July composite"
+  }
+ ],
+ "negative_evidence": [
+  "PUCT Interchange: HTTP 402 on all URL variants \u2014 IA document not retrievable",
+  "Leon CAD: server maintenance \u2014 parcels not searchable",
+  "TX SOS SOSDirect: requires paid account ($1/search) \u2014 LLC officers/registered agent not retrieved",
+  "JETI/Ch.313: Ch.313 expired 2022-12-31 before project qualified; JETI registry inaccessible",
+  "Google Places API: quota exhausted (100/day limit) \u2014 no delivery pin found",
+  "CDSE auth: get_token() was URL-encoding @ in username; fixed in this session; prior triage imagery failures due to this bug",
+  "Ferrovial newsroom: no searchable press release index; only found press release via direct URL guessing and ferrovial.com/en-us/ferrovial-energy/ project gallery link",
+  "Satellite imagery: 17 chips across Leon County, no solar array visible \u2014 likely due to east Texas summer cloud cover in July composites; Oct 2025 center chip also negative (confirmed wrong location)"
+ ],
+ "real_project_verdict": "real_active"
 }

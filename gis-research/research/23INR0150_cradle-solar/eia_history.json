@@ -1,0 +1,116 @@
+{
+ "inr": "23INR0150",
+ "plant_id": 65822,
+ "plant_name": "Cradle Solar",
+ "entity": "Infigen Asset Management LLC",
+ "matched_by": "--plant-id",
+ "first_report": "2022-08-01",
+ "last_report": "2026-04-01",
+ "planned_cod_history": [
+  {
+   "value": "2024-06",
+   "from": "2022-08-01",
+   "to": "2022-09-01"
+  },
+  {
+   "value": "2024-12",
+   "from": "2023-01-01",
+   "to": "2023-02-01"
+  },
+  {
+   "value": "2024-06",
+   "from": "2023-03-01",
+   "to": "2023-03-01"
+  },
+  {
+   "value": "2024-12",
+   "from": "2023-04-01",
+   "to": "2023-11-01"
+  },
+  {
+   "value": "2025-12",
+   "from": "2023-12-01",
+   "to": "2024-11-01"
+  },
+  {
+   "value": "2026-05",
+   "from": "2024-12-01",
+   "to": "2025-10-01"
+  },
+  {
+   "value": "2027-05",
+   "from": "2025-11-01",
+   "to": "2026-04-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 225.0,
+   "from": "2022-08-01",
+   "to": "2026-04-01"
+  }
+ ],
+ "status_history": [
+  {
+   "value": "(U) Under construction, less than or equal to 50 percent complete",
+   "from": "2022-08-01",
+   "to": "2022-09-01"
+  },
+  {
+   "value": "(T) Regulatory approvals received. Not under construction",
+   "from": "2023-01-01",
+   "to": "2023-02-01"
+  },
+  {
+   "value": "(U) Under construction, less than or equal to 50 percent complete",
+   "from": "2023-03-01",
+   "to": "2024-05-01"
+  },
+  {
+   "value": "(T) Regulatory approvals received. Not under construction",
+   "from": "2024-06-01",
+   "to": "2024-11-01"
+  },
+  {
+   "value": "(L) Regulatory approvals pending. Not under construction",
+   "from": "2024-12-01",
+   "to": "2026-04-01"
+  },
+  {
+   "value": "DROPPED_FROM_860M",
+   "from": "2026-04-01",
+   "to": "2026-05-01",
+   "last_seen": "2026-04-01"
+  }
+ ],
+ "queue_reported_cod": "2027-09-17",
+ "energy_capacity_mwh_history": [
+  {
+   "value": null,
+   "from": "2022-08-01",
+   "to": "2026-04-01"
+  }
+ ],
+ "operating_date_history": [
+  {
+   "value": null,
+   "from": "2022-08-01",
+   "to": "2026-04-01"
+  }
+ ],
+ "eia_county": "Brazoria",
+ "eia_lat": 29.2952,
+ "eia_lon": -95.42685,
+ "dropped_from_860m": {
+  "scope": "plant",
+  "last_seen": "2026-04-01",
+  "dataset_latest": "2026-05-01",
+  "dropped_units": [
+   {
+    "generator_id": "CRAS0",
+    "last_seen": "2026-04-01",
+    "last_status": "(L) Regulatory approvals pending. Not under construction"
+   }
+  ]
+ }
+}

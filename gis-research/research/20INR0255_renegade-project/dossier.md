@@ -1,81 +1,80 @@
-# Dossier — Renegade Project (20INR0255)
+# Dossier — Renegade Project / Dawn Solar (20INR0255)
 
-Researched 2026-07-19 · site ~34.38, -102.40 (low conf.) · verdict **real_early**
+Researched 2026-07-20 · site 34.915, -102.834 · verdict **real_early**
 
 ## 1. Verdict
 
-- **real_early** — IA signed 2021-01-04; Ch.313 executed 2020-11-23 with Hereford ISD ([agreement](sources/2026-07-19_comptroller_ch313_1422_renegade_agreement.pdf)); developer [Blue Planet Funding](sources/2026-07-19_blueplanetfunding_dawn-solar-project-page.html) lists project as "in progress"
-- Construction: **reported started 2026-03-01** (queue milestone), visible activity **unverified** (CDSE blocked)
-- Site: ~34.38, -102.40 — Ch.313 land descriptions + Hwy 60 orientation, **low confidence** ([map](https://www.google.com/maps/@34.38,-102.40,12000m/data=!3m1!1e3))
-- COD: reported 2027-12-16 → independent **2028-Q1**, drift risk **medium** (11 slips since 2019; no financing/PPA close announced)
+- **real_early** — $9,088,142 irrevocable LC posted to Oncor by Aug 2021 ([IA Exhibit E](sources/2026-07-20_puct_35077-1207_interconnection-agreement-between-oncor-electric.pdf)); Ch.313 executed 2020-11-23 with Hereford ISD ([agreement](sources/2026-07-19_comptroller_ch313_1422_renegade_agreement.pdf)); BPF lists as ["in progress"](sources/2026-07-19_blueplanetfunding_dawn-solar-project-page.html)
+- Construction: **reported_started** 2026-03-01 per queue; EIA-860M as of 2026-05-01 still "Not under construction" — lag or overstatement unknown
+- Site: 34.915, -102.834 — IA Exhibit C "3.9 miles from FM 809" + Google Places CR12/FM809 pin, medium confidence ([vicinity map](sources/ia_wallaby_switch_vicinity_map_p46.png))
+- COD: reported 2027-12-16 → independent **2028-Q2**, drift risk **high** (11 queue slips + 5 EIA COD slips; EIA/queue divergence)
 
 ## 2. Site identification
 
-- Derivation: Ch.313 App 1422 Exhibits 1–2 describe 16 tracts in Block K-14 (Tap RR Co. Survey) and Block 3 (AB&M Survey), straddling U.S. Hwy 60, County Road 12 on east, County Road CC interior ([agreement](sources/2026-07-19_comptroller_ch313_1422_renegade_agreement.pdf))
-- **Stated project area: ~3,100 acres** per 16-tract sum in Ch.313 Exhibit 2 ([agreement](sources/2026-07-19_comptroller_ch313_1422_renegade_agreement.pdf)); imagery footprint: **unverified** (CDSE blocked)
-- Cross-checks: Hereford ISD boundaries confirm site is Deaf Smith County; POI tap on 345kV Alibates–AJ Swope–Windmill–Ogallala line ([ERCOT study](sources/2026-07-19_puct_45622_2_sps_transmission_study.pdf)) places it in Deaf Smith corridor between Oldham Co (AJ Swope) and Castro Co (Windmill)
-- Not obtainable: GPS coordinates (metes-and-bounds only in all docs); CAD parcel IDs (portal returned 404); AJ Swope / Windmill substation coordinates (SPS CEII)
+- Derivation: IA Exhibit C places Wallaby Switch "south side of County Road 12, approximately 3.9 miles from FM 809, Deaf Smith County" ([IA](sources/2026-07-20_puct_35077-1207_interconnection-agreement-between-oncor-electric.pdf)); Google Places pin "809 Co Rd 12" = 34.9155, -102.9032; 3.9 mi east → **34.915, -102.834**. Array extends NW per Ch.313 land description (CR12=east side, Hwy 60=south).
+- **Stated project area: ~3,100 acres** per 16-tract sum Ch.313 Exhibit 2 ([agreement](sources/2026-07-19_comptroller_ch313_1422_renegade_agreement.pdf)) — imagery unverified at correct site
+- Cross-checks: IA vicinity map confirms Wallaby Switch on CR12, western Deaf Smith County ([map](sources/ia_wallaby_switch_vicinity_map_p46.png)); Ch.313 land surveys (Block K-14, Block 3 AB&M) consistent with CR12/FM809 area; EIA-860M coords 34.913, -102.2706 **rejected** (30+ mi east of IA-described site)
+- Not obtainable: exact Wallaby Switch GPS (CEII); Deaf Smith CAD parcel boundaries (browser-only)
 
 ## 3. Ownership & money
 
 | Entity | Role | Evidence |
 |---|---|---|
 | Renegade Renewables, LLC d/b/a Dawn Solar | SPV | [Ch.313 agreement](sources/2026-07-19_comptroller_ch313_1422_renegade_agreement.pdf) |
-| Blue Planet Funding | Developer/investor | [project page](sources/2026-07-19_blueplanetfunding_dawn-solar-project-page.html); Allen Funk (COO) = agreement signatory |
-| Kevin Adler | BPF CEO | Sol-Wind founder; BPF website |
-| Sean Purdy / Everett Jones LLC | Managing member | [agreement](sources/2026-07-19_comptroller_ch313_1422_renegade_agreement.pdf), Sunbury PA |
-| Mortenson Construction | EPC (2018) | Ch.313 Exhibit 3 map title block "Trace 2 - Dawn Solar" |
-| Unknown | PPA offtaker | No announcement found |
+| Blue Planet Funding (Kevin Adler CEO, Allen Funk COO) | Developer/investor | [BPF project page](sources/2026-07-19_blueplanetfunding_dawn-solar-project-page.html); Funk = Ch.313 signatory |
+| BPF Acquisition Co Series 11, LLC | EFT / LC payee | [IA Exhibit E](sources/2026-07-20_puct_35077-1207_interconnection-agreement-between-oncor-electric.pdf) |
+| Sean Purdy / Everett Jones LLC | Managing member | [Ch.313 agreement](sources/2026-07-19_comptroller_ch313_1422_renegade_agreement.pdf), Sunbury PA |
+| Mortenson Construction | EPC (2018 design) | Ch.313 App 1422 Exhibit 3 title block "Trace 2 - Dawn Solar" |
+| — | PPA offtaker | Not found |
 
-- Financing: **not announced** — no press releases on any platform; no SEC filings found; project may be pre-NTP financing
+- Financing: no public announcement; "Series 11" entity implies fund tranche; no NTP close or debt financing press release found
 
 ## 4. Land & county records
 
-- Tenure: **leased (likely)** — 16-tract metes-and-bounds land description with life estates and homestead exceptions typical of farmland lease ([Exhibit 2](sources/2026-07-19_comptroller_ch313_1422_renegade_agreement.pdf))
-- Ch.313 agreement with Hereford ISD executed 2020-11-23; tax limitation 2022–2031; $30M qualified investment minimum; reinvestment zone created 2018-12-11 by Deaf Smith County Commissioners Court ([agreement](sources/2026-07-19_comptroller_ch313_1422_renegade_agreement.pdf))
-- CAD: 0 hits — Deaf Smith CAD portal returned 404 on owner name search; parcel IDs not obtained
+- Tenure: **leased (likely)** — 16-tract metes-and-bounds with life estates and homestead exceptions typical of farmland lease ([Exhibit 2](sources/2026-07-19_comptroller_ch313_1422_renegade_agreement.pdf))
+- Ch.313 App 1422 with Hereford ISD executed 2020-11-23; tax limitation 2022–2031; $30M qualified investment; reinvestment zone created 2018-12-11 by Deaf Smith County Commissioners Court ([agreement](sources/2026-07-19_comptroller_ch313_1422_renegade_agreement.pdf))
+- CAD: Deaf Smith CAD portal browser-only; parcel IDs not retrieved
 
 ## 5. Interconnection & contractual schedule
 
-- POI per queue: "Tap 345kV 23910 Windmill – 23906 AJ Swope"; TSP = Xcel Energy/SPS (Panhandle)
-- IA signed 2021-01-04 per ERCOT queue; IA document **not retrieved** (PUCT Interchange returns 402 from this environment)
+- POI: "Wallaby Switch in TSP's Windmill Switch – AJ Swope Switch 345 kV line, Deaf Smith County" ([IA Exhibit C](sources/2026-07-20_puct_35077-1207_interconnection-agreement-between-oncor-electric.pdf))
+- Equipment: 690 TMEIC PVU-L0840GR inverters, 515.66 MW net; 1,950,994 PV modules; single-axis trackers; 138 blocks; 34.5 kV collection; 345 kV POI
+- TSP: **Oncor Electric Delivery Company, LLC** (original FSA with Sharyland Utilities L.P., transitioned to Oncor)
 
 | IA document | Signed | Financial security posted |
 |---|---|---|
-| Original IA | 2021-01-04 | unknown (doc not retrieved) |
+| Original IA ([pdf](sources/2026-07-20_puct_35077-1207_interconnection-agreement-between-oncor-electric.pdf)) | 2021-01-04 | $4,089,664 by 2021-01-08 · **$9,088,142 by 2021-08-13** (irrevocable standby LC to Oncor) |
 
-| Milestone | Ch.313 implied | Queue (latest) |
-|---|---|---|
-| Original expected COD | ~2021 (tax limitation starts 2022) | 2021-12-21 (first report) |
-| Construction start | — | **2026-03-01** |
-| Construction end | — | 2027-12-09 |
-| Scheduled COD | — | **2027-12-16** |
+| Milestone | Original IA |
+|---|---|
+| In-Service | 2022-04-21 |
+| Trial Operation | 2022-04-21 |
+| Scheduled COD | **2022-06-01** |
 
-- Queue-history COD drift ([timeline.md](timeline.md)): **11 changes** — 2021-12 → 2027-12; 6-year cumulative slip
+- Queue-history COD drift ([timeline.md](timeline.md)): **11 changes** — 2021-12-21 → **2027-12-16**; 5.5-yr slip from IA original COD
 
 ## 6. Satellite timeline
 
 | Date | Observation | Frame |
 |---|---|---|
-| 2026-06 | Hereford center proxy (34.376, -102.397): undisturbed farmland, no solar | [png](imagery/s2_hereford_center_2026-06.png) |
+| 2026-06 | Imagery not captured at revised site (CDSE RemoteDisconnected); prior chip at Hereford center (wrong location) showed undisturbed farmland | [wrong-loc chip](imagery/s2_hereford_center_2026-06.png) |
 
-- Verdict: **cannot assess** — CDSE account blocked (403) after first chip; actual project site coordinates not pinned; one chip at proxy centroid shows undisturbed farmland (expected — proxy is 2–5 km from likely true site)
+- Verdict: **imagery_not_captured** — CDSE endpoint unavailable; site at 34.915, -102.834 not imaged
 
 ## 7. COD assessment
 
-- Reported 2027-12-16 has 11 prior slips averaging ~6 months each; first COD was 2021-12 (6-year total drift)
-- Queue now shows construction-start 2026-03-01 — first hard forward milestone, meaningful signal
-- Against: no financing close or PPA announced; imagery unverified; PUCT IA document not retrieved to confirm schedule
-- For: IA signed, Ch.313 in place, developer has active project page; construction-start milestone set; Blue Planet Funding is a credible utility-scale developer
-- Assumed ~9-month construction lag behind 2027-12 target given pace of prior slips
-- **Independent estimate: 2028-Q1, drift risk medium**
+- **IA original COD was 2022-06-01** — queue now 2027-12-16 = 5.5-year slip since IA signing ([IA Exhibit B](sources/2026-07-20_puct_35077-1207_interconnection-agreement-between-oncor-electric.pdf))
+- **EIA-860M divergence (key risk signal)**: EIA plant 65310 logged 5 COD slips (2023-12→2024-12→2025-03→2025-06→2026-06→2026-12) and status "Not under construction" through 2026-05-01 — 2 months after queue's claimed 2026-03-01 construction start; EIA ≠ queue ([eia_history.json](eia_history.json))
+- **For project**: $9.1M irrevocable LC to Oncor confirmed paid; Meets 6.9(1) 2024-04-30; active BPF project page; land secured (Ch.313 since 2018)
+- **Against**: FIS never approved (requested 2019); no PPA announced; no financing press release; BPF page lists 683 MW vs queue's 515 MW (unexplained scope gap); EPC unconfirmed for current build
+- Historical slip velocity ~1.4yr/yr on queue; adding 2 quarters of buffer to queue's 2027-12-16 → **2028-Q2** independent estimate
 
 ## 8. Could not determine
 
-- Actual site lat/lon (metes-and-bounds only; no GPS in any doc retrieved)
-- Construction status / imagery (CDSE blocked)
-- PUCT IA document and milestone schedule
-- Financial security amount (IA not retrieved)
-- PPA counterparty (no announcement found)
-- Sean Purdy / Everett Jones LLC equity stake and any entity above Blue Planet Funding
-- Deaf Smith CAD parcel IDs
+- Whether construction physically started (EIA lag + no imagery)
+- EPC for current build (Mortenson 2018 design only)
+- PPA counterparty / offtaker
+- FIS approval (requested 2019, absent from all 89 queue snapshots)
+- IA amendments (one filing found; no amendments in INR join table)
+- Exact site GPS (IA gives road-distance anchor; CAD parcel coords not retrieved)
+- 683 MW vs 515 MW discrepancy (BPF page vs queue)

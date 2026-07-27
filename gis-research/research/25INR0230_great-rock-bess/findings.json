@@ -1,152 +1,174 @@
 {
-  "inr": "25INR0230",
-  "project_name": "Great Rock BESS",
-  "research_date": "2026-07-19",
-  "verdict": "real_early",
-  "confidence": "medium",
-
-  "developer": {
-    "spv": "Great Rock BESS, LLC",
-    "developer": "Black Mountain Energy Storage (BMES)",
-    "developer_entity": "Black Mountain Energy Storage II",
-    "parent": "Black Mountain Energy Storage (BMES), Austin TX",
-    "epc": null,
-    "offtaker": null,
-    "source": "sources/2026-07-19_bravesearch_la-marque-bess-list.txt",
-    "notes": "BMES is a develop-and-sell ERCOT BESS shop; no buyer announced as of Jul 2026"
-  },
-
-  "site": {
-    "lat": 31.10,
-    "lon": -96.183,
-    "method": "POI geometry inference — 345kV Limestone-Gibbon Creek corridor, Leon County; no parcel/pin found",
-    "confidence": "low",
-    "county": "Leon",
-    "state": "TX",
-    "address": null,
-    "cross_checks": [
-      "Pecan Prairie Solar pins (31.049–31.135, -96.217–96.263) at same Yellow Wolf bus confirm southern Leon County corridor",
-      "No Google Maps delivery pin for project or LLC variants",
-      "PUCT IA coordinates: CEII-redacted, not retrieved",
-      "Leon CAD: 0 parcel hits (site errors)"
-    ]
-  },
-
-  "project_area": {
-    "acres": null,
-    "source": null,
-    "artifact": null,
-    "notes": "No abatement, IA, or CAD parcel retrieved; BESS at 300.9 MW is typically 20-60 acres"
-  },
-
-  "construction_stage": "no_activity",
-  "first_activity_date": null,
-
-  "imagery_evidence": [
-    {
-      "date": "2026-07",
-      "observation": "NRG Limestone plant complex visible; full 345kV corridor from 31.42 to 31.05: undisturbed farmland/forest throughout; no graded pad, no container rows",
-      "frame": "imagery/s2_2026-07_limestone_area.png"
-    },
-    {
-      "date": "2026-07",
-      "observation": "Normangee/Pecan Prairie area (31.08, -96.235): undisturbed rural land",
-      "frame": "imagery/s2_2026-07_normangee_area.png"
-    }
-  ],
-
-  "interconnection": {
-    "poi": "Tap 345kV 46020 Limestone - 967 Gibbon Creek Ckt 18",
-    "poi_tap_name": "LIMEST_POI_5 (per sibling project 30INR0091)",
-    "tsp": "Oncor (inferred — NORTH zone, Leon County)",
-    "ia_signed": "2024-08-23",
-    "fis_approved": null,
-    "meets_691": null,
-    "meets_all_69": null,
-    "financial_security_provided": null
-  },
-
-  "contractual_schedule": {
-    "documents": [
-      {
-        "doc": "Original IA (not retrieved)",
-        "signed": "2024-08-23",
-        "financial_security": null,
-        "artifact": null,
-        "notes": "PUCT interchange requires JS; item number unknown; queue confirms signing date"
-      }
-    ],
-    "construction_start_reported": "2026-10-20",
-    "construction_end_reported": "2027-12-20"
-  },
-
-  "cod_assessment": {
-    "reported_cod": "2027-12-20",
-    "independent_cod": "2028-Q2",
-    "drift_risk": "high",
-    "drift_rationale": "7 COD changes since Oct 2022; FIS not approved; 6.9 milestones not met; no buyer/financing announced; BMES develop-and-sell model adds transfer risk; BESS is fast to build (12-18mo) IF all prerequisites cleared but prerequisites lag badly",
-    "queue_cod_history": [
-      {"cod": "2025-05-31", "held_from": "2022-10-01", "until": "2022-10-01"},
-      {"cod": "2024-07-30", "held_from": "2022-11-01", "until": "2023-06-01"},
-      {"cod": "2025-12-30", "held_from": "2023-07-01", "until": "2023-07-01"},
-      {"cod": "2026-04-15", "held_from": "2023-08-01", "until": "2024-02-01"},
-      {"cod": "2027-12-31", "held_from": "2024-03-01", "until": "2024-05-01"},
-      {"cod": "2026-12-15", "held_from": "2024-06-01", "until": "2024-09-01"},
-      {"cod": "2026-12-20", "held_from": "2024-10-01", "until": "2025-09-01"},
-      {"cod": "2027-12-20", "held_from": "2025-10-01", "until": "2026-06-01"}
-    ]
-  },
-
-  "context": {
-    "great_rock_hub": "Leon County queue shows a ~3.2 GW energy hub: 25INR0230 (300.9 MW BESS) + 25INR0513 Kahla Storage (200.9 MW BESS) + 30INR0091 BM Great Rock Energy Center (1,981 MW gas CC) all at the same LIMEST_POI_5 tap",
-    "bmes_track_record": "24 ERCOT projects sold (3.6 GW) by mid-2025; Great Rock is in the remaining ~3-project pipeline",
-    "note": "No sale/acquisition announcement found through Jul 2026"
-  },
-
-  "sources": [
-    {
-      "artifact": "sources/2026-07-19_bravesearch_la-marque-bess-list.txt",
-      "url": "https://ci.la-marque.tx.us/AgendaCenter/ViewFile/Item/1841",
-      "description": "La Marque city agenda doc listing Great Rock BESS with BMES developer, POI, and county — primary developer ID evidence"
-    },
-    {
-      "artifact": "sources/2026-07-19_energy-storage-news_bmes-profile.txt",
-      "url": "https://www.energy-storage.news/?s=Black+Mountain+Energy+Storage",
-      "description": "Energy-Storage.News articles confirming BMES as ERCOT BESS developer, still holding Great Rock as of Mar 2025"
-    },
-    {
-      "artifact": "sources/2026-07-19_ercot-queue_great-rock-hub.txt",
-      "url": "internal: gis-research/data/ercot_generation_interconnect.parquet",
-      "description": "ERCOT queue parquet — Great Rock energy hub project cluster, IA signed date, milestone status, COD drift history"
-    },
-    {
-      "artifact": "timeline.md",
-      "url": "internal",
-      "description": "45-snapshot queue history: 7 COD changes, construction milestones, IA date"
-    },
-    {
-      "artifact": "imagery/s2_2026-07_limestone_area.png",
-      "url": "Copernicus Sentinel-2 2026-07-01 ±15d, 6km buffer, 31.423 -96.251",
-      "description": "NRG Limestone area xwide — no BESS construction"
-    },
-    {
-      "artifact": "imagery/contact_corridor.png",
-      "url": "Copernicus Sentinel-2 2026-07-01, composite corridor chips",
-      "description": "4-chip contact sheet along 345kV corridor — all no_activity"
-    },
-    {
-      "artifact": "imagery/s2_2026-07_normangee_area.png",
-      "url": "Copernicus Sentinel-2 2026-07-01, 3km buffer, 31.08 -96.235",
-      "description": "Normangee area (Pecan Prairie Solar vicinity) — undisturbed"
-    }
-  ],
-
-  "could_not_determine": [
-    "Exact site coordinates — no parcel, delivery pin, or PUCT IA obtained",
-    "Financial security amount in IA",
-    "IA milestones/contractual schedule (PUCT interchange JS-only; item number unknown)",
-    "Buyer or financing status",
-    "TX SOS entity detail for Great Rock BESS, LLC",
-    "Project area in acres"
+ "inr": "25INR0230",
+ "project_name": "Great Rock BESS",
+ "research_date": "2026-07-19",
+ "verdict": "real_early",
+ "confidence": "medium",
+ "developer": {
+  "spv": "Great Rock BESS, LLC",
+  "developer": "Black Mountain Energy Storage (BMES)",
+  "developer_entity": "Black Mountain Energy Storage II",
+  "parent": "Black Mountain Energy Storage (BMES), Austin TX",
+  "epc": null,
+  "offtaker": null,
+  "source": "sources/2026-07-19_bravesearch_la-marque-bess-list.txt",
+  "notes": "BMES is a develop-and-sell ERCOT BESS shop; no buyer announced as of Jul 2026"
+ },
+ "site": {
+  "lat": 31.1,
+  "lon": -96.183,
+  "method": "POI geometry inference \u2014 345kV Limestone-Gibbon Creek corridor, Leon County; no parcel/pin found",
+  "confidence": "low",
+  "county": "Leon",
+  "state": "TX",
+  "address": null,
+  "cross_checks": [
+   "Pecan Prairie Solar pins (31.049\u201331.135, -96.217\u201396.263) at same Yellow Wolf bus confirm southern Leon County corridor",
+   "No Google Maps delivery pin for project or LLC variants",
+   "PUCT IA coordinates: CEII-redacted, not retrieved",
+   "Leon CAD: 0 parcel hits (site errors)"
   ]
+ },
+ "project_area": {
+  "acres": null,
+  "source": null,
+  "artifact": null,
+  "notes": "No abatement, IA, or CAD parcel retrieved; BESS at 300.9 MW is typically 20-60 acres"
+ },
+ "construction_stage": "no_activity",
+ "first_activity_date": null,
+ "imagery_evidence": [
+  {
+   "date": "2026-07",
+   "observation": "NRG Limestone plant complex visible; full 345kV corridor from 31.42 to 31.05: undisturbed farmland/forest throughout; no graded pad, no container rows",
+   "frame": "imagery/s2_2026-07_limestone_area.png"
+  },
+  {
+   "date": "2026-07",
+   "observation": "Normangee/Pecan Prairie area (31.08, -96.235): undisturbed rural land",
+   "frame": "imagery/s2_2026-07_normangee_area.png"
+  }
+ ],
+ "interconnection": {
+  "poi": "Tap 345kV 46020 Limestone - 967 Gibbon Creek Ckt 18",
+  "poi_tap_name": "LIMEST_POI_5 (per sibling project 30INR0091)",
+  "tsp": "Oncor (inferred \u2014 NORTH zone, Leon County)",
+  "ia_signed": "2024-08-23",
+  "fis_approved": null,
+  "meets_691": null,
+  "meets_all_69": null,
+  "financial_security_provided": null
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Original IA (not retrieved)",
+    "signed": "2024-08-23",
+    "financial_security": null,
+    "artifact": null,
+    "notes": "PUCT interchange requires JS; item number unknown; queue confirms signing date"
+   }
+  ],
+  "construction_start_reported": "2026-10-20",
+  "construction_end_reported": "2027-12-20"
+ },
+ "cod_assessment": {
+  "reported_cod": "2027-12-20",
+  "independent_cod": "2028-Q2",
+  "drift_risk": "high",
+  "drift_rationale": "7 COD changes since Oct 2022; FIS not approved; 6.9 milestones not met; no buyer/financing announced; BMES develop-and-sell model adds transfer risk; BESS is fast to build (12-18mo) IF all prerequisites cleared but prerequisites lag badly",
+  "queue_cod_history": [
+   {
+    "cod": "2025-05-31",
+    "held_from": "2022-10-01",
+    "until": "2022-10-01"
+   },
+   {
+    "cod": "2024-07-30",
+    "held_from": "2022-11-01",
+    "until": "2023-06-01"
+   },
+   {
+    "cod": "2025-12-30",
+    "held_from": "2023-07-01",
+    "until": "2023-07-01"
+   },
+   {
+    "cod": "2026-04-15",
+    "held_from": "2023-08-01",
+    "until": "2024-02-01"
+   },
+   {
+    "cod": "2027-12-31",
+    "held_from": "2024-03-01",
+    "until": "2024-05-01"
+   },
+   {
+    "cod": "2026-12-15",
+    "held_from": "2024-06-01",
+    "until": "2024-09-01"
+   },
+   {
+    "cod": "2026-12-20",
+    "held_from": "2024-10-01",
+    "until": "2025-09-01"
+   },
+   {
+    "cod": "2027-12-20",
+    "held_from": "2025-10-01",
+    "until": "2026-06-01"
+   }
+  ]
+ },
+ "context": {
+  "great_rock_hub": "Leon County queue shows a ~3.2 GW energy hub: 25INR0230 (300.9 MW BESS) + 25INR0513 Kahla Storage (200.9 MW BESS) + 30INR0091 BM Great Rock Energy Center (1,981 MW gas CC) all at the same LIMEST_POI_5 tap",
+  "bmes_track_record": "24 ERCOT projects sold (3.6 GW) by mid-2025; Great Rock is in the remaining ~3-project pipeline",
+  "note": "No sale/acquisition announcement found through Jul 2026"
+ },
+ "sources": [
+  {
+   "artifact": "sources/2026-07-19_bravesearch_la-marque-bess-list.txt",
+   "url": "https://ci.la-marque.tx.us/AgendaCenter/ViewFile/Item/1841",
+   "description": "La Marque city agenda doc listing Great Rock BESS with BMES developer, POI, and county \u2014 primary developer ID evidence"
+  },
+  {
+   "artifact": "sources/2026-07-19_energy-storage-news_bmes-profile.txt",
+   "url": "https://www.energy-storage.news/?s=Black+Mountain+Energy+Storage",
+   "description": "Energy-Storage.News articles confirming BMES as ERCOT BESS developer, still holding Great Rock as of Mar 2025"
+  },
+  {
+   "artifact": "sources/2026-07-19_ercot-queue_great-rock-hub.txt",
+   "url": "internal: gis-research/data/ercot_generation_interconnect.parquet",
+   "description": "ERCOT queue parquet \u2014 Great Rock energy hub project cluster, IA signed date, milestone status, COD drift history"
+  },
+  {
+   "artifact": "timeline.md",
+   "url": "internal",
+   "description": "45-snapshot queue history: 7 COD changes, construction milestones, IA date"
+  },
+  {
+   "artifact": "imagery/s2_2026-07_limestone_area.png",
+   "url": "Copernicus Sentinel-2 2026-07-01 \u00b115d, 6km buffer, 31.423 -96.251",
+   "description": "NRG Limestone area xwide \u2014 no BESS construction"
+  },
+  {
+   "artifact": "imagery/contact_corridor.png",
+   "url": "Copernicus Sentinel-2 2026-07-01, composite corridor chips",
+   "description": "4-chip contact sheet along 345kV corridor \u2014 all no_activity"
+  },
+  {
+   "artifact": "imagery/s2_2026-07_normangee_area.png",
+   "url": "Copernicus Sentinel-2 2026-07-01, 3km buffer, 31.08 -96.235",
+   "description": "Normangee area (Pecan Prairie Solar vicinity) \u2014 undisturbed"
+  }
+ ],
+ "could_not_determine": [
+  "Exact site coordinates \u2014 no parcel, delivery pin, or PUCT IA obtained",
+  "Financial security amount in IA",
+  "IA milestones/contractual schedule (PUCT interchange JS-only; item number unknown)",
+  "Buyer or financing status",
+  "TX SOS entity detail for Great Rock BESS, LLC",
+  "Project area in acres"
+ ],
+ "real_project_verdict": "real_early"
 }

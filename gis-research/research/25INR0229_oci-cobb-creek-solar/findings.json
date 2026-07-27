@@ -1,0 +1,114 @@
+{
+  "inr": "25INR0229",
+  "project": "OCI Cobb Creek Solar",
+  "researched_at": "2026-07-20",
+  "site": {
+    "lat": 32.1152,
+    "lon": -97.06783,
+    "method": "eia860m_candidate+places_pin",
+    "confidence": "med",
+    "notes": "EIA-860M plant 68481 'Hill Solar II' @ 32.1152,-97.06783 Hill Co (county+prime-mover+MW match). Google Places 'Hill II North yard' at 32.136058,-97.061804 near Milford TX (~2.4 km N of EIA coords — within plausible footprint of a 200 MW site ~900 ac). Both candidates converge on NW Hill County near Milford. CDSE imagery unavailable (402 out-of-credits). Bynum Switch POI is in Hill County per IA Exhibit C.",
+    "map_artifacts": []
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "OCI Hillsboro Solar LLC",
+      "relation": "spv",
+      "evidence": "Party on IA signed 2024-07-24 with Oncor. IA covers 25INR0229 (solar 203.1 MW) and 25INR0233 (BESS 201.6 MW). PUCT docket 35077, item 1898. sources/2026-07-20_puct_35077-1898_standard-generation-interconnection-agreement-be.pdf"
+    },
+    {
+      "entity": "Hill Solar II, LLC",
+      "relation": "probable_eia_entity_alias",
+      "evidence": "EIA-860M plant 68481 'Hill Solar II', 200 MW, Hill County, status construction-complete as of 2026-04. Likely same project — same county/fuel/MW; 'Hill Solar II' is probable EIA registration name for this project."
+    },
+    {
+      "entity": "HEC Renewable Energy America LLC",
+      "relation": "possible_developer",
+      "evidence": "EIA-860M second candidate: plant='OCI Hillsboro' 200.0 MW, entity HEC Renewable Energy America LLC, planned 2027-10, @ 31.941,-97.021. Different coords, different planned COD — possibly a SEPARATE project or legacy entry."
+    },
+    {
+      "entity": "OCI Solar Power (suspected parent)",
+      "relation": "suspected_parent",
+      "evidence": "OCI brand used across multiple TX solar projects: 'OCI SOL LLC (Golinda)' PUCT 35077-1251 (2021), and 'OCI Hillsboro Solar LLC'. OCI Solar Power is a Korean-US solar developer. No press confirmation found — all web searches failed."
+    }
+  ],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "No CAD parcels retrieved. Hill CAD web interface blocked automated search. No Ch.313/JETI agreement found (post-2022 project)."
+  },
+  "construction": {
+    "verdict": "substantially_complete",
+    "first_activity_seen": null,
+    "evidence": [
+      "EIA-860M plant 68481 'Hill Solar II': status=(U) under construction ≤50% from 2025-01 to 2025-08; (V) under construction >50% from 2025-09 to 2026-03; (TS) construction complete not yet commercial from 2026-04 to 2026-05 — eia_history.json",
+      "EIA planned COD crept: 2025-12 → 2026-01 → 2026-02 → 2026-03 → 2026-06, last report 2026-05-01",
+      "Google Places 'Hill II North yard' at 32.136058,-97.061804 near Milford TX — active contractor yard pin consistent with construction/commissioning phase"
+    ],
+    "notes": "EIA reports construction complete as of April 2026. Queue COD still 2027-12-31. Likely explanation: Oncor's 'proposed Bynum Switch' (new TSP facility per IA Exhibit C) not yet complete, blocking energization. Generator may be physically ready but awaiting interconnection."
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Original IA — Oncor / OCI Hillsboro Solar LLC (25INR0229 solar + 25INR0233 BESS)",
+        "signed": "2024-07-24",
+        "financial_security": "$16,707,463 surety due on or before 2024-07-31",
+        "artifact": "sources/2026-07-20_puct_35077-1898_standard-generation-interconnection-agreement-be.pdf"
+      }
+    ],
+    "milestones": [
+      {"name": "In-Service", "original_ia_2024": "2026-05-07"},
+      {"name": "Trial Operation", "original_ia_2024": "2026-09-01"},
+      {"name": "Scheduled COD", "original_ia_2024": "2026-12-01"}
+    ],
+    "source_docs": [
+      "sources/2026-07-20_puct_35077-1898_standard-generation-interconnection-agreement-be.pdf"
+    ]
+  },
+  "poi": {
+    "description": "Proposed Bynum Switch within Oncor's Venus–Sam SW 345 kV transmission line, Hill County, Texas",
+    "source": "IA Exhibit C (sources/2026-07-20_puct_35077-1898_standard-generation-interconnection-agreement-be.pdf)",
+    "note": "Switch is 'proposed' — Oncor must construct it as TIF. This is the likely cause of COD slip: generator complete but Bynum Switch not yet energized."
+  },
+  "equipment": {
+    "inverters": "54x Power Electronics HEM GENIII FS4010M, 4.01 MVA each, 216.54 MVA nameplate",
+    "net_mw": 203.1,
+    "co_located_bess": "25INR0233 OCI Cobb Creek ESS, 51x Power Electronics FP4200M2 inverters, 214.2 MVA nameplate, 201.6 MW net"
+  },
+  "project_area": {
+    "acres": null,
+    "source": null,
+    "artifact": null,
+    "notes": "No Ch.313 application or CAD records found to provide acreage. At 203 MW solar PV, typical footprint ~800-1,200 acres."
+  },
+  "cod_assessment": {
+    "reported": "2027-12-31",
+    "independent": "2026-Q4",
+    "drift_risk": "med",
+    "reasoning_evidence": [
+      "IA contractual scheduled COD = 2026-12-01 (original, no amendment filed). Queue COD 2027-12-31 is 12+ months beyond contractual date — unexplained by any amendment.",
+      "EIA-860M: construction complete (TS status) as of 2026-04; EIA planned COD crept to 2026-06 (now past). Generator physically ready.",
+      "Bottleneck: Oncor must construct 'proposed Bynum Switch' (new 345 kV TIF per IA Exhibit C). TSP infrastructure delays frequently push COD beyond contractual dates.",
+      "Queue COD 2027-12-31 may reflect Oncor's revised TIF completion timeline, not generator readiness.",
+      "5 prior COD slips (2025-06 → 2027-12-31), but EIA status contradicts queue — project may actually be in late commissioning now.",
+      "Independent estimate: 2026-Q4 most likely, with slip to 2027-Q1 possible if Bynum Switch delayed. Queue's 2027-12-31 is an extreme overestimate vs EIA evidence."
+    ]
+  },
+  "real_project_verdict": "real_active",
+  "negative_searches": 9,
+  "banned_source_violations": 0,
+  "eia": {
+    "plant_id": 68481,
+    "plant_name": "Hill Solar II",
+    "entity": "Hill Solar II, LLC",
+    "coords": [32.1152, -97.06783],
+    "planned_cod_history": ["2025-12", "2026-01", "2026-02", "2026-03", "2026-06"],
+    "status_history": [
+      {"status": "(U) Under construction ≤50%", "from": "2025-01-01", "to": "2025-08-01"},
+      {"status": "(V) Under construction >50%", "from": "2025-09-01", "to": "2026-03-01"},
+      {"status": "(TS) Construction complete, not yet commercial", "from": "2026-04-01", "to": "2026-05-01"}
+    ],
+    "artifact": "eia_history.json",
+    "notes": "EIA entity name 'Hill Solar II, LLC' differs from IA SPV 'OCI Hillsboro Solar LLC'. Probable same project given county/fuel/MW match. 'HEC Renewable Energy America LLC' is a separate EIA candidate at different coords (31.941,-97.021) — different project or name alias."
+  }
+}

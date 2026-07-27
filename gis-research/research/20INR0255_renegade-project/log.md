@@ -114,6 +114,54 @@ Tract Sixteen: ~309 acres, South ½ of Section 18, Block K14, Deaf Smith County 
 The Ch.313 agreement and exhibits contain only metes-and-bounds legal descriptions and survey references (Block K-14, Block 3, AB&M Survey, Tap RR Co. Survey). No GPS coordinates or parcel IDs (CAD account numbers) are present. The Deaf Smith County Appraisal District would have the CAD IDs for these parcels.
 
 
+## 2026-07-20 — Session 2 (continued deep scan)
+
+### PUCT IA retrieved — PUCT docket 35077-1207 (D1 COMPLETE)
+
+- `sources/2026-07-20_puct_35077-1207_interconnection-agreement-between-oncor-electric.pdf` — 49 pages, confirmed PUCT docket 35077-1207
+- **TSP CORRECTION**: TSP is **Oncor Electric Delivery Company, LLC** — NOT SPS/Xcel. Prior FSA was Sharyland Utilities L.P. (since acquired by/merged into Oncor). This is definitive; IA parties page confirmed.
+- **IA Exhibit B milestones (original schedule)**:
+  - In-Service Date: April 21, 2022
+  - Trial Operation Date: April 21, 2022
+  - Commercial Operation Date: June 1, 2022
+  - Wallaby Switch grading/drainage: September 3, 2021
+  - Queue is now showing 2027-12-16 = **5.5+ year slip** from original IA COD
+- **IA Exhibit E (security)**:
+  - Tranche 1: $4,089,664 by January 8, 2021 (irrevocable standby LC)
+  - Tranche 2: $9,088,142 by August 13, 2021 (irrevocable standby LC)
+  - LC payee = Oncor Electric Delivery Company LLC
+  - EFT: BPF Acquisition Co Series 11, LLC, First Republic Bank, 111 Pine St, San Francisco
+- **IA Exhibit C (POI)**:
+  - POI name: **Wallaby Switch** in TSP's Windmill Switch – AJ Swope Switch 345 kV line
+  - Site locator: "south side of County Road 12, approximately 3.9 miles from FM 809, Deaf Smith County"
+  - Array connects via 34.5 kV collection to Wallaby Switch → 345 kV
+- **Authorized signer**: Kevin Adler (for Renegade Renewables, LLC), January 4, 2021
+
+### Wallaby Switch vicinity map (Attachment 4 to Exhibit C)
+
+- Extracted: `sources/ia_wallaby_switch_vicinity_map_p46.png`
+- Map shows Wallaby Switch (red pin) at COUNTY ROAD 12, in far western Deaf Smith County — west of Buffalo Lake NWR
+- Confirms **prior site estimate (34.38, -102.40 = Hereford center) was completely wrong** — actual site is ~30-35 miles west of Hereford near CR12/FM809 junction
+
+### Site coordinate triangulation (D2)
+
+- Google Places for "809 Co Rd 12": returned 34.915458, -102.903249 (FM 809 × CR 12 junction)
+- IA says Wallaby Switch is 3.9 miles from FM 809 along CR 12
+  - At 34.9°N, 1° longitude ≈ 56.3 miles → 3.9 mi ≈ 0.069°
+  - FM 809 junction: -102.903 → +0.069 east = **-102.834**
+  - Revised site estimate: **34.915, -102.834** (medium confidence)
+- This aligns with the vicinity map showing Wallaby Switch on CR12 west-central Deaf Smith County
+
+### EIA-860M candidate rejected
+
+- Factsheet EIA candidate: Renegade Solar Project (Dawn) at 34.913, -102.2706 — this is ~30 miles east of the triangulated site and ~8 miles east of Hereford
+- Rejected as inconsistent with IA Exhibit C site description and vicinity map. The EIA coordinates may be a placeholder or error in the filing.
+
+### CDSE imagery — blocked (D2)
+
+- NEGATIVE: CDSE chip attempts at both EIA candidate (34.913, -102.2706) and revised site (34.94, -102.87) return RemoteDisconnected. Token cache valid (exp in ~17 min at time of attempt). Likely CDSE synchronous processing endpoint overloaded or network issue.
+- Imagery at correct site coordinates not captured this session.
+
 ## 2026-07-19 — Deep scan Stage 1-3 (this session)
 
 ### Developer identity (Stage 1)
@@ -160,3 +208,39 @@ From agreement exhibit, the project tracts include:
 - NEGATIVE: TX Comptroller franchise tax search requires form submission (redirects to search page)
 - NEGATIVE: CDSE account blocked (403 on OAuth token endpoint after first chip)
 
+
+## 2026-07-22 (orchestrator) — monthly 2026 imagery series + TNX land-SPV source
+
+### Backfill note — 2026-07-20 imagery session was never logged here
+The 2026-07-20 evidence pass (session log gap, reconstructed from the session transcript) produced:
+yearly frames s2_2022-07-15 → s2_2025-07-15 + s2_2026-07-10 at the corrected site, full-tract frame
+s2_2026-07-13_full-tract.png (34.888,-102.2706, 4.5 km buffer, scene S2B_13SGU_20260713) and
+s2_2026-07-13_tight-switchyard.png (34.913,-102.2706, 1.3 km, hunting the switchyard pad), plus
+renames of the wrong-location frames to rejected_* . Site fixed at 34.913,-102.2706 per Exhibit 1 +
+EIA plant 65310; TCEQ stormwater revealed "RENEGADE PROJECT SWITCHYARD" (active since 2023-08) and
+"RENEGADE PROJECT" (since 2024-01), EPC BayWa r.e., at CR 12 × CR DD. findings.json site.method
+updated today to match (it still carried the superseded CR12/FM809 triangulation text).
+
+### Monthly 2026 full-tract series (user request: "more images from 2026")
+s2aws chips at 34.888,-102.2706, 4.5 km buffer, named by TRUE acquisition date:
+- s2_2026-02-03_full-tract.png (S2A_13SGU_20260203, 0.0% cloud)
+- s2_2026-02-28_full-tract.png (S2C_13SGU_20260228, 7.5%)
+- s2_2026-04-04_full-tract.png (S2B_13SGU_20260404, 0.5%)
+- s2_2026-04-24_full-tract.png (S2B_13SGU_20260424, 0.0%)
+- s2_2026-05-24_full-tract.png (S2B_13SGU_20260524, 19.3%)
+- s2_2026-07-03_full-tract.png (S2B_13SGU_20260703, 0.0%) — best July frame (beats the 27.6%-cloud 07-13)
+January 2026 window returned no scene under the 30% cloud cap (nearest = 2026-02-03) — recorded as a gap, not skipped.
+All six visually inspected: switchyard pad (CR 12 × CR DD) present throughout; NO array grading, racking,
+laydown, or road-building anywhere on the Exhibit-1 tract Feb→Jul 2026. Queue constructionStart
+2026-03-01 is not corroborated by imagery — status stays "switchyard built, array not started".
+
+### TNX Holdings / Sunset Energy Providers land-SPV source (user-supplied URL)
+Archived https://tnx.com/project_list/index_files/sunset.php →
+sources/2026-07-22_tnx-holdings_sunset-energy-providers_land-sale-renegade.html (self-contained:
+scripts stripped, both site JPGs + logo inlined as data URIs, magic-verified) and the embedded drone
+video → sources/2026-07-22_tnx_renegade-solar_vid1.mp4 (12.1 MB, ftyp mp42). Key facts: Sunset Energy
+Providers, LLC bought ~1,310 ac in Deaf Smith (2022) to host Renegade; TNX Holdings was senior secured
+lender; land SOLD Oct-2025 (TNX exited); "project substation has already been constructed on the site";
+515 MW_ac / up to 700 MW_dc; "as of mid-2025, development financing and construction are actively
+advancing". Corroborates switchyard-built status and adds the land-ownership chain. findings.json:
+land.land_spv_note + construction evidence + 2 source entries added.

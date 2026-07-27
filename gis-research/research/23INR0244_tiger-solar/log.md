@@ -69,3 +69,38 @@
 - queue_history.py: OK (timeline already existed, 63 snapshots, 3 COD changes)
 - build_brief.py: OK → brief.html written
 - build_index.py: OK → 94 projects indexed
+
+## Second-pass user review (2026-07-21): Ch.313 found, RZ map, wide imagery
+
+- User flagged missing Ch.312/JETI + no parcel map + imagery cropped to the substation.
+- ch313.py resolve --name "Vaca Del Sol" (SPV legal name): DIRECT HIT — App #1995, Anson
+  ISD, applied 2022-05-26, executed agreement + amendment + annual MCA reports 2023-2025.
+  Original scan missed it by searching the queue codename. 4 documents downloaded.
+- The application carries the only boundary drawing in any filing: p24 'TIGER -
+  REINVESTMENT ZONE' map (Neely Clay Energy). Also names the pre-NextEra chain: Segue
+  Neely Clay Holdco I LLC (job-waiver letter, 2022-05-04) -> NextEra (CCN).
+- Ch.312 registry: weak negative (Jones is a non-reporting county), but the app embeds
+  Jones County's own CC tax-abatement guidelines — county machinery existed; minutes.py
+  is the follow-up rung.
+- Imagery: stale 2-tile triage set deleted; new series = RZ-centered 12x9km
+  (2022/2024/2025/2026-07-20) + substation/lake-centered 9x9km (2024, 2026). No
+  construction anywhere in the RZ through 2026-07-20. One name-collision mishap during
+  fetching (substation chips briefly overwrote two RZ frames — caught and re-fetched;
+  final set verified on disk with distinct names).
+
+## Site correction + verdict flip (user-driven, 2026-07-21)
+
+User rejected the stat images: "no lake close to the site based on the parcel boundary."
+Correct on all counts — full re-derivation:
+- The deep scan anchored on the WRONG substation (Fort Phantom Switchyard). The IA
+  exhibit's substation is next to the ANSON SOLAR plant, ~20km NNW near the town of Anson.
+- All previous imagery deleted (wrong location). EIA-860M now lists 'Tiger Solar, LLC'
+  directly: 32.79692,-99.88089, 250MW, (V) UNDER CONSTRUCTION >50% since 2026-03,
+  planned COD 2026-12 (eia_history.py --write run; the prior scan's 'not in EIA' was
+  stale/missed).
+- Neighborhood mapped to avoid mis-attribution (5 projects): Anson 1 operating; Anson 2
+  UC (sync-approved 2025-11); Jones City 1+2 (Lightsource/Crowded Star) = the separate
+  SW complex at -100.00; Funston 15km E. Tiger = the eastern extension of the Anson
+  complex, racking grid visible spreading east through 2026-07-20.
+- VERDICT FLIPPED: real_early/no_activity -> real_active / under_construction_gt50.
+  Drift risk lowered (EIA COD 2026-12 runs AHEAD of the queue's 2027-06-30).

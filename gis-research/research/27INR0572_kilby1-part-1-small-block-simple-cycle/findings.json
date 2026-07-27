@@ -1,96 +1,97 @@
 {
-  "inr": "27INR0572",
-  "project": "Kilby1 Part 1 Small Block Simple Cycle",
-  "researched_date": "2026-07-19",
-  "verdict": "real_early",
-  "verdict_confidence": "medium",
-  "verdict_rationale": "TCEQ air permit 181895/PSDTX1684/GHGPSDTX260 filed Oct 2025 for 2,869 MW Kilby Power Plant; GE Vernova confirmed as turbine supplier; 20-yr Microsoft PPA signed Jun 2026; kilby.com confirms Reeves County + Chevron ownership. BUT: FID expected 'later in 2026' per Jun 23 2026 trade press, no IA signed, no construction visible in imagery.",
-  "developer": {
-    "spv": "Energy Forge One LLC",
-    "parent": "Chevron Corporation",
-    "jv_partner": "Engine No. 1 / Joulent",
-    "offtaker": "Microsoft Corporation",
-    "turbine_supplier_primary": "GE Vernova",
-    "turbine_supplier_secondary": "Solar Turbines (Caterpillar)",
-    "evidence": "sources/T1_web_sweep_notes.md"
-  },
-  "site": {
-    "lat": 31.40,
-    "lon": -103.50,
-    "method": "approximate — 'near Pecos TX, Reeves County'; no parcel/pin/IA found; Pecos city center used as proxy",
-    "confidence": "low",
-    "poi_substation_lat": 30.948533,
-    "poi_substation_lon": -103.361719,
-    "poi_substation_note": "Solstice Sub (OSM W500535889) is in Pecos County, ~30 mi south of Pecos TX; plant in Reeves County per queue",
-    "cross_check_notes": "kilby.com DriveTexas link at zoom 9 shows area near -102.66/31.21 (Pecos County) — NOT reliable; county confirmed Reeves per queue. No parcel, pin, or IA available to narrow further."
-  },
-  "project_area": {
-    "acres": null,
-    "source": "not found — no IA, no abatement application, no CAD parcel",
-    "artifact": null
-  },
-  "tceq_permits": {
-    "air_construction_permit": "181895",
-    "psd_permit": "PSDTX1684",
-    "ghg_psd_permit": "GHGPSDTX260",
-    "application_date": "2025-10-16",
-    "status": "PENDING (public meeting held June 10, 2026; no final issuance date found)",
-    "total_plant_capacity_mw": 2869,
-    "facility_components": "2 combined-cycle combustion turbines + 15 simple-cycle combustion turbines",
-    "evidence": "DDG search result, EIP Oil & Gas Watch alert"
-  },
-  "construction": {
-    "stage": "pre_construction",
-    "first_activity_seen": null,
-    "imagery_verdict": "no_activity",
-    "imagery_note": "Two S2 chips (2026-07-01) around Solstice Sub (30.9485, -103.3617) and NW (31.05, -103.40) show undisturbed desert; exact plant site not confirmed; CDSE auth limited additional coverage",
-    "fid_status": "NOT TAKEN — 'final investment decision expected later in 2026' per EnergyCapitalHTX Jun 23, 2026"
-  },
-  "interconnection": {
-    "ia_signed": false,
-    "ia_signed_date": null,
-    "ia_document": null,
-    "puct_control_number": null,
-    "poi": "#60404 Solstice Substation 345 kV (AEP, Pecos County)",
-    "fis_requested": "2025-10-16",
-    "fis_approved": null,
-    "screening_complete": "2026-01-06",
-    "note": "No IA found — PUCT Interchange 402-blocked; queue shows iaSigned = not achieved as of 2026-06-01"
-  },
-  "contractual_schedule": {
-    "note": "No signed IA found; no contractual schedule available",
-    "documents": []
-  },
-  "cod_assessment": {
-    "reported_cod": "2027-11-04",
-    "independent_estimate": "2028-Q4 to 2029-Q1",
-    "drift_risk": "high",
-    "drift_risk_rationale": "FID not taken as of Jun 2026; no IA signed; TCEQ permit still pending; COD held stable for 9 snapshots but based on queue estimate not signed contract; 2.67 GW gas plant construction is 3-4 year program; Part 1 COD 2027-11 requires construction start by ~2026-Q3 which is not yet confirmed",
-    "queue_cod_history": "0 changes — 2027-11-04 held across all 9 snapshots (2025-10 to 2026-06)",
-    "key_risks": [
-      "FID not taken as of Jun 2026 — constructive commitment uncertain",
-      "TCEQ air permit still pending (filed Oct 2025, hearing Jun 2026)",
-      "No IA signed — no contractual binding on COD",
-      "Thermal plant construction typically 36-48 months from FID for complex multi-turbine facility",
-      "Behind-the-meter co-location with Microsoft data center adds complexity"
-    ],
-    "key_supports": [
-      "TCEQ air permits filed Oct 2025 — mandatory thermal permit in process (positive signal)",
-      "GE Vernova confirmed as primary turbine supplier",
-      "20-yr Microsoft PPA signed Jun 22, 2026",
-      "Chevron (Aa2/AA) + Engine No. 1 backing; strong commercial & credit profile",
-      "COD held stable 9 snapshots with no changes"
-    ]
-  },
-  "related_inrs": [
-    "28INR0457 — Kilby1 Part 2 Tier1 BESS",
-    "28INR0459 — Kilby1 Part 4 Large Block Simple Cycle"
+ "inr": "27INR0572",
+ "project": "Kilby1 Part 1 Small Block Simple Cycle",
+ "researched_date": "2026-07-19",
+ "verdict": "real_early",
+ "verdict_confidence": "medium",
+ "verdict_rationale": "TCEQ air permit 181895/PSDTX1684/GHGPSDTX260 filed Oct 2025 for 2,869 MW Kilby Power Plant; GE Vernova confirmed as turbine supplier; 20-yr Microsoft PPA signed Jun 2026; kilby.com confirms Reeves County + Chevron ownership. BUT: FID expected 'later in 2026' per Jun 23 2026 trade press, no IA signed, no construction visible in imagery.",
+ "developer": {
+  "spv": "Energy Forge One LLC",
+  "parent": "Chevron Corporation",
+  "jv_partner": "Engine No. 1 / Joulent",
+  "offtaker": "Microsoft Corporation",
+  "turbine_supplier_primary": "GE Vernova",
+  "turbine_supplier_secondary": "Solar Turbines (Caterpillar)",
+  "evidence": "sources/T1_web_sweep_notes.md"
+ },
+ "site": {
+  "lat": 31.4,
+  "lon": -103.5,
+  "method": "approximate \u2014 'near Pecos TX, Reeves County'; no parcel/pin/IA found; Pecos city center used as proxy",
+  "confidence": "low",
+  "poi_substation_lat": 30.948533,
+  "poi_substation_lon": -103.361719,
+  "poi_substation_note": "Solstice Sub (OSM W500535889) is in Pecos County, ~30 mi south of Pecos TX; plant in Reeves County per queue",
+  "cross_check_notes": "kilby.com DriveTexas link at zoom 9 shows area near -102.66/31.21 (Pecos County) \u2014 NOT reliable; county confirmed Reeves per queue. No parcel, pin, or IA available to narrow further."
+ },
+ "project_area": {
+  "acres": null,
+  "source": "not found \u2014 no IA, no abatement application, no CAD parcel",
+  "artifact": null
+ },
+ "tceq_permits": {
+  "air_construction_permit": "181895",
+  "psd_permit": "PSDTX1684",
+  "ghg_psd_permit": "GHGPSDTX260",
+  "application_date": "2025-10-16",
+  "status": "PENDING (public meeting held June 10, 2026; no final issuance date found)",
+  "total_plant_capacity_mw": 2869,
+  "facility_components": "2 combined-cycle combustion turbines + 15 simple-cycle combustion turbines",
+  "evidence": "DDG search result, EIP Oil & Gas Watch alert"
+ },
+ "construction": {
+  "stage": "pre_construction",
+  "first_activity_seen": null,
+  "imagery_verdict": "no_activity",
+  "imagery_note": "Two S2 chips (2026-07-01) around Solstice Sub (30.9485, -103.3617) and NW (31.05, -103.40) show undisturbed desert; exact plant site not confirmed; CDSE auth limited additional coverage",
+  "fid_status": "NOT TAKEN \u2014 'final investment decision expected later in 2026' per EnergyCapitalHTX Jun 23, 2026"
+ },
+ "interconnection": {
+  "ia_signed": false,
+  "ia_signed_date": null,
+  "ia_document": null,
+  "puct_control_number": null,
+  "poi": "#60404 Solstice Substation 345 kV (AEP, Pecos County)",
+  "fis_requested": "2025-10-16",
+  "fis_approved": null,
+  "screening_complete": "2026-01-06",
+  "note": "No IA found \u2014 PUCT Interchange 402-blocked; queue shows iaSigned = not achieved as of 2026-06-01"
+ },
+ "contractual_schedule": {
+  "note": "No signed IA found; no contractual schedule available",
+  "documents": []
+ },
+ "cod_assessment": {
+  "reported_cod": "2027-11-04",
+  "independent_estimate": "2028-Q4 to 2029-Q1",
+  "drift_risk": "high",
+  "drift_risk_rationale": "FID not taken as of Jun 2026; no IA signed; TCEQ permit still pending; COD held stable for 9 snapshots but based on queue estimate not signed contract; 2.67 GW gas plant construction is 3-4 year program; Part 1 COD 2027-11 requires construction start by ~2026-Q3 which is not yet confirmed",
+  "queue_cod_history": "0 changes \u2014 2027-11-04 held across all 9 snapshots (2025-10 to 2026-06)",
+  "key_risks": [
+   "FID not taken as of Jun 2026 \u2014 constructive commitment uncertain",
+   "TCEQ air permit still pending (filed Oct 2025, hearing Jun 2026)",
+   "No IA signed \u2014 no contractual binding on COD",
+   "Thermal plant construction typically 36-48 months from FID for complex multi-turbine facility",
+   "Behind-the-meter co-location with Microsoft data center adds complexity"
   ],
-  "sources": {
-    "kilby_com_project": "sources/2026-07-19_kilby.com_project.html",
-    "kilby_com_about": "sources/2026-07-19_kilby.com_about.html",
-    "energycapitalhtx_deal": "sources/2026-07-19_energycapitalhtx_chevron-microsoft-deal.html",
-    "web_sweep_notes": "sources/T1_web_sweep_notes.md",
-    "osm_solstice_sub": "OSM Way 500535889 via api.openstreetmap.org"
-  }
+  "key_supports": [
+   "TCEQ air permits filed Oct 2025 \u2014 mandatory thermal permit in process (positive signal)",
+   "GE Vernova confirmed as primary turbine supplier",
+   "20-yr Microsoft PPA signed Jun 22, 2026",
+   "Chevron (Aa2/AA) + Engine No. 1 backing; strong commercial & credit profile",
+   "COD held stable 9 snapshots with no changes"
+  ]
+ },
+ "related_inrs": [
+  "28INR0457 \u2014 Kilby1 Part 2 Tier1 BESS",
+  "28INR0459 \u2014 Kilby1 Part 4 Large Block Simple Cycle"
+ ],
+ "sources": {
+  "kilby_com_project": "sources/2026-07-19_kilby.com_project.html",
+  "kilby_com_about": "sources/2026-07-19_kilby.com_about.html",
+  "energycapitalhtx_deal": "sources/2026-07-19_energycapitalhtx_chevron-microsoft-deal.html",
+  "web_sweep_notes": "sources/T1_web_sweep_notes.md",
+  "osm_solstice_sub": "OSM Way 500535889 via api.openstreetmap.org"
+ },
+ "real_project_verdict": "real_early"
 }

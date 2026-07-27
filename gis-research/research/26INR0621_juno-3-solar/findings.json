@@ -1,133 +1,262 @@
 {
   "inr": "26INR0621",
   "project": "Juno 3 Solar",
-  "research_date": "2026-07-19",
-  "verdict": "real_active",
+  "researched_at": "2026-07-21",
+  "research_date": "2026-07-21",
+  "second_pass_review": "2026-07-21 \u2014 provenance audit + cluster de-confliction; prior 2026-07-19 site/construction findings retracted",
+  "verdict": "real_early",
+  "real_project_verdict": "real_early",
   "verdict_confidence": "high",
-  "verdict_rationale": "IA signed 2025-07-01, financial security + NTP provided; satellite imagery confirms active construction since ~Nov 2025 with substantial racking installed as of Dec 2025 and continuing through Jun 2026; developer has operating Juno I+II (300 MW) at same site since 2021.",
-
+  "verdict_rationale": "Reality is confirmed independent of imagery: Juno 3's own signed IA (PUCT 35077-2184, effective 2025-07-01), financial security posted, named SPV SE DC DevCo LLC (SB Energy), and an active WETT 345kV CCN (docket 59199). BUT the prior run's location and 'active construction' findings were wrong: the old coordinate (32.749,-101.625) was an undocumented eyeball shift off an operating neighbor plant and the imagery captured operating ENGIE Long Draw Solar + Juno Solar, not Juno 3. Corrected anchor from CCN 59199 Fig 1-1. No Juno 3 construction is visible as of 2026-07 \u2014 pre-construction.",
   "site": {
-    "lat": 32.749,
-    "lon": -101.625,
-    "method": "OSM relation 14474033 (operating Juno I+II plant center 32.779N, 101.625W) + imagery-derived shift south for new expansion footprint",
-    "confidence": "high",
-    "notes": "Existing operating plant at 32.765–32.792N, 101.598–101.652W (OSM). Juno 3 expansion visible in imagery south of this footprint, centered ~32.749N. Substation construction (Buck Canyon 345kV) at approx 32.735N, 101.635W."
+    "lat": 32.772,
+    "lon": -101.559,
+    "method": "RECONCILED 2026-07-21 with the sibling Antila/Lyra pass: CCN 59199 Figure 1-1 (re-rendered HIGH-RES in research/27INR0500_antila-solar/sources/) places the 'Proposed Juno Solar 3 and Antila Solar Collector Stations' just N of US-180 ~7 mi WEST of Gail => 32.772,-101.559 (georef anchors: Gail -101.443, Long Draw station -101.633; +/-1-2km). Cross-ref: Lyra CCN 59183 Fig 2-1 property-owners aerial shows the collector complex on the 'Juno DC, LLC' parcel. The earlier coordinate this pass (32.767,-101.651, from a low-res Fig 1-1 read + a gmaps pin) was the Buck Canyon/Long Draw SWITCHYARD area ~8.6 km W -- the same geocode trap the Antila agent diagnosed; superseded.",
+    "confidence": "medium-high (hi-res CCN map + property-parcel cross-ref, shared with Antila/Lyra)",
+    "map_artifacts": [
+      "sources/2026-07-21_ccn59199-figure1-1_juno3-antila-location-map.png",
+      "sources/2026-07-21_puct_35077-2184_juno-solar-3-IA_p34.png"
+    ],
+    "verify_url": "https://www.google.com/maps/@32.772,-101.559,5000m/data=!3m1!1e3",
+    "verify_steps": "See sources/SITE_DERIVATION.md section 5. Primary: CCN 59199 Fig 1-1 map + IA 35077-2184 Exhibit J (both in sources/). Re-pullable from PUCT Interchange docket 35077 item 2184 and docket 59199 item 2.",
+    "derivation_notes": "Collector-station (generation) site. Co-located with the operating Juno Solar complex, so the NEW panel footprint is not separable from the operating arrays in 10 m Sentinel-2 yet. POI = Buck Canyon 345kV switching station ~32.719/-101.636 (co-located with the existing Long Draw switching station on Vealmoore Rd; a new WETT build), reached by a ~8.4 mi 345 kV gen-tie. See sources/SITE_DERIVATION.md.",
+    "prior_site_retracted": {
+      "lat": 32.749,
+      "lon": -101.625,
+      "prior_method": "OSM relation 14474033 (operating plant) + imagery-derived shift south",
+      "prior_confidence_claimed": "high",
+      "why_retracted": "No first-party rung fired (gmaps 429, PUCT 402, not in EIA). Anchor was an operating NEIGHBOR plant shifted ~3 km south by eye; landed on operating ENGIE Long Draw Solar (32.741/-101.622). Undocumented guess mislabeled high-confidence."
+    }
   },
-
-  "construction": {
-    "stage": "racking",
-    "first_activity_seen": "2025-11",
-    "first_activity_confidence": "medium",
-    "first_activity_bracket": ["2025-10-15", "2025-12-15"],
-    "latest_observation": "2026-06",
-    "notes": "Jan 2025 and Oct 2025: no activity south of operating plant. Dec 2025: substantial racking/module sections visible across multiple rectangular blocks. Jun 2026: additional sections complete, substation yard active. Bifacial tracker row pattern visible. Bright substation pad (Buck Canyon 345kV under construction) visible at lower-left of Jun 2026 frame."
+  "neighbor_warning": {
+    "cluster_risk": "HIGH \u2014 dense multi-project solar cluster in western Borden County (~-101.62 to -101.65) around the Long Draw substation hub. The prior run misattributed operating neighbor arrays as Juno 3 construction.",
+    "cluster_plants": [
+      {
+        "name": "Juno Solar Project (operating predecessor)",
+        "id": "EIA plant 63328 / queue 21INR0026+21INR0501",
+        "status": "operating 2021, 305.6 MW (IP Juno LLC)",
+        "lat_lon": "EIA 32.773/-101.391 is ~22km too far E; true ~32.78/-101.61 per imagery; POI Long Draw 138kV",
+        "how_identified": "EIA-860M; queue history; imagery NE array"
+      },
+      {
+        "name": "ENGIE Long Draw Solar",
+        "id": "EIA plant 62845",
+        "status": "operating 2020, 225 MW (GDF Suez/ENGIE)",
+        "lat_lon": "32.741/-101.622",
+        "how_identified": "EIA-860M; imagery SE array"
+      },
+      {
+        "name": "Borden County BESS",
+        "id": "EIA plant 66804",
+        "status": "operating 2024, 150 MWh",
+        "lat_lon": "32.722/-101.639",
+        "how_identified": "EIA-860M; Ch.312 'Dairy Bank' zone"
+      },
+      {
+        "name": "Antila Solar (co-located, shares POI Buck Canyon)",
+        "id": "queue 27INR0500 / IA 35077-2227",
+        "status": "queued, IA signed 2025-08-13, pre-construction",
+        "lat_lon": "~32.767/-101.651 (co-located w/ Juno 3)",
+        "how_identified": "CCN 59199 (own research dir 27INR0500)"
+      },
+      {
+        "name": "Lyra Solar (same developer, different POI)",
+        "id": "queue 27INR0434 / IF 'Juno Solar 4' / IA 35077-2185",
+        "status": "queued, IA signed",
+        "lat_lon": "POI Muleshoe #59922 \u2014 NOT Buck Canyon",
+        "how_identified": "queue; IA text"
+      },
+      {
+        "name": "Lyra Storage (same developer, different POI)",
+        "id": "queue 26INR0636 / IF 'JUNO BESS I' / IA 35077-2225",
+        "status": "queued, IA signed",
+        "lat_lon": "POI Muleshoe #59922",
+        "how_identified": "queue; IA text"
+      },
+      {
+        "name": "Caesar Solar / Caesar Storage (same POI, earlier stage)",
+        "id": "queue 29INR0131 / 29INR0132",
+        "status": "queued, no IA yet",
+        "lat_lon": "POI #59916 Buck Canyon 345kV",
+        "how_identified": "queue"
+      }
+    ],
+    "do_not_bind": "Never bind Juno 3 to the operating Juno Solar Project (EIA 63328) or ENGIE Long Draw Solar (EIA 62845) \u2014 both are operating neighbors, not this project."
   },
-
-  "imagery_timeline": [
-    {"date": "2025-01-15", "observation": "undisturbed terrain south of operating plant", "frame": "imagery/s2_2025-01-15.png"},
-    {"date": "2025-10-15", "observation": "undisturbed terrain south of operating plant — no construction", "frame": "imagery/s2_2025-10-15.png"},
-    {"date": "2025-12-15", "observation": "active construction — multiple module/racking block sections installed; substation yard emerging", "frame": "imagery/key/s2_2025-12-15_construction_active.png"},
-    {"date": "2026-06", "observation": "further progress — more module sections, substation active, substantial footprint visible", "frame": "imagery/key/s2_2026-06_substantially_complete.png"}
+  "llc_chain": [
+    {
+      "entity": "SE DC DevCo, LLC",
+      "relation": "spv_generator",
+      "evidence": "named Generator on Juno 3's IA (PUCT 35077-2184, 'GIA between WETT and SE DC DevCo, LLC for the Juno Solar 3 Project'); same SPV entity on the Antila, Lyra Solar, and Lyra BESS IAs"
+    },
+    {
+      "entity": "SB Energy (SoftBank Energy)",
+      "relation": "developer_parent",
+      "evidence": "SE DC DevCo address 3 Lagoon Dr Suite 280 Redwood City CA = SB Energy HQ; gmaps pin labeled 'Juno Solar SB Energy'; CCN 59199 names SE DC DevCo as 'the Developer'"
+    }
   ],
-
   "ownership": {
-    "spv": "Juno 3 Solar, LLC (presumed; name from queue projectName)",
-    "developer": "SE Juno, LLC (operator of predecessor Juno I+II at same site; 21INR0026/21INR0501 confirmed commercial operation 2021)",
+    "spv": "SE DC DevCo, LLC",
+    "developer": "SB Energy",
     "interconnecting_facility": "Juno Solar 3",
-    "epc": null,
-    "offtaker": null,
-    "developer_confidence": "medium",
-    "developer_source": "ERCOT GIS queue data (interconnectingFacility field); no independent confirmation via TX SOS or SEC"
+    "equipment": "128 Sungrow SG4400UD-MV-US inverters, solar PV (IA Exhibit J)",
+    "developer_confidence": "high",
+    "developer_source": "Juno 3 IA 35077-2184 + shared CCN 59199 (both first-party PUCT filings)",
+    "note": "Prior run's 'SE Juno, LLC / Intersect Power' guess referred to the OPERATING predecessor's labels, not this project."
   },
-
-  "land": {
-    "tenure": "unknown",
-    "cad_parcels": "not retrieved — Borden CAD portal dynamic/inaccessible via WebFetch",
-    "abatements": "none found — Ch.313 expired 2022, JETI portal not searchable; consistent with 2025/2026 queue entry"
+  "construction": {
+    "verdict": "no_construction_visible",
+    "stage": "pre_construction",
+    "first_activity_seen": null,
+    "latest_observation": "2026-07-20",
+    "evidence": [
+      "Corrected Sentinel-2 frames at the documented anchor 32.767/-101.651 (2024-07, 2025-07, 2026-07) show an IDENTICAL solar footprint across all three years \u2014 two operating plants, no change.",
+      "Both arrays are fully built in the 2024-07 baseline, a full year BEFORE Juno 3's IA (2025-07) \u2014 so neither is Juno 3.",
+      "NE array attributed to operating Juno Solar (~305 MW, 2021); SE array to operating ENGIE Long Draw Solar (225 MW, 2020).",
+      "The Juno 3/Antila collector-station land remains undeveloped rangeland in all three frames.",
+      "Epistemic note: this proves the OLD frames captured operating neighbors; it does not prove Juno 3 is unbuildable \u2014 construction is simply not yet visible, consistent with a pre-construction 2027-COD project."
+    ],
+    "prior_construction_retracted": "Prior run's 'racking / active construction since Nov 2025, substantially complete Jun 2026' RETRACTED \u2014 seasonal colour/sun-angle variation over operating plants misread as progress; the Oct-2025 and Dec-2025 prior frames show the same built arrays.",
+    "imagery_artifacts": [
+      "imagery/key/s2_2026-07_collector-corrected.png"
+    ],
+    "notes": " RECONCILIATION 2026-07-21: at the CORRECTED collector anchor (32.772,-101.559), the Lyra-pass dense series shows clearing from 2026-03 and an expanding graded pad through 2026-07 (~1 km scale) -- attributable to the SHARED SB Energy collector-station complex (possibly WETT switchyard works) rather than to any one array; generator-site construction for Juno 3 specifically is still not evidenced. Verdict stays real_early/pre-construction; the earlier 'identical 2024-2026 footprint' observation described the operating neighbor plants at the superseded switchyard-area anchor."
   },
-
-  "project_area": {
-    "acres": null,
-    "source": "not obtained — CAD/IA inaccessible",
-    "artifact": null,
-    "imagery_estimate": "500 MW solar ~2,000–3,500 acres; Dec 2025 frame suggests 5+ km footprint spanning ~3 km N-S beyond operating plant"
-  },
-
+  "imagery_timeline": [
+    {
+      "date": "2024-07-18",
+      "observation": "Baseline (pre Juno 3 IA). Two operating solar plants fully built (Juno Solar NE, ENGIE Long Draw Solar SE); collector-station land bare.",
+      "frame": "imagery/key/s2_2024-07-01.png"
+    },
+    {
+      "date": "2025-07-20",
+      "observation": "Identical footprint \u2014 no new construction; collector-station land still rangeland.",
+      "frame": "imagery/key/s2_2025-07-01.png"
+    },
+    {
+      "date": "2026-07-20",
+      "observation": "Identical footprint \u2014 still no Juno 3 construction visible.",
+      "frame": "imagery/key/s2_2026-07-15.png"
+    }
+  ],
   "interconnection": {
     "poi": "#59916 Buck Canyon 345kV",
-    "poi_status": "new/planned substation — not in OSM; construction visible in Jun 2026 imagery at approx 32.735N, 101.635W",
+    "poi_location": "Buck Canyon 345kV switching station ~32.719/-101.636 (co-located w/ existing Long Draw switching station, Vealmoore Rd) \u2014 NEW WETT build; reached by ~8.4 mi 345 kV gen-tie",
     "ia_signed": "2025-07-01",
+    "ia_confirmed": true,
+    "ia_pdf_retrieved": true,
+    "ia_pdf_source": "PUCT docket 35077-2184 (found via sibling Antila run; SPV codename 'SE DC DevCo' is why name-based match missed it)",
     "financial_security_ntp": true,
     "fis_approved": false,
-    "ia_pdf_retrieved": false,
-    "ia_pdf_source": "PUCT Interchange 402-blocked"
+    "ccn": "WETT CCN docket 59199 'Juno Solar 3 and Antila Solar 345 kV Transmission Lines Project' \u2014 still in SOAH contested hearing as of Apr 2026 (per Antila findings)"
   },
-
   "contractual_schedule": {
     "reported_cod": "2027-11-30",
     "cod_drift_changes": 0,
     "cod_held_since": "2025-03-01",
-    "documents": []
-  },
-
-  "cod_assessment": {
-    "independent_estimate": "2027-Q4",
-    "drift_risk": "med",
-    "drift_risk_rationale": "Construction started Nov 2025 — ~25 months to reported COD 2027-11-30. Pace is fast but feasible for a developer (SE Juno) with prior experience at this site. Key risk: FIS not yet approved; Buck Canyon 345kV substation under construction — if substation slips, interconnection delays cascade. Positive: NTP already issued, developer track record at site, 500 MW with bifacial trackers follows established layout.",
-    "notes": [
-      "COD has not drifted in 16 months of queue history — held 2027-11-30 since first report 2025-03-01",
-      "Construction started ~Nov 2025; 25 months to COD is tight but not unrealistic given developer experience at site",
-      "FIS not approved is a risk — if FIS requires transmission upgrades, timeline could slip to 2028-Q1",
-      "Buck Canyon 345kV substation visible under construction Jun 2026 — consistent with 2027 COD timeline",
-      "Antila Solar (27INR0500, same POI, NTP also provided) is a second 500 MW project at same POI — may indicate shared substation build"
+    "documents": [
+      {
+        "doc": "Juno Solar 3 IA (PUCT 35077-2184)",
+        "signed": "2025-07-01",
+        "financial_security": "posted (Exhibit E; amount not extracted)"
+      }
     ]
   },
-
+  "cod_assessment": {
+    "reported": "2027-11-30",
+    "independent": "2028 (est.)",
+    "drift_risk": "high",
+    "reasoning_evidence": [
+      "No construction visible at the documented site as of 2026-07 \u2014 ~28 months from reported COD but nothing on the ground.",
+      "Interconnection depends on a NEW WETT 345 kV gen-tie + Buck Canyon switching station whose CCN (59199) was still in a SOAH contested hearing as of Apr 2026; contested CCN cases run 9-18 months.",
+      "FIS not yet approved; IA signed pre-FIS (schedule 'subject to study results').",
+      "Positive: signed IA, financial security posted, experienced developer (SB Energy) with an operating plant in the same county."
+    ]
+  },
+  "tax_incentives": {
+    "ch313": {
+      "hit": false,
+      "detail": "no Ch.313 agreement or JETI application for Juno 3 (ch313.py) \u2014 expected; Ch.313 expired 2022"
+    },
+    "ch312": {
+      "hit": false,
+      "detail": "4 Borden County Ch.312 rows, 0 by name. #4303 'IP Juno Reinvestment Zone' (Coleman Ranch) = OPERATING Juno; #4302 'BNB Long Draw Solar'; #3676 'BNB Oxbow Solar' (separate project, NOT Juno 3); #15389 'Dairy Bank' = Borden County BESS. No Juno 3 abatement on record (weak negative \u2014 CAD filings lag)."
+    },
+    "jeti": {
+      "hit": false
+    }
+  },
+  "land": {
+    "tenure": "unknown (leased rangeland typical; unanimous landowner route agreement noted in CCN EA)",
+    "cad_parcels": "not retrieved",
+    "abatements": "none for Juno 3 (see tax_incentives)"
+  },
+  "project_area": {
+    "acres": null,
+    "source": "not stated in IA/CCN; 500 MW solar ~2,000-3,500 acres estimated",
+    "artifact": null
+  },
   "signals": {
-    "ia_found": false,
+    "ia_found": true,
+    "ia_confirmed": true,
     "ia_signed_in_queue": true,
     "financial_security_ntp_provided": true,
-    "construction_visible": true,
-    "developer_track_record": true,
+    "construction_visible": false,
+    "developer_identified": true,
     "abatement_found": false,
-    "news_found": false
+    "news_found": false,
+    "eia_record": false
   },
-
   "sources": [
     {
       "type": "queue_parquet",
-      "description": "ERCOT GIS queue parquet — 26INR0621 full row, financialSecurityAndNoticeToProceedProvided=Yes",
-      "artifact": "gis-research/data/ercot_generation_interconnect.parquet"
+      "description": "ERCOT GIS queue \u2014 26INR0621 + full Borden cluster (latest snapshot 2026-06-01)",
+      "artifact": "sources/2026-07-21_borden_cluster_queue.txt"
     },
     {
-      "type": "queue_history",
-      "description": "COD drift timeline from queue_history.py",
-      "artifact": "gis-research/research/26INR0621_juno-3-solar/timeline.md"
+      "type": "queue_parquet",
+      "description": "Juno-family queue history (operating predecessor vs Juno 3)",
+      "artifact": "sources/2026-07-21_juno_family_queue_history.txt"
     },
     {
-      "type": "osm",
-      "description": "Existing Juno Solar I+II plant location (relation 14474033) — operator=SE Juno LLC, 300 MW, start_date=2021-06, center 32.779N 101.625W",
-      "url": "https://overpass-api.de/api/interpreter?data=[out:json];relation[\"name\"~\"Juno+Solar\"](32.6,-102.0,33.0,-101.2);out+geom;"
+      "type": "eia_860m",
+      "description": "EIA Borden County generators \u2014 operating neighbors incl. Juno Solar 63328 + ENGIE Long Draw 62845; Juno 3 absent",
+      "artifact": "sources/2026-07-21_borden_eia_generators.txt"
+    },
+    {
+      "type": "registry_sweep",
+      "description": "spv/ch313/ch312/eia_history/puct/gmaps systematic sweep",
+      "artifact": "sources/2026-07-21_registry_geo_sweep.txt"
+    },
+    {
+      "type": "ia_pdf",
+      "description": "Juno 3's own signed IA \u2014 WETT & SE DC DevCo for the Juno Solar 3 Project (eff 2025-07-01, POI Buck Canyon 345kV)",
+      "artifact": "sources/2026-07-21_puct_35077-2184_juno-solar-3-IA.pdf"
+    },
+    {
+      "type": "ia_exhibit",
+      "description": "IA Exhibit J (rendered) \u2014 'Name: Juno Solar 3 \u2026 POI at Buck Canyon 345kV switching station \u2026 128 Sungrow inverters'",
+      "artifact": "sources/2026-07-21_puct_35077-2184_juno-solar-3-IA_p34.png"
+    },
+    {
+      "type": "ccn_pdf",
+      "description": "WETT CCN 59199 application \u2014 Juno Solar 3 & Antila Solar 345kV Transmission Lines Project (primary filing)",
+      "artifact": "sources/2026-07-21_puct_59199-2_wett-ccn-juno3-antila-application.pdf"
+    },
+    {
+      "type": "ccn_map",
+      "description": "CCN 59199 Figure 1-1 \u2014 'Proposed Juno Solar 3 and Antila Solar Collector Stations' location map",
+      "artifact": "sources/2026-07-21_ccn59199-figure1-1_juno3-antila-location-map.png"
+    },
+    {
+      "type": "site_derivation",
+      "description": "Full provenance chain + cluster attribution",
+      "artifact": "sources/SITE_DERIVATION.md"
     },
     {
       "type": "satellite",
-      "description": "Sentinel-2 chip 2025-01-15 — pre-construction baseline",
-      "artifact": "gis-research/research/26INR0621_juno-3-solar/imagery/key/s2_2025-01-15_pre_construction.png"
-    },
-    {
-      "type": "satellite",
-      "description": "Sentinel-2 chip 2025-10-15 — pre-construction, undisturbed",
-      "artifact": "gis-research/research/26INR0621_juno-3-solar/imagery/key/s2_2025-10-15_pre_construction.png"
-    },
-    {
-      "type": "satellite",
-      "description": "Sentinel-2 chip 2025-12-15 — first activity: substantial racking/modules installed, substation yard emerging",
-      "artifact": "gis-research/research/26INR0621_juno-3-solar/imagery/key/s2_2025-12-15_construction_active.png"
-    },
-    {
-      "type": "satellite",
-      "description": "Sentinel-2 chip 2026-06 — further construction progress, substation active",
-      "artifact": "gis-research/research/26INR0621_juno-3-solar/imagery/key/s2_2026-06_substantially_complete.png"
+      "description": "Corrected Sentinel-2 chips at documented anchor 32.767/-101.651 (2024/2025/2026-07) \u2014 no Juno 3 construction",
+      "artifact": "imagery/key/"
     }
   ]
 }

@@ -94,3 +94,96 @@ triage.md written.
 Turns used: ~22. Deep scan recommended: YES.
 
 T7 complete.
+
+---
+
+## D1 — IA Schedule extraction (2026-07-20)
+
+exhibit.py scan: IA PDF 51pp, 2 candidate pages (p14, p40).
+exhibit.py sheet: 13 tiles generated.
+Rendered key pages: p14, p30, p36, p39, p40, p44.
+
+### Exhibit B (Time Schedule) — confirmed from sheet08, p29-30:
+- May 1, 2025: Generator provides notice to proceed (past)
+- **In-Service Date: April 15, 2027**
+- **Trial Operation: September 20, 2027**
+- **Scheduled COD: October 29, 2027** (matches queue reported)
+- May 15, 2026: Grading/drainage for Nimbus Switch + All-weather road completed (past deadline)
+- Aug 14, 2026: All-weather road operational for Oncor access (upcoming)
+- Sep 15, 2026: TSP takes possession of TIF deed/easement
+- June 15, 2026: Generator provides site drawings w/ generating unit locations (past deadline)
+- Oct 15, 2026: Generator provides lat/lon of all solar panel generating units to TSP
+
+### Exhibit C (Interconnection Details) — confirmed from sheet10, p31:
+- POI: Nimbus Switch (NEW 345kV switching station on Watermill–Big Onion 345kV line), Ellis County
+- Address REDACTED (black box in PDF)
+- Equipment: 47 SUNGROW SC4400UD-MV-US inverters, gross 196.46 MVA, net 175.26 MW at 34.5kV
+- BESS companion: 16 SUNGROW SC4000UD-MV-US inverters, 57.15-58.6 MW (26INR0242)
+
+### Exhibit C Attachment 1 (p44) — One-Line Diagram:
+- Nimbus Switch taps between 345kV to Watermill Switch and 345kV to Big Onion Switch
+- POI at fence between TSP (Nimbus Switch) and Generator Switchyard
+
+### Exhibit C main body (p36):
+- Shankle Switch – Pebble Creek Switch 138kV line: lowering required (project likely near/under this corridor)
+- Watermill Switch Changes: carrier frequency modification for Nimbus Switch addition
+- Big Onion Switch Changes: relay settings update for Nimbus Switch line
+
+Financial security: confirmed "Yes" in factsheet (queue milestone). Amount not visible in pages read — may be in Exhibit A or separate section. Check sheet02 (p8 = Exhibit A) and sheet12.
+
+Site location: Address redacted in Exhibit C — must find via POI infrastructure search.
+Artifacts: sources/2026-07-19_puct_35077-2141_standard-generation-interconnecti_p44.png (one-line diagram showing Nimbus switch topology)
+
+### Exhibit D (p46) — Notice/contact info:
+- Developer: Adapture Solar Development, 1601 Harrison St Suite 1630, Oakland CA 94612
+- Email: transmission-ix@adapturerenewables.com / AP@adapturerenewables.com
+- Parent domain confirmed: adapturerenewables.com = Adapture Renewables
+- Oncor contact: Robert Holt, 777 Main St Suite 707, Fort Worth TX 76102
+
+### Exhibit E (p49-51) — Security Arrangement:
+- **Financial security: $17,035,909 Irrevocable Standby Letter of Credit**
+- Effective date: on or before May 1, 2025
+- Instrument: ISBLC issued by Generator-selected TSP-approved major US commercial bank
+- This is a real, substantial security posting — strong real-project signal
+- Artifact: sources/2026-07-19_puct_35077-2141_standard-generation-inter_sheet13.png
+
+## D2 — Site + Imagery (2026-07-20)
+
+### Google Places pin:
+- Query: "Sol Marina Energy Center" → 2210 Farrar Rd, Palmer, TX 75152, USA
+- Coords: 32.467749, -96.707719
+- Type: point_of_interest, establishment
+- Palmer TX is in Ellis County — consistent with project county
+- Confidence: med (pin exists, address in correct county; no imagery cross-check possible)
+
+### CDSE imagery: UNAVAILABLE this session
+- All chip/timelapse calls: RemoteDisconnected at openEO /result endpoint
+- openEO endpoint itself pings OK (200) — likely load-balancer or backend overload
+- Zero imagery frames obtained
+- Construction stage: UNKNOWN (cannot determine from satellite)
+
+### POI cross-check:
+- POI per IA: Nimbus Switch (new 345kV) on Watermill–Big Onion line, Ellis County
+- Watermill Switch is in Dallas County per triage search — Nimbus Switch will be a new tap on the line entering Ellis County
+- 32.467749, -96.707719 is ~6 km NNW of Palmer TX, in rural Ellis County farmland
+- Shankle–Pebble Creek 138kV line must be lowered for project → site likely near/under that corridor
+- Cross-check pending: no imagery, no CAD parcel found (CAD web search failed — backend down)
+
+## D3 — Gap-fill searches (2026-07-20)
+
+### Web search backend: DOWN all session
+- All DDG queries returning ConnectionError
+- Negative evidence (cannot distinguish "no results" from "search failed"):
+  1. "Adapture Solar Development Ellis County Texas Sol Marina" — FAILED (backend)
+  2. "Sol Marina Energy Center Palmer Texas solar farm" — FAILED (backend)
+  3. "Ellis County Appraisal District Sol Marina OR Adapture Solar" — FAILED (backend)
+  4. "2210 Farrar Rd Palmer Texas solar OR Sol Marina" — FAILED (backend)
+- ch313.py: NEGATIVE (no Ch.313/JETI match — expected for 2026 project)
+- spv.py: Adapture Solar Development, LLC confirmed (PUCT index)
+- eia_history.py: NOT IN EIA-860M (normal early-stage negative evidence)
+
+### Adapture Renewables parent chain:
+- SPV: Sol Marina Energy Center, LLC (DE/TX)
+- Developer/operator: Adapture Solar Development, LLC
+- Parent: Adapture Renewables (adapturerenewables.com, Oakland CA)
+- No further parent chain found (web search down; Adapture Renewables appears to be independent)

@@ -1,0 +1,106 @@
+{
+  "inr": "29INR0015",
+  "project": "Funston Solar",
+  "researched_at": "2026-07-20",
+  "site": {
+    "lat": 32.78367,
+    "lon": -99.72019,
+    "method": "EIA Form 860 direct record (plant 67359, address 3694 CR 267, Anson TX 79501); corroborated by IA Attachment C-3 project footprint map and Sentinel-2 imagery",
+    "confidence": "high",
+    "map_artifacts": [
+      "sources/2026-07-19_puct_35077-1965_lst-funston-solar-IA_map_p47.png"
+    ]
+  },
+  "project_area": {
+    "acres": null,
+    "source": "IA footprint map (Attachment C-3) shows project boundary ~4 km N-S \u00d7 3 km E-W between CR 254 and CR 266, consistent with ~3,000-4,000 acres for 351 MW; no acreage figure stated in IA documents",
+    "artifact": "sources/2026-07-19_puct_35077-1965_lst-funston-solar-IA_map_p47.png"
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Funston Solar, LLC",
+      "relation": "SPV / Generator",
+      "evidence": "PUCT docket 35077 item 1965 IA parties page; EIA-860M plant 67359 entity name"
+    },
+    {
+      "entity": "NextEra Energy Resources, LLC",
+      "relation": "parent / operator",
+      "evidence": "IA Exhibit D notice addresses Funston Solar, LLC c/o NextEra Energy Resources, LLC, 700 Universe Blvd, Juno Beach FL 33408; operations contact NEER-SYSTEM-OPERATIONS SharedMailbox@nexteraenergy.com"
+    },
+    {
+      "entity": "Lone Star Transmission, LLC",
+      "relation": "TSP (NextEra Energy Transmission subsidiary)",
+      "evidence": "IA parties page; LST = NextEra subsidiary covering Jones County, files ERCOT IAs under PUCT docket 35077"
+    }
+  ],
+  "land_tenure": {
+    "status": "leased",
+    "evidence": "IA Exhibit C states 'The customer shall acquire, on behalf of LST, easement or similar rights from the landowner(s)' \u2014 consistent with lease/easement structure; no purchase evidence found (CAD search blocked); NextEra standard practice is land lease"
+  },
+  "construction": {
+    "verdict": "substantially_complete",
+    "first_activity_seen": null,
+    "evidence": [
+      "AWS Open Data series reframed 2026-07-21 (11x8km, whole complex + margins; earlier chips cropped the western half): 2025-03 and 2025-07 show the fenced perimeter with undisturbed cropland inside; 2025-11 grading begins; 2026-03 racking grid across most blocks; 2026-07-20 majority racked with the eastern blocks visibly paneled (dark) and a laydown yard on the west side. Site went fenced -> majority-built in ~12 months.",
+      "eia_history.json: EIA status U (<=50%) from 2025-12, V (>50%) from 2026-03 -- exactly matching the imagery timeline."
+    ],
+    "latest_observation": "2026-07-20",
+    "imagery_artifacts": [
+      "imagery/key/s2_2025-03-15.png",
+      "imagery/key/s2_2025-07-01.png",
+      "imagery/key/s2_2025-11-01.png",
+      "imagery/key/s2_2026-03-15.png",
+      "imagery/key/s2_2026-07-15.png"
+    ]
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "PUCT 35077-1965 IA (Original, no amendments)",
+        "signed": "2024-10-23",
+        "financial_security": "$27,750,000 (Corporate Guaranty or ILOC)",
+        "artifact": "sources/2026-07-19_puct_35077-1965_lst-funston-solar-IA.pdf"
+      }
+    ],
+    "milestones": [
+      {
+        "name": "NTP Need Date",
+        "original_ia": "2024-11-01"
+      },
+      {
+        "name": "TIF In-Service (Backfeed)",
+        "original_ia": "later of 2026-10-16 or 24mo after NTP"
+      },
+      {
+        "name": "Trial Operation (Sync)",
+        "original_ia": "later of 2026-10-30 or 2wk after TIF"
+      },
+      {
+        "name": "Scheduled COD",
+        "original_ia": "later of 2027-07-01 or 2mo after TIF"
+      }
+    ],
+    "source_docs": [
+      "sources/2026-07-19_puct_35077-1965_lst-funston-solar-IA.pdf"
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-07-01",
+    "independent": "2027-Q1",
+    "drift_risk": "low",
+    "reasoning_evidence": [
+      "EIA-860M status: 'under construction >50%' since 2026-03 \u2014 project physically well advanced",
+      "Sentinel-2 Jul 2026: multiple large rectangular dark-panel blocks clearly visible, array substantially complete",
+      "EIA planned COD: 2026-12 (vs queue 2027-07-01) \u2014 EIA shows developer targets Q4 2026/early 2027",
+      "IA Exhibit B: contractual COD 2027-07-01; TIF in-service backfeed by 2026-10-16; NTP given by 2024-11-01",
+      "0 COD slips in 27 monthly queue snapshots since 2024-04-01 \u2014 no drift ever",
+      "Developer NextEra/ESI Energy (tier-1) \u2014 strong execution track record",
+      "All 6.9 milestones cleared 2026-01-28; FIS approved 2025-12-17; financial security posted",
+      "EIA planned COD of 2026-12 suggests developer may target Q4 2026 commission; queue shows 2027-07-01 as latest contractual commitment"
+    ]
+  },
+  "real_project_verdict": "real_active",
+  "negative_searches": 8,
+  "banned_source_violations": 0
+}

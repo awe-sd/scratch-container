@@ -97,3 +97,18 @@ T7 result: triage_findings.json + triage.md written. 22 turns used. STOP.
 - build_index.py: 101 projects indexed
 - findings.json, dossier.md: complete
 - Verdict: real_active | stage: clearing | independent COD: 2027-Q2 | drift: medium
+
+## User recheck (2026-07-21): site provenance + Ch.312
+- Site derivation chain documented in findings.site.derivation_chain: IA Exhibit C POI text
+  -> Hagansport community geocode (low) -> imagery re-center onto the graded footprint
+  2.5km SSW (33.305,-95.275, medium-high). No parcel map exists in any filing.
+- Ch.312 recheck vs the full registry (live+reports+purged): negative by INR/SPV/developer/
+  county; Franklin is a non-reporting county (0 rows) so registry evidence alone is weak —
+  but Franklin Co attempted a solar MORATORIUM in 2023 (AG shot it down, ksstradio.com),
+  making a granted abatement genuinely unlikely; recorded as contextualized negative.
+- Minutes rung closed (2026-07-21): Franklin CC page hosts NO minutes/agendas online
+  (harvest = 3 procedural docs only). Paper minute books via TPIA request are the only
+  route; not pursued. The Lakelander lead was Hill County, not Franklin.
+
+## Shared-campus imagery (user-directed, 2026-07-21)
+5-date series covering the full Lupinus 1+2 campus at Hagansport Switch (frames identical in both project dirs). Groundbreaking 2026-03-17 (PR) corroborated: clearing visible 2026-04, ~4km contiguous earthworks by 2026-07-15. Verdict: clearing_grading_active for both INRs.

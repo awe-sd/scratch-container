@@ -1,6 +1,14 @@
 # Dossier — Juno 3 Solar (26INR0621)
 
-Researched 2026-07-19 · site 32.749, -101.625 · verdict **real_active**
+> **⚠️ SUPERSEDED (2026-07-21 second-pass review).** This 2026-07-19 dossier's SITE (32.749/-101.625)
+> and CONSTRUCTION ("active/racking") findings are **RETRACTED** — the coordinate was an undocumented
+> eyeball shift onto an operating neighbor plant, and the imagery captured operating ENGIE Long Draw Solar
+> + Juno Solar, not Juno 3. Corrected site ~32.767/-101.651 (POI Buck Canyon 345kV) with a real documented
+> chain, corrected verdict (real_early / pre-construction / COD drift high), and full provenance are in
+> **`sources/SITE_DERIVATION.md`**, **`findings.json`**, and **`brief.html`**. The ownership/interconnection
+> facts below are broadly right; treat the site/construction/COD lines as OUTDATED.
+
+Researched 2026-07-19 · site 32.749, -101.625 · verdict **real_active** *(retracted — see banner above)*
 
 ## 1. Verdict
 

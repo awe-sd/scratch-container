@@ -57,3 +57,36 @@ cdse.py chip returned HTTP 401 (Unauthorized) on all 9 grid attempts — CDSE cr
 triage_findings.json and triage.md written. Turns used: ~28. Run complete.
 
 **Tools blocked this triage:** gmaps.py (429), PUCT Interchange (402), CDSE imagery (401), opencorporates/bizapedia (CAPTCHA). Core queue data and IA milestone confirmed from internal data.
+
+---
+
+## Deep scan D0 — 2026-07-20
+
+findings.json skeleton written. Proceeding to D1 (IA schedule).
+
+## D1 — PUCT IA match + D3 — Site pin FOUND
+
+**KEY FIND:** Google Places "Miranda Site Entrance" — C5CW+W9, Fowlerton, TX 78021 — lat 28.422311, lon -98.804099 — in McMullen County, right county, Fowlerton area matching POI "Tap 345kV 5709 Fowlerton". This is a strong site-entrance candidate. Pursuing immediately.
+
+2026-07-20: puct.py match 24INR0161 — 0 hits (keys: Miranda Solar Project, Miranda Solar, Miranda). INR not in join table (24INR0161 absent from 1,743-entry puct_inr_join.json). TSP may be AEP (South Texas zone, SOUTH CDR), not Oncor — different name keys likely.
+2026-07-20: ch313.py resolve — no Ch.313 or JETI match. Normal for post-2022 solar.
+2026-07-20: spv.py resolve — no candidates.
+2026-07-20: exhibit.py scan — no PDFs in sources/.
+2026-07-20: search.py "Miranda Solar Project McMullen County Texas interconnection" — FAILED all backends.
+2026-07-20: gmaps.py places "Miranda Solar McMullen County Texas" — **HIT: "Miranda Site Entrance" 28.422311, -98.804099, Fowlerton TX 78021** (type: manufacturer,point_of_interest,establishment). This is the site entrance pin.
+
+## D1–D3 extended negative evidence (deep scan)
+
+2026-07-20: puct.py index refresh → 2530 filings. Searched AEP Texas Inc. 2024-2026 (96 items) — no Miranda anywhere. Full 2024-2026 solar IAs (~464 items) — no Miranda. IA not yet filed with PUCT or SPV name differs from queue name.
+2026-07-20: search.py "Miranda Solar Project Holding Texas renewable developer" — FAILED.
+2026-07-20: search.py "580 Westlake Park Blvd Houston solar developer Miranda" — FAILED.
+2026-07-20: CDSE chip (multiple attempts) — RemoteDisconnected on openEO /result endpoint. Auth OK. Platform processing outage. No imagery retrieved.
+2026-07-20: TX Comptroller franchise search "Miranda Solar" — JS-gated, no results renderable.
+2026-07-20: McMullen CAD (esearch.mcmullencad.org) — found portal, JS-gated owner search, no parcel data.
+2026-07-20: McMullen County commissioners court agendas 2024-2025 (9 PDFs sampled) — all scanned images, no text extractable. Cannot confirm Miranda mentions.
+2026-07-20: PUCT items 1879 (Bracero Pecan), 1880 (S&S Renewables) — fetched, not Miranda.
+2026-07-20: Overpass API 345kV infrastructure query — HTTP 406 error. No transmission map data.
+2026-07-20: opencorporates.com Miranda Solar — CAPTCHA block.
+2026-07-20: SEC EDGAR / Comptroller direct search — blocked by hook (not relevant channel).
+
+## D4-D5 — Synthesis and wrap-up

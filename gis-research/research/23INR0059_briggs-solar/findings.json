@@ -1,128 +1,145 @@
 {
-  "inr": "23INR0059",
-  "project": "Briggs Solar",
-  "research_date": "2026-07-19",
-  "verdict": "real_active",
-  "construction_stage": "racking_to_substantially_complete",
-  "site": {
-    "lat": 33.1443,
-    "lon": -99.5598,
-    "method": "EIA Form 860M May 2026 plant coordinates, corroborated by Ch313 improvement map (SE Haskell County / north of Paint Creek ISD) and Sentinel-2 imagery showing large solar array at these coords",
-    "confidence": "high",
-    "cross_checks": [
-      "EIA 860M Plant coords: 33.144326N, -99.55977W (Planned sheet, Briggs Solar LLC / Intersect USA)",
-      "Ch313 improvement map shows project in SE Haskell County north of Paint Creek ISD boundary, consistent with ~33.14N, 99.56W",
-      "Sentinel-2 2026-07-01 chip at EIA coords confirms large partially-installed solar array",
-      "Adjacent Quantum II Solar (Intersect, 33.137N/99.57W) already substantially complete — confirms corridor"
-    ]
+ "inr": "23INR0059",
+ "project": "Briggs Solar",
+ "research_date": "2026-07-19",
+ "verdict": "real_active",
+ "construction_stage": "racking_to_substantially_complete",
+ "site": {
+  "lat": 33.1443,
+  "lon": -99.5598,
+  "method": "EIA Form 860M May 2026 plant coordinates, corroborated by Ch313 improvement map (SE Haskell County / north of Paint Creek ISD) and Sentinel-2 imagery showing large solar array at these coords",
+  "confidence": "high",
+  "cross_checks": [
+   "EIA 860M Plant coords: 33.144326N, -99.55977W (Planned sheet, Briggs Solar LLC / Intersect USA)",
+   "Ch313 improvement map shows project in SE Haskell County north of Paint Creek ISD boundary, consistent with ~33.14N, 99.56W",
+   "Sentinel-2 2026-07-01 chip at EIA coords confirms large partially-installed solar array",
+   "Adjacent Quantum II Solar (Intersect, 33.137N/99.57W) already substantially complete \u2014 confirms corridor"
+  ]
+ },
+ "ownership_chain": [
+  {
+   "entity": "IP Quantum III, LLC (formerly Briggs Solar, LLC)",
+   "role": "SPV / project entity",
+   "evidence": "Ch313 application #1676 filed as Briggs Solar LLC; name changed to IP Quantum III LLC per Yahoo search snippet citing Texas LLC #0802381611; EIA 860M lists entity as Intersect USA, LLC",
+   "artifact": "sources/2026-07-19_comptroller_ch313_1676-briggs-app.pdf"
   },
-  "ownership_chain": [
-    {
-      "entity": "IP Quantum III, LLC (formerly Briggs Solar, LLC)",
-      "role": "SPV / project entity",
-      "evidence": "Ch313 application #1676 filed as Briggs Solar LLC; name changed to IP Quantum III LLC per Yahoo search snippet citing Texas LLC #0802381611; EIA 860M lists entity as Intersect USA, LLC",
-      "artifact": "sources/2026-07-19_comptroller_ch313_1676-briggs-app.pdf"
-    },
-    {
-      "entity": "Cypress Creek Renewables LLC / Cypress Creek Holdings LLC",
-      "role": "Original developer (2021-2024 era)",
-      "evidence": "Ch313 application cover letter names Nicko Keene and David Wagner of Cypress Creek Renewables; Amendment 1 names parent as Cypress Creek Holdings LLC (TID 32061651355); CCR address 5310 S Alston Ave Durham NC 27713 matches IP Quantum III address",
-      "artifact": "sources/2026-07-19_comptroller_ch313_1676-briggs-app.pdf page 2; sources/2026-07-19_comptroller_ch313_1676-briggs-amend1.pdf page 1"
-    },
-    {
-      "entity": "Intersect USA, LLC (Intersect Power)",
-      "role": "Current owner/developer (per EIA 860M May 2026)",
-      "evidence": "EIA 860M May 2026 lists Briggs Solar LLC plant with entity Intersect USA LLC; IP Quantum III name change and 'IP' prefix consistent with Intersect Power Quantum series in Haskell County (Quantum I/II already co-located at 33.01-33.14N, 99.56W); Google acquired Intersect Power (~$4.75B, Dec 2025)",
-      "artifact": "sources/2026-07-19_eia860m_may2026.xlsx (Planned sheet)"
-    }
-  ],
-  "land_and_county": {
-    "tenure": "leased",
-    "evidence": "Ch313 Tab 9 'Description of Land' = Not Applicable (same pattern as Hanson Solar leased ranchland; application fee confirms non-owned land)",
-    "artifact": "sources/2026-07-19_comptroller_ch313_1676-briggs-app.pdf page 20",
-    "abatement": "Ch313 application #1676 with Haskell CISD, approved by Board Dec 15 2022 (qualifying time period 2026-2027; limitation period begins Jan 1 2028)",
-    "abatement_artifact": "sources/2026-07-19_comptroller_ch313_1676-briggs-findings.pdf",
-    "cad_parcels": "Not searched (Haskell CAD portal offline/ECONNREFUSED)"
+  {
+   "entity": "Cypress Creek Renewables LLC / Cypress Creek Holdings LLC",
+   "role": "Original developer (2021-2024 era)",
+   "evidence": "Ch313 application cover letter names Nicko Keene and David Wagner of Cypress Creek Renewables; Amendment 1 names parent as Cypress Creek Holdings LLC (TID 32061651355); CCR address 5310 S Alston Ave Durham NC 27713 matches IP Quantum III address",
+   "artifact": "sources/2026-07-19_comptroller_ch313_1676-briggs-app.pdf page 2; sources/2026-07-19_comptroller_ch313_1676-briggs-amend1.pdf page 1"
   },
-  "project_area": {
-    "acres": 2405,
-    "source": "Ch313 Tab 4: 'estimated to be approximately 2,405 acres' reinvestment zone",
-    "artifact": "sources/2026-07-19_comptroller_ch313_1676-briggs-app.pdf page 15"
-  },
-  "interconnection": {
-    "poi": "tap 345kV 60515 Clear Crossing - 60507 Pendulo",
-    "counterparty": "ETT (Electric Transmission Texas / AEP Texas)",
-    "ia_signed": "2025-03-15",
-    "ia_source": "ERCOT queue milestone data (iaSigned = 2025-03-15); PUCT Interchange portal blocked (402)",
-    "ia_artifact": null,
-    "note": "Infrasure snippet confirms 'Interconnection Agreement executed with AEP Texas for Briggs Solar and Briggs Storage Projects'"
-  },
-  "contractual_schedule": {
-    "documents": [
-      {
-        "doc": "Standard Generation IA (ERCOT queue milestone)",
-        "signed": "2025-03-15",
-        "financial_security": "unknown — PUCT portal returned 402; IA PDF not retrieved",
-        "artifact": null
-      }
-    ]
-  },
-  "queue_history": {
-    "snapshots": 64,
-    "first_report": "2021-03-01",
-    "cod_changes": [
-      {"cod": "2024-05-31", "held_from": "2021-03-01", "held_until": "2022-06-01"},
-      {"cod": "2024-12-31", "held_from": "2022-07-01", "held_until": "2024-02-01"},
-      {"cod": "2027-09-15", "held_from": "2024-03-01", "held_until": "2025-11-01"},
-      {"cod": "2028-04-15", "held_from": "2025-12-01", "held_until": "2026-06-01"}
-    ],
-    "total_drift_years": 3.9,
-    "fis_approved": null,
-    "ia_signed": "2025-03-15",
-    "meets_691": "2025-03-24"
-  },
-  "satellite": {
-    "frames": [
-      {
-        "date": "2024-01",
-        "observation": "Undisturbed ranchland — no construction activity, no clearing",
-        "artifact": "imagery/key/s2_2024-01-pre.png"
-      },
-      {
-        "date": "2025-06",
-        "observation": "Active grading and clearing visible; rectangular pads taking shape in left portion of frame; early substation stub visible at center; Quantum II footprint being established",
-        "artifact": "imagery/key/s2_2025-06-mid.png"
-      },
-      {
-        "date": "2026-07",
-        "observation": "Large solar array substantially constructed — dark module blocks across most footprint; major substation/data-center complex visible; Briggs footprint (northern portion) shows module installation in progress",
-        "artifact": "imagery/key/s2_2026-07-latest.png"
-      }
-    ],
-    "verdict": "racking_to_substantially_complete",
-    "first_activity_bracket": "between 2024-01 and 2025-06",
-    "note": "Quantum II Solar (adjacent, COD Aug 2026) is largely complete. Briggs (Quantum III, COD Dec 2027) appears to be the northern portion of the same corridor where construction activity is visible but less complete than Quantum II"
-  },
-  "cod_assessment": {
-    "reported_cod": "2028-04-15",
-    "eia_cod": "2027-12",
-    "independent_estimate": "2027-Q4 to 2028-Q2",
-    "drift_risk": "medium",
-    "rationale": [
-      "IA signed Mar 2025, 6.9(1) cleared Mar 2025 — contractual anchor is real",
-      "EIA 860M Dec 2027 vs ERCOT queue Apr 2028 — 4-month discrepancy, typical mid-construction timeline uncertainty",
-      "COD slipped 3.9 years total since original 2024-05 target — pattern of optimism",
-      "Active construction visible in 2026-07 imagery adjacent to Quantum II complex",
-      "Quantum II (identical scale, same developer/site) reportedly reached operations Aug 2026 — Briggs is the sequential phase",
-      "FIS approval still not in queue (unusual for project with IA signed 16 months ago) — mild concern",
-      "No financing announcement found (contrast with Hanson Solar which had confirmed close Nov 2025)"
-    ]
-  },
-  "signals": {
-    "ia_found": true,
-    "abatement_found": true,
-    "construction_visible": true,
-    "developer_confirmed": true,
-    "financing_confirmed": false
+  {
+   "entity": "Intersect USA, LLC (Intersect Power)",
+   "role": "Current owner/developer (per EIA 860M May 2026)",
+   "evidence": "EIA 860M May 2026 lists Briggs Solar LLC plant with entity Intersect USA LLC; IP Quantum III name change and 'IP' prefix consistent with Intersect Power Quantum series in Haskell County (Quantum I/II already co-located at 33.01-33.14N, 99.56W); Google acquired Intersect Power (~$4.75B, Dec 2025)",
+   "artifact": "sources/2026-07-19_eia860m_may2026.xlsx (Planned sheet)"
   }
+ ],
+ "land_and_county": {
+  "tenure": "leased",
+  "evidence": "Ch313 Tab 9 'Description of Land' = Not Applicable (same pattern as Hanson Solar leased ranchland; application fee confirms non-owned land)",
+  "artifact": "sources/2026-07-19_comptroller_ch313_1676-briggs-app.pdf page 20",
+  "abatement": "Ch313 application #1676 with Haskell CISD, approved by Board Dec 15 2022 (qualifying time period 2026-2027; limitation period begins Jan 1 2028)",
+  "abatement_artifact": "sources/2026-07-19_comptroller_ch313_1676-briggs-findings.pdf",
+  "cad_parcels": "Not searched (Haskell CAD portal offline/ECONNREFUSED)"
+ },
+ "project_area": {
+  "acres": 2405,
+  "source": "Ch313 Tab 4: 'estimated to be approximately 2,405 acres' reinvestment zone",
+  "artifact": "sources/2026-07-19_comptroller_ch313_1676-briggs-app.pdf page 15"
+ },
+ "interconnection": {
+  "poi": "tap 345kV 60515 Clear Crossing - 60507 Pendulo",
+  "counterparty": "ETT (Electric Transmission Texas / AEP Texas)",
+  "ia_signed": "2025-03-15",
+  "ia_source": "ERCOT queue milestone data (iaSigned = 2025-03-15); PUCT Interchange portal blocked (402)",
+  "ia_artifact": null,
+  "note": "Infrasure snippet confirms 'Interconnection Agreement executed with AEP Texas for Briggs Solar and Briggs Storage Projects'"
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Standard Generation IA (ERCOT queue milestone)",
+    "signed": "2025-03-15",
+    "financial_security": "unknown \u2014 PUCT portal returned 402; IA PDF not retrieved",
+    "artifact": null
+   }
+  ]
+ },
+ "queue_history": {
+  "snapshots": 64,
+  "first_report": "2021-03-01",
+  "cod_changes": [
+   {
+    "cod": "2024-05-31",
+    "held_from": "2021-03-01",
+    "held_until": "2022-06-01"
+   },
+   {
+    "cod": "2024-12-31",
+    "held_from": "2022-07-01",
+    "held_until": "2024-02-01"
+   },
+   {
+    "cod": "2027-09-15",
+    "held_from": "2024-03-01",
+    "held_until": "2025-11-01"
+   },
+   {
+    "cod": "2028-04-15",
+    "held_from": "2025-12-01",
+    "held_until": "2026-06-01"
+   }
+  ],
+  "total_drift_years": 3.9,
+  "fis_approved": null,
+  "ia_signed": "2025-03-15",
+  "meets_691": "2025-03-24"
+ },
+ "satellite": {
+  "frames": [
+   {
+    "date": "2024-01",
+    "observation": "Undisturbed ranchland \u2014 no construction activity, no clearing",
+    "artifact": "imagery/key/s2_2024-01-pre.png"
+   },
+   {
+    "date": "2025-06",
+    "observation": "Active grading and clearing visible; rectangular pads taking shape in left portion of frame; early substation stub visible at center; Quantum II footprint being established",
+    "artifact": "imagery/key/s2_2025-06-mid.png"
+   },
+   {
+    "date": "2026-07",
+    "observation": "Large solar array substantially constructed \u2014 dark module blocks across most footprint; major substation/data-center complex visible; Briggs footprint (northern portion) shows module installation in progress",
+    "artifact": "imagery/key/s2_2026-07-latest.png"
+   }
+  ],
+  "verdict": "racking_to_substantially_complete",
+  "first_activity_bracket": "between 2024-01 and 2025-06",
+  "note": "Quantum II Solar (adjacent, COD Aug 2026) is largely complete. Briggs (Quantum III, COD Dec 2027) appears to be the northern portion of the same corridor where construction activity is visible but less complete than Quantum II"
+ },
+ "cod_assessment": {
+  "reported_cod": "2028-04-15",
+  "eia_cod": "2027-12",
+  "independent_estimate": "2027-Q4 to 2028-Q2",
+  "drift_risk": "medium",
+  "rationale": [
+   "IA signed Mar 2025, 6.9(1) cleared Mar 2025 \u2014 contractual anchor is real",
+   "EIA 860M Dec 2027 vs ERCOT queue Apr 2028 \u2014 4-month discrepancy, typical mid-construction timeline uncertainty",
+   "COD slipped 3.9 years total since original 2024-05 target \u2014 pattern of optimism",
+   "Active construction visible in 2026-07 imagery adjacent to Quantum II complex",
+   "Quantum II (identical scale, same developer/site) reportedly reached operations Aug 2026 \u2014 Briggs is the sequential phase",
+   "FIS approval still not in queue (unusual for project with IA signed 16 months ago) \u2014 mild concern",
+   "No financing announcement found (contrast with Hanson Solar which had confirmed close Nov 2025)"
+  ]
+ },
+ "signals": {
+  "ia_found": true,
+  "abatement_found": true,
+  "construction_visible": true,
+  "developer_confirmed": true,
+  "financing_confirmed": false
+ },
+ "real_project_verdict": "real_active"
 }

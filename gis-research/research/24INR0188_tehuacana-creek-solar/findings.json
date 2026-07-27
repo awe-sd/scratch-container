@@ -1,141 +1,142 @@
 {
-  "inr": "24INR0188",
-  "project": "Tehuacana Creek Solar",
-  "research_date": "2026-07-19",
-  "verdict": "real_early",
-  "construction_stage": "pre_construction",
-  "site": {
-    "lat": 31.862,
-    "lon": -96.38,
-    "method": "road-network triangulation from special road use permit (SW CR 2370/2380/2360/2386/FM246 cluster, Precinct 3, Navarro County)",
-    "confidence": "medium",
-    "cross_checks": [
-      "Road use permit routes cluster in 31.85\u201331.88N, 96.36\u201396.43W per Overpass OSM query",
-      "FM 246 confirmed at 31.878\u201331.880, -96.34 to -96.39",
-      "SW CR 2386 center 31.860, -96.387; SW CR 2380 center 31.871, -96.382",
-      "POI (Big Brown\u2013Navarro 345kV corridor) consistent with SW Navarro County location",
-      "Utility easement: Precinct 3, construction Apr 2026\u2013Apr 2027"
-    ],
-    "not_obtainable": "Exact array centroid without imagery; POI tap GPS coordinates (CEII); Google Maps pin blocked by API rate limit"
-  },
-  "owner_chain": [
-    {
-      "entity": "Tehuacana Creek Solar, LLC",
-      "role": "SPV",
-      "evidence": "Navarro CC road permit Oct 2025, bond, utility easement Jan 2026"
-    },
-    {
-      "entity": "Parliament Energy Holdings, LLC",
-      "role": "developer/operator",
-      "address": "9651 Katy Fwy Suite 600, Houston TX 77024",
-      "evidence": "Road permit (c/o Parliament Energy Holdings LLC) and parliamentenergy.com portfolio"
-    },
-    {
-      "entity": "EnCap Investments",
-      "role": "equity backer",
-      "evidence": "Road bond transmittal letter addressed to 'EnCap Investments, Parliament Energy Holdings LLC'"
-    },
-    {
-      "entity": "Mercuria Energy",
-      "role": "equity backer",
-      "evidence": "parliamentenergy.com \u2014 'backed by EnCap Investments and Mercuria Energy'"
-    }
+ "inr": "24INR0188",
+ "project": "Tehuacana Creek Solar",
+ "research_date": "2026-07-19",
+ "verdict": "real_early",
+ "construction_stage": "pre_construction",
+ "site": {
+  "lat": 31.862,
+  "lon": -96.38,
+  "method": "road-network triangulation from special road use permit (SW CR 2370/2380/2360/2386/FM246 cluster, Precinct 3, Navarro County)",
+  "confidence": "medium",
+  "cross_checks": [
+   "Road use permit routes cluster in 31.85\u201331.88N, 96.36\u201396.43W per Overpass OSM query",
+   "FM 246 confirmed at 31.878\u201331.880, -96.34 to -96.39",
+   "SW CR 2386 center 31.860, -96.387; SW CR 2380 center 31.871, -96.382",
+   "POI (Big Brown\u2013Navarro 345kV corridor) consistent with SW Navarro County location",
+   "Utility easement: Precinct 3, construction Apr 2026\u2013Apr 2027"
   ],
-  "contacts": [
-    {
-      "name": "Bradman Moore",
-      "role": "project contact (road permit)",
-      "phone": "832-808-4920"
-    },
-    {
-      "name": "Harold E. Coulby Jr.",
-      "role": "project contact (utility easement)",
-      "phone": "713-659-6100"
-    }
-  ],
-  "land_tenure": {
-    "status": "unknown",
-    "evidence": "No CAD parcels under LLC or developer; no deed recorded; likely leased farmland"
+  "not_obtainable": "Exact array centroid without imagery; POI tap GPS coordinates (CEII); Google Maps pin blocked by API rate limit"
+ },
+ "owner_chain": [
+  {
+   "entity": "Tehuacana Creek Solar, LLC",
+   "role": "SPV",
+   "evidence": "Navarro CC road permit Oct 2025, bond, utility easement Jan 2026"
   },
-  "project_area": {
-    "acres": null,
-    "source": "not found \u2014 no abatement application, CAD parcels not retrieved",
-    "artifact": null,
-    "note": "505 MW solar \u2192 ~2,500\u20134,500 acres expected; road bond covers ~8 road-miles in SW Navarro County Pct 3"
+  {
+   "entity": "Parliament Energy Holdings, LLC",
+   "role": "developer/operator",
+   "address": "9651 Katy Fwy Suite 600, Houston TX 77024",
+   "evidence": "Road permit (c/o Parliament Energy Holdings LLC) and parliamentenergy.com portfolio"
   },
-  "county_records": {
-    "road_permit_Oct2025": {
-      "date": "2025-10-14",
-      "type": "Special Road Use Permit + Bond",
-      "roads": [
-        "FM 246 (1.1 mi)",
-        "SW CR 2386 (1.26 mi)",
-        "SW CR 2380 (2.95 mi)",
-        "SW CR 2370 (1.09 mi)",
-        "SW CR 2360 (1.38 mi)"
-      ],
-      "bond_amount": "$800,000",
-      "surety": "Accelerant National Insurance Company via McGriff/Marsh McLennan",
-      "bond_expires": "2026-09-15",
-      "artifact": "sources/2026-07-19_navarro-cc_2025-10-14-tehuacana-road-permit.pdf"
-    },
-    "utility_easement_Jan2026": {
-      "date_filed": "2025-12-12",
-      "date_approved": "2026-01-12",
-      "type": "Utility Easement (Solar Project), Precinct 3",
-      "construction_start_estimated": "2026-04-01",
-      "construction_completion_estimated": "2027-04-01",
-      "artifact": "sources/2026-07-19_navarro-cc_2026-01-12-tehuacana-utility-easement.pdf"
-    },
-    "cad_parcels": "0 hits under Tehuacana Creek Solar LLC or Parliament Energy \u2014 expected if leased land (no ownership transfer)",
-    "abatement": "not found \u2014 no Ch.312/JETI application identified in Navarro CC minutes through Jul 2026"
+  {
+   "entity": "EnCap Investments",
+   "role": "equity backer",
+   "evidence": "Road bond transmittal letter addressed to 'EnCap Investments, Parliament Energy Holdings LLC'"
   },
-  "interconnection": {
-    "ia_signed": "2024-11-25",
-    "poi": "Tap 345kV 3381 Big Brown \u2013 68091 Navarro circuit",
-    "tso": "Oncor Electric Delivery",
-    "ia_pdf": "not retrieved (PUCT Interchange 402 authentication required)",
-    "milestones_from_queue": {
-      "screening_complete": "2022-03-10",
-      "fis_approved": "2026-06-16",
-      "ia_signed": "2024-11-25",
-      "meets_6_9_1": "2025-02-12",
-      "meets_all_6_9": "2026-04-23"
-    }
-  },
-  "contractual_schedule": {
-    "documents": [
-      {
-        "doc": "Interconnection Agreement (signed 2024-11-25)",
-        "signed": "2024-11-25",
-        "financial_security": "unknown (IA PDF not retrieved)",
-        "artifact": null
-      }
-    ]
-  },
-  "satellite": {
-    "verdict": "not_assessed",
-    "reason": "CDSE credentials invalid (HTTP 403 on token request); Google Static Maps API not enabled; no imagery retrieved",
-    "construction_visible": null,
-    "note": "Developer utility easement states construction start 4/1/2026 \u2014 site may be in very early grading or pre-construction as of Jul 2026"
-  },
-  "cod_assessment": {
-    "reported_cod": "2027-05-18",
-    "developer_stated_cod": "Q4 2027",
-    "utility_easement_completion": "2027-04-01",
-    "independent_estimate": "2027-Q4",
-    "drift_risk": "high",
-    "drift_rationale": "8 COD slips over 5+ years (2024-06 \u2192 2027-05); developer's own portfolio page says Q4 2027 not Q2 2027 as queue claims; utility easement completion 4/1/2027 implies ~6-9 months commissioning runway to Q4 2027 COD; FIS only approved Jun 2026 leaving tight window; no financing close or EPC announcement found"
-  },
-  "queue_history": {
-    "first_in_queue": "2021-12-01",
-    "snapshots": 55,
-    "cod_drift_events": 8,
-    "cod_first": "2024-06-01",
-    "cod_latest": "2027-05-18",
-    "capacity_MW_first": 700.0,
-    "capacity_MW_latest": 505.43,
-    "capacity_cut_date": "2024-07-01",
-    "capacity_cut_reason": "unknown (coincides with FIS approval delay)"
+  {
+   "entity": "Mercuria Energy",
+   "role": "equity backer",
+   "evidence": "parliamentenergy.com \u2014 'backed by EnCap Investments and Mercuria Energy'"
   }
+ ],
+ "contacts": [
+  {
+   "name": "Bradman Moore",
+   "role": "project contact (road permit)",
+   "phone": "832-808-4920"
+  },
+  {
+   "name": "Harold E. Coulby Jr.",
+   "role": "project contact (utility easement)",
+   "phone": "713-659-6100"
+  }
+ ],
+ "land_tenure": {
+  "status": "unknown",
+  "evidence": "No CAD parcels under LLC or developer; no deed recorded; likely leased farmland"
+ },
+ "project_area": {
+  "acres": null,
+  "source": "not found \u2014 no abatement application, CAD parcels not retrieved",
+  "artifact": null,
+  "note": "505 MW solar \u2192 ~2,500\u20134,500 acres expected; road bond covers ~8 road-miles in SW Navarro County Pct 3"
+ },
+ "county_records": {
+  "road_permit_Oct2025": {
+   "date": "2025-10-14",
+   "type": "Special Road Use Permit + Bond",
+   "roads": [
+    "FM 246 (1.1 mi)",
+    "SW CR 2386 (1.26 mi)",
+    "SW CR 2380 (2.95 mi)",
+    "SW CR 2370 (1.09 mi)",
+    "SW CR 2360 (1.38 mi)"
+   ],
+   "bond_amount": "$800,000",
+   "surety": "Accelerant National Insurance Company via McGriff/Marsh McLennan",
+   "bond_expires": "2026-09-15",
+   "artifact": "sources/2026-07-19_navarro-cc_2025-10-14-tehuacana-road-permit.pdf"
+  },
+  "utility_easement_Jan2026": {
+   "date_filed": "2025-12-12",
+   "date_approved": "2026-01-12",
+   "type": "Utility Easement (Solar Project), Precinct 3",
+   "construction_start_estimated": "2026-04-01",
+   "construction_completion_estimated": "2027-04-01",
+   "artifact": "sources/2026-07-19_navarro-cc_2026-01-12-tehuacana-utility-easement.pdf"
+  },
+  "cad_parcels": "0 hits under Tehuacana Creek Solar LLC or Parliament Energy \u2014 expected if leased land (no ownership transfer)",
+  "abatement": "not found \u2014 no Ch.312/JETI application identified in Navarro CC minutes through Jul 2026"
+ },
+ "interconnection": {
+  "ia_signed": "2024-11-25",
+  "poi": "Tap 345kV 3381 Big Brown \u2013 68091 Navarro circuit",
+  "tso": "Oncor Electric Delivery",
+  "ia_pdf": "not retrieved (PUCT Interchange 402 authentication required)",
+  "milestones_from_queue": {
+   "screening_complete": "2022-03-10",
+   "fis_approved": "2026-06-16",
+   "ia_signed": "2024-11-25",
+   "meets_6_9_1": "2025-02-12",
+   "meets_all_6_9": "2026-04-23"
+  }
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Interconnection Agreement (signed 2024-11-25)",
+    "signed": "2024-11-25",
+    "financial_security": "unknown (IA PDF not retrieved)",
+    "artifact": null
+   }
+  ]
+ },
+ "satellite": {
+  "verdict": "not_assessed",
+  "reason": "CDSE credentials invalid (HTTP 403 on token request); Google Static Maps API not enabled; no imagery retrieved",
+  "construction_visible": null,
+  "note": "Developer utility easement states construction start 4/1/2026 \u2014 site may be in very early grading or pre-construction as of Jul 2026"
+ },
+ "cod_assessment": {
+  "reported_cod": "2027-05-18",
+  "developer_stated_cod": "Q4 2027",
+  "utility_easement_completion": "2027-04-01",
+  "independent_estimate": "2027-Q4",
+  "drift_risk": "high",
+  "drift_rationale": "8 COD slips over 5+ years (2024-06 \u2192 2027-05); developer's own portfolio page says Q4 2027 not Q2 2027 as queue claims; utility easement completion 4/1/2027 implies ~6-9 months commissioning runway to Q4 2027 COD; FIS only approved Jun 2026 leaving tight window; no financing close or EPC announcement found"
+ },
+ "queue_history": {
+  "first_in_queue": "2021-12-01",
+  "snapshots": 55,
+  "cod_drift_events": 8,
+  "cod_first": "2024-06-01",
+  "cod_latest": "2027-05-18",
+  "capacity_MW_first": 700.0,
+  "capacity_MW_latest": 505.43,
+  "capacity_cut_date": "2024-07-01",
+  "capacity_cut_reason": "unknown (coincides with FIS approval delay)"
+ },
+ "real_project_verdict": "real_early"
 }

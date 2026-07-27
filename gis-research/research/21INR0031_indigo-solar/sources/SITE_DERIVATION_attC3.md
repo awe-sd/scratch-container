@@ -23,3 +23,11 @@ consistent with C-3 road/line geometry). To verify visually: chip this point wid
 CDSE was connection-saturated by the parallel fleet at time of writing — retry.
 verdict-relevant: rename the IA PDF from unverified_* only after eyeballing parties
 page (Innovative Solar 245, LLC ↔ Lone Star Transmission, LLC).
+
+## LOCATION VERIFIED (2026-07-20, deterministic)
+OSM/Overpass within 4 km of 32.628,-100.236 names: County Road 151, County Road 164,
+FM 1085, and a 345kV power line — every Attachment C-3 anchor present at this point
+(plus CR 160/161/163/165 of the same grid). C-3 is labeled "Conceptual"/not-to-scale,
+so visual road alignment against chips is expected to be loose; the road NAMES are the
+verification. Verify chip: imagery/s2_2026-07_verify-4km.png (0.1% cloud) — bright pad
+at center = New Lone Star Station area.

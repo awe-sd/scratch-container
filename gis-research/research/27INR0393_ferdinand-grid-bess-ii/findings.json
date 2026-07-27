@@ -1,96 +1,113 @@
 {
-  "inr": "27INR0393",
-  "project": "Ferdinand Grid BESS II",
-  "research_date": "2026-07-19",
-  "verdict": "real_early",
-  "construction_stage": "no_activity",
-  "site": {
-    "lat": 29.3503,
-    "lon": -98.5752,
-    "method": "OSM exact name match: POI '5260 Leon Creek 138kV' = Leon Creek Switchyard (CPS Energy 138kV transmission, OSM way 317830185); confirmed by companion BESS I (22INR0422) being online at same POI",
-    "confidence": "high",
-    "artifact": "sources/2026-07-19_osm_leon-creek-switchyard.json"
+ "inr": "27INR0393",
+ "project": "Ferdinand Grid BESS II",
+ "research_date": "2026-07-19",
+ "verdict": "real_early",
+ "construction_stage": "no_activity",
+ "site": {
+  "lat": 29.3503,
+  "lon": -98.5752,
+  "method": "OSM exact name match: POI '5260 Leon Creek 138kV' = Leon Creek Switchyard (CPS Energy 138kV transmission, OSM way 317830185); confirmed by companion BESS I (22INR0422) being online at same POI",
+  "confidence": "high",
+  "artifact": "sources/2026-07-19_osm_leon-creek-switchyard.json"
+ },
+ "project_area": {
+  "acres": null,
+  "source": "Not found \u2014 no IA, no abatement; BESS likely sited on CPS Energy land within or adjacent to Leon Creek Power Plant complex (7718 Quintana Rd, Bexar County)",
+  "artifact": null
+ },
+ "ownership_chain": [
+  {
+   "entity": "Ferdinand Grid BESS II, LLC",
+   "role": "SPV (presumed)",
+   "evidence": "INR project name; not found in TX SOS/Comptroller (may be registered as Coval Infrastructure DevCo or a sister LLC)",
+   "artifact": null
   },
-  "project_area": {
-    "acres": null,
-    "source": "Not found — no IA, no abatement; BESS likely sited on CPS Energy land within or adjacent to Leon Creek Power Plant complex (7718 Quintana Rd, Bexar County)",
-    "artifact": null
+  {
+   "entity": "Coval Infrastructure DevCo LLC",
+   "role": "developer SPV / project co",
+   "evidence": "TX LLC ID 0805845202, founded 2024-12-30, 11801 Domain Blvd Suite 450 Austin TX; member = Ambar Power DevCo Holdco LLC",
+   "artifact": "sources/2026-07-19_bizapedia_coval-infrastructure-devco.html"
   },
-  "ownership_chain": [
-    {
-      "entity": "Ferdinand Grid BESS II, LLC",
-      "role": "SPV (presumed)",
-      "evidence": "INR project name; not found in TX SOS/Comptroller (may be registered as Coval Infrastructure DevCo or a sister LLC)",
-      "artifact": null
-    },
-    {
-      "entity": "Coval Infrastructure DevCo LLC",
-      "role": "developer SPV / project co",
-      "evidence": "TX LLC ID 0805845202, founded 2024-12-30, 11801 Domain Blvd Suite 450 Austin TX; member = Ambar Power DevCo Holdco LLC",
-      "artifact": "sources/2026-07-19_bizapedia_coval-infrastructure-devco.html"
-    },
-    {
-      "entity": "Ambar Power DevCo Holdco LLC",
-      "role": "intermediate holdco",
-      "evidence": "Listed as member of Coval Infrastructure DevCo LLC on Bizapedia TX filing",
-      "artifact": "sources/2026-07-19_bizapedia_coval-infrastructure-devco.html"
-    },
-    {
-      "entity": "AYPA Power",
-      "role": "developer/operator platform",
-      "evidence": "Blackstone portfolio company; Yahoo search 'Ambar Power Texas' returns AYPA links; BX Ambar Power 2 Aggregator GP LLC in Blackstone EX-21.1; 33 projects N America",
-      "artifact": "sources/2026-07-19_aypa-power_homepage.html"
-    },
-    {
-      "entity": "Blackstone Inc (BX)",
-      "role": "ultimate parent / investor",
-      "evidence": "BX Ambar Power 2 Aggregator GP L.L.C. in Blackstone 10-K EX-21.1 (2025-02-28); AYPA Power described as Blackstone portfolio company",
-      "artifact": "sources/2026-07-19_sec_blackstone-ex211-subsidiaries.htm"
-    }
-  ],
-  "interconnection": {
-    "ia_signed": false,
-    "ia_date": null,
-    "ia_artifact": null,
-    "poi_confirmed": "Leon Creek 138kV switchyard (CPS Energy), 29.3503, -98.5752",
-    "poi_source": "OSM way 317830185 + queue POI description match",
-    "financial_security": null
+  {
+   "entity": "Ambar Power DevCo Holdco LLC",
+   "role": "intermediate holdco",
+   "evidence": "Listed as member of Coval Infrastructure DevCo LLC on Bizapedia TX filing",
+   "artifact": "sources/2026-07-19_bizapedia_coval-infrastructure-devco.html"
   },
-  "contractual_schedule": {
-    "documents": []
+  {
+   "entity": "AYPA Power",
+   "role": "developer/operator platform",
+   "evidence": "Blackstone portfolio company; Yahoo search 'Ambar Power Texas' returns AYPA links; BX Ambar Power 2 Aggregator GP LLC in Blackstone EX-21.1; 33 projects N America",
+   "artifact": "sources/2026-07-19_aypa-power_homepage.html"
   },
-  "queue_milestones": {
-    "screening_started": "2024-12-19",
-    "screening_complete": "2025-03-04",
-    "fis_requested": "2024-12-03",
-    "fis_approved": null,
-    "ia_signed": null,
-    "construction_start": null
-  },
-  "cod_drift": [
-    {"cod": "2027-06-08", "held_from": "2024-12-01", "until": "2026-05-01"},
-    {"cod": "2027-12-01", "held_from": "2026-06-01", "until": "2026-06-01"}
-  ],
-  "companion_bess1": {
-    "inr": "22INR0422",
-    "project": "Ferdinand Grid BESS",
-    "ia_signed": "2022-11-28",
-    "commercial_operation_approved": "2026-06-09",
-    "cod_slips": 3,
-    "cod_range": "2023-05-31 to 2026-05-01",
-    "note": "Same POI, same developer; BESS I is now ONLINE — confirms active developer at this exact site but also confirms ~3-year slip precedent"
-  },
-  "satellite": {
-    "verdict": "no_activity",
-    "frames": [
-      {"date": "2026-07-01", "observation": "Existing CPS Energy complex visible; BESS I now operational; no new BESS II pad detectable at 1km resolution", "artifact": "imagery/s2_2026-07-01_1km.png"},
-      {"date": "2025-07-01", "observation": "Some brown/graded areas adjacent to power plant (BESS I under construction at that time)", "artifact": "imagery/s2_2025-07-01_plant.png"}
-    ],
-    "note": "CDSE 401 errors prevented timelapse; no IA = no construction expected"
-  },
-  "independent_cod": {
-    "estimate": "2028-Q4",
-    "drift_risk": "high",
-    "rationale": "FIS not approved as of Jun 2026 (18+ months pending); typical path FIS approval → IA execution 3-6 months → construction start → 12-18 months build → COD. Optimistic scenario: FIS late 2026, IA early 2027, construction mid-2027, COD late 2028. BESS I set 3-year slip precedent at same site. Reported COD 2027-12-01 requires FIS approval within weeks — not supported by queue data."
+  {
+   "entity": "Blackstone Inc (BX)",
+   "role": "ultimate parent / investor",
+   "evidence": "BX Ambar Power 2 Aggregator GP L.L.C. in Blackstone 10-K EX-21.1 (2025-02-28); AYPA Power described as Blackstone portfolio company",
+   "artifact": "sources/2026-07-19_sec_blackstone-ex211-subsidiaries.htm"
   }
+ ],
+ "interconnection": {
+  "ia_signed": false,
+  "ia_date": null,
+  "ia_artifact": null,
+  "poi_confirmed": "Leon Creek 138kV switchyard (CPS Energy), 29.3503, -98.5752",
+  "poi_source": "OSM way 317830185 + queue POI description match",
+  "financial_security": null
+ },
+ "contractual_schedule": {
+  "documents": []
+ },
+ "queue_milestones": {
+  "screening_started": "2024-12-19",
+  "screening_complete": "2025-03-04",
+  "fis_requested": "2024-12-03",
+  "fis_approved": null,
+  "ia_signed": null,
+  "construction_start": null
+ },
+ "cod_drift": [
+  {
+   "cod": "2027-06-08",
+   "held_from": "2024-12-01",
+   "until": "2026-05-01"
+  },
+  {
+   "cod": "2027-12-01",
+   "held_from": "2026-06-01",
+   "until": "2026-06-01"
+  }
+ ],
+ "companion_bess1": {
+  "inr": "22INR0422",
+  "project": "Ferdinand Grid BESS",
+  "ia_signed": "2022-11-28",
+  "commercial_operation_approved": "2026-06-09",
+  "cod_slips": 3,
+  "cod_range": "2023-05-31 to 2026-05-01",
+  "note": "Same POI, same developer; BESS I is now ONLINE \u2014 confirms active developer at this exact site but also confirms ~3-year slip precedent"
+ },
+ "satellite": {
+  "verdict": "no_activity",
+  "frames": [
+   {
+    "date": "2026-07-01",
+    "observation": "Existing CPS Energy complex visible; BESS I now operational; no new BESS II pad detectable at 1km resolution",
+    "artifact": "imagery/s2_2026-07-01_1km.png"
+   },
+   {
+    "date": "2025-07-01",
+    "observation": "Some brown/graded areas adjacent to power plant (BESS I under construction at that time)",
+    "artifact": "imagery/s2_2025-07-01_plant.png"
+   }
+  ],
+  "note": "CDSE 401 errors prevented timelapse; no IA = no construction expected"
+ },
+ "independent_cod": {
+  "estimate": "2028-Q4",
+  "drift_risk": "high",
+  "rationale": "FIS not approved as of Jun 2026 (18+ months pending); typical path FIS approval \u2192 IA execution 3-6 months \u2192 construction start \u2192 12-18 months build \u2192 COD. Optimistic scenario: FIS late 2026, IA early 2027, construction mid-2027, COD late 2028. BESS I set 3-year slip precedent at same site. Reported COD 2027-12-01 requires FIS approval within weeks \u2014 not supported by queue data."
+ },
+ "real_project_verdict": "real_early"
 }

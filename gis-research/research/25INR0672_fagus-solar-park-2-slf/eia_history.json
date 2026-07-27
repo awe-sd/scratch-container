@@ -1,0 +1,84 @@
+{
+ "inr": "25INR0672",
+ "plant_id": 67123,
+ "plant_name": "Fagus Solar Park",
+ "entity": "Excel Advantage Services, LLC",
+ "matched_by": "name match",
+ "first_report": "2024-01-01",
+ "last_report": "2026-05-01",
+ "planned_cod_history": [
+  {
+   "value": "2025-03",
+   "from": "2024-01-01",
+   "to": "2024-05-01"
+  },
+  {
+   "value": "2026-03",
+   "from": "2024-06-01",
+   "to": "2026-01-01"
+  },
+  {
+   "value": "2026-04",
+   "from": "2026-02-01",
+   "to": "2026-03-01"
+  },
+  {
+   "value": null,
+   "from": "2026-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 517.0,
+   "from": "2024-01-01",
+   "to": "2024-05-01"
+  },
+  {
+   "value": 331.6,
+   "from": "2024-06-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "status_history": [
+  {
+   "value": "(U) Under construction, less than or equal to 50 percent complete",
+   "from": "2024-01-01",
+   "to": "2024-12-01"
+  },
+  {
+   "value": "(V) Under construction, more than 50 percent complete",
+   "from": "2025-01-01",
+   "to": "2026-03-01"
+  },
+  {
+   "value": "(OP) Operating",
+   "from": "2026-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "queue_reported_cod": "2026-05-20",
+ "energy_capacity_mwh_history": [
+  {
+   "value": null,
+   "from": "2024-01-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "operating_date_history": [
+  {
+   "value": null,
+   "from": "2024-01-01",
+   "to": "2026-03-01"
+  },
+  {
+   "value": "2025-12",
+   "from": "2026-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "eia_county": "Childress",
+ "eia_lat": 34.35099,
+ "eia_lon": -100.0493,
+ "dropped_from_860m": null
+}

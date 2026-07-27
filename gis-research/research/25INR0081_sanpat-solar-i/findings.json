@@ -1,98 +1,123 @@
 {
-  "inr": "25INR0081",
-  "project": "SanPat Solar I",
-  "research_date": "2026-07-19",
-  "verdict": "real_active",
-  "developer_chain": {
-    "spv": "Padre Solar LLC",
-    "agent": "CGRP 10, LLC (Designated Interconnection Agent)",
-    "developer": "CleanGen Inc. (Bechtel's renewable energy development subsidiary)",
-    "parent": "Bechtel Enterprises, Inc.",
-    "evidence": "sources/2026-07-19_puct_35077-2434_aep-sanpat-solar-IA-amend2.pdf (Exhibit D)"
-  },
-  "site": {
-    "lat": 28.015,
-    "lon": -97.41,
-    "method": "Sentinel-2 imagery feature — large installed solar array identified at 28.015N/97.41W; cross-checked with IA Exhibit C 'approx 6.6 miles north of Gregory TX' (28.018N estimate); actual site is ~6.3 miles NNW of Gregory",
-    "confidence": "high",
-    "cross_checks": [
-      "IA Exhibit C: 'SanPat Solar I Substation will be located in San Patricio County approximately 6.6 miles north of Gregory, Texas' — sources/2026-07-19_puct_35077-1780_aep-sanpat-solar-IA-amend1.pdf",
-      "Sentinel-2 2026-07-10: large installed solar array confirmed at 28.015N, 97.41W — imagery/key/s2_2026-07-10_center.png"
-    ]
-  },
-  "project_area": {
-    "acres": null,
-    "source": "IA does not state acreage; CAD 0 hits for LLC. Area not determinable from available documents.",
-    "artifact": null,
-    "note": "Imagery footprint spans ~4-5 km diagonal (>1,000 acres estimated from 308 MW at ~10 W/sqft); exact acreage not confirmed from primary docs"
-  },
-  "construction": {
-    "stage": "substantially_complete",
-    "first_activity_seen": "2024-Q4",
-    "evidence": "imagery/key/s2_2024-11-01.png shows panels installed; s2_2024-08-01.png shows cleared fields without panels",
-    "latest_frame": "imagery/key/s2_2026-07-10_center.png",
-    "note": "Grading/site prep visible Jan 2024 before First Amended IA (Mar 2024). Panels installed by Nov 2024. Site substantially complete Jul 2026."
-  },
-  "interconnection": {
-    "tsp": "AEP Texas Inc.",
-    "poi": "Lucero Station (new 345kV station to be built by AEP on Angstrom-Naismith 345kV line)",
-    "poi_note": "Queue POI 'Tap 345kV 8249 Angstrom – 8659 Naismith' describes the transmission line being tapped; Lucero is the new station being built at the tap point",
-    "delivery_voltage_kv": 345,
-    "ia_original_date": "2023-10-18",
-    "ia_first_amended_date": "2024-03-26",
-    "ia_second_amended_date": "2026-02-23",
-    "equipment": "82 units × Sungrow SG4400UD-MV-US; 308.8 MW"
-  },
-  "contractual_schedule": {
-    "reference_date": "2023-10-18",
-    "in_service": "2026-10-18",
-    "trial_operation_phase1": "2027-05-18",
-    "cod_phase1": "2027-06-18",
-    "documents": [
-      {
-        "doc": "Original IA",
-        "signed": "2023-10-18",
-        "financial_security": "$28,000,000",
-        "artifact": "referenced in First Amended IA cover letter — sources/2026-07-19_puct_35077-1780_aep-sanpat-solar-IA-amend1.pdf"
-      },
-      {
-        "doc": "First Amended and Restated IA (PUCT 35077-1780)",
-        "signed": "2024-03-26",
-        "financial_security": "$28,000,000",
-        "artifact": "sources/2026-07-19_puct_35077-1780_aep-sanpat-solar-IA-amend1.pdf"
-      },
-      {
-        "doc": "Second Amended and Restated IA (PUCT 35077-2434)",
-        "signed": "2026-02-23",
-        "financial_security": "$37,500,000 ($28M + $9.5M increase)",
-        "artifact": "sources/2026-07-19_puct_35077-2434_aep-sanpat-solar-IA-amend2.pdf"
-      }
-    ]
-  },
-  "cod_assessment": {
-    "reported_cod": "2027-07-08",
-    "contractual_cod": "2027-06-18 (44 months from 2023-10-18)",
-    "independent_estimate": "2027-Q2",
-    "drift_risk": "medium",
-    "drift_rationale": "Panels substantially complete Jul 2026 with ~10-11 months to contractual In-Service (Oct 2026); site appears ahead of civil/racking schedule. Remaining risk: Lucero Station TIF construction by AEP (TSP), final electrical commissioning, grid synchronization. COD drift history: 5 changes over queue life (2025-07 → 2027-07), mostly front-loaded slippage. Most recent COD stable since Oct 2025. Financial security increased by $9.5M in Feb 2026 = continued commitment. Medium risk because TSP-side TIF completion is external to generator control."
-  },
-  "signals": {
-    "ia_found": true,
-    "ia_amendments": 2,
-    "abatement_found": false,
-    "pins_found": 0,
-    "news_found": false,
-    "construction_visible": true
-  },
-  "imagery": {
-    "frames": [
-      {"date": "2024-01-01", "obs": "graded/cleared fields, no panels", "file": "imagery/key/s2_2024-01-01.png"},
-      {"date": "2024-08-01", "obs": "partly cloudy; cleared fields, no panels", "file": "imagery/key/s2_2024-08-01.png"},
-      {"date": "2024-11-01", "obs": "panel arrays first visible — racking installed", "file": "imagery/key/s2_2024-11-01.png"},
-      {"date": "2025-01-01", "obs": "panels clearly installed, multiple parcels", "file": "imagery/key/s2_2025-01-01.png"},
-      {"date": "2026-01-01", "obs": "panels installed, operational", "file": "imagery/key/s2_2026-01-01.png"},
-      {"date": "2026-07-10", "obs": "substantially complete solar farm", "file": "imagery/key/s2_2026-07-10_center.png"}
-    ],
-    "contact_sheet": "imagery/contact_sheet_key.png"
-  }
+ "inr": "25INR0081",
+ "project": "SanPat Solar I",
+ "research_date": "2026-07-19",
+ "verdict": "real_active",
+ "developer_chain": {
+  "spv": "Padre Solar LLC",
+  "agent": "CGRP 10, LLC (Designated Interconnection Agent)",
+  "developer": "CleanGen Inc. (Bechtel's renewable energy development subsidiary)",
+  "parent": "Bechtel Enterprises, Inc.",
+  "evidence": "sources/2026-07-19_puct_35077-2434_aep-sanpat-solar-IA-amend2.pdf (Exhibit D)"
+ },
+ "site": {
+  "lat": 28.015,
+  "lon": -97.41,
+  "method": "Sentinel-2 imagery feature \u2014 large installed solar array identified at 28.015N/97.41W; cross-checked with IA Exhibit C 'approx 6.6 miles north of Gregory TX' (28.018N estimate); actual site is ~6.3 miles NNW of Gregory",
+  "confidence": "high",
+  "cross_checks": [
+   "IA Exhibit C: 'SanPat Solar I Substation will be located in San Patricio County approximately 6.6 miles north of Gregory, Texas' \u2014 sources/2026-07-19_puct_35077-1780_aep-sanpat-solar-IA-amend1.pdf",
+   "Sentinel-2 2026-07-10: large installed solar array confirmed at 28.015N, 97.41W \u2014 imagery/key/s2_2026-07-10_center.png"
+  ]
+ },
+ "project_area": {
+  "acres": null,
+  "source": "IA does not state acreage; CAD 0 hits for LLC. Area not determinable from available documents.",
+  "artifact": null,
+  "note": "Imagery footprint spans ~4-5 km diagonal (>1,000 acres estimated from 308 MW at ~10 W/sqft); exact acreage not confirmed from primary docs"
+ },
+ "construction": {
+  "stage": "substantially_complete",
+  "first_activity_seen": "2024-Q4",
+  "evidence": "imagery/key/s2_2024-11-01.png shows panels installed; s2_2024-08-01.png shows cleared fields without panels",
+  "latest_frame": "imagery/key/s2_2026-07-10_center.png",
+  "note": "Grading/site prep visible Jan 2024 before First Amended IA (Mar 2024). Panels installed by Nov 2024. Site substantially complete Jul 2026."
+ },
+ "interconnection": {
+  "tsp": "AEP Texas Inc.",
+  "poi": "Lucero Station (new 345kV station to be built by AEP on Angstrom-Naismith 345kV line)",
+  "poi_note": "Queue POI 'Tap 345kV 8249 Angstrom \u2013 8659 Naismith' describes the transmission line being tapped; Lucero is the new station being built at the tap point",
+  "delivery_voltage_kv": 345,
+  "ia_original_date": "2023-10-18",
+  "ia_first_amended_date": "2024-03-26",
+  "ia_second_amended_date": "2026-02-23",
+  "equipment": "82 units \u00d7 Sungrow SG4400UD-MV-US; 308.8 MW"
+ },
+ "contractual_schedule": {
+  "reference_date": "2023-10-18",
+  "in_service": "2026-10-18",
+  "trial_operation_phase1": "2027-05-18",
+  "cod_phase1": "2027-06-18",
+  "documents": [
+   {
+    "doc": "Original IA",
+    "signed": "2023-10-18",
+    "financial_security": "$28,000,000",
+    "artifact": "referenced in First Amended IA cover letter \u2014 sources/2026-07-19_puct_35077-1780_aep-sanpat-solar-IA-amend1.pdf"
+   },
+   {
+    "doc": "First Amended and Restated IA (PUCT 35077-1780)",
+    "signed": "2024-03-26",
+    "financial_security": "$28,000,000",
+    "artifact": "sources/2026-07-19_puct_35077-1780_aep-sanpat-solar-IA-amend1.pdf"
+   },
+   {
+    "doc": "Second Amended and Restated IA (PUCT 35077-2434)",
+    "signed": "2026-02-23",
+    "financial_security": "$37,500,000 ($28M + $9.5M increase)",
+    "artifact": "sources/2026-07-19_puct_35077-2434_aep-sanpat-solar-IA-amend2.pdf"
+   }
+  ]
+ },
+ "cod_assessment": {
+  "reported_cod": "2027-07-08",
+  "contractual_cod": "2027-06-18 (44 months from 2023-10-18)",
+  "independent_estimate": "2027-Q2",
+  "drift_risk": "medium",
+  "drift_rationale": "Panels substantially complete Jul 2026 with ~10-11 months to contractual In-Service (Oct 2026); site appears ahead of civil/racking schedule. Remaining risk: Lucero Station TIF construction by AEP (TSP), final electrical commissioning, grid synchronization. COD drift history: 5 changes over queue life (2025-07 \u2192 2027-07), mostly front-loaded slippage. Most recent COD stable since Oct 2025. Financial security increased by $9.5M in Feb 2026 = continued commitment. Medium risk because TSP-side TIF completion is external to generator control."
+ },
+ "signals": {
+  "ia_found": true,
+  "ia_amendments": 2,
+  "abatement_found": false,
+  "pins_found": 0,
+  "news_found": false,
+  "construction_visible": true
+ },
+ "imagery": {
+  "frames": [
+   {
+    "date": "2024-01-01",
+    "obs": "graded/cleared fields, no panels",
+    "file": "imagery/key/s2_2024-01-01.png"
+   },
+   {
+    "date": "2024-08-01",
+    "obs": "partly cloudy; cleared fields, no panels",
+    "file": "imagery/key/s2_2024-08-01.png"
+   },
+   {
+    "date": "2024-11-01",
+    "obs": "panel arrays first visible \u2014 racking installed",
+    "file": "imagery/key/s2_2024-11-01.png"
+   },
+   {
+    "date": "2025-01-01",
+    "obs": "panels clearly installed, multiple parcels",
+    "file": "imagery/key/s2_2025-01-01.png"
+   },
+   {
+    "date": "2026-01-01",
+    "obs": "panels installed, operational",
+    "file": "imagery/key/s2_2026-01-01.png"
+   },
+   {
+    "date": "2026-07-10",
+    "obs": "substantially complete solar farm",
+    "file": "imagery/key/s2_2026-07-10_center.png"
+   }
+  ],
+  "contact_sheet": "imagery/contact_sheet_key.png"
+ },
+ "real_project_verdict": "real_active"
 }

@@ -1,134 +1,135 @@
 {
-  "inr": "25INR0657",
-  "project": "O'Bannion Energy Storage",
-  "researched": "2026-07-19",
-  "verdict": "real_early",
-  "verdict_confidence": "medium",
-  "verdict_basis": "IA signed 2025-12-05 + 6.9(1) met 2026-03-25 confirm real milestones; no construction visible Jul 2026 at Long Hollow Switch substation — pre-construction/early stage",
-
-  "construction_stage": "pre_construction",
-  "first_activity_seen": null,
-  "imagery_verdict": "no_activity",
-
-  "site": {
-    "lat": 33.5359,
-    "lon": -98.3422,
-    "method": "OSM unnamed 345kV substation node confirmed by S2 chip showing white L-shaped electrical facility; co-located with Pinnington Solar 24INR0010 (same POI)",
-    "confidence": "medium",
-    "artifact": "imagery/s2_longhollowswitch_3km_2026-07.png",
-    "cross_checks": [
-      "OSM unnamed 345kV substation node at 33.5359,-98.3422",
-      "S2 chip confirms white compact facility = classic transmission substation",
-      "Queue parquet: POI 'Long Hollow Switch 345 kV' shared by 24INR0010 (Pinnington Solar / Hecate Longhorn Solar)",
-      "No Google Places pin for O'Bannion or Wooderson"
-    ],
-    "not_obtainable": "Exact POI switch coordinates (CEII-redacted in PUCT filings); PUCT IA PDF not retrieved"
+ "inr": "25INR0657",
+ "project": "O'Bannion Energy Storage",
+ "researched": "2026-07-19",
+ "verdict": "real_early",
+ "verdict_confidence": "medium",
+ "verdict_basis": "IA signed 2025-12-05 + 6.9(1) met 2026-03-25 confirm real milestones; no construction visible Jul 2026 at Long Hollow Switch substation \u2014 pre-construction/early stage",
+ "construction_stage": "pre_construction",
+ "first_activity_seen": null,
+ "imagery_verdict": "no_activity",
+ "site": {
+  "lat": 33.5359,
+  "lon": -98.3422,
+  "method": "OSM unnamed 345kV substation node confirmed by S2 chip showing white L-shaped electrical facility; co-located with Pinnington Solar 24INR0010 (same POI)",
+  "confidence": "medium",
+  "artifact": "imagery/s2_longhollowswitch_3km_2026-07.png",
+  "cross_checks": [
+   "OSM unnamed 345kV substation node at 33.5359,-98.3422",
+   "S2 chip confirms white compact facility = classic transmission substation",
+   "Queue parquet: POI 'Long Hollow Switch 345 kV' shared by 24INR0010 (Pinnington Solar / Hecate Longhorn Solar)",
+   "No Google Places pin for O'Bannion or Wooderson"
+  ],
+  "not_obtainable": "Exact POI switch coordinates (CEII-redacted in PUCT filings); PUCT IA PDF not retrieved"
+ },
+ "project_area": {
+  "acres": null,
+  "source": "No abatement, IA exhibit, or CAD doc obtained \u2014 area not recoverable from public records",
+  "artifact": null,
+  "note": "Typical 306 MW BESS footprint 20-50 acres; no document confirmation"
+ },
+ "ownership_chain": [
+  {
+   "entity": "O'Bannion Energy Storage, LLC",
+   "role": "SPV / interconnection applicant",
+   "evidence": "sources/2026-07-19_txcomptroller_obannion-entity.json",
+   "detail": "TX taxpayer ID 32103124106, ZIP 27514 (Chapel Hill NC area)"
   },
-
-  "project_area": {
-    "acres": null,
-    "source": "No abatement, IA exhibit, or CAD doc obtained — area not recoverable from public records",
+  {
+   "entity": "Unknown developer \u2014 Chapel Hill NC (ZIP 27514)",
+   "role": "developer/parent",
+   "evidence": "sources/2026-07-19_txcomptroller_obannion-entity.json + sources/2026-07-19_txcomptroller_wooderson-entity.json",
+   "detail": "Two co-filed 306.4 MW BESS projects (O'Bannion 25INR0657, Wooderson 25INR0660) from same ZIP 27514 \u2014 same developer, identity unconfirmed"
+  }
+ ],
+ "financing": {
+  "status": "unknown",
+  "notes": "No press releases, PPA announcements, or financing news found"
+ },
+ "land": {
+  "tenure": "unknown",
+  "abatement": null,
+  "cad_parcels": "0 hits for O'Bannion under owner-name search (Jack CAD)"
+ },
+ "interconnection": {
+  "poi": "1506 Long Hollow Switch 345 kV (Jack County, TX \u2014 Oncor TSP)",
+  "ia_signed": "2025-12-05",
+  "ia_artifact": null,
+  "ia_note": "IA existence confirmed from ERCOT GIS queue parquet; PUCT Interchange portal returned HTTP 402 on all fetch attempts \u2014 document text not retrieved",
+  "section_691_met": "2026-03-25",
+  "financial_security_provided": "No (queue: 'No')"
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Original IA",
+    "signed": "2025-12-05",
+    "financial_security": null,
     "artifact": null,
-    "note": "Typical 306 MW BESS footprint 20-50 acres; no document confirmation"
-  },
-
-  "ownership_chain": [
+    "note": "Signed date from queue parquet; document not retrieved \u2014 PUCT portal blocked"
+   }
+  ],
+  "milestones_from_ia": null,
+  "note": "Milestone dates (In-Service, Trial Operation, Scheduled COD) not obtainable without IA document"
+ },
+ "cod": {
+  "reported": "2028-04-21",
+  "independent_estimate": "2028-Q3 to 2029-Q1",
+  "drift_risk": "high",
+  "drift_risk_rationale": "No construction visible Jul 2026; financial security not posted; developer unknown/no public profile; 2 prior COD slips (2.3 yr total); ~27 months remain to reported COD from today",
+  "queue_cod_drift": {
+   "changes": 2,
+   "history": [
     {
-      "entity": "O'Bannion Energy Storage, LLC",
-      "role": "SPV / interconnection applicant",
-      "evidence": "sources/2026-07-19_txcomptroller_obannion-entity.json",
-      "detail": "TX taxpayer ID 32103124106, ZIP 27514 (Chapel Hill NC area)"
+     "cod": "2025-12-20",
+     "held_from": "2024-05-01",
+     "until": "2024-05-01"
     },
     {
-      "entity": "Unknown developer — Chapel Hill NC (ZIP 27514)",
-      "role": "developer/parent",
-      "evidence": "sources/2026-07-19_txcomptroller_obannion-entity.json + sources/2026-07-19_txcomptroller_wooderson-entity.json",
-      "detail": "Two co-filed 306.4 MW BESS projects (O'Bannion 25INR0657, Wooderson 25INR0660) from same ZIP 27514 — same developer, identity unconfirmed"
-    }
-  ],
-
-  "financing": {
-    "status": "unknown",
-    "notes": "No press releases, PPA announcements, or financing news found"
-  },
-
-  "land": {
-    "tenure": "unknown",
-    "abatement": null,
-    "cad_parcels": "0 hits for O'Bannion under owner-name search (Jack CAD)"
-  },
-
-  "interconnection": {
-    "poi": "1506 Long Hollow Switch 345 kV (Jack County, TX — Oncor TSP)",
-    "ia_signed": "2025-12-05",
-    "ia_artifact": null,
-    "ia_note": "IA existence confirmed from ERCOT GIS queue parquet; PUCT Interchange portal returned HTTP 402 on all fetch attempts — document text not retrieved",
-    "section_691_met": "2026-03-25",
-    "financial_security_provided": "No (queue: 'No')"
-  },
-
-  "contractual_schedule": {
-    "documents": [
-      {
-        "doc": "Original IA",
-        "signed": "2025-12-05",
-        "financial_security": null,
-        "artifact": null,
-        "note": "Signed date from queue parquet; document not retrieved — PUCT portal blocked"
-      }
-    ],
-    "milestones_from_ia": null,
-    "note": "Milestone dates (In-Service, Trial Operation, Scheduled COD) not obtainable without IA document"
-  },
-
-  "cod": {
-    "reported": "2028-04-21",
-    "independent_estimate": "2028-Q3 to 2029-Q1",
-    "drift_risk": "high",
-    "drift_risk_rationale": "No construction visible Jul 2026; financial security not posted; developer unknown/no public profile; 2 prior COD slips (2.3 yr total); ~27 months remain to reported COD from today",
-    "queue_cod_drift": {
-      "changes": 2,
-      "history": [
-        {"cod": "2025-12-20", "held_from": "2024-05-01", "until": "2024-05-01"},
-        {"cod": "2027-09-25", "held_from": "2024-06-01", "until": "2025-11-01"},
-        {"cod": "2028-04-21", "held_from": "2025-12-01", "until": "2026-06-01"}
-      ]
-    }
-  },
-
-  "satellite_timeline": [
-    {
-      "date": "2026-07",
-      "observation": "Long Hollow Switch substation confirmed (white compact facility); no BESS pad, no container staging visible within 1km buffer; Pinnington Solar grading visible ~2km NW",
-      "artifact": "imagery/s2_longhollowswitch_3km_2026-07.png",
-      "verdict": "no_activity"
+     "cod": "2027-09-25",
+     "held_from": "2024-06-01",
+     "until": "2025-11-01"
     },
     {
-      "date": "2026-01",
-      "observation": "Heavy cloud cover over site; substation square partially visible, no new pad structure",
-      "artifact": "imagery/s2_longhollowswitch_3km_2026-01.png",
-      "verdict": "no_activity (cloud-limited)"
+     "cod": "2028-04-21",
+     "held_from": "2025-12-01",
+     "until": "2026-06-01"
     }
-  ],
-
-  "co_located_project": {
-    "inr": "24INR0010",
-    "name": "Pinnington Solar (Hecate Energy Longhorn Solar LLC)",
-    "capacity_mw": 653.7,
-    "poi": "1506 Long Hollow Switch 345kV",
-    "ia_signed": "2023-11-02",
-    "cod_reported": "2026-04-23",
-    "status": "All 6.9 met 2025-01-30, financial security Yes — active construction visible in Jul 2026 chip",
-    "note": "Graded orange-brown rectangles visible ~2km NW of substation in Jul 2026 chip — this is Pinnington, not O'Bannion BESS"
+   ]
+  }
+ },
+ "satellite_timeline": [
+  {
+   "date": "2026-07",
+   "observation": "Long Hollow Switch substation confirmed (white compact facility); no BESS pad, no container staging visible within 1km buffer; Pinnington Solar grading visible ~2km NW",
+   "artifact": "imagery/s2_longhollowswitch_3km_2026-07.png",
+   "verdict": "no_activity"
   },
-
-  "sources": [
-    "sources/2026-07-19_txcomptroller_obannion-entity.json",
-    "sources/2026-07-19_txcomptroller_wooderson-entity.json",
-    "imagery/s2_longhollowswitch_3km_2026-07.png",
-    "imagery/s2_longhollowswitch_3km_2026-01.png",
-    "imagery/contact_sheet_3.png",
-    "timeline.md",
-    "timeline.json"
-  ]
+  {
+   "date": "2026-01",
+   "observation": "Heavy cloud cover over site; substation square partially visible, no new pad structure",
+   "artifact": "imagery/s2_longhollowswitch_3km_2026-01.png",
+   "verdict": "no_activity (cloud-limited)"
+  }
+ ],
+ "co_located_project": {
+  "inr": "24INR0010",
+  "name": "Pinnington Solar (Hecate Energy Longhorn Solar LLC)",
+  "capacity_mw": 653.7,
+  "poi": "1506 Long Hollow Switch 345kV",
+  "ia_signed": "2023-11-02",
+  "cod_reported": "2026-04-23",
+  "status": "All 6.9 met 2025-01-30, financial security Yes \u2014 active construction visible in Jul 2026 chip",
+  "note": "Graded orange-brown rectangles visible ~2km NW of substation in Jul 2026 chip \u2014 this is Pinnington, not O'Bannion BESS"
+ },
+ "sources": [
+  "sources/2026-07-19_txcomptroller_obannion-entity.json",
+  "sources/2026-07-19_txcomptroller_wooderson-entity.json",
+  "imagery/s2_longhollowswitch_3km_2026-07.png",
+  "imagery/s2_longhollowswitch_3km_2026-01.png",
+  "imagery/contact_sheet_3.png",
+  "timeline.md",
+  "timeline.json"
+ ],
+ "real_project_verdict": "real_early"
 }

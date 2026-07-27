@@ -3,10 +3,14 @@
   "project": "Tiger Solar",
   "researched_at": "2026-07-19",
   "site": {
-    "lat": 32.543,
-    "lon": -99.619,
-    "method": "dual-cross-check: (a) 4.55-mile bearing ~128° from Fort Phantom Switchyard (32.5826, -99.6823, confirmed OSM); (b) 2.3 miles north of CR 195/US-277 intersection as stated in PUCT CCN docket 58405 application. Both methods converge to 32.543, -99.619 within 0.5 km.",
-    "confidence": "medium-high"
+    "lat": 32.79692,
+    "lon": -99.88089,
+    "method": "CORRECTED (user-driven, 2026-07-21): the original derivation anchored on the WRONG substation (Fort Phantom Switchyard, SE of Lake Fort Phantom Hill) -- the user noted the IA exhibit puts the substation next to the Anson Solar plant, and no lake abuts the parcel. EIA-860M now carries 'Tiger Solar / Tiger Solar, LLC' directly at 32.79692,-99.88089, immediately EAST of the Anson Solar Center complex -- inside the US-277-corridor reinvestment zone from Ch.313 App #1995. Imagery shows the racking grid advancing east from the Anson complex toward this pin (key frames centered 32.805,-99.893 to cover the construction footprint).",
+    "confidence": "high",
+    "map_artifacts": [
+      "sources/2026-07-21_comptroller_ch313-1995-anson-vaca-app_p24.png"
+    ],
+    "neighbor_warning": "FIVE-project cluster around Anson, Jones Co -- attribute with care: Anson Solar Center 200MW OPERATING (32.811,-99.917); Anson 2 Solar 218.5MW UC>50%, sync-approved 2025-11-25 (32.806,-99.919, building north+east of Anson 1, contiguous with Tiger's tract); Jones City 1+2 (Lightsource bp, 215+200MW, both UC>50%) = the separate complex ~10km SW at 32.78-32.79,-99.99..-100.01 (the Crowded Star queue positions); Funston Solar 350MW UC>50% ~15km E (32.784,-99.720)."
   },
   "parcels": [],
   "llc_chain": [
@@ -33,7 +37,7 @@
   ],
   "land_tenure": {
     "status": "unknown",
-    "evidence": "Jones CAD returned 0 hits for Vaca Del Sol / Tiger Solar (JavaScript-rendered portal). CCN application Attachment 2 references Waddell landowners for transmission ROW corridor, not solar array parcels. No Ch.313/JETI abatement found (expected — post-2022 project)."
+    "evidence": "Jones CAD returned 0 hits for Vaca Del Sol / Tiger Solar (JavaScript-rendered portal). CCN application Attachment 2 references Waddell landowners for transmission ROW corridor, not solar array parcels. No Ch.313/JETI abatement found (expected \u2014 post-2022 project)."
   },
   "project_area": {
     "acres": null,
@@ -41,14 +45,19 @@
     "artifact": "sources/2026-07-19_puct_58405_ccn-route-map.jpg"
   },
   "construction": {
-    "verdict": "no_activity",
-    "first_activity_seen": null,
+    "verdict": "under_construction_gt50",
+    "first_activity_seen": "2025-12 (EIA U-status onset; grading visible in 2025-07 frame on the Anson-adjacent tract)",
+    "latest_observation": "2026-07-20",
+    "imagery_artifacts": [
+      "imagery/key/s2_2024-06-01.png",
+      "imagery/key/s2_2025-07-01.png",
+      "imagery/key/s2_2026-03-15.png",
+      "imagery/key/s2_2026-07-01.png"
+    ],
     "evidence": [
-      "CDSE API returned 401 (credential issue) — no satellite chips retrieved in deep scan",
-      "Triage CDSE partial coverage (2 of 9 chips): southern chips showed undisturbed agriculture, no construction",
-      "CCN route map (2023 imagery background) shows undisturbed agricultural land at Tiger Solar footprint",
-      "Queue data: no construction start/end dates filed as of 2026-06-01 snapshot",
-      "CCN construction schedule: transmission line construction starts May 2026, completes Oct 2026 — generator-side construction timing not stated but IA NTP Need Date was Nov 1, 2024"
+      "EIA-860M monthly history (eia_history.json, missed by the prior scan): (P) planned through 2025-11 -> (U) under construction <=50% 2025-12 -> (V) UNDER CONSTRUCTION >50% from 2026-03, capacity 250 MW, planned COD 2026-12.",
+      "AWS chips (6.4km frames, 2024/2025/2026-04/2026-07-20): bare farmland 2024 -> grading 2025 -> contiguous racking-block grid spreading east from the Anson complex through 2026-07-20. Panels not yet dominant (rows still light-toned) -- consistent with >50% racking/structural stage.",
+      "Prior 'no_activity' verdict was an artifact of the WRONG site derivation (Fort Phantom area, ~20km SSE): clean imagery there showed farmland because the project was never there."
     ]
   },
   "contractual_schedule": {
@@ -61,27 +70,52 @@
       }
     ],
     "milestones": [
-      {"name": "NTP Need Date", "Original IA 2024": "2024-11-01"},
-      {"name": "TIF In-Service (Backfeed)", "Original IA 2024": "2026-11-06"},
-      {"name": "Trial Operation (Synchronization)", "Original IA 2024": "2026-11-14"},
-      {"name": "Scheduled COD", "Original IA 2024": "2027-06-30"}
+      {
+        "name": "NTP Need Date",
+        "Original IA 2024": "2024-11-01"
+      },
+      {
+        "name": "TIF In-Service (Backfeed)",
+        "Original IA 2024": "2026-11-06"
+      },
+      {
+        "name": "Trial Operation (Synchronization)",
+        "Original IA 2024": "2026-11-14"
+      },
+      {
+        "name": "Scheduled COD",
+        "Original IA 2024": "2027-06-30"
+      }
     ]
   },
   "cod_assessment": {
-    "reported": "2027-06-30",
-    "independent": "2027-Q3",
-    "drift_risk": "med",
+    "reported": "2027-06-30 (queue)",
+    "independent": "2026-12 to 2027-Q1",
+    "drift_risk": "low",
     "reasoning_evidence": [
-      "Contractual COD 2027-06-30 is confirmed in IA Exhibit B (sources/2026-07-19_puct_35077-1966_tiger-solar-IA.pdf)",
-      "CCN for dedicated 345-kV spur was contested by ENGIE — SOAH issued Proposal for Decision May 2026, no-exceptions Jun 2026; CCN likely approved but adds transmission delay risk",
-      "CCN transmission construction: starts May 2026, energizes Oct 2026, completes Dec 2026 — tight but within window for Nov 6, 2026 in-service date",
-      "No construction start dates in ERCOT queue as of Jun 2026 snapshot — no evidence NTP was issued to TSP by Nov 2024 Need Date; if NTP delayed, all dates extend day-for-day",
-      "COD has drifted 3 times (2023-12-01 → 2026-10-15 → 2028-03-15 → 2027-06-30) — pattern of prior slips increases medium risk",
-      "For: NextEra-backed, full financial security $32.7M required, FIS approved Dec 2025, all 6.9 milestones met Jan 2026, credible developer with track record",
-      "Independent estimate: 2027-Q3 (slight slip from contractual Jun 30 due to transmission CCN contest adding uncertainty to energization timeline)"
+      "EIA planned COD 2026-12 (steady since 2024-12) with (V) >50% status from 2026-03 -- the developer's own federal filing runs 6 months AHEAD of the ERCOT queue's 2027-06-30, the reverse of the usual stale-queue pattern.",
+      "NextEra (Vaca Del Sol) executed Ch.313 agreement with Anson ISD alive through 2025 MCA reports; CCN gen-tie construction window May-Oct 2026 matches the observed racking stage."
     ]
   },
-  "real_project_verdict": "real_early",
+  "real_project_verdict": "real_active",
   "negative_searches": 6,
-  "banned_source_violations": 0
+  "banned_source_violations": 0,
+  "tax_incentives": {
+    "ch313": {
+      "app_no": "1995",
+      "applicant": "Vaca Del Sol, LLC",
+      "district": "Anson ISD",
+      "applied": "2022-05-26",
+      "phase": "Agreement (executed; amendment + 3 annual MCA reports 2023-2025 on the docket)",
+      "artifacts": [
+        "sources/2026-07-21_comptroller_ch313-1995-anson-vaca-app.pdf",
+        "sources/2026-07-21_comptroller_ch313-1995-anson-vaca-appamend1.pdf",
+        "sources/2026-07-21_comptroller_ch313-1995-anson-vaca-agmt.pdf",
+        "sources/2026-07-21_comptroller_ch313-1995-anson-vaca-amendagmt1.pdf"
+      ],
+      "note": "MISSED by the original scan (searched queue codename 'Tiger Solar'; the filing is under the SPV legal name Vaca Del Sol). Application names the pre-NextEra developer chain: Segue Neely Clay Holdco I, LLC (Segue Sustainable Infrastructure, San Francisco; job-waiver letter 2022-05-04) -- 'Neely Clay Energy' branding on the RZ map. The annual MCA reports through 2025 show the agreement is alive."
+    },
+    "ch312": "Ch.312 registry (live+report+purged, 2,456 rows): no Tiger/Vaca Del Sol/Jones row -- WEAK negative (Jones County does not report to the registry). However the Ch.313 application embeds Jones County Commissioners Court tax-abatement guidelines/criteria (app p39+) -- county-abatement machinery existed around this project; commissioners-court minutes are the definitive source (minutes.py rung once Jones County is harvested).",
+    "jeti": "negative (checked by INR and SPV name)"
+  }
 }

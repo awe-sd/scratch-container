@@ -112,3 +112,77 @@ Picking up from triage. Gaps to close:
 - Correct site estimate: ~34.15°N, 99.27°W (6 mi NE of Harrold); not yet confirmed by imagery
 - Imagery search blocked by CDSE rate limit
 
+
+## 2026-07-20 — D1/D2 research
+
+### D0 - Skeleton written
+findings.json skeleton created before research began.
+
+### D1 - IA Schedule (original IA, Dec 4 2024)
+- Source: 2026-07-20_puct_35077-2025_standard-generation-interconnection-agreement-be.pdf (CONFIRMED)
+- Exhibit B:
+  - In-Service Date: December 3, 2026
+  - Scheduled Trial Operation Date: January 2, 2027 (original) → March 8, 2027 (Amendment 1)
+  - Scheduled COD: August 31, 2027
+- Financial security: $17,554,077 LC (Irrevocable Standby Letter of Credit, Exhibit E)
+- POI: "Western Wind Switching Station within the Krum West Switch to Riley Switch (AEP) 345 kV line" — Wichita County, TX
+- Equipment: 64 Sungrow SG4400UD-MV-US inverters, 281.6 MVA (original) → amended to 350 TMEIC PVU-L0840URN inverters, 253.6 MW
+- Generator contact: Chad Craven, VP Transmission, @savionenergy.com — SAVION LLC confirmed as parent
+
+### D1 - Amendment No. 1 (April 10, 2026)
+- Source: 2026-07-20_puct_35077-2479_amendment-no-1-to-the-standard-generation-interc.pdf (CONFIRMED)
+- Only change to schedule: Trial Operation moved from Jan 2, 2027 → March 8, 2027
+- COD remains August 31, 2027 (unchanged)
+- Inverter type changed: Sungrow SG4400UD (64 × 4.4 MVA) → TMEIC PVU-L0840URN (350 × 0.78 MVA)
+- Filed: May 5, 2026 (signing: April 10, 2026)
+
+### D1 - Ch.313 key facts
+- Source: 2026-07-19_comptroller_ch313_1872-adams-creek-agmt.pdf + 2026-07-19_comptroller_ch313_1872-adams-creek-app.pdf
+- SPV: Adams Creek Solar Project, LLC (TX franchise 32067584329)
+- Project: 250 MW AC, 796,000 PV panels, 67 central inverters (app)
+- Total investment: $225,000,000 in Wilbarger County, Harrold ISD
+- Limitation period: 2026-2027 start (10 year limitation through ~2037)
+- Land: NOT owned by applicant (land = not applicable per Tab 9)
+- Agreement executed: December 8, 2022 (Harrold ISD board)
+
+### D2 - Site pinpoint
+- Google Places: "Adams Creek Solar Field" at 16476 FM 370, Electra, TX 76360 → 34.151030, -98.952161
+  DECISIVE ARTIFACT: matches FM 370 E shown on Ch.313 map p38; Electra address matches Wichita Co. near Wilbarger line
+- Ch.313 map p38: project boundary straddles FM 370 E, county roads 127-131 N; "Adams Creek" label visible
+- Ch.313 map p39: project NNE of Harrold, near Wilbarger/Wichita county line
+
+### D2 - Map pages saved
+- sources/ch313_map_p37.png through ch313_map_p41.png extracted from Ch.313 agreement PDF
+
+### D2 - CDSE imagery — BLOCKED (402 insufficient credits)
+- Attempted cdse.py chip for 2026-07-01, 2026-06-01, 2026-05-01
+- All return HTTP 402 PaymentRequired from openEO /result endpoint
+- Satellite imagery cannot be retrieved this run
+- Negative evidence logged: construction stage unverifiable from imagery
+
+### D3 - Search results — ALL FAILED
+- search.py backend unavailable (SEARCH FAILED on all backends) for:
+  - "Adamstown Solar Savion 21INR0210 Wilbarger Texas construction"
+  - "Adams Creek Solar Project Savion Wilbarger Texas"
+  - "Savion Energy Adams Creek Solar Wilbarger"
+- Negative evidence: no web search results retrievable
+
+### D3 - Site location confidence
+- Google Places "Adams Creek Solar Field" at 16476 FM 370, Electra TX → 34.151030, -98.952161
+  HIGH confidence: consistent with Ch.313 map p38 (FM 370 E road visible on project boundary map),
+  consistent with IA stating POI in Wichita County (Electra is Wichita County), consistent with
+  triage lat ~34.07 being slightly south (triage used Harrold ISD centroid; actual site is NNE of Harrold)
+
+### D3 - Savion LLC parent confirmed
+- Address in IA Exhibit D: 422 Admiral Blvd, Kansas City, MO 64106 → Savion Energy HQ
+- email domains: @savionenergy.com (Chad Craven VP Transmission, Matt Adams)
+
+### D3 - Amendment 1 key finding
+- Inverter change: Sungrow SG4400UD → TMEIC PVU-L0840URN (350 units × 0.78 MVA)
+- This is a significant equipment substitution, signed April 10, 2026 — indicates active procurement as of Q2 2026
+- Trial Op date slipped 2 months (Jan 2 → Mar 8, 2027)
+- COD unchanged at Aug 31, 2027
+
+### D3 - Prior IA note
+- PUCT 35077-1475 (Sep 2022): earlier SGIA between Oncor and "Adamstown Solar & Storage / Adams Creek"
+  This is superseded by the Dec 2024 IA. The "& Storage" component may have been dropped.

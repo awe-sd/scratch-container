@@ -1,0 +1,106 @@
+{
+  "inr": "24INR0303",
+  "project": "Erika Solar",
+  "researched_at": "2026-07-20",
+  "site": {
+    "lat": 32.5367,
+    "lon": -96.22112,
+    "method": "eia860m — EIA-860M plant 69585 'Kaufman Solar', entity 'Kaufman Solar LLC', Kaufman Co, 200 MW solar at these coords; consistent with IA Exhibit C '6.5 miles SE of Kaufman TX on FM 1836'",
+    "confidence": "med",
+    "map_artifacts": [
+      "sources/2026-07-19_puct_35077-1691_interconnection-agreement-between_p40.png"
+    ]
+  },
+  "project_area": {
+    "acres": null,
+    "source": null,
+    "artifact": null
+  },
+  "parcels": [],
+  "llc_chain": [
+    {
+      "entity": "Kaufman Solar, LLC",
+      "relation": "spv_aka",
+      "evidence": "PUCT docket 35077, item 1691 (CONFIRMED: INR 24INR0303 in PDF text): 'Interconnection agreement between Oncor Electric Delivery Company LLC and Kaufman Solar, LLC (Erika Solar)'. Amend 3 header: 'GIR 24INR0303 – Kaufman Solar, LLC (Erika Solar)'"
+    },
+    {
+      "entity": "parent/developer",
+      "relation": "unknown",
+      "evidence": "All 6 search.py queries failed (backends down); TX Comptroller search inaccessible (redirect loop); TX SOS requires paid account; no press releases or developer website found"
+    }
+  ],
+  "land_tenure": {
+    "status": "unknown",
+    "evidence": "Kaufman CAD portal (esearch.kaufman-cad.org) requires interactive browser session — 404 on all scripted owner-name queries. No Ch.312/313/JETI filing found."
+  },
+  "construction": {
+    "verdict": "racking",
+    "first_activity_seen": null,
+    "evidence": [
+      "EIA-860M plant 69585: status (U) Under construction ≤50% (2026-01 to 2026-02) → (V) Under construction >50% (2026-03 to 2026-05); source: eia_history.json",
+      "Amendment No. 3 (2025-10-17): equipment changed from Power Electronics HEM 4105M to GE LV5+ FLEX 1566 — active procurement mid-construction",
+      "CDSE imagery: RemoteDisconnected on all chip/timelapse attempts — no satellite frames obtained"
+    ]
+  },
+  "contractual_schedule": {
+    "documents": [
+      {
+        "doc": "Original SGIA (PUCT 35077, item 1691)",
+        "signed": "2023-10-12",
+        "financial_security": "$14,109,499 Irrevocable Standby LC (effective on or before 2023-10-17)",
+        "artifact": "sources/2026-07-19_puct_35077-1691_interconnection-agreement-between-oncor-electric.pdf",
+        "in_service": "2025-04-17",
+        "trial_op": "2025-04-30",
+        "cod": "2026-02-24"
+      },
+      {
+        "doc": "Amendment No. 1 (signed 2023-12-27 per Amend 3 recital)",
+        "signed": "2023-12-27",
+        "financial_security": "unknown — PDF not retrieved; item number not identified",
+        "artifact": null,
+        "in_service": null,
+        "trial_op": null,
+        "cod": null
+      },
+      {
+        "doc": "Amendment No. 2 (PUCT 35077, item 2197)",
+        "signed": "2025-07-14",
+        "financial_security": "$19,899,031 Irrevocable Standby LC (effective on or before 2026-05-07; raised +$5.8M from original)",
+        "artifact": "sources/2026-07-19_puct_35077-2197_amendment-no-2-to-the-standard-generation-interc.pdf",
+        "in_service": "2026-05-07",
+        "trial_op": "2026-10-01",
+        "cod": "2027-06-30"
+      },
+      {
+        "doc": "Amendment No. 3 (PUCT 35077, item 2293)",
+        "signed": "2025-10-17",
+        "financial_security": "unchanged ($19,899,031) — equipment change only",
+        "artifact": "sources/2026-07-19_puct_35077-2293_amendment-no-3-to-the-standard-generation-interc.pdf",
+        "in_service": "2026-05-07",
+        "trial_op": "2026-10-01",
+        "cod": "2027-06-30",
+        "notes": "equipment: 57x Power Electronics HEM 4105M → 52x GE LV5+ FLEX 1566 inverters (238.16 MVA gross, 200 MW at POI)"
+      }
+    ]
+  },
+  "cod_assessment": {
+    "reported": "2027-06-30",
+    "independent": "2027-Q3",
+    "drift_risk": "med",
+    "reasoning_evidence": [
+      "IA Amend 2 COD 2027-06-30 matches queue — contractually grounded in PUCT-filed document",
+      "EIA-860M reports planned COD 2026-12 (6 months earlier than queue) — divergence is COD-drift risk signal",
+      "EIA status >50% construction as of 2026-05 — significant physical progress confirmed",
+      "In-Service date 2026-05-07 per Amend 2 is already past; queue has not reported construction start — likely slipped again",
+      "4 prior COD slips (2024-08 → 2027-06) over 4 years; pattern of ~annual slips",
+      "Equipment switch Oct 2025 (Power Electronics → GE LV5+ FLEX) = supply chain change mid-construction; adds schedule uncertainty",
+      "Security raised $14.1M → $19.9M — financial commitment increasing, positive signal",
+      "All 6.9 milestones complete 2025-10-30; FIS approved 2025-09-15 — grid-side ready",
+      "No EPC or offtake press releases found — weaker corroboration than Hanson-type projects",
+      "Independent estimate 2027-Q3: queue says Q2-2027, EIA says Q4-2026; >50% construction at May 2026 → ~9-12 more months → Q2-Q1 2027; adding one quarter for In-Service slip buffer"
+    ]
+  },
+  "real_project_verdict": "real_active",
+  "negative_searches": 8,
+  "banned_source_violations": 0
+}

@@ -139,3 +139,31 @@ echo "log updated"
 REAL signals: IA signed, Ch.312 abatement (2nd amendment Jan 2026), Road Use Agreement Jan 2026, OTLS tracts located, $210M estimated cost
 EARLY signals: NO construction visible July 2026, NO July/Jan activity in imagery, FIS not approved
 COD pull-forward (2029→2027) unusual — suggests developer confidence, not schedule certainty
+
+---
+
+## 2026-07-21 — Second-pass review (resumed after prior deep scan)
+
+### SPV reconciliation (verified)
+- ONLY King County Ch.312 abatement (authoritative Comptroller registry, ch312.py) = **Midway Ranch Solar LLC | King County Reinvestment Zone #2024-01 | Active** (record #000014903, effective 2024-09-09, expires 2033-11-04) + purged/Inactive twin #000014900 (Wayback-recovered).
+- King County minutes 2026-01-12 (re-read directly) name the SAME abatement's property owner/applicant as **Stetson Renewables Holdings, LLC and/or Bigway Solar, LLC (assignee)** — same RZ, same 10 tracts, same 2024-09-09 effective date. So: Bigway Solar LLC = ERCOT queue/IA customer; Stetson Renewables = abatement applicant (county); Midway Ranch Solar LLC = Comptroller-registered zone owner. Link DOCUMENTED (shared zone/tracts/date); NextEra parent INFERRED only.
+- CORRECTION to prior scan: zone is **#2024-01** (the minutes' "Name of Reinvestment Zone"), NOT #2021-01 (that came from the doc's stray "Location of Reinvestment Zone #2021-01" template line). Prior findings never surfaced the Midway Ranch registry name.
+
+### Registry corroboration (was skipped by prior scan)
+- eia_history.py --write: neither INR in EIA-860M TX slice — clean negative, no operating-neighbor false-bind (King Co empty).
+- spv.py resolve: Bigway Solar, LLC confirmed (puct-index, IA filing description).
+- ch312.py resolve (both INRs): county-match Midway Ranch RZ#2024-01 (records above).
+- ch313.py resolve + --name "Midway Ranch": structural negatives (recorded).
+- puct.py match --key "Midway Ranch": IA 35077-2069 CONFIRMED (INR found in document text) for both.
+- minutes.py harvest/index/resolve --county King: 116/121 indexed files are image-only scans; tool cannot text-match. Coverage limit, not a true negative — abatement confirmed via manually-rendered 2026-01-12 minutes.
+
+### Site (verified, HIGH confidence): 33.77561 N, -100.31339 W
+- Re-ran TX GLO OTLS ArcGIS query myself (Original_Texas_Land_Survey/FeatureServer/0, field ABSTRACT_N). All 10 abstracts matched EXACTLY on survey name + abstract number; per-tract centroid mean reproduces 33.77561/-100.31339 independently. Corroborated by IA "~14 mi S of Paducah" (~2 mi off).
+- Built parcel/tract map from the OTLS polygons -> sources/2026-07-21_king-county_bigway-abatement-tracts_map.png (+ .geojson). Addresses the "missing parcel map" gap. See SITE_DERIVATION.md.
+
+### Imagery (Sentinel-2, 4 km buffer, verified centroid) — VERDICT REVERSAL
+- Fetched 5 dates: 2024-07-15, 2025-07-20, 2026-01-31, 2026-04-26, 2026-07-20 (all clouds <=10.4%). Read every frame + zoomed crops.
+- 2024/2025/2026-01/2026-04: undisturbed rangeland + seasonal ag (dryland fields, edge center-pivot circles) — NO project works.
+- **2026-07-20: CONSTRUCTION VISIBLE** — engineered rectilinear graded array-block pads + bright straight access-road grid (90-deg corners) along a central spine road + a bright substation/laydown pad, on the abatement tracts near the section road. No PV modules yet (site-prep/pre-racking). First activity between 2026-04-26 (absent) and 2026-07-20 (present).
+- This CORRECTS the prior 'no_activity': 27INR0127's prior chips were at the wrong county centroid (~33.60/-100.20); 27INR0128's prior July frame (wider 6 km buffer) showed the works faintly and was under-read (the "reversal" the prior scan was sensing).
+- **Verdict: real_under_construction (early / site-prep).** COD 2027-12-31 still optimistic for a ~400 MW joint build; independent estimate 2028, drift risk downgraded high->moderate.

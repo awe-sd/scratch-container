@@ -68,10 +68,13 @@ def done_marker(mode: str) -> str:
     return "triage_findings.json" if mode == "triage" else "findings.json"
 
 
-def run_one(inr: str, mode: str) -> dict:
+def run_one(inr: str, mode: str, token_budget: int | None = None) -> dict:
     say(f"[{inr}] start ({mode})")
+    cmd = ["uv", "run", str(RUN_AGENT), inr, "--mode", mode]
+    if token_budget:
+        cmd += ["--token-budget", str(token_budget)]
     rc = subprocess.run(
-        ["uv", "run", str(RUN_AGENT), inr, "--mode", mode],
+        cmd,
         cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode
     say(f"[{inr}] done rc={rc}")
     return {"inr": inr, "rc": rc}
@@ -124,6 +127,8 @@ def main() -> None:
     ap.add_argument("--inrs-file", help="file with one INR per line (e.g. a batch's deep_queue.txt)")
     ap.add_argument("--concurrency", type=int, default=3)
     ap.add_argument("--limit", type=int, default=None, help="cap batch size (largest-MW first)")
+    ap.add_argument("--token-budget", type=int, default=None,
+                    help="forward a per-run fresh-token budget to run_agent.py (re-run policy: 1000000 for user-ordered runs)")
     ap.add_argument("--force", action="store_true", help="re-run even if findings exist")
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
@@ -155,7 +160,7 @@ def main() -> None:
         return
 
     with ThreadPoolExecutor(max_workers=a.concurrency) as ex:
-        futs = [ex.submit(run_one, inr, a.mode) for inr in todo]
+        futs = [ex.submit(run_one, inr, a.mode, a.token_budget) for inr in todo]
         for _ in as_completed(futs):
             pass
 

@@ -30,5 +30,6 @@
     "TX SOS business search for 'Cachena Storage SLF LLC' to identify developer and confirm active entity",
     "Rerun imagery once CDSE creds are renewed — Elmcreek-Old Hickory corridor is checkable"
   ],
-  "turns_used": 22
+  "turns_used": 22,
+  "note_2026_07_21": "Companion-project retraction pointer (light touch, no deep scan exists here to rewrite): this project shares the same POI/SPV as 23INR0027 Cachena Solar SLF. That project's site was re-derived 2026-07-21 to 29.2579,-97.8057 (TCEQ stormwater-NOI address, geocoded by two independent services) after retracting a wrong footprint that actually belonged to Hoke Solar (23INR0231, unrelated project, Gonzales County). If this project goes to deep scan, start from that point rather than the site_candidate (29.13,-98.16, low-confidence county centroid) above. See research/23INR0027_cachena-solar-slf/findings.json (site, retraction)."
 }

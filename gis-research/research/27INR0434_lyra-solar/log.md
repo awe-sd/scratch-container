@@ -115,3 +115,42 @@ IMAGERY ANALYSIS — s2_2026-07-01_center.png (3km buffer, 32.7222, -101.6385):
 - IA confirmed only via queue milestone (iaSigned 2025-07-01) — no PDF retrieved
 - Abatements: none found
 - Negative evidence logged: TX Comptroller (JS-blocked), SOSDirect (auth-required), OpenCorporates (0 results), PUCT Interchange (402)
+
+---
+# Second-pass review — 2026-07-21
+
+## Developer CORRECTION (primary source)
+Pulled the four campaign IAs from PUCT central docket 35077 and read the parties:
+- 35077-2184 = Juno Solar 3 Project | 35077-2185 = **Lyra Solar Project** | 35077-2225 = Lyra BESS | 35077-2227 = Antila Solar
+- ALL four: WETT + **SE DC DevCo, LLC = SB Energy** (3 Lagoon Dr Suite 280, Redwood City CA).
+- The 2026-07-19 "ENGIE North America (probable)" inference is WRONG. Root cause = the "Juno" name trap: Intersect Power (IP Juno LLC) owns the EXISTING Juno Solar Project (op 2021); SB Energy codenames its NEW projects "Juno Solar 3/4". ENGIE owns only the existing Long Draw Solar neighbor.
+- Verified + renamed IA: sources/2026-07-19_puct_35077-2185_lyra-solar-IA.pdf.
+
+## Site CORRECTION (map exhibit)
+Prior anchor 32.7222,-101.6385 = the EXISTING Long Draw/Borden County BESS complex, NOT Lyra.
+Pulled CCN 59183 (live): item -2 application + 310-pp EA, item -24 Pollio testimony.
+- EA Appendix A **Figure 1-1 (Project Location Map)** + **Figure 2-1 (Property Owners, aerial)** rendered -> collector stations just N of US-180, ~7 mi W of Gail, on the "Juno DC, LLC" parcel; Muleshoe Switching Station (POI #59922) ~8 mi SOUTH, connected by a new ~8-mi 345kV line.
+- New anchor **32.770,-101.555** (method ccn_59183_figure_1-1_2-1_map, conf medium-high; georeferenced vs Gail + Long Draw, ±~1 km).
+- Pruned the 169 MB image-only figure appendix PDFs after rendering Fig 1-1/2-1 (re-fetch: puct.py fetch 59183 2). Removed banned-source artifact infrasure_ercot_27INR0434.md (infrasure.ai).
+
+## IA schedule / security (35077-2185, Exhibit B)
+In-Service 2027-05-15, Trial Op 2027-06-15, **COD 2027-11-15** (queue projectCod 2027-09-15 — ~2 mo earlier). Initial security **$18,000,000** at execution (<= 2025-07-16); LNTP at CCN filing/award; FNTP TBD on FIS. Lyra Solar = lead IA of the Muleshoe pair; Lyra Storage rides on it.
+
+## Registries
+- ch313.py / JETI: NEGATIVE (structural, post-2022). ch312.py: 4 Borden zones, all other/existing projects (Oxbow #3676, BNB Long Draw #4302, IP Juno #4303, Borden BESS #15389); none names Lyra/SE DC DevCo; none links a harvested PDF (pdf=None) -> nothing to render. eia_history.py --write: NOT in EIA-860M.
+- Oxbow check: BNB Oxbow Solar Reinvestment Zone (Oxbow Ranch, submitted 2023-12-15, exp 2028-04-22) is a SEPARATE early "BNB" solar zone, NOT the SB Energy trio.
+
+## Imagery (s2aws.py, 5.0 km buffer @ 32.770,-101.555, tile 14SKB) -> imagery/key/
+Read all 3 frames. 2024-07-18 & 2025-07-20 (cloud 0.0%): collector site BARE rangeland; existing ENGIE Long Draw Solar array at W edge (attributed, NOT Lyra). 2026-07-20: NEW bright ~1 km graded/cleared rectangle at the collector complex, absent 2025 -> early site preparation. 2024 chip swath-clipped (SE), west+center clean. Construction verdict upgraded: early_site_preparation_observed.
+
+## Rebuilt: build_brief.py (see below)
+
+## Imagery UPDATE — denser 2026 time series (user request)
+Added 5 chips to bracket the 2026 construction ramp (s2aws.py, same anchor/buffer):
+2025-11-02, 2026-02-03, 2026-03-29, 2026-05-31, 2026-07-03 (filenames use nominal request dates; actual acquisition in findings.imagery_timeseries).
+Read progression at the collector site (N of US-180, ~32.77,-101.555):
+- 2025-07 / 2025-11 / 2026-02: BARE rangeland (baseline).
+- 2026-03-29: cleared/plowed rectangle emerging.
+- 2026-05-31: bright white graded pad established, expanding (cloud 0.0%).
+- 2026-07-03 / 2026-07-20: ~1 km bright graded/cleared area.
+Onset of generator-site grading ~Q1-Q2 2026 — AHEAD of the CCN 59183 transmission TIF window (Aug 2026-Apr 2027). Construction verdict -> active_site_construction_observed; project verdict -> real_active. Existing ENGIE Long Draw Solar array (W edge, all frames) attributed as neighbor, NOT Lyra.

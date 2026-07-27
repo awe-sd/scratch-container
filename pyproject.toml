@@ -7,6 +7,7 @@ dependencies = [
     "openpyxl>=3.1.5",
     "pillow>=12.3.0",
     "pymupdf>=1.28.0",
+    "rasterio>=1.5.0",
     "xarray>=2026.7.0",
 ]
 

@@ -100,3 +100,60 @@ Confidence: medium — derived from IA text, not parcel or pin. Will cross-check
 
 See dossier.md and findings.json.
 
+---
+
+## Session 2026-07-21 — Second-pass review (site provenance + fresh imagery + abatement hunt)
+
+**Focus of this pass**: nail down the site provenance / "is there a filing that shows the
+parcel?", refresh the construction imagery on a clean single-tool progression, and run the
+bounded Stonewall abatement hunt.
+
+### Parcel / boundary — the answer is NO filed map exists (verified this pass)
+- Re-checked BOTH IA PDFs (full text extraction + keyword scan; not OCR). Exhibit "C" is **text-only** in both the original
+  (35077-1924, 62 pp) and First Amended & Restated (35077-2454, 65 pp): *"Generator's
+  Moccasin Substation will be located in Stonewall County approximately fourteen (14) miles
+  southeast of Aspermont, Texas."* No plat, metes/bounds, coordinates, or acreage.
+- Exhibit **"C-1"** = *"Conceptual One-Line Drawing of Point of Interconnection"* — an
+  **electrical** single-line, NOT a land map.
+- The IA names an **ALTA survey of the property** as a Generator→TSP deliverable — so a
+  parcel survey exists — but it is **not attached** to the filing.
+- **Ch.313 / JETI**: strong/structural NEGATIVE. Ch.313 expired 2022-12-31 (queue postdates
+  it → no application can exist); JETI excludes standalone solar. Neither can produce a
+  reinvestment-zone parcel map for this project.
+- **Ch.312**: weak NEGATIVE in the Comptroller registry (Stonewall is non-reporting). BUT
+  the county **did** designate a reinvestment zone + abatement (see abatement hunt) — that
+  county order is the ONE instrument that would map the parcel, and it is not retrievable here.
+- **Conclusion**: no retrievable public filing delineates the parcel; the documents that
+  would (ALTA survey; county reinvestment-zone instrument) exist but aren't publicly
+  obtainable. The **construction footprint IS the best boundary evidence.** Full write-up:
+  `sources/SITE_DERIVATION.md`.
+
+### Imagery — clean 5-frame AWS progression (s2aws.py, 4.5 km buffer)
+Replaced the mixed prior-pass Element84 frames (archived to `imagery/_pass1_element84/`)
+with a uniform set: `imagery/key/s2_{2024-07-01,2025-07-01,2026-01-15,2026-04-15,2026-07-15}.png`.
+All read + verified real PNGs, footprint fully inside frame with margin (no re-fetch needed).
+- 2024-07-15 & 2025-07-20: undisturbed rangeland; pre-existing farms only at frame edges.
+- 2026-01-31: still undisturbed / pre-construction.
+- **2026-04-26: large bare-soil graded footprint appears** (sharp rectangular edges, multi-km).
+- **2026-07-20: footprint organized into a block grid with an established internal road
+  network**; grass on graded pads; no racking/panels at 10 m/px.
+- Tightens construction start to **Feb–Apr 2026**; verdict advanced **clearing → grading**.
+- Offset note: the recorded point (33.0210,-100.0217) sits at the NE edge of the footprint;
+  observed centroid ~1.5 km SW (~33.011,-100.038). Point kept (imagery anchored on it,
+  nothing clipped); documented rather than re-fetched.
+
+### Stonewall abatement hunt (bounded)
+- `minutes.py harvest --county Stonewall` → **HTTP 403** on the ezTask/custom minutes page
+  (`stonewallcounty.org/page/Public.Notices`); 0 PDFs; `resolve 26INR0269` = COUNTY NOT
+  HARVESTED. Census had already flagged v_minutes 403.
+- Fallback: ONE `search.py "Stonewall County commissioners Swenson Solar abatement"` →
+  **Double Mountain Chronicle** ("Commissioners Finalize Swenson Solar Deal", "County
+  Approves Tax Deal") + KTXS **confirm a county PILOT/abatement was approved (~Apr 2025)**.
+  No primary boundary instrument retrieved. LGS county-clerk portal
+  (`public.lgsonlinesolutions.com`, HTTP 200) is the un-exhausted avenue. No banned domains cited.
+
+### Files updated
+`findings.json` (site + footprint_centroid + derivation_notes, new `tax_incentives`,
+construction verdict/progression/imagery_artifacts), `sources/SITE_DERIVATION.md` (new),
+`imagery/key/` (5 new frames; old set archived), then rebuilt `brief.html`.
+

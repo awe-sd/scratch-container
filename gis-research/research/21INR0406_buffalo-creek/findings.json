@@ -1,97 +1,96 @@
 {
-  "inr": "21INR0406",
-  "project": "Buffalo Creek",
-  "research_date": "2026-07-19",
-  "verdict": "real_early",
-  "confidence": "medium",
-  "verdict_rationale": "Site with solar installation visible in imagery near W.A. Parish 345kV corridor; approved-for-sync Jan 2022 confirms physical infrastructure exists; chronic 19-drift COD pattern and absence from EIA 860M after 4.5 years signal prolonged commissioning stall, not a paper project",
-
-  "ownership": {
-    "spv": "Buffalo Creek, LLC (presumed; unverified — TX SOS behind paywall, PUCT Interchange 402, no web presence found)",
-    "developer": "unknown — not determined (no web presence, no Ch.313/JETI found, no press release found)",
-    "epc": "unknown",
-    "offtaker": "unknown",
-    "financing": "unknown"
-  },
-
-  "site": {
-    "lat": 29.330,
-    "lon": -95.840,
-    "method": "imagery — solar array visible in Sentinel-2 June 2021 and June 2026 chips centered ~29.33°N 95.84°W; location consistent with W.A. Parish 345kV corridor heading SW from Parish substation (29.4808, -95.6242); area NOT matching any EIA 860M registered plant in Fort Bend County",
-    "confidence": "low-medium — site is a candidate; could overlap with Fighting Jays Solar (EIA: 29.358, -95.746) or an unregistered portion; gmaps rate-limited throughout, no parcel record obtained",
-    "cross_checks": "W.A. Parish 345kV substation at 29.4808, -95.6242 (OSM confirmed); candidate location ~12 km SW on 345kV line; Fighting Jays (29.358, -95.746) separate chip showed no solar array in June 2026; installation visible at ~29.32-29.35N 95.82-95.84W not in EIA 860M"
-  },
-
-  "project_area": {
-    "acres": null,
-    "source": "not determined — PUCT IA inaccessible (402), Ch.313/JETI not found, CAD JS-gated",
-    "artifact": null
-  },
-
-  "construction": {
-    "stage": "substantially_complete",
-    "first_activity_seen": "2021-06 (solar array rows visible with access road grid in Sentinel-2 chip)",
-    "latest_observation": "2026-06 (dark module rows still present; consistent operating installation)",
-    "notes": "ERCOT milestone: approved-for-sync 2022-01-06 confirms physical grid connection. Not in EIA 860M as of May 2026 (neither Operating nor Planned) — plant installed but not commercially registered."
-  },
-
-  "queue_history": {
-    "ia_signed": "2020-04-16",
-    "approved_for_energization": "2021-12-08",
-    "approved_for_sync": "2022-01-06",
-    "commercial_operation_approved": null,
-    "construction_start_reported": null,
-    "construction_end_reported": null,
-    "cod_drifts": 19,
-    "cod_first": "2021-12-31",
-    "cod_latest": "2026-08-31",
-    "capacity_changes": [
-      {"mw": 400.0, "from": "2019-08-01", "until": "2020-10-01"},
-      {"mw": 438.75, "from": "2020-11-01", "until": "2026-06-01"}
-    ]
-  },
-
-  "contractual_schedule": {
-    "documents": [
-      {
-        "doc": "Interconnection Agreement (original)",
-        "signed": "2020-04-16",
-        "financial_security": "unknown — PUCT Interchange returned HTTP 402",
-        "artifact": null
-      }
-    ]
-  },
-
-  "abatement": {
-    "ch313_found": false,
-    "jeti_found": false,
-    "notes": "Ch.313 2023 supplemental data PDF: no Fort Bend County entries. JETI current agreements: no solar or Fort Bend County entries. No abatement found."
-  },
-
-  "eia860m": {
-    "in_operating": false,
-    "in_planned": false,
-    "source": "EIA Form 860M May 2026 download checked — Buffalo Creek not present in either sheet. Fort Bend solar plants confirmed: Cutlass Solar 1 (110.9 MW 2022), Cutlass Solar II (202.8 MW 2024), Fighting Jays (227.5 MW 2022), Fort Bend Solar LLC/Acciona (240 MW 2023)."
-  },
-
-  "cod_assessment": {
-    "reported_cod": "2026-08-31",
-    "reported_cod_plausible": false,
-    "independent_estimate": "2026-Q4 to 2027-Q2",
-    "drift_risk": "high",
-    "rationale": "19 drifts over 5 years with last 4 each 1-3 months apart; approved-for-sync Jan 2022 but no commercial operation 4.5 years later is highly anomalous; installation appears physically present but something prevents commercial operation (grid studies, equipment, contractual, or regulatory); 2026-08-31 COD is 6 weeks away with no construction completion reported and not in EIA 860M — implausible on current evidence; even if COD achieved by year-end 2026, high probability of further drift given pattern"
-  },
-
-  "sources": [],
-  "negative_evidence": [
-    "No web presence found for Buffalo Creek Solar or Buffalo Creek LLC (Bing, Google both returned zero relevant results)",
-    "TX Comptroller mycpa URL now redirects; Bing CAPTCHA blocked direct entity search",
-    "PUCT Interchange HTTP 402 — IA not obtainable",
-    "TX SOS behind paywall — LLC registration not verifiable",
-    "Ch.313/JETI: no agreements found for Fort Bend County solar",
-    "Fort Bend CAD esearch.fbcad.org: JS-gated, results not loadable via fetch",
-    "gmaps.py: HTTP 429 throughout — no delivery pin obtained",
-    "CDSE: intermittent 401/403 — several historical chips not obtained",
-    "Developer identity: completely unknown — no primary source found"
+ "inr": "21INR0406",
+ "project": "Buffalo Creek",
+ "research_date": "2026-07-19",
+ "verdict": "real_early",
+ "confidence": "medium",
+ "verdict_rationale": "Site with solar installation visible in imagery near W.A. Parish 345kV corridor; approved-for-sync Jan 2022 confirms physical infrastructure exists; chronic 19-drift COD pattern and absence from EIA 860M after 4.5 years signal prolonged commissioning stall, not a paper project",
+ "ownership": {
+  "spv": "Buffalo Creek, LLC (presumed; unverified \u2014 TX SOS behind paywall, PUCT Interchange 402, no web presence found)",
+  "developer": "unknown \u2014 not determined (no web presence, no Ch.313/JETI found, no press release found)",
+  "epc": "unknown",
+  "offtaker": "unknown",
+  "financing": "unknown"
+ },
+ "site": {
+  "lat": 29.33,
+  "lon": -95.84,
+  "method": "imagery \u2014 solar array visible in Sentinel-2 June 2021 and June 2026 chips centered ~29.33\u00b0N 95.84\u00b0W; location consistent with W.A. Parish 345kV corridor heading SW from Parish substation (29.4808, -95.6242); area NOT matching any EIA 860M registered plant in Fort Bend County",
+  "confidence": "low-medium \u2014 site is a candidate; could overlap with Fighting Jays Solar (EIA: 29.358, -95.746) or an unregistered portion; gmaps rate-limited throughout, no parcel record obtained",
+  "cross_checks": "W.A. Parish 345kV substation at 29.4808, -95.6242 (OSM confirmed); candidate location ~12 km SW on 345kV line; Fighting Jays (29.358, -95.746) separate chip showed no solar array in June 2026; installation visible at ~29.32-29.35N 95.82-95.84W not in EIA 860M"
+ },
+ "project_area": {
+  "acres": null,
+  "source": "not determined \u2014 PUCT IA inaccessible (402), Ch.313/JETI not found, CAD JS-gated",
+  "artifact": null
+ },
+ "construction": {
+  "stage": "substantially_complete",
+  "first_activity_seen": "2021-06 (solar array rows visible with access road grid in Sentinel-2 chip)",
+  "latest_observation": "2026-06 (dark module rows still present; consistent operating installation)",
+  "notes": "ERCOT milestone: approved-for-sync 2022-01-06 confirms physical grid connection. Not in EIA 860M as of May 2026 (neither Operating nor Planned) \u2014 plant installed but not commercially registered."
+ },
+ "queue_history": {
+  "ia_signed": "2020-04-16",
+  "approved_for_energization": "2021-12-08",
+  "approved_for_sync": "2022-01-06",
+  "commercial_operation_approved": null,
+  "construction_start_reported": null,
+  "construction_end_reported": null,
+  "cod_drifts": 19,
+  "cod_first": "2021-12-31",
+  "cod_latest": "2026-08-31",
+  "capacity_changes": [
+   {
+    "mw": 400.0,
+    "from": "2019-08-01",
+    "until": "2020-10-01"
+   },
+   {
+    "mw": 438.75,
+    "from": "2020-11-01",
+    "until": "2026-06-01"
+   }
   ]
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Interconnection Agreement (original)",
+    "signed": "2020-04-16",
+    "financial_security": "unknown \u2014 PUCT Interchange returned HTTP 402",
+    "artifact": null
+   }
+  ]
+ },
+ "abatement": {
+  "ch313_found": false,
+  "jeti_found": false,
+  "notes": "Ch.313 2023 supplemental data PDF: no Fort Bend County entries. JETI current agreements: no solar or Fort Bend County entries. No abatement found."
+ },
+ "eia860m": {
+  "in_operating": false,
+  "in_planned": false,
+  "source": "EIA Form 860M May 2026 download checked \u2014 Buffalo Creek not present in either sheet. Fort Bend solar plants confirmed: Cutlass Solar 1 (110.9 MW 2022), Cutlass Solar II (202.8 MW 2024), Fighting Jays (227.5 MW 2022), Fort Bend Solar LLC/Acciona (240 MW 2023)."
+ },
+ "cod_assessment": {
+  "reported_cod": "2026-08-31",
+  "reported_cod_plausible": false,
+  "independent_estimate": "2026-Q4 to 2027-Q2",
+  "drift_risk": "high",
+  "rationale": "19 drifts over 5 years with last 4 each 1-3 months apart; approved-for-sync Jan 2022 but no commercial operation 4.5 years later is highly anomalous; installation appears physically present but something prevents commercial operation (grid studies, equipment, contractual, or regulatory); 2026-08-31 COD is 6 weeks away with no construction completion reported and not in EIA 860M \u2014 implausible on current evidence; even if COD achieved by year-end 2026, high probability of further drift given pattern"
+ },
+ "sources": [],
+ "negative_evidence": [
+  "No web presence found for Buffalo Creek Solar or Buffalo Creek LLC (Bing, Google both returned zero relevant results)",
+  "TX Comptroller mycpa URL now redirects; Bing CAPTCHA blocked direct entity search",
+  "PUCT Interchange HTTP 402 \u2014 IA not obtainable",
+  "TX SOS behind paywall \u2014 LLC registration not verifiable",
+  "Ch.313/JETI: no agreements found for Fort Bend County solar",
+  "Fort Bend CAD esearch.fbcad.org: JS-gated, results not loadable via fetch",
+  "gmaps.py: HTTP 429 throughout \u2014 no delivery pin obtained",
+  "CDSE: intermittent 401/403 \u2014 several historical chips not obtained",
+  "Developer identity: completely unknown \u2014 no primary source found"
+ ],
+ "real_project_verdict": "real_early"
 }

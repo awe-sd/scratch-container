@@ -1,16 +1,16 @@
 {
  "mode": "deep",
  "model": "us.anthropic.claude-sonnet-4-6",
- "subtype": "error_during_execution",
- "is_error": true,
- "duration_ms": 421247,
- "num_turns": 18,
- "total_cost_usd": 0.28256895000000004,
+ "subtype": "success",
+ "is_error": false,
+ "duration_ms": 472600,
+ "num_turns": 49,
+ "total_cost_usd": 1.3287905999999998,
  "usage": {
-  "input_tokens": 10,
-  "cache_creation_input_tokens": 43925,
-  "cache_read_input_tokens": 272984,
-  "output_tokens": 2395,
+  "input_tokens": 39,
+  "cache_creation_input_tokens": 80132,
+  "cache_read_input_tokens": 2638412,
+  "output_tokens": 15777,
   "server_tool_use": {
    "web_search_requests": 0,
    "web_fetch_requests": 0
@@ -18,28 +18,25 @@
   "service_tier": "standard",
   "cache_creation": {
    "ephemeral_1h_input_tokens": 0,
-   "ephemeral_5m_input_tokens": 43925
+   "ephemeral_5m_input_tokens": 80132
   },
   "inference_geo": "",
   "iterations": [],
   "speed": "standard"
  },
- "session_id": "46b3e402-7ef1-48b9-9a6c-fd8d926a4b0a",
+ "session_id": "14a368d1-ea63-4c2c-8fd2-cc50129ba720",
  "audit": {
-  "assistant_turns": 28,
-  "image_reads": 1,
+  "assistant_turns": 37,
+  "image_reads": 2,
   "tool_counts": {
-   "Read": 10,
-   "Glob": 3,
-   "Bash": 2
+   "Read": 12,
+   "Bash": 31,
+   "Write": 3,
+   "Edit": 2
   },
-  "violations": [
-   "findings.json missing",
-   "dossier.md missing",
-   "token budget exceeded: 468854 > 400000 (killed)"
-  ]
+  "violations": []
  },
- "fresh_tokens": 468854,
+ "fresh_tokens": 80540,
  "token_budget": 400000,
- "exit_code": 143
+ "exit_code": 0
 }

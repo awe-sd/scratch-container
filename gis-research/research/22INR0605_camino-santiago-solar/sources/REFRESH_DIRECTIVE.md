@@ -30,3 +30,18 @@ a note is not an artifact):
 
 Deliverables: complete findings.json (all keys evidenced), dossier.md, brief.html
 with contractual_schedule table incl. financial-security amounts + map artifacts.
+
+## ADDENDUM (2026-07-20, mid-refresh): prior EIA bind is FALSE
+- CONFIRMED SPV: **Camino Solar Project, LLC** — Oncor SGIA dated 2024-12-06,
+  filing 35077-2028, INR 22INR0605 verified in the PDF text. Stoneridge/RWE absent.
+- The previous run bound eia_history to plant 69027 "Stoneridge Solar, LLC" (RWE,
+  operating 2025-11) via --plant-id — WRONG PROJECT. Quarantined as
+  eia_history.json.false-match-stoneridge. Do NOT rebind to any county+MW neighbor:
+  Milam has ≥4 lookalikes (Orion I 66859 OPERATING, Cattleman II 67976 TS,
+  Stoneridge 69027 TS/OP, Yaupon ~200MW planned). "Camino" appears NOWHERE in
+  EIA-860M — treat as not-yet-reported (negative evidence), consistent with the
+  Dec-2024 SGIA and 2027-09 queue COD.
+- Site fix must come from the SGIA exhibits (render + read them) and/or Milam CAD
+  owner search "Camino Solar Project" — NOT from any EIA neighbor's coordinates.
+  When chipping, expect NEIGHBOR ARRAYS in view — label them; panels in a chip are
+  not evidence for Camino unless inside the documented boundary.

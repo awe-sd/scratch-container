@@ -45,4 +45,35 @@
 - triage.md written
 - Turns used: ~28 of 35 budget
 
+## D0 start (deep scan)
+- Read triage_findings.json/triage.md/factsheet.{json,md}; inventoried sources/ (2 verified IA PDFs already on disk)
+  and imagery/ (4/9 chips + contact sheet from triage, low-confidence Ding Dong guess)
+- findings.json skeleton written
+
+## D1 IA schedule
+- `exhibit.py scan`: original IA (35077-2238) has 2 exhibit-keyword pages (p14, p40); Amendment 1 (35077-2246) has 0
+  (it's a 4-page name-correction amendment only, no schedule change — confirmed by reading its full text)
+- Extracted via pypdf text (no need to render most pages): filing letter confirms INR 25INR0281 in text (CONFIRMED
+  match per playbook rule, not just county+MW). Exhibit "B" Time Schedule (IA p29):
+  - Notice-to-proceed/security date: 2025-08-06
+  - In-Service Date: 2027-05-13
+  - Scheduled Trial Operation Date: 2027-05-25
+  - Scheduled Commercial Operation Date: **2027-11-12** (matches queue COD exactly — contractually grounded)
+- Exhibit "E" Security Arrangement (IA p50): Irrevocable Standby Letter of Credit, effective on/before 2025-08-06,
+  amount **$10,615,572**
+- Amendment No. 1 (2025-08-26) is NOT a schedule amendment — it only corrects the Generator's legal name from
+  "Cosper Solar" to "Gransolar Texas Twenty LLC" throughout the agreement. Financial security unchanged.
+- **MAJOR SITE FIND**: Exhibit "C" / Attachment 1 (IA p44, rendered → sources/..._p44.png) is a one-line diagram
+  titled "Maxdale Switch" showing 138kV lines to "Copperas Cove LCRA" and "Ding Dong Substation" — this is a NEW
+  tap switch (not the existing Ding Dong substation triage guessed), matching queue POI text exactly
+  ("Tap 138kV 115 Ding Dong - 3630 Copperas Cove Tu"). Relaying equipment list (IA p38) also names "Killeen Switch
+  line" and "Copperas Cove Sub (LCRA) line" relay panels — consistent with the tap being on the Ding Dong–Copperas
+  Cove 138kV line somewhere between Killeen and Copperas Cove.
+- Maxdale, TX is a real unincorporated community in Bell County (Wikipedia/TSHA/hometownlocator confirm) — gives a
+  geographic anchor distinct from the "Ding Dong" substation itself.
+- IA Exhibit B: Generator to provide lat/lon+kmz of solar panel units by 2026-11-13 — not yet in these documents.
+- No CAD-visible acreage figures in IA text (no Exhibit with acreage found in text-extracted pages); land-tenure
+  clauses (Exhibit C §12c/d "If Generator Owns Land" / "If Generator Does Not Own Land") are boilerplate options,
+  don't resolve actual tenure — logged as unresolved.
+
 ## END

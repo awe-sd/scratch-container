@@ -1,105 +1,96 @@
 {
-  "inr": "26INR0636",
-  "project": "Lyra Storage",
-  "researched_date": "2026-07-19",
-  "verdict": "real_early",
-
-  "site": {
-    "lat": 32.720,
-    "lon": -101.635,
-    "method": "EIA 860 Borden County BESS registered address (9400 Vealmoore Road, 32.72233, -101.638499) + Long Draw 345kV substation (OSM 32.7211, -101.6330); Lyra Storage 500 MW 345kV BESS expected at or adjacent to same WETT substation cluster",
-    "confidence": "low_medium",
-    "cross_check": "EIA 860 registered coords for Borden County BESS 32.72233/-101.638499; Long Draw 345kV substation (WETT) at 32.7211/-101.6330; both in Borden County adjacent cluster — agree within 0.3 km. No delivery pin (GMaps 429), no parcel, no abatement map. Lyra Storage pad not yet separately identified in imagery.",
-    "artifact": "sources/2026-07-19_eia860_2024_borden_county_plants.zip"
+ "inr": "26INR0636",
+ "project": "Lyra Storage",
+ "researched_date": "2026-07-19",
+ "verdict": "real_early",
+ "site": {
+  "lat": 32.72,
+  "lon": -101.635,
+  "method": "EIA 860 Borden County BESS registered address (9400 Vealmoore Road, 32.72233, -101.638499) + Long Draw 345kV substation (OSM 32.7211, -101.6330); Lyra Storage 500 MW 345kV BESS expected at or adjacent to same WETT substation cluster",
+  "confidence": "low_medium",
+  "cross_check": "EIA 860 registered coords for Borden County BESS 32.72233/-101.638499; Long Draw 345kV substation (WETT) at 32.7211/-101.6330; both in Borden County adjacent cluster \u2014 agree within 0.3 km. No delivery pin (GMaps 429), no parcel, no abatement map. Lyra Storage pad not yet separately identified in imagery.",
+  "artifact": "sources/2026-07-19_eia860_2024_borden_county_plants.zip"
+ },
+ "ownership_chain": [
+  {
+   "entity": "Lyra Storage, LLC",
+   "role": "SPV / interconnection applicant",
+   "evidence": "ERCOT GIS queue (26INR0636); no primary registration doc retrieved",
+   "artifact": null
   },
-
-  "ownership_chain": [
-    {
-      "entity": "Lyra Storage, LLC",
-      "role": "SPV / interconnection applicant",
-      "evidence": "ERCOT GIS queue (26INR0636); no primary registration doc retrieved",
-      "artifact": null
-    },
-    {
-      "entity": "Unknown parent — constellation naming pattern (Juno/Lyra) suggests relationship to SE Juno LLC / Juno Solar Project cluster",
-      "role": "likely developer",
-      "evidence": "Juno Solar Project (SE Juno LLC) operating at same Borden County address since 2021 (EIA 860 Utility 63100, Plant 63328). SE Juno LLC address = 1 Circle Star Way, San Carlos CA 94070 (Energy Vault Holdings HQ). No direct ownership confirmation found.",
-      "artifact": "sources/2026-07-19_eia860_2024_borden_county_plants.zip"
-    }
-  ],
-
-  "land_and_county": {
-    "tenure": "unknown",
-    "abatements": "none found — JETI/Ch.313 not accessible via curl (JS-rendered); post-2022 project; absence consistent with BESS thin county trail",
-    "cad": "Borden County CAD (bcad.net) domain expired/GoDaddy parked — not searchable",
-    "parcels": null
-  },
-
-  "project_area": {
-    "acres": null,
-    "source": "not obtained — no IA, no abatement doc, CAD unavailable",
-    "artifact": null
-  },
-
-  "interconnection": {
-    "poi": "345kV MULESHOE (#59922)",
-    "poi_physical_note": "MULESHOE is an ERCOT internal nodal name; most likely physical bus = Long Draw 345kV substation (WETT, 32.7211, -101.6330, OSM) or adjacent WETT 345kV node in Borden County. No substation named Muleshoe found in OSM.",
-    "tsp": "Wind Energy Transmission Texas LLC (WETT) — inferred from all other Borden County 345kV projects (EIA 860)",
-    "ia_signed": "2025-08-13",
-    "ia_retrieved": false,
-    "ia_source": "IA date from ERCOT queue history (queue_history.py); PUCT Interchange JS-rendered, no REST API accessible",
-    "financial_security": "unknown — queue milestone 'financialSecurityAndNoticeToProceedProvided' = No in all 14 snapshots",
-    "fis_approved": false,
-    "fis_requested": "2025-05-12"
-  },
-
-  "contractual_schedule": {
-    "documents": [],
-    "note": "IA signed 2025-08-13 per queue history. PUCT Interchange not accessible — no IA PDF retrieved. Financial security not yet posted as of 2026-06-01 (latest snapshot)."
-  },
-
-  "queue_history": {
-    "snapshots": 14,
-    "first_report": "2025-05-01",
-    "last_report": "2026-06-01",
-    "cod_changes": 0,
-    "reported_cod": "2026-11-12",
-    "artifact": "timeline.md"
-  },
-
-  "construction": {
-    "stage": "no_activity",
-    "first_activity_date": null,
-    "latest_observation": "2026-07-01",
-    "notes": "No new graded pad or BESS container rows visible in Sentinel-2 imagery at the Long Draw / Vealmoore Road cluster. Existing Borden County BESS (150 MW EIA 860 operating Aug-2024) visible as bright white pads. Lyra Storage has not broken ground as of July 2026.",
-    "imagery_artifact": "imagery/key/s2_2026-07-01_borden_complex.png"
-  },
-
-  "cod_assessment": {
-    "reported_cod": "2026-11-12",
-    "reported_cod_plausible": false,
-    "independent_estimate": "2027-Q4",
-    "drift_risk": "high",
-    "rationale": [
-      "IA signed 2025-08-13 but FIS not yet approved as of 2026-06 — unusual sequencing; FIS approval typically precedes IA for BESS; may reflect ERCOT's updated IA-before-FIS pathway",
-      "Financial security NOT posted as of latest snapshot (2026-06-01) — no NTP issued",
-      "No construction milestones reported in 14 monthly snapshots; no site grading visible in imagery",
-      "500 MW BESS at this scale requires 12-18 months from NTP to COD; from NTP ~Q3-2026 at absolute earliest → earliest COD = Q1-2028",
-      "More realistic path: FIS approved Q4-2026, financial security Q4-2026, NTP Q1-2027, COD Q4-2027 or later",
-      "COD has held at 2026-11-12 with zero drift across 14 months — no adjustment made by developer, suggesting either placeholder COD or developer believes FIS waiver / expedited path is possible"
-    ]
-  },
-
-  "negative_evidence": [
-    "No news or press releases for Lyra Storage found",
-    "No SEC filings for Lyra Storage LLC or Juno BESS (0 EDGAR hits)",
-    "No TX SOS registration retrieved (subscription required)",
-    "No JETI/Ch.313 abatement found (portal JS-rendered)",
-    "No CAD records (bcad.net expired)",
-    "No delivery pins (GMaps 429 error)",
-    "No PUCT Interchange IA retrieved (JS-rendered portal)",
-    "No FAA OE/AAA filings (not applicable for BESS)",
-    "Financial security not posted as of 2026-06-01",
-    "FIS not approved despite IA signed — atypical milestone sequence"
+  {
+   "entity": "Unknown parent \u2014 constellation naming pattern (Juno/Lyra) suggests relationship to SE Juno LLC / Juno Solar Project cluster",
+   "role": "likely developer",
+   "evidence": "Juno Solar Project (SE Juno LLC) operating at same Borden County address since 2021 (EIA 860 Utility 63100, Plant 63328). SE Juno LLC address = 1 Circle Star Way, San Carlos CA 94070 (Energy Vault Holdings HQ). No direct ownership confirmation found.",
+   "artifact": "sources/2026-07-19_eia860_2024_borden_county_plants.zip"
+  }
+ ],
+ "land_and_county": {
+  "tenure": "unknown",
+  "abatements": "none found \u2014 JETI/Ch.313 not accessible via curl (JS-rendered); post-2022 project; absence consistent with BESS thin county trail",
+  "cad": "Borden County CAD (bcad.net) domain expired/GoDaddy parked \u2014 not searchable",
+  "parcels": null
+ },
+ "project_area": {
+  "acres": null,
+  "source": "not obtained \u2014 no IA, no abatement doc, CAD unavailable",
+  "artifact": null
+ },
+ "interconnection": {
+  "poi": "345kV MULESHOE (#59922)",
+  "poi_physical_note": "MULESHOE is an ERCOT internal nodal name; most likely physical bus = Long Draw 345kV substation (WETT, 32.7211, -101.6330, OSM) or adjacent WETT 345kV node in Borden County. No substation named Muleshoe found in OSM.",
+  "tsp": "Wind Energy Transmission Texas LLC (WETT) \u2014 inferred from all other Borden County 345kV projects (EIA 860)",
+  "ia_signed": "2025-08-13",
+  "ia_retrieved": false,
+  "ia_source": "IA date from ERCOT queue history (queue_history.py); PUCT Interchange JS-rendered, no REST API accessible",
+  "financial_security": "unknown \u2014 queue milestone 'financialSecurityAndNoticeToProceedProvided' = No in all 14 snapshots",
+  "fis_approved": false,
+  "fis_requested": "2025-05-12"
+ },
+ "contractual_schedule": {
+  "documents": [],
+  "note": "IA signed 2025-08-13 per queue history. PUCT Interchange not accessible \u2014 no IA PDF retrieved. Financial security not yet posted as of 2026-06-01 (latest snapshot)."
+ },
+ "queue_history": {
+  "snapshots": 14,
+  "first_report": "2025-05-01",
+  "last_report": "2026-06-01",
+  "cod_changes": 0,
+  "reported_cod": "2026-11-12",
+  "artifact": "timeline.md"
+ },
+ "construction": {
+  "stage": "no_activity",
+  "first_activity_date": null,
+  "latest_observation": "2026-07-01",
+  "notes": "No new graded pad or BESS container rows visible in Sentinel-2 imagery at the Long Draw / Vealmoore Road cluster. Existing Borden County BESS (150 MW EIA 860 operating Aug-2024) visible as bright white pads. Lyra Storage has not broken ground as of July 2026.",
+  "imagery_artifact": "imagery/key/s2_2026-07-01_borden_complex.png"
+ },
+ "cod_assessment": {
+  "reported_cod": "2026-11-12",
+  "reported_cod_plausible": false,
+  "independent_estimate": "2027-Q4",
+  "drift_risk": "high",
+  "rationale": [
+   "IA signed 2025-08-13 but FIS not yet approved as of 2026-06 \u2014 unusual sequencing; FIS approval typically precedes IA for BESS; may reflect ERCOT's updated IA-before-FIS pathway",
+   "Financial security NOT posted as of latest snapshot (2026-06-01) \u2014 no NTP issued",
+   "No construction milestones reported in 14 monthly snapshots; no site grading visible in imagery",
+   "500 MW BESS at this scale requires 12-18 months from NTP to COD; from NTP ~Q3-2026 at absolute earliest \u2192 earliest COD = Q1-2028",
+   "More realistic path: FIS approved Q4-2026, financial security Q4-2026, NTP Q1-2027, COD Q4-2027 or later",
+   "COD has held at 2026-11-12 with zero drift across 14 months \u2014 no adjustment made by developer, suggesting either placeholder COD or developer believes FIS waiver / expedited path is possible"
   ]
+ },
+ "negative_evidence": [
+  "No news or press releases for Lyra Storage found",
+  "No SEC filings for Lyra Storage LLC or Juno BESS (0 EDGAR hits)",
+  "No TX SOS registration retrieved (subscription required)",
+  "No JETI/Ch.313 abatement found (portal JS-rendered)",
+  "No CAD records (bcad.net expired)",
+  "No delivery pins (GMaps 429 error)",
+  "No PUCT Interchange IA retrieved (JS-rendered portal)",
+  "No FAA OE/AAA filings (not applicable for BESS)",
+  "Financial security not posted as of 2026-06-01",
+  "FIS not approved despite IA signed \u2014 atypical milestone sequence"
+ ],
+ "real_project_verdict": "real_early"
 }

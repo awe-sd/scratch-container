@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Caney Creek Solar — research brief</title><style>
+:root{--bg:#fff;--sur:#f6f7f9;--ink:#191c20;--ink2:#555b64;--mut:#899;--line:#e1e5ea;
+--good:#0a7d33;--warn:#b45309;--bad:#b91c1c;--acc:#2563eb}
+@media(prefers-color-scheme:dark){:root{--bg:#14171c;--sur:#1c2027;--ink:#eceff3;
+--ink2:#b3bac4;--mut:#7d8590;--line:#2a2f38;--good:#34d399;--warn:#fbbf24;--bad:#f87171;--acc:#6ea8fe}}
+*{box-sizing:border-box}body{margin:0 auto;max-width:1080px;padding:20px;background:var(--bg);
+color:var(--ink);font:14px/1.45 -apple-system,"Segoe UI",Roboto,sans-serif}
+h1{font-size:19px;margin:0}h2{font-size:13px;text-transform:uppercase;letter-spacing:.05em;
+color:var(--mut);margin:22px 0 8px}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-weight:700;font-size:12px}
+.b-good{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good)}
+.b-warn{background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--warn)}
+.b-bad{background:color-mix(in srgb,var(--bad) 15%,transparent);color:var(--bad)}
+.hdr{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.sub{color:var(--ink2);font-size:13px;margin:4px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.card{background:var(--sur);border:1px solid var(--line);border-radius:9px;padding:10px 13px}
+.card .k{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+.card .v{font-weight:650;margin-top:2px}.card .v small{font-weight:400;color:var(--ink2)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:5px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:13px}
+th{color:var(--mut);font-size:11px;text-transform:uppercase}
+.imgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.imgs figure{margin:0}.imgs img{width:100%;border-radius:8px;border:1px solid var(--line)}
+.imgs figcaption{font-size:12px;color:var(--ink2);margin-top:2px}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+ul{margin:6px 0;padding-left:20px}li{margin:3px 0}
+.small{font-size:12px;color:var(--ink2)}
+</style></head><body>
+<div class="hdr"><h1>Caney Creek Solar <span class="small">(23INR0045)</span></h1>
+<span class="badge b-warn">unclear</span>
+<span class="badge b-bad">COD drift: high</span></div>
+<div class="sub">researched 2026-07-20 ·
+<a href="https://www.google.com/maps/@32.5658,-95.9953,5000m/data=!3m1!1e3" target="_blank">site 32.5658, -95.9953</a> (IA POI text (Exhibit C: &#x27;approximately 8.3 miles west of Canton, TX on County Road 2120 in Van Zandt County... tapping the Glen Pine-Explorer 138kV transmission line&#x27;) geocoded via OSM Nominatim: CR 2120 way centroid (32.5658,-95.9953) sits ~8.0mi due west of Canton centroid (32.5386,-95.8618) -- matches IA distance/bearing closely. Matches identity-packet POI &#x27;Tap 138kV 6829 Glen Pine - 6833 Explorer&#x27; exactly (same 2 named substations). Cross-check: savevzcounty.org independently describes &#x27;East of FM 47 and South of I20&#x27; -- FM 47 runs N-S roughly 5-6mi east of CR 2120 candidate point, broadly consistent quadrant-wise though not a tight match. IMAGERY NOT OBTAINED: CDSE openEO /result endpoint returned RemoteDisconnected on 8+ retries with backoff over ~15 min (shared infra saturated -- 8-10 other concurrent deep-scan agents running in this container per pgrep). Google Places (gmaps.py places) also HTTP 429 on 5 attempts across the session. No delivery pin, no satellite confirmation., medium (POI-text + geocode cross-check only; no parcel doc, no imagery, no delivery pin -- CDSE/Places both unavailable all session due to shared-infra contention, not investigator choice) conf) ·
+<a href="dossier.md">dossier</a> · <a href="log.md">log</a> · <a href="timeline.md">timeline</a></div>
+<div class="grid">
+<div class="card"><div class="k">Construction</div><div class="v">unknown
+<small>since —</small></div></div>
+<div class="card"><div class="k">COD reported → independent</div>
+<div class="v">2027-06-21 → 2027-Q3 to 2028-Q2 (wide band, low confidence)</div></div>
+<div class="card"><div class="k">Owner chain</div><div class="v">HEP Caney Creek Solar, LLC → HEP (Hull Street Energy / hep.global) / HEP Aquamarine Holdings LLC → Solareit</div></div>
+<div class="card"><div class="k">Land</div><div class="v">unknown</div></div>
+
+</div>
+
+<h2>Site imagery (Sentinel-2, key dates)</h2><div class="imgs"></div>
+<h2>Interconnection agreement — signed, security, schedule</h2><table><tr><th>IA document</th><th>Signed</th><th>Financial security posted</th></tr><tr><td>Original SGIA — Solar Generation Interconnection Agreement between Rayburn Country Electric Cooperative, Inc. and HEP Caney Creek Solar, LLC (PUCT Control No. 35077, filing 35077-1353)</td><td>2021-12-24 (Generator) / 2021-12-29 (TSP)</td><td><b>$50,000 cash (NTP, 2021-12-13) -&gt; $1,450,000 cash by 2022-01-14 -&gt; $3,000,000 by 2022-04-01 -&gt; $4,277,047 final tier by 2022-06-01 (Exhibit E)</b></td></tr></table><table><tr><th>Milestone</th><th>original ia 2021</th></tr><tr><td>In-Service Date</td><td>2023-01-20</td></tr><tr><td>Trial Operation</td><td>2023-02-03</td></tr><tr><td>Scheduled Commercial Operation</td><td>2023-06-01</td></tr></table><div class="small">NO AMENDMENT ON FILE at PUCT despite 3 subsequent queue COD slips (2023-06 -&gt; 2024-06 -&gt; 2025-05 -&gt; 2027-06). Exhaustive docket sweep (puct.py match INR-join + name-key; manual review of all 35 Rayburn-party filings in docket 35077; --match Caney/HEP; date-range grep) found only the single original 2022-01-03 filing. Other Rayburn projects (BT Signal Ranch, Sowers, Tanzanite, Amador) have 2-6 amendments each in the same docket over the same period -- the absence for Caney Creek is a real signal, not a search-tooling gap. The only legally binding schedule on file still says COD 2023-06-01, three years stale vs the queue&#x27;s current 2027-06-21 claim.<br>Source: </div>
+
+<h2>Reported-COD drift (queue history, 65 monthly reports since 2021-02-01)</h2>
+<table><tr><th>Reported COD</th><th>Held from</th><th>Until</th></tr><tr><td>2023-06-01</td><td>2021-02-01</td><td>2022-11-01</td></tr><tr><td>2024-06-01</td><td>2022-12-01</td><td>2023-04-01</td></tr><tr><td>2025-05-15</td><td>2023-05-01</td><td>2024-12-01</td></tr><tr><td>2027-06-21</td><td>2025-01-01</td><td>2026-06-01</td></tr></table>
+<h2>Milestones achieved (latest report)</h2>
+<table><tr><th>Milestone</th><th>Date</th></tr><tr><td>Screening started</td><td>2020-09-25</td></tr><tr><td>Screening complete</td><td>2020-12-16</td></tr><tr><td>FIS requested</td><td>2021-02-22</td></tr><tr><td>IA signed</td><td>2021-12-29</td></tr><tr><td>Meets 6.9(1)</td><td>2021-12-13</td></tr></table>
+
+<h2>Key evidence</h2><ul><li>No satellite imagery obtained this session -- CDSE openEO endpoint returned RemoteDisconnected on every attempt (10+ retries, ~20 min elapsed, escalating container contention from 5 to 18 concurrent deep-scan agent processes sharing the same CDSE credentials/endpoint) and gmaps.py staticmap returned HTTP 403 (Maps Static API not enabled on this project&#x27;s key -- permanent gap, not contention)</li><li>savevzcounty.org (opposition group, closest thing to a ground observer) still lists Caney Creek as &#x27;Est Build start: Summer 2026&#x27; as of 2026-07-20 -- i.e. construction has NOT started per the one non-imagery ground-level source available</li><li>No PUCT IA amendment, no Ch.313/JETI filing, no EIA-860M listing -- absence of ALL the paper trails that typically accompany active/near-construction projects (compare Hanson Solar dossier, which had 2 IA amendments + Ch313 + EIA all present pre-construction)</li><li>The only legally binding COD on file with PUCT is the ORIGINAL IA&#x27;s 2023-06-01 Scheduled Commercial Operation Date (sources/2026-07-19_puct_35077-1353_..., Exhibit B) -- three years stale. No amendment renegotiating this schedule exists anywhere in docket 35077 despite an exhaustive sweep (see contractual_schedule.note) even though the queue&#x27;s self-reported COD has moved three times since (2023-06 -&gt; 2024-06 -&gt; 2025-05 -&gt; 2027-06, timeline.md)</li><li>This pattern -- queue COD updates with no corresponding IA amendment on file -- differs from Hanson Solar (23INR0086), where each queue slip was backed by a filed, countersigned Amendment. Here the queue COD looks like a developer/ERCOT-administrative update UNBACKED by a renegotiated interconnection contract, a materially weaker basis for the claim</li><li>Positive reality signals do exist: $4.28M in real cash security was posted on schedule in 2022 (Exhibit E), and the project remains an active line item in queue reports through 2026-06-01 (not cancelled/inactive)</li></ul>
+<h2>Saved sources (3)</h2><h3 class='small'>Documents (1)</h3><ul><li><a href="sources/2026-07-19_puct_35077-1353_solar-generation-interconnection-agreement-betwe.pdf">2026-07-19_puct_35077-1353_solar-generation-interconnection-agreement-betwe.pdf</a></li></ul><h3 class='small'>Web captures (1)</h3><ul><li><a href="sources/2026-07-20_savevzcounty_current-projects.html">2026-07-20_savevzcounty_current-projects.html</a></li></ul><h3 class='small'>Other (1)</h3><ul><li><a href="sources/savevzcounty_caney_creek.md">savevzcounty_caney_creek.md</a></li></ul>
+</body></html>

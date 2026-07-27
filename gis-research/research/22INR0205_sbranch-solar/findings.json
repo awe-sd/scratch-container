@@ -1,77 +1,69 @@
 {
-  "inr": "22INR0205",
-  "project": "Sbranch Solar",
-  "research_date": "2026-07-19",
-  "verdict": "unclear",
-  "verdict_rationale": "Project has genuine queue standing (ERCOT sync-approved 2023-11-21, all milestones met) but 20+ month post-sync gap with no COD is highly abnormal; zero public presence, no IA document found, no developer identified, no imagery confirmation",
-  "construction_stage": "unknown",
-  "first_activity_seen": null,
-
-  "site": {
-    "lat": 29.52,
-    "lon": -96.07,
-    "method": "POI infrastructure anchor only — '44190 East Bernard - 44130 Caney' 138kV tap in Wharton County, TX; actual site is along the 138kV line between East Bernard and Caney substations, exact coordinates unknown",
-    "confidence": "low",
-    "cross_checks": "No cross-check possible — no pin, no parcel, no map document obtained; county centroid explicitly not used; coordinates represent East Bernard substation vicinity only"
-  },
-
-  "project_area": {
-    "acres": null,
-    "source": "not found",
-    "artifact": null
-  },
-
-  "ownership": {
-    "spv": "Sbranch Solar, LLC (per ERCOT GIS queue)",
-    "developer": "unknown — no web presence, no PUCT filings, no Comptroller record obtained",
-    "epc": "unknown",
-    "offtaker": "unknown",
-    "financing": "unknown"
-  },
-
-  "interconnection": {
-    "tsp": "CenterPoint Energy Houston Electric, LLC (inferred from CenterPoint node IDs 44190/44130 in Wharton County)",
-    "poi": "Tap 138kV 44190 East Bernard - 44130 Caney",
-    "ia_signed": "2020-07-26",
-    "ia_document_found": false,
-    "ia_document_notes": "IA signed per queue data; searched PUCT docket 35077 (all TSPs' 25.195(e) filings) — no CenterPoint-Sbranch Solar entry found in period 2020-2023; IA may not have been filed or was filed under different description"
-  },
-
-  "contractual_schedule": {
-    "documents": []
-  },
-
-  "cod_assessment": {
-    "reported_cod": "2026-07-31",
-    "independent_estimate": "2027-Q2 or later",
-    "drift_risk": "high",
-    "drift_rationale": "22 COD changes in 5 years; slipping ~1 month at a time since 2024; current claim (2026-07-31) is 12 days from today and near-certain to slip; 20+ month post-sync gap unexplained; no construction dates ever reported; no imagery confirmation of site activity",
-    "cod_history_changes": 22,
-    "first_cod": "2021-06-01",
-    "latest_cod": "2026-07-31",
-    "queue_history_artifact": "timeline.md"
-  },
-
-  "imagery": {
-    "verdict": "unknown",
-    "frames": [
-      {
-        "date": "2026-07-01",
-        "observation": "xwide chip at East Bernard area; heavy cloud cover; no solar array signature visible; site pinpoint insufficient — chip centered on town, not the 138kV tap corridor",
-        "path": "imagery/s2_2026-07-01.png"
-      }
-    ],
-    "notes": "Site location uncertainty (~2-5 km radius) combined with cloud cover means no meaningful construction verdict possible from available imagery"
-  },
-
-  "signals": {
-    "ia_found": false,
-    "abatement_found": false,
-    "pins_found": 0,
-    "news_found": false,
-    "construction_visible": false,
-    "developer_identified": false
-  },
-
-  "sources": []
+ "inr": "22INR0205",
+ "project": "Sbranch Solar",
+ "research_date": "2026-07-19",
+ "verdict": "unclear",
+ "verdict_rationale": "Project has genuine queue standing (ERCOT sync-approved 2023-11-21, all milestones met) but 20+ month post-sync gap with no COD is highly abnormal; zero public presence, no IA document found, no developer identified, no imagery confirmation",
+ "construction_stage": "unknown",
+ "first_activity_seen": null,
+ "site": {
+  "lat": 29.52,
+  "lon": -96.07,
+  "method": "POI infrastructure anchor only \u2014 '44190 East Bernard - 44130 Caney' 138kV tap in Wharton County, TX; actual site is along the 138kV line between East Bernard and Caney substations, exact coordinates unknown",
+  "confidence": "low",
+  "cross_checks": "No cross-check possible \u2014 no pin, no parcel, no map document obtained; county centroid explicitly not used; coordinates represent East Bernard substation vicinity only"
+ },
+ "project_area": {
+  "acres": null,
+  "source": "not found",
+  "artifact": null
+ },
+ "ownership": {
+  "spv": "Sbranch Solar, LLC (per ERCOT GIS queue)",
+  "developer": "unknown \u2014 no web presence, no PUCT filings, no Comptroller record obtained",
+  "epc": "unknown",
+  "offtaker": "unknown",
+  "financing": "unknown"
+ },
+ "interconnection": {
+  "tsp": "CenterPoint Energy Houston Electric, LLC (inferred from CenterPoint node IDs 44190/44130 in Wharton County)",
+  "poi": "Tap 138kV 44190 East Bernard - 44130 Caney",
+  "ia_signed": "2020-07-26",
+  "ia_document_found": false,
+  "ia_document_notes": "IA signed per queue data; searched PUCT docket 35077 (all TSPs' 25.195(e) filings) \u2014 no CenterPoint-Sbranch Solar entry found in period 2020-2023; IA may not have been filed or was filed under different description"
+ },
+ "contractual_schedule": {
+  "documents": []
+ },
+ "cod_assessment": {
+  "reported_cod": "2026-07-31",
+  "independent_estimate": "2027-Q2 or later",
+  "drift_risk": "high",
+  "drift_rationale": "22 COD changes in 5 years; slipping ~1 month at a time since 2024; current claim (2026-07-31) is 12 days from today and near-certain to slip; 20+ month post-sync gap unexplained; no construction dates ever reported; no imagery confirmation of site activity",
+  "cod_history_changes": 22,
+  "first_cod": "2021-06-01",
+  "latest_cod": "2026-07-31",
+  "queue_history_artifact": "timeline.md"
+ },
+ "imagery": {
+  "verdict": "unknown",
+  "frames": [
+   {
+    "date": "2026-07-01",
+    "observation": "xwide chip at East Bernard area; heavy cloud cover; no solar array signature visible; site pinpoint insufficient \u2014 chip centered on town, not the 138kV tap corridor",
+    "path": "imagery/s2_2026-07-01.png"
+   }
+  ],
+  "notes": "Site location uncertainty (~2-5 km radius) combined with cloud cover means no meaningful construction verdict possible from available imagery"
+ },
+ "signals": {
+  "ia_found": false,
+  "abatement_found": false,
+  "pins_found": 0,
+  "news_found": false,
+  "construction_visible": false,
+  "developer_identified": false
+ },
+ "sources": [],
+ "real_project_verdict": "unclear"
 }

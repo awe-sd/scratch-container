@@ -1,0 +1,59 @@
+{
+ "inr": "24INR0333",
+ "plant_id": 68078,
+ "plant_name": "Chisme Solar and Storage",
+ "entity": "Red River Clean Energy",
+ "matched_by": "name match",
+ "first_report": "2024-10-01",
+ "last_report": "2026-05-01",
+ "planned_cod_history": [
+  {
+   "value": "2027-04",
+   "from": "2024-10-01",
+   "to": "2026-04-01"
+  },
+  {
+   "value": "2027-05",
+   "from": "2026-05-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 293.0,
+   "from": "2024-10-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "status_history": [
+  {
+   "value": "(T) Regulatory approvals received. Not under construction",
+   "from": "2024-10-01",
+   "to": "2026-03-01"
+  },
+  {
+   "value": "(U) Under construction, less than or equal to 50 percent complete",
+   "from": "2026-04-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "queue_reported_cod": "2027-04-13",
+ "energy_capacity_mwh_history": [
+  {
+   "value": null,
+   "from": "2024-10-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "operating_date_history": [
+  {
+   "value": null,
+   "from": "2024-10-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "eia_county": "Brown",
+ "eia_lat": 31.56893,
+ "eia_lon": -98.82195,
+ "dropped_from_860m": null
+}

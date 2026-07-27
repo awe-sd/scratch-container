@@ -1,63 +1,63 @@
 {
-  "inr": "23INR0056",
-  "project": "Caliche Mound Solar",
-  "research_date": "2026-07-19",
-  "phase": "deep",
-  "developer_chain": {
-    "spv": "Caliche Mound Solar, LLC",
-    "prior_triage_developer": "Tierra Blanco Solar LLC",
-    "prior_triage_note": "Tierra Blanco Solar LLC appeared on aggregators only — not independently verified this session",
-    "this_session_result": "NO NEW DEVELOPER CONFIRMED — all public registries blocked or unavailable",
-    "sources_attempted": [
-      "TX Comptroller COA search (mycpa.cpa.state.tx.us) — redirects to login-required comptroller.texas.gov; no programmatic result",
-      "TX SOS SOSDirect (direct.sos.state.tx.us) — requires paid account; not accessible",
-      "SEC EDGAR full-text search (efts.sec.gov) — HTTP 403 on all queries; uniformly blocked from this environment",
-      "SEC EDGAR company search (sec.gov/cgi-bin/browse-edgar) — HTTP 403 on all queries",
-      "FERC eLibrary (elibrary.ferc.gov) — returns empty 'eLibrary' page; no results accessible via WebFetch",
-      "PUCT Interchange (interchange.puc.texas.gov) — HTTP 402 on all queries",
-      "OpenCorporates (opencorporates.com) — CAPTCHA blocked",
-      "Bizapedia — CAPTCHA blocked",
-      "Corporate Wiki — HTTP 403",
-      "Deaf Smith CAD esearch (esearch.deafsmithcad.org) — search returns 404; portal requires account",
-      "TCEQ Central Registry (tceq.texas.gov) — search returned no results for 'caliche mound solar'",
-      "Law360 — no results for 'caliche mound solar'",
-      "CleanTechnica — no results",
-      "PV-Tech — no results",
-      "GlobeNewswire — no results",
-      "Local newspapers (thecastrocountynews.com, herefordbrand.com) — no results"
-    ]
-  },
-  "registered_agent": null,
-  "mailing_address": null,
-  "officers": null,
-  "parent_company": null,
-  "puct_filing": {
-    "control_number": "35077",
-    "type": "Interconnection Agreement",
-    "ia_signed_date": "2023-10-12",
-    "oncor_filing_date": "2023-10-26",
-    "note": "IA confirmed to exist; PDF contents unread — PUCT portal (interchange.puc.texas.gov) returned HTTP 402 on all query attempts this session"
-  },
-  "abatement": {
-    "ch313": "Not found — portal inaccessible",
-    "jeti": "Not searched — budget exhausted"
-  },
-  "imagery": {
-    "status": "SKIPPED",
-    "reason": "No site coordinates established — POI substations AJSwope/Windmill not geolocated this session"
-  },
-  "cod": {
-    "reported": "2027-10-26",
-    "slip_count": 5,
-    "slip_years": 4.5,
-    "assessment": "Plausible but risky given slip history"
-  },
-  "open_items": [
-    "Pull PUCT #35077 IA PDF directly — contains milestone schedule and exact POI coordinates",
-    "Verify developer via TX SOS (requires paid account) or call Deaf Smith CAD at 806-364-0625",
-    "Search JETI registry for post-2022 Deaf Smith County application",
-    "Run Sentinel-2 imagery once site coordinates established",
-    "Try SEC EDGAR from a non-blocked IP — efts.sec.gov returned 403 on all ~40 attempts"
-  ],
-  "session_budget_outcome": "400,652/400,000 tokens — budget exhausted; deep scan incomplete"
+ "inr": "23INR0056",
+ "project": "Caliche Mound Solar",
+ "researched_at": "2026-07-20",
+ "site": {"lat": 34.84993, "lon": -102.27918, "method": "POI text geolocation", "confidence": "medium",
+   "derivation": "IA Exhibit C states POI (Mule Deer Switch, a NEW substation being built) is 'located on CO Road 8, 2.6 miles east of US Highway 60' in Deaf Smith County (sources/2026-07-19_puct_35077-1688_interconnection-agreement-between-oncor-electric.pdf). Found the US-60 x CR8 intersection via OSM/Overpass (shared node 34.8509863,-102.3239961 between way US-60 and way County Road 8), then walked 2.6 mi EAST along CR8's own road geometry (haversine cumulative distance along real vertices, not a straight bearing) -> 34.84993,-102.27918. Not a county centroid — a named-road-intersection + on-road-distance derivation.",
+   "cross_checks": "OSM power=substation sweep near Hereford TX found real, named 345kV 'Windmill Substation' (34.77338,-102.30455) and 'Hereford Wind Substation' (34.77308,-102.29813), ~5.4-5.5 mi south of the candidate — confirms the AJ Swope-Windmill 345kV corridor named in the IA actually exists in this area. No OSM node literally named 'AJ Swope' or 'Mule Deer Switch' (expected: Mule Deer is a NEW, not-yet-built tap per the IA, so not yet mapped). This corroborates the transmission corridor, not a direct pin on the switch itself — hence medium not high confidence.",
+   "map_artifacts": []},
+ "project_area": {"acres": null, "source": null, "artifact": null,
+   "note": "No acreage found — no Ch.313/JETI filing (0 hits under any name variant tried) and no CAD/abatement doc obtained this session to state project footprint."},
+ "parcels": [],
+ "llc_chain": [
+  {"entity": "CIG DS1, LLC", "relation": "SPV — the actual signed 'Generator' party", "evidence": "sources/2026-07-19_puct_35077-1688_interconnection-agreement-between-oncor-electric.pdf: agreement recital ('...between Oncor Electric Delivery Company LLC...and CIG DS1, LLC (\"Generator\")...'), signature page, and notice/billing/EFT addresses (pp37-43) all name CIG DS1, LLC, Attn Joshua Leu, 2600 S. Waverly Rd, Lansing MI 48911, contacts @cigcap.com"},
+  {"entity": "Caliche Mound Solar, LLC", "relation": "project-name alias used only in Oncor's PUCT cover letter — NOT the signed legal entity", "evidence": "same PDF, cover letter p2 (written by Oncor regulatory staff) vs signature block naming CIG DS1, LLC; Exhibit C Item 1 confirms the project's operating/marketing name is 'Caliche Mound Solar' — same project, alias not a distinct legal SPV"},
+  {"entity": "CIG Companies / CIG Capital (cigcap.com)", "relation": "developer/owner", "evidence": "sources/2026-07-20_cigcap_solar-portfolio.html (saved verbatim): 'CIG DS1 — DS1 P1 is a 2025 COD 516 MW solar project located in Northern Texas...projected stable valuation of $1.345 billion (50% ITC)...blend of merchant and A rated VPPAs. The green bond has an investment grade rating of BBB.' Corroborated by power-technology.com/data-insights/power-plant-profile-cig-ds1-solar-pv-park-us/ (WebFetch only, direct fetch 403'd): 506 MW TX, owner CIG Capital 100%, PPA with Danfoss 75MW/12yr, location undisclosed 'per mutual NDA'. Capacity figures across sources (516/506 MW marketing, 433.35 MVA gross / 408.21 MW dispatched per IA Exhibit C, 406.6 MW queue) are consistent rounding of one project, and the 2025 COD marketing claim matches the IA's own original Scheduled COD (2025-08-28) almost exactly."},
+  {"entity": "Tierra Blanco Solar LLC", "relation": "LIKELY MISATTRIBUTED prior-triage developer lead — not carried forward", "evidence": "abc7amarillo.com 'Deaf Smith County commissioners approve $500 million tax abatement for solar farms' (2024-01-23 vote): names 'Tiera Blanco Solar' and 'Mule Deer Solar', BOTH developed by Chermac Energy, near County Road BB — a different pair of Deaf Smith projects. This project's own signed IA names CIG DS1, LLC, not Chermac; triage likely conflated adjacent Deaf Smith-county projects sharing generic desert-terrain names."}
+ ],
+ "land_tenure": {"status": "unknown", "evidence": "No CAD parcel search, deed record, or abatement document obtained this session (Deaf Smith CAD e-search portal returned 404/account-gated per prior triage; not re-attempted this session — budget prioritized IA + site + imagery). Leased vs purchased cannot be determined from the IA alone (interconnection agreements do not address land tenure)."},
+ "construction": {"verdict": "no_activity", "first_activity_seen": null, "evidence": [
+   "imagery/s2_2026-07-15_center.png (2km buffer, scene 2026-07-18, 30.5% cloud): clear patches show undisturbed farmland/pasture, no grading/racking signature — inconclusive alone due to cloud cover",
+   "imagery/s2_2026-05-01.png (3km buffer, scene 2026-05-09, 0% cloud, CLEAR): candidate site itself is active center-pivot-irrigated farmland + a winding creek/drainage, crossed by a paved highway — no substation pad, no grading, no racking anywhere in the 3km buffer",
+   "imagery/grid/s2_c01.png, s2_c02.png, s2_c20.png, s2_c22.png (2km buffer each, 3x3 grid stepping ±0.04° around the candidate, scene 2026-05-19, 4.1% cloud, CLEAR): grid covers roughly a 9x9 km area around the POI-derived site — shows dairy/feedyard operations, a private airstrip, center-pivot circles, ranch structures; NO solar racking/module block signature, NO substation-pad clearing anywhere in the search grid",
+   "TCEQ construction-stormwater NOI sweep (tceq.py resolve --storm --county 'Deaf Smith' --keyword Mule Deer/CIG DS1/solar) found no NOI naming this project, its SPV, or its POI — no dirt-moving proof via that channel either"
+ ], "caveat": "Grid search covers ~9x9 km around the POI-DERIVED site, which itself carries only medium confidence (no boundary map exists in the IA to confirm array location/orientation relative to the switch). A precise site plan was not obtainable this session. Absent a parcel map or gmaps delivery pin (gmaps.py hit HTTP 429 rate-limiting this session, not independently retried), the true generator footprint could sit further from the switch than searched. Read within the ≤6 full-size-frame cap (2 initial + 4 grid cells); did not exhaustively tile the full ~10km radius a 406 MW site could span."},
+ "cod_assessment": {"reported": "2027-10-26", "independent": "2028-Q2 to unknown (high uncertainty)", "drift_risk": "high", "reasoning_evidence": [
+   "queue_history.py timeline.md (72 monthly snapshots, 2020-07 -> 2026-06): the queue's OWN reported COD held at 2025-08-28 from 2023-02 through 2025-03 (25 months) — EXACTLY matching the signed IA's Scheduled Commercial Operation Date (Exhibit E). This confirms the queue and IA were tracking the same schedule, i.e. the project genuinely targeted Aug-2025. The queue COD then slipped to 2026-10-10 (as of Apr-2025 snapshot, i.e. AFTER the original date had already passed with no construction) and again to 2027-10-15/2027-10-26 (from Feb-2026) — both post-hoc slips with NO corresponding IA amendment on file (puct.py match re-checked twice, by INR and by 'CIG DS1' key — both return only the single original filing 35077-1688).",
+   "The project therefore missed its own signed, once-confirmed COD (2025-08-28) by ~11 months as of today (2026-07-20) and shows ZERO imagery evidence of construction as of the most recent clear pass (2026-05-19) — 9+ months after that missed date. The two post-hoc slips (to 2026-10, then 2027-10) read as the developer/TSP informally re-forecasting without ever amending the binding IA — a soft, undocumented slip pattern rather than a renegotiated contractual schedule.",
+   "factsheet.json corroborates from the queue side: 5 total COD slips since ~2020, fisApproved still null as of the last snapshot, not in EIA-860M despite the (at-the-time) claimed COD being <18 months out — three independent signals (missed IA date, queue instability, EIA absence) all point the same direction.",
+   "No Ch.313/JETI filing, no CAD parcel record obtained, no press/PR, no construction-stormwater NOI, no financing announcement beyond CIG's own marketing — a limited paper trail for a project this size (406.6 MW, ~$13M LC posted) this far past its original target date.",
+   "The reported 2027-10-26 COD cannot be verified as a credible near-term target given zero physical progress at the derived site as of 2026-05-19 — treat as a re-forecast, not a grounded date. If construction has not started by early 2027, an 18-24 month solar build timeline alone makes 2027-10-26 very unlikely; a realistic floor is 2028 or later, with genuine uncertainty whether the project proceeds in its current form at all (CIG's own site described it as 'permitting stage' as of an Oct-2024 update)."
+ ]},
+ "real_project_verdict": "unclear",
+ "negative_searches": [
+  "TX Comptroller COA / SOS SOSDirect — paid/login-gated, no programmatic lookup",
+  "SEC EDGAR EFTS + browse-edgar — HTTP 403 all queries",
+  "FERC eLibrary — empty page via WebFetch",
+  "OpenCorporates / Bizapedia / Corporate Wiki — CAPTCHA/403",
+  "ch313.py resolve 23INR0056 / --name CIG / --name 'Mule Deer' / --name 'Tierra Blanco' / --name 'Tiera Blanco' / --county 'Deaf Smith' — ALL 0 hits, no Ch.313/JETI filing under any of these names",
+  "EIA-860M — not_in_eia (per factsheet.eia.status)",
+  "tceq.py resolve --storm --county 'Deaf Smith' --keyword 'Mule Deer'/'CIG DS1'/'solar' — no construction-stormwater NOI matches this project or its POI; only unrelated legacy facilities (wind/ethanol/dairy/septic) and a coincidentally-named 'County Road 8' limestone-mining NOI (Holmes Construction Co, EXPIRED, unrelated)",
+  "tceq.py resolve 23INR0056 (token 'CALICHE MOUND') — only hits are DC Caliche LLC / DC Caliche Dawn Pit / DC Caliche-Sparkman Pit, all caliche MINING pits, name-collision noise, NOT this project",
+  "News sweep (Law360, CleanTechnica, PV-Tech, GlobeNewswire, local Deaf Smith papers, renewablesnow.com [HTTP 403 could not read body]) — no article ties 'CIG DS1' or 'Caliche Mound' explicitly to Deaf Smith County; CIG's own site states location 'not displayed based on mutual non-disclosures'",
+  "gmaps.py places 'Mule Deer Switch'/'Caliche Mound Solar'/'Mule Deer Solar' — HTTP 429 rate-limited this session (shared API quota with concurrent fleet), not independently retried",
+  "OSM Overpass search for a node/way literally named 'AJ Swope' or 'Mule Deer Switch' — none found (consistent with an unbuilt/not-yet-mapped new switch)"
+ ],
+ "banned_source_violations": 0,
+ "contractual_schedule": {
+   "documents": [
+     {"doc": "Standard Generation Interconnection Agreement, Oncor Electric Delivery Company LLC and CIG DS1, LLC (dated 2023-10-10, filed PUCT docket 35077 item 1688 on 2023-10-26)",
+      "signed": "2023-10-10",
+      "financial_security": "$12,995,303 Irrevocable Standby Letter of Credit, effective on/before 2023-10-10 (Exhibit E)",
+      "artifact": "sources/2026-07-19_puct_35077-1688_interconnection-agreement-between-oncor-electric.pdf"}
+   ],
+   "milestones": [
+     {"name": "Notice to proceed w/ design & procurement + security (Sec 4.2)", "original_ia_2023": "2023-10-10"},
+     {"name": "Notice to commence construction + security (Sec 4.3)", "original_ia_2023": "2024-04-17"},
+     {"name": "In-Service Date", "original_ia_2023": "2025-04-17"},
+     {"name": "Trial Operation", "original_ia_2023": "2025-04-28"},
+     {"name": "Scheduled Commercial Operation", "original_ia_2023": "2025-08-28"}
+   ],
+   "note": "ONLY IA on file — re-verified twice via puct.py match (by INR and by 'CIG DS1' key), both return solely filing 35077-1688, no amendment exists. POI = Mule Deer Switch (NEW switchyard being built), Deaf Smith County, on TSP's AJ Swope-Windmill 345kV line, located on CO Road 8, 2.6 mi east of US Hwy 60 (Exhibit C). Equipment: 107x Power Electronics HEM FS4200M inverters, 4.05 MVA each, 433.35 MVA gross / 408.21 MW at generator terminals (Exhibit C). No boundary/site-plan map exhibit exists in this IA (only a schematic electrical one-line diagram) — site.map_artifacts is empty by design, not omission."
+ }
 }

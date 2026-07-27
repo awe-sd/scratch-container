@@ -1,0 +1,108 @@
+{
+ "inr": "26INR0130",
+ "project": "Elm Flats Solar SLF",
+ "researched_at": "2026-07-20",
+ "site": {
+  "lat": 32.1136,
+  "lon": -96.3048,
+  "method": "eia860m_candidate_corroborated_by_ch313_vicinity_map",
+  "confidence": "medium-high",
+  "map_artifacts": [
+   "sources/2026-07-20_comptroller_ch313_1973-kerens-elm-app_sheet06.png",
+   "sources/2026-07-20_comptroller_ch313_1973-kerens-elm-app_sheet07.png"
+  ]
+ },
+ "project_area": {
+  "acres": 1500,
+  "source": "Ch.313 application cover letter ('approximately 1,500 acres') and Tab 9 Description of Land ('applicant will lease approximately 1,500 acres of land within Navarro County')",
+  "artifact": "sources/2026-07-20_comptroller_ch313_1973-kerens-elm-app.pdf"
+ },
+ "parcels": [],
+ "llc_chain": [
+  {
+   "entity": "Orca Falls Solar, LLC",
+   "relation": "SPV/Generator (current, at IA execution 2025-11-21)",
+   "evidence": "Named 'Generator' party on executed IA, signed by Peter Stein, Chief Development Officer, 2025-11-21 (sources/2026-07-19_puct_35077-2325_standard-generation-interconnection-agreement-be.pdf p8); IA Exhibit C item 1 names project 'Orca Falls Solar, LLC - Elm Flats Solar SLF and Elm Flats Storage SLF'"
+  },
+  {
+   "entity": "Elm Flats Solar, LLC",
+   "relation": "original_SPV_2022 (Ch.313 applicant, likely predecessor/subsidiary name to Orca Falls Solar LLC)",
+   "evidence": "Ch.313 application to Kerens ISD, filed 2022-05-25, applicant 'Elm Flats Solar, LLC' (sources/2026-07-20_comptroller_ch313_1973-kerens-elm-app.pdf p1, sheet01)"
+  },
+  {
+   "entity": "Birch Creek Development",
+   "relation": "developer",
+   "evidence": "Chris Norqual signed Ch.313 app as 'Authorized Representative, Elm Flats Solar, LLC' with email norqual@birchcreekdev.com (sheet01 cc list); matches EIA-860M entity 'Birch Creek Development' for plant 'Elm Flats Solar' 125.0MW @ 32.11358,-96.30476 (factsheet.json) -- independent corroboration, same person name ties Ch313 applicant to EIA-reporting entity"
+  },
+  {
+   "entity": "Joe Arb / Alluvial Power",
+   "relation": "consultant",
+   "evidence": "cc'd on Ch313 application cover letter as 'Consultant, Elm Flats Solar, LLC' (jarb@alluvialpower.com)"
+  },
+  {
+   "entity": "Ernst & Young LLP",
+   "relation": "consultant (Ch313 preparer)",
+   "evidence": "EY letterhead throughout Ch313 application package; Troy Reed, Manager, EY cc'd on cover letter"
+  },
+  {
+   "entity": "Oncor Electric Delivery Company LLC",
+   "relation": "TSP/interconnecting_utility",
+   "evidence": "Named 'Transmission Service Provider' party on IA, signed by Jim Greer, EVP and COO, 2025-11-21"
+  }
+ ],
+ "land_tenure": {
+  "status": "leased",
+  "evidence": "Ch.313 application Tab 9 'Description of Land' and executed Agreement Exhibit 2: 'The applicant will lease approximately 1,500 acres of land within Navarro County, Texas for the project' (sources/2026-07-20_comptroller_ch313_1973-kerens-elm-app.pdf, sources/2026-07-20_comptroller_ch313_1973-kerens-elm-agmt.pdf)"
+ },
+ "construction": {
+  "verdict": "no_activity",
+  "first_activity_seen": null,
+  "evidence": [
+   "3 Sentinel-2 chips (2026-06-15, 2km buffer, from triage) centered on EIA/Ch313-corroborated site 32.1136,-96.3048 show undisturbed cropland/pasture and wooded creek corridors -- no graded rectangles, no racking rows, no substation pad",
+   "CDSE openEO backend unreachable this deep-scan session (5 retries, RemoteDisconnected, valid cached token so not an auth issue) -- could not pull a more recent/wider grid to re-confirm; relying on triage imagery",
+   "Consistent with IA executed only 2025-11-21 and no construction milestones in queue history; In-Service Date per IA is not until 2027-05-13"
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2027-09-30",
+  "independent": "2027-Q4",
+  "drift_risk": "medium",
+  "reasoning_evidence": [
+   "Executed IA Exhibit B Time Schedule: In-Service Date(s) May 13, 2027; Scheduled Trial Operation Date May 30, 2027; Scheduled Commercial Operation Date September 30, 2027 — EXACTLY matches reported queue COD claim (sources/..._be.pdf, sheet04 p31) — the claim is contractually grounded, not just a queue self-report",
+   "Queue history: 3 prior COD slips, ~20 months cumulative drift, all BEFORE this IA was executed (2025-11-21); COD has been stable at 2027-09-30 in every snapshot since IA signing (see timeline.md)",
+   "EIA-860M (Birch Creek Development, plant 67552): planned COD stuck at 2026-06 since 2024-05 (5 quarters before queue/IA COD 2027-09-30) -- stale planned-COD field, not a competing independent estimate. BUT EIA status field flipped from '(P) Planned, regulatory approvals not initiated' (through 2025-11) to '(U) Under construction, <=50% complete' starting 2025-12-01 (eia_history.json) -- this DIVERGES from our own satellite read of no visible activity as of 2026-06-15. Two explanations: (a) EIA status categories are coarse and some developers self-report 'under construction' upon IA execution / financial security posting rather than physical groundbreaking, or (b) activity began after 2026-06-15 that we could not re-check because CDSE's openEO backend was unreachable this session (7 retry attempts, RemoteDisconnected, valid cached token). Logged as an open divergence, not resolved.",
+   "No construction visible as of 2026-06-15 satellite imagery (most recent available), ~11 months before the contractual In-Service Date of 2027-05-13 -- normal lead time for a ~126MW single-axis-tracker solar array (12-18mo typical build) IF EIA's '(P)' status through Nov 2025 is accurate; the EIA '(U)' flip since Dec 2025 could not be corroborated or refuted with fresh imagery this session",
+   "Financial security posted and escalating on the IA's own schedule ($4.0M Aug 2025 -> $8.1M Nov 2025) is a real, contractually-binding commitment -- not typical of a paper/optionality project",
+   "Ch.313 tax abatement executed by Kerens ISD in 2022 ($40M value limitation on a project 'in excess of $162M' investment) shows 3+ years of consistent developer intent (Birch Creek Development / Elm Flats Solar LLC) predating and now converging with the IA -- strengthens confidence the COD claim reflects genuine schedule pressure, not queue-gaming",
+   "Risk: cumulative prior drift (~20 months) plus zero observed site activity with only ~10 months of pre-construction runway to In-Service Date warrants a MEDIUM drift risk rather than low; independent estimate widens the contractual quarter by one quarter to 2027-Q4 to reflect this"
+  ]
+ },
+ "real_project_verdict": "real_early",
+ "negative_searches": 4,
+ "banned_source_violations": 0,
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "ERCOT Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Orca Falls Solar, LLC (Elm Flats Solar SLF & Elm Flats Storage SLF) — PUCT Control No. 35077, Item 2325, filed 2025-12-15",
+    "signed": "2025-11-21",
+    "financial_security": "$4,017,301 (E&P DSA Amount, effective 2025-08-20) -> $8,115,760 (effective on/before 2025-11-21) — Irrevocable Standby Letter of Credit / cash deposit, Exhibit E",
+    "artifact": "sources/2026-07-19_puct_35077-2325_standard-generation-interconnection-agreement-be.pdf"
+   }
+  ],
+  "milestones": [
+   {
+    "name": "In-Service Date",
+    "original_ia_2025": "2027-05-13"
+   },
+   {
+    "name": "Scheduled Trial Operation Date",
+    "original_ia_2025": "2027-05-30"
+   },
+   {
+    "name": "Scheduled Commercial Operation Date",
+    "original_ia_2025": "2027-09-30"
+   }
+  ],
+  "note": "POI: Wheelock Lake Switch, in Oncor's Trinidad Switch - Corsicana Sub 138kV line, Navarro County TX (Exhibit C item 2). One-line diagram (Attachment 1 to Exhibit C) shows 138kV to Corsicana Sub 'via Briar Creek POI' and 138kV to Trinidad Sub 'via Powell Sub' meeting at Wheelock Lake Switch -- reconciles with queue POI text '3472 BRIAR_CRK_8 - 3467 POWELL1_8'. Exact Wheelock Lake Switch location redacted as CEII in Exhibit B/C per Oncor's PUCT filing cover letter. Co-located with 26INR0131 Elm Flats Storage SLF (BESS, 47x SMA SCS3450UP-US inverters, 128.06MW/129.015MW discharge). Elm Flats Solar equipment: 35x Sungrow SG4400UD-MV-US inverters, 146.3 MVA nameplate, dispatched 125.58MW at 34.5kV bus / 127.155MW at generator terminals."
+ }
+}

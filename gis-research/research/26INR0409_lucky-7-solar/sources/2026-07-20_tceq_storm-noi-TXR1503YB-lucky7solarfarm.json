@@ -1,0 +1,30 @@
+[
+  {
+    "ref_num_txt": "RN112437108",
+    "reg_ent_name": "LUCKY 7 SOLAR FARM",
+    "re_phys_loc_addr_line_1": "2854 FARM ROAD 3389",
+    "re_phys_loc_city": "BRASHEAR",
+    "re_phys_loc_addr_county": "HOPKINS",
+    "re_phys_loc_addr_state": "TX",
+    "re_phys_loc_addr_zip": "75420",
+    "re_phys_loc_addr_zip_ext": "6021",
+    "reg_ent_desc_txt": "SOLAR FARM",
+    "princ_name": "SIGNAL ENERGY LLC",
+    "princ_legal_name": "Signal Energy, LLC",
+    "ref_num_txt_1": "CN602963365",
+    "name_txt": "CORPORATION",
+    "program_code": "STORM",
+    "additional_id_text": "TXR1503YB",
+    "additional_id_status": "ACTIVE",
+    "ai_phys_loc_addr_line_1": "2854 FARM ROAD 3389",
+    "ai_phys_loc_city": "BRASHEAR",
+    "ai_phys_loc_addr_state": "TX",
+    "ai_phys_loc_addr_zip_full": "75420-6021",
+    "tceq_region_number": "5",
+    "affil_begin_dt": "2026-04-27T00:00:00.000",
+    "affil_end_dt": "3000-12-31T00:00:00.000",
+    "reg_ent_status_txt": "ACTIVE",
+    "status_dt": "2026-04-27T00:00:00.000",
+    "princ_status_txt": "ACTIVE"
+  }
+]

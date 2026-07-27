@@ -1,26 +1,24 @@
 {
   "inr": "23INR0057",
   "project": "Duffy Solar",
-  "research_date": "2026-07-19",
+  "research_date": "2026-07-20",
   "verdict": "real_early",
-  "confidence": "medium",
-  "verdict_rationale": "IA signed 2023-04-12, Meets 6.9(1) 2023-05-24, capacity resized Oct-2024 — these are real development actions. BUT: zero construction visible in satellite imagery across entire WAP-STP 345kV corridor in March 2026 (18 months before COD claim). No developer identity, no abatement, no web presence. Project is real but meaningfully pre-construction with 4 prior COD slips.",
-
+  "confidence": "high",
+  "verdict_rationale": "Real, identified, funded-offtake project, currently pre-construction at the solar array with a confirmed contractual schedule slip. Developer chain fully resolved: Duffy Project Co LLC (f/k/a VDA Solar Texas 1, LLC) is Linea Energy's project vehicle (TX Comptroller franchise-tax record + Linea's own May-2026 press release); Google signed a 15-year, 500 MW PPA off this project (sources/2026-07-20_lineaenergy_official-500mw-ppa-announcement.html), corroborated independently by Bay City Tribune local news (2026-06-23). Interconnection is CONFIRMED via 3 signed IA documents (original SGIA + Amendment One + Amendment Two, INR '23INR0057' printed in each) -- and the IA's own most recent amendment has already moved the CONTRACTUAL scheduled COD to 2028-10-31 (Amendment Two, effective 2026-07-03), 10 months past the queue's still-reported 2027-12-31 and also later than Linea/local-news public messaging of a 'late 2027' target -- a three-way COD disagreement (queue vs. signed IA vs. developer PR) that is itself the most decisive drift signal in this file. Co-located Duffy BESS (235 MWac) is independently confirmed under active construction via EIA-860M + active TCEQ storm NOIs, and a tight satellite chip centered exactly on the IA POI shows a small pad consistent with that BESS, stable between 2026-01 and 2026-07. The broader 3,526-acre solar array shows no grading/racking signature yet in either frame, consistent with the developer's own 'construction begins Q3 2026' timeline.",
   "developer": {
-    "llc": "Duffy Solar, LLC",
-    "parent": null,
+    "llc": "Duffy Project Co LLC (f/k/a VDA Solar Texas 1, LLC)",
+    "parent": "Linea Energy (\"Linea\"), a San Francisco-based renewables developer/IPP sponsored by EnCap Investments L.P. / EnCap Energy Transition",
     "epc": null,
-    "offtaker": null,
-    "financing_status": "unknown",
-    "notes": "No developer identity established. Zero SEC EDGAR hits, zero press releases, zero pv-magazine coverage. TX Comptroller COA JS-rendered (no direct API access). TX SOS SOSDirect paid search not accessible."
+    "offtaker": "Google \u2014 15-year, 500 MW PPA to support ERCOT-market data center operations",
+    "financing_status": "PPA signed (offtake secured); no separate project-financing/debt-close announcement found",
+    "notes": "SPV name confirmed via signed IA + 2 amendments (sources/2026-07-19_puct_35077-2191_*.pdf; sources/2026-07-19_puct_35077-2301_*.pdf; sources/2026-07-20_puct_35077-2516_*.pdf). Renamed from 'VDA Solar Texas 1, LLC' to 'Duffy Project Co LLC' between the original SGIA (2023-04-12, signed as VDA) and Amendment One (2025-11-10 filing) -- consistent with Linea Energy's acquisition of the project in 2025. TX Comptroller franchise-tax data-search API (https://comptroller.texas.gov/data-search/franchise-tax?name=Duffy%20Project%20Co, queried 2026-07-20) CONFIRMS registration: 'DUFFY PROJECT CO LLC', taxpayerId 32073592530, mailing ZIP 94104 (San Francisco) -- matches Linea Energy's HQ city, corroborating the ownership link independently of the PR. Developer identity + offtaker + project area confirmed via Linea Energy's own PR (sources/2026-07-20_lineaenergy_official-500mw-ppa-announcement.html, San Francisco, May 2026) and independent local news (sources/2026-07-20_baycitytribune_duffy-solar-community-event.html, Bay City Tribune, 2026-06-23) plus 3 syndications (Advanced Power Alliance, DCD, ESG Today)."
   },
-
   "site": {
-    "lat": null,
-    "lon": null,
-    "method": null,
-    "confidence": "none",
-    "notes": "Site not pinpointed. POI 'Tap 345kV WAP to STP CKT39' anchors project to ~18 km E-W corridor (28.8279,-95.8591 to 28.8018,-96.0498, CenterPoint AEP double-circuit, OSM id=1060258405). No Google Places pin (daily quota exhausted). No parcel data (Matagorda CAD unreachable). No abatement application found. 6-grid satellite survey of corridor shows zero solar activity.",
+    "lat": 28.85275,
+    "lon": -96.0865,
+    "method": "IA Exhibit C POI coordinate (Amendment Two, 2026-07-03) -- 'TSP system side of Plant's terminating structure(s) inside Generator's GIFSUB, located approximately at 28.85275, -96.0865, Matagorda County, Texas'",
+    "confidence": "high",
+    "notes": "Original SGIA (2023-04-12) Exhibit C gave a DIFFERENT POI coordinate, 28.874002,-96.066461 (~3.1 km NE of the Amendment Two point) -- the tap point moved when the plant was rescoped/renamed. Amendment Two's coordinate is the current, controlling POI and is used as the site anchor. CROSS-CHECK: EIA-860M's independently reported 'Duffy BESS' plant coordinate (28.854592,-96.08606) sits 0.21 km from this POI -- two unrelated primary sources (signed IA exhibit vs. EIA-860M generator filing) agree within 0.2 km. Tight (2 km buffer) satellite chips centered on this exact POI (imagery/key/s2_2026-01-15.png, s2_2026-02-24.png, s2_2026-03-21.png) show a small pad/structure consistent with the BESS. Both points fall within the WAP-STP 345kV corridor identified in triage.",
     "poi_corridor": {
       "from_substation": "Wadsworth Substation (AEP), 28.7851N 95.9380W",
       "to_substation": "STP Switchyard, ~28.800N 96.051W",
@@ -29,83 +27,171 @@
       "length_km": 18
     }
   },
-
   "project_area": {
-    "acres": null,
-    "source": null,
-    "artifact": null,
-    "notes": "No abatement application found. No IA retrieved (PUCT Interchange 402). No CAD parcels found. Estimated ~2,000-2,500 acres for 502 MW at typical TX coastal plain packing density."
+    "acres": 3526,
+    "source": "Linea Energy official PR: '3,526-acre Duffy Solar Project in Matagorda County, Texas'; corroborated independently by Bay City Tribune local news ('spanning about 3,500 acres')",
+    "artifact": "sources/2026-07-20_lineaenergy_official-500mw-ppa-announcement.html; sources/2026-07-20_baycitytribune_duffy-solar-community-event.html",
+    "notes": "No CAD parcels found (Matagorda CAD portal SSL-unreachable) and no abatement/Ch.313/JETI application located, so acreage comes from developer PR + independent local news rather than a filed legal document -- treated as high-confidence (two independent sources agree within 1%) but not a primary-document figure."
   },
-
   "construction": {
-    "stage": "no_activity",
-    "first_activity_seen": null,
-    "latest_observation": "2026-03",
-    "notes": "Six-tile grid survey of WAP-STP 345kV corridor in March 2026 shows undisturbed farmland throughout. No grading, clearing, or solar installation visible. Heavy cloud cover in June-July 2026 chips prevents confirmation for latest date, but March 2026 baseline is clear and definitive."
+    "stage": "bess_pad_visible_solar_array_no_broad_grading_yet",
+    "first_activity_seen": "2026-01-15 (small light-toned pad already visible at the POI, likely BESS foundation work)",
+    "latest_observation": "2026-07-19 (newest scene in existence; ~40% whole-tile cloud but the BESS pad at center is clear) -- pad unchanged, no array grading. Cleanest recent frame is 2026-06-29 (site clear, 6.3%). No scene later than 2026-07-19 published yet (Sentinel-2 ~5-day revisit; next pass ~2026-07-24).",
+    "notes": "IMAGERY REFRESHED 2026-07-23 (user request: more site frames, 2026-only, no cloudy, drop off-site probes). Clean series now = four tight 2 km-buffer chips centered EXACTLY on the Amendment Two POI (28.85275,-96.0865): 2026-01-15 (0.1% cloud), 2026-02-24 (0.6%), 2026-03-21 (2.0%), plus one 4 km-buffer wide-context frame at 2026-03-21 (2.0%). All show the SAME small light-toned rectangular pad/structure near center with short access-road stubs, essentially UNCHANGED across Jan->Mar 2026 -- consistent with the confirmed, EIA/TCEQ-verified Duffy BESS pad (0.21 km away) rather than a full solar array, which would show much larger graded rectangles (3,526 acres would span multiple km, not fit in a 4 km chip as a small pad). The 4 km wide-context frame confirms the broader POI area is still ordinary farmland with NO large graded array footprint. NO broad grading, clearing, or racking signature anywhere in the 2 km or 4 km buffers -- consistent with the developer's stated 'construction begins Q3 2026' timeline. Recent coverage: 2026-06-29 (6.3% whole-tile, but the site itself is clear) IS kept as the most-recent usable frame -- pad unchanged, no array grading. 2026-07-19 (~40% whole-tile, but pad at center clear) is also kept as the NEWEST scene in existence, per user request for the most recent July frame regardless of cloud. The remaining summer scenes stay archived (cloud over the POI): 2026-07-04 (24.6%), 2026-07-09 (19.1%). No scene later than 2026-07-19 has been published yet (Sentinel-2 ~5-day revisit; next pass ~2026-07-24) -- that is why there is nothing fresher, not a fetch limitation. Verdict UNCHANGED: BESS pad present/stable; SOLAR ARRAY construction not yet visually evident as of the latest clear look (2026-03-21).",
+    "imagery_artifacts": [
+      "imagery/key/s2_2026-01-15.png",
+      "imagery/key/s2_2026-02-24.png",
+      "imagery/key/s2_2026-03-21.png",
+      "imagery/key/s2_2026-03-21_wide4km.png"
+    ]
   },
-
   "imagery": {
     "frames": [
-      {"date": "2026-03", "location": "28.80,-95.90", "observation": "undisturbed agricultural land", "artifact": "imagery/grid_28.80_-95.90_2026-03.png"},
-      {"date": "2026-03", "location": "28.80,-96.00", "observation": "Colorado River corridor, farmland, no activity", "artifact": "imagery/grid_28.80_-96.00_2026-03.png"},
-      {"date": "2026-03", "location": "28.85,-95.90", "observation": "flat coastal plain, pasture/cropland, no activity", "artifact": "imagery/grid_28.85_-95.90_2026-03.png"},
-      {"date": "2026-03", "location": "28.88,-95.90", "observation": "irrigated rice fields, no activity", "artifact": "imagery/grid_28.88_-95.90_2026-03.png"},
-      {"date": "2026-03", "location": "28.90,-95.85", "observation": "open grassland/cropland, no activity", "artifact": "imagery/grid_28.90_-95.85_2026-03.png"},
-      {"date": "2026-03", "location": "29.00,-95.85", "observation": "green pasture/river, no activity", "artifact": "imagery/grid_29.00_-95.85_2026-03.png"},
-      {"date": "2026-07", "location": "28.812,-95.960", "observation": "heavy cloud cover; underlying landscape appears undisturbed agricultural", "artifact": "imagery/s2_2026-07-01_mid.png"}
+      {
+        "date": "2026-01-15",
+        "location": "28.85275,-96.0865 (Amendment Two POI, exact); 2 km buffer",
+        "cloud_pct": 0.1,
+        "observation": "small light-toned pad/structure with access-road stubs near center; surrounding farmland undisturbed (winter-fallow brown); no broad grading",
+        "artifact": "imagery/key/s2_2026-01-15.png"
+      },
+      {
+        "date": "2026-02-24",
+        "location": "28.85275,-96.0865 (Amendment Two POI, exact); 2 km buffer",
+        "cloud_pct": 0.6,
+        "observation": "same pad/structure, unchanged; pristine (near-zero cloud); farmland still undisturbed, no racking or large-scale grading",
+        "artifact": "imagery/key/s2_2026-02-24.png"
+      },
+      {
+        "date": "2026-03-21",
+        "location": "28.85275,-96.0865 (Amendment Two POI, exact); 2 km buffer",
+        "cloud_pct": 2.0,
+        "observation": "same pad, unchanged; a few small cloud puffs but site clear; no array grading/clearing",
+        "artifact": "imagery/key/s2_2026-03-21.png"
+      },
+      {
+        "date": "2026-03-21",
+        "location": "28.85275,-96.0865 (Amendment Two POI); 4 km wide-context buffer",
+        "cloud_pct": 2.0,
+        "observation": "wider view of the whole POI area -- still ordinary farmland, NO large graded rectangles / array footprint anywhere; the only built structure is the small central BESS pad",
+        "artifact": "imagery/key/s2_2026-03-21_wide4km.png"
+      },
+      {
+        "date": "2026-06-29",
+        "location": "28.85275,-96.0865 (Amendment Two POI, exact); 2 km buffer",
+        "cloud_pct": 6.3,
+        "observation": "Lowest-cloud recent frame -- whole-tile 6.3% cloud but the clouds sit off the POI, so the pad and fields are readable; pad unchanged, no array grading.",
+        "artifact": "imagery/key/s2_2026-06-29.png"
+      },
+      {
+        "date": "2026-07-19",
+        "location": "28.85275,-96.0865 (Amendment Two POI, exact); 2 km buffer",
+        "cloud_pct": 39.9,
+        "observation": "NEWEST scene in existence (Sentinel-2 last pass over this tile). Whole-tile ~40% cloud, but the heavy cloud is in the lower/bottom-right and the BESS pad at center is actually clear and readable -- pad unchanged, still no solar-array grading. Included per user request for the most recent July frame regardless of cloud.",
+        "artifact": "imagery/key/s2_2026-07-19.png"
+      }
     ],
-    "contact_sheet": "imagery/contact_grid.png"
+    "contact_sheet": null,
+    "imagery_note": "Off-site corridor probes (grid_*, search_*), the contact_grid sheet, superseded site_* duplicates, and all cloud-obscured summer frames (2026-06-29, 2026-07-09, 2026-07-19, 2026-07-01_mid) were moved out of imagery/ to a recoverable scratchpad archive on 2026-07-23 (imagery is gitignored, so this is a move not a hard delete)."
   },
-
   "interconnection": {
     "ia_signed": "2023-04-12",
     "fis_approved": null,
     "meets_691": "2023-05-24",
     "meets_all_69": null,
-    "ia_pdf_retrieved": false,
-    "ia_pdf_blocker": "PUCT Interchange returns HTTP 402 (session auth required)",
-    "poi": "Tap 345kV WAP to STP CKT39 (PTI# 5915-44000 CKT 39)",
-    "tsp": "AEP/CenterPoint (operator of WAP-STP 345kV line)"
+    "ia_pdf_retrieved": true,
+    "ia_pdf_blocker": null,
+    "poi": "TSP system side of Plant's terminating structure(s) inside Generator's GIFSUB, ~28.85275,-96.0865, Matagorda County, TX; 345kV delivery voltage; matches queue POI 'Tap 345kV WAP to STP CKT39'",
+    "tsp": "CenterPoint Energy Houston Electric, LLC (confirmed party on SGIA -- not AEP)"
   },
-
   "contractual_schedule": {
-    "documents": [],
-    "notes": "IA PDF not retrieved (PUCT Interchange 402). No amendment history obtainable. Milestone dates from ERCOT GIS report only — no contractual schedule exhibit available."
+    "documents": [
+      {
+        "doc": "Original SGIA, dated 2023-04-12",
+        "signed": "2023-04-12",
+        "financial_security": "$24,346,000.00 estimated TIF cost (Security Estimate), irrevocable letter of credit option (Exhibit E)",
+        "in_service_date": "later of 2025-05-07 or 24 months after Prerequisite Items",
+        "scheduled_cod": "later of 2025-08-06 or 3 months after TIF In-Service Date",
+        "generator_name_at_signing": "VDA Solar Texas 1, LLC",
+        "planned_capacity_at_signing": "540 MW, 170x Sungrow SG3600UDMV inverters",
+        "poi_at_signing": "28.874002,-96.066461",
+        "artifact": "sources/2026-07-19_puct_35077-2191_ercot-standard-generation-interconnection-agreem.pdf"
+      },
+      {
+        "doc": "Amendment One, dated 2025-09-19 (filed 2025-11-10)",
+        "signed": "2025-10-22",
+        "financial_security": "CIAC $100,000.00 (contribution in aid of construction) -- replaces prior Exhibit E security description; no LC amount stated in Amendment One text",
+        "in_service_date": "later of 2027-08-15 or 4 months after Prerequisite Items (due 2027-04-15)",
+        "scheduled_cod": "later of 2027-12-31 or 4 months after TIF In-Service Date",
+        "generator_name_at_signing": "Duffy Project Co LLC (f/k/a VDA Solar Texas 1, LLC)",
+        "artifact": "sources/2026-07-19_puct_35077-2301_amendment-one-to-ercot-standard-generation-inter.pdf"
+      },
+      {
+        "doc": "Amendment Two, effective 2026-07-03 (filed 2026-07-01)",
+        "signed": "2026-07-01 (CenterPoint 2026-06-30, Generator 2026-07-01)",
+        "financial_security": "CIAC $100,000.00 unchanged (Exhibit C 12B)",
+        "in_service_date": "later of 2027-08-15 or 4 months after Prerequisite Items (due 2027-04-15, unchanged from Amendment One)",
+        "scheduled_cod": "later of 2028-10-31 or 4 months after TIF In-Service Date -- SLIPPED 10 months past Amendment One's 2027-12-31",
+        "generator_name_at_signing": "Duffy Project Co LLC",
+        "planned_capacity_at_signing": "502.46 MW, 135x Power Electronics HEM FS4200M inverters (changed from Sungrow)",
+        "poi_at_signing": "28.85275,-96.0865 (moved ~3.1 km SW from original POI)",
+        "artifact": "sources/2026-07-20_puct_35077-2516_amendment-two-to-ercot-standard-generation-inter.pdf"
+      }
+    ],
+    "notes": "All 3 documents CONFIRMED (INR '23INR0057' found in document text, printed on every page of Amendment Two). The queue's reported COD (2027-12-31) is Amendment One's schedule, already superseded by Amendment Two (effective 3 weeks before this research date) at 2028-10-31 -- the queue snapshot has not caught up to the most recent amendment. Equipment also changed: inverter vendor switched from Sungrow to Power Electronics between original SGIA and Amendment Two, alongside the capacity trim 540->502.46 MW, consistent with a project re-scope tied to the VDA->Duffy Project Co ownership change."
   },
-
   "county_records": {
-    "cad_parcels": "none found — matagordacad.org SSL error, unreachable",
-    "abatement": "none — Ch.313 expired 2022; no JETI application found for Duffy Solar",
+    "cad_parcels": "none found \u2014 matagordacad.org SSL error, unreachable",
+    "abatement": "none \u2014 Ch.313 expired 2022; no JETI application found for Duffy Solar",
     "commissioners_minutes": "scanned image PDFs, no OCR; not searched"
   },
-
+  "companion_bess": {
+    "queue_name": "Duffy Energy Storage (co-located BESS, separate INR not in this identity packet)",
+    "eia_plant_id": 69295,
+    "entity": "Duffy Energy Storage LLC",
+    "capacity_mwh": 235.9,
+    "coords": [
+      28.854592,
+      -96.08606
+    ],
+    "distance_from_solar_poi_km": 0.21,
+    "eia_status_2026_05": "(U) Under construction, less than or equal to 50 percent complete",
+    "eia_planned_operation": "2026-12",
+    "storm_noi": [
+      "TXR1501WK",
+      "TXR1593WQ"
+    ],
+    "storm_noi_status": "ACTIVE",
+    "epc": "IEA Constructors, LLC",
+    "source": "data/eia_generator_tx.parquet (EIA-860M); tceq.py resolve --county Matagorda --keyword Duffy --storm (queried 2026-07-20)"
+  },
   "cod_assessment": {
     "reported_cod": "2027-12-31",
-    "independent_estimate": "2029-Q1",
-    "drift_risk": "high",
+    "independent_estimate": "2028-Q4",
+    "drift_risk": "medium",
     "rationale": [
-      "No construction visible in March 2026 satellite imagery across 18×10 km corridor search area",
-      "COD claim 2027-12-31 requires completion in ≤21 months from today — standard TX coastal solar takes 18-24 months from first ground disturbance",
-      "4 prior COD slips at ~18-month intervals (2023-06 → 2025-05 → 2026-11 → 2027-12), consistent annual slip pattern",
-      "No FIS approved as of latest snapshot (FIS requested Feb 2021, still outstanding after 5+ years)",
-      "No construction milestones, no energization, no sync in queue record",
-      "No abatement, developer PR, or financing announcement found — unusually dark for a project this late in queue",
-      "Capacity trimmed 550→502 MW Oct-2024 — scope adjustment, not withdrawal"
+      "PRIMARY EVIDENCE, most authoritative: signed Amendment Two (effective 2026-07-03, filed 3 weeks before this research) sets the contractual scheduled COD at 'later of 10/31/2028 or 4 months after TIF In-Service Date' -- 10 months later than the queue's still-reported 2027-12-31 and later than Amendment One's schedule. The queue snapshot has not caught up to this amendment.",
+      "SECONDARY, developer-stated target: Linea Energy's own PR (2026-05) and Bay City Tribune (2026-06-23) both describe construction 'beginning Q3 2026' with 'commercial operations targeted for late 2027' -- a THIRD, more optimistic date than either the queue or the signed IA. Independent estimate below weights the signed contractual document over developer messaging, per playbook (claims to verify, not evidence), but records the gap: developer PR is ~10 months ahead of the IA's own legal schedule, which the developer itself co-signed 3 weeks before the PR reiterated 'late 2027.'",
+      "This is the IA's 4th schedule (2025-08-06 orig -> 2027-12-31 Amendment One -> 2028-10-31 Amendment Two), a real amendment cadence of ~1 slip every 9-14 months, distinct from but consistent with the queue's own 3-change history",
+      "TIF In-Service Date prerequisite items are due 2027-04-15 per Amendment Two -- unchanged from Amendment One -- meaning the COD slip happened on the back-end math, not because an early milestone changed",
+      "Offtake is secured (Google 15-yr 500 MW PPA) and financing is at least partly de-risked by that PPA -- reduces (but does not eliminate) execution risk relative to a project with no signed offtake",
+      "Co-located 235 MWac Duffy BESS independently confirmed under active construction (EIA-860M + active TCEQ storm NOIs, EPC IEA Constructors) -- substation-area civil work is underway, though this does not confirm the solar array itself has broken ground",
+      "Ownership change (VDA Solar Texas 1 -> Duffy Project Co LLC, i.e. the Linea Energy acquisition) between 2023 and Oct-2025, plus an inverter-vendor swap (Sungrow -> Power Electronics) and capacity trim (540->502.46 MW), plausibly explains why the schedule reset rather than signaling distress",
+      "Independent estimate splits the difference conservatively toward the signed IA: 2028-Q4 (Amendment Two's 10/31/2028, taken at face value) -- if the developer's public Q3-2026-start / late-2027-COD claim proves accurate instead, that would represent a POSITIVE surprise versus this estimate, not further slippage"
     ],
     "cod_history": {
       "initial": "2023-06-01",
-      "current": "2027-12-31",
+      "current": "2027-12-31 (queue, stale) / 2028-10-31 (signed Amendment Two, most current legal date) / 'late 2027' (developer PR/news, most optimistic)",
       "total_slip_months": 54,
       "num_changes": 3
     }
   },
-
   "unknowns": [
-    "Developer / LLC parent company not identified",
-    "IA PDF not retrieved — no contractual milestone dates, no POI exact coordinates",
-    "Exact tap location on WAP-STP 345kV line (CEII)",
-    "Land tenure (lease vs purchase)",
-    "Financing status",
-    "Whether FIS has been waived or is still pending"
-  ]
+    "Whether Duffy Project Co LLC's board/investor structure sits entirely under Linea Energy/EnCap, or whether other parties hold equity",
+    "EPC contractor for the SOLAR array specifically (IEA Constructors is confirmed only for the co-located BESS)",
+    "Land tenure (lease vs purchase) -- not stated in any IA document or in the PR/news coverage",
+    "Non-PPA financing/debt-close status for the solar array (only the BESS has independent construction-financing evidence via active permits)",
+    "Whether FIS has been waived or is still pending (queue snapshot showed FIS requested Feb 2021, never approved, as of last available snapshot)",
+    "Whether solar-array grading has begun since the 2026-07-09 chip (partly cloud-obscured) -- recommend a follow-up chip in ~Q4 2026 to check against the PR's Q3-2026-start claim"
+  ],
+  "real_project_verdict": "real_early"
 }

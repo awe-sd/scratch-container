@@ -1,0 +1,116 @@
+{
+ "inr": "25INR0672",
+ "project": "Fagus Solar Park 2 SLF",
+ "researched_at": "2026-07-22",
+ "site": {
+  "lat": 34.35099,
+  "lon": -100.0493,
+  "method": "eia860m_coords_cross_validated_places_pin_and_poi_distance",
+  "confidence": "high",
+  "map_artifacts": [
+   "sources/2026-07-22_puct_35077-2433_seventh-amended-and-restated-erco_p60.png"
+  ]
+ },
+ "project_area": {
+  "acres": 3800,
+  "source": "Comptroller Ch313 App 1613 certificate cites a 2018-09-17 YouTube post by the developer: 'Misae Solar Park 240MW AC, next to tesla substation on 3,800 acres of flat crop land' -- figure is for the WHOLE Misae II / Fagus complex (all 3 phases), not Phase 2 alone; no per-phase acreage found",
+  "artifact": "sources/2026-07-22_comptroller_ch313-1613-childress-excel-cert.pdf"
+ },
+ "parcels": [],
+ "llc_chain": [
+  {
+   "entity": "Dr. Miguel Alejandro Oneto / Latinoamericana de Energia (LAE American Energy)",
+   "relation": "original_developer_sponsor",
+   "evidence": "Ch313 App 1613 cert (comptroller-cited 2018 YouTube post: 'Engineered by Miguel A. Oneto and LAE American Energy'); matches Fourth IA Amendment (2023-08-17) recital naming 'Latinoamericana de Energia' as sponsor of original interconnection request #20INR0091"
+  },
+  {
+   "entity": "Excel Advantage Services, LLC dba Misae Solar Park II",
+   "relation": "SPV_and_designated_interconnection_agent",
+   "evidence": "Party on all IA amendments (PUCT 35077-1923/2001/2433, CONFIRMED INR-in-text); Ch313 App 1613 Applicant; Applicant's own 2021-08-09 statement to Comptroller: 'does business under the name Misae Solar Park II... has referred to its planned solar electricity generation project as Misae Solar II, Misae II, Misae Solar Park II, and Fagus Solar Park'"
+  },
+  {
+   "entity": "Greenalia Solar Power Misae III, LLC (Greenalia, Spanish renewable energy co., greenalia.es)",
+   "relation": "principal_for_generation_phase_3_only",
+   "evidence": "Added as joint Applicant Party via Ch313 Amendment No. 2 (~June 2024); added as Phase-3 co-tenant principal in IA Seventh A&R (2026-03-12) with Excel Advantage Services acting as its DIA/agent; NOT a Phase-2 (this INR) party per Exhibit C-1 (Phase 1 & 2 remain under Excel Advantage Services alone)"
+  },
+  {
+   "entity": "M. A. Mortenson Company",
+   "relation": "EPC_candidate",
+   "evidence": "Owner/customer legal name on ACTIVE TCEQ stormwater-construction NOI for 'MISEA SOLAR PARK II' (STORM #TXR1585QO) and 'TESLA II TESLA TO FAGUS TRANSMISSION LINE' (STORM #TXR15RX32)"
+  },
+  {
+   "entity": "Solv Energy, LLC",
+   "relation": "EPC_candidate",
+   "evidence": "Owner/customer legal name on the same ACTIVE TCEQ stormwater-construction NOIs as Mortenson (co-listed, roles not separately specified in the TCEQ record)"
+  }
+ ],
+ "land_tenure": {
+  "status": "unknown",
+  "evidence": "No CAD parcel search performed this session (time-budget tradeoff favoring the decisive Ch313/TCEQ finds); no lease/purchase language found in the IA amendments or Ch313 documents reviewed"
+ },
+ "construction": {
+  "verdict": "substantially_complete",
+  "first_activity_seen": "2024-06-25",
+  "evidence": [
+   "s2aws chip 2023-01-27 (imagery/key/s2_2023-01-27.png, unread full-size): raw farmland at anchor, no activity per contact sheet",
+   "s2aws chip 2023-11-03 (imagery/key/s2_2023-11-03.png): still undisturbed cropland at anchor; existing UNRELATED older solar array visible ~2km W (pre-existing, not this project)",
+   "s2aws chip 2024-06-25 (imagery/key/s2_2024-06-25.png): first faint rectangular field-boundary striping appears at anchor parcel -- ambiguous vs tillage, marked as first_activity_seen candidate",
+   "s2aws chip 2025-01-01 (imagery/key/s2_2025-01-01.png): CLEAR graded/racked rectangular block array visible at anchor, several contiguous blocks with access roads, small pad structures -- construction well underway",
+   "s2aws chip 2025-06-25 (imagery/key/s2_2025-06-25.png, partly cloudy): same array footprint stable/complete, darker uniform panel-like texture in blocks",
+   "s2aws chip 2026-05-16 (imagery/key/s2_2026-05-16.png): large dark uniform rectangular block array fully built out at anchor, consistent with completed solar field; matches Google Places 'MISAE SOLAR PROJECT' pin 1km away"
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2026-05-20",
+  "independent": "2025-Q4",
+  "drift_risk": "low",
+  "reasoning_evidence": [
+   "EIA-860M (plant 67123 Fagus Solar Park, entity Excel Advantage Services LLC, covering BOTH queue phases): status (V) >50% construction through 2026-03 report, then (OP) Operating from the 2026-04 report with actual operating date 2025-12 (eia_history.json) -- independent federal reporting says the shared plant is already generating",
+   "Queue's own milestone history (timeline.md) shows approved-for-energization 2025-05-29 and approved-for-synchronization 2025-07-07 already achieved, but commercial-operation-approved still blank as of the 2026-06 snapshot -- consistent with EIA's Dec-2025 operating date plus an administrative/ERCOT-paperwork lag on the formal COD approval milestone",
+   "Satellite imagery (D2) shows the array substantially built out and stable by 2026-05, consistent with an operating plant since late 2025 rather than active construction",
+   "Reported COD drifted 7 times across 25 monthly snapshots (timeline.md): 2025-12-01 (held 2024-06->2024-12) -> 2026-02-11 -> 2026-02-10 -> 2025-09-26 -> 2025-10-03 -> 2026-03-15 -> 2026-05-14 -> 2026-05-20 (current) -- noisy but the drift band (2025-Q4 to 2026-Q2) brackets the EIA-reported actual operating date of 2025-12, so treat the queue's current 2026-05-20 figure as STALE/lagging rather than indicative of a real slip",
+   "Both phases (20INR0091 Phase1, 25INR0672 Phase2) share ONE EIA plant record -- EIA does not report per-phase status, so 'operating' could reflect Phase 1 alone with Phase 2 trailing; imagery could not visually distinguish a separate unbuilt Phase-2 sub-footprint (D2), and Exhibit C-1 shows both phases sharing one substation/collector system with equal unit counts (50 units each) -- no evidence either phase lags the other structurally",
+   "Independent estimate: plant achieved commercial operation in Q4 2025 (per EIA), ahead of/at the queue's still-listed 2026-05-20 date -- LOW drift risk in the sense that the project is not behind, it is arguably already operating and the queue simply hasn't caught up administratively"
+  ]
+ },
+ "real_project_verdict": "real_active",
+ "negative_searches": 6,
+ "banned_source_violations": 0,
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Fifth Amended and Restated ERCOT Standard Generation Interconnection Agreement (ETT / Excel Advantage Services dba Misae Solar Park II) — FIRST version to split single Fagus project into Phase 1/2/3",
+    "signed": "2024-08-29",
+    "financial_security": "$18,000,000 total (all 3 phases combined, not broken out per-phase)",
+    "artifact": "sources/2026-07-22_puct_35077-1923_fifth-amended-and-restated-ercot-standard-genera.pdf"
+   },
+   {
+    "doc": "Sixth Amended and Restated ERCOT Standard Generation Interconnection Agreement",
+    "signed": "2024-11-21",
+    "financial_security": "$18,000,000 total (unchanged from Fifth)",
+    "artifact": "sources/2026-07-22_puct_35077-2001_sixth-amended-and-restated-ercot-standard-genera.pdf"
+   },
+   {
+    "doc": "Seventh Amended and Restated ERCOT Standard Generation Interconnection Agreement — current, adds Greenalia Solar Power Misae III LLC as Phase 3 principal",
+    "signed": "2026-03-12",
+    "financial_security": "$19,500,000 total (increased from $18.0M)",
+    "artifact": "sources/2026-07-22_puct_35077-2433_seventh-amended-and-restated-ercot-standard-gene.pdf"
+   }
+  ],
+  "milestones": [
+   {
+    "name": "Scheduled Trial Operation (Generation Phase 2 / 25INR0672)",
+    "fifth_2024_08": "2025-05-21",
+    "sixth_2024_11": "2025-08-21",
+    "seventh_2026_03": "2025-07-21"
+   },
+   {
+    "name": "Scheduled Commercial Operation (Generation Phase 2 / 25INR0672)",
+    "fifth_2024_08": "2025-10-21",
+    "sixth_2024_11": "2025-12-21",
+    "seventh_2026_03": "2026-03-21"
+   }
+  ],
+  "note": "TSP is Electric Transmission Texas (ETT/AEP), NOT Oncor. Generator/DIA = Excel Advantage Services, LLC dba Misae Solar Park II. Original Agreement executed 2019-02-21 (single-phase, sponsor 'Latinoamericana de Energia'); amendment chain: Orig(2019-02-21)->1st(2019-09-12)->2nd(2020-02-26)->3rd(2020-12-03)->4th(2023-08-17, still single-phase, #20INR0091 only)->5th(2024-08-29, PHASE SPLIT creating #25INR0672 and #26INR0524)->6th(2024-11-21)->7th(2026-03-12, current). All months-from-execution-date computed off 2019-02-21. POI/substation name 'Fagus', Childress County ~8mi SE of Childress, POI at ETT's first dead-end structure outside Fagus Substation fence on ETT's 345kV line from ETT's Tesla Station -- matches queue POI text '60501 Tesla 345 kV' exactly. Exhibit C: Phase 2 = 50 units x 3.3729 MW = 168.64 MW nameplate (queue reports 166.57 MW, AC-rating rounding). All 3 phases share ONE substation per Exhibit C-1 one-line diagram -- no separate Phase 2 footprint exists to distinguish from Phase 1."
+ }
+}

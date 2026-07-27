@@ -27,3 +27,15 @@
 
 ## T7 start
 **T7 result:** triage_findings.json + triage.md written. Turns used: ~28. Run complete.
+
+## Imagery consolidation + construction onset detected (user-directed, 2026-07-21)
+
+- Deleted the 20+ scattered exploration images; single clean framing (7.2km sq) covering
+  the FULL georeferenced boundary + US-287 at the SW corner. Series: 2022/2024/2025 yearly
+  + Jan-Jul 2026 monthly + local GIF timelapse.
+- CONSTRUCTION ONSET: May-2026 uniform rangeland -> June-2026 brush-clearing across the
+  boundary's northern block -> 2026-07-15 rectangular grading. Verdict real_early ->
+  real_active / clearing_started. This postdates the prior scan's last clean look
+  (2026-07-18 verdict was right at the time; onset is genuinely ~June 2026).
+- CDSE timelapse attempted per user instruction: still RemoteDisconnected after full
+  backoff (capacity outage day 2) -- logged negative, local GIF substitutes.

@@ -1,149 +1,163 @@
 {
-  "inr": "24INR0118",
-  "project": "Possum Kingdom Solar",
-  "researched": "2026-07-19",
-  "verdict": "real_early",
-  "confidence": "low",
-  "verdict_rationale": "IA signed 2025-07-25, FIS approved 2025-03-18, Meets 6.9(1) achieved 2026-06-09, and a companion BESS project (24INR0375, PK Solar LLC) at same POI confirm real regulatory intent; however zero web/news presence, no developer identity, no satellite imagery, and no site-pinpoint limit confidence to 'real_early'",
-
-  "developer": {
-    "spv": "PK Solar, LLC",
-    "parent": null,
-    "epc": null,
-    "offtaker": null,
-    "financing": null,
-    "notes": "LLC confirmed from ERCOT GIS Jun-2026 report. 'PK Solar' yields zero web results — identity of parent developer unknown. Same LLC also owns companion 24INR0375 Possum Kingdom BESS (200.86 MW battery, IA signed 2025-07-30, same POI).",
-    "evidence": [
-      {
-        "claim": "SPV name PK Solar, LLC; project name Possum Kingdom Solar; county Jack; 262.22 MW Solar PV",
-        "artifact": "sources/2026-07-19_ercot-gis-jun2026_pk-solar-rows.csv"
-      }
-    ]
-  },
-
-  "site": {
-    "lat": null,
-    "lon": null,
-    "method": "not_resolved",
-    "confidence": "none",
-    "notes": "No delivery pin (gmaps 429 rate-limited), no parcel via CAD (form-based portal inaccessible), no IA PDF (PUCT 402), no satellite imagery (CDSE 401, Google Static Maps 403). POI anchor: Willow Creek Switch (bus 1421) confirmed at 33.0562°N, 97.9103°W in Wise County on Jack/Wise border; Jacksboro substation (bus 1429) at 33.2772°N, 98.1068°W in Jack County. Project site is a tap on the Willow Creek–Thomas Price 345kV line segment traversing eastern Jack County — search zone ~33.0-33.3°N, 98.0-98.4°W.",
-    "poi_anchor": {
-      "willow_creek_switch_lat": 33.0562,
-      "willow_creek_switch_lon": -97.9103,
-      "willow_creek_county": "Wise County (near Jack County eastern boundary)",
-      "source": "sources/2026-07-19_osm-overpass_jack-county-substations.json"
-    },
-    "cross_checks": []
-  },
-
-  "project_area": {
-    "acres": null,
-    "source": "not_found",
-    "artifact": null,
-    "notes": "No IA PDF, no CAD parcels, no abatement application retrieved. 262 MW solar expected ~1,000-1,500 acres at typical utility-scale density."
-  },
-
-  "land": {
-    "tenure": "unknown",
-    "abatements": [],
-    "cad_parcels": [],
-    "notes": "No Ch.313/JETI expected (post-2022 project; program expired Sept 2023). CAD portal inaccessible (form-based). No county records retrieved."
-  },
-
-  "interconnection": {
-    "poi": "Tap 345kV 1421 Willow Creek Switch – 11523 Thomas Price",
-    "tsp": "Oncor",
-    "ia_signed": "2025-07-25",
-    "ia_pdf_retrieved": false,
-    "ia_pdf_note": "PUCT interchange.puc.texas.gov returns HTTP 402 on all search attempts",
-    "financial_security": null,
-    "contractual_schedule": {
-      "documents": [
-        {
-          "doc": "Original IA",
-          "signed": "2025-07-25",
-          "financial_security": null,
-          "artifact": null,
-          "notes": "IA confirmed via ERCOT queue milestone; PDF not retrieved from PUCT (HTTP 402)"
-        }
-      ],
-      "in_service_date": null,
-      "trial_operation_date": null,
-      "scheduled_cod": null,
-      "source_note": "Schedule exhibit not obtained (IA PDF inaccessible)"
-    }
-  },
-
-  "queue_history": {
-    "first_report": "2022-05-01",
-    "total_snapshots": 50,
-    "cod_drifts": 3,
-    "cod_history": [
-      {"cod": "2024-11-22", "held_from": "2022-05-01", "held_until": "2023-05-01"},
-      {"cod": "2026-05-08", "held_from": "2023-06-01", "held_until": "2023-08-01"},
-      {"cod": "2026-10-30", "held_from": "2023-09-01", "held_until": "2024-06-01"},
-      {"cod": "2027-10-29", "held_from": "2024-07-01", "held_until": "2026-06-01"}
-    ],
-    "milestones": {
-      "screening_started": "2021-09-13",
-      "screening_complete": "2021-11-29",
-      "fis_requested": "2022-05-23",
-      "fis_approved": "2025-03-18",
-      "ia_signed": "2025-07-25",
-      "meets_6_9_1": "2026-06-09",
-      "meets_all_6_9": null,
-      "construction_start_reported": "2025-05-01",
-      "construction_end_reported": "2026-05-08",
-      "approved_energization": null,
-      "approved_synchronization": null,
-      "commercial_operation_approved": null
-    },
-    "artifact": "timeline.md"
-  },
-
-  "satellite": {
-    "imagery_obtained": false,
-    "reason": "CDSE credentials returning 401 Unauthorized; Google Static Maps API not enabled (403). No imagery available.",
-    "construction_stage": "unknown",
-    "first_activity_seen": null,
-    "verdict": "unknown"
-  },
-
-  "cod_assessment": {
-    "reported_cod": "2027-10-29",
-    "independent_estimate": "2028-Q3",
-    "drift_risk": "high",
-    "rationale": [
-      "4 reported-COD changes over 4 years (slipped from 2024-11 to 2027-10 = ~35 months of drift already)",
-      "Reported construction-end date 2026-05-08 has passed with zero energization milestones achieved — schedule already running late",
-      "IA signed late (2025-07-25) but appeared in queue only 2026-04-01 — data-entry lag suggests administrative slowness",
-      "Meets 6.9(1) achieved 2026-06-09 is the most recent positive signal; 'Meets all 6.9' still open",
-      "No construction activity confirmed (no imagery available); developer identity unknown means no external corroboration",
-      "262 MW solar typical build: 18-24 months post-IA; IA July 2025 → earliest realistic COD is mid-2027, but history of slippage implies 2028 more probable",
-      "Companion BESS project (24INR0375) has same COD 2027-10-29 and same construction-end date — both appear to be on a shared schedule that is already past"
-    ]
-  },
-
-  "could_not_determine": [
-    "Developer / parent company identity (PK Solar LLC is non-searchable)",
-    "IA PDF content — parties, schedule exhibit, financial security amount (PUCT 402)",
-    "Site lat/lon — no pin, no parcel, no imagery available",
-    "Project acreage",
-    "Construction activity status — no imagery obtained",
-    "EPC, PPA offtaker, financing",
-    "CAD parcel ownership"
+ "inr": "24INR0118",
+ "project": "Possum Kingdom Solar",
+ "researched_at": "2026-07-21",
+ "real_project_verdict": "real_early",
+ "verdict_rationale": "Rescan confirms IA executed 2025-07-30 (filed PUCT 2025-08-26, control 35077 item 2239) with a real financial security ($15,508,166 combined ISLOC for 24INR0118+24INR0375, effective on/before 2025-07-01); developer chain resolved (PK Solar, LLC f/k/a Novis Renewables, LLC, c/o Nadara Development US, LLC / Nadara North America, Inc.); Ch.313 value-limitation agreement #1728 with Graford ISD has been LIVE since 2022-11-21 and was still being administratively amended as recently as 2025-12-16/2026-03-05 -- an actively-managed real project, not a paper filing. Companion BESS 24INR0375 (PK Solar LLC (BESS)) co-tenant at the same Halsell Ranch Switch switchyard corroborates. HOWEVER: 5-date Sentinel-2 imagery (2024-07 through 2026-07) plus a wide 13km verification frame show ZERO visible construction/grading at the resolved site through the latest clear acquisition (2026-07-07) -- with In-Service Date contractually 2027-05-13, that leaves only ~10 months of runway for a 262 MW build with no ground-disturbance yet visible. Verdict stays 'real_early' (real, financially/administratively active, but not yet under construction).",
+ "site": {
+  "lat": 33.0318,
+  "lon": -98.2947,
+  "method": "ch313_map_exhibit_cross_confirmed_via_ia_placename_and_gnis",
+  "confidence": "high",
+  "map_artifacts": [
+   "sources/2026-07-21_comptroller-ch313-1728_map-project-boundary-p25.png",
+   "sources/2026-07-21_comptroller-ch313-1728_map-vicinity-p26.png",
+   "sources/2026-07-21_comptroller-ch313-1728_map-reinvestment-zone-p27.png",
+   "sources/2026-07-19_puct_35077-2239_standard-generation-interconnecti_p33.png",
+   "sources/2026-07-19_puct_35077-2239_standard-generation-interconnecti_p47.png"
   ],
-
-  "comparable_projects": [
-    {
-      "inr": "24INR0094",
-      "name": "Dovetail Solar 1",
-      "llc": "Hecate Energy Dovetail Solar 1 LLC",
-      "poi": "Tap 345 KV 1421 Willow Creek - 60515 Clear Crossing Ckt 2",
-      "county": "Jack",
-      "mw": 666.1,
-      "status": "FIS Started, No IA",
-      "note": "Co-POI project; Hecate Energy at same 345kV bus confirms Willow Creek as accessible, high-capacity POI"
-    }
+  "derivation_notes": "Ch.313 agreement #1728 (Graford ISD) Checklist Item #11 includes actual MAP exhibits (highest provenance rung): a project-boundary/solar-panel-footprint map and a 'Proposed Reinvestment Zone' map anchored at a labeled landmark, 'Marluc Bella Vita Ranch'. That ranch/lodge's own site (lakegodstone.com, WebFetch) gives its address as '4636 Halsell Ranch Road, Graford, TX 76449' -- independently matching the executed IA's Exhibit C interconnection-details text, which names the POI 'Halsell Ranch Switch' on the Thomas Price-Willow Creek 345kV line in Jack County (the station-location sentence itself is REDACTED as CEII per Oncor's PUCT cover letter). Cross-referenced the place name via Overpass/OSM: 'Halsell Ranch Road' (TIGER, tiger:county=Jack,TX, spanning 33.030-33.046N/-98.331 to -98.271W) and 'Halsell Ranch Cemetery' (GNIS feature_id 1337264, a federally-documented named place) at 33.0318N,-98.2947W -- used as the anchor. Three independent public records (Ch.313 map, IA Exhibit C place name, GNIS/TIGER) converge; no single rung was sufficient alone (IA coordinates redacted; Ch.313 map has no lat/lon graticule). NOT parcel-precise -- a ~1km-radius place-name anchor. Nominatim and the Census geocoder both returned zero matches for the literal street address (too rural); Overpass/TIGER was the path that worked. Full chain: sources/SITE_DERIVATION.md.",
+  "poi_anchor": {
+   "willow_creek_switch_lat": 33.0562,
+   "willow_creek_switch_lon": -97.9103,
+   "willow_creek_county": "Wise County (near Jack County eastern boundary)",
+   "halsell_ranch_switch_note": "Actual interconnection point per executed IA Exhibit C: 'Halsell Ranch Switch', co-located with 24INR0375 (Possum Kingdom BESS) switchyard. Exact surveyed coordinates redacted as CEII.",
+   "source": "sources/2026-07-19_osm-overpass_jack-county-substations.json; sources/2026-07-19_puct_35077-2239_standard-generation-interconnecti_p33.png"
+  },
+  "cross_checks": [
+   "OSM/TIGER 'Halsell Ranch Road' + 'Halsell Ranch Cemetery' (GNIS 1337264) centroid falls inside the Ch.313 mapped reinvestment-zone polygon",
+   "Ch.313 filing's Palo Pinto/Jack county split (65%/35%) is consistent with the anchor sitting near the Jack/Palo Pinto county line",
+   "Prior POI triangulation (Willow Creek Switch 33.0562N/-97.9103W; Jacksboro 33.2772N/-98.1068W) bracketed 'eastern Jack County, 33.0-33.3N, 98.0-98.4W' -- new anchor falls inside that zone"
   ]
+ },
+ "project_area": {
+  "acres": 2500,
+  "source": "Original 2022 Ch.313 application (Checklist Items #4/#8/#9): '~305 MWac' facility covering '~2,500 acres' leased across Jack and Palo Pinto Counties. As-built/as-contracted design has since been refined to 262.22 MW / 68 x Sungrow SG4400UD inverters per the executed 2025 IA -- built footprint is likely smaller than the full 2022 zone, but no updated acreage figure has been filed publicly.",
+  "artifact": "sources/2026-07-21_comptroller-ch313-1728_novis-renewables-application.pdf"
+ },
+ "parcels": [],
+ "llc_chain": [
+  {
+   "entity": "PK Solar, LLC",
+   "relation": "SPV / Generator (IA counterparty)",
+   "evidence": "Executed IA text: 'Oncor Electric Delivery Company LLC and PK Solar, LLC (Possum Kingdom Solar) (24INR0118), dated July 30, 2025' -- INR-in-text CONFIRMED (sources/2026-07-19_puct_35077-2239_...pdf)"
+  },
+  {
+   "entity": "Novis Renewables, LLC",
+   "relation": "original_developer (renamed to PK Solar, LLC)",
+   "evidence": "Ch.313 agreement #1728 (Graford ISD) applicant history: 'PK Solar, LLC f/k/a Novis Renewables, LLC'. Original 2022 application signed by Jonathan Koch (President) and Grant Huber (Development Manager); $75,000 application fee paid to Graford ISD 2022-02-22. Application Checklist Item #4 states verbatim: 'The applicant applied on 9/1/2021 to ERCOT and has received the following GINR number: 24INR0118. This project may have been known by Possum Kingdom Solar in past media reports, investor presentations...' (sources/2026-07-21_comptroller-ch313-1728_novis-renewables-application.pdf, p16)"
+  },
+  {
+   "entity": "Nadara Development US, LLC / Nadara North America, Inc.",
+   "relation": "current_parent / administrator",
+   "evidence": "IA notice address: 'PK Solar, LLC c/o Nadara Development US, LLC'. Ch.313 amendment (2026-03-05) contacts: Thomas Leahy (Authorized Signatory/CFO, notarized signature 2025-12-16 in Westchester County NY), John Lichtenberger (Chief Development Officer), Erin Michelle Lunsford -- all @nadara.com, 1 Bridge St Suite 11, Irvington NY 10533. Ch.313 agreement still being actively amended as of 2026-03-05 -- strong currency signal (sources/2026-07-21_comptroller-ch313-1728_pk-solar-amendment-application.pdf, sources/2026-07-21_comptroller-ch313-1728_pk-solar-amendment-agreement.pdf)"
+  }
+ ],
+ "land_tenure": {
+  "status": "leased",
+  "evidence": "Ch.313 application Checklist Item #9: 'The applicant will lease approximately 2,500 acres of land within in Jack and Palo Pinto Counties for the project' (sources/2026-07-21_comptroller-ch313-1728_novis-renewables-application.pdf). CAD parcel-level ownership not retrieved (Jack/Palo Pinto CAD portals remain form-based)."
+ },
+ "construction": {
+  "verdict": "not_started",
+  "first_activity_seen": null,
+  "evidence": [
+   "5-date Sentinel-2 imagery at the resolved anchor (33.0318,-98.2947), 2024-07-12 through 2026-07-07, all cloud <=25% and unobstructed at the anchor: land use is IDENTICAL rangeland/ranch-track pattern across all 5 dates. No grading, no panel rows, no laydown yard.",
+   "Supplementary wide 13km frame (6.5km buffer, 2026-07-07) covering the full mapped reinvestment zone from Marluc Bella Vita Ranch (north) to FM 337 (south) also shows no construction anywhere in that envelope.",
+   "Positive control: checked data/eia_generator_tx.parquet (latest reportDate 2026-05-01) for Jack/Palo Pinto operating plants before attributing any array -- found Hecate Energy Longhorn Solar LLC (entity Repsol Renewables NA), 650MW, (OP) Operating, at 33.04417N/-98.34052W, ~4.5km west. A dedicated probe chip there confirms its distinctive panel-row grid IS clearly visible in Sentinel-2 at this resolution, and it is spatially distinct from (not overlapping) the Possum Kingdom Solar anchor in the wide frame -- proves the imagery source resolves construction when present and rules out misattribution.",
+   "IA Exhibit B's own Notice-to-Proceed date (2025-07-01) is now more than a year in the past with zero visible ground-disturbance -- a genuine schedule-risk finding, not an imagery gap.",
+   "The ERCOT queue's self-reported construction_start (2025-05-01) / construction_end (2026-05-08) milestone fields are contradicted by imagery -- both dates have passed with no visible activity; treat those two queue fields as unreliable for this project."
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2027-10-29",
+  "independent": "2028-Q2/Q3",
+  "drift_risk": "high",
+  "reasoning_evidence": [
+   "4 reported-COD changes over the project's 50-snapshot queue history (2022-05 -> 2026-06): original 2024-11-22 -> current 2027-10-29 = ~35 months of cumulative drift already",
+   "Executed IA Exhibit B schedule gives Scheduled COD 2027-10-29 -- matches the queue's self-reported projectCod exactly, a positive cross-check that the queue figure is the actual contract date, not stale/invented",
+   "HOWEVER: NTP per the IA was 2025-07-01 and In-Service Date is contractually 2027-05-13 -- 5-date imagery through 2026-07-07 shows ZERO visible construction. That leaves ~10 months to build 262MW/68 inverters with no ground-disturbance yet visible -- tight-to-late versus a typical 12-18 month utility-scale solar construction cycle",
+   "Positive signals: $15.5M combined financial security posted (IA Exhibit E); Ch.313 tax agreement active and administratively maintained as recently as March 2026; developer (Nadara, a substantial international renewables group) identifiable and engaged -- not an abandoned/paper project, just pre-construction",
+   "Companion BESS project 24INR0375 shares the same COD and the same Halsell Ranch Switch co-tenant switchyard -- both must mobilize together, adding coordination risk",
+   "Net: independent estimate nudged later than the contractual date, to 2028-Q2/Q3, given the imagery-confirmed absence of ground-breaking a year past the contractual NTP"
+  ]
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Standard Generation Interconnection Agreement (co-tenant w/ 24INR0375), Oncor Electric Delivery Company LLC and PK Solar, LLC",
+    "signed": "2025-07-30 (filed PUCT 2025-08-26, Control 35077 Item 2239)",
+    "financial_security": "$15,508,166 (combined w/ 24INR0375, Irrevocable Standby Letter of Credit, Exhibit E)",
+    "artifact": "sources/2026-07-19_puct_35077-2239_standard-generation-interconnection-agreement-be.pdf"
+   }
+  ],
+  "milestones": [
+   {"name": "Notice to Proceed", "date": "2025-07-01"},
+   {"name": "Land-conveyance-type contact to TSP", "date": "2025-09-01"},
+   {"name": "Site drawings (proposed routes/locations)", "date": "2026-07-13"},
+   {"name": "Recorded deed to TSP (if fee-title conveyance)", "date": "2026-05-15 (deadline; passed)"},
+   {"name": "Lat/Lon of all solar panel generating units to TSP", "date": "2026-11-13"},
+   {"name": "AC distribution voltage POI info", "date": "2027-01-15"},
+   {"name": "Communication facilities in place", "date": "2027-03-30"},
+   {"name": "In-Service Date", "date": "2027-05-13"},
+   {"name": "Scheduled Trial Operation Date", "date": "2027-05-17"},
+   {"name": "Scheduled Commercial Operation Date", "date": "2027-10-29"}
+  ],
+  "source_docs": [
+   "sources/2026-07-19_puct_35077-2239_standard-generation-interconnection-agreement-be.pdf"
+  ],
+  "note": "Verified CONFIRMED (INR 24INR0118 in text, matches county+MW). Oncor's PUCT cover letter discloses it redacted 'station location information, which contain CEII, located in Exhibit C, and certain financial information, located in Exhibit D'. IA signed date (2025-07-30) is 5 days later than the ERCOT queue's self-reported iaSigned (2025-07-25) -- use the executed document date as authoritative."
+ },
+ "interconnection": {
+  "poi": "Halsell Ranch Switch, on the TSP's Thomas Price Switch - Willow Creek Switch 345kV transmission line, Jack County TX (executed IA Exhibit C). Queue description: 'Tap 345kV 1421 Willow Creek Switch - 11523 Thomas Price'",
+  "delivery_voltage": "345 kV",
+  "tsp": "Oncor Electric Delivery Company LLC",
+  "co_tenant": "24INR0375 Possum Kingdom BESS (PK Solar LLC (BESS)), same switchyard per IA Attachment 1 one-line diagram"
+ },
+ "ch313": {
+  "application_number": "1728",
+  "school_district": "Graford ISD",
+  "applicant": "Novis Renewables, LLC (2022 original) -> PK Solar, LLC (2025-2026 amendments)",
+  "applied": "2022-03-14",
+  "approved": "2022-11-21",
+  "amended": "2026-03-05 (Comptroller review of the amendment pending/in process at time of this rescan)",
+  "application_fee": "$75,000",
+  "taxing_entities_split": "Graford ISD 100%; Palo Pinto County/Hospital/ESD#1 65%; Jack County/Hospital/WCID#1/Special 35% (per original 2022 zone)",
+  "job_waiver": "Requested and justified (1 FTE for a 305MW facility; industry standard cited as 1 employee per 150-350MW)",
+  "artifact": "sources/2026-07-21_comptroller-ch313-1728_novis-renewables-agreement.pdf"
+ },
+ "ch312": "negative (weak) -- no Ch.312 row for 'Possum Kingdom Solar'/'PK Solar' by name or by Jack/Palo Pinto county (CAD-submitted annual registry, incomplete coverage). Consistent with the project's incentive already being the Ch.313 agreement above (no double-filing expected).",
+ "eia_860m": "NOT in EIA-860M TX slice (data/eia_generator_tx.parquet) -- no plant/entity match by name or by county+prime-mover+MW tolerance. Negative, logged; no eia_history.json written (tool does not write on a pure miss).",
+ "tax_incentives": {
+  "ch313_jeti": "Ch.313 HIT (agreement #1728, see 'ch313' above) -- overturns the assumption of a structural negative. The project actually entered the ERCOT queue / Ch.313 pipeline in 2021-2022 (screening_started 2021-09-13; Ch.313 applied 2022-03-14; app itself states 'applied on 9/1/2021 to ERCOT'), well before the Sept-2023 Ch.313 sunset -- not a 2024 entrant as the INR prefix might suggest. No JETI application found or expected (JETI succeeded Ch.313 for post-2023 applicants; this project already has Ch.313)."
+ },
+ "queue_history_note": "50 monthly snapshots since 2022-05-01, 3 reported-COD changes (2024-11-22 -> 2026-05-08 -> 2026-10-30 -> 2027-10-29); full detail in timeline.json/timeline.md. Queue's own construction_start_reported (2025-05-01) / construction_end_reported (2026-05-08) milestone fields are contradicted by imagery (see construction.evidence) -- treat as unreliable for this project.",
+ "could_not_determine": [
+  "EPC contractor",
+  "PPA offtaker / financing structure beyond the ISLOC security amount",
+  "Exact as-built project acreage (only the original ~2,500-acre 2022 Ch.313 zone figure is documented)",
+  "CAD parcel-level ownership (Jack/Palo Pinto CAD portals remain form-based, not retrieved)",
+  "Precise surveyed coordinates of Halsell Ranch Switch (redacted as CEII in the IA; site.lat/lon is a cross-referenced place-name anchor, not a surveyed pin)"
+ ],
+ "comparable_projects": [
+  {
+   "inr": "24INR0094",
+   "name": "Dovetail Solar 1",
+   "llc": "Hecate Energy Dovetail Solar 1 LLC",
+   "poi": "Tap 345 KV 1421 Willow Creek - 60515 Clear Crossing Ckt 2",
+   "county": "Jack",
+   "mw": 666.1,
+   "status": "FIS Started, No IA",
+   "note": "Co-POI project; Hecate Energy at same 345kV bus confirms Willow Creek as accessible, high-capacity POI"
+  },
+  {
+   "inr": "n/a (EIA plant, not an ERCOT INR)",
+   "name": "Hecate Energy Longhorn Solar LLC (EIA entity: Repsol Renewables NA)",
+   "county": "Jack",
+   "mw": 650.0,
+   "status": "(OP) Operating",
+   "note": "Nearest OPERATING solar neighbor (~4.5km west of the site anchor); used as an imagery-signature control (see construction.evidence). 'Repsol Renewables NA' and PK Solar's parent 'Nadara' are related brands (Nadara is Repsol's renewables spinoff) -- coincidental regional proximity, not confirmed corporate affiliation between the two specific projects."
+  }
+ ],
+ "negative_searches": 8,
+ "banned_source_violations": 0
 }

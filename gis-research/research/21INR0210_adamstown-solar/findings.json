@@ -1,0 +1,110 @@
+{
+ "inr": "21INR0210",
+ "project": "Adamstown Solar",
+ "research_date": "2026-07-20",
+ "verdict": "real_early",
+ "confidence": "high",
+ "developer": {
+  "spv": "Adams Creek Solar Project, LLC",
+  "parent": "Savion LLC (Savion Energy)",
+  "chain": "Adams Creek Solar Project, LLC \u2192 Savion LLC (Kansas City, MO 64106)",
+  "evidence": "sources/2026-07-20_puct_35077-2025_standard-generation-interconnection-agreement-be.pdf Exhibit D: Chad Craven VP Transmission @savionenergy.com, 422 Admiral Blvd Kansas City MO; sources/t3_web_sweep.md"
+ },
+ "site": {
+  "lat": 34.168,
+  "lon": -98.966,
+  "method": "Google Places pin 'Adams Creek Solar Field' 16476 FM 370 Electra TX 76360, confirmed by Ch.313 map p38 showing project boundary on FM 370 E near Adams Creek; consistent with IA POI (Wichita County) and triage anchor (Harrold ISD, NNE of Harrold)",
+  "confidence": "high",
+  "map_artifacts": [
+   "sources/ch313_map_p37.png",
+   "sources/ch313_map_p38.png",
+   "sources/ch313_map_p39.png",
+   "sources/ch313_map_p40.png",
+   "sources/ch313_map_p41.png"
+  ],
+  "derivation_notes": " | Center refined 2026-07-20 from racking-row footprint in S2 2026-07-10 (user-guided reframing)."
+ },
+ "project_area": {
+  "acres": 2618,
+  "source": "official project website adamscreeksolarproject.com (via triage T3 web sweep)",
+  "artifact": "sources/t3_web_sweep.md"
+ },
+ "construction": {
+  "stage": "early_construction",
+  "first_activity_seen": "2026 (per web sources)",
+  "latest_observation": "2026 (no satellite imagery \u2014 CDSE 402 credit exhausted)",
+  "evidence": "imagery/key/s2_2026-07-10.png (S2B 2026-07-10, 4.6% cloud): parallel-row racking/pile striping across multiple NW parcels inside the Exhibit-B boundary + laydown pad; absent in s2_2024-07-15 baseline",
+  "status": "in_progress"
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Original IA (PUCT 35077-2025)",
+    "signed": "2024-12-04",
+    "financial_security": "$17,554,077 Irrevocable Standby Letter of Credit (Exhibit E, due on or before 2024-12-06)",
+    "artifact": "sources/2026-07-20_puct_35077-2025_standard-generation-interconnection-agreement-be.pdf",
+    "milestones": {
+     "in_service_date": "2026-12-03",
+     "trial_operation": "2027-01-02",
+     "scheduled_cod": "2027-08-31"
+    }
+   },
+   {
+    "doc": "Amendment No. 1 (PUCT 35077-2479)",
+    "signed": "2026-04-10",
+    "financial_security": "$17,554,077 unchanged",
+    "artifact": "sources/2026-07-20_puct_35077-2479_amendment-no-1-to-the-standard-generation-interc.pdf",
+    "milestones": {
+     "trial_operation_changed": "2027-03-08",
+     "scheduled_cod": "2027-08-31",
+     "note": "Trial Op slipped 2 months; COD unchanged; inverter type changed Sungrow SG4400UD \u2192 TMEIC PVU-L0840URN (350 \u00d7 0.78 MVA)"
+    }
+   }
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2027-08-31",
+  "independent_estimate": "2027-Q3 to 2027-Q4",
+  "drift_risk": "medium",
+  "rationale": "COD matches contractual IA date (Aug 31 2027). All major milestones cleared: IA signed Dec 2024, FIS approved Feb 2026, 6.9(1) met Dec 2025, $17.6M LC posted. Amendment 1 Apr 2026 changed inverter supplier (procurement active). Construction reportedly started 2026. In-Service date Dec 3, 2026 is 5 months away \u2014 TSP must complete Western Wind Switch by then; that is the critical path. 7 prior COD slips (2021-12-31 through 2027-08-31) show pattern of drift. Not in EIA-860M is a mild negative. With 8 months to reported COD from today (Jul 2026), Q3 2027 plausible if no further slips; Q4 2027 if minor delay."
+ },
+ "queue_history": {
+  "cod_drift_count": 7,
+  "first_cod": "2021-12-31",
+  "latest_cod": "2027-08-31",
+  "milestones": {
+   "ia_signed": "2024-12-04",
+   "fis_approved": "2026-02-25",
+   "meets_691": "2025-12-19",
+   "financial_security": "Yes"
+  }
+ },
+ "eia_860m": {
+  "status": "not_in_eia",
+  "planned_cod": null
+ },
+ "interconnection": {
+  "poi": "Western Wind Switching Station within Krum West Switch to Riley Switch (AEP) 345 kV line, Wichita County, TX",
+  "delivery_voltage": "345 kV",
+  "tsp": "Oncor Electric Delivery Company LLC"
+ },
+ "ch313": {
+  "application_number": "1872",
+  "school_district": "Harrold ISD",
+  "approved": "2022-12-08",
+  "total_investment": "$225,000,000",
+  "limitation_amount": "$20,000,000",
+  "artifact": "sources/2026-07-19_comptroller_ch313_1872-adams-creek-agmt.pdf"
+ },
+ "sources": [
+  "sources/2026-07-20_puct_35077-2025_standard-generation-interconnection-agreement-be.pdf",
+  "sources/2026-07-20_puct_35077-2479_amendment-no-1-to-the-standard-generation-interc.pdf",
+  "sources/2026-07-19_comptroller_ch313_1872-adams-creek-agmt.pdf",
+  "sources/2026-07-19_comptroller_ch313_1872-adams-creek-app.pdf",
+  "sources/ch313_map_p37.png",
+  "sources/ch313_map_p38.png",
+  "sources/ch313_map_p39.png",
+  "sources/t3_web_sweep.md"
+ ],
+ "real_project_verdict": "real_active"
+}

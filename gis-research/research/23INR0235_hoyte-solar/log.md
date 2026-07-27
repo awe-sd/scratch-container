@@ -93,3 +93,35 @@
 - EUR 174M PP&E additions in 2025 Energy division = "fundamentally due to acquisition of Milano Solar." EUR 32M bank guarantees issued for Milano Solar in 2025.
 - PP&E value (EUR 174M vs $19M SPV price) implies substantial tangible asset value embedded in the SPV (site rights, IA, permits). 
 - No EPC contractor named in SEC filings.
+
+## Deep scan resumed — 2026-07-20 (new run after max-turns failure)
+
+### D0: findings.json skeleton written
+
+### D1: IA schedule extraction
+- **Original IA** (filed 2022-11-09, signed 2022-10-14): COD June 1, 2024; In-Service Apr 18, 2024; Trial Op May 1, 2024. Security: $3,662,558 (by Oct 14 2022) → $8,142,020 (by Jul 7 2023). Equipment: 61× Power Electronics HEMK FS3430K inverters. [sources/2026-07-19_puct_35077-1514_interconnection-agreement-between-oncor-electric.pdf]
+- **Amendment 1** (filed 2026-04-20, signed 2023-11-16): COD Sept 30, 2025; In-Service May 8, 2025; Trial Op May 18, 2025. Security: $3,662,558 → $9,793,633. [sources/2026-07-19_puct_35077-2462_amendment-no-1-to-the-standard-generator-interco.pdf]
+- **Amendment 2** (filed 2026-06-17, signed 2026-05-27): **COD April 15, 2027; In-Service Dec 12, 2025 (past); Trial Op Dec 16, 2026.** Equipment updated to 54× Sungrow SG4400UD inverters. No security exhibit in Amendment 2 (Exhibit E not replaced). [sources/2026-07-19_puct_35077-2503_amendment-no-2-to-the-standard-generation-interc.pdf]
+- POI confirmed: Cannon Switch 138kV, ~5 miles north of Milano, Milam County. TSP = Oncor.
+- Developer contact on orig IA: Dan King (dan@electerra.dev) → original developer was Electerra (Austin TX). Sold to Ferrovial Energy US LLC for $19M on June 30, 2025.
+
+### D2: Site / imagery
+- One chip exists: imagery/s2_2026-07-10_center.png (centered approx 30.78, -96.80). Contains: lower-left = bright white road grid + cleared/graded area (active construction site); lower-center = dark parallel rows (modules or racking). CDSE endpoint down for new chips.
+- POI stated as "~5 miles north of Milano" = ~30.783N, -96.865W (estimate). Hoyte community at 30.785N, -96.916W.
+- Imagery shows activity consistent with active solar construction. At least two areas visible in single chip.
+- CDSE remote disconnect: no new chips obtained. Single existing chip covers ~6km box.
+
+### D3: Gap-fill
+- ch313.py: No Ch.313 or JETI agreement found for Hoyte Solar or Milano Solar — negative evidence. This is expected for a 2023-vintage project where the JETI portal was not fully populated. [artifact: ch313.py output]
+- SPV resolved: Milano Solar, LLC (PUCT filings) = confirmed SPV. Parent = Ferrovial SE via Ferrovial Energy US LLC (confirmed from SEC 20-F subsidiary list). [sources/2026-07-19_sec_ferrovial_20F_subsidiary-list.html]
+- EIA 860M: No exact match. Ambiguous candidates in county (Two Rivers Solar 214MW at 30.869,-96.736 is plausible, planned 2027-08; Yaupon Solar 200MW at 31.044,-96.851 less likely). "P - Planned for installation" status for all candidates. No DROPPED_FROM_860M signal.
+- Queue: 5 COD slips (2023-12 → 2024-06 → 2025-09 → 2026-03 → 2026-12 → 2027-04). Construction start 2025-08-11 first appeared Apr-2026 snapshot. [timeline.md]
+- Ferrovial 20-F Dec 2025: "Milano" plant under construction in Texas, expected to operate in 2027 — consistent with queue COD. EUR 174M PP&E additions in Energy division "fundamentally due to Milano Solar acquisition." EUR 32M bank guarantees issued. [sources/2026-07-19_sec_ferrovial_20F_annual2025_milano-solar.html]
+- Ferrovial 6-K Jun 2025: At acquisition, "in the process of negotiating and closing PPAs, financing and construction contracts." By Dec 2025 annual report: "under construction." [sources/2026-07-19_sec_ferrovial_6K_june2025_milano-solar-acquisition.html]
+- Abatements: No Ch.313/JETI agreement found. Normal for 2023 vintage. County commissioners no explicit Milano Solar reference found.
+
+### D4: Analysis
+- Verdict: real_active — Ferrovial confirmation, Amendment 2 signed May 2026, construction ongoing per imagery and SEC filings.
+- Site: estimated 30.783N, -96.865W (5 miles N of Milano per IA) with LOW-MEDIUM confidence (no CAD, no Places pin, no GPS coords from IA, imagery not recentered). Activity in existing chip consistent with construction.
+- Independent COD: 2027-Q2 (contractual Apr 15 2027 per Amendment 2, construction active per imagery/Ferrovial, but 5 prior slips and still in Trial Op phase with Dec 2026 target).
+- Drift risk: medium — Ferrovial is institutional backer with EUR 32M guarantees, but In-Service was Dec 2025 (already missed), Trial Op due Dec 2026, COD Apr 2027 = tight.

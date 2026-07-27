@@ -1,0 +1,100 @@
+{
+ "inr": "25INR0199",
+ "project": "Bonham Solar SLF",
+ "researched_at": "2026-07-20",
+ "site": {
+  "lat": 31.60,
+  "lon": -96.53,
+  "method": "IA Exhibit C text (named switch + line topology) + ERCOT queue POI field, now IMAGERY-CORROBORATED",
+  "confidence": "medium",
+  "map_artifacts": [],
+  "note": "No map/site-plan exhibit exists in the signed IA (54-page PDF fully reviewed via exhibit.py candidate pages + manual read of Exhibits A-E; Exhibit C Attachment 1 is a ONE-LINE ELECTRICAL DIAGRAM only, explicitly labeled 'for illustration only, not for design/construction/operations' -- not a geographic map. Exhibit C main text states no lat/lon exists yet -- Generator's obligation to provide panel lat/lon to TSP was due 2025-10-23, not part of this filing). Highest available rung is therefore IA EXHIBIT C TEXT: names the new TSP switch 'Baines Creek Switch' tapping a 138kV line between 'Ranchland Switch' and 'Phifer Creek Switch', and separately (p33-36) describes the interconnecting work as looping the EXISTING 'Groesbeck Main Substation - Mexia Main Substation 138kV transmission line' into Baines Creek Switch. This matches the ERCOT queue's own poiLocation field for 25INR0199 verbatim: 'TAP 138 kV MEXIA_2_1_8 3632 - GROES_SE1_8 3634' (data/ercot_generation_interconnect.parquet, fileDate 2026-06-01) -- independent confirmation the switch sits on this specific existing line, not just 'somewhere near Mexia/Groesbeck'. Baines Creek itself is a real named creek/trail at Fort Parker State Park (31.60361N, -96.55083W per Wikipedia/TPWD park map), on this same Groesbeck-Mexia corridor -- corroborates the switch name is tied to real local geography, not invented. Lat/lon (31.60, -96.53) is this corridor point adjusted toward Baines Creek/Fort Parker SP. NEIGHBOR CHECK (required before imagery attribution): (1) EIA-860M (eia_generator_tx.parquet, county=Limestone, latest reportDate 2026-05-01) -- nearest operating/planned solar is Mexia Solar Project (Ellomay USA) at 11.79 km, Naduah Solar (Gransolar) at 16.19 km -- both far outside the 3.5km imagery buffer, ruled out. (2) ERCOT queue (latest fileDate 2026-06-01) shows a SECOND project, Fiji Solar (25INR0128, 202.7MW), with poiLocation 'Groesbeck Main (#3634) to Mexia (#3632) 138 kV line tap' -- the SAME line segment as Bonham -- a genuine neighbor-confusion risk; checked via puct.py match 25INR0128: ZERO IA on file (still 'FIS Started, No IA' per queue, i.e. pre-construction stage), so it cannot be the source of the construction observed in imagery (see construction.evidence). Also checked 26INR0619 'Bonham Storage SLF' (same interconnecting entity 'J&J Solar Ranch LLC', same POI line) -- a co-located BESS addition at the SAME site, not a separate location. (3) Leighton Solar SLF (24INR0298), the other Limestone Co. SLF-family project flagged by the user, has its OWN findings.json site pin at 31.53N/-96.73W (Ben Hur Switching Station, ~20km west) -- confirmed geographically distinct, not a confusion risk. Confidence raised from triage/prior-deep 'low-medium' to 'medium': imagery now shows switchyard-scale construction (new structure + graded pad) appearing at this exact anchor between the 2025-07 and 2026-01 chips, timed almost exactly to the IA's own Baines Creek Switch grading/easement deadlines (Aug 15 2025) -- still short of a parcel-level polygon fix, hence not 'high'."
+ },
+ "project_area": {
+  "acres": null,
+  "source": null,
+  "artifact": null
+ },
+ "parcels": [],
+ "llc_chain": [
+  {
+   "entity": "J&J Solar Ranch, LLC",
+   "relation": "SPV",
+   "evidence": "Named Generator party on signed IA, PUCT 35077-1915 (sources/2026-07-20_puct_35077-1915_standard-generation-interconnection-agreement-be.pdf); project alias 'XE Bonham Solar 1' printed on filing cover letter and Exhibit C one-line diagram. Also registered as a Delaware LLC (OpenCorporates entry us_de/6540271, Dover DE registered-agent address per bizapedia listing) -- typical project-SPV shell registration; full registered-agent/officer detail blocked by bot-detection (CAPTCHA) on both OpenCorporates and Bizapedia."
+  },
+  {
+   "entity": "X-Elio",
+   "relation": "developer (probable, NOT press-confirmed)",
+   "evidence": "IA Exhibit D notice addresses use @x-elio.com emails (kerri.neary, ivan.illera, griffin.payne) at 1255 23rd Street NW Suite 300, Washington DC 20037 (X-Elio's US HQ address); 'XE Bonham Solar 1' alias matches X-Elio's 'XE <project>' naming convention seen on other filings. However, zero press releases, PR Newswire items, or X-Elio website mentions of 'Bonham Solar' or 'J&J Solar Ranch' were found (X-Elio's public materials only cover their Liberty Solar+Storage project in Dayton, TX/BASF) -- developer identity is well-supported circumstantially (IA contact domain) but not independently press-confirmed."
+  }
+ ],
+ "land_tenure": {
+  "status": "unknown",
+  "evidence": "Limestone CAD owner-name parcel search unreachable this session (esearch.limestonecad.com timed out / WebFetch 'socket closed' on both search form and results endpoints) -- could not determine leased vs purchased. No abatement/Ch.313/JETI filing exists to cross-check tract description (see registry note)."
+ },
+ "construction": {
+  "verdict": "under_construction",
+  "first_activity_seen": "between 2025-07-24 and 2026-01-15 (bracketed by two clean Sentinel-2 scenes; narrows almost exactly onto the IA's own Aug 15 2025 Baines Creek Switch grading-complete deadline)",
+  "evidence": [
+   "s2aws.py (AWS Open Data Sentinel-2, no-quota primary tool -- CDSE remains down per operator note) chips at 31.60N/-96.53W, 3.5km buffer, 2024-07-01/2025-07-01/2026-01-15/2026-04-15/2026-07-15: tool's default lowest-cloud scene picker alternated between adjacent MGRS tiles 14SQA/14RQV for the 2026-01-15 and 2026-07-15 dates, clipping ~1/3 of the frame to nodata (tile-seam artifact, not a real gap) -- rejected and re-fetched forcing the 14SQA-tile scene for all 5 dates (same tile the other 3 dates already used), giving full, unclipped, wide-margin coverage of the anchor + surrounding 3.5km on every date. Rejected/superseded raw chips were deleted, not kept in imagery/.",
+   "2024-07-14 scene (1.2% cloud) and 2025-07-24 scene (0.0% cloud): the parcel at/around the anchor is unbroken green pasture/agricultural land -- no clearing, no grading, no structures. A separate, unrelated, geometrically-static tan borrow-pit/quarry ~1km NE of the anchor is visible unchanged across ALL 5 dates 2024-2026 -- confirmed pre-existing and NOT part of this project.",
+   "2026-01-15 scene (0.0% cloud): STEP CHANGE -- the same parcel now shows extensive bare/graded brown-tan ground within a road-bounded polygon, plus a new small white rectangular structure at the road junction that was not present in 2024/2025. This is new since the 2025-07-24 capture (an ~6-month bracket) and lands almost exactly on the IA's contractual deadlines for Baines Creek Switch: grading design complete 2025-06-20, all-weather road + Oncor grading inspection access 2025-08-15, existing third-party facilities removed from the switch property 2025-08-15.",
+   "2026-03-21 scene (0.0% cloud): same cleared footprint persists, structure unchanged, ground texture still substantially bare/tan -- consistent with ongoing site work through the original IA In-Service Date window (2026-04-23).",
+   "2026-07-19 scene (0.2% cloud): cleared footprint now shows internal grid-pattern access tracks and a mix of bare/re-vegetated ground plus the persistent white structure (consistent with the IA Exhibit C 'control house w/2-125VDC battery sets' equipment list for Baines Creek Switch) -- read conservatively as an active switchyard + adjacent generator-site build-out, NOT a confirmed completed/energized PV array: Sentinel-2's 10m/pixel resolution cannot resolve individual solar panel rows (typically 2-4m spacing), so the grid texture visible could be haul roads/racking-foundation rows in progress rather than finished panels. No claim of 'operational' is made from imagery alone.",
+   "NEIGHBOR-ATTRIBUTION CHECK (required given a 2nd project, Fiji Solar 25INR0128, taps the identical Groesbeck Main-Mexia Main 138kV line): Fiji Solar has zero IA on file (puct.py match 25INR0128: 0 candidates, queue status 'FIS Started, No IA') -- pre-construction stage, cannot be the source of observed grading/structure. Nearest EIA-860M solar (Mexia Solar Project, operating) is 11.79km away, outside the 3.5km buffer. Leighton Solar SLF (24INR0298, the other Limestone Co. SLF sibling) sits at 31.53N/-96.73W per its own findings.json, ~20km away, geographically distinct. Construction observed is attributed to Bonham Solar SLF / J&J Solar Ranch LLC with medium-high confidence.",
+   "Timeline read together: NOT visible through mid-2025 -> switchyard-scale clearing + structure by Jan 2026 -> continuing through Jul 2026 without clear evidence of a finished, energized array. This is consistent with genuine active construction post-IA-signing but ALSO consistent with the queue's own admitted COD slip (contractual 2026-08-31 -> reported 2027-04-06): the site is being built, but visibly has not reached completion as of the original Aug 2026 contractual COD."
+  ],
+  "imagery_artifacts": [
+   "imagery/key/s2_2024-07-14.png",
+   "imagery/key/s2_2025-07-24.png",
+   "imagery/key/s2_2026-01-15.png",
+   "imagery/key/s2_2026-03-21.png",
+   "imagery/key/s2_2026-07-19.png"
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2027-04-06",
+  "independent": "2027-Q2 (unverified -- see limits)",
+  "drift_risk": "high",
+  "reasoning_evidence": [
+   "Signed IA (PUCT 35077-1915, executed 2024-08-06/07) Exhibit B Scheduled Commercial Operation Date = 2026-08-31 -- the ONLY contractual COD on record (no amendment filed/found in docket join table)",
+   "queue_history.py timeline.md: the queue COD tracked this contractual 2026-08-31 date from 2024-05 through 2025-11 (18 months stable), THEN slipped again in the 2025-12 snapshot to the current claim of 2027-04-06 -- a fresh ~7-month slip with NO corresponding IA amendment on file. The project is now claiming a COD later than its own signed contract without the paperwork to back it.",
+   "3 total reported-COD changes since 2022-11 (2025-02-18 -> 2026-04-27 -> 2026-08-31 -> 2027-04-06), i.e. one slip pre-IA (screening-stage estimate, low signal) and one slip post-IA-signing (high signal -- schedule pressure after commitment)",
+   "NOT in EIA-860M (eia_history.py): no independent second-source cross-check available. For a project with FIS just approved 2026-06-26 and a claimed COD only ~10 months out (2027-04-06), absence from EIA-860M is a mild negative signal (real near-term construction projects often start appearing in EIA reporting ~12-18mo pre-COD) but is not dispositive since EIA reporting can lag entity self-reporting.",
+   "CONSTRUCTION NOW CONFIRMED via s2aws.py Sentinel-2 (2026-07-21 refresh, see construction.evidence): switchyard-scale clearing + a new structure appeared between the 2025-07-24 and 2026-01-15 chips, timed almost exactly to the IA's Baines Creek Switch grading deadline (2025-08-15); by 2026-07-19 the site is still showing bare/mixed ground and access tracks, WITHOUT clear visual evidence of a finished, energized array as of that date -- i.e. real, active, ongoing construction, but visibly incomplete past the original In-Service Date (2026-04-23) and Scheduled COD (2026-08-31). This directly corroborates the paper-based drift read below rather than replacing it.",
+   "Independent estimate: given the post-signing slip, unamended IA, and imagery showing construction still in progress (not finished) as of 2026-07-19 -- roughly 1 month before the original 2026-08-31 contractual COD -- treat 2027-04-06 as the more plausible near-term estimate than the original 2026-08-31 date, but flag it as SELF-REPORTED and itself already subject to the demonstrated pattern of slipping without amendment; independent estimate 2027-Q2 with HIGH drift risk stands, now with direct (rather than purely contractual) supporting evidence"
+  ]
+ },
+ "real_project_verdict": "real_active",
+ "negative_searches": 14,
+ "banned_source_violations": 0,
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and J&J Solar Ranch, LLC (XE Bonham Solar 1), PUCT Control No. 35077, filing 35077-1915",
+    "signed": "2024-08-07 (TSP, Jim Greer EVP/COO); 2024-08-06 (Generator, Kerri Neary Authorized Rep)",
+    "financial_security": "$26,061,887.00 Irrevocable Standby Letter of Credit, effective on or before 2024-09-27 -- no amendments/updated amounts found",
+    "artifact": "sources/2026-07-20_puct_35077-1915_standard-generation-interconnection-agreement-be.pdf"
+   }
+  ],
+  "milestones": [
+   {
+    "name": "Notice to Proceed",
+    "original_ia_2024": "2024-09-27"
+   },
+   {
+    "name": "In-Service Date",
+    "original_ia_2024": "2026-04-23"
+   },
+   {
+    "name": "Trial Operation",
+    "original_ia_2024": "2026-05-03"
+   },
+   {
+    "name": "Scheduled Commercial Operation",
+    "original_ia_2024": "2026-08-31"
+   }
+  ],
+  "note": "Facilities Study Agreement executed 2023-02-27 (verified CONFIRMED via INR-in-text match, puct.py match rung 0). Two new TSP switches built for this interconnection: Baines Creek Switch (Generator-side, 138kV, deed/easement transfer due 2025-09-12, grading complete due 2025-08-15) and Phifer Creek Switch Station (associated transmission lines, deed transfer due 2025-06-06). One-line diagram (Attachment 1 to Exhibit C) shows Baines Creek Switch tapping a 138kV line running Ranchland Switch <-> Baines Creek Switch <-> Phifer Creek Switch, with J&J Solar Ranch LLC / XE Bonham Solar 1 (138.4 MW) connected via ERCOT-polled settlement meter. Generator Transmission Line = N/A (direct switchyard tie, no dedicated gen-tie line). Single IA document only -- no amendment found in docket join table or via puct.py match, despite the queue COD having since slipped past the IA's own Scheduled COD."
+ }
+}

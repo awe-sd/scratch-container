@@ -117,3 +117,61 @@
 - brief.html generated (build_brief.py — 4 images)
 - index.json + INDEX.md refreshed (build_index.py — 22 projects)
 - FINAL VERDICT: real_active | racking stage | 32.749°N 101.625°W | COD 2027-Q4 | drift risk med
+
+## Second-pass review (2026-07-21) — provenance audit + cluster de-confliction
+
+Trigger: user complaint — "no sources for where the location is coming from; looks like two existing solar
+projects there; need a detailed analysis." Complaint substantially CORRECT.
+
+### R1 — Old coordinate provenance is WEAK (retracted)
+- Old site 32.749/-101.625, method "OSM relation 14474033 (operating plant) + imagery-derived shift south",
+  labeled confidence "high". No first-party rung fired: gmaps 429-blocked (triage), PUCT 402-blocked, not in EIA.
+- The anchor is an operating NEIGHBOR plant, shifted ~3 km south by eye. It landed on operating ENGIE Long Draw
+  Solar (32.741/-101.622). "High confidence" was unjustified. RETRACTED.
+
+### R2 — Cluster mapped (queue + EIA, latest snapshots, all fuels incl. terminal)
+- Borden queue: 20 rows. Buck Canyon 345kV (#59916) co-located = Juno 3 (26INR0621) + Antila (27INR0500) +
+  Caesar Solar/Storage (29INR0131/0132). Lyra Solar (27INR0434, IF "Juno Solar 4") + Lyra Storage (26INR0636,
+  IF "JUNO BESS I") are at Muleshoe #59922 — DIFFERENT POI, same developer.
+- EIA Borden operating solar: Juno Solar Project (63328, IP Juno LLC, 305.6 MW, 2021, EIA lon -101.391 = ~22km
+  too far E) + ENGIE Long Draw Solar (62845, 225 MW, 2020, 32.741/-101.622). Borden County BESS (66804).
+- Only ONE "Juno" in all TX EIA = operating plant 63328. eia_history.py 26INR0621 = NOT in EIA (no false-bind).
+  *** Verified: the EIA data is the OPERATING PREDECESSOR, NOT Juno 3 (user's mid-run check). ***
+
+### R3 — "Two existing solar projects" identified
+- = operating Juno Solar (305 MW, 2021) + operating ENGIE Long Draw Solar (225 MW, 2020). These are the arrays
+  the prior run's imagery captured and misattributed to Juno 3.
+
+### R4 — Registry sweep + the IA breakthrough
+- spv.py: none. ch313: none. ch312: 4 county-only Borden rows (IP Juno Reinvestment Zone = operating Juno;
+  BNB Long Draw Solar; BNB Oxbow Solar = separate; Dairy Bank = Borden BESS) — none is Juno 3.
+- puct.py match: 0 by project name (SPV codename mismatch). RESOLVED via sibling Antila (27INR0500) dir:
+  Juno 3's OWN IA = docket 35077-2184, "GIA between WETT and SE DC DevCo, LLC for the Juno Solar 3 Project",
+  eff 2025-07-01, POI Buck Canyon 345kV, 345 kV gen-tie, financial security Exhibit E. Copied to sources/.
+  Developer chain: SE DC DevCo, LLC (SPV) → SB Energy. Same SPV on Antila/Lyra Solar/Lyra BESS IAs.
+- Location source: shared CCN docket 59199 (WETT) "Juno Solar 3 and Antila Solar 345 kV Transmission Lines
+  Project", Figure 1-1 labels "Proposed Juno Solar 3 and Antila Solar Collector Stations" N of US-180 ~1mi ENE
+  FM 1054/US-180. Copied Fig 1-1 to sources/. Read w/ own eyes — confirms collector-station location.
+
+### R5 — Corrected imagery (Sentinel-2 AWS, anchor 32.767/-101.651, buffer 5km)
+- 2024-07, 2025-07, 2026-07: IDENTICAL solar footprint all three years. Both arrays fully built in 2024-07
+  baseline (a year before Juno 3's 2025-07 IA) → operating plants, not Juno 3. Collector-station land =
+  undeveloped rangeland throughout. NO Juno 3 construction visible.
+- Prior "racking/active construction Nov 2025 → Jun 2026" RETRACTED (seasonal-colour misread of operating
+  plants). Old key frames moved to imagery/retracted_prior_run/ with README; corrected frames now in imagery/key/.
+
+### R6 — Corrected verdict (axes split)
+- Reality: REAL / committed (signed IA 35077-2184, finSec posted, SPV SE DC DevCo/SB Energy, active CCN 59199).
+- Location: corrected to ~32.767/-101.651 (CCN Fig 1-1), POI Buck Canyon 345kV ~32.719/-101.636.
+- Construction: NOT visibly started as of 2026-07 (pre-construction). Does NOT prove unbuilt.
+- COD: reported 2027-11-30 → high drift risk; new WETT gen-tie + Buck Canyon CCN still in SOAH hearing; est ~2028.
+- FINAL: real_early | pre_construction | 32.767°N 101.651°W | COD ~2028 | drift risk HIGH.
+- Wrote sources/SITE_DERIVATION.md + raw evidence dumps; rewrote findings.json; rebuilt brief.
+
+## Cross-agent reconciliation (2026-07-21)
+The Antila/Lyra second-pass agent re-rendered CCN 59199 Fig 1-1 at high resolution and
+diagnosed this pass's anchor (32.767,-101.651) as the Buck Canyon/Long Draw SWITCHYARD
+area — a gmaps geocode trap ("O'Donnell"). Corrected shared-collector anchor adopted:
+32.772,-101.559 (~7mi W of Gail, N of US-180; 'Juno DC, LLC' parcel per Lyra CCN 59183
+Fig 2-1). Grading visible at the corrected point from 2026-03 (Lyra-pass series) =
+shared collector complex, not per-array construction. Verdict unchanged (real_early).

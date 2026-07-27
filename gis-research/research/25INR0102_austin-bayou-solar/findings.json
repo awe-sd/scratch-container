@@ -1,0 +1,107 @@
+{
+ "inr": "25INR0102",
+ "project": "Austin Bayou Solar",
+ "research_date": "2026-07-20",
+ "verdict": "real_early",
+ "confidence": "medium",
+ "dossier_written": "2026-07-20",
+ "site": {
+  "lat": 29.3222714,
+  "lon": -95.3891644,
+  "method": "POI coords from co-located storage IA Exhibit C (35077-2079, p.43) \u2014 solar+storage share the same 345kV tap at Savana-Seabreeze line. Array centroid likely within 2-5 miles of this TIF substation point.",
+  "confidence": "low-medium \u2014 confirmed Brazoria County Danbury area; exact array parcel not pinned",
+  "cross_checks": [
+   "POI 29.3222714N -95.3891644W from storage IA Exhibit C (sources/2026-07-19_puct_35077-2079_austin-bayou-solar-IA_main.pdf p.43)",
+   "Austin Bayou Golf Course at 29.2912,-95.3642 places area near Danbury TX, Brazoria County \u2014 consistent",
+   "Cottonwood Bayou Solar (neighbor project, same CenterPoint service area) at 29.2613,-95.2724 Liverpool TX",
+   "No Google Maps construction pin found for Austin Bayou Solar",
+   "No CAD parcel match (Brazoria CAD JS portal, direct URL search failed)"
+  ],
+  "map_artifacts": []
+ },
+ "construction_stage": "no_activity",
+ "first_activity_date": null,
+ "imagery_dates": [
+  {
+   "date": "2025-03-01",
+   "observation": "agricultural farmland, bare/fallow fields, no grading or clearing visible",
+   "artifact": "imagery/s2_2025-03-01.png"
+  },
+  {
+   "date": "2025-12-01",
+   "observation": "agricultural farmland, bare/fallow fields, no grading or clearing visible",
+   "artifact": "imagery/s2_2025-12-01.png"
+  },
+  {
+   "date": "2026-07-01",
+   "observation": "agricultural farmland, partly cloudy, golf course visible upper-left, no solar activity",
+   "artifact": "imagery/s2_2026-07-01.png"
+  }
+ ],
+ "developer": {
+  "spv": "Austin Bayou Solar, LLC",
+  "parent": "SunChase Power (Austin TX)",
+  "chain": [
+   {
+    "entity": "Austin Bayou Solar, LLC",
+    "role": "SPV / generator / PUCT signatory",
+    "source": "PUCT docket 35077 filings; storage IA Exhibit D (sources/2026-07-19_puct_35077-2079_austin-bayou-solar-IA_main.pdf p.51)"
+   },
+   {
+    "entity": "SunChase Power",
+    "role": "developer \u2014 Mark Soutter VP, email mark@sunchasepower.com",
+    "source": "storage IA Exhibit D; confirmed via sunchasepower.com/about-us-5/ (Soutter listed as VP)"
+   },
+   {
+    "entity": "Lagniappe Renewable Energy, LLC",
+    "role": "EFT beneficiary / financing entity",
+    "source": "storage IA Exhibit D (BancFirst Oklahoma City ABA 103003632, Acct 4005249075)"
+   }
+  ]
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Solar SGIA docket 35077-1704 \u2014 Austin Bayou Solar, LLC + CenterPoint Energy Houston Electric",
+    "signed": "2023-11-15",
+    "financial_security": "unknown \u2014 image-only scanned PDF, schedule exhibit (Exhibit B) and security exhibit (Exhibit E) not readable",
+    "artifact": "sources/unverified_2026-07-20_puct_35077-1704_ercot-standard-generation-interconnection-agreem.pdf",
+    "note": "189-page image-only scan in two parts; INR-in-text unverifiable. Queue iaSigned=2023-11-15 is independent confirmation. Solar milestone schedule (In-Service/Trial Op/COD dates) unknown."
+   },
+   {
+    "doc": "Storage SGIA docket 35077-2079 \u2014 Austin Bayou Storage I, II & III (25INR0235/6/7) + CenterPoint Energy Houston Electric",
+    "signed": "2025-02-14",
+    "financial_security": "$21,830,000 irrevocable LC",
+    "artifact": "sources/2026-07-19_puct_35077-2079_austin-bayou-solar-IA_main.pdf",
+    "note": "Storage schedule: prerequisites due 2025-02-14; TIF In-Service 2029-10-11 (or 56 months after prereqs); Scheduled COD 2030-01-11. POI 29.3222714N -95.3891644W Brazoria County 345kV. Delivery voltage 345kV. 3x 150.68 MW BESS = 452.04 MW total."
+   }
+  ]
+ },
+ "project_area": {
+  "acres": null,
+  "source": null,
+  "artifact": null
+ },
+ "independent_cod": "2028-Q4",
+ "cod_drift_risk": "high",
+ "cod_drift_rationale": "Zero ground activity across 3 imagery frames spanning Mar 2025\u2013Jul 2026 (16 months). Construction not started. Claimed 2027-06-01 COD would require mobilization now and ~12-month build \u2014 no evidence of either. FIS still not approved (requested 2022-07-26). Co-located storage IA schedules In-Service 2029-10-11, suggesting shared TIF infrastructure not ready until 2029+. Prior COD slipped ~2.3 yrs (2025-02 \u2192 2027-06). Solar IA schedule unknown (image-only PDF) but queue COD already moved twice. No EIA-860M registration. No Ch.313/JETI abatement, no CAD parcels found, no news/PR. Most likely COD is 2028-Q4 if construction mobilizes mid-2027; 2029+ if TIF delay drags it with storage.",
+ "queue_cod": "2027-06-01",
+ "cod_slips": 2,
+ "abatement": "none \u2014 Ch.313 negative (expected post-2022), JETI negative, no county records found",
+ "cad_parcels": "not obtained \u2014 Brazoria CAD portal JS-driven, direct URL search returned 404",
+ "eia_match": "FALSE POSITIVE \u2014 EIA plant 3594 'Austin' is LCRA 18MW hydro operating since 1940, Travis County; NOT Austin Bayou Solar. Austin Bayou Solar has NO EIA-860M registration.",
+ "notes": [
+  "Solar IA (35077-1704) filed 2023-11-16 is 189-page image-only scanned PDF \u2014 schedule exhibit unreadable",
+  "FIS stalled: requested 2022-07-26, NEVER approved through 2026-06 queue \u2014 persistent interconnection risk flag",
+  "Capacity downsized 33%: 753.4 MW (2022-08) \u2192 502.48 MW (2025-05); sibling Solar II (26INR0367) withdrawn",
+  "COD drift history: 2025-02-04 \u2192 2025-03-01 \u2192 2027-06-01 (2 changes, ~2.3yr total slip, from timeline.md)",
+  "Co-located storage project (25INR0235/6/7) IA has TIF In-Service 2029-10-11 \u2014 shared infrastructure risk",
+  "Storage IA POI: 29.3222714N -95.3891644W, Brazoria County, 345kV, tap on Savana 43180-Seabreeze 43020 Ckt 27",
+  "CDSE imagery tool failing with RemoteDisconnected \u2014 only 3 pre-existing chips available",
+  "No construction delivery pin on Google Maps for Austin Bayou Solar",
+  "SunChase Power confirmed developer: Mark Soutter VP, sunchasepower.com/about-us-5/",
+  "Lagniappe Renewable Energy LLC: EFT beneficiary, BancFirst Oklahoma City \u2014 financing entity",
+  "No EIA-860M registration for Austin Bayou Solar (NOT in EIA-860M) \u2014 negative signal"
+ ],
+ "real_project_verdict": "real_early"
+}

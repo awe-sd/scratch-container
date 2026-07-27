@@ -95,3 +95,52 @@
 - All satellite tools unavailable this session
 - construction_visible = NOT ASSESSED (tool failure, not project signal)
 - Will cite POI coords (29.3222714N, -95.3891644W) but cannot confirm satellite stage
+
+## Deep scan continuation (2026-07-20)
+
+### D0 — skeleton written
+- findings.json skeleton written before research
+
+### D1 — IA documents
+- puct.py match found 2 filings: 35077-1704 (2023-11-16, solar IA) and 35077-2079 (2025-03-06, storage IA)
+- Solar IA (35077-1704): 189-page image-only scanned PDF — NO text layer extractable. Schedule/security unknown.
+- Storage IA (35077-2079, already on disk): text-extractable. Key data:
+  - POI: 29.3222714N, -95.3891644W, Brazoria County, 345kV
+  - TIF In-Service Date: 2029-10-11 (or 56 months after 2025-02-14 prereqs)
+  - Scheduled COD: 2030-01-11
+  - Financial security: $21,830,000 irrevocable LC
+  - Developer contact: Mark Soutter, mark@sunchasepower.com, PO Box 303427 Austin TX 78703
+  - EFT: Lagniappe Renewable Energy LLC, BancFirst Oklahoma City
+  - Artifact: sources/2026-07-19_puct_35077-2079_austin-bayou-solar-IA_main.pdf
+
+### D2 — Site + Imagery
+- POI coords from storage IA = best site candidate: 29.3222714N, -95.3891644W (Danbury TX area, Brazoria Co)
+- 3 Sentinel-2 chips available (pre-run): 2025-03-01, 2025-12-01, 2026-07-01
+- All 3 images: pure agricultural farmland, zero grading/clearing/racking visible
+- CDSE tool failing RemoteDisconnected — no new chips obtainable
+- gmaps places: golf course at 29.2912,-95.3642 confirms Danbury TX area; Cottonwood Bayou Solar at 29.2613,-95.2724 (neighbor project)
+- gmaps staticmap: 403 (API not enabled)
+- construction_stage = no_activity
+
+### D3 — Gap-fill
+- Ch.313: NEGATIVE (expected — post-2022 project; JETI replacement also negative)
+- spv.py: confirms 2 PUCT-index candidates (35077-1704, 35077-2079)
+- SunChase Power confirmed: sunchasepower.com/about-us-5/ lists Mark Soutter as VP (matches IA Exhibit D)
+- EIA match CONFIRMED FALSE POSITIVE: plant 3594 "Austin" = LCRA 18MW hydro since 1940, Travis County — NOT Austin Bayou Solar
+- Austin Bayou Solar has NO EIA-860M registration
+- Brazoria CAD: JS-driven portal, direct URL search returned 404 — no parcels found
+- TX Comptroller redirect loop — LLC details not obtained beyond triage data
+- Multiple search queries failed (DDG/Bing backend errors) — no news, no groundbreaking, no PR
+
+### Negative evidence log
+- search "Austin Bayou Solar Brazoria County construction" — ALL BACKENDS FAILED
+- search "SunChase Power Austin Bayou" — ALL BACKENDS FAILED  
+- search "Cottonwood Bayou Solar developer" — ALL BACKENDS FAILED
+- search "Savana substation Seabreeze substation CenterPoint" — 0 results
+- Brazoria CAD owner-name search — 404 on URL pattern, JS portal not scraped
+- No Google Maps pin for "Austin Bayou Solar" or "Austin Bayou Solar site"
+- No Google Maps pin for "SunChase Power Austin Bayou"
+- No Ch.313 or JETI abatement filing found
+- No news/press release about groundbreaking or project announcement
+- NOT in EIA-860M (no registration)
+

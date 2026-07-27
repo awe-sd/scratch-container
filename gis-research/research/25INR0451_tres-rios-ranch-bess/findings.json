@@ -1,98 +1,93 @@
 {
-  "inr": "25INR0451",
-  "project": "Tres Rios Ranch BESS",
-  "research_date": "2026-07-19",
-  "verdict": "real_early",
-  "verdict_confidence": "medium",
-  "verdict_rationale": "IA signed 2025-12-30 (confirmed from queue milestone) + POI substation Twelvemile (bus 76008) confirmed in-service 2025-05-30 per ERCOT TPIT 6719A; project has cleared the key commitment gate. However: developer identity unknown, no construction visible or verifiable (no site pin), FIS never approved despite IA signed, and no procurement/financing evidence found.",
-
-  "ownership": {
-    "spv": "Tres Rios Ranch BESS, LLC (unverified — TX SOS paid, Comptroller API blocked)",
-    "developer": null,
-    "developer_note": "Zero public footprint; no news, no PR, no LinkedIn, no TX Comptroller entity data accessible",
-    "epc": null,
-    "offtaker": null,
-    "financing": "unknown"
-  },
-
-  "site": {
-    "lat": null,
-    "lon": null,
-    "method": "not established",
-    "confidence": "none",
-    "notes": "No delivery pin (gmaps 429), no parcel data (Upton CAD portals inaccessible), no satellite imagery run. PUCT IA (which would contain POI map) blocked at 402. Twelvemile substation (POI) is in Pecos/Crockett counties per TPIT; BESS site is in Upton County per queue; the BESS likely connects via gen-tie ~20-30 km north of the Twelvemile sub. County-centroid pin prohibited by PLAYBOOK rules.",
-    "poi_substation": {
-      "name": "Twelvemile",
-      "bus_id": "76008",
-      "voltage_kv": 345,
-      "counties": ["Pecos", "Crockett"],
-      "line": "Bakersfield–Schneeman Draw 345kV double-circuit (STEC operated, LCRATSC TSP)",
-      "status_per_tpit": "in-service (circuit 1 per 6719A, ISD 2025-05-30); circuit 2 (6719B) planned",
-      "artifact": "ERCOT TPIT XLSX DocID 1250353235 sharedStrings row 83 (6719A), LCRATSC contact Dylan Preas"
+ "inr": "25INR0451",
+ "project": "Tres Rios Ranch BESS",
+ "research_date": "2026-07-19",
+ "verdict": "real_early",
+ "verdict_confidence": "medium",
+ "verdict_rationale": "IA signed 2025-12-30 (confirmed from queue milestone) + POI substation Twelvemile (bus 76008) confirmed in-service 2025-05-30 per ERCOT TPIT 6719A; project has cleared the key commitment gate. However: developer identity unknown, no construction visible or verifiable (no site pin), FIS never approved despite IA signed, and no procurement/financing evidence found.",
+ "ownership": {
+  "spv": "Tres Rios Ranch BESS, LLC (unverified \u2014 TX SOS paid, Comptroller API blocked)",
+  "developer": null,
+  "developer_note": "Zero public footprint; no news, no PR, no LinkedIn, no TX Comptroller entity data accessible",
+  "epc": null,
+  "offtaker": null,
+  "financing": "unknown"
+ },
+ "site": {
+  "lat": null,
+  "lon": null,
+  "method": "not established",
+  "confidence": "none",
+  "notes": "No delivery pin (gmaps 429), no parcel data (Upton CAD portals inaccessible), no satellite imagery run. PUCT IA (which would contain POI map) blocked at 402. Twelvemile substation (POI) is in Pecos/Crockett counties per TPIT; BESS site is in Upton County per queue; the BESS likely connects via gen-tie ~20-30 km north of the Twelvemile sub. County-centroid pin prohibited by PLAYBOOK rules.",
+  "poi_substation": {
+   "name": "Twelvemile",
+   "bus_id": "76008",
+   "voltage_kv": 345,
+   "counties": [
+    "Pecos",
+    "Crockett"
+   ],
+   "line": "Bakersfield\u2013Schneeman Draw 345kV double-circuit (STEC operated, LCRATSC TSP)",
+   "status_per_tpit": "in-service (circuit 1 per 6719A, ISD 2025-05-30); circuit 2 (6719B) planned",
+   "artifact": "ERCOT TPIT XLSX DocID 1250353235 sharedStrings row 83 (6719A), LCRATSC contact Dylan Preas"
+  }
+ },
+ "project_area": {
+  "acres": null,
+  "source": "not found",
+  "artifact": null,
+  "notes": "No abatement application, no CAD parcel, no IA exhibit retrieved"
+ },
+ "land_records": {
+  "tenure": "unknown",
+  "cad_hits": 0,
+  "abatements": "none found (expected for post-2022 BESS; Ch.313 expired 2022, JETI portal inaccessible)",
+  "puct_ia_text": "IA confirmed signed 2025-12-30 via queue milestone; text not retrieved (PUCT 402)"
+ },
+ "interconnection": {
+  "ia_signed_date": "2025-12-30",
+  "fis_approved": false,
+  "fis_note": "FIS never approved despite IA signed \u2014 unusual; may be waived per independent agreement or data anomaly",
+  "poi": "76008 Twelvemile 345kV",
+  "tsp": "LCRATSC (per TPIT 6719A)",
+  "contractual_schedule": {
+   "documents": [
+    {
+     "doc": "Interconnection Agreement (original)",
+     "signed": "2025-12-30",
+     "financial_security": "unknown \u2014 IA text not retrieved",
+     "artifact": null
     }
-  },
-
-  "project_area": {
-    "acres": null,
-    "source": "not found",
-    "artifact": null,
-    "notes": "No abatement application, no CAD parcel, no IA exhibit retrieved"
-  },
-
-  "land_records": {
-    "tenure": "unknown",
-    "cad_hits": 0,
-    "abatements": "none found (expected for post-2022 BESS; Ch.313 expired 2022, JETI portal inaccessible)",
-    "puct_ia_text": "IA confirmed signed 2025-12-30 via queue milestone; text not retrieved (PUCT 402)"
-  },
-
-  "interconnection": {
-    "ia_signed_date": "2025-12-30",
-    "fis_approved": false,
-    "fis_note": "FIS never approved despite IA signed — unusual; may be waived per independent agreement or data anomaly",
-    "poi": "76008 Twelvemile 345kV",
-    "tsp": "LCRATSC (per TPIT 6719A)",
-    "contractual_schedule": {
-      "documents": [
-        {
-          "doc": "Interconnection Agreement (original)",
-          "signed": "2025-12-30",
-          "financial_security": "unknown — IA text not retrieved",
-          "artifact": null
-        }
-      ]
-    }
-  },
-
-  "construction": {
-    "stage": "no_activity",
-    "stage_confidence": "low",
-    "stage_note": "No satellite imagery run (no site pin). Stage assigned based on absence of evidence only — cannot rule out early site prep.",
-    "first_activity_seen": null,
-    "imagery_dates_checked": []
-  },
-
-  "cod_assessment": {
-    "reported": "2027-12-31",
-    "independent_estimate": "2028-Q1",
-    "drift_risk": "medium",
-    "drift_rationale": "IA signed Dec 2025 gives 24 months to reported COD; 12-18 month BESS build is feasible if procurement started at IA. But: no developer identity, no financing evidence, no EPC announcement, and FIS not approved. Queue shows 2-year prior slip (2025→2027). Tight but not impossible; assigning one quarter slip to 2028-Q1.",
-    "cod_drift_history": "2 changes: 2025-12-31 (held 2023-05 to 2024-07) → 2027-12-31 (held 2024-08 to present; ~2yr slip in Aug 2024)"
-  },
-
-  "sources": {
-    "ercot_tpit": "ERCOT TPIT XLSX (July 2026), DocID 1250353235 — Twelvemile rows 6719A (In-Service) and 6719B (Planned); Pecos+Crockett counties; bus 76008",
-    "ercot_permian_basin_load_study_2021": "Confirms Twelvemile Substation Addition (TPIT 6719, ISD Sep-22) in Pecos/Crockett; Bakersfield-Cedar Canyon 345kV line named",
-    "hifld_transmission_lines": "AEP Texas North Co. 345kV line verified at 30.9762,-102.2891 to 31.1536,-102.2232 (Upton Co, N. McCamey); Bakersfield at 30.8913,-102.2979",
-    "queue_timeline": "timeline.md: IA signed 2025-12-30; COD drifted 2025→2027 Aug 2024; FIS never achieved; MW re-entered at 290 after 0-MW gap"
-  },
-
-  "could_not_determine": [
-    "Developer identity (TX Comptroller API blocked; TX SOS paid)",
-    "Exact site location in Upton County (no gmaps pin, CAD portal inaccessible, PUCT IA blocked at 402)",
-    "IA financial security amount and schedule exhibits",
-    "Whether FIS was waived or is a queue data anomaly",
-    "Any construction activity (no satellite imagery run)",
-    "PPA counterparty and financing status"
-  ]
+   ]
+  }
+ },
+ "construction": {
+  "stage": "no_activity",
+  "stage_confidence": "low",
+  "stage_note": "No satellite imagery run (no site pin). Stage assigned based on absence of evidence only \u2014 cannot rule out early site prep.",
+  "first_activity_seen": null,
+  "imagery_dates_checked": []
+ },
+ "cod_assessment": {
+  "reported": "2027-12-31",
+  "independent_estimate": "2028-Q1",
+  "drift_risk": "medium",
+  "drift_rationale": "IA signed Dec 2025 gives 24 months to reported COD; 12-18 month BESS build is feasible if procurement started at IA. But: no developer identity, no financing evidence, no EPC announcement, and FIS not approved. Queue shows 2-year prior slip (2025\u21922027). Tight but not impossible; assigning one quarter slip to 2028-Q1.",
+  "cod_drift_history": "2 changes: 2025-12-31 (held 2023-05 to 2024-07) \u2192 2027-12-31 (held 2024-08 to present; ~2yr slip in Aug 2024)"
+ },
+ "sources": {
+  "ercot_tpit": "ERCOT TPIT XLSX (July 2026), DocID 1250353235 \u2014 Twelvemile rows 6719A (In-Service) and 6719B (Planned); Pecos+Crockett counties; bus 76008",
+  "ercot_permian_basin_load_study_2021": "Confirms Twelvemile Substation Addition (TPIT 6719, ISD Sep-22) in Pecos/Crockett; Bakersfield-Cedar Canyon 345kV line named",
+  "hifld_transmission_lines": "AEP Texas North Co. 345kV line verified at 30.9762,-102.2891 to 31.1536,-102.2232 (Upton Co, N. McCamey); Bakersfield at 30.8913,-102.2979",
+  "queue_timeline": "timeline.md: IA signed 2025-12-30; COD drifted 2025\u21922027 Aug 2024; FIS never achieved; MW re-entered at 290 after 0-MW gap"
+ },
+ "could_not_determine": [
+  "Developer identity (TX Comptroller API blocked; TX SOS paid)",
+  "Exact site location in Upton County (no gmaps pin, CAD portal inaccessible, PUCT IA blocked at 402)",
+  "IA financial security amount and schedule exhibits",
+  "Whether FIS was waived or is a queue data anomaly",
+  "Any construction activity (no satellite imagery run)",
+  "PPA counterparty and financing status"
+ ],
+ "real_project_verdict": "real_early"
 }

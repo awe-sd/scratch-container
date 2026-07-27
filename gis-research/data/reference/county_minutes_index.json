@@ -2559,6 +2559,1484 @@
 "text_len": 75889,
 "inr_hits": {},
 "generic": []
+},
+"data/reference/county_minutes/King/2019-09-30_Annual_Financial_Report_YE_09-30-2019.pdf": {
+"county": "King",
+"date": "2019-09-30",
+"text_len": 87131,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/2020-01-31_County_Treasurers_Report_01-31-2020.pdf": {
+"county": "King",
+"date": "2020-01-31",
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/2021-22_Adopted_Budget.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/2021-22_Proposed_Budget.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/2022-23_Adopted_Budget.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/2022-23_Proposed_Budget.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/2023-24_Proposed_Budget.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/2023_Final_Issued_Audit_Report.pdf": {
+"county": "King",
+"date": null,
+"text_len": 85719,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/2023_King_County_Report_of_Debt.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/2024-25_Proposed_Budget.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/2025-2026_Proposed_budget.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/2025_2026_Adopted_Budget.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/2025_Debt_Report.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/2026_Debt_Report.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/22_Primary_Runoff_Election.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Appointment_of_a_Campaign_Treasurer_COMPLETE.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/April_2026_Utilities_Report.pdf": {
+"county": "King",
+"date": null,
+"text_len": 865,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Ballot_Drawing_School_Board_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Bond_Election.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Calling_A_Bomd_Election.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Canvas_2022_Mar_Election.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Canvas_Special_Election.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Constitution_Amendment_7_November_Election_Explanation.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Crowell_Proposition_A.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Crowell_School_Bond.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Early_Vote_Board_Announcement.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Early_Vote_Verified.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Election_Location_Change_7_November_Election.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/FY22-23_Adopted_Budget.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/FY_20-21_Adopted_Budget.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/FY_20-21_Proposed_Budget.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/FY_23-24_Adopted_Budget.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/FY_24-25_Adopted_Budget.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/King_Co_Elecetion_Results.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/King_County_Monthly_Treasurers_Report_-_January_2021.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/King_County_Utilites_Report_March_2022.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/King_County_Utilities_Report_-_September_2021.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/King_County_Utilities_Report_April_2022.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/March_2024_Dept_Report.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/March_2026_Utilities_Report.pdf": {
+"county": "King",
+"date": null,
+"text_len": 816,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Notice_of_Election_For_Publication.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Notice_to_be_on_the_Ballot.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Order_for_Special_Election.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Order_of_2022_General_Election.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Order_of_Constitutional_Amendment_Election.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Order_of_School_Board_Election_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Order_of_Special_Election.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Resolution_Canvassing.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Special_Election.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Special_Election_Canvass_Report.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Special_Election_Nov_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurer_Report_Apr_2020.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurer_Report_Aug_2020.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurer_Report_Dec_2020.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurer_Report_Feb_2020.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurer_Report_February_2021.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurer_Report_July_2020.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurer_Report_June_2020.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurer_Report_Mar_2020.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurer_Report_May_2020.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurer_Report_May_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurer_Report_Nov_2020.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurer_Report_October_2020.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurer_Report_Sep_2020.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_-_December_2024.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_April_2021.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_April_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_April_2025.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_April_2026.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_August_2021.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_August_2022.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_August_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_August_2025.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_December_2021.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_December_2022.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_December_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_December_2025.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_February_2022.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_February_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_February_2024.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_February_2025.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_February_2026.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_January_2022.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_January_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_January_2024.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_January_2025.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_January_2026.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_July_2021.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_July_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_July_2025.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_June_2021.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_June_2022.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_June_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_June_2024.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_June_2025.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_March_2021.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_March_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_March_2025.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_May_2021.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_May_2022.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_May_2024.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_May_2025.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_November_2021.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_November_2022.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_November_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_November_2024.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_November_2025.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_October_2021.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_October_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_October_2024.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_October_2025.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_September_2021.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_September_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_September_2024.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Treasurers_Report_September_2025.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Utilities_Report_-_August_2024.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Utilities_Report_April_2024.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Utilities_Report_October_2022.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Utilities_Report_September_2023.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Utilities_Report_September_2024.pdf": {
+"county": "King",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/King/Utilities_Report_September_2025.pdf": {
+"county": "King",
+"date": null,
+"text_len": 1085,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/AFFIDAVIT_REQUEST_ATTORNEY_In_County_Court_.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 2778,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/AFFIDAVIT_REQUEST_ATTORNEY_In_Jail_form_.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 2699,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/AFFIDAVIT_REQUEST_ATTORNEY_Juvenile_Case.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 2803,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/AFFIDAVIT_REQUEST_ATTORNEY_Magistrate_s_Form_.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 2914,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_April_2021.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_April_2022.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_April_2023.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_April_2024.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_April_2025.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_April_2026.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_August_2020.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_August_2023.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_August_2025.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_December_2022.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_December_2023.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_December_2024.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_December_2025.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_February_2022.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_February_2023.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_February_2024.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_February_2026.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_January_2020.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_January_2023.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_January_2024.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_January_2025.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 27822,
+"inr_hits": {
+"26INR0328": [
+"Yorktown"
+]
+},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_January_2026.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_July_2023.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_July_2024.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_June_2022.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_June_2023.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_June_2024.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_June_2026.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_March_2020.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_March_2022.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_March_2023.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_March_2024.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_March_2026.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_May_2020.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_May_2022.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 22473,
+"inr_hits": {
+"26INR0328": [
+"Yorktown"
+]
+},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_May_2023.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_May_2024.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_May_2025.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_May_2026.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_November_2022.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_November_2023.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_November_2025.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_October_2023.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_September_2022.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioner_Court_Minutes_September_2023.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Mintues_September_2021.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_April_2020.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_August_2021.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_August_2022.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_August_2024.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_December_2020.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_December_2021.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_February_2021.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_February_2025.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_January_2021.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_January_2022.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_July_2020.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_July_2021.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_July_2022.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_July_2025.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_June_2020.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_June_2021.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_March_2021.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_March_2025.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_May_2021.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_November_2020.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_November_2021.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_November_2024.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_October_2020.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_October_2021.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_October_2022.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_October_2024.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_October_2025.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_September_2020.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Commissioners_Court_Minutes_September_2025.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Dewitt_Co_Attorney_Fee_Schedule_Rev._010123.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 2276,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Minutes_June_2025.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/DeWitt/Minutes_September_2024.pdf": {
+"county": "DeWitt",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Motley/10.14..25_Minutes.pdf": {
+"county": "Motley",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Motley/2006-10-24_Minutes_06.10.24.pdf": {
+"county": "Motley",
+"date": "2006-10-24",
+"text_len": 3235,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Motley/2009-09-22_Sheriff_Request_attach_to_CC_Minutes_09.09.224.pdf": {
+"county": "Motley",
+"date": "2009-09-22",
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Motley/2024-01-08_01.08.2024_CC_Regular_Minutes.pdf": {
+"county": "Motley",
+"date": "2024-01-08",
+"text_len": 4363,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Motley/April_2025_CC_Minutes.pdf": {
+"county": "Motley",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Motley/March_2024_CC_Minutes_wh_Attachments.pdf": {
+"county": "Motley",
+"date": null,
+"text_len": 0,
+"inr_hits": {},
+"generic": []
+},
+"data/reference/county_minutes/Motley/Minutes_05.13.24.pdf": {
+"county": "Motley",
+"date": null,
+"text_len": 4328,
+"inr_hits": {},
+"generic": []
 }
 }
 }

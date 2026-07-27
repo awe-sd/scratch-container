@@ -1,111 +1,113 @@
 {
-  "inr": "20INR0069",
-  "project": "Danish Fields Solar",
-  "research_date": "2026-07-19",
-  "verdict": "real_active",
-  "verdict_reason": "TotalEnergies press release 2024-09-30 confirms commercial operations; S2 imagery Oct 2025 / Jun 2026 shows operating solar arrays; ERCOT queue entry administrative closure pending",
-
-  "site": {
-    "lat": 29.126,
-    "lon": -96.262,
-    "method": "imagery-derived centroid from S2 chips; corroborated by PUCT PGC registration physical address (11000 CR 403, El Campo TX) and Nominatim geocode of CR 403 / Wharton County",
-    "confidence": "medium-high",
-    "google_maps_url": "https://www.google.com/maps/@29.126,-96.262,5000m/data=!3m1!1e3"
-  },
-
-  "project_area": {
-    "acres": 5000,
-    "source": "PUCT docket 51568 direct testimony of David Groberg (2021-05-03): '600 MW, 5,000-acre solar farm in Wharton County'",
-    "artifact": "sources/2026-07-19_puct_51568-50_danish-fields-solar-direct-testimony-groberg.pdf"
-  },
-
-  "construction": {
-    "stage": "operating",
-    "first_activity_seen": "≤2024-09 (commercial op 2024-09-30 per TotalEnergies PR)",
-    "key_frame": "imagery/key/s2_2025-10-01_array.png"
-  },
-
-  "ownership": {
-    "spv": "Danish Fields Solar, LLC",
-    "developer": "TotalEnergies Renewables USA, LLC (TotalEnergies SE, French major)",
-    "original_developer": "SunChase Power LLC / Brazos Renewable Energy, LLC (David Groberg); sold to TotalEnergies 2021",
-    "tsp": "CenterPoint Energy Houston Electric, LLC",
-    "epc": "not publicly identified",
-    "offtake": "70% long-term CPPAs: Saint-Gobain + others; 30% TotalEnergies self-supply (Port Arthur TX, La Porte TX, Carville LA industrial plants)",
-    "tax_equity": "Danish Fields TE Partnership, LLC / AP Tosca Borrower / Tosca Holdco / Tosca Pledgor (Ares Partners, inferred)",
-    "battery": "225 MWh supplied by Saft (TotalEnergies subsidiary)",
-    "evidence": "sources/2026-07-19_puct_54647-1_danish-fields-solar-pgc-registration.pdf + sources/2026-07-19_puct_57632-1_danish-fields-solar-pgc-amendment.pdf + sources/2026-07-19_totalenergies_danish-fields-commercial-operations-pr.html"
-  },
-
-  "land": {
-    "tenure": "leased",
-    "evidence": "PUCT 51568 item 115: Notice of Memorandum of Lease filed 2021-10-25 by Danish Fields Solar, LLC"
-  },
-
-  "interconnection": {
-    "tsp": "CenterPoint Energy Houston Electric, LLC",
-    "poi": "Hillje 345kV Substation, Wharton County, TX",
-    "ia_signed": "2020-02-24",
-    "ia_security_posted": "$6,600,000",
-    "ia_source": "PUCT 51568 direct testimony cites IA with CenterPoint; IA not separately filed at PUCT Interchange (filed before PUCT IA-filing requirement era for CenterPoint zone)",
-    "approved_energization": "2023-03-27",
-    "approved_synchronization": "2023-05-04"
-  },
-
-  "contractual_schedule": {
-    "documents": []
-  },
-
-  "cod": {
-    "reported": "2026-08-29",
-    "actual_commercial_operation": "2024-09-30",
-    "independent_estimate": "2024-Q3",
-    "drift_risk": "n/a — already operating",
-    "anomaly": "ERCOT queue 20INR0069 still shows approvedForCommercialOperation=null in June 2026 snapshot and COD slipping past actual COD date; likely administrative closure pending for queue entry. Plant is physically operating."
-  },
-
-  "imagery": {
-    "chips": [
-      {"date": "2026-06-15", "observation": "Solar arrays visible; partially cloudy; confirms operating plant", "file": "imagery/key/s2_2026-06-15_cr403.png"},
-      {"date": "2026-06-15", "observation": "Tight view confirms dark rectangular panel blocks at ~29.110N, -96.278W", "file": "imagery/key/s2_2026-06-15_solar_tight2.png"},
-      {"date": "2025-10-01", "observation": "Multiple array sections with uniform dark panels + bright substation pad; plant clearly installed and operating", "file": "imagery/key/s2_2025-10-01_array.png"}
-    ],
-    "verdict": "operating"
-  },
-
-  "sources": [
-    {
-      "type": "press_release",
-      "title": "TotalEnergies Starts Commercial Operations at Danish Fields and Cottonwood Solar Farms",
-      "date": "2024-09-30",
-      "url": "https://corporate.totalenergies.us/news/totalenergies-starts-its-largest-utility-scale-solar-farms-batteries-united-states",
-      "artifact": "sources/2026-07-19_totalenergies_danish-fields-commercial-operations-pr.html"
-    },
-    {
-      "type": "regulatory",
-      "title": "PUCT 54647-1 Danish Fields Solar LLC PGC Registration Application",
-      "date": "2023-02-13",
-      "artifact": "sources/2026-07-19_puct_54647-1_danish-fields-solar-pgc-registration.pdf"
-    },
-    {
-      "type": "regulatory",
-      "title": "PUCT 57632-1 Danish Fields Solar LLC PGC Amendment (adds tax equity partners)",
-      "date": "2025-01-31",
-      "artifact": "sources/2026-07-19_puct_57632-1_danish-fields-solar-pgc-amendment.pdf"
-    },
-    {
-      "type": "regulatory",
-      "title": "PUCT 51568-50 Direct Testimony of David Groberg on behalf of Danish Fields Solar (CCN proceeding)",
-      "date": "2021-05-03",
-      "artifact": "sources/2026-07-19_puct_51568-50_danish-fields-solar-direct-testimony-groberg.pdf"
-    }
+ "inr": "20INR0069",
+ "project": "Danish Fields Solar",
+ "research_date": "2026-07-19",
+ "verdict": "real_active",
+ "verdict_reason": "TotalEnergies press release 2024-09-30 confirms commercial operations; S2 imagery Oct 2025 / Jun 2026 shows operating solar arrays; ERCOT queue entry administrative closure pending",
+ "site": {
+  "lat": 29.126,
+  "lon": -96.262,
+  "method": "imagery-derived centroid from S2 chips; corroborated by PUCT PGC registration physical address (11000 CR 403, El Campo TX) and Nominatim geocode of CR 403 / Wharton County",
+  "confidence": "medium-high",
+  "google_maps_url": "https://www.google.com/maps/@29.126,-96.262,5000m/data=!3m1!1e3"
+ },
+ "project_area": {
+  "acres": 5000,
+  "source": "PUCT docket 51568 direct testimony of David Groberg (2021-05-03): '600 MW, 5,000-acre solar farm in Wharton County'",
+  "artifact": "sources/2026-07-19_puct_51568-50_danish-fields-solar-direct-testimony-groberg.pdf"
+ },
+ "construction": {
+  "stage": "operating",
+  "first_activity_seen": "\u22642024-09 (commercial op 2024-09-30 per TotalEnergies PR)",
+  "key_frame": "imagery/key/s2_2025-10-01_array.png"
+ },
+ "ownership": {
+  "spv": "Danish Fields Solar, LLC",
+  "developer": "TotalEnergies Renewables USA, LLC (TotalEnergies SE, French major)",
+  "original_developer": "SunChase Power LLC / Brazos Renewable Energy, LLC (David Groberg); sold to TotalEnergies 2021",
+  "tsp": "CenterPoint Energy Houston Electric, LLC",
+  "epc": "not publicly identified",
+  "offtake": "70% long-term CPPAs: Saint-Gobain + others; 30% TotalEnergies self-supply (Port Arthur TX, La Porte TX, Carville LA industrial plants)",
+  "tax_equity": "Danish Fields TE Partnership, LLC / AP Tosca Borrower / Tosca Holdco / Tosca Pledgor (Ares Partners, inferred)",
+  "battery": "225 MWh supplied by Saft (TotalEnergies subsidiary)",
+  "evidence": "sources/2026-07-19_puct_54647-1_danish-fields-solar-pgc-registration.pdf + sources/2026-07-19_puct_57632-1_danish-fields-solar-pgc-amendment.pdf + sources/2026-07-19_totalenergies_danish-fields-commercial-operations-pr.html"
+ },
+ "land": {
+  "tenure": "leased",
+  "evidence": "PUCT 51568 item 115: Notice of Memorandum of Lease filed 2021-10-25 by Danish Fields Solar, LLC"
+ },
+ "interconnection": {
+  "tsp": "CenterPoint Energy Houston Electric, LLC",
+  "poi": "Hillje 345kV Substation, Wharton County, TX",
+  "ia_signed": "2020-02-24",
+  "ia_security_posted": "$6,600,000",
+  "ia_source": "PUCT 51568 direct testimony cites IA with CenterPoint; IA not separately filed at PUCT Interchange (filed before PUCT IA-filing requirement era for CenterPoint zone)",
+  "approved_energization": "2023-03-27",
+  "approved_synchronization": "2023-05-04"
+ },
+ "contractual_schedule": {
+  "documents": []
+ },
+ "cod": {
+  "reported": "2026-08-29",
+  "actual_commercial_operation": "2024-09-30",
+  "independent_estimate": "2024-Q3",
+  "drift_risk": "n/a \u2014 already operating",
+  "anomaly": "ERCOT queue 20INR0069 still shows approvedForCommercialOperation=null in June 2026 snapshot and COD slipping past actual COD date; likely administrative closure pending for queue entry. Plant is physically operating."
+ },
+ "imagery": {
+  "chips": [
+   {
+    "date": "2026-06-15",
+    "observation": "Solar arrays visible; partially cloudy; confirms operating plant",
+    "file": "imagery/key/s2_2026-06-15_cr403.png"
+   },
+   {
+    "date": "2026-06-15",
+    "observation": "Tight view confirms dark rectangular panel blocks at ~29.110N, -96.278W",
+    "file": "imagery/key/s2_2026-06-15_solar_tight2.png"
+   },
+   {
+    "date": "2025-10-01",
+    "observation": "Multiple array sections with uniform dark panels + bright substation pad; plant clearly installed and operating",
+    "file": "imagery/key/s2_2025-10-01_array.png"
+   }
   ],
-
-  "could_not_determine": [
-    "Signed IA document (not filed at PUCT Interchange; older CenterPoint IA format)",
-    "Exact EPC contractor",
-    "Specific ISD tax abatement agreement details (mentioned in testimony but document not retrieved)",
-    "Wharton CAD parcel numbers (owner name not confirmed via CAD search)",
-    "Why ERCOT queue 20INR0069 has not been administratively closed after commercial operation in Sep 2024"
-  ]
+  "verdict": "operating"
+ },
+ "sources": [
+  {
+   "type": "press_release",
+   "title": "TotalEnergies Starts Commercial Operations at Danish Fields and Cottonwood Solar Farms",
+   "date": "2024-09-30",
+   "url": "https://corporate.totalenergies.us/news/totalenergies-starts-its-largest-utility-scale-solar-farms-batteries-united-states",
+   "artifact": "sources/2026-07-19_totalenergies_danish-fields-commercial-operations-pr.html"
+  },
+  {
+   "type": "regulatory",
+   "title": "PUCT 54647-1 Danish Fields Solar LLC PGC Registration Application",
+   "date": "2023-02-13",
+   "artifact": "sources/2026-07-19_puct_54647-1_danish-fields-solar-pgc-registration.pdf"
+  },
+  {
+   "type": "regulatory",
+   "title": "PUCT 57632-1 Danish Fields Solar LLC PGC Amendment (adds tax equity partners)",
+   "date": "2025-01-31",
+   "artifact": "sources/2026-07-19_puct_57632-1_danish-fields-solar-pgc-amendment.pdf"
+  },
+  {
+   "type": "regulatory",
+   "title": "PUCT 51568-50 Direct Testimony of David Groberg on behalf of Danish Fields Solar (CCN proceeding)",
+   "date": "2021-05-03",
+   "artifact": "sources/2026-07-19_puct_51568-50_danish-fields-solar-direct-testimony-groberg.pdf"
+  }
+ ],
+ "could_not_determine": [
+  "Signed IA document (not filed at PUCT Interchange; older CenterPoint IA format)",
+  "Exact EPC contractor",
+  "Specific ISD tax abatement agreement details (mentioned in testimony but document not retrieved)",
+  "Wharton CAD parcel numbers (owner name not confirmed via CAD search)",
+  "Why ERCOT queue 20INR0069 has not been administratively closed after commercial operation in Sep 2024"
+ ],
+ "real_project_verdict": "real_active"
 }

@@ -1,0 +1,4 @@
+cod_independent,construction,cost_usd,inr,project,status,turns,verdict,violations
+2025-Q4,operating,6.3303306000000035,24INR0399,Buzios Solar,ok,129,real_active,image_reads 20 > 6
+2025-Q4,substantially_complete,5.139132599999998,25INR0672,Fagus Solar Park 2 SLF,ok,114,real_active,image_reads 11 > 6
+2025-12,substantially_complete,4.865299949999997,20INR0091,Fagus Solar Park 1 SLF,ok,107,real_active,image_reads 8 > 6

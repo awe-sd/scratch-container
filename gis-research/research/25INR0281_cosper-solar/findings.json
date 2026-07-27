@@ -1,0 +1,68 @@
+{
+ "inr": "25INR0281",
+ "project": "Cosper Solar",
+ "researched_at": "2026-07-20",
+ "site": {
+  "lat": null,
+  "lon": null,
+  "method": null,
+  "confidence": null,
+  "map_artifacts": []
+ },
+ "project_area": {
+  "acres": null,
+  "source": null,
+  "artifact": null
+ },
+ "parcels": [],
+ "llc_chain": [],
+ "land_tenure": {
+  "status": "unknown",
+  "evidence": null
+ },
+ "construction": {
+  "verdict": null,
+  "first_activity_seen": null,
+  "evidence": []
+ },
+ "cod_assessment": {
+  "reported": "2027-11-12",
+  "independent": null,
+  "drift_risk": null,
+  "reasoning_evidence": []
+ },
+ "real_project_verdict": null,
+ "negative_searches": 0,
+ "banned_source_violations": 0,
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Original IA — ERCOT Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Gransolar Texas Twenty LLC (Cosper Solar, GINR 25INR0281), PUCT Control No. 35077, Item 2238",
+    "signed": "2025-07-31",
+    "financial_security": "$10,615,572 Irrevocable Standby Letter of Credit, effective on or before 2025-08-06",
+    "artifact": "sources/2026-07-19_puct_35077-2238_standard-generation-interconnection-agreement-be.pdf"
+   },
+   {
+    "doc": "Amendment No. 1 — corrects Generator legal name from 'Cosper Solar' to 'Gransolar Texas Twenty LLC' throughout; no schedule or security change; PUCT Control No. 35077, Item 2246",
+    "signed": "2025-08-26",
+    "financial_security": "unchanged ($10,615,572, per original IA Exhibit E)",
+    "artifact": "sources/2026-07-19_puct_35077-2246_amendment-no-1-to-the-standard-generation-interc.pdf"
+   }
+  ],
+  "milestones": [
+   {
+    "name": "In-Service Date",
+    "original_ia_2025": "2027-05-13"
+   },
+   {
+    "name": "Trial Operation",
+    "original_ia_2025": "2027-05-25"
+   },
+   {
+    "name": "Scheduled Commercial Operation",
+    "original_ia_2025": "2027-11-12"
+   }
+  ],
+  "note": "POI confirmed via IA Exhibit C Attachment 1 one-line diagram: new 'Maxdale Switch' tapping the 138kV line between Copperas Cove (LCRA) sub and Ding Dong Substation, Bell County — matches queue POI text exactly. Amendment 1 is name-only; only one schedule ever existed (no drift within the IA itself). Filing letter (p2) confirms INR 25INR0281 in text — CONFIRMED match."
+ }
+}

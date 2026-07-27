@@ -1,0 +1,67 @@
+{
+  "inr": "22INR0251",
+  "project": "Shaula I Solar",
+  "researched_at": "2026-07-21",
+  "site": {"lat": 29.084248, "lon": -97.105140, "method": "TCEQ stormwater NOI physical address (880 Wolf Hollow Rd, Cuero, TX 77954) geocoded via gmaps.py places (street_address type, high geocode confidence); 3x3 grid of 2.5km chips + one 6km xwide chip centered here (2026-07-19 scene) show NO shape-match to the Ch313 boundary map's distinctive Z-shaped polygon and no solar construction signature. No free DeWitt CAD parcel-geometry API found (dewittcad.org is a JS SPA with no discoverable REST endpoint; TaxNetUSA/Regrid require paid/interactive access) so parcel IDs could not be independently plotted. gmaps.py places on project name and all 5 parcel-owner names returned no usable construction-site pins. OSM Nominatim confirms the address sits at the correct end of the named road and in the right general quadrant of the county (ENE of Cuero, consistent with Ch313 vicinity map placement east of Cuero near Yoakum), but this is NOT a shape-match — it is a road-extent sanity check only.", "confidence": "low"},
+  "site_map_artifacts": [
+    "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-app_p25.png"
+  ],
+  "parcels": [
+    {"cad_id": "17840", "county": "DeWitt", "owner": "BARNES JEREMY", "acres": 388.83, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "2917", "county": "DeWitt", "owner": "BERKMAN LINDA A ETAL", "acres": 12.5, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "2916", "county": "DeWitt", "owner": "BERKMAN LINDA A ETAL", "acres": 115.5, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "16418", "county": "DeWitt", "owner": "CS HOLDINGS LTD", "acres": 266.6, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "14411", "county": "DeWitt", "owner": "CS HOLDINGS LTD", "acres": 39.87, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "2319", "county": "DeWitt", "owner": "CS HOLDINGS LTD", "acres": 455.58, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "17839", "county": "DeWitt", "owner": "JMM RANCHES LTD", "acres": 106, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "17838", "county": "DeWitt", "owner": "JMM RANCHES LTD", "acres": 54, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "19847", "county": "DeWitt", "owner": "JMM RANCHES LTD", "acres": 100, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "2922", "county": "DeWitt", "owner": "JMM RANCHES LTD", "acres": 75, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "17841", "county": "DeWitt", "owner": "JMM RANCHES LTD", "acres": 640, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "14410", "county": "DeWitt", "owner": "MCMAHAN JEFF & DENISE", "acres": 120.13, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "2320", "county": "DeWitt", "owner": "MCMAHAN JEFF & DENISE", "acres": 42.03, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "5217", "county": "DeWitt", "owner": "MCMAHAN JEFF & DENISE", "acres": 162.74, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "17849", "county": "DeWitt", "owner": "MCMAHAN JEFF & DENISE", "acres": 30, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "17837", "county": "DeWitt", "owner": "MCMAHAN JEFF & DENISE", "acres": 117.03, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+    {"cad_id": "19845", "county": "DeWitt", "owner": "MCMAHAN JEFF & DENISE", "acres": 42.3, "source": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"}
+  ],
+  "llc_chain": [
+    {"entity": "Shaula Energy Project, LLC", "relation": "SPV/interconnecting_entity",
+     "evidence": "party name on signed IA, sources/CONFIRMED_2026-07-21_puct_35077-1387_shaula-i-solar-IA.pdf"},
+    {"entity": "Lightsource bp", "relation": "developer",
+     "evidence": "conservativetexansforenergyinnovation.org article: 'Projects wholly owned by BP Solar Holdings', developer Lightsource BP (BP 50% owner); three LLCs Shaula Energy Project I/II/III named explicitly"},
+    {"entity": "BP Solar Holding, LLC", "relation": "owner",
+     "evidence": "Ch.313 application Tab 4 (CONFIRMED, id=1714): 'Shaula Energy Project, LLC is wholly owned by BP Solar Holding, LLC and is being developed by Lightsource BP under a development services agreement', sources/2026-07-21_wayback_ch313-1714-cuero-shaula-app_p17.png"},
+    {"entity": "Lightsource bp", "relation": "developer (development services agreement)",
+     "evidence": "same Tab 4 text — '5.4 GW of developed solar energy generation capacity'"}
+  ],
+  "land_tenure": {"status": "unknown", "evidence": "17 parcels across 5 owner families (Barnes, Berkman, CS Holdings, JMM Ranches, McMahan) in Ch313 Exhibit A legal description — lease vs purchase not stated in agreement text (standard for Ch313 filings)"},
+  "project_area": {"acres": 2767.11, "source": "sum of 17 parcel acreages in Ch.313 Agreement Exhibit A legal description (id=1714)", "artifact": "sources/2026-07-21_wayback_ch313-1714-cuero-shaula-agmt_p78.png"},
+  "construction": {"verdict": "no_activity", "first_activity_seen": null, "evidence": [
+    "CORRECTION 2026-07-21: prior deep-scan run (run_meta_deep.json exit_code=1, error_max_turns, 16 image reads, dossier.md missing) claimed a full imagery grid + 8-date history in this field but only ONE chip file (s2_2026-07-15_search.png) actually exists on disk in imagery/ from that run -- that claim was UNVERIFIED and has been superseded by the fresh D2 pass below",
+    "fresh imagery 2026-07-21: 3x3 grid of 2.5km chips + one 6km xwide chip (all 2026-07-19 scene, cloud 29.6%) centered on geocoded 880 Wolf Hollow Rd address -- ordinary mixed scrub/farmland, small scattered clearings, one striped agricultural field (row-crop/orchard, not racking), NO graded polygon anywhere matching the Ch313 boundary map's Z-shaped footprint, no substation-scale bright squares",
+    "all 3 TCEQ stormwater NOIs (TXR1529MC, TXR1541SY, TXR1565NR) are CANCELLED status -- ambiguous alone (finished+stabilized OR abandoned before groundbreak) but combined with the negative imagery at the permitted address, and no Google Places construction pin for the project name, the balance of evidence is NO CONSTRUCTION ACTIVITY as of 2026-07-19 at the coordinate this project's own SPV-named NOI specifies",
+    "site coordinate confidence is LOW (no independent parcel-geometry shape-match obtained -- see site.method) -- verdict no_activity applies to the TCEQ NOI address specifically; a shifted true site a few km away cannot be fully ruled out, logged as an open gap in section 8"
+  ]},
+  "contractual_schedule": {"documents": [
+    {"doc": "Original IA (PUCT 35077-1387)", "signed": "2022-02-18",
+     "financial_security": "$17,735,000 total ($9,174,000 eff. 2022-02-18 design/procurement + $8,561,000 eff. 2022-09-02 construction)",
+     "in_service": "2024-02-23", "trial_operation": "2024-03-07", "commercial_operation": "2024-06-28",
+     "artifact": "sources/CONFIRMED_2026-07-21_puct_35077-1387_shaula-i-solar-IA.pdf"},
+    {"doc": "First Amendment (PUCT 35077-1554)", "signed": "2023-02-13",
+     "financial_security": "$17,735,000 total, unchanged amount but both tranches re-dated eff. 2022-02-11 (retroactive/superseding)",
+     "in_service": "2024-11-21", "trial_operation": "2024-11-30", "commercial_operation": "2025-10-30",
+     "artifact": "sources/CONFIRMED_2026-07-21_puct_35077-1554_shaula-i-solar-IA-amend1.pdf"}
+  ]},
+  "cod_assessment": {"reported": "2026-03-31", "independent": "~2028 or later (low confidence)", "drift_risk": "high", "reasoning_evidence": [
+    "queue_history.py timeline.md: FIS approved never achieved despite IA signed 2022-02-16 (4.5yr gap); meetsAll6.9 never achieved; constructionStart/constructionEnd never reported in 80 monthly snapshots 2019-11 through 2026-06",
+    "6 reported-COD changes over the queue history (2022-01-31 through current 2026-03-31), roughly one slip per year -- current claimed COD already 4 months past as of today 2026-07-21 with no construction reported",
+    "signed IA schedule itself slipped once (original COD 2024-06-28 -> Amendment 1 COD 2025-10-30, filed 2023-02-13); no second amendment exists in PUCT docket 35077 (confirmed via puct.py search), so 2025-10-30 is the last CONTRACTUALLY documented COD and it has also already passed",
+    "NOT in EIA-860M (eia_history.py, TX slice) -- consistent with pre-construction/stalled status, not yet reporting to EIA's monthly generator survey",
+    "all 3 TCEQ construction-stormwater NOIs (incl. one filed directly under the SPV's name, 'SHAULA ENERGY PROJECT', started 2024-12-06) are now CANCELLED with no corroborating imagery signature of completed OR started construction",
+    "developer/parent chain (Lightsource bp / BP Solar Holding) is a large credible operator with 5.4GW+ portfolio (Ch313 app own text) -- financial capacity is not the constraint; the delay pattern looks like a schedule/interconnection stall rather than a shell/paper project"
+  ]},
+  "real_project_verdict": "real_early",
+  "negative_searches": 9,
+  "banned_source_violations": 0
+}

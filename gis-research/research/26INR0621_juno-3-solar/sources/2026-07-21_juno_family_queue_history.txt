@@ -1,0 +1,13 @@
+All Juno-named ERCOT queue positions (last snapshot per INR)
+Source: data/ercot_generation_interconnect.parquet
+
+      INR           projectName county  fuel  capacityMw interconnectingFacility              poiLocation projectCod approvedForCommercialOperation          cancelDate        inActiveDate   fileDate
+21INR0032          Juno Storage Borden Other      495.00         Intersect Power    59900 Long Draw 345kV 2021-05-15                           None 2019-06-10 16:25:47                 NaT 2019-06-01
+21INR0026  Juno Solar (Phase I) Borden Solar      166.12            SE Juno, LLC   59906 Long Draw 138 kV 2021-05-17                     2021-05-26                 NaT                 NaT 2021-05-01
+21INR0501 Juno Solar (Phase II) Borden Solar      147.09            SE Juno, LLC   59906 Long Draw 138 kV 2021-07-15                     2021-08-09                 NaT                 NaT 2021-08-01
+24INR0457             JUNO BESS Borden Other      355.21               JUNO BESS   59906 Long Draw 138 kV 2025-10-22                           None 2023-08-17 11:44:48                 NaT 2023-08-01
+23INR0616          JUNO SOLAR 3 Borden Solar        9.99                     NaN                      NaN       None                           None                 NaT 2023-05-15 14:32:31 2024-09-01
+26INR0621          Juno 3 Solar Borden   SOL      500.00            Juno Solar 3 #59916 Buck Canyon 345kV 2027-11-30                           None                 NaT                 NaT 2026-06-01
+
+Operating predecessor: 21INR0026 Juno Solar Phase I (166MW) + 21INR0501 Phase II (147MW), POI Long Draw 138kV (59906), approved commercial op 2021.
+Juno 3 Solar (26INR0621) POI = Buck Canyon 345kV (#59916) — a DIFFERENT, NEW substation, not Long Draw.

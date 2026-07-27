@@ -3,19 +3,33 @@
   "project": "Jaguar Solar",
   "research_date": "2026-07-19",
   "stage": "deep",
+  "real_project_verdict": "real_early",
+  "real_project_verdict_notes": "LLC chain, IA (executed 2022-09-12), Ch.313 agreement, and TX SOS filings all confirm a real, active developer. The interconnection facilities (Tiger Creek Switch + companion Jaguar BESS) are BUILT and imagery-confirmed complete since mid-2025, with EIA-860M reporting the BESS '(OP) Operating'. But the 300 MW AC solar array itself has not visibly broken ground as of the 2026-07-21 imagery refresh -- hence 'early' rather than 'active': real project, infrastructure-first build sequence, solar PV construction still pending.",
 
   "site": {
-    "lat": 31.5754,
-    "lon": -96.9636,
-    "method": "Tradinghouse Substation OSM Way 172472755 node 1833781546 — confirmed coordinates",
-    "confidence": "medium",
-    "notes": "Tradinghouse Substation confirmed at 31.5754137, -96.9636137 (OSM API verified). Ch.313 places project in Axtell ISD (northeast of Waco ~31.66N, 97.13W) which is a different McLennan County location. Axtell ISD coordinates would shift estimate north/west. No direct site address found. The tap is on the 345kV line between Tradinghouse SES (station 13405) and Sam Switch (station 68090) — project site is somewhere along that corridor.",
-    "alternate_estimate": {
+    "lat": 31.59992,
+    "lon": -96.97054,
+    "method": "EIA-860M generator pin for 'PP Jaguar BESS LLC' (co-located BESS sharing the same Point of Interconnection / switchyard as Jaguar Solar — IA Exhibit C names both 24INR0038 and BESS 24INR0039 at one 'Tiger Creek Switch' collector station), cross-validated by independently georeferencing the Ch.313 App #1688 Tab-11a 'Project Boundary and Project Vicinity Map' (sources/..._app_p31.png county-wide, p32.png zoomed) — 5-point affine fit on OSM-geocoded place labels visible on the map (Ross, Tours, Leroy, Axtell, Mt Calm; all residuals <70m) puts the red project-boundary centroid at 31.602,-96.975, ~470m from the EIA pin. Sentinel-2 imagery (2026-07-21 refresh) confirms a real substation/BESS complex sits exactly at the EIA coordinate: absent/bare-graded in the earliest available chip (2024-07-19) and complete by 2025-07-17, matching the reported BESS Phase I mechanical completion (2025-04-02). Upgraded from the prior 'medium' confidence Tradinghouse-substation proxy, which was only the transmission line's south terminus, not the project site.",
+    "confidence": "high",
+    "provenance_rung": "imagery-verified EIA pin, corroborated by an independently-georeferenced Ch.313 map exhibit. Could not reach the top rung (IA Exhibit C text / Attachment 4 map): both the precise location description in IA Exhibit C section 2 and the Attachment 4 'Oncor Tiger Creek Switch Vicinity Map' are REDACTED (black boxes) in the filed PUCT copy — see sources/2026-07-19_puct_35077-1493_interconnection-agreement-between_p31.png and _p46.png. Logged as an explicit miss.",
+    "map_artifacts": [
+      "sources/2026-07-19_comptroller_ch313_1688-jaguar-app_p31.png",
+      "sources/2026-07-19_comptroller_ch313_1688-jaguar-app_p32.png"
+    ],
+    "superseded_estimate": {
+      "lat": 31.5754,
+      "lon": -96.9636,
+      "method": "Tradinghouse Substation OSM Way 172472755 node 1833781546 — confirmed coordinates, but this is only the transmission line's south terminus (Tradinghouse SES), not the generator/switchyard site",
+      "confidence": "medium",
+      "superseded": "2026-07-21 — replaced by EIA/map-exhibit fix above",
+      "notes": "Kept for reference: Tradinghouse Substation confirmed at 31.5754137, -96.9636137 (OSM API verified)."
+    },
+    "superseded_alternate_estimate": {
       "lat": 31.663,
       "lon": -97.135,
-      "method": "Axtell TX centroid (Axtell ISD location)",
+      "method": "Axtell TX centroid (Axtell ISD location) — was a coarse ISD-wide guess",
       "confidence": "low",
-      "notes": "Axtell TX is northeast of Waco; Ch.313 applicant is Axtell ISD; Tomas de la Vega survey location unknown precisely"
+      "superseded": "2026-07-21 — Axtell village itself is actually at 31.6580,-96.9704 (OSM-verified), not 31.663,-97.135; that earlier guess was simply wrong and is superseded by the map/EIA fix above."
     }
   },
 
@@ -38,7 +52,12 @@
       "source": "Web search results citing county road reference"
     },
     "tap_description": "Tap 345kV 13405 Tradinghouse SES - 68090 Sam Switch",
-    "tap_notes": "The 345kV transmission line runs from Tradinghouse SES (McLennan County) north/northwest to Sam Switch (Hill County). The ERCOT EIR 'Venus Switch to Sam Switch' PDF (Dec 2024) covers a related 38-mile Oncor line in the same corridor."
+    "tap_notes": "The 345kV transmission line runs from Tradinghouse SES (McLennan County) north/northwest to Sam Switch (Hill County). The ERCOT EIR 'Venus Switch to Sam Switch' PDF (Dec 2024) covers a related 38-mile Oncor line in the same corridor.",
+    "tiger_creek_switch": {
+      "source": "IA Exhibit C (sources/2026-07-19_puct_35077-1493_interconnection-agreement-between-oncor-electric.pdf, p.31/p.28)",
+      "quote": "The Point of Interconnection is located in McLennan County, Texas, at TSP's Tiger Creek Switch in TSP's Sam Switch - Tradinghouse SES 345 kV transmission line.",
+      "note": "NEW substation built by Oncor specifically for this interconnection (a loop-in/tap point on the existing Sam Switch-Tradinghouse line, per Exhibit C section 8-9 'Sam Switch (LST) - Tradinghouse Switch 345 kV Transmission Line Modifications' and 'Tiger Creek Switch - Generator 345 kV Transmission Line Addition'), NOT the same location as Tradinghouse SES or Sam Switch themselves. Its precise stated distance/bearing in Exhibit C and the Attachment 4 vicinity map are both REDACTED in the filed copy. Site coordinate above (31.59992,-96.97054) is the imagery-verified location of the built Tiger Creek Switch + Jaguar BESS complex."
+    }
   },
 
   "developer": {
@@ -46,7 +65,7 @@
     "parent": "Perfect Power LLC",
     "ceo": "Anthony Maselli, White Plains NY",
     "pe_sponsor": "SER Capital Partners (Rahul Advani)",
-    "possible_partner": "Enbridge (mentioned in infrasure.ai Nov 2024 — unverified from primary)",
+    "possible_partner": "unconfirmed — earlier note citing an Enbridge partnership relied solely on a banned queue-aggregator domain (infrasure.ai); removed 2026-07-21 (no primary-source corroboration found)",
     "tx_sos_file": "0804302034",
     "tx_taxpayer": "32081793179",
     "registered_agent_address": "251 Little Falls Drive, Wilmington DE 19808 (CSC)"
@@ -108,27 +127,37 @@
   },
 
   "construction": {
-    "verdict": "unknown",
-    "cdse_imagery": "BLOCKED (HTTP 401 auth failure during triage)",
-    "gmaps_pins": "No delivery pins found (HTTP 429 during triage; manual search returned no results)",
-    "assessment": "BESS Phase I complete at same POI (Apr 2025); RUA executed Mar 2026; solar field itself unverified"
+    "verdict": "poi_substation_and_bess_complete_2025; solar_pv_array_no_construction_visible_through_2026-07",
+    "first_activity_seen": "by 2024-07-19 (earliest available Sentinel-2 chip already shows a bare/graded reddish-tan rectangular pad at the Tiger Creek Switch site — construction start predates this chip; no earlier date fetched)",
+    "cdse_imagery": "cdse.py is DOWN per current tooling status; imagery instead fetched via s2aws.py (AWS Open Data Sentinel-2 COGs) at the corrected site coordinate, 2026-07-21",
+    "gmaps_pins": "No delivery pins found (HTTP 429 during triage; manual search returned no results) — not re-attempted this run",
+    "assessment": "Imagery-verified 2026-07-21 at 31.59992,-96.97054 (buffer 3.5km, 5 dates 2024-07 -> 2026-07): a compact bright-white switchyard/BESS-building complex (Tiger Creek Switch + Jaguar BESS) is visible at the exact EIA-pin location, unchanged in footprint from 2025-07-17 through 2026-07-19 -- matches the reported BESS Phase I mechanical completion (2025-04-02) and its EIA-860M '(OP) Operating' status (as of 2025-12). The 2024-07-19 frame shows the same footprint as bare graded earth, confirming this is the construction site (not a pre-existing structure). NO utility-scale solar PV array (large dark/textured panel-row block) is visible anywhere in the full 7km x 7km survey area at any of the 5 dates, including the most recent pass (2026-07-19) -- the 300 MW AC solar field itself has NOT visibly broken ground as of this refresh, consistent with the queue's repeated COD slips (now 2027-12-11) and McLennan County's Mar-2026 Road Use Agreement (site-access negotiation, not yet active construction). A brief striped/ribbed sun-glint pattern on the switchyard gantry structures in the 2026-04-15 frame was initially mistaken for panel racking on close inspection but is the same fixed substation footprint seen in every other frame -- not a separate PV installation. Neighbor check against data/eia_generator_tx.parquet (McLennan County, latest reportDate 2026-05-01): no other named plant (Copperhead Solar, Sandy Creek Energy Station, Pepper Solar Farm, Griffin Solar, etc.) falls within the 3.5km imagery buffer, so no attribution risk from this frame; Tokio Solar (23INR0349, sibling project/directory) is ~30km away, unrelated.",
+    "imagery_artifacts": [
+      "research/24INR0038_jaguar-solar/imagery/key/s2_2024-07-01.png",
+      "research/24INR0038_jaguar-solar/imagery/key/s2_2025-07-01.png",
+      "research/24INR0038_jaguar-solar/imagery/key/s2_2026-01-15.png",
+      "research/24INR0038_jaguar-solar/imagery/key/s2_2026-04-15.png",
+      "research/24INR0038_jaguar-solar/imagery/key/s2_2026-07-15.png"
+    ]
   },
 
   "sources_found": [
     "Ch.313 Application #1688 (Axtell ISD) — TX Comptroller PDFs: 1688-jaguar-app.pdf, 1688-jaguar-agmt.pdf, 1688-jaguar-amendagmt1.pdf (downloaded to sources/)",
-    "OSM Way W172472755 (Tradinghouse Substation) — coordinates confirmed via API",
+    "Ch.313 App #1688 Tab-11a 'Project Boundary and Project Vicinity Map' (p29-p33 of 1688-jaguar-app.pdf, rendered 2026-07-21) — the site-fix map exhibit",
+    "IA (PUCT docket 35077, 2026-07-19_puct_35077-1493...pdf) Exhibit C 'Interconnection Details' — names 'Tiger Creek Switch' as the actual POI substation (new finding 2026-07-21); precise location text and Attachment 4 vicinity map are redacted",
+    "OSM Way W172472755 (Tradinghouse Substation) — coordinates confirmed via API (now the superseded proxy, see site.superseded_estimate)",
     "ERCOT EIR Oncor Venus Switch to Sam Switch project (Dec 2024) — Sam Switch routing context",
-    "infrasure.ai Jaguar Solar project page (Nov 2024) — LLC chain + Enbridge mention",
+    "EIA-860M (data/eia_generator_tx.parquet, reportDate 2026-05-01) — 'PP Jaguar BESS LLC' generator pin at 31.599920,-96.97054, '(OP) Operating', used as the imagery-verified site anchor",
     "SER Capital Partners portfolio — confirmed PE sponsor",
-    "McLennan County Commissioners Court agenda Mar 2026 — RUA signal"
+    "McLennan County Commissioners Court agenda Mar 2026 — RUA signal",
+    "Sentinel-2 imagery (AWS Open Data via s2aws.py), 5 dates 2024-07-01 -> 2026-07-15, research/24INR0038_jaguar-solar/imagery/key/"
   ],
 
   "pending": [
-    "PUCT IA document — docket 53385 or similar; Fourth Amendment June 2025 contains milestone schedule exhibit",
     "Sam Switch precise coordinates — Hill County Road 3165 area; no lat/lon confirmed",
-    "Tomas de la Vega survey precise location in McLennan County — needed for true site centroid",
-    "CDSE Sentinel-2 imagery at 31.5754/-96.9636 — auth fix needed",
-    "Ch.313 PDF text extraction — downloaded but unread; likely contains legal description with precise parcel location",
-    "FIS anomaly resolution — IA without FIS unusual; check ERCOT queue amendment filings"
+    "Tomas de la Vega survey precise legal-description location (McLennan CAD parcel-level geocode) — MCAD eSearch returns socket timeouts to automation; current site fix is imagery+map+EIA triangulated, not parcel-exact",
+    "FIS anomaly resolution — IA without FIS unusual; check ERCOT queue amendment filings",
+    "Solar PV array ground-breaking — not yet visible in imagery through 2026-07-19; re-check next quarterly refresh given 2027-12-11 reported COD",
+    "IA Exhibit C precise Tiger Creek Switch distance/bearing and Attachment 4 vicinity map are redacted in the filed PUCT copy — no unredacted version located this run"
   ]
 }

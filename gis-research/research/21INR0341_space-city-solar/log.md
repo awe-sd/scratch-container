@@ -170,3 +170,100 @@ yet IA signed (non-standard path). 2027-06-01 COD still ~17 months away.
 **The 345kV generation substation at 29.068, -96.270 is Aktina Solar's substation**
 **SPACE CITY SOLAR (21INR0341) = SEPARATE PROJECT — possibly at different location**
 **Need to find where the 366 MW Space City Solar site is — it's NOT at 29.065, -96.290 (that's Aktina Solar)**
+
+## D1 — Deep scan restart (2026-07-20) — picking up from failed prior run
+
+**Prior run summary:** Previous agent found Aktina Solar (Hecate Energy, 500 MW, operating) at 29.065, -96.290, confused with Space City Solar. The SGIA was downloaded but not fully read.
+
+**SGIA (35077-2398) key facts (CONFIRMED, INR in PDF):**
+- SPV: Apollo Solar Ranch, LLC (assigned from original entity Feb 22, 2024)
+- TSP: CenterPoint Energy Houston Electric, LLC
+- Project: Space City Solar Project
+- Developer (operational contact): EDF Renewables Development, Inc.
+- Signed: Dec 11-22, 2025
+- MIDANE Substation (Generator POI): 29°0'49.82"N 96°17'08.57"W = 29.01384°N, -96.28571°W
+- Delivery voltage: 345 kV (HILLJE Substation interconnect)
+- Planned capacity: 609.74 MW (175× SMA SC4200 inverters at 3.484 MW each)
+- TIF security estimate: $34,660,000 LC
+- Phase 1 GIF energization: Oct 15, 2026
+- Phase 1 COD (~260 MW): Jan 15, 2027 (or 3mo after In-Service Date, whichever later)
+- Phase 2 COD (~350 MW): June 30, 2027
+- Artifact: sources/2026-07-19_puct_35077-2398_ercot-standard-generation-interconnection-agreem.pdf
+
+**EIA WARNING:** eia_history.py matched 21INR0341 to plant 66157 "Red Tailed Hawk Solar LLC" (Acciona/Anchor Wind, 360 MW, OPERATING since Sept 2024) at 29.159, -96.142 — this is a DIFFERENT project. EIA status "Operating" does NOT apply to Space City Solar. False match by county+MW proximity.
+
+**PUCT ch313.py:** No Ch.313 or JETI match for Space City Solar. Negative evidence logged.
+
+**gmaps.py places:** "Space City Solar, LLC" returns a small Houston solar installer (29.94°N, -95.52°W) — NOT the EDF project. No Apollo Solar Ranch pin.
+
+**Site coordinate:** 29.01384°N, -96.28571°W (MIDANE Substation from signed SGIA) — high confidence as POI anchor. Solar field extends around/NW of this point.
+
+
+## D3 — Gap-fill and site corroboration (2026-07-20)
+
+**OSM substations query (28.95,-96.40 to 29.15,-96.10):**
+- Hillje Substation (CenterPoint 345kV): way/100064466, lat=29.0297, lon=-96.2365 ✓ (confirmed POI)
+- Unnamed 345kV generation: way/1465121535, lat=29.0684, lon=-96.2699 → Aktina Solar (Hecate Energy) — separate project
+- MIDANE substation NOT in OSM yet — consistent with pre-construction status
+- No Apollo Solar Ranch / Space City Solar substation in OSM
+
+**CDSE imagery:** Credits exhausted (PaymentRequired 402). Cannot acquire chips at correct MIDANE coords (29.014,-96.286). The three existing imagery files are centered at wrong location (29.030,-96.236 and 29.065,-96.290) and show Aktina Solar.
+
+**Search backend:** All backends failed (search.py returning SEARCH FAILED) — possibly OAuth bridge down.
+
+**WebFetch attempts:**
+- EDF Renewables project page: 404 (no Space City Solar listing)
+- EDF Renewables press release archive: no Space City Solar found (project no longer featured)
+- WCAD search.wcad.org: 503 service unavailable
+- Wharton County website: DNS not found
+- Global Energy Monitor wiki: 403 forbidden
+- TX Comptroller entity search: returns search interface only (JS-heavy)
+
+**Ch.313 result:** NEGATIVE — no Ch.313 or JETI application found. For a 2019-submitted project, Ch.313 would have been the applicable incentive. Absence suggests either direct county deal or filing under an unrecognized entity name.
+
+**EIA-860M:** Space City Solar / Apollo Solar Ranch NOT in EIA-860M as of 2026-05-01. eia_history.py false-matched Red Tailed Hawk Solar (Acciona, already operating, different project). Absence from EIA is notable negative evidence — a 366 MW project 17 months from claimed COD should be reporting to EIA.
+
+**SGIA Exhibit D contacts confirm EDF Renewables as developer:** Jay Temple, 601 Travis St Suite 1700, Houston TX 77002, Jay.Temple@edf-re.com — EDF Renewables Houston office operational contact.
+
+**SGIA two-phase structure:** Phase 1 ~260 MW GIF energization Oct 15 2026, COD Jan 15 2027. Phase 2 ~350 MW COD June 30 2027. Total ~610 MW capacity per Exhibit C (175× SMA SC4200UP-US inverters). Queue shows 366 MW — may represent the residual phase 2 amount after phase 1 (~244 MW) completed or separately accounted.
+
+**Negative evidence logged:**
+- search.py "Apollo Solar Ranch EDF Renewables Wharton Texas solar 2026" — FAILED (backend down)
+- search.py "Space City Solar EDF Renewables Wharton 366 MW construction" — FAILED
+- search.py "Space City Solar 2025 2026 construction EDF" — FAILED
+- search.py "EDF Renewables Texas solar 2027 COD CenterPoint" — FAILED
+- search.py "Apollo Solar Ranch Texas CenterPoint interconnection" — FAILED
+- gmaps.py places "Apollo Solar Ranch" — NO RESULTS
+- gmaps.py places "Space City Solar Wharton Texas" — returns small Houston installer (not the project)
+- gmaps.py staticmap — API 403 (Maps Static API not enabled)
+
+
+## D4 — Imagery analysis final
+
+**s2_2026-07-01_array_xwide.png (centered 29.065,-96.290):** Wide frame covering 29.01°N to 29.12°N, -96.33°W to -96.25°W. Shows:
+- Center-right: Aktina Solar (Hecate Energy) module blocks — confirmed different project
+- Lower half (south of center, ~29.01-29.04°N): undisturbed agricultural fields — this is where the MIDANE substation should be per SGIA Exhibit C
+- No clearing, grading, or construction signatures at the Space City Solar coordinates
+- **Verdict: pre_construction** — site undisturbed as of July 2026 in available imagery
+
+**Imagery limitation:** The existing chips were centered at the wrong coordinates (triage confusion with Aktina Solar). CDSE credits exhausted — no chip at correct MIDANE coordinates possible this run. No imagery contradiction of pre-construction verdict.
+
+## D5 — Deterministic wrap-up
+
+**queue_history.py:** wrote timeline.json + timeline.md — 81 snapshots, 6 COD changes confirmed
+**eia_history.py --write:** eia_history.json written — false match to Red Tailed Hawk Solar documented
+**build_brief.py:** brief.html written (8 KB, 3 images, 5 sources)
+**build_index.py:** 136 projects indexed
+
+## DEEP SCAN COMPLETE
+
+**Final verdict: real_early | confidence: medium-high**
+**Independent COD estimate: 2027-Q3 (optimistic) to 2028-Q1 (base case)**
+**Drift risk: HIGH**
+
+Key decisions:
+1. SPV is Apollo Solar Ranch, LLC — original "Space City Solar LLC" was assigned Feb 22, 2024
+2. Site is NOT at Aktina Solar (prior triage confusion) — MIDANE Substation at 29.014,-96.286 per SGIA
+3. No construction activity confirmed at correct site as of 2026-07 (imagery at wrong center, but southern extent clear)
+4. 6 COD slips + no construction start + absent from EIA + recent IA signing → HIGH drift risk
+

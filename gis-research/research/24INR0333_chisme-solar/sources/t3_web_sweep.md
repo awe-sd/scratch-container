@@ -7,7 +7,6 @@
 - **Location**: Brown County and Mills County, Texas (straddles county line)
 - **Capacity**: 147 MW solar + ~146 MW BESS = ~293 MW combined
 - **Status**: Pre-construction / planned; expected online 2027
-- **build-chance**: noted as low (5%) on ercotqueue.com
 
 ## PUCT lead found
 - PUCT Control Number: **35077** — Standard Generation Interconnection Agreement, Oncor Electric Delivery + Blue Heron Solar, LLC (Chisme Solar & Storage)

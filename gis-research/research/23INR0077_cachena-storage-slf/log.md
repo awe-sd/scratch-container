@@ -40,3 +40,21 @@
 - deep_scan_recommended: false
 - Turns used: ~22
 - STOP
+
+---
+
+## Note — 2026-07-21 (companion-project retraction pointer, light touch)
+
+This project never went to deep scan and its own T6 site guess (29.13,-98.16,
+Floresville county-seat centroid, low confidence) does NOT reference the
+misattribution found in the companion project. Flagging anyway since 23INR0077 shares
+the same POI/SPV as **23INR0027 Cachena Solar SLF** (same tap, same interconnecting
+entity Clear Fork Creek Solar LLC / Enbridge): that companion project's site was
+re-derived 2026-07-21 (retracting a wrong footprint that belonged to a different,
+unrelated project, Hoke Solar 23INR0231) to **29.2579,-97.8057** via a TCEQ
+stormwater-NOI address, geocoded independently by two services (Esri ArcGIS + Google
+Places, agree to ~0.5 mi) — see `research/23INR0027_cachena-solar-slf/findings.json`
+`site`/`retraction`. If/when this project goes to deep scan, use that point (not the
+29.13,-98.16 county-centroid guess above) as the starting site anchor. No imagery
+exists for this project (triage-only; CDSE was blocked 401/403 at the time), so there
+is nothing to delete or re-fetch here.

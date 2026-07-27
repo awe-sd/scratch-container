@@ -1,0 +1,99 @@
+{
+ "inr": "26INR0409",
+ "project": "Lucky 7 Solar",
+ "researched_at": "2026-07-20",
+ "site": {
+  "lat": 33.078,
+  "lon": -95.712,
+  "method": "imagery_feature_match: EIA-860M plant coords (33.082,-95.721) used as search center; graded/cleared polygon identified ~1km ESE at 33.078,-95.712 in Sentinel-2 (2026-07-11) cross-checked against IA POI text ('Brashear Switch') and TCEQ storm-NOI site address (2854 FM 3389, Brashear TX)",
+  "confidence": "medium",
+  "map_artifacts": []
+ },
+ "project_area": {
+  "acres": null,
+  "source": null,
+  "artifact": null
+ },
+ "parcels": [],
+ "llc_chain": [
+  {
+   "entity": "Lucky 7 Solar Farm LLC",
+   "relation": "SPV",
+   "evidence": "Named Generator party on signed IA, PUCT Control 35077 filing 2241, executed 2025-08-12/13 by Sabah Bayatli (President); INR 26INR0409 explicitly cited in Oncor's filing cover letter"
+  },
+  {
+   "entity": "OCI Energy",
+   "relation": "original_developer_seller",
+   "evidence": "IA Exhibit D notice address for Lucky 7 Solar Farm LLC signatory Sabah Bayatli: 8000 IH-10 West, Suite 201, San Antonio, TX 78230; email sbayatli@ocienergy.com. Sidley Austin press release 2025-08-18 confirms OCI Energy developed the project and sold it to Sabanci Renewables"
+  },
+  {
+   "entity": "Sabanci Renewables (unit of Sabanci Holding, Turkiye)",
+   "relation": "current_developer_owner",
+   "evidence": "Sidley Austin press release 2025-08-18 (sources/2026-07-20_sidley_oci-sale-lucky7-sabanci.html): OCI Energy sold Project Lucky 7 Solar to Sabanci Renewables, 'now move forward to construction and operation under the leadership of Sabanci Renewables'; confirmed on developer's own project page (sources/2026-07-20_sabanciclimatetech_lucky7-project-profile.html) with FNTP 2025-12-12, COD Q3 2027, site control completed"
+  },
+  {
+   "entity": "Signal Energy, LLC",
+   "relation": "EPC_contractor",
+   "evidence": "3-way confirmed: (1) TCEQ Central Registry construction-stormwater NOI TXR1503YB ACTIVE, principal legal name on 'LUCKY 7 SOLAR FARM' regulated entity CN602963365; (2) constructionreviewonline.com 2026-01-27 'Sabanci Advances 256 MW Lucky 7 and Pepper Solar Projects' names Signal Energy as EPC; (3) developer's own project page lists EPC: Signal Energy"
+  },
+  {
+   "entity": "Waaree Solar Americas",
+   "relation": "module_supplier",
+   "evidence": "constructionreviewonline.com + developer project page both list Waaree as module supplier (bifacial, hail-resistant, 3.2mm glass), 288 MWp combined for Lucky 7 + Pepper"
+  }
+ ],
+ "land_tenure": {
+  "status": "unknown",
+  "evidence": "No parcel/site-plan exhibit attached to IA (KMZ/lat-lon of panel units not due to Oncor until 2026-11-05 per Exhibit B); Hopkins CAD (hopkinscad.org) is a JS/AJAX front-end not scriptable via plain curl -- not queried"
+ },
+ "construction": {
+  "verdict": "clearing",
+  "first_activity_seen": "2026-04-27",
+  "evidence": [
+   "TCEQ construction-stormwater NOI (TXR1503YB) for 'LUCKY 7 SOLAR FARM' at 2854 Farm Road 3389, Brashear, TX 75420 -- ACTIVE, affiliation/coverage begin date 2026-04-27; EPC Signal Energy LLC. Independent (non-IA) confirmation that a >1-acre construction site has been authorized/underway since 2026-04-27.",
+   "Sentinel-2 chip 2026-07-11 (imagery/grid/s2_c0_0.png, imagery/s2_2026-07-01_wide.png) at 33.078,-95.712: irregular tan/graded polygon ~1-1.5km across with internal access-road grid, visually consistent with early solar civil works (clearing/grading); no dark uniform module-block signature yet -- pre-racking stage",
+   "EIA-860M status '(U) Under construction, less than or equal to 50 percent complete' as of 2026-05-01 (eia_history.json) -- independent second source agrees with clearing/early-construction verdict"
+  ]
+ },
+ "cod_assessment": {
+  "reported": "2027-09-20",
+  "independent": "2027-Q3",
+  "drift_risk": "low",
+  "reasoning_evidence": [
+   "Reported 2027-09-20 is the exact Scheduled Commercial Operation date in the signed IA (PUCT 35077-2241, executed 2025-08-12/13) -- contractually grounded, single document, no amendments on file",
+   "Queue-history (timeline.md): COD held stable at 2027-09-20 for 14 consecutive monthly snapshots (2025-05-01 to 2026-06-01) after one early drift from a placeholder 2026-07-01 -- no slip since the IA was signed",
+   "EIA-860M independent second source (eia_history.json): planned COD 2027-10, only 1 month after queue claim; status '(U) Under construction, less than or equal to 50 percent complete' as of 2026-05-01 -- independently corroborates active construction, not a paper claim",
+   "Developer's own project page (sabanciclimatetech.com) states COD Q3 2027 and FNTP 2025-12-12 -- 3rd independent source agreeing with the queue claim",
+   "TCEQ construction-stormwater NOI active since 2026-04-27 (~21 months before contractual COD) is a normal lead time for a 100 MW solar civil-works start",
+   "Risk factors: panel lat/lon+KMZ not yet due to TSP until 2026-11-05 (equipment finalization still pending per IA Exhibit B); PPA reported as 'under exclusivity' (not fully executed) as of developer's page; inverter vendor discrepancy between IA Exhibit C (Power Electronics FS4010) and developer page (SMA) suggests a possible post-acquisition equipment change, unresolved"
+  ]
+ },
+ "real_project_verdict": "real_active",
+ "negative_searches": 6,
+ "banned_source_violations": 0,
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Standard Generation Interconnection Agreement between Oncor Electric Delivery Company LLC and Lucky 7 Solar Farm, LLC (PUCT Control No. 35077, filing 35077-2241)",
+    "signed": "2025-08-13 (Oncor)/2025-08-12 (Generator)",
+    "financial_security": "$19,290,074 Irrevocable Standby Letter of Credit, effective on or before 2025-09-19",
+    "artifact": "sources/2026-07-19_puct_35077-2241_standard-generation-interconnection-agreement-be.pdf"
+   }
+  ],
+  "milestones": [
+   {
+    "name": "In-Service Date",
+    "original_ia_2025": "2027-05-13"
+   },
+   {
+    "name": "Trial Operation",
+    "original_ia_2025": "2027-05-23"
+   },
+   {
+    "name": "Scheduled Commercial Operation",
+    "original_ia_2025": "2027-09-20"
+   }
+  ],
+  "note": "Single IA document on disk, no amendments found. POI = Brashear Switch, Hopkins County, on TSP's Sandy Ranch Switch-Cash Switch 345kV line (Exhibit C). 29x Power Electronics FS4010 solar inverters, 4.01 MVA each, gross 116.29 MVA, dispatched 101.8 MW at generator terminals/100.8 MW at 34.5kV bus. Generator must submit panel lat/lon+KMZ by 2026-11-05 (not yet due) -- panel layout unfinalized at signing. Per-contract grading/access-road work at Brashear Switch not complete until 2026-08-14, i.e. IA schedule itself does not expect visible site construction before mid-2026."
+ }
+}

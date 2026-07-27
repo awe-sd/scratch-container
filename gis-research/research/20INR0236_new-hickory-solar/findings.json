@@ -1,138 +1,139 @@
 {
-  "inr": "20INR0236",
-  "project": "New Hickory Solar",
-  "research_date": "2026-07-19",
-  "verdict": "real_active",
-  "verdict_confidence": "medium",
-  "verdict_rationale": "Ch.313 agreement executed, $175.1M investment confirmed in 2023 CDR actuals, Jackson CAD appraised qualified property at $114M in 2024 (consistent with completed 209 MW solar facility); however ERCOT queue still shows no construction milestones \u2014 project is built or substantially complete but stuck in ERCOT commissioning process",
-  "site": {
-    "lat": null,
-    "lon": null,
-    "method": "county-level only \u2014 Jackson County TX, Edna ISD; POI OLD_HCKRY_5 bus 5323 345kV; no parcel IDs, no Google pin, no OSM substation coords obtained",
-    "confidence": "low",
-    "cross_checks": "none \u2014 site not pinpointed",
-    "not_obtainable": "Parcel IDs (Ch.313 Tab 9 'Not Applicable'); OLD_HCKRY_5 substation coords (CEII-restricted); Google Maps 429 rate-limited; Overpass rate-limited"
-  },
-  "construction": {
-    "stage": "substantially_complete",
-    "first_activity_seen": null,
-    "imagery_verdict": "no_imagery_run \u2014 site not pinpointed",
-    "evidence": "Ch.313 2023 CDR shows $175.1M total investment through 2023 (full project cost); Jackson CAD appraised qualified property at $114.1M in 2024 (actual appraisal, not projected); Amendment No.1 Oct 2025 states construction commenced Q4 2022 and COO updated to Q1 2026"
-  },
-  "ownership": {
-    "spv": "New Hickory Solar LLC (f/k/a Old Hickory Solar LLC)",
-    "spv_state": "Delaware",
-    "tx_sos_file": "0804475641",
-    "tx_taxpayer_id": "32072700241",
-    "name_change_date": "2024-04-09",
-    "mailing_address": "280 Park Avenue FL 27E, New York NY 10017",
-    "chain": [
-      {
-        "entity": "Old Hickory Solar LLC / New Hickory Solar LLC",
-        "role": "SPV",
-        "evidence": "Ch.313 App #1460, TX SOS 0804475641"
-      },
-      {
-        "entity": "Pattern Energy Group 2 LP",
-        "role": "Original developer (1088 Sansome St, San Francisco CA)",
-        "evidence": "Ch.313 application 2020, dyann.blaine@patternenergy.com"
-      },
-      {
-        "entity": "Bridgelind Investments (Cole Johnson, Fort Worth TX)",
-        "role": "Intermediate owner/operator 2022",
-        "evidence": "Ch.313 biennial 2022, cole.johnson@bridgelinkinvestments.com"
-      },
-      {
-        "entity": "Crayhill Capital Management (New York NY)",
-        "role": "Current owner \u2014 dshlomi@crayhill.com, 280 Park Ave FL 27E",
-        "evidence": "Ch.313 2023 biennial + Amendment No.1 Oct 2025"
-      }
-    ],
-    "financing": "unknown \u2014 no PPA or financing announcement found"
-  },
-  "land": {
-    "tenure": "leased",
-    "evidence": "Ch.313 application Dec 2019 states 'option to lease the proposed project site from the current landowner'",
-    "parcel_ids": [],
-    "acreage": null,
-    "acreage_source": null,
-    "note": "Ch.313 Tab 9 (Land Description) = 'Not Applicable'; no parcel IDs filed; no Jackson CAD hit under 'solar'"
-  },
-  "project_area": {
-    "acres": null,
-    "source": "not obtained \u2014 Ch.313 application does not contain land area description; application map shows site layout but no scale measurements extracted",
-    "artifact": "sources/2026-07-19_comptroller_ch313_1460_application.pdf p.24 (site layout map)"
-  },
-  "interconnection": {
-    "poi": "OLD_HCKRY_5 bus 5323 345 kV",
-    "poi_owner": "AEP Texas (Jackson County territory)",
-    "ia_signed_date": "2020-06-30",
-    "ia_document": "not retrieved \u2014 PUCT Interchange returns HTTP 402",
-    "capacity_mw": 209.15,
-    "capacity_history": "250 MW (2019) \u2192 206 MW (2021) \u2192 225.7 MW (2023) \u2192 206 MW \u2192 209.15 MW (current)"
-  },
-  "contractual_schedule": {
-    "documents": [
-      {
-        "doc": "Ch.313 Original Agreement (Edna ISD / Old Hickory Solar LLC)",
-        "signed": "2022-03-21",
-        "financial_security": null,
-        "artifact": "sources/2026-07-19_comptroller_ch313_1460_agreement.pdf",
-        "notes": "159-page PDF, mostly scanned; limitation amount $25M; original COD target June 2022"
-      },
-      {
-        "doc": "Ch.313 Amendment No.1 (Edna ISD / New Hickory Solar LLC)",
-        "signed": "2025-10-20",
-        "financial_security": "$142,200/yr supplemental payments 2025-2033",
-        "artifact": "sources/2026-07-19_comptroller_ch313_1460_amended_agreement_1.pdf",
-        "notes": "Updates: construction start Q4 2022; COO Q1 2026; limitation period 2026-2035"
-      }
-    ],
-    "milestones": [
-      {
-        "name": "Construction start",
-        "Original IA": "Q1 2021",
-        "Amendment 1": "Q4 2022"
-      },
-      {
-        "name": "Commercial operations",
-        "Original IA": "2022-06-01",
-        "Amendment 1": "Q1 2026"
-      },
-      {
-        "name": "Limitation period start",
-        "Original IA": "2023-01-01",
-        "Amendment 1": "2026-01-01"
-      }
-    ]
-  },
-  "investment": {
-    "total_committed": 175100000,
-    "actual_2021": 20413654,
-    "actual_2022": 20413654,
-    "actual_2023": 175100000,
-    "cad_market_value_2022": 19407260,
-    "cad_market_value_2023": 19407260,
-    "cad_market_value_2024": 114112670,
-    "cad_market_value_2025": 104968948,
-    "source": "sources/2026-07-19_comptroller_ch313_1460_cdr_2023.xlsx"
-  },
-  "cod_assessment": {
-    "reported_cod": "2026-10-26",
-    "reported_plausible": "unclear",
-    "independent_estimate": "2026-Q3 to 2027-Q2",
-    "drift_risk": "med",
-    "drift_rationale": "13 COD slips over 7 years; Amendment No.1 (Oct 2025) cited COO as Q1 2026 but ERCOT queue still blank for all construction milestones as of Jun 2026; full $175.1M invested (2023 actuals); $114M CAD appraisal (2024) suggests equipment installed; delay likely in ERCOT commissioning/energization queue not construction",
-    "cod_history_slips": 13
-  },
-  "sources": {
-    "ch313_app": "sources/2026-07-19_comptroller_ch313_1460_application.pdf",
-    "ch313_agreement": "sources/2026-07-19_comptroller_ch313_1460_agreement.pdf",
-    "ch313_amend1": "sources/2026-07-19_comptroller_ch313_1460_amended_agreement_1.pdf",
-    "ch313_cdr_2023": "sources/2026-07-19_comptroller_ch313_1460_cdr_2023.xlsx",
-    "ch313_biennial_2022": "sources/2026-07-19_comptroller_ch313_1460_biennial_2022.xlsx",
-    "ch313_biennial_2023": "sources/2026-07-19_comptroller_ch313_1460_biennial_2023.xlsx",
-    "ch313_form772_2024": "sources/2026-07-19_comptroller_ch313_1460_form772_2024.pdf",
-    "ch313_form772_2025": "sources/2026-07-19_comptroller_ch313_1460_form772_2025.pdf"
-  }
+ "inr": "20INR0236",
+ "project": "New Hickory Solar",
+ "research_date": "2026-07-19",
+ "verdict": "real_active",
+ "verdict_confidence": "medium",
+ "verdict_rationale": "Ch.313 agreement executed, $175.1M investment confirmed in 2023 CDR actuals, Jackson CAD appraised qualified property at $114M in 2024 (consistent with completed 209 MW solar facility); however ERCOT queue still shows no construction milestones \u2014 project is built or substantially complete but stuck in ERCOT commissioning process",
+ "site": {
+  "lat": null,
+  "lon": null,
+  "method": "county-level only \u2014 Jackson County TX, Edna ISD; POI OLD_HCKRY_5 bus 5323 345kV; no parcel IDs, no Google pin, no OSM substation coords obtained",
+  "confidence": "low",
+  "cross_checks": "none \u2014 site not pinpointed",
+  "not_obtainable": "Parcel IDs (Ch.313 Tab 9 'Not Applicable'); OLD_HCKRY_5 substation coords (CEII-restricted); Google Maps 429 rate-limited; Overpass rate-limited"
+ },
+ "construction": {
+  "stage": "substantially_complete",
+  "first_activity_seen": null,
+  "imagery_verdict": "no_imagery_run \u2014 site not pinpointed",
+  "evidence": "Ch.313 2023 CDR shows $175.1M total investment through 2023 (full project cost); Jackson CAD appraised qualified property at $114.1M in 2024 (actual appraisal, not projected); Amendment No.1 Oct 2025 states construction commenced Q4 2022 and COO updated to Q1 2026"
+ },
+ "ownership": {
+  "spv": "New Hickory Solar LLC (f/k/a Old Hickory Solar LLC)",
+  "spv_state": "Delaware",
+  "tx_sos_file": "0804475641",
+  "tx_taxpayer_id": "32072700241",
+  "name_change_date": "2024-04-09",
+  "mailing_address": "280 Park Avenue FL 27E, New York NY 10017",
+  "chain": [
+   {
+    "entity": "Old Hickory Solar LLC / New Hickory Solar LLC",
+    "role": "SPV",
+    "evidence": "Ch.313 App #1460, TX SOS 0804475641"
+   },
+   {
+    "entity": "Pattern Energy Group 2 LP",
+    "role": "Original developer (1088 Sansome St, San Francisco CA)",
+    "evidence": "Ch.313 application 2020, dyann.blaine@patternenergy.com"
+   },
+   {
+    "entity": "Bridgelind Investments (Cole Johnson, Fort Worth TX)",
+    "role": "Intermediate owner/operator 2022",
+    "evidence": "Ch.313 biennial 2022, cole.johnson@bridgelinkinvestments.com"
+   },
+   {
+    "entity": "Crayhill Capital Management (New York NY)",
+    "role": "Current owner \u2014 dshlomi@crayhill.com, 280 Park Ave FL 27E",
+    "evidence": "Ch.313 2023 biennial + Amendment No.1 Oct 2025"
+   }
+  ],
+  "financing": "unknown \u2014 no PPA or financing announcement found"
+ },
+ "land": {
+  "tenure": "leased",
+  "evidence": "Ch.313 application Dec 2019 states 'option to lease the proposed project site from the current landowner'",
+  "parcel_ids": [],
+  "acreage": null,
+  "acreage_source": null,
+  "note": "Ch.313 Tab 9 (Land Description) = 'Not Applicable'; no parcel IDs filed; no Jackson CAD hit under 'solar'"
+ },
+ "project_area": {
+  "acres": null,
+  "source": "not obtained \u2014 Ch.313 application does not contain land area description; application map shows site layout but no scale measurements extracted",
+  "artifact": "sources/2026-07-19_comptroller_ch313_1460_application.pdf p.24 (site layout map)"
+ },
+ "interconnection": {
+  "poi": "OLD_HCKRY_5 bus 5323 345 kV",
+  "poi_owner": "AEP Texas (Jackson County territory)",
+  "ia_signed_date": "2020-06-30",
+  "ia_document": "not retrieved \u2014 PUCT Interchange returns HTTP 402",
+  "capacity_mw": 209.15,
+  "capacity_history": "250 MW (2019) \u2192 206 MW (2021) \u2192 225.7 MW (2023) \u2192 206 MW \u2192 209.15 MW (current)"
+ },
+ "contractual_schedule": {
+  "documents": [
+   {
+    "doc": "Ch.313 Original Agreement (Edna ISD / Old Hickory Solar LLC)",
+    "signed": "2022-03-21",
+    "financial_security": null,
+    "artifact": "sources/2026-07-19_comptroller_ch313_1460_agreement.pdf",
+    "notes": "159-page PDF, mostly scanned; limitation amount $25M; original COD target June 2022"
+   },
+   {
+    "doc": "Ch.313 Amendment No.1 (Edna ISD / New Hickory Solar LLC)",
+    "signed": "2025-10-20",
+    "financial_security": "$142,200/yr supplemental payments 2025-2033",
+    "artifact": "sources/2026-07-19_comptroller_ch313_1460_amended_agreement_1.pdf",
+    "notes": "Updates: construction start Q4 2022; COO Q1 2026; limitation period 2026-2035"
+   }
+  ],
+  "milestones": [
+   {
+    "name": "Construction start",
+    "Original IA": "Q1 2021",
+    "Amendment 1": "Q4 2022"
+   },
+   {
+    "name": "Commercial operations",
+    "Original IA": "2022-06-01",
+    "Amendment 1": "Q1 2026"
+   },
+   {
+    "name": "Limitation period start",
+    "Original IA": "2023-01-01",
+    "Amendment 1": "2026-01-01"
+   }
+  ]
+ },
+ "investment": {
+  "total_committed": 175100000,
+  "actual_2021": 20413654,
+  "actual_2022": 20413654,
+  "actual_2023": 175100000,
+  "cad_market_value_2022": 19407260,
+  "cad_market_value_2023": 19407260,
+  "cad_market_value_2024": 114112670,
+  "cad_market_value_2025": 104968948,
+  "source": "sources/2026-07-19_comptroller_ch313_1460_cdr_2023.xlsx"
+ },
+ "cod_assessment": {
+  "reported_cod": "2026-10-26",
+  "reported_plausible": "unclear",
+  "independent_estimate": "2026-Q3 to 2027-Q2",
+  "drift_risk": "med",
+  "drift_rationale": "13 COD slips over 7 years; Amendment No.1 (Oct 2025) cited COO as Q1 2026 but ERCOT queue still blank for all construction milestones as of Jun 2026; full $175.1M invested (2023 actuals); $114M CAD appraisal (2024) suggests equipment installed; delay likely in ERCOT commissioning/energization queue not construction",
+  "cod_history_slips": 13
+ },
+ "sources": {
+  "ch313_app": "sources/2026-07-19_comptroller_ch313_1460_application.pdf",
+  "ch313_agreement": "sources/2026-07-19_comptroller_ch313_1460_agreement.pdf",
+  "ch313_amend1": "sources/2026-07-19_comptroller_ch313_1460_amended_agreement_1.pdf",
+  "ch313_cdr_2023": "sources/2026-07-19_comptroller_ch313_1460_cdr_2023.xlsx",
+  "ch313_biennial_2022": "sources/2026-07-19_comptroller_ch313_1460_biennial_2022.xlsx",
+  "ch313_biennial_2023": "sources/2026-07-19_comptroller_ch313_1460_biennial_2023.xlsx",
+  "ch313_form772_2024": "sources/2026-07-19_comptroller_ch313_1460_form772_2024.pdf",
+  "ch313_form772_2025": "sources/2026-07-19_comptroller_ch313_1460_form772_2025.pdf"
+ },
+ "real_project_verdict": "real_active"
 }

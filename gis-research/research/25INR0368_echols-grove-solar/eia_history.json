@@ -1,0 +1,54 @@
+{
+ "inr": "25INR0368",
+ "plant_id": 68902,
+ "plant_name": "Echols Creek Solar",
+ "entity": "BT Ferguson Solar, LLC",
+ "matched_by": "--plant-id",
+ "first_report": "2025-05-01",
+ "last_report": "2026-05-01",
+ "planned_cod_history": [
+  {
+   "value": "2025-12",
+   "from": "2025-05-01",
+   "to": "2025-05-01"
+  },
+  {
+   "value": "2028-12",
+   "from": "2025-06-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "capacity_history": [
+  {
+   "value": 301.8,
+   "from": "2025-05-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "status_history": [
+  {
+   "value": "(L) Regulatory approvals pending. Not under construction",
+   "from": "2025-05-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "queue_reported_cod": "2027-04-03",
+ "energy_capacity_mwh_history": [
+  {
+   "value": null,
+   "from": "2025-05-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "operating_date_history": [
+  {
+   "value": null,
+   "from": "2025-05-01",
+   "to": "2026-05-01"
+  }
+ ],
+ "eia_county": "Lamar",
+ "eia_lat": 33.61647,
+ "eia_lon": -95.45837,
+ "dropped_from_860m": null
+}

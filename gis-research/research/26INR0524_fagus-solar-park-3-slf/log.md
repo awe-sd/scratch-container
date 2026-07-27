@@ -67,3 +67,81 @@ triage_findings.json written.
 triage.md written.
 Turns used: ~28. Deep scan recommended.
 STOP.
+
+## 2026-07-20 Deep scan started
+
+### D0 — Skeleton written
+- findings.json skeleton created; triage_findings.json + factsheet.json read
+
+### D1 — IA discovery (puct.py match rung 0 — exact INR join)
+- 3 confirmed IAs via INR join table:
+  - 35077-1923: 5th Amended IA, filed 2024-09-06, CONFIRMED
+  - 35077-2001: 6th Amended IA, filed 2024-12-04, CONFIRMED
+  - 35077-2433: 7th Amended IA, filed 2026-03-17, CONFIRMED
+- All downloaded to sources/
+
+### D1 — Exhibit C (Interconnection Details) — DECISIVE
+- Exhibit C (both 5th and 7th amendments): Fagus Substation ~8 miles SE of Childress, TX
+- POI: ETT Tesla 345 kV line, terminates at first dead-end structure outside Fagus Substation fence
+- 7th amendment Exhibit C confirms INR breakdown:
+  - Phase 1: 50 units × 3.3729 MW = 168.64 MW (#20INR0091)
+  - Phase 2: 50 units × 3.3729 MW = 168.64 MW (#25INR0672)
+  - Phase 3: 42 units × 4.0948 MW = 171.98 MW (#26INR0524) — THIS project
+  - Total: 509.26 MW at inverter terminals
+- Inverter: Sungrow SG4400UD-MV (645 Vac) — Phase 3
+
+### D1 — Developer CONFIRMED: Greenalia
+- Exhibit D: notices@greenalia.us; vgonzalez@greenalia.es
+- Greenalia = Spanish renewable energy developer
+
+### D1 — Time Schedule
+- Original IA execution date = 2019-02-21 (queue iaSigned date)
+- 5th amendment Phase 3 COD: 84 months from Original = 2026-02 (was 2026-04-01 in queue — consistent)
+- 7th amendment Phase 3 COD: 99 months from Original = 2027-05-21 (queue says 2027-05-19 — exact match confirms calc)
+- Phase 3 Trial Operation (7th amendment): 97 months from Original = 2027-03-21
+
+### D1 — Security
+- 7th amendment Exhibit E: $19,500,000 security posted for TIF construction
+
+### D1 — EIA data (factsheet)
+- EIA-860M Operating: "Fagus Solar Park" 331.6 MW OPERATING at 34.35099, -100.0493 (= Phases 1+2)
+- EIA-860M Planned: "Greenalia Solar Power Misae III" 169.6 MW planned 2027-05 at 34.20349, -100.0404 (= Phase 3 / this INR)
+
+### SPV
+- spv.py resolved: Greenalia entity: "Greenlia Solar Power Misae III, LLC" (EIA-860M planned) — likely typo for Greenalia
+- Entity name in IA exhibits: Greenalia (email domain greenalia.us / greenalia.es)
+
+
+### D3 — Gap-fill
+- ch313.py resolve: NEGATIVE — no Ch.313/JETI match for Fagus Solar Park 3 SLF; Ch.313 1613 exists for Excel Advantage (Phases 1+2 predecessor), 2021
+- search "Greenalia Fagus Solar Childress": GEM wiki + renewablesinfo (banned) only
+- search "Misae III construction": GEM wiki confirms pre-construction; Misae II $388M financing closed ~2025
+- Childress County 30-day notice (Ch.312): downloaded and imaged — confirms Greenalia Solar Power MISAE III LLC, 197 MWAC, $221.4M, Sep 2024 hearing
+- Comptroller Ch.313 cert 1613: Excel Advantage Services LLC (Phases 1+2), 2021 — NEGATIVE for Phase 3
+- Google Places "Greenalia Childress Texas solar": MISAE SOLAR PROJECT, 385 FM1033, Childress TX — DECISIVE site pin
+- CDSE imagery: ALL FAILED with RemoteDisconnected (service outage) on 2026-07-20
+- gmaps.py staticmap: FAILED (Maps Static API not enabled on key)
+
+### D1 — 6th amendment key detail
+- Notice table (6th amend Exhibit D): Greenalia Solar Power Misae III LLC c/o Excel Advantage Services LLC dba Misae Solar Park II [DIA]; US Controller, Greenalia; Helmsley Building 230 Park Ave Suite 2840 NYC NY 10169; Santander Bank
+
+### D5 — Wrap-up tools
+- queue_history.py: 25 snapshots, 2 COD changes; written to timeline.json + timeline.md
+- eia_history.py --write: matched EIA plant 67123 (full Fagus Solar Park operating entity); EIA shows OP Dec 2025 (= Phases 1+2); Misae III planned entity not yet in monthly 860M with COD history; written to eia_history.json
+- dossier.md: written
+- findings.json: final update
+
+
+## Imagery pass (user-flagged, 2026-07-21)
+
+User flagged this project as missing research -- actually missing only imagery (ran
+during the CDSE outage). AWS chips fetched at the campus pin (4 dates 2024-2026) plus
+one at Phase 3's own EIA planned point:
+- Campus frames show major array construction 2025->2026 -- attributed to PHASES 1+2
+  (EIA plant 67123: UC-2024 -> >50%-2025 -> OPERATING 2025-12), NOT this INR. Explicit
+  neighbor-array caution added to findings so the panels are never miscited as Phase 3.
+- Phase 3's EIA planned point (34.20349,-100.0404, 16 km south): undeveloped
+  rangeland/breaks, no grading (2026-07-10, 0% cloud). Verdict stays no_activity,
+  now imagery-supported at both candidate anchors.
+- Site confidence split: campus/POI high; Phase-3 parcel medium (no parcel map exists
+  in any filing yet -- the Ch.312 notice map is the whole reinvestment zone).

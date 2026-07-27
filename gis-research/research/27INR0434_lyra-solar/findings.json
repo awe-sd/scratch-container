@@ -2,113 +2,130 @@
   "inr": "27INR0434",
   "project": "Lyra Solar",
   "research_date": "2026-07-19",
+  "second_pass_review": "2026-07-21",
   "site": {
-    "lat": 32.7222,
-    "lon": -101.6385,
-    "method": "OSM Overpass: companion 'Borden County BESS' (EIA 66804) at 32.7223,-101.6385 next to WETT Long Draw Substation (32.7211,-101.6330); Lyra Solar array expected within ~3 km NE",
-    "confidence": "medium",
-    "notes": "Sat image shows completed solar array NE ~32.75-32.77, -101.61; delivery-pin blocked (429); PUCT IA PDF blocked (402). Site is in the Borden County Long Draw WETT 345kV cluster.",
+    "lat": 32.770,
+    "lon": -101.555,
+    "method": "ccn_59183_figure_1-1_2-1_map",
+    "confidence": "medium-high",
+    "map_artifacts": [
+      "sources/2026-07-21_puct_59183-2_ccn-figure1-1_project-location-map.png",
+      "sources/2026-07-21_puct_59183-2_ccn-figure2-1_property-owners-aerial.png"
+    ],
+    "notes": "Anchor = the Proposed Lyra Solar and Lyra BESS Collector Stations, ~7 mi W of Gail, just N of US-180, on the 'Juno DC, LLC' parcel per CCN 59183 EA Appendix A Fig 1-1/2-1. The WETT Muleshoe Switching Station (POI #59922) is ~8 mi SOUTH; a new ~8-mi 345kV line connects them. SUPERSEDES the 2026-07-19 anchor 32.7222,-101.6385, which was the EXISTING Long Draw/Borden County BESS complex, not Lyra's site. Eyeball georeference (±~1 km) against Gail 32.769,-101.443 and Long Draw Switching Station 32.721,-101.633.",
     "cross_checks": [
-      "Overpass: WETT Long Draw Substation (345kV) at 32.7211, -101.6330",
-      "Overpass: BoCo BESS (Borden County BESS EIA 66804) at 32.7223, -101.6385 — confirmed companion project same POI cluster",
-      "PUCT Case 59183: 'Muleshoe to Lyra Solar and Lyra BESS 345kV transmission lines in Borden County'",
-      "Sentinel-2 chip 2026-07-01: completed solar array visible NE of Long Draw substation cluster"
+      "IA PUCT 35077-2185: POI 'Muleshoe 345kV switching station... adjacent to the Generator's station fence'",
+      "CCN 59183 EA: collector stations ~0.75 mi WNW of a US-180 road intersection, ~8 mi (route) NW of Muleshoe Switching Station",
+      "Sentinel-2 2025-07-20 (cloud 0.0%): collector site bare rangeland; existing operating solar (ENGIE Long Draw and/or adjacent existing sites) at W edge",
+      "Sentinel-2 2026-07-20: new ~1 km graded/cleared area at the collector site (absent 2025)"
     ]
   },
   "parcels": [],
   "llc_chain": [
     {
-      "entity": "Lyra Solar, LLC (presumed)",
-      "role": "SPV",
-      "evidence": "Project developer listed as 'Juno Solar 4' in ERCOT queue; LLC name confirmed as 'Lyra Solar, LLC' by convention (not confirmed via TX SOS — portal auth-required)"
+      "entity": "SE DC DevCo, LLC",
+      "role": "SPV / generator (IA counterparty)",
+      "evidence": "PRIMARY SOURCE: IA PUCT 35077-2185 'Generation Interconnection Agreement between Wind Energy Transmission Texas, LLC and SE DC DevCo, LLC for the Lyra Solar Project' (filed 2025-07-07). Notice address 3 Lagoon Drive Suite 280, Redwood City CA 94065."
     },
     {
-      "entity": "ENGIE North America (probable)",
-      "role": "developer/owner",
-      "evidence": "Naming-series inference: ENGIE Long Draw Solar LLC (18INR0055, operating 2021) confirmed via HASI 8-K/A 2021-03-17; Juno Solar Phase I/II (21INR0026/0501) same Borden County WETT cluster; astronomical naming (Juno, Lyra, Antila, Draco, Caesar) consistent with ENGIE TX portfolio. No direct primary source linking ENGIE to 27INR0434 found."
+      "entity": "SB Energy",
+      "role": "developer/parent",
+      "evidence": "SE DC DevCo notice address = SB Energy HQ (3 Lagoon Dr Suite 280, Redwood City CA); @sbenergy.com emails on the sibling IAs. Same SE DC DevCo counterparty on all four campaign IAs (Juno Solar 3 -2184, Lyra Solar -2185, Lyra BESS -2225, Antila Solar -2227)."
     }
   ],
-  "land_tenure": {"status": "unknown", "note": "CAD owner search blocked; no abatement found"},
-  "abatements": [],
+  "correction_note": "The 2026-07-19 deep scan inferred 'ENGIE North America (probable)' as developer via the 'Juno Solar' naming and the operating Long Draw/Juno fleet. This is WRONG. Lyra's own IA (35077-2185) names SE DC DevCo, LLC = SB Energy. The 'Juno' name trap: Intersect Power (IP Juno) owns the EXISTING 'Juno Solar Project' (op 2021); SB Energy codenames its NEW projects 'Juno Solar 3' (=Juno 3 Solar) and 'Juno Solar 4' (=Lyra Solar). ENGIE owns only the existing Long Draw Solar neighbor.",
+  "land_tenure": {"status": "leased rangeland (inferred)", "note": "CCN 59183 Fig 2-1 landowners at/near the collector: Juno DC LLC, Coleman Ranches Ltd, R M Livestock LTD, Muleshoe Ranch Ltd, Moorfaith Holdings LLC, AMNWC Real Estate/Clayton/Gregory/Wilson, Kent Youngblood Trust, Ophelia Blackard. No deed/lease obtained."},
+  "tax_incentives": {
+    "ch313_jeti": "NEGATIVE (structural — 2025 queue entry, post Ch.313 Dec-2022 sunset; no JETI match for Lyra Solar / SE DC DevCo / SB Energy)",
+    "ch312": "No abatement attributable to Lyra. Four active Borden County Ch.312 zones exist but all belong to other/existing projects and none links a harvested PDF (pdf=None): #000003676 BNB Oxbow Solar (Oxbow Ranch, exp 2028-04-22, early non-trio zone), #000004302 BNB Long Draw Solar (existing ENGIE), #000004303 IP Juno Reinvestment Zone (existing Intersect), #000015389 Dairy Bank (existing Borden County BESS). Weak negative (CAD-submitted annually).",
+    "eia_860m": "NOT present (negative; normal pre-construction; operating-neighbor guard held)"
+  },
+  "neighbor_warning": {
+    "note": "Any built/complete solar array in the imagery is an EXISTING plant, NOT Lyra (Lyra is pre-construction). Existing cluster members with coords:",
+    "existing_plants": [
+      {"name": "ENGIE Long Draw Solar", "entity": "GDF Suez North America (ENGIE)", "fuel": "Solar", "mw": 225, "eia": 62845, "status": "Operating 2020", "lat": 32.7414, "lon": -101.6218, "note": "the operating-solar block at the W edge (ENGIE Long Draw / adjacent existing sites) of Lyra's chips"},
+      {"name": "Juno Solar Project", "entity": "IP Juno, LLC (Intersect Power)", "fuel": "Solar", "mw": 305.6, "eia": 63328, "status": "Operating 2021", "lat": 32.7729, "lon": -101.3910, "note": "far E, ~15 km from Lyra; NOT the SB Energy 'Juno Solar 3/4'"},
+      {"name": "Borden County BESS", "entity": "Borden County Battery Energy Storage System LLC", "fuel": "Battery", "mw": 150, "eia": 66804, "status": "Operating 2024", "lat": 32.7223, "lon": -101.6385, "note": "the prior (wrong) Lyra anchor sat here"},
+      {"name": "Stephens Ranch Wind", "entity": "Stephens Ranch Wind Energy LLC", "fuel": "Wind", "mw": 376, "eia": 57983, "status": "Operating 2014-15", "lat": 32.9264, "lon": -101.6478}
+    ],
+    "co_located_new_projects": [
+      {"name": "Juno 3 Solar", "inr": "26INR0621", "note": "Buck Canyon POI; collector co-located within georeference slack (~1-2 km)"},
+      {"name": "Antila Solar", "inr": "27INR0500", "note": "Buck Canyon POI; collector co-located within georeference slack (~1-2 km)"},
+      {"name": "Lyra Storage (JUNO BESS I)", "inr": "26INR0636", "note": "same Muleshoe pair, same collector"}
+    ]
+  },
   "interconnection": {
-    "poi": "345kV MULESHOE (#59922) — ERCOT bus name for WETT Long Draw Substation complex (32.72, -101.63), Borden County",
-    "ia_signed_date": "2025-07-01",
-    "ia_document": "IA confirmed via ERCOT queue milestone (iaSigned=2025-07-01); PUCT PDF not retrieved (402 blocked). PUCT Case 59183 (WETT CCN amendment): 'Muleshoe to Lyra Solar and Lyra BESS 345kV transmission lines in Borden County', filed 2026-01-07"
+    "poi": "345kV MULESHOE (#59922) — WETT Muleshoe Switching Station, Borden County (~8 mi SE of the Lyra collector station)",
+    "ia_signed_date": "2025-07-07 (filed); effective 2025-07-01 (queue iaSigned)",
+    "ia_document": "sources/2026-07-19_puct_35077-2185_lyra-solar-IA.pdf (VERIFIED: WETT + SE DC DevCo, 'Lyra Solar Project', Borden County). CCN 59183 (WETT CCN amendment 'Muleshoe to Lyra Solar and Lyra BESS 345kV Transmission Lines', filed 2026-01-07; SOAH paper hearing Order No. 5 2026-03-19; not yet granted)."
   },
   "contractual_schedule": {
     "documents": [
       {
-        "doc": "Interconnection Agreement (queue-confirmed)",
-        "signed": "2025-07-01",
-        "financial_security": "unknown (PUCT PDF blocked)",
-        "artifact": "Queue milestone iaSigned=2025-07-01 (no PDF retrieved)"
+        "doc": "Interconnection Agreement PUCT 35077-2185 (VERIFIED)",
+        "signed": "2025-07-07",
+        "financial_security": "$18,000,000 initial security due at execution (no later than 2025-07-16) for engineering/CCN prep/long-lead procurement/ROW; Limited NTP at CCN filing/award (2026-01-15 milestone); Full NTP TBD on Facility Study results",
+        "in_service_date": "2027-05-15",
+        "trial_operation": "2027-06-15",
+        "scheduled_cod_ia": "2027-11-15",
+        "equipment": "Sungrow SG4400UD-MV-US inverters; solar PV",
+        "artifact": "sources/2026-07-19_puct_35077-2185_lyra-solar-IA.pdf",
+        "notes": "IA Scheduled COD (2027-11-15) is ~2 months LATER than queue projectCod (2027-09-15). Schedule 'subject to change based on study results'; FIS not yet approved. Lyra Solar is the lead IA of the Muleshoe pair (carries the $18M security); Lyra Storage rides on it."
       }
     ],
-    "scheduled_cod": "2027-09-15",
-    "in_service": null,
-    "trial_operation": null
+    "scheduled_cod_queue": "2027-09-15",
+    "scheduled_cod_ia": "2027-11-15"
   },
   "project_area": {
     "acres": null,
-    "source": "not found — PUCT IA PDF blocked (402), no abatement application found, Borden CAD owner search blocked",
-    "artifact": null,
-    "note": "500 MW solar at ~5 acres/MW typical = ~2,500 acres estimate; satellite imagery shows large multi-km array consistent with this scale"
+    "source": "not stated in IA; CCN 59183 defines a routing study area, not the array footprint. 500 MW solar at ~5 ac/MW ~= 2,500 ac.",
+    "artifact": null
   },
   "construction": {
-    "verdict": "unclear",
-    "stage": "pre_construction_or_clearing",
-    "first_activity_seen": null,
-    "latest_observation": "2026-07-01",
-    "notes": "Sentinel-2 chip 2026-07-01 shows completed solar array NE of Long Draw substation cluster — this is likely the EXISTING Juno Solar Phase I/II (313 MW operating 2021) rather than the new Lyra Solar. No new grading or clearing activity specifically attributable to Lyra Solar observed. CDSE credentials expired; only one chip retrieved.",
+    "verdict": "site_clearing_grading_observed_no_panels_yet",
+    "stage": "collector-complex site clearing/grading; no PV panel installation visible",
+    "first_activity_seen": "2026-03-29 (clearing); graded pad by 2026-05-31",
+    "latest_observation": "2026-07-20",
+    "notes": "Queue shows NO constructionStart, no fisApproved; not in EIA-860M; CCN 59183 still in SOAH paper hearing (not granted). A dense Sentinel-2 time series at the collector complex (N of US-180, ~32.77,-101.555) shows a clear ground-disturbance ramp: bare rangeland through 2025-11-02 and 2026-02-03; a cleared/plowed rectangle emerges 2026-03-29; a bright graded pad is established and expanding by 2026-05-31; and a ~1 km bright graded area by 2026-07-03/2026-07-20. IMPORTANT CALIBRATION: the bright feature reads as bare/graded SOIL or a gravel pad — PV panels read DARK (like the existing ENGIE block at the W edge), and NO panels are yet visible. The pad is as consistent with the WETT collector-station/switchyard footprint as with generator solar site prep. Monotonic growth (Mar->May->Jul, same location, hard geometric edges) rules out a seasonal field and supports grading onset ~Q2 2026 — ahead of the CCN 59183 transmission TIF window (Aug 2026-Apr 2027). Cannot separate Lyra vs the co-located Juno 3/Antila collector work at S2 resolution. The existing operating solar at the W edge (ENGIE Long Draw and/or adjacent existing sites) is NOT Lyra.",
+    "imagery_timeseries": {
+      "2024-07-18": "bare rangeland (swath-clipped SE; west+center clean)",
+      "2025-07-20": "bare rangeland / fallow field, no grading (cloud 0.0%, reference frame)",
+      "2025-11-02": "bare rangeland (cloud 0.0%)",
+      "2026-02-03": "still bare (swath-clipped SE; center natural)",
+      "2026-03-29": "cleared/plowed rectangle emerging at collector site",
+      "2026-05-31": "bright white graded pad established, expanding (cloud 0.0%)",
+      "2026-07-03": "graded area larger (cloud 0.2%)",
+      "2026-07-20": "~1 km bright graded/cleared area (cloud 4.9%, NE clouds)"
+    },
     "imagery_artifacts": [
-      "imagery/s2_2026-07-01_center.png"
+      "imagery/key/s2_2024-07-01.png",
+      "imagery/key/s2_2025-07-01.png",
+      "imagery/key/s2_2025-10-15.png",
+      "imagery/key/s2_2026-01-15.png",
+      "imagery/key/s2_2026-03-15.png",
+      "imagery/key/s2_2026-05-15.png",
+      "imagery/key/s2_2026-06-15.png",
+      "imagery/key/s2_2026-07-15.png"
     ]
   },
   "cod_assessment": {
-    "reported": "2027-09-15",
+    "reported": "2027-09-15 (queue) / 2027-11-15 (IA)",
     "independent_estimate": "2027-Q4 to 2028-Q2",
     "drift_risk": "medium-high",
     "rationale": [
-      "IA signed 2025-07-01; COD 2027-09-15 = 26.5 months — aggressive for 500 MW solar",
-      "FIS not achieved as of 2026-06 snapshot (atypical: IA signed without FIS approved)",
-      "0 COD drift in 16 snapshots (2025-03 to 2026-06) — consistent but short track record",
-      "PUCT transmission CCN filed 2026-01 (Case 59183) shows active development",
-      "No visible construction activity in Jul 2026 imagery (CDSE credentials expired; can't definitively confirm no-activity)",
-      "COD claim unchanged at 2027-09-15 across all 16 snapshots = nominal stability",
-      "Risk factors: FIS gap, ~26 month aggressive timeline for 500 MW, WETT transmission line not yet constructed",
-      "Comparable: Hanson Solar (23INR0086, 396 MW) had financing closed + EPC on site by Jul 2026 with 2027-Q2 COD — Lyra Solar has no confirmed financing or EPC"
+      "IA COD 2027-11-15 already trails queue COD 2027-09-15 by ~2 months",
+      "FIS not approved as of 2026-06 snapshot; IA schedule 'subject to change based on study results'",
+      "CCN 59183 still in SOAH (paper hearing Mar 2026); CCN grant required before WETT builds the 345kV interconnection",
+      "But real, funded and moving: $18M initial security posted at execution; early site grading visible 2026-07",
+      "0 COD drift across 16 snapshots (2025-03 to 2026-06) — nominal stability on a short record"
     ]
   },
-  "real_project_verdict": "real_early",
-  "verdict_confidence": "medium",
-  "verdict_rationale": "IA executed Jul 2025; PUCT transmission CCN filed Jan 2026; companion Lyra BESS (26INR0636) has separate IA; developer series (Juno Solar 1-4 + Lyra + Antila + Draco) shows a multi-project ENGIE-probable portfolio with proven operating assets (Juno I/II/LongDraw already operational in same cluster). No construction observed yet, but Lyra Storage COD is 2026-11-12 (imminent) suggesting the infrastructure cluster is well-advanced. Paper project is very unlikely given IA, PUCT CCN, and companion projects; but construction not confirmed to have started as of Jul 2026.",
+  "real_project_verdict": "real_active",
+  "verdict_confidence": "high",
+  "verdict_rationale": "Verified IA (35077-2185, SE DC DevCo/SB Energy), $18M security posted, active CCN 59183 in SOAH, and a clear construction ramp in the Sentinel-2 time series (bare through 2026-02; clearing 2026-03; graded pad 2026-05; ~1 km graded area 2026-07). Part of SB Energy's four-project Borden campaign (Juno 3, Lyra Solar, Lyra Storage, Antila). Upgraded from prior 'real_early' to real_active given posted security and observed on-the-ground site clearing/grading (no PV panels yet visible).",
   "companion_projects": [
-    {
-      "inr": "26INR0636",
-      "name": "Lyra Storage",
-      "capacity_mw": 500,
-      "fuel": "Battery",
-      "ia_signed": "2025-08-13",
-      "cod": "2026-11-12",
-      "note": "Lyra BESS companion; same PUCT Case 59183 filing"
-    },
-    {
-      "inr": "26INR0621",
-      "name": "Juno 3 Solar",
-      "capacity_mw": 500,
-      "fuel": "Solar",
-      "ia_signed": "2025-07-01",
-      "cod": "2027-11-30",
-      "note": "Same developer portfolio, same IA date as Lyra Solar"
-    },
-    {
-      "inr": "27INR0500",
-      "name": "Antila Solar",
-      "capacity_mw": 500,
-      "fuel": "Solar",
-      "ia_signed": "2025-08-13",
-      "cod": "2027-11-30",
-      "note": "Same developer portfolio, same IA date as Lyra Storage"
-    }
+    {"inr": "26INR0621", "name": "Juno 3 Solar", "capacity_mw": 500, "fuel": "Solar", "ia_signed": "2025-07-07", "ia_doc": "PUCT 35077-2184", "poi": "Buck Canyon #59916", "cod": "2027-11-30", "note": "SB Energy; lead IA of the Buck Canyon pair; collector co-located with Lyra"},
+    {"inr": "27INR0500", "name": "Antila Solar", "capacity_mw": 500, "fuel": "Solar", "ia_signed": "2025-08-18", "ia_doc": "PUCT 35077-2227", "poi": "Buck Canyon #59916", "cod": "2027-11-30", "note": "SB Energy; contingent on Juno Solar 3 Agreement"},
+    {"inr": "26INR0636", "name": "Lyra Storage", "capacity_mw": 500, "fuel": "Battery", "ia_signed": "2025-08-18", "ia_doc": "PUCT 35077-2225", "poi": "Muleshoe #59922", "cod": "2026-11-12", "note": "SB Energy; JUNO BESS I; Lyra pair"}
   ]
 }

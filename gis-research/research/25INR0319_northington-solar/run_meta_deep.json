@@ -1,0 +1,46 @@
+{
+ "mode": "deep",
+ "model": "us.anthropic.claude-sonnet-5",
+ "subtype": "success",
+ "is_error": false,
+ "duration_ms": 1601178,
+ "num_turns": 104,
+ "total_cost_usd": 5.293586549999999,
+ "usage": {
+  "input_tokens": 174,
+  "cache_creation_input_tokens": 161873,
+  "cache_read_input_tokens": 12718136,
+  "output_tokens": 55446,
+  "server_tool_use": {
+   "web_search_requests": 0,
+   "web_fetch_requests": 0
+  },
+  "service_tier": "standard",
+  "cache_creation": {
+   "ephemeral_1h_input_tokens": 0,
+   "ephemeral_5m_input_tokens": 161873
+  },
+  "inference_geo": "",
+  "iterations": [],
+  "speed": "standard"
+ },
+ "session_id": "440de8f7-1ee0-4adf-b30b-16e43f818b2d",
+ "audit": {
+  "assistant_turns": 87,
+  "image_reads": 12,
+  "tool_counts": {
+   "Bash": 67,
+   "Read": 24,
+   "Write": 2,
+   "Edit": 5,
+   "ToolSearch": 1,
+   "WebFetch": 4
+  },
+  "violations": [
+   "image_reads 12 > 6"
+  ]
+ },
+ "fresh_tokens": 162491,
+ "token_budget": 400000,
+ "exit_code": 0
+}
