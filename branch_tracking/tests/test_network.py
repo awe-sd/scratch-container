@@ -33,6 +33,15 @@ def test_transformer_winding_groups(tests_dir):
     assert set(grp["winding_teids"]) == {"280447", "280444", "280453"}
 
 
+def test_real_bus_not_treated_as_star(tests_dir):
+    # bus 13429 carries a transformer winding AND a line -> not an internal
+    # star, so it must never appear as a group's star_bus.
+    from branch_tracking.pipeline.network import transformer_winding_groups
+    cim = pd.read_csv(tests_dir / "fixtures" / "cim_slice.csv", dtype=str)
+    stars = {g["star_bus"] for g in transformer_winding_groups(cim)}
+    assert "13429" not in stars
+
+
 def _status(pairs):
     return pd.DataFrame(pairs, columns=["teid", "default_status"])
 
