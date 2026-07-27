@@ -69,13 +69,15 @@ def test_infer_conflict_flags(tests_dir):
     assert row["flag"] == "conflict"
 
 
-def test_infer_all_open_flags(tests_dir):
+def test_infer_all_open_yields_inferred_open(tests_dir):
     from branch_tracking.pipeline.network import infer_tertiary_status
     cim = pd.read_csv(tests_dir / "fixtures" / "cim_slice.csv", dtype=str)
     status = _status([("280447", "Open"), ("280444", "Open")])
     out = infer_tertiary_status(cim, status)
     row = out[out["teid"] == "280453"].iloc[0]
-    assert row["flag"] == "all_siblings_open"
+    assert row["inferred_status"] == "Open"
+    assert row["source"] == "inferred_transformer_winding"
+    assert row["flag"] == ""
 
 
 def test_infer_no_evidence(tests_dir):

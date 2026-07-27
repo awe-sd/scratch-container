@@ -117,7 +117,7 @@ def infer_tertiary_status(cim: pd.DataFrame, status: pd.DataFrame) -> pd.DataFra
         elif all(s == "Closed" for s in known_statuses):
             flag, inferred, source = "", "Closed", "inferred_transformer_winding"
         elif all(s == "Open" for s in known_statuses):
-            flag, inferred, source = "all_siblings_open", None, None
+            flag, inferred, source = "", "Open", "inferred_transformer_winding"
         else:
             flag, inferred, source = "conflict", None, None
 
@@ -143,12 +143,23 @@ def infer_tertiary_status(cim: pd.DataFrame, status: pd.DataFrame) -> pd.DataFra
         by_teid.setdefault(r["teid"], []).append(r)
     deduped = []
     for _teid, rs in by_teid.items():
-        closed = [r for r in rs if r["inferred_status"] == "Closed"]
-        if closed:
-            keep = dict(closed[0])
-            merged_sibs = sorted({s for r in closed for s in (r["sibling_teids"] or "").split(";") if s})
-            keep["sibling_teids"] = ";".join(merged_sibs)
-            keep["sibling_statuses"] = ";".join(smap.get(s, "") for s in merged_sibs)
+        concrete = {r["inferred_status"] for r in rs if r["inferred_status"] is not None}
+        if len(concrete) > 1:
+            base = dict(rs[0])
+            base["inferred_status"] = None
+            base["source"] = None
+            base["flag"] = "conflict_multigroup"
+            merged = sorted({s for r in rs for s in (r["sibling_teids"] or "").split(";") if s})
+            base["sibling_teids"] = ";".join(merged)
+            base["sibling_statuses"] = ";".join(smap.get(s, "") for s in merged)
+            deduped.append(base)
+        elif len(concrete) == 1:
+            status = next(iter(concrete))
+            pick = [r for r in rs if r["inferred_status"] == status]
+            keep = dict(pick[0])
+            merged = sorted({s for r in pick for s in (r["sibling_teids"] or "").split(";") if s})
+            keep["sibling_teids"] = ";".join(merged)
+            keep["sibling_statuses"] = ";".join(smap.get(s, "") for s in merged)
             deduped.append(keep)
         else:
             deduped.append(rs[0])
