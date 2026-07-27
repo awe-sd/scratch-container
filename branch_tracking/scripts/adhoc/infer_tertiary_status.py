@@ -34,10 +34,14 @@ def main():
 
     print("=== tertiary-winding status inference ===")
     print(f"windings emitted: {len(out)}")
+    print("by inferred_status (blank = not inferred):")
+    print(out["inferred_status"].fillna("(flagged, none)").value_counts().to_string())
     print("by flag:")
-    print(out["flag"].replace("", "inferred_closed").value_counts().to_string())
+    print(out["flag"].replace("", "(inferred)").value_counts().to_string())
     recovered = out[out["inferred_status"].notna()]
-    print(f"\nrecovered with a status: {len(recovered)}")
+    print(f"\nrecovered with a status: {len(recovered)} "
+          f"({(recovered['inferred_status'] == 'Closed').sum()} Closed, "
+          f"{(recovered['inferred_status'] == 'Open').sum()} Open)")
     print(f"Wrote {OUTPUT_CSV}")
 
 

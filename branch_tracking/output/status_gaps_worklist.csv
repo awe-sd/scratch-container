@@ -1,0 +1,525 @@
+teid,branch_id,DeviceType,from_bus,to_bus,ckt,match_status,unmatched_reason,dam_bucket,problem,suggested_action
+114370,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+118783,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+121226,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+124521,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+124531,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+124572,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+126113,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+126152,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+126308,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+128759,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+131918,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+140019,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+14203,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+152815,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+153990,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+155603,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+19350,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+20329,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+20667,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+207095,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+20932,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+21244,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+21504,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+222519,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+230499,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+232237,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+24399,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+24405,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+246538,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+254162,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+254163,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+27035,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+27505,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+277205,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279003,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279018,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279025,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279029,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279040,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279048,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279061,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279070,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279075,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279080,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279082,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279085,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279089,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279091,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279093,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279097,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279098,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279100,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279103,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279105,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279110,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279144,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279170,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279203,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279223,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279232,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279233,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279241,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279246,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279254,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279258,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279263,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279266,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279280,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279285,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279288,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279292,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279299,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279304,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279308,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279312,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279319,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279324,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279330,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279333,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279356,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279366,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279381,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279405,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279406,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279410,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279416,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279423,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279436,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279441,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279451,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279459,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279464,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279478,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279482,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279490,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279496,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279499,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279506,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279507,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279513,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279520,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279525,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279529,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279544,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279551,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279560,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279567,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279569,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279573,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279590,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279603,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279611,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279612,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279640,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279644,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279681,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279706,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279708,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279711,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279712,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279731,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279747,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279762,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279771,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279817,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279820,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279823,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279829,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279830,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279831,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279833,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279856,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279896,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279902,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279922,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279927,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279928,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279934,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279942,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279944,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279964,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279965,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279966,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279967,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+279980,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280006,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280012,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280015,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280021,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280022,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280027,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280039,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280090,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280109,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280127,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280131,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280138,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280141,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280142,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280144,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280183,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280197,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280211,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280223,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280225,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280232,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280247,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280263,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280271,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280272,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280273,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280292,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280308,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280311,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280317,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280328,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280334,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280350,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280355,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280358,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280369,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280380,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280389,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280397,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280417,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280420,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280433,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280445,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280451,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280453,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+280454,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+28082,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+281278,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+28830,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+293004,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+293180,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+299915,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+299937,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+299945,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+301043,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+301044,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+303992,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+304179,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+307144,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+307566,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+308387,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+308393,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+312846,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+313491,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+313524,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+313692,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+313720,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+31519,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+318781,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+319011,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+319570,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+319888,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+320414,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+320678,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+321285,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+324290,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+325460,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+326256,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+326922,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+327086,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+327089,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+329839,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+334202,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+334203,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+334274,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+334275,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+339762,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+339763,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+339764,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+339765,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+339766,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+339767,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+34035,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+344699,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+345060,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+345061,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+346073,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+346166,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+34717,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+352497,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+354811,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+363679,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+368387,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+370249,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+373935,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+374207,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+375370,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+377190,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+379014,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+379057,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+3867,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+40888,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+410003,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+410004,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+410006,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+410007,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+41016,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+41078,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+41079,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+4112,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+411477,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+411478,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+413387,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+419978,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+422441,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+423286,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+423287,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+42411,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+429033,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+429034,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+429040,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+429043,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+438337,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+438356,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+441476,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+441597,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+443802,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+443805,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+45021,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+453260,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+458030,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+458031,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+465300,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+468072,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+468073,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+485159,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+485829,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+485857,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+486622,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+486656,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+486705,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+486708,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+486973,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+486976,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+487186,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+491424,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+492646,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+493689,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+493690,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+493692,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+493693,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+493695,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+493696,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+493698,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+493699,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+503204,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+503225,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+503637,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+505119,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+505120,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+505446,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+505447,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+510440,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+510441,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+533374,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+534353,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+534354,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+534356,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+534357,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+534359,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+534360,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+534362,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+534363,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+546680,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+55020,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+5760702,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+579072,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+582375,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+583211,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+586829,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+593153,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+59947,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+60303,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+603094,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+603132,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+60365,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+60485,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+60536,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+60815,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+609337,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+609338,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+609506,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+61060,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+61234,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+61266,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+61448,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+614533,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+614536,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+61787,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+61859,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+626865,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+630888,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+646858,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+647464,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+650239,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+652145,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+659627,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+664624,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+664625,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+664627,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+664628,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+664630,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+664631,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+665379,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+666947,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+66870,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+676577,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+676578,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+681448,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+681484,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+698658,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+700693,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+700694,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+715168,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+715201,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+717099,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+717119,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+718555,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+718826,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+719129,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+719726,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+720544,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+720714,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+720971,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+725836,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+726992,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+7285,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+728512,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+730818,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+731936,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+731937,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+731939,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+731940,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+736075,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+742155,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+748682,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+748708,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+751195,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+754005,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+754789,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+755663,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+763015,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+764612,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+774298,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+774319,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+77965,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+81051,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+82151,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+828251,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+828815,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+828836,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+829940,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+830860,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+830880,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+833411,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+833435,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+834211,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+834977,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+835254,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+842701,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+842702,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+842704,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+842705,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+848232,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+855781,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+859555,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+860281,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+863968,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+863990,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+871627,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+872349,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+873271,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+873314,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+874775,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+874778,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+87564,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+88078,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+90206,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+94515,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+95071,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+95072,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+95424,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+95475,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+95600,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+96881,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+98584,,,,,,unmatched,transformer_tertiary_stub,,1a_tertiary_winding_stub (CIM artifact - expected N/A),Accept as N/A or exclude; not in BRANCH by design
+281629,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+281723,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+298306,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+298358,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+298402,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+298403,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+298404,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+298458,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+298527,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+298528,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+298588,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+298589,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+298590,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+3320,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+341321,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+341322,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+341323,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+341333,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+341334,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+341335,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+34553,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+3954,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+39803,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+4542,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+4800,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+493740,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+493741,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+493742,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+493743,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+493744,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+493745,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+493746,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+493747,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+493748,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+493749,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+512751,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+539289,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+539290,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+560260,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+647607,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+661650,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+664711,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+676201,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+676202,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+700274,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+700287,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+72989,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+823800,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+839627,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+847498,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+847499,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+851624,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+871319,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+871578,,,,,,unmatched,generation_plant_internal,,1b_gen_plant_internal (behind interconnection - expected N/A),Accept as N/A or exclude; not in bulk BRANCH
+279094,,,,,,unmatched,transformer_other,,2_unmatched_genuine_REVIEW,Investigate: reclassify as gen-internal OR real BRANCH data gap
+279508,,,,,,unmatched,transformer_other,,2_unmatched_genuine_REVIEW,Investigate: reclassify as gen-internal OR real BRANCH data gap
+279751,,,,,,unmatched,transformer_other,,2_unmatched_genuine_REVIEW,Investigate: reclassify as gen-internal OR real BRANCH data gap
+306104,,,,,,unmatched,transformer_other,,2_unmatched_genuine_REVIEW,Investigate: reclassify as gen-internal OR real BRANCH data gap
+326456,,,,,,unmatched,branch_other,,2_unmatched_genuine_REVIEW,Investigate: reclassify as gen-internal OR real BRANCH data gap
+326457,,,,,,unmatched,branch_other,,2_unmatched_genuine_REVIEW,Investigate: reclassify as gen-internal OR real BRANCH data gap
+61259,,,,,,unmatched,transformer_other,,2_unmatched_genuine_REVIEW,Investigate: reclassify as gen-internal OR real BRANCH data gap
+662091,,,,,,unmatched,transformer_other,,2_unmatched_genuine_REVIEW,Investigate: reclassify as gen-internal OR real BRANCH data gap
+1529,60081630.0,Line,,,1,matched,,absent_from_dampsse,3a_mapped_but_no_buses_FIX_SOURCE,"Chase missing from/to bus in BRANCH/CIM, then DAM-map"
+1940,60084234.0,Line,,,1,matched,,absent_from_dampsse,3a_mapped_but_no_buses_FIX_SOURCE,"Chase missing from/to bus in BRANCH/CIM, then DAM-map"
+3133,60087026.0,Line,,,1,matched,,absent_from_dampsse,3a_mapped_but_no_buses_FIX_SOURCE,"Chase missing from/to bus in BRANCH/CIM, then DAM-map"
+1743,60003091.0,Line,MARYATTP2A,ARPT2A,1,matched,,,3b_mapped_no_DAM_no_auction_FIX_MAPPING,Add manual DAM mapping or confirm absent from DAM model
+2061,60002572.0,Line,CRLTN1_8,MONETY2_8,1,matched,,,3b_mapped_no_DAM_no_auction_FIX_MAPPING,Add manual DAM mapping or confirm absent from DAM model
+280066,60003693.0,Transformer,CEDARP_B138B,CEDARP_A1STR,A1,duplicate_resolved_by_latest_id,,,3b_mapped_no_DAM_no_auction_FIX_MAPPING,Add manual DAM mapping or confirm absent from DAM model
+280071,60004978.0,Transformer,GRNBYU__B69A,GRNBYU_A5STR,A5,duplicate_resolved_by_latest_id,,,3b_mapped_no_DAM_no_auction_FIX_MAPPING,Add manual DAM mapping or confirm absent from DAM model
+836689,60101510.0,Line,TREDWAY_8,KOCHTAP,1,matched,,absent_from_dampsse,3b_mapped_no_DAM_no_auction_FIX_MAPPING,Add manual DAM mapping or confirm absent from DAM model
+725820,,,,,,unmatched,,,9_other,
+725835,,,,,,unmatched,,,9_other,
+754052,,,,,,unmatched,,,9_other,
