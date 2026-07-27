@@ -216,26 +216,54 @@ git commit -m "feat(network): build in-memory CIM topology graph from the export
   - `transformer_winding_groups(cim: pd.DataFrame) -> list[dict]`
     - Returns one dict per physical multi-winding transformer:
       `{"substation": str, "star_bus": str, "ckt": str, "winding_teids": list[str]}`.
-    - Grouping key: transformer rows sharing `(Substation1, star bus, CircuitIdentifier)`, where **star bus** is the bus common to every winding in the candidate group. Implementation: group `Transformer` rows by `(Substation1, CircuitIdentifier)`, then within each, find the bus number appearing in every row's `{BusNumber1, BusNumber2}`; that common bus is the star bus. Only emit groups with >= 2 windings that share a single common bus.
+    - **Grouping via the topology graph (revised after a real-data prototype).**
+      Build the graph with `build_graph(cim)`. A **star (connectivity) bus** is a
+      graph node of degree >= 2 whose incident edges are ALL transformer windings
+      (`device_type == "Transformer"`) — i.e. a purely internal node, never a real
+      transmission bus (a real bus has at least one line edge). Emit one group per
+      such star bus; `winding_teids` are the teids on its incident edges;
+      `star_bus` is the node id; `substation`/`ckt` are taken from the windings
+      (first non-null). This is column-agnostic (the star may sit in `BusNumber1`
+      or `BusNumber2`) and naturally splits co-located transformers, each of which
+      has its own internal star bus.
+    - Rationale for the revision (do not revert to the earlier `(Substation1,
+      CircuitIdentifier)` + single-common-bus key): that key merges co-located
+      same-ckt transformers and then discards them, and hardcoding `BusNumber2` as
+      the star drops the 208 windings whose star is in `BusNumber1`. The
+      all-transformer-incidence rule recovers 445 statuses vs 313/401 for the
+      alternatives, with a clean group-size distribution (403 three-winding).
 
-- [ ] **Step 1: Write the failing test**
+- [ ] **Step 1: Write the failing tests**
+
+The existing `cim_slice.csv` fixture already distinguishes the star bus (24107,
+all-transformer) from a real bus (13429, which also carries the line 700001), so
+it exercises the internal-vs-real distinction. Add both tests:
 
 ```python
 def test_transformer_winding_groups(tests_dir):
     from branch_tracking.pipeline.network import transformer_winding_groups
     cim = pd.read_csv(tests_dir / "fixtures" / "cim_slice.csv", dtype=str)
     groups = transformer_winding_groups(cim)
-    assert len(groups) == 1
+    assert len(groups) == 1  # only star bus 24107; the real bus 13429 is excluded
     grp = groups[0]
     assert grp["substation"] == "SNDSW"
     assert grp["star_bus"] == "24107"
     assert grp["ckt"] == "2"
     assert set(grp["winding_teids"]) == {"280447", "280444", "280453"}
+
+
+def test_real_bus_not_treated_as_star(tests_dir):
+    # bus 13429 carries a transformer winding AND a line -> not an internal
+    # star, so it must never appear as a group's star_bus.
+    from branch_tracking.pipeline.network import transformer_winding_groups
+    cim = pd.read_csv(tests_dir / "fixtures" / "cim_slice.csv", dtype=str)
+    stars = {g["star_bus"] for g in transformer_winding_groups(cim)}
+    assert "13429" not in stars
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [ ] **Step 2: Run tests to verify they fail**
 
-Run: `uv run pytest branch_tracking/tests/test_network.py::test_transformer_winding_groups -v`
+Run: `uv run pytest branch_tracking/tests/test_network.py -k winding_groups -v`
 Expected: FAIL with `cannot import name 'transformer_winding_groups'`.
 
 - [ ] **Step 3: Implement the helper**
@@ -244,24 +272,29 @@ Append to `branch_tracking/pipeline/network.py`:
 
 ```python
 def transformer_winding_groups(cim: pd.DataFrame) -> list[dict]:
-    xf = cim[cim["PsseType"] == "Transformer"].copy()
+    """Group transformer windings by their internal star (connectivity) bus,
+    using the topology graph. A star bus is a graph node of degree >= 2 whose
+    incident edges are ALL transformer windings (no line edges) -- a purely
+    internal node, never a real transmission bus. Column-agnostic (the star may
+    sit in BusNumber1 or BusNumber2) and splits co-located transformers, each of
+    which has its own star bus.
+    """
+    g = build_graph(cim)
     groups = []
-    for (sub, ckt), g in xf.groupby(["Substation1", "CircuitIdentifier"], dropna=False):
-        if len(g) < 2:
+    for node in g.nodes():
+        incident = list(g.edges(node, data=True))
+        if len(incident) < 2:
             continue
-        bus_sets = [
-            {_clean(r["BusNumber1"]), _clean(r["BusNumber2"])} - {None}
-            for _, r in g.iterrows()
-        ]
-        common = set.intersection(*bus_sets) if bus_sets else set()
-        if len(common) != 1:
-            continue  # no single shared star bus -> not one physical unit
-        star = next(iter(common))
+        if not all(d.get("device_type") == "Transformer" for _, _, d in incident):
+            continue
+        teids = [d.get("teid") for _, _, d in incident]
+        substation = next((d.get("substation") for _, _, d in incident if d.get("substation")), None)
+        ckt = next((d.get("ckt") for _, _, d in incident if d.get("ckt")), None)
         groups.append({
-            "substation": _clean(sub),
-            "star_bus": star,
-            "ckt": _clean(ckt),
-            "winding_teids": [_clean(t) for t in g["TransmissionElementId"]],
+            "substation": substation,
+            "star_bus": node,
+            "ckt": ckt,
+            "winding_teids": teids,
         })
     return groups
 ```
@@ -480,7 +513,7 @@ if __name__ == "__main__":
 - [ ] **Step 2: Run the script**
 
 Run: `uv run branch_tracking/scripts/adhoc/infer_tertiary_status.py`
-Expected: prints a summary; `inferred_closed` count in the low-400s (~430), plus `conflict`/`all_siblings_open`/`no_evidence` buckets; writes the CSV.
+Expected: prints a summary; `inferred_closed` count ~445, plus `conflict`/`all_siblings_open`/`no_evidence` buckets; writes the CSV.
 
 - [ ] **Step 3: Sanity-check the output against the known SNDSW case**
 
@@ -490,7 +523,7 @@ Expected: teid `280453` (MR1T) present with `inferred_status=Closed`, `source=in
 - [ ] **Step 4: Cross-check the recovered count against the gap worklist**
 
 Run: `uv run python -c "import pandas as pd; d=pd.read_csv('branch_tracking/output/inferred_tertiary_status.csv', dtype=str); print('recovered:', d.inferred_status.notna().sum())"`
-Expected: recovered count is ~430 and does not exceed the 451 `transformer_tertiary_stub` teids from `status_gaps_worklist.csv`.
+Expected: recovered count is ~445 and does not exceed the 451 `transformer_tertiary_stub` teids from `status_gaps_worklist.csv`.
 
 - [ ] **Step 5: Commit**
 
