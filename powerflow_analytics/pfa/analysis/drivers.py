@@ -51,6 +51,7 @@ def classify_constraints(
     ticket_lookup=None,
     window: tuple[str, str] | None = None,
     ticket_top_n: int = 25,
+    bus_names: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
     """Attach DRIVER_CLASS + top outage evidence to the ranked constraint table.
 
@@ -80,12 +81,24 @@ def classify_constraints(
                         and i < ticket_top_n and pd.notna(t["BRANCHID_OUTAGE"])):
                     bid = int(t["BRANCHID_OUTAGE"])
                     if bid not in ticket_cache:
+                        from ..extract.outages import teid_for_branch, teids_for_endpoints
+
                         try:
-                            from ..extract.outages import teid_for_branch
                             teid = teid_for_branch(bid)
                         except Exception:
                             teid = None
-                        ticket_cache[bid] = ticket_lookup(bid, *window, teid=teid)
+                        found = ticket_lookup(bid, *window, teid=teid)
+                        if not len(found) and teid is None and bus_names is not None:
+                            # id not in the map (e.g. an internal winding):
+                            # resolve via the outage's endpoint bus names
+                            nm = bus_names.set_index("BUSNUM")["BUSNAME"]
+                            names = [nm.get(int(t[k])) for k in
+                                     ("FROMNUM_OUTAGE", "TONUM_OUTAGE") if pd.notna(t.get(k))]
+                            for cand in teids_for_endpoints(names):
+                                found = ticket_lookup(bid, *window, teid=cand)
+                                if len(found):
+                                    break
+                        ticket_cache[bid] = found
                     tickets = ticket_cache[bid]
                     if len(tickets):
                         cls = "outage-driven"

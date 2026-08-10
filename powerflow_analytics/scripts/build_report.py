@@ -61,7 +61,8 @@ def main() -> None:
         window = (str(simdates.min().date()), str(simdates.max().date()))
         ticket_lookup = lookup_branch_tickets
 
-    ranked = drivers.classify_constraints(ranked, tf_sum, ticket_lookup, window)
+    ranked = drivers.classify_constraints(ranked, tf_sum, ticket_lookup, window,
+                                          ticket_top_n=60, bus_names=bus_names)
     ranked.to_csv(out_dir / "ranked_constraints.csv", index=False)
 
     base = constraints.base_case_binders(branch)

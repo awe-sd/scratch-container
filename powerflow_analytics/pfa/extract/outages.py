@@ -43,6 +43,18 @@ def teid_for_branch(branch_id: int) -> int | None:
     return None
 
 
+def teids_for_endpoints(names: list[str], limit: int = 3) -> list[int]:
+    """Fallback when a branch id isn't in the map (e.g. tofinder reports an
+    internal transformer winding): devices touching any of these bus names.
+    Star-bus names resolve a winding to its parent transformer bank."""
+    names = [str(n).strip() for n in names if n and str(n).strip()]
+    if not names:
+        return []
+    m = branch_map()
+    hit = m[m["from_bus"].isin(names) | m["to_bus"].isin(names)]
+    return [int(t) for t in hit["teid"].dropna().unique()[:limit]]
+
+
 def _query_awdb(sql: str) -> pd.DataFrame:
     config.configure()
     from awconnect import db

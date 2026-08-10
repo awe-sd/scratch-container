@@ -20,6 +20,7 @@ import pandas as pd
 from pfa import config
 from pfa.analysis import fastscan, marginal_units, offer_lambda, valuation
 from pfa.cache import StudyCache
+from pfa.extract import buskv
 
 MIN_BIND = 10
 LAM_CAP_FILTER = 3499  # exclude solver-cap (3500-flat) constraints
@@ -62,8 +63,9 @@ def main() -> None:
         if lam_p50_all >= 500 or lam_p50_all == 0.0:
             continue  # penalty-tier (500/3500 flat) or no LP price at all
         limit = float(r.get("LIMIT_MVA") or 0)
-        # 345 kV heuristic: study bus names end _5/5A at 345, _8 at 138, _9 at 69
-        kv345 = limit >= 900 or str(r["FROMNAME"]).rstrip("AB").endswith("5")
+        f, t = r["CONSTRAINT"].split("-")[:2]
+        kv = buskv.constraint_kv(int(f), int(t))
+        kv345 = (kv or 0) >= 345
         # on-peak = sampled HE12/HE18 pooled; off-peak = sampled HE3
         p12, p18, p3 = (stats.p_bind.get(h, 0.0) for h in (12, 18, 3))
         tickets_all = r.get("DRIVER_TICKETS_ALL")
@@ -73,7 +75,8 @@ def main() -> None:
         rows.append({
             "Constraint": r["CONSTRAINT"],
             "From": r["FROMNAME"], "To": r["TONAME"],
-            "kV": "345" if kv345 else "<345",
+            "kV": int(kv) if kv else None,
+            "_kv345": kv345,
             "Limit MVA": int(limit),
             "Driver": r.get("DRIVER_CLASS", ""),
             "Tickets (status/reason)": tickets_all,
@@ -87,7 +90,7 @@ def main() -> None:
 
     df = pd.DataFrame(rows)
     # 345 kV targets first, then by whole-month congestion rent
-    df = df.sort_values(["kV", "Month rent ($)"], ascending=[True, False]).reset_index(drop=True)
+    df = df.sort_values(["_kv345", "Month rent ($)"], ascending=[False, False]).reset_index(drop=True)
 
     # top of the board: fast-scan potential headroom + independent offer-based lambda
     df["Potential headroom (MW med | %hrs stressed)"] = None
@@ -129,11 +132,12 @@ def main() -> None:
     td.grp{white-space:normal;max-width:26rem;font-size:0.75rem;color:#555}
     """
     body_rows = []
+    show_cols = [c for c in df.columns if not c.startswith("_")]
     for _, r in df.iterrows():
-        cls = ' class="hi"' if r["kV"] == "345" else ""
-        tds = "".join(f"<td>{'' if pd.isna(r[c]) else r[c]}</td>" for c in df.columns)
+        cls = ' class="hi"' if r["_kv345"] else ""
+        tds = "".join(f"<td>{'' if pd.isna(r[c]) else r[c]}</td>" for c in show_cols)
         body_rows.append(f"<tr{cls}>{tds}</tr>")
-    header = "".join(f"<th>{c}</th>" for c in df.columns)
+    header = "".join(f"<th>{c}</th>" for c in show_cols)
 
     html = f"""<!doctype html><html><head><meta charset="utf-8">
 <title>High-confidence CRR targets — study {args.study}</title><style>{style}</style></head><body>
@@ -160,7 +164,7 @@ RUC/mitigation capping λ, 3-hour study sampling.</p>
 </body></html>"""
     html_path = out_dir / "high_confidence_constraints.html"
     html_path.write_text(html)
-    print(df.head(30).to_string(index=False))
+    print(df[show_cols].head(30).to_string(index=False))
     print(f"\n-> {html_path}\n-> {csv_path}")
 
 
