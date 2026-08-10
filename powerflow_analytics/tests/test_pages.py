@@ -52,3 +52,67 @@ def test_app_imports_and_registers_pages():
     import dash
     paths = {p["path"] for p in dash.page_registry.values()}
     assert "/" in paths and "/comparison" in paths or "/" in paths
+
+
+def test_page_registry_has_exactly_one_explorer_entry():
+    """Regression test: importing app.app (Dash auto-discovers the pages
+    folder) and importing app.pages.explorer directly (as this test module's
+    own top-level `from app.pages import explorer` does) must resolve to the
+    SAME module object under the SAME dash.page_registry key. If they didn't,
+    register_page() and the module's two @callback decorators would each run
+    twice, leaving two registry entries both claiming path "/". Checking the
+    registry dict's keys (not a set of paths, which would collapse duplicate
+    keys with the same path into one and hide the bug) is the point here.
+    """
+    from app.app import app  # noqa: F401
+    import dash
+
+    explorer_entries = {
+        key: entry for key, entry in dash.page_registry.items()
+        if entry["path"] == "/"
+    }
+    assert len(explorer_entries) == 1, (
+        f"expected exactly one page_registry entry for path '/', "
+        f"got {list(explorer_entries.keys())}"
+    )
+    # The direct import (used by this test module's own import statement above)
+    # must be the identical module object dash registered — not a second copy.
+    (registered_module,) = [
+        dash.page_registry[k]["module"] for k in explorer_entries
+    ]
+    assert sys.modules[registered_module] is explorer
+
+
+def test_load_grid_callback_returns_rows_and_info(monkeypatch):
+    bundle = _bundle()
+    monkeypatch.setattr(explorer.data, "load_study", lambda sid: bundle)
+
+    row_data, info = explorer._load_grid(bundle.study_id)
+
+    assert row_data, "expected non-empty rowData from a bundle with a binding constraint"
+    assert row_data[0]["CONSTRAINT"] == "10-11-1@CTGA"
+    assert bundle.study_name in info
+    assert str(bundle.n_runs) in info
+
+
+def test_load_grid_callback_handles_no_study_selected():
+    row_data, info = explorer._load_grid(None)
+    assert row_data == []
+    assert "no analyzed studies" in info.lower()
+
+
+def test_drilldown_callback_returns_figure_and_tables(monkeypatch):
+    bundle = _bundle()
+    monkeypatch.setattr(explorer.data, "load_study", lambda sid: bundle)
+    selected = [{"CONSTRAINT": "10-11-1@CTGA"}]
+
+    fig, mu_rows, tf_rows = explorer._drilldown(selected, bundle.study_id)
+
+    assert len(fig.data) >= 1
+    assert mu_rows and mu_rows[0]["LABEL"] == "U1"
+    assert tf_rows and tf_rows[0]["OUTAGE_GROUP"] == "X - Y"
+
+
+def test_drilldown_callback_handles_no_selection():
+    fig, mu_rows, tf_rows = explorer._drilldown(None, 99)
+    assert mu_rows == [] and tf_rows == []
