@@ -115,7 +115,7 @@ def test_classify_constraints_ticket_path():
     })
     tf_sum = drivers.tofinder_summary(tf)
 
-    def fake_lookup(branch_id, start, end):
+    def fake_lookup(branch_id, start, end, teid=None):
         assert branch_id == 60000099
         return pd.DataFrame({"outageIdentifier": ["TCK123"]})
 

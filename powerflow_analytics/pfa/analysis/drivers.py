@@ -68,6 +68,7 @@ def classify_constraints(
     for i, (_, r) in enumerate(ranked.iterrows()):
         c = r["CONSTRAINT"]
         cls, evidence, ticket, ticket_status = "baseline", None, None, None
+        tk = {}
         if c in top.index:
             t = top.loc[c]
             frac = t["FLOW_FRAC"]
@@ -79,7 +80,12 @@ def classify_constraints(
                         and i < ticket_top_n and pd.notna(t["BRANCHID_OUTAGE"])):
                     bid = int(t["BRANCHID_OUTAGE"])
                     if bid not in ticket_cache:
-                        ticket_cache[bid] = ticket_lookup(bid, *window)
+                        try:
+                            from ..extract.outages import teid_for_branch
+                            teid = teid_for_branch(bid)
+                        except Exception:
+                            teid = None
+                        ticket_cache[bid] = ticket_lookup(bid, *window, teid=teid)
                     tickets = ticket_cache[bid]
                     if len(tickets):
                         cls = "outage-driven"
@@ -87,7 +93,13 @@ def classify_constraints(
                         ticket = str(t0.get("outageIdentifier", ""))
                         status = t0.get("statusName")
                         ticket_status = str(status).strip() if pd.notna(status) else None
+                        tk = {f"DRIVER_TICKET_{k}": t0.get(src) for k, src in [
+                            ("CURRENT_STATUS", "currentStatusName"),
+                            ("START", "currentStartDate"), ("END", "currentEndDate"),
+                            ("CANCELLED", "cancellationDate"),
+                            ("OC", "OC"), ("REV", "revNum"),
+                        ]}
         rows.append({"CONSTRAINT": c, "DRIVER_CLASS": cls,
                      "DRIVER_OUTAGE_GROUP": evidence, "DRIVER_TICKET": ticket,
-                     "DRIVER_TICKET_STATUS": ticket_status})
+                     "DRIVER_TICKET_STATUS": ticket_status, **tk})
     return ranked.merge(pd.DataFrame(rows), on="CONSTRAINT", how="left")
