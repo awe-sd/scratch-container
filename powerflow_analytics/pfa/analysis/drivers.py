@@ -41,7 +41,8 @@ def tofinder_summary(tofinder: pd.DataFrame) -> pd.DataFrame:
     out["FLOW_FRAC"] = (out["MEAN_FLOWDELTA"].abs() / out["MEAN_PREFLOW"].abs()).where(
         out["MEAN_PREFLOW"].abs() > 1e-6
     )
-    return out.sort_values(["CONSTRAINT", "MEAN_FLOWDELTA"], key=abs, ascending=False)
+    out["_impact"] = out["MEAN_FLOWDELTA"].abs()
+    return out.sort_values(["CONSTRAINT", "_impact"], ascending=[True, False]).drop(columns="_impact")
 
 
 def classify_constraints(
@@ -49,6 +50,7 @@ def classify_constraints(
     tofinder_sum: pd.DataFrame,
     ticket_lookup=None,
     window: tuple[str, str] | None = None,
+    ticket_top_n: int = 25,
 ) -> pd.DataFrame:
     """Attach DRIVER_CLASS + top outage evidence to the ranked constraint table.
 
@@ -61,8 +63,9 @@ def classify_constraints(
         .drop_duplicates("CONSTRAINT")
         .set_index("CONSTRAINT")
     )
+    ticket_cache: dict[int, pd.DataFrame] = {}
     rows = []
-    for _, r in ranked.iterrows():
+    for i, (_, r) in enumerate(ranked.iterrows()):
         c = r["CONSTRAINT"]
         cls, evidence, ticket = "baseline", None, None
         if c in top.index:
@@ -71,8 +74,13 @@ def classify_constraints(
             if pd.notna(frac) and frac >= DRIVER_FLOWDELTA_FRAC:
                 evidence = t["OUTAGE_GROUP"]
                 cls = "topology-suspect"
-                if ticket_lookup is not None and window is not None and pd.notna(t["BRANCHID_OUTAGE"]):
-                    tickets = ticket_lookup(int(t["BRANCHID_OUTAGE"]), *window)
+                # SQL Server lookups only for the head of the ranking, memoized per branch
+                if (ticket_lookup is not None and window is not None
+                        and i < ticket_top_n and pd.notna(t["BRANCHID_OUTAGE"])):
+                    bid = int(t["BRANCHID_OUTAGE"])
+                    if bid not in ticket_cache:
+                        ticket_cache[bid] = ticket_lookup(bid, *window)
+                    tickets = ticket_cache[bid]
                     if len(tickets):
                         cls = "outage-driven"
                         ticket = str(tickets.iloc[0].get("outageIdentifier", ""))

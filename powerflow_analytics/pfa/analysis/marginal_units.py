@@ -14,11 +14,18 @@ import pandas as pd
 from .constraints import BINDING_PCT, constraint_key
 
 
+def bus_name_map(branch: pd.DataFrame) -> pd.DataFrame:
+    """BUSNUM -> bus name, harvested from OUTBRANCH2 endpoints."""
+    f = branch[["FROMNUM", "FROMNAME"]].rename(columns={"FROMNUM": "BUSNUM", "FROMNAME": "BUSNAME"})
+    t = branch[["TONUM", "TONAME"]].rename(columns={"TONUM": "BUSNUM", "TONAME": "BUSNAME"})
+    return pd.concat([f, t]).dropna().drop_duplicates("BUSNUM")
+
+
 def marginal_units_for_constraint(
     ctgviol: pd.DataFrame,
     gen: pd.DataFrame,
     constraint: str,
-    genref: pd.DataFrame | None = None,
+    bus_names: pd.DataFrame | None = None,
     genunit: pd.DataFrame | None = None,
     top_n: int = 20,
 ) -> pd.DataFrame:
@@ -31,8 +38,9 @@ def marginal_units_for_constraint(
     if not binding_runs:
         raise ValueError(f"constraint {constraint!r} has no binding runs")
 
-    g = gen[gen["GENSTATUS"].astype(str).str.lower().isin(["closed", "1", "true", "on"])
-            | gen["GENSTATUS"].isna()].copy()
+    # GENSTATUS is uniformly 0 in current studies — not a usable online flag.
+    # Units that never move (LPDELTAMW always 0) drop out via DIFF_MW ranking.
+    g = gen.copy()
     g["is_binding_run"] = g["RUNID"].isin(binding_runs)
 
     piv = g.groupby(["BUSNUM", "ID", "is_binding_run"])["LPDELTAMW"].mean().unstack()
@@ -50,16 +58,17 @@ def marginal_units_for_constraint(
     ).reset_index()
     out = piv.merge(meta, on=["BUSNUM", "ID"], how="left")
 
-    if genref is not None:
-        out = out.merge(
-            genref[["BUSNUM", "ID", "GENUNITID"]].drop_duplicates(["BUSNUM", "ID"]),
-            on=["BUSNUM", "ID"], how="left",
+    if bus_names is not None:
+        out = out.merge(bus_names, on="BUSNUM", how="left")
+    if genunit is not None:
+        # OUTGENREF has no rows for current ERCOT studies; LABEL -> UNITCODE is the
+        # only direct bridge into the gen master, populated for ~12% of units.
+        bridge = genunit[["UNITCODE", "GENUNITID", "UNITNAME", "RESOURCE_TYPE"]].dropna(
+            subset=["UNITCODE"]
+        ).drop_duplicates("UNITCODE")
+        out = out.merge(bridge, left_on="LABEL", right_on="UNITCODE", how="left").drop(
+            columns="UNITCODE"
         )
-        if genunit is not None:
-            out = out.merge(
-                genunit[["GENUNITID", "UNITNAME", "BUSNAME", "RESOURCE_TYPE"]],
-                on="GENUNITID", how="left",
-            )
 
     out["ABS_DIFF"] = out["DIFF_MW"].abs()
     out = out.sort_values("ABS_DIFF", ascending=False).drop(columns="ABS_DIFF")

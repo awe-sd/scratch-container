@@ -31,8 +31,8 @@ def main() -> None:
     gen = cache.load("outgen2")
     tofinder = cache.load("outtofindermax2")
     branch = cache.load("outbranch2")
-    genref = cache.load("outgenref")
     genunit = cache.load("genunit")
+    bus_names = marginal_units.bus_name_map(branch)
 
     out_dir = config.OUTPUT_ROOT / f"study_{args.study}"
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -57,7 +57,7 @@ def main() -> None:
     mu_frames = []
     for c in ranked[ranked["N_RUNS_BINDING"] > 0].head(args.top)["CONSTRAINT"]:
         mu_frames.append(
-            marginal_units.marginal_units_for_constraint(ctgviol, gen, c, genref, genunit)
+            marginal_units.marginal_units_for_constraint(ctgviol, gen, c, bus_names, genunit)
         )
     mu = pd.concat(mu_frames, ignore_index=True) if mu_frames else pd.DataFrame()
     mu.to_csv(out_dir / "marginal_units.csv", index=False)
