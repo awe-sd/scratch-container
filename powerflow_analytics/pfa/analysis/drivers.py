@@ -97,8 +97,14 @@ def classify_constraints(
                             ("CURRENT_STATUS", "currentStatusName"),
                             ("START", "currentStartDate"), ("END", "currentEndDate"),
                             ("CANCELLED", "cancellationDate"),
-                            ("OC", "OC"), ("REV", "revNum"),
+                            ("OC", "OC"), ("REV", "revNum"), ("REASON", "reasonName"),
                         ]}
+                        # every ticket on the driving device, when there are several
+                        tk["DRIVER_TICKETS_ALL"] = "; ".join(
+                            f"{row.get('outageIdentifier')}"
+                            f" ({str(row.get('statusName') or '').strip()}"
+                            f"/{str(row.get('reasonName') or '?').strip()})"
+                            for _, row in tickets.iterrows())
         rows.append({"CONSTRAINT": c, "DRIVER_CLASS": cls,
                      "DRIVER_OUTAGE_GROUP": evidence, "DRIVER_TICKET": ticket,
                      "DRIVER_TICKET_STATUS": ticket_status, **tk})

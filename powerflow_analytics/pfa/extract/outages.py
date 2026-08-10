@@ -82,7 +82,7 @@ def lookup_branch_tickets(
               AND (plannedEndDate >= '{window_start}' OR plannedEndDate IS NULL)
             ORDER BY revNum DESC, ReportTime DESC
         )
-        SELECT t.*, s.status AS statusName,
+        SELECT t.*, s.status AS statusName, rs.Reason AS reasonName,
                cs.status AS currentStatusName,
                st.plannedStartDate AS currentStartDate,
                st.plannedEndDate AS currentEndDate,
@@ -93,6 +93,7 @@ def lookup_branch_tickets(
         LEFT JOIN AW.dbo.toState st ON st.toStateId = t.toStateId
         LEFT JOIN AW.dbo.toStatus s ON s.statusID = t.statusID
         LEFT JOIN AW.dbo.toStatus cs ON cs.statusID = st.statusID
+        LEFT JOIN AW.dbo.toReason rs ON rs.ReasonID = t.ReasonID
         WHERE t.rn = 1
         ORDER BY t.plannedStartDate
     """
