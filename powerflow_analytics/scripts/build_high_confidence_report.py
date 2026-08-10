@@ -1,9 +1,14 @@
-"""HTML report: high-confidence CRR target constraints for one study.
+"""HTML report: CRR target constraints for one study — every binding constraint,
+every analysis stage.
 
-Shortlist = outage-driven constraints whose driving ticket is Approved,
-lambda below the solver cap, binding in >= MIN_BIND runs. Each gets the 5x16
-$/MWh valuation (per 1.0 SF on the flowgate) and, where a fast-scan config
-exists, the historical-injection stress check.
+Per constraint: study binding stats (whole study, on/off-peak), driver
+verification (outage ticket via teid, or implied-outage check from the study's
+own line statuses), realized ISO market history (ID-joined CONGHRPRICE),
+independent offer-based lambda, fast-scan stressed-hours headroom, and the
+cheapest path-opt path (FWD-auction cost mark). Penalty-tier (flat 500/3500)
+constraints are kept and flagged: no economic dispatch resolves them, so ERCOT
+is likely to deny the driving outage — high risk, but cheap paths may still
+be worth it.
 
 Usage: uv run powerflow_analytics/scripts/build_high_confidence_report.py --study 14411
 """
@@ -18,18 +23,20 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import pandas as pd
 
 from pfa import config
-from pfa.analysis import fastscan, marginal_units, offer_lambda, valuation
+from pfa.analysis import fastscan, marginal_units, market, offer_lambda, valuation
 from pfa.cache import StudyCache
-from pfa.extract import buskv
+from pfa.extract import buskv, popt
 
-MIN_BIND = 10
-LAM_CAP_FILTER = 3499  # exclude solver-cap (3500-flat) constraints
+MIN_BIND = 1  # every last one
+ONPEAK_BLOCKS = {12: 10, 18: 6}  # sampled hour -> on-peak hours represented
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--study", type=int, required=True)
     ap.add_argument("--month", default="2026-09")
+    ap.add_argument("--history-start", default="2026-05-01",
+                    help="start date for realized DA congestion history")
     args = ap.parse_args()
 
     out_dir = config.OUTPUT_ROOT / f"study_{args.study}"
@@ -37,135 +44,186 @@ def main() -> None:
     runs = cache.load("opfrun")
     outcon = cache.load("outconstraint2")
     study_name = cache.load("opfstudy")["STUDYNAME"].iloc[0]
-    year, month = (int(x) for x in args.month.split("-"))
 
-    # ALL binding constraints (every run/scenario), not just the ticket-verified list
-    # ranked_constraints.csv carries the DRIVER_* ticket columns from build_report --tickets
     ranked = pd.read_csv(out_dir / "ranked_constraints.csv", low_memory=False)
-    short = ranked[
-        (ranked["MAX_SHADOW"].fillna(0) < LAM_CAP_FILTER)
-        & (ranked["N_RUNS_BINDING"] >= MIN_BIND)
-        & (ranked["TOTAL_RENT"] > 0)
-    ].drop_duplicates("CONSTRAINT")
+    short = ranked[(ranked["N_RUNS_BINDING"] >= MIN_BIND)
+                   & (ranked["TOTAL_RENT"] > 0)].drop_duplicates("CONSTRAINT")
 
     ctgviol = cache.load("outctgviol2")
     gen = cache.load("outgen2")
     branch = cache.load("outbranch2")
     genunit = cache.load("genunit")
     bus_names = marginal_units.bus_name_map(branch)
+    tf_sum = pd.read_csv(out_dir / "tofinder_summary.csv")
+    top_drv = (tf_sum.reindex(tf_sum["MEAN_FLOWDELTA"].abs().sort_values(ascending=False).index)
+               .drop_duplicates("CONSTRAINT").set_index("CONSTRAINT"))
+    cutoff = f"{pd.to_datetime(runs['SIMDATE']).dt.year.mode().iloc[0]}-09-15"
 
     rows = []
     for _, r in short.iterrows():
+        c = r["CONSTRAINT"]
         has_ticket = pd.notna(r.get("DRIVER_TICKET")) and pd.notna(r.get("DRIVER_TICKET_START"))
-        # binding stats across the WHOLE study (no window conditioning)
-        stats = valuation.binding_stats(outcon, runs, r["CONSTRAINT"], None)
-        lam_p50_all = float(stats.lam["p50"].max()) if len(stats.lam) else 0.0
-        if lam_p50_all >= 500 or lam_p50_all == 0.0:
-            continue  # penalty-tier (500/3500 flat) or no LP price at all
+        stats = valuation.binding_stats(outcon, runs, c, None)
+        lam_p50 = float(stats.lam["p50"].max()) if len(stats.lam) else None
+        penalty = lam_p50 is not None and lam_p50 >= 500
         limit = float(r.get("LIMIT_MVA") or 0)
-        f, t = r["CONSTRAINT"].split("-")[:2]
+        f, t = c.split("-")[:2]
         kv = buskv.constraint_kv(int(f), int(t))
-        kv345 = (kv or 0) >= 345
-        # on-peak = sampled HE12/HE18 pooled; off-peak = sampled HE3
         p12, p18, p3 = (stats.p_bind.get(h, 0.0) for h in (12, 18, 3))
+
         tickets_all = r.get("DRIVER_TICKETS_ALL")
         if pd.isna(tickets_all) if not isinstance(tickets_all, str) else not tickets_all:
             tickets_all = (f"{r.get('DRIVER_TICKET')} ({r.get('DRIVER_TICKET_STATUS')}"
                            f"/{r.get('DRIVER_TICKET_REASON', '?')})") if has_ticket else None
+        # no constraint skipped: unticketed drivers get the implied-outage check
+        # (driving line Closed pre-cutoff, Open after — from the study itself)
+        driver = r.get("DRIVER_CLASS", "")
+        if driver in ("topology-suspect", "") and c in top_drv.index:
+            d = top_drv.loc[c]
+            if pd.notna(d.get("FROMNUM_OUTAGE")):
+                v = market.implied_outage_check(branch, runs, int(d["FROMNUM_OUTAGE"]),
+                                                int(d["TONUM_OUTAGE"]), str(d["CKT_OUTAGE"]), cutoff)
+                if v:
+                    driver = v
         rows.append({
-            "Constraint": r["CONSTRAINT"],
-            "From": r["FROMNAME"], "To": r["TONAME"],
-            "kV": int(kv) if kv else None,
-            "_kv345": kv345,
+            "Constraint": c, "From": r["FROMNAME"], "To": r["TONAME"],
+            "kV": int(kv) if kv else None, "_kv345": (kv or 0) >= 345,
             "Limit MVA": int(limit),
-            "Driver": r.get("DRIVER_CLASS", ""),
+            "Driver": driver,
             "Tickets (status/reason)": tickets_all,
             "Outage window": (f"{pd.to_datetime(r['DRIVER_TICKET_START']):%m/%d} → "
                               f"{pd.to_datetime(r['DRIVER_TICKET_END']):%m/%d}") if has_ticket else None,
             "P(bind) on-peak": round((p12 + p18) / 2, 2),
             "P(bind) off-peak": round(p3, 2),
-            "λ LP P50": round(lam_p50_all, 1),
+            "λ LP P50": round(lam_p50, 1) if lam_p50 is not None else None,
+            "Risk": ("no-dispatch (penalty λ) — ERCOT may deny the outage" if penalty else None),
             "Month rent ($)": int(r["TOTAL_RENT"]),
+            "_bid": r.get("BRANCHID"), "_bcid": None,
         })
-
     df = pd.DataFrame(rows)
-    # 345 kV targets first, then by whole-month congestion rent
-    df = df.sort_values(["_kv345", "Month rent ($)"], ascending=[False, False]).reset_index(drop=True)
 
-    # top of the board: fast-scan potential headroom + independent offer-based lambda
-    df["Potential headroom (MW med | %hrs stressed)"] = None
-    df["λ offers (lo–hi)"] = None
-    df["Redispatch pair"] = None
-    for i in df.index[:35]:
+    # BRANCHCONTINGENCYID per constraint (for the ID join to ISO constraints)
+    cv = ctgviol.copy()
+    cv["Constraint"] = (cv["FROMNUM"].astype(int).astype(str) + "-" + cv["TONUM"].astype(int).astype(str)
+                        + "-" + cv["CKT"].astype(str).str.strip() + "@" + cv["CTGLABEL"].astype(str).str.strip())
+    bc = cv.dropna(subset=["BRANCHCONTINGENCYID"]).drop_duplicates("Constraint").set_index("Constraint")
+    df["_bcid"] = df["Constraint"].map(bc["BRANCHCONTINGENCYID"])
+    df["_bid"] = df["Constraint"].map(bc["BRANCHID"])
+
+    # enrichment — EVERY constraint goes through every stage
+    for col in ["Realized DA (hrs | P50 | max)", "Headroom stressed hrs (P10 MW | %hrs)",
+                "λ offers (lo–hi)", "Redispatch pair", "Best path ($/MWh @SF)", "Path $/SF"]:
+        df[col] = None
+    for i in df.index:
         c = df.loc[i, "Constraint"]
-        try:
-            f, t, rest = c.split("-", 2)
-            ctg = rest.split("@")[1]
+        f, t, rest = c.split("-", 2)
+        ctg = rest.split("@")[1]
+        try:  # realized ISO history (ID join)
+            if pd.notna(df.loc[i, "_bid"]) and pd.notna(df.loc[i, "_bcid"]):
+                ids = market.iso_constraint_ids(int(df.loc[i, "_bid"]), int(df.loc[i, "_bcid"]))
+                h = market.realized_history(ids, args.history_start)
+                if h:
+                    df.loc[i, "Realized DA (hrs | P50 | max)"] = (
+                        f"{h['n_hours']} | {h['p50']} | {h['max']}")
+        except Exception:
+            pass
+        try:  # fast-scan stressed-hours headroom
             cfgs = fastscan.find_configs(args.study, int(f), int(t), ctg)
             if not cfgs.empty:
                 prof = fastscan.headroom_profile(int(cfgs["CONFIG_ID"].iloc[0]))
-                df.loc[i, "Potential headroom (MW med | %hrs stressed)"] = (
-                    f"{prof['MED_HEADROOM'].median():.0f} | {prof['PCT_NEG'].max():.1f}%")
+                worst = prof.loc[prof["PCT_NEG"].idxmax()]
+                df.loc[i, "Headroom stressed hrs (P10 MW | %hrs)"] = (
+                    f"{float(worst['P10_HEADROOM']):.0f} | {float(worst['PCT_NEG']):.1f}%")
         except Exception:
             pass
-        try:
+        try:  # independent offer-based lambda (SF-filtered pair)
             est = offer_lambda.estimate(args.study, ctgviol, gen, bus_names, genunit, c)
             if est:
                 df.loc[i, "λ offers (lo–hi)"] = f"{est['lam_lo']}–{est['lam_hi']}"
                 df.loc[i, "Redispatch pair"] = est["pair"]
         except Exception:
             pass
-    csv_path = out_dir / "high_confidence_constraints.csv"
-    df.to_csv(csv_path, index=False)
+        try:  # cheapest auction path (FWD-auction cost mark)
+            paths = popt.best_paths(args.study, c)
+            if paths is not None:
+                p = paths.iloc[0]
+                df.loc[i, "Best path ($/MWh @SF)"] = (
+                    f"{p['SOURCENAME']}→{p['SINKNAME']} ${float(p['OPTIONPRICE']):.2f} @{float(p['AVG_SF']):.2f}")
+                df.loc[i, "Path $/SF"] = round(float(p["PRICE_PER_SF"]), 2)
+        except Exception:
+            pass
+
+    # edge: expected on-peak $/MWh per 1.0 SF (realized P50 λ where available,
+    # else LP P50) minus the cheapest path's cost per SF
+    def _value(row):
+        lam = None
+        rd = row["Realized DA (hrs | P50 | max)"]
+        if isinstance(rd, str):
+            lam = float(rd.split("|")[1])
+        elif pd.notna(row["λ LP P50"]):
+            lam = float(row["λ LP P50"])
+        if lam is None:
+            return None
+        onpk = (row["P(bind) on-peak"] * (ONPEAK_BLOCKS[12] + ONPEAK_BLOCKS[18]) / 16)
+        return round(onpk * lam, 2)
+
+    df["Value $/MWh/SF"] = df.apply(_value, axis=1)
+    df["Edge $/MWh/SF"] = df.apply(
+        lambda r: round(r["Value $/MWh/SF"] - r["Path $/SF"], 2)
+        if pd.notna(r["Value $/MWh/SF"]) and pd.notna(r["Path $/SF"]) else None, axis=1)
+    df["_edge_sort"] = df["Edge $/MWh/SF"].fillna(df["Value $/MWh/SF"]).fillna(-1e9)
+    df = df.sort_values(["_kv345", "_edge_sort"], ascending=[False, False]).reset_index(drop=True)
+
+    show_cols = [c for c in df.columns if not c.startswith("_")]
+    df[show_cols].to_csv(out_dir / "high_confidence_constraints.csv", index=False)
 
     style = """
     body{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;margin:2rem;color:#1a1a2e;background:#fafafa}
     h1{font-size:1.4rem} h2{font-size:1.05rem;margin-top:2rem}
-    .meta{color:#555;font-size:0.9rem;margin-bottom:1rem}
-    table{border-collapse:collapse;font-size:0.82rem;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12)}
-    th,td{border:1px solid #ddd;padding:5px 8px;text-align:right;white-space:nowrap}
+    .meta{color:#555;font-size:0.9rem;margin-bottom:1rem;max-width:80rem;line-height:1.4}
+    table{border-collapse:collapse;font-size:0.78rem;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+    th,td{border:1px solid #ddd;padding:4px 7px;text-align:right;white-space:nowrap}
     th{background:#22304a;color:#fff;position:sticky;top:0}
-    td:first-child,td:nth-child(2),td:nth-child(3),td:nth-child(4),td:nth-child(5),td:last-child{text-align:left}
+    td:first-child,td:nth-child(2),td:nth-child(3){text-align:left}
     tr:nth-child(even){background:#f4f6fa}
-    .hi{background:#e8f5e9!important;font-weight:600}
-    .note{font-size:0.85rem;color:#444;max-width:70rem;line-height:1.45}
-    td.grp{white-space:normal;max-width:26rem;font-size:0.75rem;color:#555}
+    .hi{background:#fff8e1!important;font-weight:600}
+    .risk td{color:#8a1f1f}
+    .note{font-size:0.85rem;color:#444;max-width:75rem;line-height:1.45}
     """
     body_rows = []
-    show_cols = [c for c in df.columns if not c.startswith("_")]
     for _, r in df.iterrows():
-        cls = ' class="hi"' if r["_kv345"] else ""
+        cls = []
+        if r["_kv345"]:
+            cls.append("hi")
+        if isinstance(r["Risk"], str):
+            cls.append("risk")
+        cattr = f' class="{" ".join(cls)}"' if cls else ""
         tds = "".join(f"<td>{'' if pd.isna(r[c]) else r[c]}</td>" for c in show_cols)
-        body_rows.append(f"<tr{cls}>{tds}</tr>")
+        body_rows.append(f"<tr{cattr}>{tds}</tr>")
     header = "".join(f"<th>{c}</th>" for c in show_cols)
 
     html = f"""<!doctype html><html><head><meta charset="utf-8">
-<title>High-confidence CRR targets — study {args.study}</title><style>{style}</style></head><body>
-<h1>High-confidence CRR targets — study {args.study} ({study_name}), {args.month}</h1>
-<div class="meta">Universe: ALL binding constraints across every run/scenario, binding in ≥ {MIN_BIND} runs, LP-priced,
-penalty-tier λ (flat 500/3500) excluded. <b>345 kV targets listed first (highlighted), then by whole-month
-congestion rent ($)</b>. P(bind) is across the whole study: on-peak = sampled HE12/HE18 pooled, off-peak = HE3.
-"λ offers" is the <b>independent</b> shadow-price estimate — DAM bid curves of the actual redispatch pair ÷ their
-shift-factor spread (60-day disclosure lag; lo = cheapest pair, hi = deepest pair). "λ LP" is the study's own price,
-shown for cross-check only. Potential headroom = fast-scan of historical injections on this topology
-(median headroom MW | worst-hour % of stressed hours). Tickets: all tickets on the driving device with status
-(Apprv/RatE) and outage reason. Generated {pd.Timestamp.now():%Y-%m-%d %H:%M}.</div>
+<title>CRR targets — study {args.study}</title><style>{style}</style></head><body>
+<h1>CRR targets — study {args.study} ({study_name}), {args.month}</h1>
+<div class="meta">Every binding constraint, every stage — nothing skipped. <b>345 kV first (highlighted), then by
+Edge = Value − Path cost</b> where Value $/MWh/SF = P(bind on-peak) × λ (realized DA P50 since {args.history_start}
+where the ISO ID-join found history, else study LP P50) and Path $/SF = cheapest completed path-opt path's
+FWD-auction cost mark per unit SF. Red rows: penalty-tier λ = no economic dispatch resolves the constraint —
+ERCOT is likely to deny the driving outage (high risk), but a cheap enough path can still be worth it.
+Drivers: outage-driven (ticket verified via teid), implied-verified (driving line Closed pre-{cutoff[5:]},
+Open after — from the study's own line statuses), topology-suspect (unverified), baseline.
+Realized DA = binding hours | P50 λ | max λ from CONGHRPRICE via the (BRANCHMONITOREDID, BRANCHCONTINGENCYID)
+ID join. Headroom = fast-scan worst stressed hour (P10 MW | % of hours overloaded).
+Generated {pd.Timestamp.now():%Y-%m-%d %H:%M}.</div>
 <table><thead><tr>{header}</tr></thead><tbody>{''.join(body_rows)}</tbody></table>
-<h2>How to read this</h2>
-<div class="note">
-<p><b>λ offers (lo–hi)</b> is the independent estimate: the OPF's actual redispatch pair, each unit's DAM offer curve
-(latest 60-day disclosure) and their shift-factor spread. lo ≈ first redispatch leg (often ~0 in mild conditions);
-hi ≈ pairs exhausted — the binding-regime price. The stress regime beyond that (April 2026 HCKSW analog) ran $300–600.</p>
-<p><b>Potential headroom</b>: fast-scan replays historical injections on this study's topology — median headroom MW and
-the worst hour-of-day share of hours that would overload the branch. Low headroom / high % = binds on flows actually seen.</p>
-<p><b>Risks:</b> ticket reschedule/cancel (RatE &gt; Apprv risk; reasons shown — breaker/maintenance reasons move more easily),
-RUC/mitigation capping λ, 3-hour study sampling.</p>
-<p>Highlighted rows = 345 kV. Sort: 345 kV first, then whole-month rent.</p></div>
+<h2>Caveats</h2>
+<div class="note"><p>Path settles should be short-risk checked against SPTHRPRICEHOURLYVIEW before bidding
+(a path long our constraint can be short other congestion). λ offers use the 60-day-lagged DAM disclosure.
+P(bind) equal-weights study runs — wind-scenario weighting is the next calibration step.</p></div>
 </body></html>"""
-    html_path = out_dir / "high_confidence_constraints.html"
-    html_path.write_text(html)
-    print(df[show_cols].head(30).to_string(index=False))
-    print(f"\n-> {html_path}\n-> {csv_path}")
+    (out_dir / "high_confidence_constraints.html").write_text(html)
+    print(df[show_cols].head(40).to_string(index=False))
+    print(f"\n{len(df)} constraints -> {out_dir / 'high_confidence_constraints.html'}")
 
 
 if __name__ == "__main__":

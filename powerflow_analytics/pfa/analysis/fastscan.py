@@ -35,7 +35,8 @@ def headroom_profile(config_id: int) -> pd.DataFrame:
         SELECT HOUR(TIMESTAMP) AS HR, COUNT(*) AS N,
                100 * AVG(IFF(HEADROOM < 0, 1, 0)) AS PCT_NEG,
                100 * AVG(IFF(HEADROOM_AFTER_CURTAILMENT < 0, 1, 0)) AS PCT_NEG_CURT,
-               MEDIAN(HEADROOM) AS MED_HEADROOM
+               MEDIAN(HEADROOM) AS MED_HEADROOM,
+               APPROX_PERCENTILE(HEADROOM, 0.1) AS P10_HEADROOM
         FROM AWDEV.FLOW_ANALYSIS.FAST_SCAN_RESULTS
         WHERE CONFIG_ID = {int(config_id)}
         GROUP BY 1 ORDER BY 1

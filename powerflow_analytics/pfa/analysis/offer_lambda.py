@@ -23,7 +23,11 @@ from .. import sf
 from .constraints import constraint_key
 from .valuation import PRICE_CAP
 
-N_PAIR = 4  # units per side considered for the pair
+N_PAIR = 40   # movers per side considered before shift-factor filtering
+              # (widened from 15: the |SF|>=MIN_SF filter needs a deep enough
+              # candidate pool or the top-DIFF_MW movers alone often clear
+              # neither side, leaving the pair unpopulated)
+MIN_SF = 0.03  # a unit must actually move the constraint to be its marginal pair
 
 
 def redispatch_pair(ctgviol: pd.DataFrame, gen: pd.DataFrame, constraint: str,
@@ -114,7 +118,13 @@ def estimate(study_id: int, ctgviol: pd.DataFrame, gen: pd.DataFrame,
         return None
     pair = sced_names(pair, bus_names, genunit)
     sfs = bus_shift_factors(study_id, constraint, pair["BUSNUM"].tolist())
+    sfs["SF"] = sfs["SF"].astype(float)
     pair = pair.merge(sfs, on="BUSNUM", how="left")
+    # a unit is only this constraint's marginal pair if it actually moves the
+    # constraint — filter by |SF|, then rank by redispatch effectiveness
+    pair = pair[pair["SF"].abs() >= MIN_SF].copy()
+    pair["EFF"] = (pair["DIFF_MW"] * pair["SF"]).abs()
+    pair = pair.sort_values("EFF", ascending=False).groupby("SIDE").head(4)
     up = pair[(pair["SIDE"] == "up") & pair["SCED"].notna() & pair["SF"].notna()]
     down = pair[(pair["SIDE"] == "down") & pair["SCED"].notna() & pair["SF"].notna()]
     if up.empty or down.empty:
