@@ -35,6 +35,7 @@ def main() -> None:
         "outinterface2": lambda: results.fetch_interface(args.study),
         "outgen2": lambda: results.fetch_gen(args.study),
         "outtofindermax2": lambda: results.fetch_tofinder(args.study),
+        "outconstraint2": lambda: results.fetch_constraint(args.study),
         "outgenref": lambda: gen_mapping.fetch_genref(ptoid),
         "genunit": gen_mapping.fetch_genunit,
     }

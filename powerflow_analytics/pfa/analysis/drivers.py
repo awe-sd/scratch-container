@@ -67,7 +67,7 @@ def classify_constraints(
     rows = []
     for i, (_, r) in enumerate(ranked.iterrows()):
         c = r["CONSTRAINT"]
-        cls, evidence, ticket = "baseline", None, None
+        cls, evidence, ticket, ticket_status = "baseline", None, None, None
         if c in top.index:
             t = top.loc[c]
             frac = t["FLOW_FRAC"]
@@ -83,7 +83,11 @@ def classify_constraints(
                     tickets = ticket_cache[bid]
                     if len(tickets):
                         cls = "outage-driven"
-                        ticket = str(tickets.iloc[0].get("outageIdentifier", ""))
+                        t0 = tickets.iloc[0]
+                        ticket = str(t0.get("outageIdentifier", ""))
+                        status = t0.get("statusName")
+                        ticket_status = str(status).strip() if pd.notna(status) else None
         rows.append({"CONSTRAINT": c, "DRIVER_CLASS": cls,
-                     "DRIVER_OUTAGE_GROUP": evidence, "DRIVER_TICKET": ticket})
+                     "DRIVER_OUTAGE_GROUP": evidence, "DRIVER_TICKET": ticket,
+                     "DRIVER_TICKET_STATUS": ticket_status})
     return ranked.merge(pd.DataFrame(rows), on="CONSTRAINT", how="left")

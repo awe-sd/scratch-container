@@ -59,6 +59,46 @@ def test_marginal_units_differential():
     assert mu.iloc[0]["N_BINDING_RUNS"] == 2
 
 
+def test_add_shadow_prices():
+    ranked = constraints.rank_constraints(_ctgviol(), _runs())
+    outcon = pd.DataFrame({
+        "RUNID": [1, 2, 3],
+        "FROMNUM": [10, 10, 10], "TONUM": [11, 11, 11], "CKT": ["1", "1", "1"],
+        "LPOPFCTGID": ["CTGA", "CTGA", "CTGA"],
+        "OPFCNLAMBDA": [100.0, 300.0, 200.0],
+        "LPBASICVARID": ["Gen 5 #1 MW Control", "Gen 5 #1 MW Control", "Gen 7 #1 MW Control"],
+    })
+    out = constraints.add_shadow_prices(ranked, outcon).set_index("CONSTRAINT")
+    assert out.loc["10-11-1@CTGA", "N_RUNS_SHADOW"] == 3
+    assert out.loc["10-11-1@CTGA", "MEAN_SHADOW"] == 200.0
+    assert out.loc["10-11-1@CTGA", "MAX_SHADOW"] == 300.0
+    assert out.loc["10-11-1@CTGA", "TOP_MARGINAL_VAR"] == "Gen 5 #1 MW Control"
+    assert out.loc["20-21-1@CTGB", "N_RUNS_SHADOW"] == 0
+    assert pd.isna(out.loc["20-21-1@CTGB", "MEAN_SHADOW"])
+
+
+def test_congestion_rent_with_cutoff():
+    runs = pd.DataFrame({
+        "RUNID": [1, 2, 3, 4],
+        "SIMDATE": ["2026-09-01", "2026-09-10", "2026-09-20", "2026-09-25"],
+        "SIMHOUR": [1, 2, 3, 4],
+    })
+    outcon = pd.DataFrame({
+        "RUNID": [1, 3],
+        "FROMNUM": [10, 10], "TONUM": [11, 11], "CKT": ["1", "1"],
+        "LPOPFCTGID": ["CTGA", "CTGA"],
+        "OPFCNLAMBDA": [50.0, 100.0],
+        "LPBASICVARID": ["Gen 5 #1 MW Control"] * 2,
+    })
+    # limit is 100 MW in _ctgviol for the 10-11-1@CTGA rows (runs 1,2,3)
+    rent = constraints.congestion_rent(_ctgviol(), outcon, runs, cutoff_date="2026-09-15")
+    row = rent.set_index("CONSTRAINT").loc["10-11-1@CTGA"]
+    assert row["RENT_PRE"] == 50.0 * 100.0        # run 1 (Sep 1)
+    assert row["RENT_POST"] == 100.0 * 100.0      # run 3 (Sep 20)
+    assert row["TOTAL_RENT"] == 15000.0
+    assert abs(row["POST_RENT_SHARE"] - 2 / 3) < 1e-9
+
+
 def test_classify_constraints_ticket_path():
     ranked = constraints.rank_constraints(_ctgviol(), _runs())
     tf = pd.DataFrame({

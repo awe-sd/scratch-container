@@ -23,6 +23,9 @@ def main() -> None:
     ap.add_argument("--top", type=int, default=15, help="constraints to detail")
     ap.add_argument("--tickets", action="store_true",
                     help="verify drivers against toAllIsos (small SQL Server lookups)")
+    ap.add_argument("--cutoff", default=None,
+                    help="outage-season cutoff YYYY-MM-DD for rent split "
+                         "(default: Sep 15 of the study's sim year — ERCOT allows outages after Sep 15)")
     args = ap.parse_args()
 
     cache = StudyCache(args.study)
@@ -37,7 +40,17 @@ def main() -> None:
     out_dir = config.OUTPUT_ROOT / f"study_{args.study}"
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    outcon = cache.load("outconstraint2")
+    cutoff = args.cutoff or f"{pd.to_datetime(runs['SIMDATE']).dt.year.mode().iloc[0]}-09-15"
+
     ranked = constraints.rank_constraints(ctgviol, runs)
+    ranked = constraints.add_shadow_prices(ranked, outcon)
+    rent = constraints.congestion_rent(ctgviol, outcon, runs, cutoff_date=cutoff)
+    ranked = ranked.merge(rent, on="CONSTRAINT", how="left")
+    ranked[["TOTAL_RENT", "RENT_PRE", "RENT_POST"]] = ranked[
+        ["TOTAL_RENT", "RENT_PRE", "RENT_POST"]].fillna(0.0)
+    # rank by congestion rent (lambda x limit summed over runs) — the CRR payout proxy
+    ranked = ranked.sort_values("TOTAL_RENT", ascending=False).reset_index(drop=True)
     tf_sum = drivers.tofinder_summary(tofinder)
 
     ticket_lookup, window = None, None
@@ -55,7 +68,7 @@ def main() -> None:
     base.to_csv(out_dir / "base_case_binders.csv", index=False)
 
     mu_frames = []
-    for c in ranked[ranked["N_RUNS_BINDING"] > 0].head(args.top)["CONSTRAINT"]:
+    for c in ranked[(ranked["N_RUNS_BINDING"] > 0) & (ranked["TOTAL_RENT"] > 0)].head(args.top)["CONSTRAINT"]:
         mu_frames.append(
             marginal_units.marginal_units_for_constraint(ctgviol, gen, c, bus_names, genunit)
         )
@@ -65,10 +78,13 @@ def main() -> None:
     tf_sum.to_csv(out_dir / "tofinder_summary.csv", index=False)
 
     n_bind = (ranked["N_RUNS_BINDING"] > 0).sum()
-    print(f"study {args.study}: {len(ranked):,} flagged constraints, {n_bind} ever binding")
-    cols = ["CONSTRAINT", "FROMNAME", "TONAME", "N_RUNS_BINDING", "PCT_RUNS_BINDING",
-            "MAX_PCT", "MEAN_EXCESS", "SCORE", "DRIVER_CLASS", "DRIVER_TICKET"]
-    print(ranked[ranked["N_RUNS_BINDING"] > 0].head(args.top)[cols].to_string(index=False))
+    n_rent = (ranked["TOTAL_RENT"] > 0).sum()
+    print(f"study {args.study}: {len(ranked):,} flagged constraints, {n_bind} ever binding, "
+          f"{n_rent} with LP rent; cutoff {cutoff}")
+    cols = ["CONSTRAINT", "FROMNAME", "TONAME", "TOTAL_RENT", "RENT_PRE", "RENT_POST",
+            "POST_RENT_SHARE", "MEAN_SHADOW", "MAX_SHADOW", "N_RUNS_BINDING",
+            "DRIVER_CLASS", "DRIVER_TICKET", "DRIVER_TICKET_STATUS"]
+    print(ranked[ranked["TOTAL_RENT"] > 0].head(args.top)[cols].round(1).to_string(index=False))
     print(f"\nbase-case binders (MARGCOSTMVA): {len(base)}")
     if len(base):
         print(base.head(10).to_string(index=False))

@@ -74,6 +74,20 @@ def fetch_gen(study_id: int) -> pd.DataFrame:
     return df
 
 
+def fetch_constraint(study_id: int) -> pd.DataFrame:
+    """LP constraint rows: OPFCNLAMBDA is the shadow price, LPOPFCTGID the ctg label,
+    LPBASICVARID the marginal control variable (usually a gen)."""
+    df = sf.query(
+        "AWOPF",
+        f"SELECT * FROM AWOPF.DBO.OUTCONSTRAINT2 WHERE {_runid_filter(study_id)}",
+    )
+    sf.validate_columns(
+        df, ["RUNID", "FROMNUM", "TONUM", "CKT", "LPOPFCTGID", "OPFCNLAMBDA", "LPBASICVARID"],
+        "OUTCONSTRAINT2",
+    )
+    return df
+
+
 def fetch_tofinder(study_id: int) -> pd.DataFrame:
     df = sf.query(
         "AWOPF",
