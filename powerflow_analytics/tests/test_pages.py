@@ -116,3 +116,22 @@ def test_drilldown_callback_returns_figure_and_tables(monkeypatch):
 def test_drilldown_callback_handles_no_selection():
     fig, mu_rows, tf_rows = explorer._drilldown(None, 99)
     assert mu_rows == [] and tf_rows == []
+
+
+def test_compare_ranked():
+    from app.pages import comparison
+    a = pd.DataFrame({
+        "CONSTRAINT": ["c1", "c2"], "FROMNAME": ["A", "C"], "TONAME": ["B", "D"],
+        "N_RUNS_BINDING": [2, 1], "PCT_RUNS_BINDING": [20.0, 10.0],
+        "MAX_PCT": [120.0, 105.0], "SCORE": [40.0, 10.0], "DRIVER_CLASS": ["baseline", "baseline"],
+    })
+    b = pd.DataFrame({
+        "CONSTRAINT": ["c1", "c3"], "FROMNAME": ["A", "E"], "TONAME": ["B", "F"],
+        "N_RUNS_BINDING": [4, 3], "PCT_RUNS_BINDING": [40.0, 30.0],
+        "MAX_PCT": [130.0, 110.0], "SCORE": [80.0, 30.0], "DRIVER_CLASS": ["baseline", "baseline"],
+    })
+    out = comparison.compare_ranked(a, b).set_index("CONSTRAINT")
+    assert out.loc["c1", "STATUS"] == "both" and out.loc["c1", "DELTA_PCT"] == 20.0
+    assert out.loc["c2", "STATUS"] == "only_a" and out.loc["c2", "DELTA_PCT"] == -10.0
+    assert out.loc["c3", "STATUS"] == "only_b" and out.loc["c3", "DELTA_PCT"] == 30.0
+    assert out.index[0] == "c3" or abs(out["DELTA_PCT"]).is_monotonic_decreasing
