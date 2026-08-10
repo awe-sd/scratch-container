@@ -30,6 +30,8 @@ def fetch_bus_shifts(study_id: int, topology_ids: list[int]) -> pd.DataFrame | N
     """Bus-level shift factors for a study's topologies; None if not authorized."""
     if not probe_access()["bus"]:
         return None
+    if not topology_ids:
+        return None
     ids = ",".join(str(int(t)) for t in topology_ids)
     return sf.query(
         "SHIFT_FACTORS",

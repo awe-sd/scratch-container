@@ -39,7 +39,6 @@ def rank_constraints(ctgviol: pd.DataFrame, runs: pd.DataFrame) -> pd.DataFrame:
         BRANCHID=("BRANCHID", "first"),
         LIMIT_MVA=("LIMVIOLLIMIT", "median"),
         N_RUNS_FLAGGED=("RUNID", "nunique"),
-        N_RUNS_BINDING=("RUNID", lambda s: 0),  # replaced below
         MAX_PCT=("LIMVIOLPCT", "max"),
         MEAN_PCT=("LIMVIOLPCT", "mean"),
         MEAN_EXCESS=("excess", "mean"),
@@ -48,7 +47,7 @@ def rank_constraints(ctgviol: pd.DataFrame, runs: pd.DataFrame) -> pd.DataFrame:
     binding_runs = (
         df[df["binding"]].groupby(KEY, dropna=False)["RUNID"].nunique().rename("N_RUNS_BINDING")
     )
-    out = out.drop(columns=["N_RUNS_BINDING"]).merge(binding_runs, on=KEY, how="left")
+    out = out.merge(binding_runs, on=KEY, how="left")
     out["N_RUNS_BINDING"] = out["N_RUNS_BINDING"].fillna(0).astype(int)
     out["PCT_RUNS_BINDING"] = 100.0 * out["N_RUNS_BINDING"] / n_runs
     # transparent composite: how often it binds x how hard it binds when it does

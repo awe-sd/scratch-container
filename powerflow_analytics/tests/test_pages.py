@@ -51,7 +51,7 @@ def test_app_imports_and_registers_pages():
     from app.app import app  # noqa: F401  (import builds the Dash app)
     import dash
     paths = {p["path"] for p in dash.page_registry.values()}
-    assert "/" in paths and "/comparison" in paths or "/" in paths
+    assert "/" in paths and "/comparison" in paths
 
 
 def test_page_registry_has_exactly_one_explorer_entry():

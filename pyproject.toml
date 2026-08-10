@@ -22,4 +22,4 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
-testpaths = ["branch_tracking/tests"]
+testpaths = ["branch_tracking/tests", "powerflow_analytics/tests"]
