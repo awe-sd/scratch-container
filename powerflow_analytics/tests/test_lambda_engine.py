@@ -44,5 +44,7 @@ def test_lambda_at_depth_lookup():
     assert lambda_at_depth(curve, 25) == round(10.0 / 0.9, 2)
     assert lambda_at_depth(curve, 50) == round(20.0 / 0.7, 2)
     assert lambda_at_depth(curve, 60) == round(20.0 / 0.7, 2)
-    # beyond the curve entirely (stacks exhausted at 66) -> None
-    assert lambda_at_depth(curve, 1000) == round(20.0 / 0.7, 2)
+    # beyond the curve entirely (stacks exhausted at 66) -> None: this
+    # relief set genuinely cannot supply that much relief, it is not
+    # "priced at the last band forever"
+    assert lambda_at_depth(curve, 1000) is None

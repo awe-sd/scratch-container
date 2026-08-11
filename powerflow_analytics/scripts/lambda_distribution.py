@@ -70,11 +70,31 @@ def main() -> None:
         print("\nfast-scan config has no negative-headroom hours — no distribution")
         return
     dist = lam.lambda_distribution(curve, need)
+    cov = lam.coverage(dist, curve)
+    print(f"\nrelief set exhausts at D={cov['exhaustion_depth_mw']} MW of flow "
+          f"({sum(s['depth_hi'] - s['depth_lo'] for s in curve):.0f} MW of paired capacity)")
+    print(f"of {cov['n_hours']} negative-headroom hours (config {config_id}): "
+          f"{cov['n_priced']} priced by this relief set, "
+          f"{cov['n_unpriceable']} need more relief than the set can supply")
+
     pct = lam.percentiles(dist["LAMBDA"])
-    print(f"\nlambda distribution over {len(need)} negative-headroom hours "
-          f"(config {config_id}), {pct.get('n', 0)} priced:")
-    print(f"  P25={pct.get('P25')}  P50={pct.get('P50')}  P75={pct.get('P75')}  "
-          f"P90={pct.get('P90')}  max={pct.get('max')}")
+    if pct:
+        print(f"\nlambda distribution (priced hours only):")
+        print(f"  P25={pct.get('P25')}  P50={pct.get('P50')}  P75={pct.get('P75')}  "
+              f"P90={pct.get('P90')}  max={pct.get('max')}  n={pct.get('n')}")
+
+    regime = lam.solar_regime(config_id)
+    if not regime.empty:
+        merged = dist.merge(regime, on="TIMESTAMP", how="left")
+        solar_hrs = merged[merged["SOLAR_IMPACT"] > 1.0]
+        dark_hrs = merged[merged["SOLAR_IMPACT"] <= 1.0]
+        print("\nby solar regime (SOLAR_IMPACT > 1 MW = solar hour):")
+        for label, sub in (("solar", solar_hrs), ("dark", dark_hrs)):
+            p = lam.percentiles(sub["LAMBDA"])
+            if p:
+                print(f"  {label:>5}: P50=${p['P50']}  P90=${p['P90']}  n={p['n']}")
+            else:
+                print(f"  {label:>5}: no priced hours")
 
 
 if __name__ == "__main__":
