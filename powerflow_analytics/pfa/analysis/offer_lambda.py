@@ -30,27 +30,57 @@ N_PAIR = 40   # movers per side considered before shift-factor filtering
 MIN_SF = 0.03  # a unit must actually move the constraint to be its marginal pair
 MAX_SF = 0.9   # a candidate this tightly coupled is radial/bottled, not a dispatchable pair
 
+# Per-study memoization for the two hot allocations `estimate()` re-triggers
+# once per constraint (hundreds of times a run): the ctgviol CONSTRAINT key
+# column, and the (BUSNUM, ID) x RUNID LPDELTAMW pivot behind redispatch_pair.
+# Keyed on id() of the frame the caller passes in — valid because a single
+# report run passes the *same* ctgviol/gen objects for every constraint.
+_ckey_cache: dict[int, pd.Series] = {}
+_gen_pivot_cache: dict[int, pd.DataFrame] = {}
+
+
+def _ctgviol_keys(ctgviol: pd.DataFrame) -> pd.Series:
+    key = id(ctgviol)
+    keys = _ckey_cache.get(key)
+    if keys is None or len(keys) != len(ctgviol):
+        keys = constraint_key(ctgviol)
+        _ckey_cache.clear()
+        _ckey_cache[key] = keys
+    return keys
+
+
+def _gen_pivot(gen: pd.DataFrame) -> pd.DataFrame:
+    key = id(gen)
+    piv = _gen_pivot_cache.get(key)
+    if piv is None:
+        piv = gen.pivot_table(index=["BUSNUM", "ID"], columns="RUNID",
+                               values="LPDELTAMW", aggfunc="mean")
+        _gen_pivot_cache.clear()
+        _gen_pivot_cache[key] = piv
+    return piv
+
 
 def redispatch_pair(ctgviol: pd.DataFrame, gen: pd.DataFrame, constraint: str,
                     binding_pct: float = 99.5) -> pd.DataFrame | None:
     """Top up/down movers (differential LPDELTAMW) with bus numbers."""
-    cv = ctgviol.copy()
-    cv["CONSTRAINT"] = constraint_key(cv)
-    binding_runs = set(cv[(cv["CONSTRAINT"] == constraint)
-                          & (cv["LIMVIOLPCT"] >= binding_pct)]["RUNID"])
+    keys = _ctgviol_keys(ctgviol)
+    mask = (keys.values == constraint) & (ctgviol["LIMVIOLPCT"].values >= binding_pct)
+    binding_runs = set(ctgviol.loc[mask, "RUNID"])
     if not binding_runs:
         return None
-    g = gen.copy()
-    g["b"] = g["RUNID"].isin(binding_runs)
-    piv = g.groupby(["BUSNUM", "ID", "b"])["LPDELTAMW"].mean().unstack()
-    if True not in piv.columns:
+    piv = _gen_pivot(gen)
+    b_cols = [c for c in piv.columns if c in binding_runs]
+    if not b_cols:
         return None
-    piv["DIFF_MW"] = piv.get(True, 0).fillna(0) - piv.get(False, 0).fillna(0)
-    piv = piv.reset_index()
-    up = piv.nlargest(N_PAIR, "DIFF_MW")
-    down = piv.nsmallest(N_PAIR, "DIFF_MW")
-    out = pd.concat([up.assign(SIDE="up"), down.assign(SIDE="down")])
-    return out[abs(out["DIFF_MW"]) > 20]
+    o_cols = [c for c in piv.columns if c not in binding_runs]
+    binding_mean = piv[b_cols].mean(axis=1)
+    other_mean = piv[o_cols].mean(axis=1) if o_cols else 0.0
+    diff = (binding_mean.fillna(0) - (other_mean.fillna(0) if o_cols else 0.0)).rename("DIFF_MW")
+    out = diff.reset_index()
+    up = out.nlargest(N_PAIR, "DIFF_MW")
+    down = out.nsmallest(N_PAIR, "DIFF_MW")
+    res = pd.concat([up.assign(SIDE="up"), down.assign(SIDE="down")])
+    return res[abs(res["DIFF_MW"]) > 20]
 
 
 def bus_shift_factors(study_id: int, constraint: str, busnums: list[int]) -> pd.DataFrame:
@@ -177,47 +207,35 @@ def estimate(study_id: int, ctgviol: pd.DataFrame, gen: pd.DataFrame,
             "pair": f"{cands[0]['pair']} → {deepest['pair']}"}
 
 
-def dispatchable_shifts(study_id: int, constraint: str) -> pd.DataFrame | None:
-    """Raw qualifying (non-LZ/WZ, non-radial) shifts for a constraint, from
-    SHIFT_FACTORS.DBO.DEVICE_SHIFTS. None when the table has no coverage at
-    all for this branch/ctg (a data gap, not evidence of unenforceability);
-    an empty (but non-None) frame when it has coverage and every device that
-    showed up is excluded (load-zone/weather-zone aggregates or radial
-    bottled gen) — that latter case is the actual "no dispatchable relief"
-    signal `dispatch_screen` acts on.
+def dispatch_screen(study_id: int, constraint: str) -> str | None:
+    """'unenforceable' when no qualifying dispatchable cpnode exists for this
+    constraint (no dispatchable relief — ERCOT is unlikely to run the driving
+    outage); None otherwise.
 
-    DEVICE_SHIFTS.STUDYID tops out at 13638 as of 2026-08-10 (our studies are
-    14411/14412 and post-date it entirely — 0 rows if filtered by STUDYID),
-    so this filters on the branch/ctg identity only (FROMNUM/TONUM/CKT/
-    CTGLABEL), which is stable across studies/topologies for the same
-    physical grid element and contingency label.
+    Qualifying dispatch, per SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW: DEADBUS=0,
+    NAME not a load-zone/weather-zone aggregate (LZ_%/WZ_%), and
+    MIN_SF <= |PSENS| < MAX_SF (radial cpnodes sit at |PSENS| ~= 1.0 and are
+    excluded). One aggregate COUNT query per constraint, keyed on
+    (ISOMARKETID=6, STUDYID, FROMNUM, TONUM, CKT, CTGLABEL).
+
+    DEVICE_SHIFTS (the prior source) has zero rows for recent studies
+    (e.g. 14411) — CPNODE_SHIFTS_VIEW is the live source, confirmed readable.
     """
     f, t, rest = constraint.split("-", 2)
     ckt, ctg = rest.split("@")
     df = sf.query("SHIFT_FACTORS", f"""
-        SELECT DEVICE_TYPE, NAME, LABEL, BUSNUM, PSENS, ISRADIAL, STATUS
-        FROM SHIFT_FACTORS.DBO.DEVICE_SHIFTS
-        WHERE ISOMARKETID = 6 AND FROMNUM = {int(f)} AND TONUM = {int(t)}
+        SELECT COUNT(*) AS N
+        FROM SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW
+        WHERE ISOMARKETID = 6 AND STUDYID = {int(study_id)}
+          AND FROMNUM = {int(f)} AND TONUM = {int(t)}
           AND CKT = '{ckt}' AND CTGLABEL = '{ctg}'
+          AND DEADBUS = 0
+          AND LEFT(NAME, 3) NOT IN ('LZ_', 'WZ_')
+          AND ABS(PSENS) >= {MIN_SF} AND ABS(PSENS) < {MAX_SF}
     """)
-    return df if len(df) else None
-
-
-def dispatch_screen(study_id: int, constraint: str) -> str | None:
-    """'unenforceable' when every qualifying shift on this constraint is a
-    load-zone/weather-zone aggregate or radial bottled gen (no dispatchable
-    relief exists — ERCOT is unlikely to run the driving outage); None when
-    there is either no DEVICE_SHIFTS coverage or at least one dispatchable
-    device.
-    """
-    shifts = dispatchable_shifts(study_id, constraint)
-    if shifts is None:
+    if df is None or df.empty:
         return None
-    name = shifts["NAME"].fillna("").astype(str)
-    is_zone = name.str.startswith("LZ_") | name.str.startswith("WZ_")
-    is_radial_gen = (shifts["DEVICE_TYPE"] == "GEN") & (shifts["PSENS"].abs() >= MAX_SF)
-    is_radial_flag = shifts["ISRADIAL"].fillna(0).astype(float) == 1
-    dispatchable = shifts[~(is_zone | is_radial_gen | is_radial_flag)]
-    if dispatchable.empty:
+    n = int(df["N"].iloc[0])
+    if n == 0:
         return "unenforceable — no dispatchable relief (LZ/WZ/radial only); ERCOT unlikely to run it"
     return None

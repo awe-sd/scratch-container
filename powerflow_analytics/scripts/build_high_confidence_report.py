@@ -15,6 +15,7 @@ Usage: uv run powerflow_analytics/scripts/build_high_confidence_report.py --stud
 from __future__ import annotations
 
 import argparse
+import gc
 import sys
 from pathlib import Path
 
@@ -49,16 +50,26 @@ def main() -> None:
     short = ranked[(ranked["N_RUNS_BINDING"] >= MIN_BIND)
                    & (ranked["TOTAL_RENT"] > 0)].drop_duplicates("CONSTRAINT")
 
-    ctgviol = cache.load("outctgviol2")
-    gen = cache.load("outgen2")
-    branch = cache.load("outbranch2")
+    ctgviol = cache.load("outctgviol2", columns=[
+        "RUNID", "FROMNUM", "TONUM", "CKT", "CTGLABEL",
+        "LIMVIOLPCT", "BRANCHID", "BRANCHCONTINGENCYID",
+    ])
+    gen = cache.load("outgen2", columns=["RUNID", "BUSNUM", "ID", "LPDELTAMW"])
+    branch = cache.load("outbranch2", columns=[
+        "RUNID", "FROMNUM", "TONUM", "CKT", "LINESTATUS", "FROMNAME", "TONAME",
+    ])
     genunit = cache.load("genunit")
     scedname = gen_mapping.fetch_genunit_sced_name()
     bus_names = marginal_units.bus_name_map(branch)
+    # branch is only needed above (bus_names) and later for the implied-outage
+    # check keyed off FROMNUM/TONUM/CKT — keep it (small, slim columns already);
+    # free ctgviol's/gen's underlying full-column parquet reads never happened
+    # since load() was column-limited, so nothing further to drop here.
     tf_sum = pd.read_csv(out_dir / "tofinder_summary.csv")
     top_drv = (tf_sum.reindex(tf_sum["MEAN_FLOWDELTA"].abs().sort_values(ascending=False).index)
                .drop_duplicates("CONSTRAINT").set_index("CONSTRAINT"))
     cutoff = f"{pd.to_datetime(runs['SIMDATE']).dt.year.mode().iloc[0]}-09-15"
+    gc.collect()
 
     rows = []
     for _, r in short.iterrows():

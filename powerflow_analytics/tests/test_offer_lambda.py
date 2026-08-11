@@ -54,47 +54,14 @@ def test_dispatch_screen_no_coverage_returns_none(monkeypatch):
     assert offer_lambda.dispatch_screen(14411, "1436-2081-1@DWCSRAM5") is None
 
 
-def test_dispatch_screen_flags_lz_wz_and_radial_only():
-    shifts = pd.DataFrame({
-        "DEVICE_TYPE": ["LOAD", "GEN"],
-        "NAME": ["LZ_HOUSTON", "RADIAL_GEN"],
-        "LABEL": [None, None],
-        "BUSNUM": [1, 2],
-        "PSENS": [0.5, 0.95],
-        "ISRADIAL": [0.0, 0.0],
-        "STATUS": ["Closed", "YES"],
-    })
-
-    def fake_dispatchable_shifts(study_id, constraint):
-        return shifts
-
-    import pfa.analysis.offer_lambda as ol
-    orig = ol.dispatchable_shifts
-    ol.dispatchable_shifts = fake_dispatchable_shifts
-    try:
-        result = ol.dispatch_screen(14411, "8186-8913-1@STHRSCH8")
-    finally:
-        ol.dispatchable_shifts = orig
+def test_dispatch_screen_flags_lz_wz_and_radial_only(monkeypatch):
+    monkeypatch.setattr(offer_lambda.sf, "query", lambda *a, **k: pd.DataFrame({"N": [0]}))
+    result = offer_lambda.dispatch_screen(14411, "8186-8913-1@STHRSCH8")
     assert result is not None
     assert "unenforceable" in result
 
 
-def test_dispatch_screen_passes_when_a_dispatchable_device_exists():
-    shifts = pd.DataFrame({
-        "DEVICE_TYPE": ["LOAD", "GEN"],
-        "NAME": ["LZ_HOUSTON", "NORMAL_GEN"],
-        "LABEL": [None, None],
-        "BUSNUM": [1, 2],
-        "PSENS": [0.5, 0.4],
-        "ISRADIAL": [0.0, 0.0],
-        "STATUS": ["Closed", "YES"],
-    })
-
-    import pfa.analysis.offer_lambda as ol
-    orig = ol.dispatchable_shifts
-    ol.dispatchable_shifts = lambda study_id, constraint: shifts
-    try:
-        result = ol.dispatch_screen(14411, "1436-2081-1@DWCSRAM5")
-    finally:
-        ol.dispatchable_shifts = orig
+def test_dispatch_screen_passes_when_a_dispatchable_device_exists(monkeypatch):
+    monkeypatch.setattr(offer_lambda.sf, "query", lambda *a, **k: pd.DataFrame({"N": [3]}))
+    result = offer_lambda.dispatch_screen(14411, "1436-2081-1@DWCSRAM5")
     assert result is None
