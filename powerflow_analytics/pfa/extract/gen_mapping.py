@@ -32,3 +32,24 @@ def fetch_genunit() -> pd.DataFrame:
     )
     sf.validate_columns(df, ["GENUNITID", "UNITNAME", "BUSNAME"], "GENUNIT")
     return df
+
+
+def fetch_genunit_sced_name() -> pd.DataFrame:
+    """GENUNITID -> SCED resource NAME (AWDEV.DBO.GENUNITSCEDNAME).
+
+    Explored via DESCRIBE/LIMIT 3: columns are GENUNITID, NAME, KIND
+    ('GEN'/'ESR'/'LOAD' — a BESS unit gets one row per role), EPOCH
+    ('PRE'/'POST'/'BOTH' — SCED naming-convention era the row applies to).
+    NAME already carries the trailing per-unit index used by SCED
+    (JACKCNTY_CC1_1, _2, _3 for a 3-train combined cycle at one bus) — this
+    is the same index OUTGEN2.ID uses, so joining on GENUNITID then matching
+    that trailing digit against ID disambiguates multi-unit buses exactly,
+    instead of the old BUSNAME-only dedup (which arbitrarily kept one row
+    per bus and silently mispriced any unit sharing a bus with siblings).
+    No (BUSNUM, ID) -> GENUNITID bridge exists for ERCOT — AWOPF.DBO.OUTGENREF
+    is empty for ISOMARKETID=6 (only NaN/8 present) — so GENUNIT.BUSNAME is
+    still the entry point; only the disambiguation step changes.
+    """
+    df = sf.query("AWDEV", "SELECT GENUNITID, NAME, KIND, EPOCH FROM AWDEV.DBO.GENUNITSCEDNAME")
+    sf.validate_columns(df, ["GENUNITID", "NAME", "KIND"], "GENUNITSCEDNAME")
+    return df

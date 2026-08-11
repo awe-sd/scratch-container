@@ -25,7 +25,7 @@ import pandas as pd
 from pfa import config
 from pfa.analysis import fastscan, marginal_units, market, offer_lambda, valuation
 from pfa.cache import StudyCache
-from pfa.extract import buskv, popt
+from pfa.extract import buskv, gen_mapping, popt
 
 MIN_BIND = 1  # every last one
 ONPEAK_BLOCKS = {12: 10, 18: 6}  # sampled hour -> on-peak hours represented
@@ -53,6 +53,7 @@ def main() -> None:
     gen = cache.load("outgen2")
     branch = cache.load("outbranch2")
     genunit = cache.load("genunit")
+    scedname = gen_mapping.fetch_genunit_sced_name()
     bus_names = marginal_units.bus_name_map(branch)
     tf_sum = pd.read_csv(out_dir / "tofinder_summary.csv")
     top_drv = (tf_sum.reindex(tf_sum["MEAN_FLOWDELTA"].abs().sort_values(ascending=False).index)
@@ -66,6 +67,10 @@ def main() -> None:
         stats = valuation.binding_stats(outcon, runs, c, None)
         lam_p50 = float(stats.lam["p50"].max()) if len(stats.lam) else None
         penalty = lam_p50 is not None and lam_p50 >= 500
+        try:
+            unenforceable = offer_lambda.dispatch_screen(args.study, c)
+        except Exception:
+            unenforceable = None
         limit = float(r.get("LIMIT_MVA") or 0)
         f, t = c.split("-")[:2]
         kv = buskv.constraint_kv(int(f), int(t))
@@ -96,7 +101,10 @@ def main() -> None:
             "P(bind) on-peak": round((p12 + p18) / 2, 2),
             "P(bind) off-peak": round(p3, 2),
             "λ LP P50": round(lam_p50, 1) if lam_p50 is not None else None,
-            "Risk": ("no-dispatch (penalty λ) — ERCOT may deny the outage" if penalty else None),
+            # dispatch screen (LZ/WZ/radial-only) takes precedence over the
+            # penalty-tier flag when both apply — it's the stronger claim
+            "Risk": (unenforceable if unenforceable else
+                      ("no-dispatch (penalty λ) — ERCOT may deny the outage" if penalty else None)),
             "Month rent ($)": int(r["TOTAL_RENT"]),
             "_bid": r.get("BRANCHID"), "_bcid": None,
         })
@@ -137,7 +145,7 @@ def main() -> None:
         except Exception:
             pass
         try:  # independent offer-based lambda (SF-filtered pair)
-            est = offer_lambda.estimate(args.study, ctgviol, gen, bus_names, genunit, c)
+            est = offer_lambda.estimate(args.study, ctgviol, gen, bus_names, genunit, scedname, c)
             if est:
                 df.loc[i, "λ offers (lo–hi)"] = f"{est['lam_lo']}–{est['lam_hi']}"
                 df.loc[i, "Redispatch pair"] = est["pair"]

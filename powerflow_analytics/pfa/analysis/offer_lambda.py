@@ -28,6 +28,7 @@ N_PAIR = 40   # movers per side considered before shift-factor filtering
               # candidate pool or the top-DIFF_MW movers alone often clear
               # neither side, leaving the pair unpopulated)
 MIN_SF = 0.03  # a unit must actually move the constraint to be its marginal pair
+MAX_SF = 0.9   # a candidate this tightly coupled is radial/bottled, not a dispatchable pair
 
 
 def redispatch_pair(ctgviol: pd.DataFrame, gen: pd.DataFrame, constraint: str,
@@ -65,16 +66,38 @@ def bus_shift_factors(study_id: int, constraint: str, busnums: list[int]) -> pd.
         GROUP BY BUSNUM""")
 
 
-def sced_names(pair: pd.DataFrame, bus_names: pd.DataFrame, genunit: pd.DataFrame) -> pd.DataFrame:
-    """Map (BUSNUM) -> bus name -> GENUNIT -> SCED resource name."""
-    gu = genunit.copy()
-    gu["SCED"] = gu["NOTES"].str.extract(r"naturalKey=SCED:(\S+)")
-    m = pair.merge(bus_names, on="BUSNUM", how="left").merge(
-        gu[["BUSNAME", "SCED"]].dropna().drop_duplicates("BUSNAME"), on="BUSNAME", how="left")
+def sced_names(pair: pd.DataFrame, bus_names: pd.DataFrame, genunit: pd.DataFrame,
+               scedname: pd.DataFrame) -> pd.DataFrame:
+    """Map (BUSNUM, ID) -> bus name -> GENUNIT -> GENUNITSCEDNAME -> SCED resource name.
+
+    No (BUSNUM, ID) -> GENUNITID bridge exists for ERCOT (OUTGENREF is empty
+    for ISOMARKETID=6), so BUSNAME is still the join key into GENUNIT. The
+    fix is disambiguation once there: a bus with several units (e.g. a
+    3-train CC) has several GENUNITSCEDNAME rows sharing that BUSNAME, one
+    per per-unit SCED index (JACKCNTY_CC1_1/_2/_3) — the same index carried
+    in OUTGEN2.ID. Matching that trailing index against ID, instead of the
+    old drop_duplicates("BUSNAME"), picks the *specific* unit's SCED name
+    rather than an arbitrary sibling's.
+    """
+    gu = genunit.merge(scedname[scedname["KIND"] == "GEN"], on="GENUNITID", how="inner")
+    gu = gu[["BUSNAME", "NAME"]].dropna().drop_duplicates()
+    gu["SUFFIX"] = gu["NAME"].str.extract(r"_(\d+)$")[0]
+    m = pair.merge(bus_names, on="BUSNUM", how="left").merge(gu, on="BUSNAME", how="left")
+    m["ID"] = m["ID"].astype(str).str.strip()
+    # prefer the row whose SCED-name suffix matches OUTGEN2.ID (the specific
+    # unit at a multi-unit bus); if nothing matches (index conventions can
+    # differ, or the bus never had ID-suffix data), fall back to whatever
+    # candidate is available for that bus rather than dropping the unit —
+    # matches the old BUSNAME-only behavior for the buses where it was right,
+    # while fixing the ones with a genuine sibling-unit ambiguity
+    m["_rank"] = (m["SUFFIX"] != m["ID"]).astype(int)
+    m = m.sort_values("_rank")
+    out = m.drop_duplicates(["BUSNUM", "ID", "SIDE"])
+    out = pair.merge(out[["BUSNUM", "ID", "SIDE", "NAME"]], on=["BUSNUM", "ID", "SIDE"], how="left")
     # SCED unit names carry a trailing unit index (JACKCNTY_CC1_1); the DAM
     # disclosure keys on the settlement point (JACKCNTY_CC1)
-    m["SCED"] = m["SCED"].str.replace(r"_\d+$", "", regex=True)
-    return m
+    out["SCED"] = out["NAME"].str.replace(r"_\d+$", "", regex=True)
+    return out
 
 
 def dam_offers(sced: list[str], hours=(12, 18)) -> pd.DataFrame:
@@ -110,19 +133,19 @@ def dam_offers(sced: list[str], hours=(12, 18)) -> pd.DataFrame:
 
 
 def estimate(study_id: int, ctgviol: pd.DataFrame, gen: pd.DataFrame,
-             bus_names: pd.DataFrame, genunit: pd.DataFrame, constraint: str,
-             offers_cache: dict | None = None) -> dict | None:
+             bus_names: pd.DataFrame, genunit: pd.DataFrame, scedname: pd.DataFrame,
+             constraint: str, offers_cache: dict | None = None) -> dict | None:
     """lambda range for one constraint; None when the chain has no coverage."""
     pair = redispatch_pair(ctgviol, gen, constraint)
     if pair is None or pair.empty or (pair["SIDE"] == "up").sum() == 0:
         return None
-    pair = sced_names(pair, bus_names, genunit)
+    pair = sced_names(pair, bus_names, genunit, scedname)
     sfs = bus_shift_factors(study_id, constraint, pair["BUSNUM"].tolist())
     sfs["SF"] = sfs["SF"].astype(float)
     pair = pair.merge(sfs, on="BUSNUM", how="left")
     # a unit is only this constraint's marginal pair if it actually moves the
     # constraint — filter by |SF|, then rank by redispatch effectiveness
-    pair = pair[pair["SF"].abs() >= MIN_SF].copy()
+    pair = pair[pair["SF"].abs().between(MIN_SF, MAX_SF)].copy()
     pair["EFF"] = (pair["DIFF_MW"] * pair["SF"]).abs()
     pair = pair.sort_values("EFF", ascending=False).groupby("SIDE").head(4)
     up = pair[(pair["SIDE"] == "up") & pair["SCED"].notna() & pair["SF"].notna()]
@@ -152,3 +175,49 @@ def estimate(study_id: int, ctgviol: pd.DataFrame, gen: pd.DataFrame,
             "lam_hi": round(min(deepest["hi"], PRICE_CAP), 1),
             "dsf": round(cands[0]["dsf"], 3),
             "pair": f"{cands[0]['pair']} → {deepest['pair']}"}
+
+
+def dispatchable_shifts(study_id: int, constraint: str) -> pd.DataFrame | None:
+    """Raw qualifying (non-LZ/WZ, non-radial) shifts for a constraint, from
+    SHIFT_FACTORS.DBO.DEVICE_SHIFTS. None when the table has no coverage at
+    all for this branch/ctg (a data gap, not evidence of unenforceability);
+    an empty (but non-None) frame when it has coverage and every device that
+    showed up is excluded (load-zone/weather-zone aggregates or radial
+    bottled gen) — that latter case is the actual "no dispatchable relief"
+    signal `dispatch_screen` acts on.
+
+    DEVICE_SHIFTS.STUDYID tops out at 13638 as of 2026-08-10 (our studies are
+    14411/14412 and post-date it entirely — 0 rows if filtered by STUDYID),
+    so this filters on the branch/ctg identity only (FROMNUM/TONUM/CKT/
+    CTGLABEL), which is stable across studies/topologies for the same
+    physical grid element and contingency label.
+    """
+    f, t, rest = constraint.split("-", 2)
+    ckt, ctg = rest.split("@")
+    df = sf.query("SHIFT_FACTORS", f"""
+        SELECT DEVICE_TYPE, NAME, LABEL, BUSNUM, PSENS, ISRADIAL, STATUS
+        FROM SHIFT_FACTORS.DBO.DEVICE_SHIFTS
+        WHERE ISOMARKETID = 6 AND FROMNUM = {int(f)} AND TONUM = {int(t)}
+          AND CKT = '{ckt}' AND CTGLABEL = '{ctg}'
+    """)
+    return df if len(df) else None
+
+
+def dispatch_screen(study_id: int, constraint: str) -> str | None:
+    """'unenforceable' when every qualifying shift on this constraint is a
+    load-zone/weather-zone aggregate or radial bottled gen (no dispatchable
+    relief exists — ERCOT is unlikely to run the driving outage); None when
+    there is either no DEVICE_SHIFTS coverage or at least one dispatchable
+    device.
+    """
+    shifts = dispatchable_shifts(study_id, constraint)
+    if shifts is None:
+        return None
+    name = shifts["NAME"].fillna("").astype(str)
+    is_zone = name.str.startswith("LZ_") | name.str.startswith("WZ_")
+    is_radial_gen = (shifts["DEVICE_TYPE"] == "GEN") & (shifts["PSENS"].abs() >= MAX_SF)
+    is_radial_flag = shifts["ISRADIAL"].fillna(0).astype(float) == 1
+    dispatchable = shifts[~(is_zone | is_radial_gen | is_radial_flag)]
+    if dispatchable.empty:
+        return "unenforceable — no dispatchable relief (LZ/WZ/radial only); ERCOT unlikely to run it"
+    return None
