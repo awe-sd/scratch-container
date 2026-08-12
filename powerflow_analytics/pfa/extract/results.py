@@ -60,6 +60,18 @@ def fetch_interface(study_id: int) -> pd.DataFrame:
 
 
 def fetch_gen(study_id: int) -> pd.DataFrame:
+    """Note (2026-08-11 offer-chain diagnosis): OUTGEN2.CUSTOMSTRING2/3 and
+    CUSTOMFLOAT4 were investigated as a possible direct DAM-settlement-point
+    bridge (avoiding the BUSNAME->GENUNIT->GENUNITSCEDNAME name-matching
+    chain below) but are 100% NULL for this study (230,370/230,370 rows) —
+    not populated for ISOMARKETID=6. Also checked AW.DBO.CPNODE.DISPLAYNAME
+    (joined via GENUNIT.CPNODEID) as an alternate SCED-name source: its
+    per-unit names (e.g. JCKCNTY2_CT3/_CT4) do NOT appear in
+    ERCOT60DDAMGENRESOURCE.SETTLEMENTPOINTNAME at all, while the existing
+    GENUNITSCEDNAME-derived name (JCKCNTY2_CC1) does — confirming the
+    current sced_names()/dam_offers() chain already uses the only naming
+    convention the DAM disclosure actually matches. Neither alternate is
+    wired in; this note exists so the next person doesn't re-try them."""
     df = sf.query(
         "AWOPF",
         f"""

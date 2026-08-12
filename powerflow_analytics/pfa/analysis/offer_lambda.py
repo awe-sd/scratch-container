@@ -12,6 +12,32 @@ offer_up is taken high on the relief unit's curve (it is being pushed up),
 offer_down low on the displaced unit's curve. The 60-day disclosure lags, so
 offers reflect conditions ~2 months back; the system energy lambda enters
 implicitly through where the units sit on their curves. Capped at $5000.
+
+Fill diagnosis (2026-08-11, study 14411, 231 candidate constraints): 31 filled
+before this pass; a full stage-by-stage breakdown of the 200 that returned
+None found:
+  - redispatch_pair empty: 0 — never the cause.
+  - one-sided after the |SF| filter (up XOR down empty once SCED-mapped
+    candidates are restricted to MIN_SF<=|SF|<MAX_SF): 159/231 (69%) — the
+    dominant, and largely genuine, cause. Doubling N_PAIR 40->80 (deeper
+    candidate pool before the SF filter) only recovered 1 more constraint
+    (31->32) — this is a physical fact about the flowgate, not a
+    candidate-pool artifact: most binding constraints simply do not have a
+    material opposite-signed mover among their top movers, i.e. no genuine
+    redispatch pair exists (the same fact Defect 2's dispatch_screen pair
+    rule now surfaces independently as "unenforceable").
+  - dam_offers() returned nothing for the mapped SCED names: 2/231 —
+    negligible; self-scheduled/no-offer-curve units are not the dominant
+    cause here (contra the original hypothesis).
+  - candidates existed and offers were found, but no pair cleared
+    dsf=SF_down-SF_up>=0.02: 39/231 — a real chain, just insufficient SF
+    separation between the two sides' resources; not chased further.
+  - ok: 31/231 (32/231 at N_PAIR=80).
+Net: the 31/231 fill is not a mechanical bug in the mapping/join chain (see
+extract/results.py:fetch_gen for the two alternate SCED-name sources that
+were checked and ruled out) — it reflects that most binding constraints in
+this study genuinely lack a two-sided dispatchable pair, which is also why
+Defect 2's dispatch_screen flags many of the same constraints unenforceable.
 """
 from __future__ import annotations
 
@@ -207,16 +233,46 @@ def estimate(study_id: int, ctgviol: pd.DataFrame, gen: pd.DataFrame,
             "pair": f"{cands[0]['pair']} → {deepest['pair']}"}
 
 
+PAIR_MIN_SF = 0.1   # floor for the *pair* test only (higher than MIN_SF):
+                     # the long tail of self-scheduled wind/solar cpnodes sits
+                     # at |PSENS| ~0.03-0.09 on a flowgate — they technically
+                     # move it but have no offer curve and can't be
+                     # dispatched for relief (see offer_lambda.estimate /
+                     # Defect 3: most movers below this band lack DAM offers).
+                     # Genuine redispatchable plants (gas CTs/STs) cluster
+                     # >=0.1 on the canary that must NOT tag (DWCSRAM5).
+PAIR_MAX_SF = 0.5    # radial/near-1.0-family sibling units of the same
+                     # bottled plant (e.g. LYSSY_RN at 0.6-0.73 on STHRSCH8)
+                     # sit here and would otherwise supply a same-sign
+                     # "relief" that isn't a real redispatch option.
+
+
 def dispatch_screen(study_id: int, constraint: str) -> str | None:
-    """'unenforceable' when no qualifying dispatchable cpnode exists for this
+    """'unenforceable' when no dispatchable redispatch PAIR exists for this
     constraint (no dispatchable relief — ERCOT is unlikely to run the driving
     outage); None otherwise.
 
-    Qualifying dispatch, per SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW: DEADBUS=0,
-    NAME not a load-zone/weather-zone aggregate (LZ_%/WZ_%), and
-    MIN_SF <= |PSENS| < MAX_SF (radial cpnodes sit at |PSENS| ~= 1.0 and are
-    excluded). One aggregate COUNT query per constraint, keyed on
+    Relief needs a redispatch PAIR: one cpnode whose output can go up and
+    another whose output can go down, i.e. cpnodes with PSENS of OPPOSITE
+    sign. A same-sign-only cluster (all cpnodes push the flowgate the same
+    way) has no redispatch move that relieves it — that's what an
+    unenforceable/bottled constraint looks like (e.g. STHRSCH8, whose only
+    real mover, LYSSY_RN, is a >=0.5 radial plant, plus a long tail of tiny
+    self-scheduled renewables, none of it opposite-signed above the noise
+    floor).
+
+    Per SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW: DEADBUS=0, NAME not a
+    load-zone/weather-zone aggregate (LZ_%/WZ_%), and
+    PAIR_MIN_SF <= |PSENS| < PAIR_MAX_SF (excludes both the radial/near-1.0
+    family and the sub-0.1 renewable noise floor). Tags unenforceable only
+    when no cpnode with PSENS > 0 AND no cpnode with PSENS < 0 both exist in
+    that band. One aggregate query per constraint, keyed on
     (ISOMARKETID=6, STUDYID, FROMNUM, TONUM, CKT, CTGLABEL).
+
+    Validated against both canaries: 8186-8913-1@STHRSCH8 (must tag — only
+    MILTON_RN clears the band, one-sided positive, no pair) and
+    1436-2081-1@DWCSRAM5 (must NOT tag — WCPP_CT1/CT2/ST1 etc. clear positive
+    and CHISMGRD_RN/MDWPK_RN etc. clear negative, a genuine pair).
 
     DEVICE_SHIFTS (the prior source) has zero rows for recent studies
     (e.g. 14411) — CPNODE_SHIFTS_VIEW is the live source, confirmed readable.
@@ -224,18 +280,21 @@ def dispatch_screen(study_id: int, constraint: str) -> str | None:
     f, t, rest = constraint.split("-", 2)
     ckt, ctg = rest.split("@")
     df = sf.query("SHIFT_FACTORS", f"""
-        SELECT COUNT(*) AS N
+        SELECT
+          SUM(CASE WHEN PSENS > 0 THEN 1 ELSE 0 END) AS N_POS,
+          SUM(CASE WHEN PSENS < 0 THEN 1 ELSE 0 END) AS N_NEG
         FROM SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW
         WHERE ISOMARKETID = 6 AND STUDYID = {int(study_id)}
           AND FROMNUM = {int(f)} AND TONUM = {int(t)}
           AND CKT = '{ckt}' AND CTGLABEL = '{ctg}'
           AND DEADBUS = 0
           AND LEFT(NAME, 3) NOT IN ('LZ_', 'WZ_')
-          AND ABS(PSENS) >= {MIN_SF} AND ABS(PSENS) < {MAX_SF}
+          AND ABS(PSENS) >= {PAIR_MIN_SF} AND ABS(PSENS) < {PAIR_MAX_SF}
     """)
     if df is None or df.empty:
         return None
-    n = int(df["N"].iloc[0])
-    if n == 0:
-        return "unenforceable — no dispatchable relief (LZ/WZ/radial only); ERCOT unlikely to run it"
+    n_pos = int(df["N_POS"].iloc[0] or 0)
+    n_neg = int(df["N_NEG"].iloc[0] or 0)
+    if n_pos == 0 or n_neg == 0:
+        return "unenforceable — no dispatchable relief pair (LZ/WZ/radial/renewable-noise only); ERCOT unlikely to run it"
     return None
