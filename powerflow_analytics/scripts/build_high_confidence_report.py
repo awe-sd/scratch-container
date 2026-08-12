@@ -32,6 +32,42 @@ MIN_BIND = 1  # every last one
 ONPEAK_BLOCKS = {12: 10, 18: 6}  # sampled hour -> on-peak hours represented
 
 
+def lam_and_source(row) -> tuple[float | None, str | None]:
+    """E[lambda|bind] precedence for the Edge/Value column:
+
+    1. offers-based lambda hi (marginal-unit offers / dSF — the house
+       method) wherever offer_lambda.estimate covered the constraint; hi =
+       the pairs-exhausted / binding-regime price, lo is just the free first
+       leg, so hi is the right single-point estimate here.
+    2. realized DA P50 (CONGHRPRICE, ID-joined) when offers don't cover it.
+    3. study LP P50 — ONLY for non-penalty constraints and only when neither
+       of the above exists. Penalty-tier lambda (flat 500/3500) is a
+       settlement-mechanics artifact, not a market price signal, and must
+       never enter Value/Edge (that was the original bug: penalty LP P50
+       was inflating fake-value rows like 8186-8913-1@STHRSCH8 to the top of
+       the Edge board).
+    4. penalty-tier with no offers and no realized history -> (None, None)
+       (row sorts by rent at the bottom of its kV group, same as before).
+    """
+    if pd.notna(row["_lam_hi_offer"]):
+        return float(row["_lam_hi_offer"]), "offers"
+    rd = row["Realized DA (hrs | P50 | max)"]
+    if isinstance(rd, str):
+        return float(rd.split("|")[1]), "realized"
+    if not row["_penalty"] and pd.notna(row["λ LP P50"]):
+        return float(row["λ LP P50"]), "LP"
+    return None, None
+
+
+def value_per_mwh_sf(row) -> float | None:
+    """P(bind on-peak) x E[lambda|bind] (see lam_and_source), $/MWh per 1.0 SF."""
+    lam, _ = lam_and_source(row)
+    if lam is None:
+        return None
+    onpk = row["P(bind) on-peak"] * (ONPEAK_BLOCKS[12] + ONPEAK_BLOCKS[18]) / 16
+    return round(onpk * lam, 2)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--study", type=int, required=True)
@@ -117,7 +153,7 @@ def main() -> None:
             "Risk": (unenforceable if unenforceable else
                       ("no-dispatch (penalty λ) — ERCOT may deny the outage" if penalty else None)),
             "Month rent ($)": int(r["TOTAL_RENT"]),
-            "_bid": r.get("BRANCHID"), "_bcid": None,
+            "_bid": r.get("BRANCHID"), "_bcid": None, "_penalty": penalty,
         })
     df = pd.DataFrame(rows)
 
@@ -133,6 +169,7 @@ def main() -> None:
     for col in ["Realized DA (hrs | P50 | max)", "Headroom stressed hrs (P10 MW | %hrs)",
                 "λ offers (lo–hi)", "Redispatch pair", "Best path ($/MWh @SF)", "Path $/SF"]:
         df[col] = None
+    df["_lam_hi_offer"] = None
     for i in df.index:
         c = df.loc[i, "Constraint"]
         f, t, rest = c.split("-", 2)
@@ -160,6 +197,7 @@ def main() -> None:
             if est:
                 df.loc[i, "λ offers (lo–hi)"] = f"{est['lam_lo']}–{est['lam_hi']}"
                 df.loc[i, "Redispatch pair"] = est["pair"]
+                df.loc[i, "_lam_hi_offer"] = est["lam_hi"]
         except Exception:
             pass
         try:  # cheapest auction path (FWD-auction cost mark)
@@ -172,21 +210,9 @@ def main() -> None:
         except Exception:
             pass
 
-    # edge: expected on-peak $/MWh per 1.0 SF (realized P50 λ where available,
-    # else LP P50) minus the cheapest path's cost per SF
-    def _value(row):
-        lam = None
-        rd = row["Realized DA (hrs | P50 | max)"]
-        if isinstance(rd, str):
-            lam = float(rd.split("|")[1])
-        elif pd.notna(row["λ LP P50"]):
-            lam = float(row["λ LP P50"])
-        if lam is None:
-            return None
-        onpk = (row["P(bind) on-peak"] * (ONPEAK_BLOCKS[12] + ONPEAK_BLOCKS[18]) / 16)
-        return round(onpk * lam, 2)
-
-    df["Value $/MWh/SF"] = df.apply(_value, axis=1)
+    # edge: expected on-peak $/MWh per 1.0 SF (see lam_and_source/value_per_mwh_sf)
+    df["λ source"] = df.apply(lambda r: lam_and_source(r)[1], axis=1)
+    df["Value $/MWh/SF"] = df.apply(value_per_mwh_sf, axis=1)
     df["Edge $/MWh/SF"] = df.apply(
         lambda r: round(r["Value $/MWh/SF"] - r["Path $/SF"], 2)
         if pd.notna(r["Value $/MWh/SF"]) and pd.notna(r["Path $/SF"]) else None, axis=1)
@@ -208,7 +234,11 @@ def main() -> None:
     .hi{background:#fff8e1!important;font-weight:600}
     .risk td{color:#8a1f1f}
     .note{font-size:0.85rem;color:#444;max-width:75rem;line-height:1.45}
+    td.narrow{max-width:220px;white-space:normal;word-break:break-word;font-size:0.72rem}
+    tr.filter-row td{padding:2px 4px;position:sticky;top:1.9rem;background:#fff}
+    tr.filter-row input{width:100%;box-sizing:border-box;font-size:0.72rem;padding:2px 3px}
     """
+    NARROW_COLS = {"Tickets (status/reason)", "Redispatch pair", "Best path ($/MWh @SF)"}
     body_rows = []
     for _, r in df.iterrows():
         cls = []
@@ -217,9 +247,15 @@ def main() -> None:
         if isinstance(r["Risk"], str):
             cls.append("risk")
         cattr = f' class="{" ".join(cls)}"' if cls else ""
-        tds = "".join(f"<td>{'' if pd.isna(r[c]) else r[c]}</td>" for c in show_cols)
+        tds = "".join(
+            f'<td{" class=\"narrow\"" if c in NARROW_COLS else ""}>'
+            f'{"" if pd.isna(r[c]) else r[c]}</td>'
+            for c in show_cols)
         body_rows.append(f"<tr{cattr}>{tds}</tr>")
     header = "".join(f"<th>{c}</th>" for c in show_cols)
+    filter_row = "".join(
+        f'<td><input type="text" data-col="{i}" oninput="filterTable()"></td>'
+        for i in range(len(show_cols)))
 
     html = f"""<!doctype html><html><head><meta charset="utf-8">
 <title>CRR targets — study {args.study}</title><style>{style}</style></head><body>
@@ -234,11 +270,41 @@ Open after — from the study's own line statuses), topology-suspect (unverified
 Realized DA = binding hours | P50 λ | max λ from CONGHRPRICE via the (BRANCHMONITOREDID, BRANCHCONTINGENCYID)
 ID join. Headroom = fast-scan worst stressed hour (P10 MW | % of hours overloaded).
 Generated {pd.Timestamp.now():%Y-%m-%d %H:%M}.</div>
-<table><thead><tr>{header}</tr></thead><tbody>{''.join(body_rows)}</tbody></table>
+<table id="ct"><thead><tr>{header}</tr><tr class="filter-row">{filter_row}</tr></thead><tbody>{''.join(body_rows)}</tbody></table>
 <h2>Caveats</h2>
 <div class="note"><p>Path settles should be short-risk checked against SPTHRPRICEHOURLYVIEW before bidding
 (a path long our constraint can be short other congestion). λ offers use the 60-day-lagged DAM disclosure.
 P(bind) equal-weights study runs — wind-scenario weighting is the next calibration step.</p></div>
+<script>
+function filterTable() {{
+  var table = document.getElementById('ct');
+  var inputs = table.querySelectorAll('.filter-row input');
+  var filters = [];
+  inputs.forEach(function(inp) {{
+    if (inp.value.trim() !== '') filters.push({{col: parseInt(inp.dataset.col), val: inp.value.trim()}});
+  }});
+  var rows = table.querySelectorAll('tbody tr');
+  rows.forEach(function(row) {{
+    var cells = row.children;
+    var show = true;
+    filters.forEach(function(f) {{
+      if (!show) return;
+      var text = cells[f.col] ? cells[f.col].textContent : '';
+      var op = f.val[0];
+      if (op === '>' || op === '<') {{
+        var num = parseFloat(text.replace(/,/g, ''));
+        var target = parseFloat(f.val.slice(1));
+        if (isNaN(num) || isNaN(target)) {{ show = false; }}
+        else if (op === '>' && !(num > target)) show = false;
+        else if (op === '<' && !(num < target)) show = false;
+      }} else if (text.toLowerCase().indexOf(f.val.toLowerCase()) === -1) {{
+        show = false;
+      }}
+    }});
+    row.style.display = show ? '' : 'none';
+  }});
+}}
+</script>
 </body></html>"""
     (out_dir / "high_confidence_constraints.html").write_text(html)
     print(df[show_cols].head(40).to_string(index=False))
