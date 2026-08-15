@@ -25,6 +25,10 @@ Other Appian Way repos (`LocalSkills`, `awconnect`) have been cloned under `/hom
 
 **Always run Python through `uv`** (`uv run script.py`, `uv run python -c ...`, `uv pip install ...`), never a bare `python`/`pip`. A minimal `pyproject.toml` marks this directory as the uv project root, so plain `uv run ...` from here (or any subfolder) resolves to this repo's `.venv` automatically — no `VIRTUAL_ENV=` override needed. If a container-wide `VIRTUAL_ENV` env var is set to something else, `uv run` still prefers the project `.venv` because `pyproject.toml` is present; only `uv pip install` without a preceding `uv run` can be redirected by a stray `VIRTUAL_ENV`, so prefer `uv run python -m pip install ...` or `uv add`/`uv pip install` from this directory if that ever resurfaces.
 
+## Division of labor (sdalvi's standing rule, 2026-08-10)
+
+The main session model (Fable/Opus-class) does **thinking, grading, and planning only**: design the approach, write specs/briefs, review and grade results, decide what's next. **All coding labor is dispatched to Sonnet 5 subagents** (`model: sonnet` on the Agent tool) — file edits, script writing, debugging, running pipelines. This saves tokens and keeps the expensive model's context for judgment. Small verification queries/greps by the main session are fine; writing or fixing code directly is not.
+
 ## Subprojects
 
 - `branch_tracking/` — in-progress transmission-branch tracking table design (ERCOT / `isomarketid = 6`). See its own `CLAUDE.md` for details specific to that work.

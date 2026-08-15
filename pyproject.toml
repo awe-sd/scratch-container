@@ -3,10 +3,16 @@ name = "scratch-workspace"
 version = "0.0.0"
 requires-python = ">=3.12"
 dependencies = [
+    "dash>=4.4.1",
+    "dash-ag-grid>=35.3.0",
+    "dash-bootstrap-components>=2.0.4",
+    "duckdb>=1.5.5",
     "networkx>=3.4",
+    "openpyxl>=3.1.5",
     "pandas>=3.0.3",
     "pdfplumber>=0.11.10",
     "pillow>=12.3.0",
+    "pyarrow>=25.0.0",
     "pypdf>=6.14.2",
 ]
 
@@ -16,4 +22,4 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
-testpaths = ["branch_tracking/tests"]
+testpaths = ["branch_tracking/tests", "powerflow_analytics/tests"]
