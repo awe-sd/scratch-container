@@ -121,12 +121,16 @@ name (reported OR fixed) AND kV must both agree (`ABS(diff) <= 0.05`) — no
 fuzzy matching at query time. Verified unambiguous for every device in every
 model (see §7).
 
-### `AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION(P_START_DATE, P_END_DATE)`
+### `AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION(P_START_DATE, P_END_DATE, P_CHUNK_DAYS)`
 
-Stages into a temp table, then `DELETE` + `INSERT` into
-`AW.DBO.ERCOTSTATIONINJECTION` for the range inside one transaction. Returns a
-status string. The reported terminal is read straight off
-`ISOERCOTSEBRANCHDEVICE`; the winding map only supplies the mirror.
+Builds a terminal dimension ONCE per call (the four attribution rules below,
+one row per device terminal) and joins it ONCE to `ISOERCOTSEBRANCH`, instead
+of the earlier 4-leg `UNION ALL` that Snowflake inlined into four separate
+scans of that table. `P_CHUNK_DAYS` (default 0 = whole range in one shot)
+splits the range into `DELETE` + `INSERT` transactions of N days each, so a
+large backfill can commit and restart in pieces. Returns a status string. The
+reported terminal is read straight off `ISOERCOTSEBRANCHDEVICE`; the winding
+map only supplies the mirror.
 
 ---
 
@@ -256,6 +260,12 @@ Not time-correct; the model reloads every 1–2 weeks so one call spans versions
 Also unsafe as a "pick the newest model" shortcut for another reason: `CIMFILEID`
 is not monotone with model recency — `CIMFILEID` 376 is a 2023-07-18 model
 loaded late (see §8).
+
+### Single-pass terminal dimension (not 4-leg UNION over `br`)
+Identical output, 1.5–2.8x faster (verified 1 day: 170,064 rows; 1 month:
+5,098,241 rows; 0 mismatches at 0.001 MW). `ISOERCOTSEBRANCH` is clustered by
+device, not timestamp, so scans are ~fixed per call regardless of window size
+→ bulk loading means few large calls, not many small ones.
 
 ### CIM selection by nearest-forward `CIMDATE` — REPLACED
 Worked (79/79 months) but was a derivation. Superseded by the schedule view,
@@ -434,6 +444,8 @@ leading cluster key, or keep a timestamp-clustered derived table), but it is a
 
 -- 6. Load one month and inspect before committing to the backfill
 CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2022-01-31');
+-- Backfill from here: as few calls as possible on a LARGE+ warehouse, e.g.
+-- CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2026-07-24', 365);
 
 -- 7. Verify generation is visible at machine voltages.
 --    NOTE: 2022-era timestamps are stamped :58, not :57.

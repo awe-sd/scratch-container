@@ -30,6 +30,10 @@
 --   Transformer, reported terminal      ->  FROMMW  at the device's own KVLEVEL
 --   Transformer, other real winding     ->  TOMW    at that winding's NOMINALKV
 --
+-- These four rules are materialized ONCE per call as the TMP_TERMINAL dimension
+-- and joined ONCE to the flow table (see PERFORMANCE / BULK LOADING below) -
+-- the rules themselves are unchanged from the original 4-leg UNION ALL design.
+--
 -- The transformer mirror is what makes generation visible. ERCOT reports flow on
 -- only one winding and expects the other to be equal and opposite; verified over
 -- 2026-01-01..2026-07-25 that no transformer ever reports both sides
@@ -73,7 +77,21 @@
 --   negation of near-end, so this is purely a sign convention. Near-end is used
 --   because it makes generation read POSITIVE at the generator bus and keeps
 --   WITHDRAWMW's original meaning from ERCOTSTATIONLOAD.
---   To flip to inflow-positive, negate the four MW terms in `terminals`.
+--   To flip to inflow-positive, negate the MW expression in the INSERT's SUM.
+--
+-- ---------------------------------------------------------------------------
+-- PERFORMANCE / BULK LOADING
+--
+-- ISOERCOTSEBRANCH (563M rows, 12 GB) is clustered by BRANCHDEVICEID, not
+-- TIMESTAMP: a 1-day range scans 6.0 GB, a 1-month range scans 8.8 GB - each
+-- call pays a near-fixed scan cost, so bulk loads want FEW LARGE calls, not
+-- many small ones. TMP_TERMINAL (the four rules above) is built ONCE per call
+-- and joined ONCE to the flow table, replacing an earlier 4-leg UNION ALL that
+-- Snowflake inlined into 4 separate scans (proven identical output, 1.5-2.8x
+-- faster). Daily incremental: CALL ...(d, d). Backfill: as few calls as
+-- possible on a LARGE+ warehouse - e.g. one call per year with
+-- P_CHUNK_DAYS = 0, or one call for the whole range with P_CHUNK_DAYS = 365
+-- for per-year commits/restartability.
 --
 -- ---------------------------------------------------------------------------
 -- OTHER NOTES
@@ -82,13 +100,12 @@
 -- TIMESTAMP is kept at full source resolution. SE timestamps are irregular -
 --   :57 recently, :58 in 2021-2022, occasionally on the hour - so anything
 --   downstream deriving an hour bucket must not assume a fixed minute.
--- Nothing is deleted when the source range is empty. Delete and insert run in
---   one transaction after staging.
+-- Each chunk's DELETE+INSERT runs in one transaction; an empty source range
+--   still deletes any existing target rows in that window (idempotent reload,
+--   no staging/zero-row guard - see P_CHUNK_DAYS above for controlling blast
+--   radius on a backfill).
 -- Backfill from 2022-01-01. There is no winding data before then (earliest
 --   usable CIMDATE is 2022-01-04).
--- Call with WIDE date ranges. ISOERCOTSEBRANCH is 563M rows clustered by
---   branchDeviceID, not timestamp, so a single day still touches 13-49% of
---   partitions. A month per call costs little more than a day.
 -- A transformer whose BOTH sides are reported as devices (GARZA
 --   1_138_1_H/1_69_1_H, MDLNE AXFMR1H/AXFMR1L) is deliberately left unmapped:
 --   mirroring either side would double count, and both reported sides already
@@ -99,9 +116,15 @@
 --   in the build script before trusting recent months.
 -- ============================================================================
 
+-- Signature changed (3rd arg): procedures are keyed by name+argtypes, so
+-- CREATE OR REPLACE here adds a new (DATE, DATE, INTEGER) overload rather than
+-- replacing an existing (DATE, DATE) one. Drop the old overload once so a
+-- 2-arg CALL can't resolve to it (or be ambiguous against the defaulted arg):
+--   DROP PROCEDURE IF EXISTS AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION(DATE, DATE);
 CREATE OR REPLACE PROCEDURE AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION(
     P_START_DATE DATE,
-    P_END_DATE   DATE
+    P_END_DATE   DATE,
+    P_CHUNK_DAYS INTEGER DEFAULT 0   -- 0 = whole range in one DELETE+INSERT; N = commit every N days
 )
 RETURNS VARCHAR
 LANGUAGE SQL
@@ -111,6 +134,10 @@ $$
 DECLARE
     v_out_rows INTEGER DEFAULT 0;
     v_deleted  INTEGER DEFAULT 0;
+    v_chunks   INTEGER DEFAULT 0;
+    v_from     DATE;
+    v_to       DATE;
+    v_step     INTEGER;
 BEGIN
     IF (P_START_DATE IS NULL OR P_END_DATE IS NULL) THEN
         RETURN 'ERROR: P_START_DATE and P_END_DATE are both required.';
@@ -121,77 +148,77 @@ BEGIN
                ') is after P_END_DATE (' || :P_END_DATE::VARCHAR || ').';
     END IF;
 
-    CREATE OR REPLACE TEMPORARY TABLE TMP_STATION_INJECTION AS
-    WITH br AS (
-        SELECT BRANCHDEVICEID, "TIMESTAMP", FROMMW, TOMW
-        FROM AW.DBO.ISOERCOTSEBRANCH
-        WHERE "TIMESTAMP" >= :P_START_DATE
-          AND "TIMESTAMP" <  DATEADD(DAY, 1, :P_END_DATE)
-    ),
-    ldev AS (
+    IF (P_CHUNK_DAYS < 0) THEN
+        RETURN 'ERROR: P_CHUNK_DAYS must be >= 0 (got ' || :P_CHUNK_DAYS::VARCHAR || ').';
+    END IF;
+
+    -- Terminal dimension: one row per (device, terminal) - which station/kV the
+    -- flow is booked at, which MW column to read, and the model-validity window
+    -- (open-ended except for the transformer mirror). Built ONCE per call, before
+    -- any transaction (CREATE OR REPLACE TEMPORARY TABLE is DDL and auto-commits).
+    CREATE OR REPLACE TEMPORARY TABLE TMP_TERMINAL AS
+    WITH ldev AS (
         SELECT BRANCHDEVICEID, FROMSTATIONNAME, TOSTATIONNAME, CAST(KVLEVEL AS NUMBER(6,2)) AS KVLEVEL
         FROM AW.DBO.ISOERCOTSEBRANCHDEVICE WHERE BRANCHDEVICETYPE = 'Line'
     ),
     xdev AS (
         SELECT BRANCHDEVICEID, FROMSTATIONNAME AS STATION, CAST(KVLEVEL AS NUMBER(6,2)) AS KVLEVEL
         FROM AW.DBO.ISOERCOTSEBRANCHDEVICE WHERE BRANCHDEVICETYPE = 'Transformer'
-    ),
-    terminals AS (
-        -- line, from end
-        SELECT br."TIMESTAMP", l.FROMSTATIONNAME AS STATIONNAME, l.KVLEVEL, ZEROIFNULL(br.FROMMW) AS MW
-        FROM br JOIN ldev l ON l.BRANCHDEVICEID = br.BRANCHDEVICEID
-        UNION ALL
-        -- line, to end
-        SELECT br."TIMESTAMP", l.TOSTATIONNAME, l.KVLEVEL, ZEROIFNULL(br.TOMW)
-        FROM br JOIN ldev l ON l.BRANCHDEVICEID = br.BRANCHDEVICEID
-        UNION ALL
-        -- transformer, the winding ERCOT reports: at the device's own kV
-        SELECT br."TIMESTAMP", x.STATION, x.KVLEVEL, ZEROIFNULL(br.FROMMW)
-        FROM br JOIN xdev x ON x.BRANCHDEVICEID = br.BRANCHDEVICEID
-        UNION ALL
-        -- transformer, the other real winding: TOMW carries losses correctly
-        SELECT br."TIMESTAMP", m.STATION, m.NOMINALKV, ZEROIFNULL(br.TOMW)
-        FROM br
-        JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE e
-          ON br."TIMESTAMP" >= e.EFFECTIVE_FROM AND br."TIMESTAMP" < e.EFFECTIVE_TO
-        JOIN AWDEV.ERCOTRT.ERCOTSETRANSFORMERWINDINGMAP m
-          ON m.CIMFILEID      = e.CIMFILEID
-         AND m.BRANCHDEVICEID = br.BRANCHDEVICEID
-        WHERE ABS(m.NOMINALKV - m.DEVICEKV) > 0.05
     )
-    SELECT CAST("TIMESTAMP" AS TIMESTAMP_NTZ(0)) AS "TIMESTAMP",
-           STATIONNAME AS NMMSSTATIONCODE, KVLEVEL,
-           CAST(NULL AS FLOAT) AS GENMW, CAST(NULL AS FLOAT) AS WITHDRAWMW,
-           SUM(MW) AS NETINJECTIONMW
-    FROM terminals
-    WHERE STATIONNAME IS NOT NULL AND KVLEVEL IS NOT NULL
-    GROUP BY "TIMESTAMP", STATIONNAME, KVLEVEL;
+    SELECT BRANCHDEVICEID, FROMSTATIONNAME AS STATIONNAME, KVLEVEL, TRUE AS USE_FROMMW,
+           '1900-01-01'::TIMESTAMP_NTZ AS EFFECTIVE_FROM, '9999-12-31'::TIMESTAMP_NTZ AS EFFECTIVE_TO
+    FROM ldev
+    UNION ALL
+    SELECT BRANCHDEVICEID, TOSTATIONNAME, KVLEVEL, FALSE, '1900-01-01', '9999-12-31' FROM ldev
+    UNION ALL
+    SELECT BRANCHDEVICEID, STATION, KVLEVEL, TRUE, '1900-01-01', '9999-12-31' FROM xdev
+    UNION ALL
+    -- transformer mirror: TOMW at the other real winding's kV, only while that CIM model is in force
+    SELECT m.BRANCHDEVICEID, m.STATION, m.NOMINALKV, FALSE, e.EFFECTIVE_FROM, e.EFFECTIVE_TO
+    FROM AWDEV.ERCOTRT.ERCOTSETRANSFORMERWINDINGMAP m
+    JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE e ON e.CIMFILEID = m.CIMFILEID
+    WHERE ABS(m.NOMINALKV - m.DEVICEKV) > 0.05;
 
-    v_out_rows := (SELECT COUNT(*) FROM TMP_STATION_INJECTION);
+    DELETE FROM TMP_TERMINAL WHERE STATIONNAME IS NULL OR KVLEVEL IS NULL;
 
-    IF (v_out_rows = 0) THEN
-        RETURN 'No SE branch data for ' || :P_START_DATE::VARCHAR || ' .. ' ||
-               :P_END_DATE::VARCHAR || '. Target left unchanged.';
-    END IF;
+    v_from := P_START_DATE;
+    v_step := IFF(P_CHUNK_DAYS = 0, DATEDIFF(DAY, P_START_DATE, P_END_DATE) + 1, P_CHUNK_DAYS);
 
-    BEGIN TRANSACTION;
+    WHILE (v_from <= P_END_DATE) DO
+        v_to := LEAST(DATEADD(DAY, v_step, v_from), DATEADD(DAY, 1, P_END_DATE));
 
-        DELETE FROM AW.DBO.ERCOTSTATIONINJECTION
-        WHERE "TIMESTAMP" >= :P_START_DATE
-          AND "TIMESTAMP" <  DATEADD(DAY, 1, :P_END_DATE);
+        BEGIN TRANSACTION;
 
-        v_deleted := SQLROWCOUNT;
+            DELETE FROM AW.DBO.ERCOTSTATIONINJECTION
+            WHERE "TIMESTAMP" >= :v_from
+              AND "TIMESTAMP" <  :v_to;
 
-        INSERT INTO AW.DBO.ERCOTSTATIONINJECTION
-            ("TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, GENMW, WITHDRAWMW, NETINJECTIONMW)
-        SELECT "TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, GENMW, WITHDRAWMW, NETINJECTIONMW
-        FROM TMP_STATION_INJECTION;
+            v_deleted := v_deleted + SQLROWCOUNT;
 
-    COMMIT;
+            INSERT INTO AW.DBO.ERCOTSTATIONINJECTION
+                ("TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, GENMW, WITHDRAWMW, NETINJECTIONMW)
+            SELECT CAST(br."TIMESTAMP" AS TIMESTAMP_NTZ(0)), t.STATIONNAME, t.KVLEVEL, NULL, NULL,
+                   SUM(ZEROIFNULL(IFF(t.USE_FROMMW, br.FROMMW, br.TOMW)))
+            FROM AW.DBO.ISOERCOTSEBRANCH br
+            JOIN TMP_TERMINAL t
+              ON t.BRANCHDEVICEID = br.BRANCHDEVICEID
+             AND br."TIMESTAMP" >= t.EFFECTIVE_FROM AND br."TIMESTAMP" < t.EFFECTIVE_TO
+            WHERE br."TIMESTAMP" >= :v_from
+              AND br."TIMESTAMP" <  :v_to
+            GROUP BY 1, 2, 3
+            ORDER BY 1, 2, 3;   -- target is clustered by (date, station); ordered insert keeps auto-clustering cheap
 
-    RETURN 'OK ' || :P_START_DATE::VARCHAR || ' .. ' || :P_END_DATE::VARCHAR ||
-           ': deleted ' || v_deleted::VARCHAR ||
-           ', inserted ' || v_out_rows::VARCHAR || '.';
+            v_out_rows := v_out_rows + SQLROWCOUNT;
+
+        COMMIT;
+
+        v_chunks := v_chunks + 1;
+        v_from := v_to;
+    END WHILE;
+
+    RETURN 'OK: ' || v_chunks::VARCHAR || ' chunk(s), ' || v_deleted::VARCHAR ||
+           ' rows deleted, ' || v_out_rows::VARCHAR || ' rows inserted for ' ||
+           :P_START_DATE::VARCHAR || '..' || :P_END_DATE::VARCHAR;
 
 EXCEPTION
     WHEN OTHER THEN
@@ -206,6 +233,7 @@ $$;
 -- ===========================================================================
 --   CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2022-01-31');
 --   CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2026-07-01', '2026-07-24');
+--   CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2026-07-24', 365);
 
 
 -- ===========================================================================
