@@ -7,6 +7,12 @@ Estimator (SE) branch flow data.
 Account `nnb00838`, user `SDALVI`. Roles: `READ_ONLY` (default, read-only) and
 `AW_ACCESS` (has `CREATE TABLE` on `AW.DBO`). Warehouse `READ_ONLY_WH`.
 
+Connectivity from this workspace is now via `awconnect` 1.5, key-pair auth, as
+`ai_read_only_user` / role `AI_READ_ONLY` — **read-only**. All DDL in this
+pipeline (the fix table, the two views, the procedure) must be executed by
+sdalvi directly as `AW_ACCESS`; this container can compile-validate and verify
+logic via `SELECT` but cannot run it.
+
 ---
 
 ## 1. Status
@@ -14,13 +20,16 @@ Account `nnb00838`, user `SDALVI`. Roles: `READ_ONLY` (default, read-only) and
 | Item | State |
 |---|---|
 | Target table `AW.DBO.ERCOTSTATIONINJECTION` | **Created** |
-| `build_ercot_xfmr_winding_map.sql` | Written, compiles, **not executed** |
-| `sp_load_ercot_station_injection.sql` | Written, compiles, **not executed** |
+| `build_ercot_xfmr_winding_map.sql` — `ERCOTCIMEFFECTIVE` view, `ERCOTSEXFMRENDNAMEFIX` table + seed, `ERCOTSEXFMRWINDINGMAP` view, all in `AWDEV.ERCOTRT` | Written, compiles, **not executed** |
+| `sp_load_ercot_station_injection.sql` — proc in `AWDEV.ERCOTRT` | Written, compiles, **not executed** |
+| Fix table `ERCOTSEXFMRENDNAMEFIX` | **Reinstated** 2026-09-24, redesigned as a strict-join complement — see §7 |
 | Backfill | Not started |
 
-Nothing has been run against the database except read-only exploration. All SQL
-in both files has been compile-validated (`only_compile`), and all logic has been
-verified against real data via equivalent `SELECT`s.
+Nothing has been run against the database. This container connects only as
+`ai_read_only_user` / role `AI_READ_ONLY`, which is **read-only** — it can
+compile-validate (`only_compile`) and verify logic via `SELECT`, but cannot
+execute DDL. All DDL in this pipeline (the fix table, the two views, the
+procedure) must be executed by sdalvi directly as `AW_ACCESS`.
 
 ---
 
@@ -28,12 +37,13 @@ verified against real data via equivalent `SELECT`s.
 
 | File | Purpose |
 |---|---|
-| `Station_injection.py` | **Original Python** being ported. Read-only reference. |
-| `build_ercot_xfmr_winding_map.sql` | Creates the exception table + 2 views. **Run first.** |
-| `sp_load_ercot_station_injection.sql` | Creates the loader procedure. **Run second.** |
-| `create_ercotstationinjection.sql` | DDL for the target table. Already executed. |
-| `create_ercotstationloadkv.sql` | Empty/superseded — safe to delete. |
-| `Station_Injection.sql`, `Untitled 1.sql` | Ad-hoc scratch. Not part of the pipeline. |
+| `build_ercot_xfmr_winding_map.sql` | Creates `ERCOTCIMEFFECTIVE`, `ERCOTSEXFMRENDNAMEFIX` (+ seed), `ERCOTSEXFMRWINDINGMAP` in `AWDEV.ERCOTRT`. **Run first.** |
+| `sp_load_ercot_station_injection.sql` | Creates the loader procedure in `AWDEV.ERCOTRT`. **Run second.** |
+| `ercotsexfmrendnamefix_seed_review.csv` | Review copy of the 133-row fix-table seed (BRANCHDEVICEID, names, kV, corrected winding) — sanity-check before running the seed INSERT. |
+| `snowflake_test.py` | Connectivity smoke test — `awconnect` (`read_only` profile) → Snowflake. |
+| `SESSION_HANDOFF.md` | This file. |
+
+Target table DDL (`AW.DBO.ERCOTSTATIONINJECTION`) already executed; see §3.
 
 ---
 
@@ -73,42 +83,40 @@ deliberate changes:
 
 ## 4. Objects the pipeline creates
 
-### `AW.DBO.ERCOTSEXFMRDEVICEFIX` — table, 159 rows
+Four objects. Three are pure derivations; one (`ERCOTSEXFMRENDNAMEFIX`) is
+hand-maintained — the only hand-maintained data anywhere in this pipeline.
 
-The **only hand-maintained artifact.** Lists the SE transformer devices whose
-`TRANSFORMERENDNAME` names the wrong winding (an ERCOT reporting bug). Columns:
-`BRANCHDEVICEID`, `BRANCHDEVICENAME`, `STATION`, `REPORTED_ENDNAME`,
-`REPORTED_KVLEVEL`, `CORRECT_TRANSFORMERNAME`, `NOTE`.
+### `AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE` — view
 
-Seeded by a one-time `INSERT ... SELECT` in the build script. That insert is the
-**only** place the fuzzy name-ignoring-kV match runs; it never executes at query
-time.
+Timestamp → CIM model in force, at TIMESTAMP grain (not date grain — the SE
+switches models at 23:00 the eve of the schedule's `PRODUCTION_LOAD`, see §8).
+Built on `AWDEV.ERCOTRT.ERCOT_PRODUCTION_LOAD_SCHEDULE` joined to
+`AW.DBO.CIMFILE` on `CIMDATE = EFFECTIVE_THROUGH`.
 
-159 rows suffices because the correction is stable — each device maps to exactly
-one transformer across all 202 CIM models, so no `CIMFILEID` column is needed.
+### `AWDEV.ERCOTRT.ERCOTSEXFMRENDNAMEFIX` — table (hand-maintained)
 
-### `AW.DBO.ERCOTCIMEFFECTIVE` — view
+`BRANCHDEVICEID → TRANSFORMERENDNAME` (the corrected winding name). One row
+per device whose reported `TRANSFORMERENDNAME` has no winding at its own
+`KVLEVEL` in some model it overlaps. sdalvi's principle: the device `KVLEVEL`
+is trustworthy, `TRANSFORMERENDNAME` is not — so this table is the only place
+a name gets corrected, and everything downstream trusts kV. Seeded once
+(133 rows, reviewed at `ercotsexfmrendnamefix_seed_review.csv`); extend it by
+hand when the build script's verification F flags a new device.
 
-Date → CIM model in force. Built on
-`AWDEV.ERCOTRT.ERCOT_PRODUCTION_LOAD_SCHEDULE` joined to `AW.DBO.CIMFILE` on
-`CIMDATE = EFFECTIVE_THROUGH`.
+### `AWDEV.ERCOTRT.ERCOTSEXFMRWINDINGMAP` — view
 
-### `AW.DBO.ERCOTSEXFMRWINDINGMAP` — view
+`(CIMFILEID, BRANCHDEVICEID)` → one row per real winding of that device's
+transformer, including the device's own reported winding. Strict join: winding
+name (reported OR fixed) AND kV must both agree (`ABS(diff) <= 0.05`) — no
+fuzzy matching at query time. Verified unambiguous for every device in every
+model (see §7).
 
-`(CIMFILEID, BRANCHDEVICEID)` → `REPORTED_KV`, `MIRROR_KV`, `SOURCE`. Two halves,
-neither containing fuzzy logic:
+### `AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION(P_START_DATE, P_END_DATE)`
 
-- `ERCOT` — winding name **and** voltage agree
-- `FIX` — transformer from the exception table, voltage from the device's own
-  `KVLEVEL`
-
-Devices in the fix table are excluded from the `ERCOT` half, so they cannot
-overlap.
-
-### `AW.DBO.SP_LOAD_ERCOT_STATION_INJECTION(P_START_DATE, P_END_DATE)`
-
-Stages into a temp table, then `DELETE` + `INSERT` for the range inside one
-transaction. Returns a status string.
+Stages into a temp table, then `DELETE` + `INSERT` into
+`AW.DBO.ERCOTSTATIONINJECTION` for the range inside one transaction. Returns a
+status string. The reported terminal is read straight off
+`ISOERCOTSEBRANCHDEVICE`; the winding map only supplies the mirror.
 
 ---
 
@@ -142,8 +150,12 @@ that appears on no branch row.
   (`AX1H`/`AX1L`/`AX1T`), each a real winding plus a 1 kV leg. So
   `TRANSFORMERNAME` is **per-leg**, not per-bank, for star models.
 - **No transformer has more than 2 real voltages** — verified 0 of 504,790
-  `(CIMFILEID, STATION, TRANSFORMERNAME)` combinations exceed 2, so `MIRROR_KV`
-  is never ambiguous.
+  `(CIMFILEID, STATION, TRANSFORMERNAME)` combinations exceed 2, so the mirror
+  terminal derived from the winding map is never ambiguous.
+- **The device table is versioned.** A kV re-rating closes the old
+  `BRANCHDEVICEID` and opens a new one, in step with the CIM model — so a
+  device's `KVLEVEL` is stable and correct for its own active window; it is
+  only the reported `TRANSFORMERENDNAME` that can be wrong.
 
 ---
 
@@ -158,8 +170,16 @@ where generation becomes visible.
 |---|---|---|
 | Line, station is FROM end | line `KVLEVEL` | `FROMMW` |
 | Line, station is TO end | line `KVLEVEL` | `TOMW` |
-| Transformer, reported winding | `map.REPORTED_KV` | `FROMMW` |
-| Transformer, opposite winding | `map.MIRROR_KV` | `-FROMMW` |
+| Transformer, reported terminal | device's own `KVLEVEL` (from `ISOERCOTSEBRANCHDEVICE`) | `FROMMW` |
+| Transformer, other real winding | the winding map's other real winding at that device (none if the device has no map row) | `-FROMMW` |
+
+The reported terminal is read straight off the device table, not the map, so a
+transformer that fails to resolve in the winding map — no map row for that
+(model, device) — still contributes its reported side and only loses the
+mirror. Because `ERCOTSEXFMRWINDINGMAP` is a strict name+kV join, the mirror is
+unique by construction whenever a map row exists (verified, build script
+verification D) — there is no "ambiguous, so skip" case to handle at query
+time, only "unmapped, so no mirror."
 
 ### Verified results at `2026-07-01 12:57`
 
@@ -195,21 +215,75 @@ Counting only `FROMMW` for transformers gives a true bus balance, but it reads
 ~0 wherever load or generation sits behind a transformer, i.e. nearly everywhere.
 STP returns −2 MW instead of 2,604 MW. Useless for load analysis.
 
-### Strict name+kV join with no fallback — REJECTED
-Silently dropped 108 devices / 4,908 MW absolute on 2026-07-01 — mostly solar
-plants, losing their entire output. Hence the fix table.
+### Strict name+kV join, no fallback — REJECTED, then restored WITH a fallback
+A bare strict join (winding name AND kV must agree, nothing else) silently
+dropped 108 devices / 4,908 MW absolute on 2026-07-01 — mostly solar plants,
+losing their entire output. That's the current design's failure mode too, but
+now it's covered: `ERCOTSEXFMRENDNAMEFIX` supplies the 133 corrected names the
+strict join needs, seeded once and hand-extended from there (see "Fix table
+stores TRANSFORMERNAME — REJECTED" below and §7's name-only-join entry for why
+the alternative of dropping kV instead was rejected).
 
 ### Fallback keyed on `TRANSFORMERNAME` — REJECTED
 Matching `TRANSFORMERENDNAME` directly to `TRANSFORMERNAME` works for
 `DUNLAP AT2` and `HRZN_SLR T1` but fails for `AT1H` → `AT1` and `ENS7TR1H` →
-`7TR1`. The fix table stores the resolved transformer instead.
+`7TR1`. The fix table stores the corrected WINDING name instead (see below).
+
+### Name-only join (ignore kV) — REJECTED
+Briefly the design 2026-09-24: drop the kV requirement entirely and join on
+`(STATION, WINDINGNAME)` alone, since it resolved every device unambiguously.
+Rejected on review: it trusts `TRANSFORMERENDNAME`, the field sdalvi's
+principle says is unreliable, while `KVLEVEL` — the field that principle says
+IS reliable — goes unused. Reverted to a strict join plus a small hand-checked
+fix table for the names that fail it, so the trustworthy field (kV) is what
+actually decides the match.
 
 ### CIM selection by `MAX(CIMFILEID)` — REJECTED
 Not time-correct; the model reloads every 1–2 weeks so one call spans versions.
+Also unsafe as a "pick the newest model" shortcut for another reason: `CIMFILEID`
+is not monotone with model recency — `CIMFILEID` 376 is a 2023-07-18 model
+loaded late (see §8).
 
 ### CIM selection by nearest-forward `CIMDATE` — REPLACED
 Worked (79/79 months) but was a derivation. Superseded by the schedule view,
 which is authoritative and also gives 100% coverage.
+
+### Date-grain CIM-effective — REPLACED
+`ERCOTCIMEFFECTIVE` used to key on `DATE` (`EFFECTIVE_FROM`/`EFFECTIVE_THROUGH`
+= `PRODUCTION_LOAD` day boundaries). Verified 2026-09-24 the SE actually
+switches models at 23:00 on the eve of `PRODUCTION_LOAD`, not midnight —
+retired devices' last sample is 22:57 that eve for 216/236 of them, new
+devices' first sample is 23:57 that eve for 637/757 (00:xx for the rest).
+Replaced with a `TIMESTAMP_NTZ` grain (`EFFECTIVE_FROM` = `PRODUCTION_LOAD`
+minus one hour), so consumers join on `ts >= EFFECTIVE_FROM AND ts <
+EFFECTIVE_TO` instead of a date `BETWEEN`.
+
+### Fix table stores `TRANSFORMERNAME` — REJECTED
+Storing the transformer name a device's bad `TRANSFORMERENDNAME` points at,
+rather than the corrected winding name, seemed simpler but breaks under
+renames: ERCOT renames windings between models — `PEARSALL 69_4` had both
+windings named `138_69_4` (at 138 and 69) until model 204, when the 69 side
+became `138_69_4_L`. A `TRANSFORMERNAME`-keyed fix can't express "the reported
+name is right in old models, the fix is right in new ones." So the fix table
+stores the corrected WINDING name, and `ERCOTSEXFMRWINDINGMAP` tries the
+reported name first and the fix second (`WINDINGNAME IN (reported, fixed)`),
+letting the kV match pick whichever is actually correct for that model.
+
+### Mirror uniqueness guard moved from the procedure to the map — REPLACED
+Under the earlier (2026-09-24) ignore-kV winding map, a device's `DEVICEKV`
+could match NEITHER real winding of its transformer — ERCOT relabels reported
+kV across CIM models (e.g. `BRIGHTSD_T1` @138 vs windings `T1`@69 / `T1_L`@34.5
+in 47 models). A naive mirror join against that map would pass both winding
+rows and double-count the flow, so the SP carried a runtime `mirror` CTE with
+`HAVING COUNT(DISTINCT NOMINALKV) = 1` to suppress the ambiguous case.
+That situation does not occur within a device's active window under the
+current strict map — it was an artifact of pairing a device with a model from
+before the device existed (or after a kV re-rating closed it; see §5's
+versioned-device fact). With the strict join, the mirror is unique by
+construction whenever a map row exists (build-script verification D, MUST
+return 0), so the `mirror` CTE and its `HAVING` guard are gone from the
+procedure entirely — the SP's `terminals` CTE joins `ERCOTSEXFMRWINDINGMAP`
+directly and filters `ABS(NOMINALKV - DEVICEKV) > 0.05`.
 
 ### Line sign convention — OPEN, see §9
 
@@ -224,8 +298,11 @@ which is authoritative and also gives 100% coverage.
 | SE branch data range | 2020-01-01 → 2026-07-24 |
 | SCED gen data range | 2014-12-03 → 2026-07-25 |
 | Winding data starts | **2022-01-04** — the real reason the backfill starts 2022 |
-| CIM resolution 2022+ | **1,666 / 1,666 days**, exactly one model each |
-| Transformer mapping | 2,540 via `ERCOT` + 108 via `FIX` = **2,648 = 100%**, 0 double-placed |
+| CIM resolution 2022+ | **1,666 / 1,666 days**, exactly one model each (date-grain check; superseded by the TIMESTAMP-grain contiguity check, verification B) |
+| SE model switchover | **23:00 on the eve of `PRODUCTION_LOAD`**, not midnight — retired devices' last sample 22:57 that eve (216/236 devices), new devices' first sample 23:57 that eve (637/757; 00:xx for the other 120) |
+| Fix table (`ERCOTSEXFMRENDNAMEFIX`) | **133 rows** — one corrected winding name per device that fails the strict name+kV join in some model it overlaps; every device's correction unique across all its failing models (verification A) |
+| Device table is versioned | A kV re-rating closes the old `BRANCHDEVICEID` and opens a new one, in step with the CIM model — `KVLEVEL` is correct for a device's own active window |
+| `CIMFILEID` is not recency-ordered | `CIMFILEID` 376 is a 2023-07-18 model, loaded late — **never** pick "the newest model" via `MAX(CIMFILEID)` |
 | `ISOERCOTSEBRANCHDEVICE` | 16,733 rows, `BRANCHDEVICEID` unique (no fanout risk) |
 | View `ISOERCOTSEBRANCHVIEW` | Safe — 0 orphan rows, no row loss vs base tables |
 | Station names | 4,418 / 4,418 branch stations exist in `ERCOTDAMPSSESTATION` — one namespace |
@@ -313,17 +390,29 @@ leading cluster key, or keep a timestamp-clustered derived table), but it is a
 ## 10. Next steps
 
 ```sql
--- 1. Build mapping objects (role AW_ACCESS)
---    Run build_ercot_xfmr_winding_map.sql sections 1-3, then verification A-F.
---    Expect: 159 fix rows; 0 for all four "MUST return 0" checks.
+-- 1. Build the CIM-effective view (role AW_ACCESS) - section 1 of
+--    build_ercot_xfmr_winding_map.sql.
 
--- 2. Create the procedure
+-- 2. Create the fix table (section 2), then run its one-time seed (section 3).
+--    Review ercotsexfmrendnamefix_seed_review.csv first.
+
+-- 3. Build the winding map view (section 4) - it depends on both the CIM
+--    view and the (now-seeded) fix table.
+
+-- 4. Run verification A-G (section 5).
+--    Expect: 0 for every "MUST return 0" check (A's second query, B's first
+--    query, C, D, E). A's first query = 133. B's second query
+--    (earliest EFFECTIVE_FROM) <= 2022-01-01. F is informational - expect
+--    only the documented residual (FAYETT, GARZA, MDLNE, PCT). G is a spot
+--    check against known values.
+
+-- 5. Create the procedure (role AW_ACCESS)
 --    Run sp_load_ercot_station_injection.sql
 
--- 3. Load one month and inspect before committing to the backfill
-CALL AW.DBO.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2022-01-31');
+-- 6. Load one month and inspect before committing to the backfill
+CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2022-01-31');
 
--- 4. Verify generation is visible at machine voltages.
+-- 7. Verify generation is visible at machine voltages.
 --    NOTE: 2022-era timestamps are stamped :58, not :57.
 SELECT NMMSSTATIONCODE, KVLEVEL, ROUND(NETINJECTIONMW,2)
 FROM AW.DBO.ERCOTSTATIONINJECTION
@@ -333,17 +422,19 @@ ORDER BY NMMSSTATIONCODE, KVLEVEL;
 -- STP should be ~+2600 at 25 kV and ~0 at 345 kV.
 -- If these read ~0, the transformer mirror did not fire.
 
--- 5. Backfill month by month, 2022-01 onward.
+-- 8. Backfill month by month, 2022-01 onward.
 
--- 6. Ongoing: the Python ran a 3-day window lagging 60-63 days to let SE data
+-- 9. Ongoing: the Python ran a 3-day window lagging 60-63 days to let SE data
 --    settle. Given the clustering, a weekly run over a wider window is cheaper.
 --    Candidate for a scheduled `cortex automation`.
 ```
 
-After a CIM publish, run the detection query in **section 4** of the build script
-to catch any newly mislabelled devices, and add them to
-`ERCOTSEXFMRDEVICEFIX`. The `SOURCE` column on the map view is a standing
-signal — rising `FIX` volume means ERCOT's naming has degraded further.
+After a CIM publish, run verification **F** in the build script (the standing
+"devices with flow but no map row" detection query) to catch a device that
+newly fails the strict join. If it's one of the documented residual devices
+(FAYETT, GARZA, MDLNE, PCT), ignore it. If it's a new device, extend
+`ERCOTSEXFMRENDNAMEFIX` by hand with the corrected winding name and re-run
+verification A to confirm the correction is unique.
 
 ---
 

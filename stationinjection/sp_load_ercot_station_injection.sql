@@ -1,15 +1,21 @@
 -- ============================================================================
--- AW.DBO.SP_LOAD_ERCOT_STATION_INJECTION
+-- AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION
 --
 -- Station net injection per voltage level, from SE branch flow data.
 -- Target: AW.DBO.ERCOTSTATIONINJECTION, grain (TIMESTAMP, NMMSSTATIONCODE, KVLEVEL)
 --
--- DEPENDS ON two static mapping tables, built by
--- build_ercot_xfmr_winding_map.sql:
---     AW.DBO.ERCOTCIMEFFECTIVE       date -> CIM model in force
---     AW.DBO.ERCOTSEXFMRWINDINGMAP   CIM model + device -> REPORTED_KV, MIRROR_KV
--- All CIM-version and winding-name handling lives in those tables and their
--- build script. Rebuild them when ERCOT publishes a new CIM model.
+-- DEPENDS ON the three objects built by build_ercot_xfmr_winding_map.sql:
+--     AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE       timestamp -> CIM model in force
+--     AWDEV.ERCOTRT.ERCOTSEXFMRENDNAMEFIX   hand-maintained corrected winding
+--                                            names (the only hand-maintained
+--                                            object in this pipeline)
+--     AWDEV.ERCOTRT.ERCOTSEXFMRWINDINGMAP   CIM model + device -> each real
+--                                            winding of its transformer
+-- All CIM-version and winding-name handling lives in those objects. Rebuild
+-- the views when ERCOT publishes a new CIM model (they're pure derivations,
+-- so in practice nothing needs rebuilding - just CREATE OR REPLACE to pick up
+-- new source rows); extend the fix table only when verification F there flags
+-- a new device.
 --
 -- ---------------------------------------------------------------------------
 -- ATTRIBUTION RULE
@@ -19,15 +25,29 @@
 -- (station, kV) gives net injection at that bus: positive = net source, which is
 -- where generation becomes visible.
 --
---   Line, station is the FROM end   ->  FROMMW  at the line's KVLEVEL
---   Line, station is the TO end     ->  TOMW    at the line's KVLEVEL
---   Transformer, reported winding   ->  FROMMW  at map.REPORTED_KV
---   Transformer, opposite winding   -> -FROMMW  at map.MIRROR_KV
+--   Line, station is the FROM end       ->  FROMMW  at the line's KVLEVEL
+--   Line, station is the TO end         ->  TOMW    at the line's KVLEVEL
+--   Transformer, reported terminal      ->  FROMMW  at the device's own KVLEVEL
+--   Transformer, other real winding     -> -FROMMW  at that winding's NOMINALKV
 --
 -- The transformer mirror is what makes generation visible. ERCOT reports flow on
 -- only one winding and expects the other to be equal and opposite; verified over
 -- 2026-01-01..2026-07-25 that no transformer ever reports both sides
 -- (281,126 timestamp/transformer pairs, always exactly one).
+--
+-- The reported terminal is read straight off ISOERCOTSEBRANCHDEVICE, not off
+-- the map - so a transformer that fails to resolve in the winding map (e.g. a
+-- brand-new device before the winding table catches up) still contributes its
+-- reported side and only loses the mirror; the old design dropped it entirely.
+-- Star-equivalent legs (one real winding, equal to the device's own kV)
+-- naturally produce no mirror row.
+--
+-- The mirror leg needs no uniqueness guard here: ERCOTSEXFMRWINDINGMAP is a
+-- strict name+kV join, so it is verified (build script, verification D) that
+-- no (model, device) pair ever has more than one distinct NOMINALKV differing
+-- from DEVICEKV. That situation cannot occur within a device's active window;
+-- it was only ever an artifact of pairing a device with a model from before
+-- the device existed.
 --
 -- Result at 2026-07-01 12:57:
 --     STP      345   ->    -2.00   bus balances, nothing connected at 345
@@ -76,9 +96,13 @@
 -- Call with WIDE date ranges. ISOERCOTSEBRANCH is 563M rows clustered by
 --   branchDeviceID, not timestamp, so a single day still touches 13-49% of
 --   partitions. A month per call costs little more than a day.
+-- A transformer whose BOTH sides are reported as devices (GARZA
+--   1_138_1_H/1_69_1_H, MDLNE AXFMR1H/AXFMR1L) is deliberately left unmapped:
+--   mirroring either side would double count, and both reported sides already
+--   give the right answer between them.
 -- ============================================================================
 
-CREATE OR REPLACE PROCEDURE AW.DBO.SP_LOAD_ERCOT_STATION_INJECTION(
+CREATE OR REPLACE PROCEDURE AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION(
     P_START_DATE DATE,
     P_END_DATE   DATE
 )
@@ -102,65 +126,48 @@ BEGIN
 
     CREATE OR REPLACE TEMPORARY TABLE TMP_STATION_INJECTION AS
     WITH br AS (
-        SELECT BRANCHDEVICEID, "TIMESTAMP",
-               CAST("TIMESTAMP" AS DATE) AS D,
-               FROMMW, TOMW
+        SELECT BRANCHDEVICEID, "TIMESTAMP", FROMMW, TOMW
         FROM AW.DBO.ISOERCOTSEBRANCH
         WHERE "TIMESTAMP" >= :P_START_DATE
           AND "TIMESTAMP" <  DATEADD(DAY, 1, :P_END_DATE)
     ),
     ldev AS (
-        SELECT BRANCHDEVICEID, FROMSTATIONNAME, TOSTATIONNAME, KVLEVEL
-        FROM AW.DBO.ISOERCOTSEBRANCHDEVICE
-        WHERE BRANCHDEVICETYPE = 'Line'
+        SELECT BRANCHDEVICEID, FROMSTATIONNAME, TOSTATIONNAME, CAST(KVLEVEL AS NUMBER(6,2)) AS KVLEVEL
+        FROM AW.DBO.ISOERCOTSEBRANCHDEVICE WHERE BRANCHDEVICETYPE = 'Line'
     ),
-    -- one row per branch device per timestamp, with that date's winding map
-    xfmr AS (
-        SELECT br."TIMESTAMP", m.STATION, m.REPORTED_KV, m.MIRROR_KV,
-               ZEROIFNULL(br.FROMMW) AS FROMMW
-        FROM br
-        JOIN AW.DBO.ERCOTCIMEFFECTIVE e
-          ON br.D BETWEEN e.EFFECTIVE_FROM AND e.EFFECTIVE_THROUGH
-        JOIN AW.DBO.ERCOTSEXFMRWINDINGMAP m
-          ON m.CIMFILEID      = e.CIMFILEID
-         AND m.BRANCHDEVICEID = br.BRANCHDEVICEID
+    xdev AS (
+        SELECT BRANCHDEVICEID, FROMSTATIONNAME AS STATION, CAST(KVLEVEL AS NUMBER(6,2)) AS KVLEVEL
+        FROM AW.DBO.ISOERCOTSEBRANCHDEVICE WHERE BRANCHDEVICETYPE = 'Transformer'
     ),
     terminals AS (
         -- line, from end
-        SELECT br."TIMESTAMP",
-               d.FROMSTATIONNAME              AS STATIONNAME,
-               CAST(d.KVLEVEL AS NUMBER(6,2)) AS KVLEVEL,
-               ZEROIFNULL(br.FROMMW)          AS MW
-        FROM br JOIN ldev d ON d.BRANCHDEVICEID = br.BRANCHDEVICEID
-        WHERE d.FROMSTATIONNAME IS NOT NULL
+        SELECT br."TIMESTAMP", l.FROMSTATIONNAME AS STATIONNAME, l.KVLEVEL, ZEROIFNULL(br.FROMMW) AS MW
+        FROM br JOIN ldev l ON l.BRANCHDEVICEID = br.BRANCHDEVICEID
         UNION ALL
         -- line, to end
-        SELECT br."TIMESTAMP",
-               d.TOSTATIONNAME,
-               CAST(d.KVLEVEL AS NUMBER(6,2)),
-               ZEROIFNULL(br.TOMW)
-        FROM br JOIN ldev d ON d.BRANCHDEVICEID = br.BRANCHDEVICEID
-        WHERE d.TOSTATIONNAME IS NOT NULL
+        SELECT br."TIMESTAMP", l.TOSTATIONNAME, l.KVLEVEL, ZEROIFNULL(br.TOMW)
+        FROM br JOIN ldev l ON l.BRANCHDEVICEID = br.BRANCHDEVICEID
         UNION ALL
-        -- transformer, the winding ERCOT reports
-        SELECT "TIMESTAMP", STATION, REPORTED_KV, FROMMW
-        FROM xfmr
+        -- transformer, the winding ERCOT reports: at the device's own kV
+        SELECT br."TIMESTAMP", x.STATION, x.KVLEVEL, ZEROIFNULL(br.FROMMW)
+        FROM br JOIN xdev x ON x.BRANCHDEVICEID = br.BRANCHDEVICEID
         UNION ALL
-        -- transformer, the opposite winding: equal and opposite
-        SELECT "TIMESTAMP", STATION, MIRROR_KV, -FROMMW
-        FROM xfmr
-        WHERE MIRROR_KV IS NOT NULL
+        -- transformer, the other real winding: equal and opposite
+        SELECT br."TIMESTAMP", m.STATION, m.NOMINALKV, -ZEROIFNULL(br.FROMMW)
+        FROM br
+        JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE e
+          ON br."TIMESTAMP" >= e.EFFECTIVE_FROM AND br."TIMESTAMP" < e.EFFECTIVE_TO
+        JOIN AWDEV.ERCOTRT.ERCOTSEXFMRWINDINGMAP m
+          ON m.CIMFILEID      = e.CIMFILEID
+         AND m.BRANCHDEVICEID = br.BRANCHDEVICEID
+        WHERE ABS(m.NOMINALKV - m.DEVICEKV) > 0.05
     )
-    SELECT
-        CAST("TIMESTAMP" AS TIMESTAMP_NTZ(0)) AS "TIMESTAMP",
-        STATIONNAME                           AS NMMSSTATIONCODE,
-        KVLEVEL                               AS KVLEVEL,
-        CAST(NULL AS FLOAT)                   AS GENMW,
-        CAST(NULL AS FLOAT)                   AS WITHDRAWMW,
-        SUM(MW)                               AS NETINJECTIONMW
+    SELECT CAST("TIMESTAMP" AS TIMESTAMP_NTZ(0)) AS "TIMESTAMP",
+           STATIONNAME AS NMMSSTATIONCODE, KVLEVEL,
+           CAST(NULL AS FLOAT) AS GENMW, CAST(NULL AS FLOAT) AS WITHDRAWMW,
+           SUM(MW) AS NETINJECTIONMW
     FROM terminals
-    WHERE STATIONNAME IS NOT NULL
-      AND KVLEVEL     IS NOT NULL
+    WHERE STATIONNAME IS NOT NULL AND KVLEVEL IS NOT NULL
     GROUP BY "TIMESTAMP", STATIONNAME, KVLEVEL;
 
     v_out_rows := (SELECT COUNT(*) FROM TMP_STATION_INJECTION);
@@ -200,8 +207,8 @@ $$;
 -- ===========================================================================
 -- Usage
 -- ===========================================================================
---   CALL AW.DBO.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2022-01-31');
---   CALL AW.DBO.SP_LOAD_ERCOT_STATION_INJECTION('2026-07-01', '2026-07-24');
+--   CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2022-01-31');
+--   CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2026-07-01', '2026-07-24');
 
 
 -- ===========================================================================
@@ -226,16 +233,17 @@ $$;
 -- ORDER BY NETINJECTIONMW DESC
 -- LIMIT 25;
 --
--- Any transformer flow NOT covered by the map on a loaded day. Should be 0;
--- if not, rebuild the mapping tables.
+-- Any transformer flow NOT covered by the map on a loaded day. Should be 0 or
+-- a short, stable list (see verification F in the build script for the
+-- expected residual); if it's growing, extend the fix table.
 --
 -- SELECT COUNT(*) AS UNMAPPED_XFMR_ROWS
 -- FROM AW.DBO.ISOERCOTSEBRANCH b
 -- JOIN AW.DBO.ISOERCOTSEBRANCHDEVICE d
 --   ON d.BRANCHDEVICEID = b.BRANCHDEVICEID AND d.BRANCHDEVICETYPE = 'Transformer'
--- LEFT JOIN AW.DBO.ERCOTCIMEFFECTIVE e
---   ON CAST(b."TIMESTAMP" AS DATE) BETWEEN e.EFFECTIVE_FROM AND e.EFFECTIVE_THROUGH
--- LEFT JOIN AW.DBO.ERCOTSEXFMRWINDINGMAP m
+-- LEFT JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE e
+--   ON b."TIMESTAMP" >= e.EFFECTIVE_FROM AND b."TIMESTAMP" < e.EFFECTIVE_TO
+-- LEFT JOIN AWDEV.ERCOTRT.ERCOTSEXFMRWINDINGMAP m
 --   ON m.CIMFILEID = e.CIMFILEID AND m.BRANCHDEVICEID = b.BRANCHDEVICEID
 -- WHERE b."TIMESTAMP" >= '2026-07-01' AND b."TIMESTAMP" < '2026-07-02'
 --   AND b.FROMMW IS NOT NULL

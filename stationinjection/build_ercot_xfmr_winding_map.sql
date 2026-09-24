@@ -1,147 +1,48 @@
 -- ============================================================================
--- ERCOT SE transformer winding attribution: one exception TABLE + two VIEWS
+-- ERCOT SE transformer winding attribution: three objects.
 --
---   AW.DBO.ERCOTSEXFMRDEVICEFIX    TABLE, 159 rows - ONLY the devices ERCOT
---                                  reports incorrectly. The single piece of
---                                  hand-maintained data in this pipeline.
---   AW.DBO.ERCOTCIMEFFECTIVE       VIEW - date -> CIM model in force
---   AW.DBO.ERCOTSEXFMRWINDINGMAP   VIEW - device -> REPORTED_KV, MIRROR_KV
+--   AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE       VIEW  - timestamp -> CIM model in force
+--   AWDEV.ERCOTRT.ERCOTSEXFMRENDNAMEFIX   TABLE - hand-maintained corrected
+--                                         winding name, one row per device that
+--                                         fails the strict join below
+--   AWDEV.ERCOTRT.ERCOTSEXFMRWINDINGMAP   VIEW  - SE transformer device -> each
+--                                         real winding of its transformer
 --
--- The views are pure derivations, so they never need rebuilding when ERCOT
--- publishes a new CIM model. Only the exception table is static, and it only has
--- to change if ERCOT mislabels a NEW device - use the detection query in
--- section 4 to find those.
+-- sdalvi's principle: the device KVLEVEL is trustworthy; TRANSFORMERENDNAME is
+-- not. So the map joins winding name AND kV (strict), and the fix table is the
+-- only place that ever repairs a bad name - it is hand-maintained and reviewed
+-- (ercotsexfmrendnamefix_seed_review.csv), everything else here is a pure
+-- derivation. Extend the fix table when verification F below flags a new
+-- device; never loosen the join to compensate.
 --
--- SP_LOAD_ERCOT_STATION_INJECTION just joins the two views and aggregates.
+-- AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION joins the CIM-effective and
+-- winding-map objects and aggregates. See that file for the attribution rule.
 --
 -- Role: AW_ACCESS.
 -- ============================================================================
 
 
 -- ============================================================================
--- 1. AW.DBO.ERCOTSEXFMRDEVICEFIX - the ERCOT reporting bug, as data
---
--- BACKGROUND
---
--- ISOERCOTSEBRANCHVIEW.KVLEVEL identifies only ONE end of a transformer. ERCOT
--- reports the flow on that one side and expects the other side to carry the same
--- magnitude with opposite sign, but the other side's VOLTAGE never appears in the
--- branch data. AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING supplies it, joined on
--- winding name.
---
--- THE BUG: for 159 devices, ERCOT's TRANSFORMERENDNAME names the WRONG winding.
--- The kV is correct; the name is not. The name points at one winding while
--- KVLEVEL is the other winding's voltage:
---
---     DUNLAP    end AT1H     @138   windings AT1H@345, AT1L@138
---     EINSTEIN  end ENS7TR1H @138   windings ENS7TR1H@345, ENS7TR1@138
---     HRZN_SLR  end T1       @34.5  windings T1@138, T1_L@34.5
---     SUN_SLR   end T101     @34.5  windings T101@138, T101_L@34.5
---
--- Joining on name AND kV drops these devices entirely - they contribute neither a
--- reported nor a mirrored terminal, so the station/kV balance is short by their
--- flow. On 2026-07-01 that was 108 devices and 4,908 MW absolute, mostly solar
--- plants, losing their whole output (HRZN_SLR +197 MW, SUN_SLR +175 MW at
--- 34.5 kV).
---
--- This table records, per device, which TRANSFORMER it really belongs to. The
--- correction is stable: each of the 159 devices maps to exactly one transformer
--- across all 202 CIM models, so no CIMFILEID column is needed.
---
--- Note that the correction cannot be derived by matching TRANSFORMERENDNAME to
--- TRANSFORMERNAME. That works for DUNLAP AT2 and HRZN_SLR T1, but not
--- AT1H -> AT1 or ENS7TR1H -> 7TR1. Hence a stored mapping.
--- ============================================================================
-
-CREATE OR REPLACE TABLE AW.DBO.ERCOTSEXFMRDEVICEFIX (
-    BRANCHDEVICEID          NUMBER       NOT NULL,
-    BRANCHDEVICENAME        VARCHAR(255),
-    STATION                 VARCHAR(255),
-    REPORTED_ENDNAME        VARCHAR(255) COMMENT 'What ERCOT reports as TRANSFORMERENDNAME - the wrong winding',
-    REPORTED_KVLEVEL        NUMBER(6,2)  COMMENT 'The device KVLEVEL, which IS correct',
-    CORRECT_TRANSFORMERNAME VARCHAR(128) COMMENT 'The transformer this device actually belongs to',
-    NOTE                    VARCHAR(500)
-);
-
-COMMENT ON TABLE AW.DBO.ERCOTSEXFMRDEVICEFIX IS
-    'Exception list: SE transformer branch devices whose TRANSFORMERENDNAME names the wrong winding. Maps each to its real transformer so ERCOTSEXFMRWINDINGMAP can resolve both voltages. Hand-maintained; extend using the detection query in build_ercot_xfmr_winding_map.sql.';
-
--- One-time seed. This is the ONLY place the fuzzy name-ignoring-kV match runs;
--- it never executes at query time. After seeding, inspect the 159 rows and treat
--- the table as static data.
-INSERT INTO AW.DBO.ERCOTSEXFMRDEVICEFIX
-    (BRANCHDEVICEID, BRANCHDEVICENAME, STATION, REPORTED_ENDNAME,
-     REPORTED_KVLEVEL, CORRECT_TRANSFORMERNAME, NOTE)
-WITH usable AS (
-    SELECT DISTINCT c.CIMFILEID
-    FROM AW.DBO.CIMFILE c
-    WHERE c.ISOMARKETID = 6
-      AND c.CIMPATH NOT LIKE '%MP_MarketModel%'
-      AND EXISTS (SELECT 1 FROM AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING w
-                   WHERE w.CIMFILEID = c.CIMFILEID)
-),
-term AS (
-    SELECT DISTINCT w.CIMFILEID, w.STATION, w.TRANSFORMERNAME, w.WINDINGNAME,
-           CAST(w.NOMINALKV AS NUMBER(6,2)) AS NOMINALKV
-    FROM AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING w
-    JOIN usable u ON u.CIMFILEID = w.CIMFILEID
-    WHERE w.NOMINALKV <> 1
-),
-term_kv AS (SELECT DISTINCT CIMFILEID, STATION, TRANSFORMERNAME, NOMINALKV FROM term),
-xdev AS (
-    SELECT BRANCHDEVICEID, BRANCHDEVICENAME, FROMSTATIONNAME AS STATION,
-           TRANSFORMERENDNAME, CAST(KVLEVEL AS NUMBER(6,2)) AS KVLEVEL
-    FROM AW.DBO.ISOERCOTSEBRANCHDEVICE
-    WHERE BRANCHDEVICETYPE = 'Transformer' AND FROMSTATIONNAME IS NOT NULL
-),
--- devices ERCOT reports correctly: winding name and voltage agree
-ok_keys AS (
-    SELECT DISTINCT t.CIMFILEID, x.BRANCHDEVICEID
-    FROM xdev x
-    JOIN term t
-      ON t.STATION     = x.STATION
-     AND t.WINDINGNAME = x.TRANSFORMERENDNAME
-     AND ABS(t.NOMINALKV - x.KVLEVEL) <= 0.05
-)
-SELECT DISTINCT
-       x.BRANCHDEVICEID,
-       x.BRANCHDEVICENAME,
-       x.STATION,
-       x.TRANSFORMERENDNAME,
-       x.KVLEVEL,
-       t.TRANSFORMERNAME,
-       'Seeded: ERCOT TRANSFORMERENDNAME names a winding at a different voltage'
-FROM xdev x
-JOIN term t
-  ON t.STATION     = x.STATION
- AND t.WINDINGNAME = x.TRANSFORMERENDNAME      -- name matches, kV deliberately not
-JOIN term_kv v
-  ON v.CIMFILEID       = t.CIMFILEID
- AND v.STATION         = t.STATION
- AND v.TRANSFORMERNAME = t.TRANSFORMERNAME
- AND ABS(v.NOMINALKV - x.KVLEVEL) <= 0.05      -- device kV IS a real winding kV
-LEFT JOIN ok_keys k
-  ON k.BRANCHDEVICEID = x.BRANCHDEVICEID
- AND k.CIMFILEID      = t.CIMFILEID
-WHERE k.BRANCHDEVICEID IS NULL;                -- only devices the clean join misses
-
-
--- ============================================================================
--- 2. AW.DBO.ERCOTCIMEFFECTIVE - which CIM model applies to a given date
+-- 1. AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE - which CIM model applies to a given
+--    TIMESTAMP
 --
 -- Built directly on ERCOT's own publication schedule,
 -- AWDEV.ERCOTRT.ERCOT_PRODUCTION_LOAD_SCHEDULE, with the CIMFILEID attached.
 -- CIMFILE.CIMDATE equals the schedule's EFFECTIVE_THROUGH, which is the join key.
 --
--- EFFECTIVE_FROM is the schedule's PRODUCTION_LOAD - the day the model goes into
--- service. EFFECTIVE_THROUGH is the day BEFORE the next PRODUCTION_LOAD, NOT the
--- schedule's own EFFECTIVE_THROUGH column. That distinction matters: the schedule
--- occasionally skips a load, leaving its EFFECTIVE_THROUGH short of the next
--- load. ERCOT skipped the 2024 holiday loads, so 2024Dec.L2 ends 2024-12-17 while
--- the next row (2025Jan.L1) starts 2025-01-08 - a 21-day hole in which the
--- December model was still in force. 2024Dec.L2.NEXT_PRODUCTION_LOAD is
--- 2024-12-18, confirming the intent. Deriving the end from the next
--- PRODUCTION_LOAD closes every such hole.
+-- Verified 2026-09-24: the SE switches to a new model at 23:00 on the eve of
+-- the schedule's PRODUCTION_LOAD, not at midnight - retired devices' last
+-- sample is 22:57 that eve for 216 of 236 retiring devices, and new devices'
+-- first sample is 23:57 that eve for 637 of 757 (00:xx on the day for the
+-- other 120). EFFECTIVE_FROM is therefore PRODUCTION_LOAD minus one hour.
+--
+-- EFFECTIVE_TO is exclusive and is the NEXT row's EFFECTIVE_FROM, not the
+-- schedule's own EFFECTIVE_THROUGH column. That distinction matters: the
+-- schedule occasionally skips a load, leaving its EFFECTIVE_THROUGH short of
+-- the next load. ERCOT skipped the 2024 holiday loads, so 2024Dec.L2 ends
+-- 2024-12-17 while the next row (2025Jan.L1) starts 2025-01-08 - a 21-day hole
+-- in which the December model was still in force. Deriving the end from the
+-- next PRODUCTION_LOAD closes every such hole.
 --
 -- Two filters decide which models are usable:
 --   CIMPATH NOT LIKE '%MP_MarketModel%'  excludes TEST models, published ~45
@@ -153,143 +54,270 @@ WHERE k.BRANCHDEVICEID IS NULL;                -- only devices the clean join mi
 --       also breaks re-posting ties, where one CIMDATE has two CIMFILEIDs:
 --       2023-10-03 has 15 (posted-20230927) and 18 (posted-20231018);
 --       2025-12-09 has 141 and 145 (RTC_Native). Exactly one of each pair
---       carries windings.
+--       carries windings. Note also that CIMFILEID is not monotone with model
+--       recency - CIMFILEID 376 is a 2023-07-18 model loaded late - so never
+--       pick "the newest model" by MAX(CIMFILEID).
 --
--- Verified over 2022-01-01 .. 2026-07-24: 1,666 of 1,666 days resolve to EXACTLY
--- ONE model - 0 unresolved, 0 ambiguous, 0 invalid ranges. First EFFECTIVE_FROM
--- is 2021-12-22, so the 2022 backfill is fully covered.
---
--- The newest model gets EFFECTIVE_THROUGH = 9999-12-31 so current data always
+-- The newest model gets EFFECTIVE_TO = 9999-12-31 so current data always
 -- resolves rather than silently losing its transformer terminals.
---
--- There is no winding data before 2022 (earliest usable CIMDATE 2022-01-04),
--- which is the real reason the backfill starts there.
 -- ============================================================================
 
 CREATE OR REPLACE VIEW AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE AS
 WITH sched AS (
-    SELECT p.CIM_LABEL,
-           p.PRODUCTION_LOAD,
-           c.CIMFILEID,
-           c.CIMDATE
+    SELECT p.CIM_LABEL, p.PRODUCTION_LOAD, c.CIMFILEID, c.CIMDATE
     FROM AWDEV.ERCOTRT.ERCOT_PRODUCTION_LOAD_SCHEDULE p
-    JOIN AW.DBO.CIMFILE c
-      ON c.CIMDATE = p.EFFECTIVE_THROUGH
+    JOIN AW.DBO.CIMFILE c ON c.CIMDATE = p.EFFECTIVE_THROUGH
     WHERE c.ISOMARKETID = 6
       AND c.CIMPATH NOT LIKE '%MP_MarketModel%'
       AND EXISTS (SELECT 1 FROM AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING w
                    WHERE w.CIMFILEID = c.CIMFILEID)
 )
-SELECT
-    CIM_LABEL,
-    CIMFILEID,
-    CIMDATE,
-    PRODUCTION_LOAD AS EFFECTIVE_FROM,
-    COALESCE(DATEADD(DAY, -1, LEAD(PRODUCTION_LOAD) OVER (ORDER BY PRODUCTION_LOAD)),
-             '9999-12-31'::DATE) AS EFFECTIVE_THROUGH
+SELECT CIM_LABEL, CIMFILEID, CIMDATE,
+       DATEADD(HOUR, -1, PRODUCTION_LOAD::TIMESTAMP_NTZ)                        AS EFFECTIVE_FROM,   -- 23:00 the eve of the load
+       COALESCE(LEAD(DATEADD(HOUR, -1, PRODUCTION_LOAD::TIMESTAMP_NTZ))
+                    OVER (ORDER BY PRODUCTION_LOAD),
+                '9999-12-31'::TIMESTAMP_NTZ)                                    AS EFFECTIVE_TO      -- exclusive
 FROM sched;
 
+
 -- ============================================================================
--- 3. AW.DBO.ERCOTSEXFMRWINDINGMAP - device -> voltage levels
+-- 2. AWDEV.ERCOTRT.ERCOTSEXFMRENDNAMEFIX - hand-maintained fix table
 --
--- Two halves, and neither contains any fuzzy matching:
---   ERCOT  devices ERCOT reports correctly - winding name AND voltage agree
---   FIX    devices listed in ERCOTSEXFMRDEVICEFIX - transformer taken from that
---          table, voltage from the device's own KVLEVEL
--- Devices in the fix table are excluded from the ERCOT half, so the two cannot
--- overlap and a flow can never be counted twice.
+-- The ONLY hand-maintained object in this pipeline. Stores the corrected
+-- WINDING name for a device whose reported TRANSFORMERENDNAME has no winding
+-- at its own KVLEVEL in some model it overlaps - i.e. the device's kV is
+-- trusted, its name isn't. Stores the corrected name, not the transformer
+-- name, because ERCOT renames windings between models (see §3 of the map
+-- view below): the map tries the reported name first and the fix second, so
+-- either can be right depending on which model is in force.
+-- ============================================================================
+
+CREATE OR REPLACE TABLE AWDEV.ERCOTRT.ERCOTSEXFMRENDNAMEFIX (
+    BRANCHDEVICEID     NUMBER       NOT NULL,
+    TRANSFORMERENDNAME VARCHAR(255) NOT NULL COMMENT 'The winding ERCOT should have named for this device (its KVLEVEL is correct)'
+);
+
+
+-- ============================================================================
+-- 3. Seed AWDEV.ERCOTRT.ERCOTSEXFMRENDNAMEFIX - ONE-TIME, run once at build
+--    time only. This is the only place a name-without-kV match ever runs
+--    anywhere in this pipeline - it exists purely to bootstrap the fix table,
+--    never to serve a query.
+--
+-- For each active-since-2022 device that fails the strict join in some model
+-- it overlaps, take the transformer its reported name points at (ignoring kV)
+-- and that transformer's winding at the device's own kV - that winding's name
+-- is the correction.
+--
+-- Verified 2026-09-24: 133 rows, every device unique across all its failing
+-- models (see verification A). Reviewed at
+-- ercotsexfmrendnamefix_seed_review.csv. Examples: DUNLAP_AT1H reports AT1H@138
+-- -> corrected AT1L; HRZN_SLR_T1 reports T1@34.5 -> T1_L; BEVO_HIGH reports
+-- HIGH@69 -> LOW.
+-- ============================================================================
+
+INSERT INTO AWDEV.ERCOTRT.ERCOTSEXFMRENDNAMEFIX (BRANCHDEVICEID, TRANSFORMERENDNAME)
+WITH winding AS (
+    SELECT DISTINCT CIMFILEID, STATION, TRANSFORMERNAME, WINDINGNAME,
+           CAST(NOMINALKV AS NUMBER(6,2)) AS NOMINALKV
+    FROM AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING
+    WHERE NOMINALKV <> 1
+),
+device AS (
+    SELECT BRANCHDEVICEID, FROMSTATIONNAME AS STATION, TRANSFORMERENDNAME,
+           CAST(KVLEVEL AS NUMBER(6,2)) AS DEVICEKV,
+           GREATEST(DATEACTIVESTART, '2022-01-01'::TIMESTAMP_NTZ) AS ACTIVE_FROM,
+           DATEACTIVEEND AS ACTIVE_TO
+    FROM AW.DBO.ISOERCOTSEBRANCHDEVICE
+    WHERE BRANCHDEVICETYPE = 'Transformer' AND DATEACTIVEEND >= '2022-01-01'
+),
+pairs AS (                                     -- (device, model) pairs whose windows overlap
+    SELECT d.*, e.CIMFILEID
+    FROM device d
+    JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE e
+      ON e.EFFECTIVE_FROM < d.ACTIVE_TO AND e.EFFECTIVE_TO > d.ACTIVE_FROM
+),
+failing AS (                                   -- reported name has no winding at the device kV
+    SELECT p.* FROM pairs p
+    WHERE NOT EXISTS (SELECT 1 FROM winding w
+                       WHERE w.CIMFILEID = p.CIMFILEID AND w.STATION = p.STATION
+                         AND w.WINDINGNAME = p.TRANSFORMERENDNAME
+                         AND ABS(w.NOMINALKV - p.DEVICEKV) <= 0.05)
+)
+SELECT f.BRANCHDEVICEID, MIN(k.WINDINGNAME)
+FROM failing f
+JOIN winding n                                 -- the transformer the reported name points at
+  ON n.CIMFILEID = f.CIMFILEID AND n.STATION = f.STATION AND n.WINDINGNAME = f.TRANSFORMERENDNAME
+JOIN winding k                                 -- its winding at the device kV = the corrected name
+  ON k.CIMFILEID = n.CIMFILEID AND k.STATION = n.STATION AND k.TRANSFORMERNAME = n.TRANSFORMERNAME
+ AND ABS(k.NOMINALKV - f.DEVICEKV) <= 0.05
+GROUP BY f.BRANCHDEVICEID
+HAVING COUNT(DISTINCT k.WINDINGNAME) = 1;      -- verified: 133 devices, every one unique
+
+
+-- ============================================================================
+-- 4. AWDEV.ERCOTRT.ERCOTSEXFMRWINDINGMAP - device -> each real winding of its
+--    transformer, strict join
+--
+-- One row per (CIM model, SE transformer device, real winding of that device's
+-- transformer) - including the winding the device itself reports. The join
+-- requires winding name AND kV to agree (ABS diff <= 0.05); the reported name
+-- is tried first, the fix-table name second.
+--
+-- Why IN (reported, fixed) rather than COALESCE: ERCOT renames windings
+-- between models - PEARSALL 69_4 had both windings named 138_69_4 (at 138 and
+-- 69) until model 204, then the 69 side became 138_69_4_L. The reported name
+-- is right in the old models and the fix is right in the new; the kV match
+-- picks whichever is correct for that model, so both must be tried.
 --
 -- COLUMNS
---   REPORTED_KV  voltage of the bus whose flow ERCOT reports. Use with +FROMMW.
---   MIRROR_KV    the other real winding, inferred equal and opposite. Use with
---                -FROMMW. NULL for star-equivalent legs, whose only other
---                winding is the fictitious 1 kV star point.
---   SOURCE       'ERCOT' or 'FIX', for auditing.
+--   DEVICEKV      the device's own KVLEVEL - the voltage ERCOT reports flow on.
+--   TRANSFORMERNAME/WINDINGNAME/NOMINALKV  one real winding of that device's
+--                  transformer. A device with a 2-winding transformer produces
+--                  2 rows (itself + the other winding); a star leg with only
+--                  one real winding produces 1 row (itself only).
 --
 -- NOMINALKV = 1 rows are excluded throughout: they are fictitious star points
 -- used to model 3-winding banks as three star-equivalent legs. ACSSW's bank is
 -- three TRANSFORMERNAME entries (AX1H/AX1L/AX1T), each a real winding plus a
 -- 1 kV leg, so TRANSFORMERNAME is per-LEG there, not per-bank.
 --
--- MIRROR_KV is never ambiguous: no transformer has more than two real voltages
--- (verified 0 of 504,790 combinations exceed 2), so MAX() collapses at most one
--- candidate.
+-- Verified 2026-09-24 with this form: 473,250 of 473,485 (device, model) pairs
+-- mapped, 0 devices resolving to more than one transformer in a model, at most
+-- 1 winding differing from DEVICEKV per (model, device) - i.e. the mirror is
+-- never ambiguous by construction (see verification C, D).
 -- ============================================================================
 
-CREATE OR REPLACE VIEW AW.DBO.ERCOTSEXFMRWINDINGMAP AS
-WITH term AS (
-    SELECT DISTINCT w.CIMFILEID, w.STATION, w.TRANSFORMERNAME, w.WINDINGNAME,
-           CAST(w.NOMINALKV AS NUMBER(6,2)) AS NOMINALKV
-    FROM AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING w
-    JOIN AW.DBO.ERCOTCIMEFFECTIVE e ON e.CIMFILEID = w.CIMFILEID
-    WHERE w.NOMINALKV <> 1
+CREATE OR REPLACE VIEW AWDEV.ERCOTRT.ERCOTSEXFMRWINDINGMAP AS
+WITH winding AS (
+    SELECT DISTINCT CIMFILEID, STATION, TRANSFORMERNAME, WINDINGNAME,
+           CAST(NOMINALKV AS NUMBER(6,2)) AS NOMINALKV
+    FROM AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING
+    WHERE NOMINALKV <> 1                       -- fictitious star points
 ),
-term_kv AS (
-    SELECT DISTINCT CIMFILEID, STATION, TRANSFORMERNAME, NOMINALKV FROM term
-),
-xdev AS (
-    SELECT BRANCHDEVICEID, BRANCHDEVICENAME, FROMSTATIONNAME AS STATION,
-           TRANSFORMERENDNAME, CAST(KVLEVEL AS NUMBER(6,2)) AS KVLEVEL
-    FROM AW.DBO.ISOERCOTSEBRANCHDEVICE
-    WHERE BRANCHDEVICETYPE = 'Transformer' AND FROMSTATIONNAME IS NOT NULL
-),
--- half 1: ERCOT reports this device correctly
-from_ercot AS (
-    SELECT t.CIMFILEID, x.BRANCHDEVICEID, x.BRANCHDEVICENAME, x.STATION,
-           t.TRANSFORMERNAME, x.KVLEVEL AS REPORTED_KV, 'ERCOT' AS SOURCE
-    FROM xdev x
-    JOIN term t
-      ON t.STATION     = x.STATION
-     AND t.WINDINGNAME = x.TRANSFORMERENDNAME
-     AND ABS(t.NOMINALKV - x.KVLEVEL) <= 0.05
-    LEFT JOIN AW.DBO.ERCOTSEXFMRDEVICEFIX f
-      ON f.BRANCHDEVICEID = x.BRANCHDEVICEID
-    WHERE f.BRANCHDEVICEID IS NULL
-),
--- half 2: transformer supplied by the exception table
-from_fix AS (
-    SELECT k.CIMFILEID, x.BRANCHDEVICEID, x.BRANCHDEVICENAME, x.STATION,
-           f.CORRECT_TRANSFORMERNAME AS TRANSFORMERNAME,
-           x.KVLEVEL AS REPORTED_KV, 'FIX' AS SOURCE
-    FROM AW.DBO.ERCOTSEXFMRDEVICEFIX f
-    JOIN xdev x
-      ON x.BRANCHDEVICEID = f.BRANCHDEVICEID
-    JOIN term_kv k
-      ON k.STATION         = x.STATION
-     AND k.TRANSFORMERNAME = f.CORRECT_TRANSFORMERNAME
-     AND ABS(k.NOMINALKV - x.KVLEVEL) <= 0.05
-),
-rep AS (
-    SELECT * FROM from_ercot
-    UNION ALL
-    SELECT * FROM from_fix
+device AS (
+    SELECT d.BRANCHDEVICEID, d.BRANCHDEVICENAME, d.FROMSTATIONNAME AS STATION,
+           d.TRANSFORMERENDNAME, f.TRANSFORMERENDNAME AS FIXEDENDNAME,
+           CAST(d.KVLEVEL AS NUMBER(6,2)) AS DEVICEKV
+    FROM AW.DBO.ISOERCOTSEBRANCHDEVICE d
+    LEFT JOIN AWDEV.ERCOTRT.ERCOTSEXFMRENDNAMEFIX f ON f.BRANCHDEVICEID = d.BRANCHDEVICEID
+    WHERE d.BRANCHDEVICETYPE = 'Transformer'
 )
-SELECT
-    r.CIMFILEID,
-    r.BRANCHDEVICEID,
-    r.BRANCHDEVICENAME,
-    r.STATION,
-    r.TRANSFORMERNAME,
-    r.REPORTED_KV,
-    MAX(m.NOMINALKV) AS MIRROR_KV,
-    r.SOURCE
-FROM rep r
-LEFT JOIN term_kv m
-       ON m.CIMFILEID       = r.CIMFILEID
-      AND m.STATION         = r.STATION
-      AND m.TRANSFORMERNAME = r.TRANSFORMERNAME
-      AND ABS(m.NOMINALKV - r.REPORTED_KV) > 0.05
-GROUP BY r.CIMFILEID, r.BRANCHDEVICEID, r.BRANCHDEVICENAME, r.STATION,
-         r.TRANSFORMERNAME, r.REPORTED_KV, r.SOURCE;
+SELECT DISTINCT
+    k.CIMFILEID, d.BRANCHDEVICEID, d.BRANCHDEVICENAME, d.STATION, d.DEVICEKV,
+    k.TRANSFORMERNAME, k.WINDINGNAME, k.NOMINALKV
+FROM device d
+JOIN winding n                                 -- name AND kV must agree; reported name first, fix second
+  ON n.STATION = d.STATION
+ AND n.WINDINGNAME IN (d.TRANSFORMERENDNAME, d.FIXEDENDNAME)
+ AND ABS(n.NOMINALKV - d.DEVICEKV) <= 0.05
+JOIN winding k                                 -- all real windings of that transformer
+  ON k.CIMFILEID = n.CIMFILEID AND k.STATION = n.STATION AND k.TRANSFORMERNAME = n.TRANSFORMERNAME;
 
 
 -- ============================================================================
--- 4. DETECTION - find NEW devices ERCOT has started mislabelling
---
--- Run after ERCOT publishes a new CIM model. Any rows returned are devices that
--- carry flow but resolve through neither half of the map; add them to
--- ERCOTSEXFMRDEVICEFIX. Adjust the date range to a day you have loaded.
+-- 5. VERIFICATION
 -- ============================================================================
+
+-- A. Fix table sanity. First MUST return 133. Second MUST return 0 rows - a
+--    device the seed excluded because the corrected name was not unique
+--    (rerun of the seed's SELECT with the HAVING flipped).
+SELECT COUNT(*) AS FIX_TABLE_ROWS FROM AWDEV.ERCOTRT.ERCOTSEXFMRENDNAMEFIX;
+
+WITH winding AS (
+    SELECT DISTINCT CIMFILEID, STATION, TRANSFORMERNAME, WINDINGNAME,
+           CAST(NOMINALKV AS NUMBER(6,2)) AS NOMINALKV
+    FROM AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING
+    WHERE NOMINALKV <> 1
+),
+device AS (
+    SELECT BRANCHDEVICEID, FROMSTATIONNAME AS STATION, TRANSFORMERENDNAME,
+           CAST(KVLEVEL AS NUMBER(6,2)) AS DEVICEKV,
+           GREATEST(DATEACTIVESTART, '2022-01-01'::TIMESTAMP_NTZ) AS ACTIVE_FROM,
+           DATEACTIVEEND AS ACTIVE_TO
+    FROM AW.DBO.ISOERCOTSEBRANCHDEVICE
+    WHERE BRANCHDEVICETYPE = 'Transformer' AND DATEACTIVEEND >= '2022-01-01'
+),
+pairs AS (
+    SELECT d.*, e.CIMFILEID
+    FROM device d
+    JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE e
+      ON e.EFFECTIVE_FROM < d.ACTIVE_TO AND e.EFFECTIVE_TO > d.ACTIVE_FROM
+),
+failing AS (
+    SELECT p.* FROM pairs p
+    WHERE NOT EXISTS (SELECT 1 FROM winding w
+                       WHERE w.CIMFILEID = p.CIMFILEID AND w.STATION = p.STATION
+                         AND w.WINDINGNAME = p.TRANSFORMERENDNAME
+                         AND ABS(w.NOMINALKV - p.DEVICEKV) <= 0.05)
+)
+SELECT f.BRANCHDEVICEID, COUNT(DISTINCT k.WINDINGNAME) AS N_CANDIDATES
+FROM failing f
+JOIN winding n
+  ON n.CIMFILEID = f.CIMFILEID AND n.STATION = f.STATION AND n.WINDINGNAME = f.TRANSFORMERENDNAME
+JOIN winding k
+  ON k.CIMFILEID = n.CIMFILEID AND k.STATION = n.STATION AND k.TRANSFORMERNAME = n.TRANSFORMERNAME
+ AND ABS(k.NOMINALKV - f.DEVICEKV) <= 0.05
+GROUP BY f.BRANCHDEVICEID
+HAVING COUNT(DISTINCT k.WINDINGNAME) > 1;      -- MUST return 0 rows
+
+-- B. CIM-effective contiguity. First MUST return 0 - every row's EFFECTIVE_TO
+--    equals the next row's EFFECTIVE_FROM. Second: earliest EFFECTIVE_FROM
+--    MUST be <= 2022-01-01.
+SELECT COUNT(*) AS NON_CONTIGUOUS_ROWS
+FROM (
+    SELECT EFFECTIVE_TO,
+           LEAD(EFFECTIVE_FROM) OVER (ORDER BY EFFECTIVE_FROM) AS NEXT_FROM
+    FROM AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE
+)
+WHERE NEXT_FROM IS NOT NULL AND EFFECTIVE_TO <> NEXT_FROM;
+
+SELECT MIN(EFFECTIVE_FROM) AS EARLIEST_EFFECTIVE_FROM FROM AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE;
+
+-- C. MUST return 0. A device may resolve to only one TRANSFORMERNAME per model.
+SELECT COUNT(*) AS AMBIGUOUS_DEVICES
+FROM (
+    SELECT CIMFILEID, BRANCHDEVICEID
+    FROM AWDEV.ERCOTRT.ERCOTSEXFMRWINDINGMAP
+    GROUP BY CIMFILEID, BRANCHDEVICEID
+    HAVING COUNT(DISTINCT TRANSFORMERNAME) > 1
+);
+
+-- D. MUST return 0. Mirror uniqueness: no (model, device) pair may have more
+--    than one distinct NOMINALKV differing from DEVICEKV - this replaces the
+--    old runtime HAVING guard in the procedure's mirror leg.
+SELECT COUNT(*) AS AMBIGUOUS_MIRROR_PAIRS
+FROM (
+    SELECT CIMFILEID, BRANCHDEVICEID
+    FROM AWDEV.ERCOTRT.ERCOTSEXFMRWINDINGMAP
+    WHERE ABS(NOMINALKV - DEVICEKV) > 0.05
+    GROUP BY CIMFILEID, BRANCHDEVICEID
+    HAVING COUNT(DISTINCT NOMINALKV) > 1
+);
+
+-- E. MUST return 0. No transformer has more than two real voltages.
+SELECT COUNT(*) AS XFMRS_WITH_GT2_REAL_KV
+FROM (
+    SELECT CIMFILEID, STATION, TRANSFORMERNAME
+    FROM AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING
+    WHERE NOMINALKV <> 1
+    GROUP BY CIMFILEID, STATION, TRANSFORMERNAME
+    HAVING COUNT(DISTINCT NOMINALKV) > 2
+);
+
+-- F. Devices carrying flow on a loaded day with no map row for the model in
+--    force. Run after every CIM publish; adjust the date to a day you have
+--    loaded. Expected residual, NOT bugs:
+--      FAYETT AT2H_H / AT2L_H / AT2T_H   - 0 MW, dead
+--      GARZA 1_138_1_H / 1_69_1_H,
+--      MDLNE AXFMR1H / AXFMR1L           - BOTH real sides are reported as
+--                                          devices; deliberately left
+--                                          unmapped (see SP header) - must
+--                                          NOT be mirrored
+--      PCT KT1                           - winding table lagged the
+--                                          station's first model by one
+--                                          model period
+--    Anything else new -> candidate for the fix table.
 
 -- WITH d AS (
 --     SELECT b.BRANCHDEVICEID, MAX(ABS(b.FROMMW)) AS MAX_ABS_MW
@@ -305,76 +333,23 @@ GROUP BY r.CIMFILEID, r.BRANCHDEVICEID, r.BRANCHDEVICENAME, r.STATION,
 --        dv.TRANSFORMERENDNAME, dv.KVLEVEL, ROUND(d.MAX_ABS_MW,1) AS MAX_ABS_MW
 -- FROM d
 -- JOIN AW.DBO.ISOERCOTSEBRANCHDEVICE dv ON dv.BRANCHDEVICEID = d.BRANCHDEVICEID
--- LEFT JOIN AW.DBO.ERCOTCIMEFFECTIVE e
---        ON '2026-07-01'::DATE BETWEEN e.EFFECTIVE_FROM AND e.EFFECTIVE_THROUGH
--- LEFT JOIN AW.DBO.ERCOTSEXFMRWINDINGMAP m
---        ON m.CIMFILEID = e.CIMFILEID AND m.BRANCHDEVICEID = d.BRANCHDEVICEID
--- WHERE m.BRANCHDEVICEID IS NULL
+-- LEFT JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE e
+--        ON '2026-07-01 12:00:00'::TIMESTAMP_NTZ >= e.EFFECTIVE_FROM
+--       AND '2026-07-01 12:00:00'::TIMESTAMP_NTZ <  e.EFFECTIVE_TO
+-- WHERE NOT EXISTS (
+--     SELECT 1 FROM AWDEV.ERCOTRT.ERCOTSEXFMRWINDINGMAP m
+--     WHERE m.CIMFILEID = e.CIMFILEID AND m.BRANCHDEVICEID = d.BRANCHDEVICEID
+-- )
 -- ORDER BY d.MAX_ABS_MW DESC;
 
-
--- ============================================================================
--- 5. VERIFICATION - run after seeding
--- ============================================================================
-
--- A. Exception table size. Expect 159.
-SELECT COUNT(*) AS FIX_ROWS,
-       COUNT(DISTINCT BRANCHDEVICEID) AS DISTINCT_DEVICES
-FROM AW.DBO.ERCOTSEXFMRDEVICEFIX;
-
--- B. MUST return 0. A device may appear only once per model, or its flow would
---    be counted twice.
-SELECT COUNT(*) AS DEVICES_MAPPED_TWICE
-FROM (
-    SELECT CIMFILEID, BRANCHDEVICEID
-    FROM AW.DBO.ERCOTSEXFMRWINDINGMAP
-    GROUP BY CIMFILEID, BRANCHDEVICEID
-    HAVING COUNT(*) > 1
-);
-
--- C. MUST return 0 for both. Calendar ranges may not overlap, and every day of
---    the backfill window must resolve to exactly one model.
-SELECT
-    (SELECT COUNT(*)
-     FROM AW.DBO.ERCOTCIMEFFECTIVE a
-     JOIN AW.DBO.ERCOTCIMEFFECTIVE b
-       ON a.CIMFILEID <> b.CIMFILEID
-      AND a.EFFECTIVE_FROM <= b.EFFECTIVE_THROUGH
-      AND b.EFFECTIVE_FROM <= a.EFFECTIVE_THROUGH)          AS OVERLAPPING_RANGES,
-    (SELECT COUNT(*) FROM (
-        SELECT d.D, COUNT(e.CIMFILEID) AS MATCHES
-        FROM (SELECT DATEADD(DAY, SEQ4(), '2022-01-01'::DATE) AS D
-              FROM TABLE(GENERATOR(ROWCOUNT => 1666))) d
-        LEFT JOIN AW.DBO.ERCOTCIMEFFECTIVE e
-               ON d.D BETWEEN e.EFFECTIVE_FROM AND e.EFFECTIVE_THROUGH
-        GROUP BY d.D
-        HAVING COUNT(e.CIMFILEID) <> 1))                    AS DAYS_NOT_EXACTLY_ONE;
-
--- D. MUST return 0. Mirror must never be ambiguous.
-SELECT COUNT(*) AS XFMRS_WITH_GT2_REAL_KV
-FROM (
-    SELECT CIMFILEID, STATION, TRANSFORMERNAME
-    FROM AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING
-    WHERE NOMINALKV <> 1
-    GROUP BY CIMFILEID, STATION, TRANSFORMERNAME
-    HAVING COUNT(DISTINCT NOMINALKV) > 2
-);
-
--- E. Map composition for the current model. Expect ~2,540 ERCOT + 108 FIX
---    among devices that carry flow.
-SELECT SOURCE, COUNT(*) AS DEVICES,
-       SUM(CASE WHEN MIRROR_KV IS NULL THEN 1 ELSE 0 END) AS NO_MIRROR_STAR_LEGS
-FROM AW.DBO.ERCOTSEXFMRWINDINGMAP
-WHERE CIMFILEID = (SELECT CIMFILEID FROM AW.DBO.ERCOTCIMEFFECTIVE
-                    WHERE EFFECTIVE_THROUGH = '9999-12-31')
-GROUP BY SOURCE ORDER BY SOURCE;
-
--- F. Spot check. STP GSUs 345 -> mirror 25 via ERCOT; ACSSW star legs no mirror;
---    DUNLAP and HRZN_SLR via FIX.
-SELECT STATION, BRANCHDEVICENAME, TRANSFORMERNAME,
-       REPORTED_KV, MIRROR_KV, SOURCE
-FROM AW.DBO.ERCOTSEXFMRWINDINGMAP
-WHERE CIMFILEID = (SELECT CIMFILEID FROM AW.DBO.ERCOTCIMEFFECTIVE
-                    WHERE EFFECTIVE_THROUGH = '9999-12-31')
-  AND STATION IN ('STP','ACSSW','DUNLAP','HRZN_SLR')
-ORDER BY STATION, BRANCHDEVICENAME;
+-- G. Spot check, for the model with EFFECTIVE_TO = 9999-12-31:
+--    STP MT1A device @345      -> windings 345 & 25 (GSU, mirror makes gen visible)
+--    ACSSW AX1HH device @345   -> single winding 345 (star leg, no mirror)
+--    DUNLAP AT1H device @138   -> via fix (AT1L) -> windings 345 & 138
+--    PEARSALL 138_69_4 @69     -> windings 138 & 69
+SELECT STATION, BRANCHDEVICENAME, DEVICEKV, TRANSFORMERNAME, WINDINGNAME, NOMINALKV
+FROM AWDEV.ERCOTRT.ERCOTSEXFMRWINDINGMAP
+WHERE CIMFILEID = (SELECT CIMFILEID FROM AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE
+                    WHERE EFFECTIVE_TO = '9999-12-31')
+  AND STATION IN ('STP','ACSSW','DUNLAP','PEARSALL')
+ORDER BY STATION, BRANCHDEVICENAME, NOMINALKV;
