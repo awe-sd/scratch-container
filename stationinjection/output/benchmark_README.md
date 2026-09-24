@@ -13,29 +13,8 @@ different source, not compared). Join key: `TO_DATE(ts)=DATE`, `HOUR(ts)=HOUR`, 
 | 2023 | 44,691,254 | 98.596% | 99.619% | 0.271% | 2449.7 |
 | 2024 | 46,108,606 | 98.679% | 99.761% | 0.166% | 2688.6 |
 | 2025 | 47,797,093 | 98.772% | 99.815% | 0.140% | 1315.9 |
-| 2026 | 27,423,499 | 98.901% | 99.841% | 0.129% | 924.5 |
-2023/2024 lowest within-1MW, highest >10MW — classes 1 and 3 below.
+| 2026 | 27,423,499 | 98.901% | 99.841% | 0.129% | 924. CONVENTION DIFFERENCE, not an error. SE snapshots are stamped :57/:58 and describe the top of the NEXT hour, so hours must be bucketed by nearest hour (DATE_TRUNC('HOUR', DATEADD('MINUTE', 30, ts))), not by floor. Bucketed that way there are 179 multi-snapshot hours (se_multiple_snapshot_hours.sql), all production-model rollout nights (153 Tuesdays): a small first snapshot of at most 33 branch rows, 98% of them devices whose active window ends that day (lines leaving the model), then the full snapshot on the new model. OLD averaged both into the hour; NEW keeps each snapshot as its own TIMESTAMP row. Consumers should take the latest snapshot per hour bucket.
 
-**Disagreement classes** (diagnosed against raw SE branch table):
-
-1. *NEW TABLE DEFECT, fixed in proc commit (fallback).* 2023-03-28 23:00→2023-04-04 23:00 (168h).
-   In-force CIM model CIMFILEID 393 (2023Mar.L5) has no rows in `ERCOTTRANSFORMERWINDING`, so no
-   transformer mirror fired: STP read −9 MW with no 25kV row, CPSES −43, and GSU-on-low-side
-   stations doubled (HHGT 729@34.5 + 727@138 = 1457 vs old 729; CALAVERS ≈2.05× old). 376
-   stations off >10 MW at 2023-03-30 12:57 — the March/April 2023 spike in `bad_by_month.csv`.
-   Proc now mirrors from the latest earlier winding-bearing model; week must be re-run.
-2. *OLD TABLE DROPS DEVICES (new is right).* BIGLAKE, N_SHARPE, YELWJCKT, THOMASTN, PUTN,
-   HAMILTON, NLARSW, FIREROCK, SOLSTICE, LARDVFT disagree 48–99% of hours. Raw flows match NEW
-   exactly (BIGLAKE 2026-07-01 12:57: new 69kV −0.51 / 138kV −20.72; old −0.52 = 69kV only, the
-   three 138kV lines + SOURCE xfmr missing from old). N_SHARPE nets ~0 in raw flows (pure
-   switching station); old −71.19 = the dropped 138_PS3_B phase-shifter.
-3. *OLD TABLE COLLAPSED ON 2024-01-01.* All 24h, 1,896 stations near-zero in old (STP 1.6 MW vs
-   new 2,688; old's own GENMW shows 2,676). SE snapshots complete (10,068 rows/hour). Old-table
-   defect; explains the January 2024 bump.
-4. *CONVENTION DIFFERENCE, not an error.* 214 hours (`duplicate_snapshot_hours.csv`) carry two SE
-   snapshots (170 are model-load Tue 23:00 + 23:52/53 + 23:57/58). OLD averaged them (STP
-   2022-01-01 13:00: 2671.25 & 2673.55 → old 2672.4); NEW keeps each snapshot as its own row.
-   Consumers should take the latest snapshot per hour (`SP_RUN_FAST_SCAN_TEST_V2` does).
 5. *ONE-SIDED STATIONS, not comparable.* OLD_ONLY (~200k/yr) = `WITHDRAWMW` NULL, `GENMW`-only
    cogens (OXY_CC, INGLCOSW, NCARBIDE, BTE, CAL …). NEW_ONLY (2024–2025) = hours/stations absent
    from old; e.g. ENTERPR has 96 hours in new with no old row for any station.
