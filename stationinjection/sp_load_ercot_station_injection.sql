@@ -123,7 +123,7 @@
 CREATE OR REPLACE PROCEDURE AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION(
     P_START_DATE DATE,
     P_END_DATE   DATE,
-    P_CHUNK_DAYS INTEGER DEFAULT 0   -- 0 = whole range in one DELETE+INSERT; N = commit every N days
+    P_CHUNK_DAYS INTEGER DEFAULT 0   -- <= 0: whole range in one transaction; N: commit every N days
 )
 RETURNS VARCHAR
 LANGUAGE SQL
@@ -131,106 +131,65 @@ EXECUTE AS CALLER
 AS
 $$
 DECLARE
-    v_out_rows     INTEGER DEFAULT 0;
-    v_deleted      INTEGER DEFAULT 0;
-    v_chunks       INTEGER DEFAULT 0;
-    v_chunk_rows   INTEGER DEFAULT 0;
-    v_empty_chunks INTEGER DEFAULT 0;
-    v_from         DATE;
-    v_to           DATE;
-    v_step         INTEGER;
+    v_from     DATE;
+    v_to       DATE;
+    v_step     INTEGER;
+    v_deleted  INTEGER DEFAULT 0;
+    v_inserted INTEGER DEFAULT 0;
 BEGIN
-    IF (P_START_DATE IS NULL OR P_END_DATE IS NULL) THEN
-        RETURN 'ERROR: P_START_DATE and P_END_DATE are both required.';
+    IF (P_START_DATE IS NULL OR P_END_DATE IS NULL OR P_START_DATE > P_END_DATE) THEN
+        RETURN 'ERROR: need non-null P_START_DATE <= P_END_DATE.';
     END IF;
 
-    IF (P_START_DATE > P_END_DATE) THEN
-        RETURN 'ERROR: P_START_DATE (' || :P_START_DATE::VARCHAR ||
-               ') is after P_END_DATE (' || :P_END_DATE::VARCHAR || ').';
-    END IF;
-
-    IF (P_CHUNK_DAYS < 0) THEN
-        RETURN 'ERROR: P_CHUNK_DAYS must be >= 0 (got ' || :P_CHUNK_DAYS::VARCHAR || ').';
-    END IF;
-
-    -- Terminal dimension: one row per (device, terminal) - which station/kV the
-    -- flow is booked at, which MW column to read, and the model-validity window
-    -- (open-ended except for the transformer mirror). Built ONCE per call, before
-    -- any transaction (CREATE OR REPLACE TEMPORARY TABLE is DDL and auto-commits).
+    -- One row per (device, terminal): where the flow is booked, which MW column, and when the row applies.
     CREATE OR REPLACE TEMPORARY TABLE TMP_TERMINAL AS
-    WITH ldev AS (
-        SELECT BRANCHDEVICEID, FROMSTATIONNAME, TOSTATIONNAME, CAST(KVLEVEL AS NUMBER(6,2)) AS KVLEVEL
-        FROM AW.DBO.ISOERCOTSEBRANCHDEVICE WHERE BRANCHDEVICETYPE = 'Line'
-    ),
-    xdev AS (
-        SELECT BRANCHDEVICEID, FROMSTATIONNAME AS STATION, CAST(KVLEVEL AS NUMBER(6,2)) AS KVLEVEL
-        FROM AW.DBO.ISOERCOTSEBRANCHDEVICE WHERE BRANCHDEVICETYPE = 'Transformer'
-    )
-    SELECT BRANCHDEVICEID, FROMSTATIONNAME AS STATIONNAME, KVLEVEL, TRUE AS USE_FROMMW,
-           '1900-01-01'::TIMESTAMP_NTZ AS EFFECTIVE_FROM, '9999-12-31'::TIMESTAMP_NTZ AS EFFECTIVE_TO
-    FROM ldev
+    -- FROMMW at the from-station: a line's from end, or the winding ERCOT reports on a transformer
+    SELECT BRANCHDEVICEID, FROMSTATIONNAME AS STATIONNAME, CAST(KVLEVEL AS NUMBER(6,2)) AS KVLEVEL,
+           TRUE AS USE_FROMMW, '1900-01-01'::TIMESTAMP_NTZ AS EFFECTIVE_FROM, '9999-12-31'::TIMESTAMP_NTZ AS EFFECTIVE_TO
+    FROM AW.DBO.ISOERCOTSEBRANCHDEVICE WHERE BRANCHDEVICETYPE IN ('Line', 'Transformer')
     UNION ALL
-    SELECT BRANCHDEVICEID, TOSTATIONNAME, KVLEVEL, FALSE, '1900-01-01', '9999-12-31' FROM ldev
+    -- TOMW at the to-station: a line's to end
+    SELECT BRANCHDEVICEID, TOSTATIONNAME, CAST(KVLEVEL AS NUMBER(6,2)), FALSE, '1900-01-01', '9999-12-31'
+    FROM AW.DBO.ISOERCOTSEBRANCHDEVICE WHERE BRANCHDEVICETYPE = 'Line'
     UNION ALL
-    SELECT BRANCHDEVICEID, STATION, KVLEVEL, TRUE, '1900-01-01', '9999-12-31' FROM xdev
-    UNION ALL
-    -- transformer mirror: TOMW at the other real winding's kV, only while that CIM model is in force
+    -- TOMW at the transformer's other real winding, while that CIM model is in force
     SELECT m.BRANCHDEVICEID, m.STATION, m.NOMINALKV, FALSE, e.EFFECTIVE_FROM, e.EFFECTIVE_TO
     FROM AWDEV.ERCOTRT.ERCOTSETRANSFORMERWINDINGMAP m
     JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE e ON e.CIMFILEID = m.CIMFILEID
     WHERE ABS(m.NOMINALKV - m.DEVICEKV) > 0.05;
 
-    DELETE FROM TMP_TERMINAL WHERE STATIONNAME IS NULL OR KVLEVEL IS NULL;
-
     v_from := P_START_DATE;
-    v_step := IFF(P_CHUNK_DAYS = 0, DATEDIFF(DAY, P_START_DATE, P_END_DATE) + 1, P_CHUNK_DAYS);
+    v_step := IFF(P_CHUNK_DAYS > 0, P_CHUNK_DAYS, DATEDIFF(DAY, P_START_DATE, P_END_DATE) + 1);
 
     WHILE (v_from <= P_END_DATE) DO
         v_to := LEAST(DATEADD(DAY, v_step, v_from), DATEADD(DAY, 1, P_END_DATE));
 
-        -- Stage the chunk's output first (DDL, autocommits, so it sits OUTSIDE
-        -- the transaction below) - lets us skip the DELETE+INSERT entirely
-        -- when the source range is empty, instead of blowing away good target
-        -- rows for a day whose SE data hasn't landed yet.
+        -- Staged first (DDL autocommits, so outside the transaction): an empty source range leaves the target untouched.
         CREATE OR REPLACE TEMPORARY TABLE TMP_STATION_INJECTION AS
-        SELECT CAST(br."TIMESTAMP" AS TIMESTAMP_NTZ(0)) AS "TIMESTAMP",
-               t.STATIONNAME AS NMMSSTATIONCODE, t.KVLEVEL,
+        SELECT CAST(br."TIMESTAMP" AS TIMESTAMP_NTZ(0)) AS "TIMESTAMP", t.STATIONNAME AS NMMSSTATIONCODE, t.KVLEVEL,
                SUM(ZEROIFNULL(IFF(t.USE_FROMMW, br.FROMMW, br.TOMW))) AS NETINJECTIONMW
         FROM AW.DBO.ISOERCOTSEBRANCH br
-        JOIN TMP_TERMINAL t
-          ON t.BRANCHDEVICEID = br.BRANCHDEVICEID
-         AND br."TIMESTAMP" >= t.EFFECTIVE_FROM AND br."TIMESTAMP" < t.EFFECTIVE_TO
-        WHERE br."TIMESTAMP" >= :v_from
-          AND br."TIMESTAMP" <  :v_to
+        JOIN TMP_TERMINAL t ON t.BRANCHDEVICEID = br.BRANCHDEVICEID
+                           AND br."TIMESTAMP" >= t.EFFECTIVE_FROM AND br."TIMESTAMP" < t.EFFECTIVE_TO
+        WHERE br."TIMESTAMP" >= :v_from AND br."TIMESTAMP" < :v_to
         GROUP BY 1, 2, 3;
 
-        SELECT COUNT(*) INTO :v_chunk_rows FROM TMP_STATION_INJECTION;
-
-        IF (v_chunk_rows > 0) THEN
+        IF ((SELECT COUNT(*) FROM TMP_STATION_INJECTION) > 0) THEN
             BEGIN TRANSACTION;
-                DELETE FROM AW.DBO.ERCOTSTATIONINJECTION
-                WHERE "TIMESTAMP" >= :v_from AND "TIMESTAMP" < :v_to;
-                v_deleted := v_deleted + SQLROWCOUNT;
-
-                INSERT INTO AW.DBO.ERCOTSTATIONINJECTION
-                    ("TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, GENMW, WITHDRAWMW, NETINJECTIONMW)
-                SELECT "TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, NULL, NULL, NETINJECTIONMW
-                FROM TMP_STATION_INJECTION
-                ORDER BY 1, 2, 3;   -- target is clustered by (date, station); ordered insert keeps auto-clustering cheap
-                v_out_rows := v_out_rows + SQLROWCOUNT;
+            DELETE FROM AW.DBO.ERCOTSTATIONINJECTION WHERE "TIMESTAMP" >= :v_from AND "TIMESTAMP" < :v_to;
+            v_deleted := v_deleted + SQLROWCOUNT;
+            INSERT INTO AW.DBO.ERCOTSTATIONINJECTION ("TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, NETINJECTIONMW)
+            SELECT "TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, NETINJECTIONMW
+            FROM TMP_STATION_INJECTION ORDER BY 1, 2, 3;   -- target clusters on (date, station)
+            v_inserted := v_inserted + SQLROWCOUNT;
             COMMIT;
-        ELSE
-            v_empty_chunks := v_empty_chunks + 1;
         END IF;
 
-        v_chunks := v_chunks + 1;
         v_from := v_to;
     END WHILE;
 
-    RETURN 'OK: ' || v_chunks::VARCHAR || ' chunk(s), ' || v_deleted::VARCHAR ||
-           ' rows deleted, ' || v_out_rows::VARCHAR || ' rows inserted for ' ||
-           :P_START_DATE::VARCHAR || '..' || :P_END_DATE::VARCHAR ||
-           ', ' || v_empty_chunks::VARCHAR || ' empty chunk(s) skipped';
+    RETURN 'OK: ' || v_deleted || ' rows deleted, ' || v_inserted || ' rows inserted for '
+           || :P_START_DATE::VARCHAR || '..' || :P_END_DATE::VARCHAR;
 
 EXCEPTION
     WHEN OTHER THEN
