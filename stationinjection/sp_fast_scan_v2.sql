@@ -12,6 +12,8 @@
 --   RT constraint: restricted to the config's own contingency (spelling normalised).
 -- - Source: AW.DBO.ERCOTSTATIONINJECTION; StationBusMapping/StationShifts/StationKvShifts
 --   unchanged (CIM 205 + retired-station coverage, nearest-kV snap within 1.0).
+-- - Calls SP_LOAD_FAST_SCAN_RT_CONSTRAINTS (sp_load_fast_scan_rt_constraints.sql) after the
+--   main insert; deploy that file first.
 
 -- Run once; existing rows get NULL for this column.
 ALTER TABLE AW.FLOW_ANALYSIS.FAST_SCAN_RESULTS ADD COLUMN RT_INTERVAL TIMESTAMP_NTZ;
@@ -312,6 +314,9 @@ BEGIN
     );
 
     v_rows_inserted := SQLROWCOUNT;
+
+    -- 4b. Every contingency binding on the branch at the same intervals -> FAST_SCAN_RT_CONSTRAINTS
+    CALL FLOW_ANALYSIS.SP_LOAD_FAST_SCAN_RT_CONSTRAINTS(:P_CONFIG_ID, :v_actual_start, :v_actual_end, :P_ISO_MARKET_ID);
 
     -- 5. Log the run
     INSERT INTO FLOW_ANALYSIS.FAST_SCAN_RUN_LOG (CONFIG_ID, START_DATE, END_DATE, ROWS_INSERTED, STATUS)

@@ -522,3 +522,23 @@ Defects found in the original, not carried over:
 One thing the original got right and the port preserves: generation is **summed
 across units first, then averaged over intervals** within the hour. Reversing
 those changes the answer when units report at different cadences.
+
+## Fast-scan V2 (2026-09-24)
+
+Files: `sp_fast_scan_v2.sql`, `sp_load_fast_scan_rt_constraints.sql`, `validate_fast_scan_v2.py`.
+
+Design:
+- SE-snapshot grain: output carries the raw :57 stamp, not hour-floored/aggregated.
+- DAM/PAR keyed to nearest hour, so a 12:57 snapshot joins the DAM hour starting 13:00.
+- RT rating = nearest CREATETIME, MIN across segments (tightest segment is the branch limit).
+- RT constraint = config's own contingency only, nearest interval, base-case spelling normalised; every other contingency binding at the same intervals goes to FAST_SCAN_RT_CONSTRAINTS.
+- Curtailment = nearest SCED run; shifts are per station-kV from CIM 205 ∪ data dictionary, nearest-kV snap within 1.0.
+
+Validation, config 254330 (651_B / DMBDRKC5, 2026-06-01..06-14; PAR and renewable legs stubbed — PARERCOTVIEW and ERCOT_RESOURCE_ADEQUACY_REPORT_VIEW are not readable by AI_READ_ONLY):
+- 338 V2 rows vs 336 V1.
+- DAM_RATE_B identical to V1 at the next hour (0.0000 diff, 338/338).
+- REALTIME_RATE_B mean |diff| 0.23 (nearest :55 vs hourly average).
+- INJECTION_FLOW differs by a near-constant 82–86 MW, entirely from CPSES: V1 averaged the station's four bus shifts (three at +0.00676, the 138kV bus at −0.126) to −0.0265 and applied it to ~2,400 MW → −63 MW; V2 applies +0.00676 to the 2,418 MW at 22kV → +17 MW. V1 was wrong; V2 is the reason the kV grain exists.
+- RT_CONSTRAINT_VALUE NULL in V2 for 102 hours: only DMBDRKC5 (24 hours) is the config's own contingency; DBUCRGP5/SCMNCPS5/DKLNRGP5 etc. bound in the rest — by design, those are in the detail table.
+
+Deploy order: (1) `ALTER TABLE FAST_SCAN_RESULTS ADD COLUMN RT_INTERVAL`; (2) `sp_load_fast_scan_rt_constraints.sql` (table + sub-proc); (3) `sp_fast_scan_v2.sql`; (4) `CALL SP_RUN_FAST_SCAN_TEST_V2(<config>, start, end)` on a config with a PSENSHIFTID (the 115 VALIDATION configs keyed by TOPOLOGYSHIFTSETID aren't served by V1 or V2).
