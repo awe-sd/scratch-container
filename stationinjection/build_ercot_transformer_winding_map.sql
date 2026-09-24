@@ -145,12 +145,14 @@ pairs AS (                                     -- (device, model) pairs whose wi
     JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE e
       ON e.EFFECTIVE_FROM < d.ACTIVE_TO AND e.EFFECTIVE_TO > d.ACTIVE_FROM
 ),
-failing AS (                                   -- reported name has no winding at the device kV
-    SELECT p.* FROM pairs p
-    WHERE NOT EXISTS (SELECT 1 FROM winding w
-                       WHERE w.CIMFILEID = p.CIMFILEID AND w.STATION = p.STATION
-                         AND w.WINDINGNAME = p.TRANSFORMERENDNAME
-                         AND ABS(w.NOMINALKV - p.DEVICEKV) <= 0.05)
+failing AS (                                   -- anti-join: reported name has no winding at the device kV
+    SELECT p.*                                 -- (a correlated NOT EXISTS with the ABS() inequality is
+    FROM pairs p                               --  "Unsupported subquery type" inside INSERT on Snowflake)
+    LEFT JOIN winding w
+      ON w.CIMFILEID = p.CIMFILEID AND w.STATION = p.STATION
+     AND w.WINDINGNAME = p.TRANSFORMERENDNAME
+     AND ABS(w.NOMINALKV - p.DEVICEKV) <= 0.05
+    WHERE w.CIMFILEID IS NULL
 )
 SELECT f.BRANCHDEVICEID, MIN(k.WINDINGNAME)
 FROM failing f
