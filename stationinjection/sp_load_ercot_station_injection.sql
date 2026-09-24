@@ -94,10 +94,9 @@
 -- many small ones. TMP_TERMINAL (the four rules above) is built ONCE per call
 -- and joined ONCE to the flow table, replacing an earlier 4-leg UNION ALL that
 -- Snowflake inlined into 4 separate scans (proven identical output, 1.5-2.8x
--- faster). Daily incremental: CALL ...(d, d). Backfill: as few calls as
--- possible on a LARGE+ warehouse - e.g. one call per year with
--- P_CHUNK_DAYS = 0, or one call for the whole range with P_CHUNK_DAYS = 365
--- for per-year commits/restartability.
+-- faster). The whole range runs as a single pass in one transaction, which is
+-- fast enough on its own. Daily incremental: CALL ...(d, d).
+-- Backfill: one call for the whole range on a LARGE+ warehouse.
 --
 -- ---------------------------------------------------------------------------
 -- OTHER NOTES
@@ -106,9 +105,8 @@
 -- TIMESTAMP is kept at full source resolution. SE timestamps are irregular -
 --   :57 recently, :58 in 2021-2022, occasionally on the hour - so anything
 --   downstream deriving an hour bucket must not assume a fixed minute.
--- Each chunk's DELETE+INSERT runs in one transaction; an empty source range
---   leaves the target untouched (per chunk) - see P_CHUNK_DAYS above for
---   controlling blast radius on a backfill.
+-- The DELETE+INSERT runs in one transaction for the whole call; an empty
+--   source range leaves the target untouched.
 -- Backfill from 2022-01-01. There is no winding data before then (earliest
 --   usable CIMDATE is 2022-01-04).
 -- A transformer whose BOTH sides are reported as devices (GARZA
@@ -121,15 +119,11 @@
 --   in the build script before trusting recent months.
 -- ============================================================================
 
--- Signature changed (3rd arg): procedures are keyed by name+argtypes, so
--- CREATE OR REPLACE here adds a new (DATE, DATE, INTEGER) overload rather than
--- replacing an existing (DATE, DATE) one. Drop the old overload once so a
--- 2-arg CALL can't resolve to it (or be ambiguous against the defaulted arg):
---   DROP PROCEDURE IF EXISTS AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION(DATE, DATE);
+-- The 3-argument version WAS deployed; drop it so only the 2-argument proc remains:
+--   DROP PROCEDURE IF EXISTS AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION(DATE, DATE, INTEGER);
 CREATE OR REPLACE PROCEDURE AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION(
     P_START_DATE DATE,
-    P_END_DATE   DATE,
-    P_CHUNK_DAYS INTEGER DEFAULT 0   -- <= 0: whole range in one transaction; N: commit every N days
+    P_END_DATE   DATE
 )
 RETURNS VARCHAR
 LANGUAGE SQL
@@ -137,15 +131,14 @@ EXECUTE AS CALLER
 AS
 $$
 DECLARE
-    v_from     DATE;
-    v_to       DATE;
-    v_step     INTEGER;
+    v_end      TIMESTAMP_NTZ;
     v_deleted  INTEGER DEFAULT 0;
     v_inserted INTEGER DEFAULT 0;
 BEGIN
     IF (P_START_DATE IS NULL OR P_END_DATE IS NULL OR P_START_DATE > P_END_DATE) THEN
         RETURN 'ERROR: need non-null P_START_DATE <= P_END_DATE.';
     END IF;
+    v_end := DATEADD(DAY, 1, P_END_DATE);
 
     -- One row per (device, terminal): where the flow is booked, which MW column, and when the row applies.
     CREATE OR REPLACE TEMPORARY TABLE TMP_TERMINAL AS
@@ -166,8 +159,7 @@ BEGIN
                LAST_VALUE(WINDING_CIMFILEID) IGNORE NULLS
                    OVER (ORDER BY EFFECTIVE_FROM ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS CIMFILEID
         FROM (
-            SELECT e.EFFECTIVE_FROM, e.EFFECTIVE_TO,
-                   MAX(IFF(w.CIMFILEID IS NULL, NULL, e.CIMFILEID)) AS WINDING_CIMFILEID
+            SELECT e.EFFECTIVE_FROM, e.EFFECTIVE_TO, MAX(IFF(w.CIMFILEID IS NULL, NULL, e.CIMFILEID)) AS WINDING_CIMFILEID
             FROM AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE e
             LEFT JOIN (SELECT DISTINCT CIMFILEID FROM AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING) w ON w.CIMFILEID = e.CIMFILEID
             GROUP BY e.EFFECTIVE_FROM, e.EFFECTIVE_TO
@@ -176,35 +168,28 @@ BEGIN
     JOIN AWDEV.ERCOTRT.ERCOTSETRANSFORMERWINDINGMAP m ON m.CIMFILEID = e.CIMFILEID
     WHERE ABS(m.NOMINALKV - m.DEVICEKV) > 0.05;
 
-    v_from := P_START_DATE;
-    v_step := IFF(P_CHUNK_DAYS > 0, P_CHUNK_DAYS, DATEDIFF(DAY, P_START_DATE, P_END_DATE) + 1);
+    -- Staged first (DDL autocommits, so outside the transaction): an empty source range leaves the target untouched.
+    CREATE OR REPLACE TEMPORARY TABLE TMP_STATION_INJECTION AS
+    SELECT CAST(br."TIMESTAMP" AS TIMESTAMP_NTZ(0)) AS "TIMESTAMP", t.STATIONNAME AS NMMSSTATIONCODE, t.KVLEVEL,
+           SUM(ZEROIFNULL(IFF(t.USE_FROMMW, br.FROMMW, br.TOMW))) AS NETINJECTIONMW
+    FROM AW.DBO.ISOERCOTSEBRANCH br
+    JOIN TMP_TERMINAL t ON t.BRANCHDEVICEID = br.BRANCHDEVICEID
+                       AND br."TIMESTAMP" >= t.EFFECTIVE_FROM AND br."TIMESTAMP" < t.EFFECTIVE_TO
+    WHERE br."TIMESTAMP" >= :P_START_DATE AND br."TIMESTAMP" < :v_end
+    GROUP BY 1, 2, 3;
 
-    WHILE (v_from <= P_END_DATE) DO
-        v_to := LEAST(DATEADD(DAY, v_step, v_from), DATEADD(DAY, 1, P_END_DATE));
+    IF ((SELECT COUNT(*) FROM TMP_STATION_INJECTION) = 0) THEN
+        RETURN 'OK: no SE rows for ' || :P_START_DATE::VARCHAR || '..' || :P_END_DATE::VARCHAR || ', target untouched.';
+    END IF;
 
-        -- Staged first (DDL autocommits, so outside the transaction): an empty source range leaves the target untouched.
-        CREATE OR REPLACE TEMPORARY TABLE TMP_STATION_INJECTION AS
-        SELECT CAST(br."TIMESTAMP" AS TIMESTAMP_NTZ(0)) AS "TIMESTAMP", t.STATIONNAME AS NMMSSTATIONCODE, t.KVLEVEL,
-               SUM(ZEROIFNULL(IFF(t.USE_FROMMW, br.FROMMW, br.TOMW))) AS NETINJECTIONMW
-        FROM AW.DBO.ISOERCOTSEBRANCH br
-        JOIN TMP_TERMINAL t ON t.BRANCHDEVICEID = br.BRANCHDEVICEID
-                           AND br."TIMESTAMP" >= t.EFFECTIVE_FROM AND br."TIMESTAMP" < t.EFFECTIVE_TO
-        WHERE br."TIMESTAMP" >= :v_from AND br."TIMESTAMP" < :v_to
-        GROUP BY 1, 2, 3;
-
-        IF ((SELECT COUNT(*) FROM TMP_STATION_INJECTION) > 0) THEN
-            BEGIN TRANSACTION;
-            DELETE FROM AW.DBO.ERCOTSTATIONINJECTION WHERE "TIMESTAMP" >= :v_from AND "TIMESTAMP" < :v_to;
-            v_deleted := v_deleted + SQLROWCOUNT;
-            INSERT INTO AW.DBO.ERCOTSTATIONINJECTION ("TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, NETINJECTIONMW)
-            SELECT "TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, NETINJECTIONMW
-            FROM TMP_STATION_INJECTION ORDER BY 1, 2, 3;   -- target clusters on (date, station)
-            v_inserted := v_inserted + SQLROWCOUNT;
-            COMMIT;
-        END IF;
-
-        v_from := v_to;
-    END WHILE;
+    BEGIN TRANSACTION;
+    DELETE FROM AW.DBO.ERCOTSTATIONINJECTION WHERE "TIMESTAMP" >= :P_START_DATE AND "TIMESTAMP" < :v_end;
+    v_deleted := SQLROWCOUNT;
+    INSERT INTO AW.DBO.ERCOTSTATIONINJECTION ("TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, NETINJECTIONMW)
+    SELECT "TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, NETINJECTIONMW
+    FROM TMP_STATION_INJECTION ORDER BY 1, 2, 3;   -- target clusters on (date, station)
+    v_inserted := SQLROWCOUNT;
+    COMMIT;
 
     RETURN 'OK: ' || v_deleted || ' rows deleted, ' || v_inserted || ' rows inserted for '
            || :P_START_DATE::VARCHAR || '..' || :P_END_DATE::VARCHAR;
@@ -222,7 +207,7 @@ $$;
 -- ===========================================================================
 --   CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2022-01-31');
 --   CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2026-07-01', '2026-07-24');
---   CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2026-07-24', 365);
+--   CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2026-07-25');
 --   CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2023-03-28', '2023-04-04');  -- re-run after deploying the fallback
 
 
