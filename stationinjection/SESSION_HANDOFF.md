@@ -181,7 +181,7 @@ where generation becomes visible.
 | Line, station is FROM end | line `KVLEVEL` | `FROMMW` |
 | Line, station is TO end | line `KVLEVEL` | `TOMW` |
 | Transformer, reported terminal | device's own `KVLEVEL` (from `ISOERCOTSEBRANCHDEVICE`) | `FROMMW` |
-| Transformer, other real winding | the winding map's other real winding at that device (none if the device has no map row) | `-FROMMW` |
+| Transformer, other real winding | the winding map's other real winding at that device (none if the device has no map row) | `TOMW` |
 
 The reported terminal is read straight off the device table, not the map, so a
 transformer that fails to resolve in the winding map — no map row for that
@@ -219,6 +219,9 @@ as devices, but the second device carries **no flow rows**. Verified over
 pairs, and **2 for zero** of them. ERCOT never reports both sides. The guard
 suppressed the mirror for CPSES, GUADG, LEG and CBY — CPSES read −29 MW instead
 of ~2,380 MW.
+
+### Mirror = `TOMW` (not `-FROMMW`)
+`TOMW` is populated on all transformer rows, carries losses.
 
 ### Per-kV bus balance (transformer bus-side terminal only) — REJECTED
 Counting only `FROMMW` for transformers gives a true bus balance, but it reads
@@ -374,11 +377,11 @@ prefix (+96, combined-cycle trains), strip `_J\d+` (+28, joint-ownership shares)
 Use **longest**-match, not the Python's first-match-wins. Note `Station_injection.py`
 had `isoErcotScedGenResourceView`, which does **not** exist in Snowflake.
 
-### c) Transformer losses are not attributed
+### c) Transformer losses are attributed
 
-The mirror is exactly `-FROMMW`, i.e. a lossless transformer per ERCOT's
-convention, so the two sides cancel and winding losses land nowhere. Summing
-across `KVLEVEL` gives the station-level figure minus a few MW:
+The mirror uses `TOMW` (not `-FROMMW`), and `TOMW = -FROMMW + losses`, so
+winding losses now show up as a small imbalance when summing across
+`KVLEVEL` vs. the station-level figure:
 
 | Station | Sum over kV | Station-level | Diff |
 |---|---|---|---|

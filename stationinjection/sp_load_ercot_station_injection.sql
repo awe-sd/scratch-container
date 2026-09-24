@@ -28,7 +28,7 @@
 --   Line, station is the FROM end       ->  FROMMW  at the line's KVLEVEL
 --   Line, station is the TO end         ->  TOMW    at the line's KVLEVEL
 --   Transformer, reported terminal      ->  FROMMW  at the device's own KVLEVEL
---   Transformer, other real winding     -> -FROMMW  at that winding's NOMINALKV
+--   Transformer, other real winding     ->  TOMW    at that winding's NOMINALKV
 --
 -- The transformer mirror is what makes generation visible. ERCOT reports flow on
 -- only one winding and expects the other to be equal and opposite; verified over
@@ -60,16 +60,9 @@
 --     SUN_SLR  34.5  ->  +175.33   solar generation
 --     ACSSW    345   ->    -0.01   switchyard, balances to ~0 as it should
 --
--- TRANSFORMER LOSSES ARE NOT ATTRIBUTED. The mirror is exactly -FROMMW, i.e. a
--- lossless transformer per ERCOT's convention, so the two sides cancel and
--- winding losses land nowhere. Summing across KVLEVEL therefore gives the
--- station-level figure MINUS those losses, a few MW per station:
---     STATION   SUM OVER KV   STATION-LEVEL   DIFF
---     STP           2602.60         2604.11  -1.51
---     CPSES         2376.28         2380.06  -3.78
---     CBY           1195.86         1198.36  -2.50
--- The old ERCOTSTATIONLOAD attributed these losses to the station, because it
--- summed FROMMW + TOMW per transformer. Expect small differences on that basis.
+-- TRANSFORMER LOSSES ARE ATTRIBUTED. The mirror uses TOMW (not -FROMMW), and
+-- TOMW = -FROMMW + losses, so FROMMW + TOMW = losses shows up as a small
+-- station-level imbalance across kV levels, the same as it does for lines.
 --
 -- NOTE ON THE LINE COLUMN CHOICE - this differs from the original spec, which
 --   asked for the FAR-end terminal ("injection at B = A-B FROMMW + B-C TOMW"),
@@ -156,8 +149,8 @@ BEGIN
         SELECT br."TIMESTAMP", x.STATION, x.KVLEVEL, ZEROIFNULL(br.FROMMW)
         FROM br JOIN xdev x ON x.BRANCHDEVICEID = br.BRANCHDEVICEID
         UNION ALL
-        -- transformer, the other real winding: equal and opposite
-        SELECT br."TIMESTAMP", m.STATION, m.NOMINALKV, -ZEROIFNULL(br.FROMMW)
+        -- transformer, the other real winding: TOMW carries losses correctly
+        SELECT br."TIMESTAMP", m.STATION, m.NOMINALKV, ZEROIFNULL(br.TOMW)
         FROM br
         JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE e
           ON br."TIMESTAMP" >= e.EFFECTIVE_FROM AND br."TIMESTAMP" < e.EFFECTIVE_TO
