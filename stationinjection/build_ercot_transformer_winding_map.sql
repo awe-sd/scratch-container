@@ -254,12 +254,14 @@ pairs AS (
     JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE e
       ON e.EFFECTIVE_FROM < d.ACTIVE_TO AND e.EFFECTIVE_TO > d.ACTIVE_FROM
 ),
-failing AS (
-    SELECT p.* FROM pairs p
-    WHERE NOT EXISTS (SELECT 1 FROM winding w
-                       WHERE w.CIMFILEID = p.CIMFILEID AND w.STATION = p.STATION
-                         AND w.WINDINGNAME = p.TRANSFORMERENDNAME
-                         AND ABS(w.NOMINALKV - p.DEVICEKV) <= 0.05)
+failing AS (                                   -- anti-join, as in the seed
+    SELECT p.*
+    FROM pairs p
+    LEFT JOIN winding w
+      ON w.CIMFILEID = p.CIMFILEID AND w.STATION = p.STATION
+     AND w.WINDINGNAME = p.TRANSFORMERENDNAME
+     AND ABS(w.NOMINALKV - p.DEVICEKV) <= 0.05
+    WHERE w.CIMFILEID IS NULL
 )
 SELECT f.BRANCHDEVICEID, COUNT(DISTINCT k.WINDINGNAME) AS N_CANDIDATES
 FROM failing f
