@@ -100,6 +100,10 @@
 --   1_138_1_H/1_69_1_H, MDLNE AXFMR1H/AXFMR1L) is deliberately left unmapped:
 --   mirroring either side would double count, and both reported sides already
 --   give the right answer between them.
+-- A period whose in-force model has no winding rows loaded yet gets reported
+--   transformer terminals but no mirrors (generation behind GSUs reads ~0 at
+--   the transmission bus and is absent at machine kV) - check verification I
+--   in the build script before trusting recent months.
 -- ============================================================================
 
 CREATE OR REPLACE PROCEDURE AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION(

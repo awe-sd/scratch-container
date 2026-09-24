@@ -88,10 +88,20 @@ hand-maintained — the only hand-maintained data anywhere in this pipeline.
 
 ### `AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE` — view
 
-Timestamp → CIM model in force, at TIMESTAMP grain (not date grain — the SE
-switches models at 23:00 the eve of the schedule's `PRODUCTION_LOAD`, see §8).
-Built on `AWDEV.ERCOTRT.ERCOT_PRODUCTION_LOAD_SCHEDULE` joined to
-`AW.DBO.CIMFILE` on `CIMDATE = EFFECTIVE_THROUGH`.
+A pure mapping of CIMFILEID to `AWDEV.ERCOTRT.ERCOT_PRODUCTION_LOAD_SCHEDULE`
+rows — no filter on winding coverage, nothing to do with
+`ERCOTTRANSFORMERWINDING`. Every DATE in the output comes from the schedule;
+`CIMDATE = EFFECTIVE_THROUGH` is only the join key. Timestamp grain (not date
+grain — the SE switches models at 23:00 the eve of the schedule's
+`PRODUCTION_LOAD`, see §8).
+
+Caveat: a schedule row can map to TWO CIMFILEIDs when ERCOT re-posts a model
+(2023Sep.L4 → 15 and 18; 2025Dec.L1 → 141 and 145) — the view lists both, since
+they're the same model. Downstream this is harmless because the winding table
+holds only one of each pair (build-script verification H asserts that), but it
+means winding coverage is not this view's job — a model with no winding rows
+loaded yet still resolves here and simply produces no map rows (verification
+F / I in the build script).
 
 ### `AWDEV.ERCOTRT.ERCOTSETRANSFORMERNAMECORRECTING` — table (hand-maintained)
 
@@ -258,6 +268,11 @@ Replaced with a `TIMESTAMP_NTZ` grain (`EFFECTIVE_FROM` = `PRODUCTION_LOAD`
 minus one hour), so consumers join on `ts >= EFFECTIVE_FROM AND ts <
 EFFECTIVE_TO` instead of a date `BETWEEN`.
 
+### CIM-effective filtered on winding rows — REJECTED (sdalvi)
+The view maps CIM IDs to the schedule, nothing more; winding coverage is a
+loader concern surfaced by verification F/I, not a filter this view should
+apply.
+
 ### Name-correcting table stores `TRANSFORMERNAME` — REJECTED
 Storing the transformer name a device's bad `TRANSFORMERENDNAME` points at,
 rather than the corrected winding name, seemed simpler but breaks under
@@ -307,6 +322,7 @@ directly and filters `ABS(NOMINALKV - DEVICEKV) > 0.05`.
 | View `ISOERCOTSEBRANCHVIEW` | Safe — 0 orphan rows, no row loss vs base tables |
 | Station names | 4,418 / 4,418 branch stations exist in `ERCOTDAMPSSESTATION` — one namespace |
 | **SE timestamps are irregular** | `:57` recently, `:58` in 2021–2022, occasionally on the hour (2022-01-01 has a `13:00:00` sample where every other hour is `:58`). Stored verbatim. Do not assume a fixed minute downstream. |
+| Winding coverage gap | Models **377–392** (2026-07-29 onward) have no windings loaded as of 2026-09-24 — `ERCOTCIMEFFECTIVEDATE` still resolves them (it is not filtered on winding coverage), so those periods lose the transformer mirror until the loader catches up (verification I) |
 
 ### CIM model gotchas
 
@@ -315,8 +331,10 @@ directly and filters `ABS(NOMINALKV - DEVICEKV) > 0.05`.
   models, so they would win a nearest-forward lookup outright.
 - `CIMDATE` is **not unique** in `CIMFILE` even after excluding test models —
   models get re-posted. 2023-10-03 has CIMFILEID 15 and 18; 2025-12-09 has 141
-  and 145 (`RTC_Native`). The "has winding rows" filter breaks these ties
-  (exactly one of each pair carries windings).
+  and 145 (`RTC_Native`). `ERCOTCIMEFFECTIVEDATE` does **not** break this tie —
+  it's a pure mapping, so both CIMFILEIDs appear against the same schedule row
+  (build-script verification H asserts exactly one of each pair carries
+  windings, so downstream is unaffected).
 - The schedule **skips loads**: ERCOT skipped the 2024 holiday loads, so
   `2024Dec.L2` ends 2024-12-17 while the next row starts 2025-01-08 — a 21-day
   hole. Hence `EFFECTIVE_THROUGH` is derived as the day before the **next

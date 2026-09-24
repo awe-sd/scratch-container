@@ -26,9 +26,14 @@
 -- 1. AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE - which CIM model applies to a given
 --    TIMESTAMP
 --
--- Built directly on ERCOT's own publication schedule,
--- AWDEV.ERCOTRT.ERCOT_PRODUCTION_LOAD_SCHEDULE, with the CIMFILEID attached.
--- CIMFILE.CIMDATE equals the schedule's EFFECTIVE_THROUGH, which is the join key.
+-- Pure mapping CIMFILEID <-> schedule row. CIMFILE.CIMDATE = schedule.EFFECTIVE_THROUGH
+-- is the only link between the two tables, so it is the join key; every DATE
+-- in the output comes from the schedule.
+--
+-- EFFECTIVE_TO is the NEXT loaded row's start, not the schedule's own
+-- EFFECTIVE_THROUGH/NEXT_PRODUCTION_LOAD: ERCOT skipped 2024Dec.L3 (schedule
+-- row exists, no CIM file), so 2024Dec.L2 (CIMFILEID 85) stays in force
+-- 2024-12-10 23:00 -> 2025-01-07 23:00.
 --
 -- Verified 2026-09-24: the SE switches to a new model at 23:00 on the eve of
 -- the schedule's PRODUCTION_LOAD, not at midnight - retired devices' last
@@ -36,48 +41,51 @@
 -- first sample is 23:57 that eve for 637 of 757 (00:xx on the day for the
 -- other 120). EFFECTIVE_FROM is therefore PRODUCTION_LOAD minus one hour.
 --
--- EFFECTIVE_TO is exclusive and is the NEXT row's EFFECTIVE_FROM, not the
--- schedule's own EFFECTIVE_THROUGH column. That distinction matters: the
--- schedule occasionally skips a load, leaving its EFFECTIVE_THROUGH short of
--- the next load. ERCOT skipped the 2024 holiday loads, so 2024Dec.L2 ends
--- 2024-12-17 while the next row (2025Jan.L1) starts 2025-01-08 - a 21-day hole
--- in which the December model was still in force. Deriving the end from the
--- next PRODUCTION_LOAD closes every such hole.
+-- MP_MarketModel = test models, published ~45 days early, never in force
+-- (188 vs 205 share CIMDATE 2026-07-14); excluded because they are not
+-- production files, nothing to do with windings.
 --
--- Two filters decide which models are usable:
---   CIMPATH NOT LIKE '%MP_MarketModel%'  excludes TEST models, published ~45
---       days ahead of the production load and never actually in force.
---       2026-07-14 has CIMFILEID 188 (MP_MarketModel, test) and 205
---       (CIM_Jul_ML1, production).
---   EXISTS winding rows  only 202 of 308 production models are loaded into the
---       winding table, and a model without windings can map nothing. This filter
---       also breaks re-posting ties, where one CIMDATE has two CIMFILEIDs:
---       2023-10-03 has 15 (posted-20230927) and 18 (posted-20231018);
---       2025-12-09 has 141 and 145 (RTC_Native). Exactly one of each pair
---       carries windings. Note also that CIMFILEID is not monotone with model
---       recency - CIMFILEID 376 is a 2023-07-18 model loaded late - so never
---       pick "the newest model" by MAX(CIMFILEID).
+-- Re-posted models: a schedule row can map to TWO CIMFILEIDs (2023Sep.L4 ->
+-- 15 and 18; 2025Dec.L1 -> 141 and 145). The view lists both - they are the
+-- same model. Downstream this is harmless because the winding table holds
+-- only one of each pair; verification H asserts that.
 --
--- The newest model gets EFFECTIVE_TO = 9999-12-31 so current data always
--- resolves rather than silently losing its transformer terminals.
+-- Winding coverage is NOT this view's job: models with no winding rows
+-- (currently 377-392, 2026-07-29 onward) still resolve; they simply produce
+-- no map rows, so transformers lose their mirror until the winding loader
+-- catches up - verification F is where that shows.
+--
+-- Note also that CIMFILEID is not monotone with model recency - CIMFILEID 376
+-- is a 2023-07-18 model loaded late - so never pick "the newest model" by
+-- MAX(CIMFILEID).
+--
+-- Verified 2026-09-24: 306 rows / 304 loads, contiguous, first EFFECTIVE_FROM
+-- 2020-01-07 23:00.
 -- ============================================================================
 
 CREATE OR REPLACE VIEW AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE AS
-WITH sched AS (
-    SELECT p.CIM_LABEL, p.PRODUCTION_LOAD, c.CIMFILEID, c.CIMDATE
+WITH models AS (                                -- production CIM files; test models are never in force
+    SELECT CIMFILEID, CIMDATE
+    FROM AW.DBO.CIMFILE
+    WHERE ISOMARKETID = 6
+      AND CIMPATH NOT LIKE '%MP_MarketModel%'
+),
+loads AS (                                      -- schedule rows that have a CIM file; skipped loads drop out
+    SELECT p.CIM_LABEL, p.PRODUCTION_LOAD, p.EFFECTIVE_THROUGH
     FROM AWDEV.ERCOTRT.ERCOT_PRODUCTION_LOAD_SCHEDULE p
-    JOIN AW.DBO.CIMFILE c ON c.CIMDATE = p.EFFECTIVE_THROUGH
-    WHERE c.ISOMARKETID = 6
-      AND c.CIMPATH NOT LIKE '%MP_MarketModel%'
-      AND EXISTS (SELECT 1 FROM AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING w
-                   WHERE w.CIMFILEID = c.CIMFILEID)
+    WHERE EXISTS (SELECT 1 FROM models m WHERE m.CIMDATE = p.EFFECTIVE_THROUGH)
+),
+ranges AS (                                     -- in force from 23:00 the eve of the load until the next load does the same
+    SELECT CIM_LABEL, PRODUCTION_LOAD, EFFECTIVE_THROUGH,
+           DATEADD(HOUR, -1, PRODUCTION_LOAD::TIMESTAMP_NTZ)                          AS EFFECTIVE_FROM,
+           COALESCE(LEAD(DATEADD(HOUR, -1, PRODUCTION_LOAD::TIMESTAMP_NTZ))
+                        OVER (ORDER BY PRODUCTION_LOAD),
+                    '9999-12-31'::TIMESTAMP_NTZ)                                      AS EFFECTIVE_TO   -- exclusive
+    FROM loads
 )
-SELECT CIM_LABEL, CIMFILEID, CIMDATE,
-       DATEADD(HOUR, -1, PRODUCTION_LOAD::TIMESTAMP_NTZ)                        AS EFFECTIVE_FROM,   -- 23:00 the eve of the load
-       COALESCE(LEAD(DATEADD(HOUR, -1, PRODUCTION_LOAD::TIMESTAMP_NTZ))
-                    OVER (ORDER BY PRODUCTION_LOAD),
-                '9999-12-31'::TIMESTAMP_NTZ)                                    AS EFFECTIVE_TO      -- exclusive
-FROM sched;
+SELECT r.CIM_LABEL, m.CIMFILEID, r.PRODUCTION_LOAD, r.EFFECTIVE_FROM, r.EFFECTIVE_TO
+FROM ranges r
+JOIN models m ON m.CIMDATE = r.EFFECTIVE_THROUGH;
 
 
 -- ============================================================================
@@ -261,16 +269,15 @@ JOIN winding k
 GROUP BY f.BRANCHDEVICEID
 HAVING COUNT(DISTINCT k.WINDINGNAME) > 1;      -- MUST return 0 rows
 
--- B. CIM-effective contiguity. First MUST return 0 - every row's EFFECTIVE_TO
---    equals the next row's EFFECTIVE_FROM. Second: earliest EFFECTIVE_FROM
---    MUST be <= 2022-01-01.
-SELECT COUNT(*) AS NON_CONTIGUOUS_ROWS
-FROM (
-    SELECT EFFECTIVE_TO,
-           LEAD(EFFECTIVE_FROM) OVER (ORDER BY EFFECTIVE_FROM) AS NEXT_FROM
-    FROM AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE
-)
-WHERE NEXT_FROM IS NOT NULL AND EFFECTIVE_TO <> NEXT_FROM;
+-- B. CIM-effective contiguity, computed over DISTINCT (EFFECTIVE_FROM,
+--    EFFECTIVE_TO) - re-posted loads produce two CIMFILEID rows per range, and
+--    those duplicates would otherwise look like overlaps. First MUST return 0
+--    - every distinct range's EFFECTIVE_TO equals the next range's
+--    EFFECTIVE_FROM. Second: earliest EFFECTIVE_FROM MUST be <= 2022-01-01.
+SELECT COUNT(*)
+FROM (SELECT EFFECTIVE_TO, LEAD(EFFECTIVE_FROM) OVER (ORDER BY EFFECTIVE_FROM) NXT
+      FROM (SELECT DISTINCT EFFECTIVE_FROM, EFFECTIVE_TO FROM AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE))
+WHERE NXT IS NOT NULL AND NXT <> EFFECTIVE_TO;
 
 SELECT MIN(EFFECTIVE_FROM) AS EARLIEST_EFFECTIVE_FROM FROM AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE;
 
@@ -342,14 +349,40 @@ FROM (
 -- )
 -- ORDER BY d.MAX_ABS_MW DESC;
 
--- G. Spot check, for the model with EFFECTIVE_TO = 9999-12-31:
+-- G. Spot check, for the newest model THAT HAS windings (not simply the model
+--    with EFFECTIVE_TO = 9999-12-31 - that model may itself have no windings
+--    loaded yet, see verification I; and never MAX(CIMFILEID), see §1):
 --    STP MT1A device @345      -> windings 345 & 25 (GSU, mirror makes gen visible)
 --    ACSSW AX1HH device @345   -> single winding 345 (star leg, no mirror)
 --    DUNLAP AT1H device @138   -> via correction (AT1L) -> windings 345 & 138
 --    PEARSALL 138_69_4 @69     -> windings 138 & 69
 SELECT STATION, BRANCHDEVICENAME, DEVICEKV, TRANSFORMERNAME, WINDINGNAME, NOMINALKV
 FROM AWDEV.ERCOTRT.ERCOTSETRANSFORMERWINDINGMAP
-WHERE CIMFILEID = (SELECT CIMFILEID FROM AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE
-                    WHERE EFFECTIVE_TO = '9999-12-31')
+WHERE CIMFILEID = (SELECT e.CIMFILEID FROM AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE e
+                    WHERE EXISTS (SELECT 1 FROM AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING w WHERE w.CIMFILEID = e.CIMFILEID)
+                    ORDER BY e.EFFECTIVE_FROM DESC LIMIT 1)
   AND STATION IN ('STP','ACSSW','DUNLAP','PEARSALL')
 ORDER BY STATION, BRANCHDEVICENAME, NOMINALKV;
+
+-- H. MUST return 0. A load with more than one winding-bearing CIMFILEID would
+--    make the SP's mirror double-count for that period - the re-posting
+--    duplicates the view now carries (see §1) must always resolve to at most
+--    one CIMFILEID that actually has windings.
+SELECT COUNT(*) AS LOADS_WITH_2PLUS_WINDING_MODELS
+FROM (
+    SELECT e.CIM_LABEL
+    FROM AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE e
+    WHERE EXISTS (SELECT 1 FROM AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING w WHERE w.CIMFILEID = e.CIMFILEID)
+    GROUP BY e.CIM_LABEL
+    HAVING COUNT(*) > 1
+);
+
+-- I. Informational - loads in force with NO winding rows at all: these
+--    periods have no transformer mirrors (see verification F / SP header).
+--    Expect 18 (re-post twin) and 141 (re-post twin) plus the newest models
+--    until the winding loader catches up.
+SELECT e.CIM_LABEL, e.CIMFILEID, e.EFFECTIVE_FROM, e.EFFECTIVE_TO
+FROM AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE e
+WHERE NOT EXISTS (SELECT 1 FROM AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING w WHERE w.CIMFILEID = e.CIMFILEID)
+  AND e.EFFECTIVE_TO > '2022-01-01'
+ORDER BY e.EFFECTIVE_FROM;
