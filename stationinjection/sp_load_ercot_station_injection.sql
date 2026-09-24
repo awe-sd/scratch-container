@@ -54,8 +54,8 @@
 --     STP       25   -> +2606.10   GENERATION, via the mirror
 --     CPSES     22   -> +2409.38   generation
 --     GUADG   18.1   ->  +941.93   generation
---     LEG       25   ->  +679.22   generation
---     CBY    20, 24  ->  +678.83, +520.26
+--     LEG       25   ->  +679.65   generation
+--     CBY    20, 24  ->  +681.09, +520.57
 --     HRZN_SLR 34.5  ->  +197.21   solar generation
 --     SUN_SLR  34.5  ->  +175.33   solar generation
 --     ACSSW    345   ->    -0.01   switchyard, balances to ~0 as it should
