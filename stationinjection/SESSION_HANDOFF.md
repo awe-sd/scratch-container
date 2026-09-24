@@ -315,6 +315,11 @@ directly and filters `ABS(NOMINALKV - DEVICEKV) > 0.05`.
 
 ### Line sign convention — OPEN, see §9
 
+### Mirror falls back to the latest earlier winding-bearing model (2026-09-24)
+Benchmark vs `ERCOTSTATIONLOAD` exposed 2023-03-28 23:00 → 2023-04-04 23:00
+(`CIMFILEID` 393, no windings) with 376 stations off >10 MW; verification I in
+the build script is exactly this condition.
+
 ---
 
 ## 8. Data facts worth keeping
@@ -446,6 +451,7 @@ leading cluster key, or keep a timestamp-clustered derived table), but it is a
 CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2022-01-31');
 -- Backfill from here: as few calls as possible on a LARGE+ warehouse, e.g.
 -- CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2026-07-24', 365);
+-- After deploying the fallback proc, re-run CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2023-03-28', '2023-04-04');
 
 -- 7. Verify generation is visible at machine voltages.
 --    NOTE: 2022-era timestamps are stamped :58, not :57.

@@ -53,6 +53,12 @@
 -- it was only ever an artifact of pairing a device with a model from before
 -- the device existed.
 --
+-- If the in-force CIM model has no windings loaded (e.g. 393 = 2023Mar.L5, and
+-- all models from 2026-07-29 on as of 2026-09-24), the mirror falls back to
+-- the latest earlier model with windings; without this the whole range loses
+-- generation visibility and low-side-reported GSUs double-count. After
+-- loading windings for such a model, re-run the proc over its range.
+--
 -- Result at 2026-07-01 12:57:
 --     STP      345   ->    -2.00   bus balances, nothing connected at 345
 --     STP       25   -> +2606.10   GENERATION, via the mirror
@@ -152,10 +158,22 @@ BEGIN
     SELECT BRANCHDEVICEID, TOSTATIONNAME, CAST(KVLEVEL AS NUMBER(6,2)), FALSE, '1900-01-01', '9999-12-31'
     FROM AW.DBO.ISOERCOTSEBRANCHDEVICE WHERE BRANCHDEVICETYPE = 'Line'
     UNION ALL
-    -- TOMW at the transformer's other real winding, while that CIM model is in force
+    -- TOMW at the transformer's other real winding, while that CIM model is in force.
+    -- If the in-force model has no windings loaded yet, mirror with the latest earlier model that does.
     SELECT m.BRANCHDEVICEID, m.STATION, m.NOMINALKV, FALSE, e.EFFECTIVE_FROM, e.EFFECTIVE_TO
-    FROM AWDEV.ERCOTRT.ERCOTSETRANSFORMERWINDINGMAP m
-    JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE e ON e.CIMFILEID = m.CIMFILEID
+    FROM (
+        SELECT EFFECTIVE_FROM, EFFECTIVE_TO,
+               LAST_VALUE(WINDING_CIMFILEID) IGNORE NULLS
+                   OVER (ORDER BY EFFECTIVE_FROM ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS CIMFILEID
+        FROM (
+            SELECT e.EFFECTIVE_FROM, e.EFFECTIVE_TO,
+                   MAX(IFF(w.CIMFILEID IS NULL, NULL, e.CIMFILEID)) AS WINDING_CIMFILEID
+            FROM AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE e
+            LEFT JOIN (SELECT DISTINCT CIMFILEID FROM AWDEV.ERCOTRT.ERCOTTRANSFORMERWINDING) w ON w.CIMFILEID = e.CIMFILEID
+            GROUP BY e.EFFECTIVE_FROM, e.EFFECTIVE_TO
+        )
+    ) e
+    JOIN AWDEV.ERCOTRT.ERCOTSETRANSFORMERWINDINGMAP m ON m.CIMFILEID = e.CIMFILEID
     WHERE ABS(m.NOMINALKV - m.DEVICEKV) > 0.05;
 
     v_from := P_START_DATE;
@@ -205,6 +223,7 @@ $$;
 --   CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2022-01-31');
 --   CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2026-07-01', '2026-07-24');
 --   CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2026-07-24', 365);
+--   CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2023-03-28', '2023-04-04');  -- re-run after deploying the fallback
 
 
 -- ===========================================================================
