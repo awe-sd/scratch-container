@@ -98,13 +98,20 @@
 -- fast enough on its own. Daily incremental: CALL ...(d, d).
 -- Backfill: one call for the whole range on a LARGE+ warehouse.
 --
+-- One snapshot per hour. SE stamps :57 for the top of the next hour, so hours
+-- are bucketed by nearest hour and the date range is applied in those terms
+-- (a 23:57 row belongs to the next day). Per bucket the most complete
+-- snapshot wins, latest on ties, which drops the model-rollout stubs and
+-- accepts a delayed :00 solve. A bucket whose best snapshot has under half
+-- the active devices (five known days with no line rows) is skipped.
+--
 -- ---------------------------------------------------------------------------
 -- OTHER NOTES
 --
 -- GENMW and WITHDRAWMW are left NULL; only NETINJECTIONMW is solved for.
--- TIMESTAMP is kept at full source resolution. SE timestamps are irregular -
---   :57 recently, :58 in 2021-2022, occasionally on the hour - so anything
---   downstream deriving an hour bucket must not assume a fixed minute.
+-- TIMESTAMP is kept at the source snapshot's own resolution (one row per
+--   hour bucket - see above). SE timestamps are irregular - :57 recently,
+--   :58 in 2021-2022, occasionally on the hour or a delayed :00.
 -- The DELETE+INSERT runs in one transaction for the whole call; an empty
 --   source range leaves the target untouched.
 -- Backfill from 2022-01-01. There is no winding data before then (earliest
@@ -132,6 +139,7 @@ AS
 $$
 DECLARE
     v_end      TIMESTAMP_NTZ;
+    v_devices  INTEGER;
     v_deleted  INTEGER DEFAULT 0;
     v_inserted INTEGER DEFAULT 0;
 BEGIN
@@ -168,22 +176,45 @@ BEGIN
     JOIN AWDEV.ERCOTRT.ERCOTSETRANSFORMERWINDINGMAP m ON m.CIMFILEID = e.CIMFILEID
     WHERE ABS(m.NOMINALKV - m.DEVICEKV) > 0.05;
 
+    -- The only scan of ISOERCOTSEBRANCH. Snapshots are stamped :57 for the top of the NEXT hour, so the
+    -- range is taken in nearest-hour terms: a 23:57 snapshot belongs to the following day.
+    CREATE OR REPLACE TEMPORARY TABLE TMP_FLOW AS
+    SELECT BRANCHDEVICEID, "TIMESTAMP", FROMMW, TOMW
+    FROM AW.DBO.ISOERCOTSEBRANCH
+    WHERE "TIMESTAMP" >= DATEADD(MINUTE, -30, :P_START_DATE::TIMESTAMP_NTZ)
+      AND "TIMESTAMP" <  DATEADD(MINUTE, -30, :v_end);
+
+    -- One snapshot per hour: the most complete one in the bucket, latest on ties (rollout-night stubs and
+    -- delayed :00 solves resolve here). Buckets whose best snapshot has under half the active devices are
+    -- partial publishes (e.g. lines missing) and are skipped.
+    SELECT COUNT(*) INTO :v_devices FROM AW.DBO.ISOERCOTSEBRANCHDEVICE
+    WHERE DATEACTIVESTART < :v_end AND DATEACTIVEEND >= :P_START_DATE;
+
+    CREATE OR REPLACE TEMPORARY TABLE TMP_SNAPSHOT AS
+    SELECT "TIMESTAMP"
+    FROM (SELECT "TIMESTAMP", COUNT(*) AS N FROM TMP_FLOW GROUP BY "TIMESTAMP")
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY DATE_TRUNC('HOUR', DATEADD(MINUTE, 30, "TIMESTAMP"))
+                               ORDER BY N DESC, "TIMESTAMP" DESC) = 1
+        AND N >= 0.5 * :v_devices;
+
     -- Staged first (DDL autocommits, so outside the transaction): an empty source range leaves the target untouched.
     CREATE OR REPLACE TEMPORARY TABLE TMP_STATION_INJECTION AS
     SELECT CAST(br."TIMESTAMP" AS TIMESTAMP_NTZ(0)) AS "TIMESTAMP", t.STATIONNAME AS NMMSSTATIONCODE, t.KVLEVEL,
            SUM(ZEROIFNULL(IFF(t.USE_FROMMW, br.FROMMW, br.TOMW))) AS NETINJECTIONMW
-    FROM AW.DBO.ISOERCOTSEBRANCH br
+    FROM TMP_FLOW br
+    JOIN TMP_SNAPSHOT s ON s."TIMESTAMP" = br."TIMESTAMP"
     JOIN TMP_TERMINAL t ON t.BRANCHDEVICEID = br.BRANCHDEVICEID
                        AND br."TIMESTAMP" >= t.EFFECTIVE_FROM AND br."TIMESTAMP" < t.EFFECTIVE_TO
-    WHERE br."TIMESTAMP" >= :P_START_DATE AND br."TIMESTAMP" < :v_end
     GROUP BY 1, 2, 3;
 
     IF ((SELECT COUNT(*) FROM TMP_STATION_INJECTION) = 0) THEN
-        RETURN 'OK: no SE rows for ' || :P_START_DATE::VARCHAR || '..' || :P_END_DATE::VARCHAR || ', target untouched.';
+        RETURN 'OK: no usable SE snapshots for ' || :P_START_DATE::VARCHAR || '..' || :P_END_DATE::VARCHAR || ', target untouched.';
     END IF;
 
     BEGIN TRANSACTION;
-    DELETE FROM AW.DBO.ERCOTSTATIONINJECTION WHERE "TIMESTAMP" >= :P_START_DATE AND "TIMESTAMP" < :v_end;
+    DELETE FROM AW.DBO.ERCOTSTATIONINJECTION
+    WHERE "TIMESTAMP" >= DATEADD(MINUTE, -30, :P_START_DATE::TIMESTAMP_NTZ)
+      AND "TIMESTAMP" <  DATEADD(MINUTE, -30, :v_end);
     v_deleted := SQLROWCOUNT;
     INSERT INTO AW.DBO.ERCOTSTATIONINJECTION ("TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, NETINJECTIONMW)
     SELECT "TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, NETINJECTIONMW

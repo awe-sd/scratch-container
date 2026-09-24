@@ -319,6 +319,8 @@ Benchmark vs `ERCOTSTATIONLOAD` exposed 2023-03-28 23:00 → 2023-04-04 23:00
 (`CIMFILEID` 393, no windings) with 376 stations off >10 MW; verification I in
 the build script is exactly this condition.
 
+### One snapshot per nearest-hour bucket (most complete, latest on ties); partial publishes skipped; range = bucket terms — 2026-09-24
+
 ---
 
 ## 8. Data facts worth keeping
