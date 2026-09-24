@@ -4,17 +4,17 @@
 -- Station net injection per voltage level, from SE branch flow data.
 -- Target: AW.DBO.ERCOTSTATIONINJECTION, grain (TIMESTAMP, NMMSSTATIONCODE, KVLEVEL)
 --
--- DEPENDS ON the three objects built by build_ercot_xfmr_winding_map.sql:
---     AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE       timestamp -> CIM model in force
---     AWDEV.ERCOTRT.ERCOTSEXFMRENDNAMEFIX   hand-maintained corrected winding
+-- DEPENDS ON the three objects built by build_ercot_transformer_winding_map.sql:
+--     AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE       timestamp -> CIM model in force
+--     AWDEV.ERCOTRT.ERCOTSETRANSFORMERNAMECORRECTING   hand-maintained corrected winding
 --                                            names (the only hand-maintained
 --                                            object in this pipeline)
---     AWDEV.ERCOTRT.ERCOTSEXFMRWINDINGMAP   CIM model + device -> each real
+--     AWDEV.ERCOTRT.ERCOTSETRANSFORMERWINDINGMAP   CIM model + device -> each real
 --                                            winding of its transformer
 -- All CIM-version and winding-name handling lives in those objects. Rebuild
 -- the views when ERCOT publishes a new CIM model (they're pure derivations,
 -- so in practice nothing needs rebuilding - just CREATE OR REPLACE to pick up
--- new source rows); extend the fix table only when verification F there flags
+-- new source rows); extend the name-correcting table only when verification F there flags
 -- a new device.
 --
 -- ---------------------------------------------------------------------------
@@ -42,7 +42,7 @@
 -- Star-equivalent legs (one real winding, equal to the device's own kV)
 -- naturally produce no mirror row.
 --
--- The mirror leg needs no uniqueness guard here: ERCOTSEXFMRWINDINGMAP is a
+-- The mirror leg needs no uniqueness guard here: ERCOTSETRANSFORMERWINDINGMAP is a
 -- strict name+kV join, so it is verified (build script, verification D) that
 -- no (model, device) pair ever has more than one distinct NOMINALKV differing
 -- from DEVICEKV. That situation cannot occur within a device's active window;
@@ -155,9 +155,9 @@ BEGIN
         -- transformer, the other real winding: equal and opposite
         SELECT br."TIMESTAMP", m.STATION, m.NOMINALKV, -ZEROIFNULL(br.FROMMW)
         FROM br
-        JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE e
+        JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE e
           ON br."TIMESTAMP" >= e.EFFECTIVE_FROM AND br."TIMESTAMP" < e.EFFECTIVE_TO
-        JOIN AWDEV.ERCOTRT.ERCOTSEXFMRWINDINGMAP m
+        JOIN AWDEV.ERCOTRT.ERCOTSETRANSFORMERWINDINGMAP m
           ON m.CIMFILEID      = e.CIMFILEID
          AND m.BRANCHDEVICEID = br.BRANCHDEVICEID
         WHERE ABS(m.NOMINALKV - m.DEVICEKV) > 0.05
@@ -215,7 +215,7 @@ $$;
 -- Verification: generation must be visible at generator voltages.
 -- STP ~ +2604 at 25 kV, CPSES ~ +2405 at 22 kV, solar farms positive at 34.5 kV.
 -- If these read ~0, the transformer mirror did not fire - check that
--- ERCOTSEXFMRWINDINGMAP and ERCOTCIMEFFECTIVE cover the dates loaded.
+-- ERCOTSETRANSFORMERWINDINGMAP and ERCOTCIMEFFECTIVEDATE cover the dates loaded.
 -- Note 2022-era timestamps are stamped :58, recent ones :57.
 -- ===========================================================================
 -- SELECT NMMSSTATIONCODE, KVLEVEL, ROUND(NETINJECTIONMW,2) AS NETINJECTIONMW
@@ -235,15 +235,15 @@ $$;
 --
 -- Any transformer flow NOT covered by the map on a loaded day. Should be 0 or
 -- a short, stable list (see verification F in the build script for the
--- expected residual); if it's growing, extend the fix table.
+-- expected residual); if it's growing, extend the name-correcting table.
 --
--- SELECT COUNT(*) AS UNMAPPED_XFMR_ROWS
+-- SELECT COUNT(*) AS UNMAPPED_TRANSFORMER_ROWS
 -- FROM AW.DBO.ISOERCOTSEBRANCH b
 -- JOIN AW.DBO.ISOERCOTSEBRANCHDEVICE d
 --   ON d.BRANCHDEVICEID = b.BRANCHDEVICEID AND d.BRANCHDEVICETYPE = 'Transformer'
--- LEFT JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVE e
+-- LEFT JOIN AWDEV.ERCOTRT.ERCOTCIMEFFECTIVEDATE e
 --   ON b."TIMESTAMP" >= e.EFFECTIVE_FROM AND b."TIMESTAMP" < e.EFFECTIVE_TO
--- LEFT JOIN AWDEV.ERCOTRT.ERCOTSEXFMRWINDINGMAP m
+-- LEFT JOIN AWDEV.ERCOTRT.ERCOTSETRANSFORMERWINDINGMAP m
 --   ON m.CIMFILEID = e.CIMFILEID AND m.BRANCHDEVICEID = b.BRANCHDEVICEID
 -- WHERE b."TIMESTAMP" >= '2026-07-01' AND b."TIMESTAMP" < '2026-07-02'
 --   AND b.FROMMW IS NOT NULL
