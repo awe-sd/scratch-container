@@ -1,14 +1,21 @@
--- SP_RUN_FAST_SCAN_TEST_V2 vs SP_RUN_FAST_SCAN:
--- - Source: AW.DBO.ERCOTSTATIONINJECTION (per-kV net injection) instead of
---   AW.DBO.ERCOTSTATIONLOAD (station-grain withdrawal).
--- - StationBusMapping is CIM 205 unioned with every monthly ERCOTDATADICTIONARY
---   (NMMSBASEKV), so retired stations still map.
--- - Shift factors computed per (StationCode, KV) in StationShifts.
--- - Sign: AVG(PSENS) directly (table is net injection, not withdrawal;
---   no leading minus).
--- - StationKvShifts snaps each SE (station, kV) to the nearest CIM/dictionary
---   kV within 1.0 (generator-terminal rounding, e.g. 12.5 vs 12.4, 13.8 vs 13.2).
--- - InjectionFlow computes flow per SE snapshot, keeps the latest snapshot per hour.
+-- SP_RUN_FAST_SCAN_TEST_V2, snapshot-grain rewrite:
+-- - Output grain is the raw SE snapshot (e.g. :57), not hour-floored/aggregated.
+--   V1 rows land on the hour (:00); V2 rows carry :57 -- that's what tells them apart.
+--   ALTER below adds the one new output column, RT_INTERVAL.
+-- - HOUR_BUCKET (snapshot rounded to the hour it describes, :57 -> next hour's top) is an
+--   internal CTE column, used to join hourly DAM/PAR sources -- not written to the table.
+-- - DAM/PAR stay hourly (ercotDampsseLnView is one row per branch per HE, no GROUP BY/MAX
+--   needed; PAR still SUMs across stations per hour); both join on HOUR_START = HOUR_BUCKET.
+-- - RT dynamic rating, RT constraint and curtailment are nearest-in-time picks within
+--   +/-30 min of the snapshot (QUALIFY by time distance), not hourly AVG. RT rating: MIN
+--   across segments at the chosen timestamp (tightest segment is the branch limit).
+--   RT constraint: restricted to the config's own contingency (spelling normalised).
+-- - Source: AW.DBO.ERCOTSTATIONINJECTION; StationBusMapping/StationShifts/StationKvShifts
+--   unchanged (CIM 205 + retired-station coverage, nearest-kV snap within 1.0).
+
+-- Run once; existing rows get NULL for this column.
+ALTER TABLE AW.FLOW_ANALYSIS.FAST_SCAN_RESULTS ADD COLUMN RT_INTERVAL TIMESTAMP_NTZ;
+
 CREATE OR REPLACE PROCEDURE AW.FLOW_ANALYSIS.SP_RUN_FAST_SCAN_TEST_V2("P_CONFIG_ID" NUMBER(38,0), "P_START_DATE" DATE DEFAULT null, "P_END_DATE" DATE DEFAULT null, "P_INCLUDE_CURTAILMENT" BOOLEAN DEFAULT TRUE, "P_ISO_MARKET_ID" NUMBER(38,0) DEFAULT 6)
 RETURNS VARIANT
 LANGUAGE SQL
@@ -76,12 +83,12 @@ BEGIN
 
     -- 4. THE MAIN CALCULATION
     INSERT INTO FLOW_ANALYSIS.FAST_SCAN_RESULTS (
-        CONFIG_ID, TIMESTAMP, INJECTION_FLOW, -- PAR_INJECTION_FLOW,
+        CONFIG_ID, TIMESTAMP, INJECTION_FLOW,
         DAM_RATE_B, HEADROOM,
         REALTIME_RATE_B, HEADROOM_RT,
-        RT_CONSTRAINT_VALUE, RT_CONSTRAINT_LIMIT, RT_ACTUAL_HEADROOM,
+        RT_CONSTRAINT_VALUE, RT_CONSTRAINT_LIMIT, RT_ACTUAL_HEADROOM, RT_INTERVAL,
         WIND_IMPACT, SOLAR_IMPACT, HEADROOM_AFTER_CURTAILMENT,
-        HEADROOM_DAM_WIND_CURTAILMENT, HEADROOM_DAM_SOLAR_CURTAILMENT
+        HEADROOM_DAM_WIND_CURTAILMENT, HEADROOM_DAM_SOLAR_CURTAILMENT, PSENSHIFTID
     )
     WITH
     -- Bus -> (station, kV). CIM 205 for the current model, plus every monthly ERCOT data
@@ -115,28 +122,33 @@ BEGIN
         HAVING ABS(AVG(bs.PSENS)) > 0.00001
     ),
 
-    -- SE (station, kV) pairs in range, snapped to the nearest CIM kV of that station (within 1.0 kV)
+    -- SE (station, kV) pairs in range, snapped to the nearest CIM kV of that station (within 1.0 kV).
+    -- Range padded -30 min to match InjectionFlow''s shifted snapshot window.
     StationKvShifts AS (
         SELECT si.NMMSSTATIONCODE AS StationCode, si.KVLEVEL, ss.StationPSENS
         FROM (
             SELECT DISTINCT NMMSSTATIONCODE, KVLEVEL
             FROM AW.DBO.ERCOTSTATIONINJECTION
-            WHERE "TIMESTAMP" >= :v_actual_start AND "TIMESTAMP" < DATEADD(''DAY'', 1, :v_actual_end)
+            WHERE "TIMESTAMP" >= DATEADD(''MINUTE'', -30, :v_actual_start::TIMESTAMP_NTZ)
+              AND "TIMESTAMP" <  DATEADD(''MINUTE'', -30, DATEADD(''DAY'', 1, :v_actual_end)::TIMESTAMP_NTZ)
         ) si
         JOIN StationShifts ss
           ON ss.StationCode = si.NMMSSTATIONCODE AND ABS(ss.KV - si.KVLEVEL) <= 1.0
         QUALIFY ROW_NUMBER() OVER (PARTITION BY si.NMMSSTATIONCODE, si.KVLEVEL ORDER BY ABS(ss.KV - si.KVLEVEL)) = 1
     ),
 
-    -- Flow per SE snapshot; where an hour has two snapshots (:57 and :58) keep the latest one
+    -- Flow per SE snapshot, no hourly aggregation. HOUR_BUCKET = the hour the snapshot
+    -- describes (a :57 snapshot describes the top of the next hour), used to join hourly
+    -- sources (DAM, PAR).
     InjectionFlow AS (
-        SELECT DATE_TRUNC(''HOUR'', si."TIMESTAMP") AS TIMESTAMP,
+        SELECT si."TIMESTAMP" AS TIMESTAMP,
+               DATE_TRUNC(''HOUR'', DATEADD(''MINUTE'', 30, si."TIMESTAMP")) AS HOUR_BUCKET,   -- :57 describes the top of the next hour
                SUM(ks.StationPSENS * si.NETINJECTIONMW) AS FLOW
         FROM AW.DBO.ERCOTSTATIONINJECTION si
         JOIN StationKvShifts ks ON ks.StationCode = si.NMMSSTATIONCODE AND ks.KVLEVEL = si.KVLEVEL
-        WHERE si."TIMESTAMP" >= :v_actual_start AND si."TIMESTAMP" < DATEADD(''DAY'', 1, :v_actual_end)
+        WHERE si."TIMESTAMP" >= DATEADD(''MINUTE'', -30, :v_actual_start::TIMESTAMP_NTZ)
+          AND si."TIMESTAMP" <  DATEADD(''MINUTE'', -30, DATEADD(''DAY'', 1, :v_actual_end)::TIMESTAMP_NTZ)
         GROUP BY si."TIMESTAMP"
-        QUALIFY ROW_NUMBER() OVER (PARTITION BY DATE_TRUNC(''HOUR'', si."TIMESTAMP") ORDER BY si."TIMESTAMP" DESC) = 1
     ),
 
     ParSens AS (
@@ -158,9 +170,10 @@ BEGIN
         WHERE ps.ISOMARKETID = :p_ISO_MARKET_ID and ps.PSENSHIFTID = :v_psenshiftid
     ),
 
+    -- Hourly source: SUM here is across PAR stations at a given hour, not over time.
     ParInjectionFlow AS (
         SELECT DISTINCT
-            DATEADD(''HOUR'', pe.HE - 1, pe.DATE) AS TIMESTAMP,
+            DATEADD(''HOUR'', pe.HE - 1, pe.DATE) AS HOUR_START,
             SUM(((-30.0 + (pe.FROMTAP - 1.0) * 1.875) * prs.DIRECTION) * prs.SENSDVALUEDPHASE) AS PAR_FLOW
         FROM AW.DBO.PARERCOTVIEW pe
         INNER JOIN ParSens prs ON prs.PARSTATIONID = pe.PARSTATIONID
@@ -169,48 +182,48 @@ BEGIN
         GROUP BY pe.DATE, pe.HE
     ),
 
+    -- Hourly source: exactly one row per branch per HE in ercotDampsseLnView, no aggregate needed.
     DAMLimits AS (
-        SELECT
-            DATEADD(''HOUR'', HE - 1, DATE) AS TIMESTAMP,
-            MAX(RATEB) AS DAM_RATE_B
+        SELECT DATEADD(''HOUR'', HE - 1, DATE) AS HOUR_START, RATEB AS DAM_RATE_B
         FROM AW.DBO.ercotDampsseLnView
         WHERE DATE >= :v_actual_start AND DATE <= :v_actual_end
           AND branchname = :v_branch_name
-        GROUP BY DATE, HE
     ),
 
+    -- Nearest rating timestamp to the snapshot within +/-30 min; MIN across segments at
+    -- that timestamp (the tightest segment is the branch limit).
     RTDynamicRating AS (
-        SELECT
-            DATE_TRUNC(''HOUR'', erdrv.createTime) AS TIMESTAMP,
-            AVG(erdrv.EMERGENCYRATINGS) AS REALTIME_RATE_B
-        FROM AW.DBO.ERCOTRTDYNAMICRATINGVIEW erdrv
-        WHERE erdrv.branchname = :v_branch_name
-          AND erdrv.createTime >= :v_actual_start
-          AND erdrv.createTime < DATEADD(''DAY'', 1, :v_actual_end)
-        GROUP BY DATE_TRUNC(''HOUR'', erdrv.createTime)
+        SELECT TIMESTAMP, RT_RATING_TIME, REALTIME_RATE_B FROM (
+            SELECT f.TIMESTAMP, r.createTime AS RT_RATING_TIME, MIN(r.EMERGENCYRATINGS) AS REALTIME_RATE_B
+            FROM InjectionFlow f
+            JOIN AW.DBO.ERCOTRTDYNAMICRATINGVIEW r
+              ON r.branchname = :v_branch_name
+             AND r.createTime BETWEEN DATEADD(''MINUTE'', -30, f.TIMESTAMP) AND DATEADD(''MINUTE'', 30, f.TIMESTAMP)
+            GROUP BY f.TIMESTAMP, r.createTime
+        )
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY TIMESTAMP ORDER BY ABS(TIMESTAMPDIFF(SECOND, TIMESTAMP, RT_RATING_TIME)), RT_RATING_TIME DESC) = 1
     ),
 
     -- ERCOT reports CONSTRAINTVALUE with a sign that follows the monitored direction, so the
     -- same physical loading shows up positive in one interval and negative in the next.
     -- Headroom is limit minus |flow| regardless, hence ABS rather than a direction flip.
+    -- Only the config''s own contingency (spelling normalised); nearest SCED interval within +/-30 min.
     RTConstraint AS (
-        SELECT
-            DATE_TRUNC(''HOUR'', cfp.DATETIME) AS TIMESTAMP,
-            AVG(ABS(cfp.CONSTRAINTVALUE)) AS RT_VALUE,
-            AVG(cfp.CONSTRAINTLIMIT) AS RT_LIMIT
-        FROM AW.DBO.CONGFQPRICEVIEW cfp
-        JOIN AW.DBO.CONGDEFCONSTRAINTVIEW cdc ON cfp.CONGCONSTRAINTID = cdc.CONGCONSTRAINTID
-        WHERE cfp.ISOMARKETID = :p_ISO_MARKET_ID AND cfp.PRICETYPEID = 2
-          AND cfp.DATE >= :v_actual_start AND cfp.DATE <= :v_actual_end
-          AND cdc.BRANCHID IN (
+        SELECT f.TIMESTAMP, cfp.DATETIME AS RT_INTERVAL, cdc.CONGCONTNAME AS CONTINGENCY,
+               ABS(cfp.CONSTRAINTVALUE) AS RT_VALUE, cfp.CONSTRAINTLIMIT AS RT_LIMIT
+        FROM InjectionFlow f
+        JOIN AW.DBO.CONGFQPRICEVIEW cfp
+          ON cfp.ISOMARKETID = :P_ISO_MARKET_ID AND cfp.PRICETYPEID = 2
+         AND cfp.DATETIME BETWEEN DATEADD(''MINUTE'', -30, f.TIMESTAMP) AND DATEADD(''MINUTE'', 30, f.TIMESTAMP)
+         AND cfp."DATE" BETWEEN DATEADD(''DAY'', -1, :v_actual_start) AND DATEADD(''DAY'', 1, :v_actual_end)
+        JOIN AW.DBO.CONGDEFCONSTRAINTVIEW cdc ON cdc.CONGCONSTRAINTID = cfp.CONGCONSTRAINTID
+        WHERE cdc.BRANCHID IN (
               SELECT DISTINCT BRANCHID FROM AW.DBO.PTOBRANCH
-              WHERE ((FROMNUM = :v_from_num AND TONUM = :v_to_num
-                      AND TRIM(CAST(CKT AS VARCHAR)) = TRIM(CAST(:v_ckt AS VARCHAR)))
-                  OR (FROMNUM = :v_to_num AND TONUM = :v_from_num
-                      AND TRIM(CAST(CKT AS VARCHAR)) = TRIM(CAST(:v_ckt AS VARCHAR))))
-                AND PTOID = :v_ptoid
-          )
-        GROUP BY DATE_TRUNC(''HOUR'', cfp.DATETIME)
+              WHERE ((FROMNUM = :v_from_num AND TONUM = :v_to_num AND TRIM(CAST(CKT AS VARCHAR)) = TRIM(CAST(:v_ckt AS VARCHAR)))
+                  OR (FROMNUM = :v_to_num AND TONUM = :v_from_num AND TRIM(CAST(CKT AS VARCHAR)) = TRIM(CAST(:v_ckt AS VARCHAR))))
+                AND PTOID = :v_ptoid)
+          AND REPLACE(UPPER(cdc.CONGCONTNAME), '' '', '''') = REPLACE(UPPER(:v_ctg_label), '' '', '''')
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY f.TIMESTAMP ORDER BY ABS(TIMESTAMPDIFF(SECOND, f.TIMESTAMP, cfp.DATETIME)), cfp.DATETIME DESC) = 1
     ),
 
     -- Sensitivity factors at each cpnode for this shift (shared by wind and solar).
@@ -231,7 +244,7 @@ BEGIN
     ),
 
     -- One pass over SCED for both fuels, curtailment weighted by sensitivity,
-    -- summed per 5-minute timestamp per fuel.
+    -- summed per 5-minute timestamp per fuel. Window shifted -30 min to match InjectionFlow.
     CurtailmentPerTs AS (
         SELECT
             gr.TimeStamp,
@@ -241,33 +254,21 @@ BEGIN
         JOIN AW.DBO.ISOERCOTSCEDGENRESOURCE gr ON g.genId = gr.genID
         JOIN RenewableUnits ru ON g.ResourceName = ru.UNIT_CODE
         JOIN CurtailSens s ON g.cpnodeid = s.CPNODEID
-        WHERE gr.TimeStamp >= :v_actual_start
-          AND gr.TimeStamp < DATEADD(''DAY'', 1, :v_actual_end)
+        WHERE gr.TimeStamp >= DATEADD(''MINUTE'', -30, :v_actual_start::TIMESTAMP_NTZ)
+          AND gr.TimeStamp <  DATEADD(''MINUTE'', -30, DATEADD(''DAY'', 1, :v_actual_end)::TIMESTAMP_NTZ)
           AND :P_INCLUDE_CURTAILMENT = TRUE
         GROUP BY gr.TimeStamp, ru.FUEL_TYPE
     ),
 
-    -- Hourly rollup for both fuels at once.
-    CurtailImpactHourly AS (
-        SELECT
-            DATE_TRUNC(''HOUR'', TimeStamp) AS TIMESTAMP,
-            FUEL_TYPE,
-            AVG(Impact) AS IMPACT
-        FROM CurtailmentPerTs
-        GROUP BY 1, 2
+    -- Nearest SCED run to the snapshot within +/-30 min, per fuel.
+    CurtailAtSnapshot AS (
+        SELECT f.TIMESTAMP, c.TimeStamp AS SCED_RUN, c.FUEL_TYPE, c.Impact
+        FROM InjectionFlow f
+        JOIN CurtailmentPerTs c ON c.TimeStamp BETWEEN DATEADD(''MINUTE'', -30, f.TIMESTAMP) AND DATEADD(''MINUTE'', 30, f.TIMESTAMP)
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY f.TIMESTAMP, c.FUEL_TYPE ORDER BY ABS(TIMESTAMPDIFF(SECOND, f.TIMESTAMP, c.TimeStamp)), c.TimeStamp DESC) = 1
     ),
-
-    WindImpact AS (
-        SELECT TIMESTAMP, IMPACT AS WIND_IMPACT
-        FROM CurtailImpactHourly
-        WHERE FUEL_TYPE = ''WIND''
-    ),
-
-    SolarImpact AS (
-        SELECT TIMESTAMP, IMPACT AS SOLAR_IMPACT
-        FROM CurtailImpactHourly
-        WHERE FUEL_TYPE = ''SOLAR''
-    )
+    WindImpact  AS (SELECT TIMESTAMP, SCED_RUN, Impact AS WIND_IMPACT  FROM CurtailAtSnapshot WHERE FUEL_TYPE = ''WIND''),
+    SolarImpact AS (SELECT TIMESTAMP, SCED_RUN, Impact AS SOLAR_IMPACT FROM CurtailAtSnapshot WHERE FUEL_TYPE = ''SOLAR'')
 
     SELECT
         :P_CONFIG_ID AS CONFIG_ID,
@@ -281,6 +282,7 @@ BEGIN
         ROUND(r.RT_VALUE, 2) AS RT_CONSTRAINT_VALUE,
         ROUND(r.RT_LIMIT, 2) AS RT_CONSTRAINT_LIMIT,
         ROUND(r.RT_LIMIT - r.RT_VALUE, 2) AS RT_ACTUAL_HEADROOM,
+        r.RT_INTERVAL,
         CASE WHEN :P_INCLUDE_CURTAILMENT THEN ROUND(COALESCE(wi.WIND_IMPACT, 0), 2) ELSE NULL END AS WIND_IMPACT,
         CASE WHEN :P_INCLUDE_CURTAILMENT THEN ROUND(COALESCE(si.SOLAR_IMPACT, 0), 2) ELSE NULL END AS SOLAR_IMPACT,
         CASE WHEN :P_INCLUDE_CURTAILMENT
@@ -295,14 +297,15 @@ BEGIN
         CASE WHEN :P_INCLUDE_CURTAILMENT
              THEN ROUND((COALESCE(d.DAM_RATE_B, :v_default_rate_b) - ABS(f.FLOW + COALESCE(pf.PAR_FLOW, 0)))
                   - COALESCE(si.SOLAR_IMPACT, 0), 2)
-             ELSE NULL END AS HEADROOM_DAM_SOLAR_CURTAILMENT
+             ELSE NULL END AS HEADROOM_DAM_SOLAR_CURTAILMENT,
+        :v_psenshiftid AS PSENSHIFTID
     FROM InjectionFlow f
-    LEFT JOIN ParInjectionFlow pf ON f.TIMESTAMP = pf.TIMESTAMP
-    LEFT JOIN DAMLimits d ON f.TIMESTAMP = d.TIMESTAMP
-    LEFT JOIN RTDynamicRating rt_dr ON f.TIMESTAMP = rt_dr.TIMESTAMP
-    LEFT JOIN RTConstraint r ON f.TIMESTAMP = r.TIMESTAMP
-    LEFT JOIN WindImpact wi ON f.TIMESTAMP = wi.TIMESTAMP
-    LEFT JOIN SolarImpact si ON f.TIMESTAMP = si.TIMESTAMP
+    LEFT JOIN ParInjectionFlow pf ON pf.HOUR_START = f.HOUR_BUCKET
+    LEFT JOIN DAMLimits d ON d.HOUR_START = f.HOUR_BUCKET
+    LEFT JOIN RTDynamicRating rt_dr ON rt_dr.TIMESTAMP = f.TIMESTAMP
+    LEFT JOIN RTConstraint r ON r.TIMESTAMP = f.TIMESTAMP
+    LEFT JOIN WindImpact wi ON wi.TIMESTAMP = f.TIMESTAMP
+    LEFT JOIN SolarImpact si ON si.TIMESTAMP = f.TIMESTAMP
     WHERE NOT EXISTS (
         SELECT 1 FROM FLOW_ANALYSIS.FAST_SCAN_RESULTS existing
         WHERE existing.CONFIG_ID = :P_CONFIG_ID AND existing.TIMESTAMP = f.TIMESTAMP
