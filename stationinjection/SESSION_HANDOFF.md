@@ -379,18 +379,20 @@ had `isoErcotScedGenResourceView`, which does **not** exist in Snowflake.
 
 ### c) Transformer losses are attributed
 
-The mirror uses `TOMW` (not `-FROMMW`), and `TOMW = -FROMMW + losses`, so
-winding losses now show up as a small imbalance when summing across
-`KVLEVEL` vs. the station-level figure:
+The mirror uses `TOMW`, and `TOMW = -FROMMW + losses`, so summing across
+`KVLEVEL` gives the station figure INCLUDING transformer losses. "Lines only"
+below is the net of every line terminal at the station (what actually leaves
+on the wires); the difference is the losses inside the station's transformers:
 
-| Station | Sum over kV | Station-level | Diff |
+| Station | Sum over kV | Lines only | Diff (losses) |
 |---|---|---|---|
-| STP | 2602.60 | 2604.11 | −1.51 |
-| CPSES | 2376.28 | 2380.06 | −3.78 |
-| CBY | 1195.86 | 1198.36 | −2.50 |
+| STP | 2604.11 | 2602.60 | +1.51 |
+| CPSES | 2380.06 | 2376.28 | +3.79 |
+| CBY | 1198.43 | 1195.76 | +2.68 |
+| GUADG | 941.93 | 939.98 | +1.94 |
 
-The old `ERCOTSTATIONLOAD` attributed losses to the station (it summed
-`FROMMW + TOMW`), so expect small differences when comparing.
+This matches the convention of the old `ERCOTSTATIONLOAD`, which summed
+`FROMMW + TOMW` per transformer, so the two should agree at station level.
 
 ### d) View materialization
 

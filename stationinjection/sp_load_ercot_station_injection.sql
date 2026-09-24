@@ -51,9 +51,9 @@
 --
 -- Result at 2026-07-01 12:57:
 --     STP      345   ->    -2.00   bus balances, nothing connected at 345
---     STP       25   -> +2604.60   GENERATION, via the mirror
---     CPSES     22   -> +2405.60   generation
---     GUADG   18.1   ->  +939.98   generation
+--     STP       25   -> +2606.10   GENERATION, via the mirror
+--     CPSES     22   -> +2409.38   generation
+--     GUADG   18.1   ->  +941.93   generation
 --     LEG       25   ->  +679.22   generation
 --     CBY    20, 24  ->  +678.83, +520.26
 --     HRZN_SLR 34.5  ->  +197.21   solar generation
