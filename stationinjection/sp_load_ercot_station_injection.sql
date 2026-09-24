@@ -101,9 +101,8 @@
 --   :57 recently, :58 in 2021-2022, occasionally on the hour - so anything
 --   downstream deriving an hour bucket must not assume a fixed minute.
 -- Each chunk's DELETE+INSERT runs in one transaction; an empty source range
---   still deletes any existing target rows in that window (idempotent reload,
---   no staging/zero-row guard - see P_CHUNK_DAYS above for controlling blast
---   radius on a backfill).
+--   leaves the target untouched (per chunk) - see P_CHUNK_DAYS above for
+--   controlling blast radius on a backfill.
 -- Backfill from 2022-01-01. There is no winding data before then (earliest
 --   usable CIMDATE is 2022-01-04).
 -- A transformer whose BOTH sides are reported as devices (GARZA
@@ -132,12 +131,14 @@ EXECUTE AS CALLER
 AS
 $$
 DECLARE
-    v_out_rows INTEGER DEFAULT 0;
-    v_deleted  INTEGER DEFAULT 0;
-    v_chunks   INTEGER DEFAULT 0;
-    v_from     DATE;
-    v_to       DATE;
-    v_step     INTEGER;
+    v_out_rows     INTEGER DEFAULT 0;
+    v_deleted      INTEGER DEFAULT 0;
+    v_chunks       INTEGER DEFAULT 0;
+    v_chunk_rows   INTEGER DEFAULT 0;
+    v_empty_chunks INTEGER DEFAULT 0;
+    v_from         DATE;
+    v_to           DATE;
+    v_step         INTEGER;
 BEGIN
     IF (P_START_DATE IS NULL OR P_END_DATE IS NULL) THEN
         RETURN 'ERROR: P_START_DATE and P_END_DATE are both required.';
@@ -187,30 +188,40 @@ BEGIN
     WHILE (v_from <= P_END_DATE) DO
         v_to := LEAST(DATEADD(DAY, v_step, v_from), DATEADD(DAY, 1, P_END_DATE));
 
-        BEGIN TRANSACTION;
+        -- Stage the chunk's output first (DDL, autocommits, so it sits OUTSIDE
+        -- the transaction below) - lets us skip the DELETE+INSERT entirely
+        -- when the source range is empty, instead of blowing away good target
+        -- rows for a day whose SE data hasn't landed yet.
+        CREATE OR REPLACE TEMPORARY TABLE TMP_STATION_INJECTION AS
+        SELECT CAST(br."TIMESTAMP" AS TIMESTAMP_NTZ(0)) AS "TIMESTAMP",
+               t.STATIONNAME AS NMMSSTATIONCODE, t.KVLEVEL,
+               SUM(ZEROIFNULL(IFF(t.USE_FROMMW, br.FROMMW, br.TOMW))) AS NETINJECTIONMW
+        FROM AW.DBO.ISOERCOTSEBRANCH br
+        JOIN TMP_TERMINAL t
+          ON t.BRANCHDEVICEID = br.BRANCHDEVICEID
+         AND br."TIMESTAMP" >= t.EFFECTIVE_FROM AND br."TIMESTAMP" < t.EFFECTIVE_TO
+        WHERE br."TIMESTAMP" >= :v_from
+          AND br."TIMESTAMP" <  :v_to
+        GROUP BY 1, 2, 3;
 
-            DELETE FROM AW.DBO.ERCOTSTATIONINJECTION
-            WHERE "TIMESTAMP" >= :v_from
-              AND "TIMESTAMP" <  :v_to;
+        SELECT COUNT(*) INTO :v_chunk_rows FROM TMP_STATION_INJECTION;
 
-            v_deleted := v_deleted + SQLROWCOUNT;
+        IF (v_chunk_rows > 0) THEN
+            BEGIN TRANSACTION;
+                DELETE FROM AW.DBO.ERCOTSTATIONINJECTION
+                WHERE "TIMESTAMP" >= :v_from AND "TIMESTAMP" < :v_to;
+                v_deleted := v_deleted + SQLROWCOUNT;
 
-            INSERT INTO AW.DBO.ERCOTSTATIONINJECTION
-                ("TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, GENMW, WITHDRAWMW, NETINJECTIONMW)
-            SELECT CAST(br."TIMESTAMP" AS TIMESTAMP_NTZ(0)), t.STATIONNAME, t.KVLEVEL, NULL, NULL,
-                   SUM(ZEROIFNULL(IFF(t.USE_FROMMW, br.FROMMW, br.TOMW)))
-            FROM AW.DBO.ISOERCOTSEBRANCH br
-            JOIN TMP_TERMINAL t
-              ON t.BRANCHDEVICEID = br.BRANCHDEVICEID
-             AND br."TIMESTAMP" >= t.EFFECTIVE_FROM AND br."TIMESTAMP" < t.EFFECTIVE_TO
-            WHERE br."TIMESTAMP" >= :v_from
-              AND br."TIMESTAMP" <  :v_to
-            GROUP BY 1, 2, 3
-            ORDER BY 1, 2, 3;   -- target is clustered by (date, station); ordered insert keeps auto-clustering cheap
-
-            v_out_rows := v_out_rows + SQLROWCOUNT;
-
-        COMMIT;
+                INSERT INTO AW.DBO.ERCOTSTATIONINJECTION
+                    ("TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, GENMW, WITHDRAWMW, NETINJECTIONMW)
+                SELECT "TIMESTAMP", NMMSSTATIONCODE, KVLEVEL, NULL, NULL, NETINJECTIONMW
+                FROM TMP_STATION_INJECTION
+                ORDER BY 1, 2, 3;   -- target is clustered by (date, station); ordered insert keeps auto-clustering cheap
+                v_out_rows := v_out_rows + SQLROWCOUNT;
+            COMMIT;
+        ELSE
+            v_empty_chunks := v_empty_chunks + 1;
+        END IF;
 
         v_chunks := v_chunks + 1;
         v_from := v_to;
@@ -218,7 +229,8 @@ BEGIN
 
     RETURN 'OK: ' || v_chunks::VARCHAR || ' chunk(s), ' || v_deleted::VARCHAR ||
            ' rows deleted, ' || v_out_rows::VARCHAR || ' rows inserted for ' ||
-           :P_START_DATE::VARCHAR || '..' || :P_END_DATE::VARCHAR;
+           :P_START_DATE::VARCHAR || '..' || :P_END_DATE::VARCHAR ||
+           ', ' || v_empty_chunks::VARCHAR || ' empty chunk(s) skipped';
 
 EXCEPTION
     WHEN OTHER THEN
@@ -238,7 +250,7 @@ $$;
 
 -- ===========================================================================
 -- Verification: generation must be visible at generator voltages.
--- STP ~ +2604 at 25 kV, CPSES ~ +2405 at 22 kV, solar farms positive at 34.5 kV.
+-- STP ~ +2606 at 25 kV, CPSES ~ +2409 at 22 kV, solar farms positive at 34.5 kV.
 -- If these read ~0, the transformer mirror did not fire - check that
 -- ERCOTSETRANSFORMERWINDINGMAP and ERCOTCIMEFFECTIVEDATE cover the dates loaded.
 -- Note 2022-era timestamps are stamped :58, recent ones :57.
