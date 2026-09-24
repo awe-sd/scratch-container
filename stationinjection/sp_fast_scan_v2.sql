@@ -1,12 +1,13 @@
 -- SP_RUN_FAST_SCAN_TEST_V2 vs SP_RUN_FAST_SCAN:
 -- - Source: AW.DBO.ERCOTSTATIONINJECTION (per-kV net injection) instead of
 --   AW.DBO.ERCOTSTATIONLOAD (station-grain withdrawal).
--- - StationBusMapping is CIM-only (v_cim_file_id 205) and carries KV.
+-- - StationBusMapping is CIM 205 unioned with every monthly ERCOTDATADICTIONARY
+--   (NMMSBASEKV), so retired stations still map.
 -- - Shift factors computed per (StationCode, KV) in StationShifts.
 -- - Sign: AVG(PSENS) directly (table is net injection, not withdrawal;
 --   no leading minus).
--- - StationKvShifts snaps each SE (station, kV) to the nearest CIM kV
---   within 0.5 (SE/CIM kV rounding mismatch, e.g. 12.5 vs 12.4).
+-- - StationKvShifts snaps each SE (station, kV) to the nearest CIM/dictionary
+--   kV within 1.0 (generator-terminal rounding, e.g. 12.5 vs 12.4, 13.8 vs 13.2).
 -- - InjectionFlow computes flow per SE snapshot, keeps the latest snapshot per hour.
 CREATE OR REPLACE PROCEDURE AW.FLOW_ANALYSIS.SP_RUN_FAST_SCAN_TEST_V2("P_CONFIG_ID" NUMBER(38,0), "P_START_DATE" DATE DEFAULT null, "P_END_DATE" DATE DEFAULT null, "P_INCLUDE_CURTAILMENT" BOOLEAN DEFAULT TRUE, "P_ISO_MARKET_ID" NUMBER(38,0) DEFAULT 6)
 RETURNS VARIANT
@@ -83,6 +84,8 @@ BEGIN
         HEADROOM_DAM_WIND_CURTAILMENT, HEADROOM_DAM_SOLAR_CURTAILMENT
     )
     WITH
+    -- Bus -> (station, kV). CIM 205 for the current model, plus every monthly ERCOT data
+    -- dictionary so stations/levels retired before model 205 still map (SE history goes back to 2022).
     StationBusMapping AS (
         SELECT sv.NAME_SUBSTATION AS StationCode, cn.PSSEBUSNUMBER AS BusNum, TRY_TO_DOUBLE(sv.NAME) AS KV
         FROM (
@@ -94,6 +97,11 @@ BEGIN
         JOIN AW.DBO.CIMSTATIONVOLTAGELEVEL sv
           ON sv.CIMFILEID = cn.CIMFILEID AND sv.CIMSTATIONVOLTAGELEVELID = cn.CIMSTATIONVOLTAGELEVELID
         WHERE sv.NAME_SUBSTATION IS NOT NULL AND TRY_TO_DOUBLE(sv.NAME) IS NOT NULL
+        UNION
+        SELECT NMMSSTATIONCODE, SSWGBUSNUMBER, COALESCE(NMMSBASEKV, TRY_TO_DOUBLE(SSWGBASEKV))
+        FROM AW.DBO.ERCOTDATADICTIONARY
+        WHERE NMMSSTATIONCODE IS NOT NULL AND SSWGBUSNUMBER IS NOT NULL
+          AND COALESCE(NMMSBASEKV, TRY_TO_DOUBLE(SSWGBASEKV)) IS NOT NULL
     ),
 
     -- Shift factor per (station, kV): buses at the same voltage level of a station are averaged.
@@ -107,7 +115,7 @@ BEGIN
         HAVING ABS(AVG(bs.PSENS)) > 0.00001
     ),
 
-    -- SE (station, kV) pairs in range, snapped to the nearest CIM kV of that station (within 0.5 kV)
+    -- SE (station, kV) pairs in range, snapped to the nearest CIM kV of that station (within 1.0 kV)
     StationKvShifts AS (
         SELECT si.NMMSSTATIONCODE AS StationCode, si.KVLEVEL, ss.StationPSENS
         FROM (
@@ -116,7 +124,7 @@ BEGIN
             WHERE "TIMESTAMP" >= :v_actual_start AND "TIMESTAMP" < DATEADD(''DAY'', 1, :v_actual_end)
         ) si
         JOIN StationShifts ss
-          ON ss.StationCode = si.NMMSSTATIONCODE AND ABS(ss.KV - si.KVLEVEL) <= 0.5
+          ON ss.StationCode = si.NMMSSTATIONCODE AND ABS(ss.KV - si.KVLEVEL) <= 1.0
         QUALIFY ROW_NUMBER() OVER (PARTITION BY si.NMMSSTATIONCODE, si.KVLEVEL ORDER BY ABS(ss.KV - si.KVLEVEL)) = 1
     ),
 
