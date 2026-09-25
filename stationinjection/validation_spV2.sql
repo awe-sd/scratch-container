@@ -174,6 +174,19 @@ BEGIN
         QUALIFY ROW_NUMBER() OVER (PARTITION BY ss.PSENSHIFTID, si.NMMSSTATIONCODE, si.KVLEVEL ORDER BY ABS(ss.KV - si.KVLEVEL)) = 1
     ),
 
+    -- One SE TIMESTAMP per nearest-hour bucket: most station rows in the bucket wins, latest on ties
+    -- (drops the model-rollout-night stub snapshots) -- same rule as SP_LOAD_ERCOT_STATION_INJECTION''s TMP_SNAPSHOT.
+    Snapshots AS (
+        SELECT "TIMESTAMP", BUCKET FROM (
+            SELECT "TIMESTAMP", DATE_TRUNC(''HOUR'', DATEADD(''MINUTE'', 30, "TIMESTAMP")) AS BUCKET, COUNT(*) AS N
+            FROM AW.DBO.ERCOTSTATIONINJECTION
+            WHERE "TIMESTAMP" >= DATEADD(''MINUTE'', -30, :v_actual_start::TIMESTAMP_NTZ)
+              AND "TIMESTAMP" <  DATEADD(''MINUTE'', -30, DATEADD(''DAY'', 1, :v_actual_end)::TIMESTAMP_NTZ)
+            GROUP BY 1, 2
+        )
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY BUCKET ORDER BY N DESC, "TIMESTAMP" DESC) = 1
+    ),
+
     -- Flow per SE snapshot per member shift. HOUR_BUCKET = the hour the snapshot describes
     -- (a :57 snapshot describes the top of the next hour), used to join hourly sources (DAM, PAR).
     InjectionFlow AS (
@@ -183,8 +196,9 @@ BEGIN
             mb.PSENSHIFTID,
             SUM(ks.StationPSENS * si.NETINJECTIONMW) AS FLOW
         FROM Members mb
+        JOIN Snapshots sn ON sn.BUCKET = mb.TS
         JOIN AW.DBO.ERCOTSTATIONINJECTION si
-          ON DATE_TRUNC(''HOUR'', DATEADD(''MINUTE'', 30, si."TIMESTAMP")) = mb.TS
+          ON si."TIMESTAMP" = sn."TIMESTAMP"
          AND si."TIMESTAMP" >= DATEADD(''MINUTE'', -30, :v_actual_start::TIMESTAMP_NTZ)
          AND si."TIMESTAMP" <  DATEADD(''MINUTE'', -30, DATEADD(''DAY'', 1, :v_actual_end)::TIMESTAMP_NTZ)
         JOIN StationKvShifts ks
@@ -265,7 +279,8 @@ BEGIN
                   OR (FROMNUM = :v_to_num AND TONUM = :v_from_num AND TRIM(CAST(CKT AS VARCHAR)) = TRIM(CAST(:v_ckt AS VARCHAR))))
                 AND PTOID = :v_ptoid)
           AND REPLACE(UPPER(cdc.CONGCONTNAME), '' '', '''') = REPLACE(UPPER(:v_ctg_label), '' '', '''')
-        QUALIFY ROW_NUMBER() OVER (PARTITION BY f.TIMESTAMP ORDER BY ABS(TIMESTAMPDIFF(SECOND, f.TIMESTAMP, cfp.DATETIME)), cfp.DATETIME DESC) = 1
+        -- same tie-break as SP_LOAD_FAST_SCAN_RT_CONSTRAINTS''s Binding QUALIFY, so a duplicate CONGCONSTRAINTID for the same branch/contingency/interval resolves the same way in both places
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY f.TIMESTAMP ORDER BY ABS(TIMESTAMPDIFF(SECOND, f.TIMESTAMP, cfp.DATETIME)), cfp.DATETIME DESC, ABS(cfp.CONSTRAINTVALUE) DESC) = 1
     ),
 
     -- Sensitivity factors at each cpnode per member shift (shared by wind and solar).
