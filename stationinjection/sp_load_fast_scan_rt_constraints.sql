@@ -1,7 +1,8 @@
--- FAST_SCAN_RT_CONSTRAINTS: every constraint binding on a fast-scan config's branch at the
--- SCED interval nearest each SE snapshot, one row per contingency (grain: CONFIG_ID, TIMESTAMP,
--- CONTINGENCY). FAST_SCAN_RESULTS keeps only the config's own contingency; this table lets the
--- other contingencies binding at the same time be pulled in by join.
+-- FAST_SCAN_RT_CONSTRAINTS: every constraint binding on a fast-scan config's branch, one row
+-- per contingency, each at its own nearest binding interval within ±30 min of the snapshot;
+-- RT_INTERVAL says which (grain: CONFIG_ID, TIMESTAMP, CONTINGENCY). FAST_SCAN_RESULTS keeps
+-- only the config's own contingency; this table lets the other contingencies binding at the
+-- same time be pulled in by join.
 -- Only binding intervals exist in CONGFQPRICEVIEW, so absence of a (snapshot, contingency) row
 -- means that contingency was not binding near that snapshot -- not that data is missing.
 -- Snapshots = the config's own FAST_SCAN_RESULTS rows in range, so the detail table aligns 1:1 with results (validation configs only have result rows for member hours).
@@ -10,7 +11,7 @@
 CREATE TABLE IF NOT EXISTS AW.FLOW_ANALYSIS.FAST_SCAN_RT_CONSTRAINTS (
     CONFIG_ID           NUMBER        NOT NULL,
     TIMESTAMP           TIMESTAMP_NTZ NOT NULL,   -- SE snapshot stamp, same as FAST_SCAN_RESULTS.TIMESTAMP
-    RT_INTERVAL         TIMESTAMP_NTZ NOT NULL,   -- SCED interval nearest the snapshot with any binding row for the branch
+    RT_INTERVAL         TIMESTAMP_NTZ NOT NULL,   -- SCED interval nearest the snapshot at which this contingency was binding
     CONTINGENCY         VARCHAR       NOT NULL,   -- CONGDEFCONSTRAINTVIEW.CONGCONTNAME
     IS_CONFIG_CTG       BOOLEAN       NOT NULL,   -- TRUE for the contingency the fast scan is for
     CONSTRAINT_NAME     VARCHAR,                  -- CONGDEFCONSTRAINTVIEW.ISOCONSTRAINTNAME
@@ -83,18 +84,12 @@ BEGIN
          AND cfp.DATETIME BETWEEN DATEADD(''MINUTE'', -30, s.TIMESTAMP) AND DATEADD(''MINUTE'', 30, s.TIMESTAMP)
         JOIN AW.DBO.CONGDEFCONSTRAINTVIEW cdc ON cdc.CONGCONSTRAINTID = cfp.CONGCONSTRAINTID
         JOIN BranchIds b ON b.BRANCHID = cdc.BRANCHID
-    ),
-    NearestInterval AS (   -- one interval per snapshot: nearest to the snapshot, latest on ties
-        SELECT TIMESTAMP, RT_INTERVAL
-        FROM (SELECT DISTINCT TIMESTAMP, RT_INTERVAL FROM Binding)
-        QUALIFY ROW_NUMBER() OVER (PARTITION BY TIMESTAMP ORDER BY ABS(TIMESTAMPDIFF(SECOND, TIMESTAMP, RT_INTERVAL)), RT_INTERVAL DESC) = 1
     )
     SELECT :P_CONFIG_ID, b.TIMESTAMP, b.RT_INTERVAL, b.CONTINGENCY,
            REPLACE(UPPER(b.CONTINGENCY), '' '', '''') = REPLACE(UPPER(:v_ctg_label), '' '', '''') AS IS_CONFIG_CTG,
            b.CONSTRAINT_NAME, ROUND(b.RT_VALUE, 2), ROUND(b.RT_LIMIT, 2), ROUND(b.RT_LIMIT - b.RT_VALUE, 2)
     FROM Binding b
-    JOIN NearestInterval n ON n.TIMESTAMP = b.TIMESTAMP AND n.RT_INTERVAL = b.RT_INTERVAL
-    QUALIFY ROW_NUMBER() OVER (PARTITION BY b.TIMESTAMP, b.CONTINGENCY ORDER BY b.RT_VALUE DESC) = 1;   -- one row per contingency
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY b.TIMESTAMP, b.CONTINGENCY ORDER BY ABS(TIMESTAMPDIFF(SECOND, b.TIMESTAMP, b.RT_INTERVAL)), b.RT_INTERVAL DESC, b.RT_VALUE DESC) = 1;   -- one row per contingency, nearest interval for that contingency
 
     v_rows_inserted := SQLROWCOUNT;
 
