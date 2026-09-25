@@ -46,6 +46,11 @@
 -- Star-equivalent legs (one real winding, equal to the device's own kV)
 -- naturally produce no mirror row.
 --
+-- A phase-angle regulator has both windings at the same kV, so no mirror ever
+-- fires for it; PARs are excluded from the FROMMW leg entirely (matched against
+-- AW.DBO.PARERCOTSTATION by station + transformer end name), since a PAR's
+-- through-flow is internal to one station, not an injection.
+--
 -- The mirror leg needs no uniqueness guard here: ERCOTSETRANSFORMERWINDINGMAP is a
 -- strict name+kV join, so it is verified (build script, verification D) that
 -- no (model, device) pair ever has more than one distinct NOMINALKV differing
@@ -73,6 +78,8 @@
 -- TRANSFORMER LOSSES ARE ATTRIBUTED. The mirror uses TOMW (not -FROMMW), and
 -- TOMW = -FROMMW + losses, so FROMMW + TOMW = losses shows up as a small
 -- station-level imbalance across kV levels, the same as it does for lines.
+-- PAR losses (under 0.25 MW) are dropped instead, since the PAR is excluded
+-- rather than mirrored.
 --
 -- NOTE ON THE LINE COLUMN CHOICE - this differs from the original spec, which
 --   asked for the FAR-end terminal ("injection at B = A-B FROMMW + B-C TOMW"),
@@ -151,9 +158,14 @@ BEGIN
     -- One row per (device, terminal): where the flow is booked, which MW column, and when the row applies.
     CREATE OR REPLACE TEMPORARY TABLE TMP_TERMINAL AS
     -- FROMMW at the from-station: a line's from end, or the winding ERCOT reports on a transformer
-    SELECT BRANCHDEVICEID, FROMSTATIONNAME AS STATIONNAME, CAST(KVLEVEL AS NUMBER(6,2)) AS KVLEVEL,
+    SELECT d.BRANCHDEVICEID, d.FROMSTATIONNAME AS STATIONNAME, CAST(d.KVLEVEL AS NUMBER(6,2)) AS KVLEVEL,
            TRUE AS USE_FROMMW, '1900-01-01'::TIMESTAMP_NTZ AS EFFECTIVE_FROM, '9999-12-31'::TIMESTAMP_NTZ AS EFFECTIVE_TO
-    FROM AW.DBO.ISOERCOTSEBRANCHDEVICE WHERE BRANCHDEVICETYPE IN ('Line', 'Transformer')
+    FROM AW.DBO.ISOERCOTSEBRANCHDEVICE d
+    WHERE d.BRANCHDEVICETYPE IN ('Line', 'Transformer')
+      AND NOT EXISTS (
+          SELECT 1 FROM AW.DBO.PARERCOTSTATION p
+          WHERE p.STATION = d.FROMSTATIONNAME AND p.TRANSFORMERENDNAME = d.TRANSFORMERENDNAME
+      )
     UNION ALL
     -- TOMW at the to-station: a line's to end
     SELECT BRANCHDEVICEID, TOSTATIONNAME, CAST(KVLEVEL AS NUMBER(6,2)), FALSE, '1900-01-01', '9999-12-31'

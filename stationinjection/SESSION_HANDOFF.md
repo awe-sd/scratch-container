@@ -625,3 +625,30 @@ Dry-run PASS/FAIL (`validate_pun_injection.py`, defaults, run 2026-09-25, post g
 - **DOWGEN** (D_MEAN -0.232, D_P90 -1.462) and **LY group** (D_MEAN +0.146, D_P90 +1.494): unchanged from the first dry run, both fully reproduced by a controlled recompute isolating one cause — `backout_master.sql`'s own `se_base` filter (unpadded `TIMESTAMP >= start AND < end`) samples a set of hour-buckets shifted one hour later than true calendar June (drops HE1 of June 1, includes HE1 of July 1), because a `:57` snapshot's raw `TIMESTAMP` falls inside that unpadded window while its `HOUR_BUCKET` describes the *next* hour. This proc's `-30min`-padded range (matching `sp_load_ercot_station_injection.sql`, the deliberately calendar-correct convention) samples the true calendar month instead; recomputing DOWGEN/LY with the padded convention reproduces this proc's actual output to 6 decimals. Confirmed by the grader as an accepted residual of the reference artifact's boundary handling, not a defect here.
 
 Output sample: `output/pun_injection_sample_2026-06.csv` (31,680 rows, all 44 estimable PUNs x up to 720 hours).
+
+## Station injection loader: PAR through-flow fix (2026-09-25)
+
+Defect: a phase-angle regulator (PAR) has both windings at the same kV, so `TMP_TERMINAL`'s mirror leg never fires for it (the `ABS(NOMINALKV - DEVICEKV) > 0.05` filter excludes same-kV windings) and its entire through-flow landed on the station as a fake net injection — e.g. device 7615 `YELWJCKT_PS_1_H` on 2026-06-02 14:57 showed `ERCOTSTATIONINJECTION` YELWJCKT 138 kV at −121.30 MW, when corrected it is −0.17 MW (real load, ~2-4 MW, sits at YELWJCKT's 69 kV bus via its two real 138/69 transformers, not on the 138 kV switching bus the PAR sits on).
+
+Fix: `TMP_TERMINAL`'s FROMMW leg now excludes any Transformer device matching `AW.DBO.PARERCOTSTATION` directly on `(STATION, TRANSFORMERENDNAME)` against `ISOERCOTSEBRANCHDEVICE`'s own columns — no winding-map join, so it doesn't scan the 1M-row winding view and still works for a PAR not yet present in the winding map. Verified read-only: this predicate returns the identical 9 devices as the winding-map-keyed version it replaced, all `BRANCHDEVICETYPE = 'Transformer'`; removed-row count from `TMP_TERMINAL`'s FROMMW leg is exactly 9, matching `PARERCOTSTATION`'s row count (no non-PAR device affected).
+
+For YELWJCKT/NLARSW the fix mostly removes noise (fake PAR flow on top of a small real number). For **N_SHARPE** and **HAMILTON** it changes the answer: the PAR's fake FROMMW was masking real load, not just adding to a near-zero number — N_SHARPE 138 kV goes from -0.01 MW to -61.8 MW (matching `ERCOTSTATIONLOAD` 61.78), HAMILTON 138 kV from a -80..+26 MW swing to a steady -16.6..-10.1 MW.
+
+Grader's per-station mean absolute error vs `ERCOTSTATIONLOAD`, 2026-06-02, fixed vs current:
+
+| Station | Fixed | Current |
+|---|---|---|
+| YELWJCKT | 0.084 | 84.07 |
+| N_SHARPE | 0.028 | 54.01 |
+| SOLSTICE | 0.034 | 47.47 |
+| NLARSW | 0.025 | 33.69 |
+| HAMILTON | 0.015 | 31.64 |
+| FIREROCK/BIGLAKE/THOMASTN/PUTN | 0.004-0.015 | 15-28.5 |
+
+A full rebuild of `AW.DBO.ERCOTSTATIONINJECTION` over its whole range is required after redeploying the proc (every station with a PAR was wrong for its whole history, not just the ones above):
+
+```sql
+CALL AWDEV.ERCOTRT.SP_LOAD_ERCOT_STATION_INJECTION('2022-01-01', '2026-07-25');
+```
+
+This full-range rebuild subsumes the still-pending `2023-03-28..2023-04-04` re-run noted at the bottom of the loader file (§10/usage comments) — don't run that one separately, it's already covered.
