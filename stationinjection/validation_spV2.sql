@@ -257,6 +257,7 @@ BEGIN
             FROM InjectionTimestamps f
             JOIN AW.DBO.ERCOTRTDYNAMICRATINGVIEW r
               ON r.branchname = :v_branch_name
+             AND r.createTime BETWEEN DATEADD(''DAY'', -1, :v_actual_start::TIMESTAMP_NTZ) AND DATEADD(''DAY'', 1, :v_actual_end::TIMESTAMP_NTZ)
              AND r.createTime BETWEEN DATEADD(''MINUTE'', -30, f.TIMESTAMP) AND DATEADD(''MINUTE'', 30, f.TIMESTAMP)
             GROUP BY f.TIMESTAMP, r.createTime
         )
@@ -301,22 +302,47 @@ BEGIN
         QUALIFY ROW_NUMBER() OVER (PARTITION BY UNIT_CODE ORDER BY report_date DESC) = 1
     ),
 
-    -- Per member hour: own shift only, SCED runs within +/-60 min of the hour bucket.
+    -- Distinct SCED intervals in a static, prunable range around the whole date window --
+    -- lets SnapshotTick match snapshot->tick by a band against this small relation instead
+    -- of against the full resource table (see CurtailmentPerTs below).
+    SCEDTicks AS (
+        SELECT DISTINCT TimeStamp AS TICK
+        FROM AW.DBO.ISOERCOTSCEDGENRESOURCE
+        WHERE TimeStamp >= DATEADD(''MINUTE'', -60, :v_actual_start::TIMESTAMP_NTZ)
+          AND TimeStamp <  DATEADD(''MINUTE'', 60, DATEADD(''DAY'', 1, :v_actual_end)::TIMESTAMP_NTZ)
+    ),
+
+    -- One SCED tick per snapshot: nearest by time, latest on ties, within +/-60 min else none.
+    -- CurtailAtSnapshot''s own +/-30 min QUALIFY below still gates the final cutoff, so this
+    -- wider window can only add candidates it would filter out anyway, never drop one it needs.
+    SnapshotTick AS (
+        SELECT f.TIMESTAMP, t.TICK
+        FROM InjectionTimestamps f
+        JOIN SCEDTicks t
+          ON t.TICK >= DATEADD(''MINUTE'', -60, f.TIMESTAMP) AND t.TICK < DATEADD(''MINUTE'', 60, f.TIMESTAMP)
+        QUALIFY ROW_NUMBER() OVER (PARTITION BY f.TIMESTAMP ORDER BY ABS(TIMESTAMPDIFF(SECOND, f.TIMESTAMP, t.TICK)), t.TICK DESC) = 1
+    ),
+
+    -- Per member hour: own shift only. Resource rows are pulled by EQUALITY on the snapshot''s
+    -- one chosen tick (SnapshotTick), not a per-member-hour +/-60 min band against
+    -- ISOERCOTSCEDGENRESOURCE/CPNODE_SHIFTS -- that band, repeated per PSENSHIFTID (156 of them
+    -- for a validation config), was the dominant cost (bug-regression-index.md: validation V2
+    -- fast-scan timeout, 2026-09-25).
     CurtailmentPerTs AS (
         SELECT
-            mb.TS AS HOUR_BUCKET,
-            mb.PSENSHIFTID,
-            gr.TimeStamp,
+            f.HOUR_BUCKET,
+            f.PSENSHIFTID,
+            st.TICK AS TimeStamp,
             ru.FUEL_TYPE,
             SUM(GREATEST(gr.HSL - gr.BasePoint, 0) * s.PSENS) AS Impact
-        FROM Members mb
-        JOIN AW.DBO.ISOERCOTSCEDGENRESOURCE gr
-          ON gr.TimeStamp >= DATEADD(''MINUTE'', -60, mb.TS) AND gr.TimeStamp < DATEADD(''MINUTE'', 60, mb.TS)
+        FROM InjectionFlow f
+        JOIN SnapshotTick st ON st.TIMESTAMP = f.TIMESTAMP
+        JOIN AW.DBO.ISOERCOTSCEDGENRESOURCE gr ON gr.TimeStamp = st.TICK
         JOIN AW.DBO.ISOERCOTSCEDGEN g ON g.genId = gr.genID
         JOIN RenewableUnits ru ON g.ResourceName = ru.UNIT_CODE
-        JOIN CurtailSens s ON s.PSENSHIFTID = mb.PSENSHIFTID AND g.cpnodeid = s.CPNODEID
+        JOIN CurtailSens s ON s.PSENSHIFTID = f.PSENSHIFTID AND g.cpnodeid = s.CPNODEID
         WHERE :P_INCLUDE_CURTAILMENT = TRUE
-        GROUP BY mb.TS, mb.PSENSHIFTID, gr.TimeStamp, ru.FUEL_TYPE
+        GROUP BY f.HOUR_BUCKET, f.PSENSHIFTID, st.TICK, ru.FUEL_TYPE
     ),
 
     -- Nearest SCED run to the snapshot within +/-30 min, per fuel, matched to the same

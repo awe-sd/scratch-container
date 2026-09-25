@@ -571,6 +571,26 @@ Dry run, config 256315 (branch 651_B, CTG DBUCRGP5), 2026-06-02..2026-06-08:
 
 Output sample: `output/validation_fast_scan_v2_sample_256315.csv` (157 rows).
 
+### Validation fast-scan V2 timeout fix (2026-09-25)
+
+sdalvi's `CALL SP_RUN_VALIDATION_FAST_SCAN_TEST_V2(256601, '2026-06-02', '2026-06-08', TRUE, 6)` ran 800+s without finishing (0 rows in `FAST_SCAN_RUN_LOG`/`FAST_SCAN_RESULTS`/`FAST_SCAN_RT_CONSTRAINTS` for 256601 afterward). Investigated read-only (`AI_READ_ONLY`, X-Small, `validation_spV2.sql` inlined with literal binds for config 256601's 156 member hours / 156 distinct `PSENSHIFTID`s, 2026-06-02..06-08).
+
+Stage timings (seconds, X-Small): Members 0.7, StationShifts 2.3, StationKvShifts 2.6, InjectionFlow 4.2, RTConstraint 10.9, CurtailSens 1.3, CurtailmentPerTs standalone 27.4, already_present/hours_missing joins ~0.9 each (`FAST_SCAN_RESULTS` is clustered on `CONFIG_ID`, so the `DATE_TRUNC`-wrapped join predicate wasn't the driver — ruled out). Full query with the curtailment leg genuinely populated (not the dry-run's `WHERE FALSE` stub, which silently compiles the whole leg away): **142.2s**, 9.4GB scanned. `EXPLAIN` showed the cause: `CurtailmentPerTs` band-joined each of the 156 member hours (`gr.TimeStamp BETWEEN mb.TS -60min AND +60min`) straight against `ISOERCOTSCEDGENRESOURCE` (full 1258/1258-partition scan, no static pruning possible on a per-row band) and `CPNODE_SHIFTS` (16,320/214,067 partitions) — 156 independent range windows against the full tables, not one restrictive filter.
+
+Fix (`validation_spV2.sql`): added `SCEDTicks` (`SELECT DISTINCT TimeStamp` from the resource table, static `v_actual_start -60min .. v_actual_end +1day +60min` range — prunable) and `SnapshotTick` (nearest tick per snapshot within +/-60min, latest on ties — the band join now runs against the small deduped-tick relation, not the full table). `CurtailmentPerTs` then joins `ISOERCOTSCEDGENRESOURCE`/`CPNODE_SHIFTS` by EQUALITY on that one chosen tick per snapshot; `CurtailAtSnapshot` downstream is untouched (its own +/-30min QUALIFY still gates the final cutoff, so the wider +/-60min `SnapshotTick` window can only add candidates it would already filter out, never drop one). Also added the same static day-range predicate to `RTDynamicRating`'s `ERCOTRTDYNAMICRATINGVIEW` band join (it had none; `RTConstraint`'s `CONGFQPRICEVIEW` band already had one, unchanged).
+
+Before/after (same literal-bind harness, config 256601, 2026-06-02..06-08, real curtailment leg):
+| | seconds | GB scanned |
+|---|---|---|
+| Before | 142.2 | 9.4 |
+| After | **16.8** | 13.8 (more bytes, but hash/equality joins instead of 156 range-join fanouts — compile 12.6s + execute 4.2s) |
+
+Equivalence: re-ran both the frozen pre-change query and the rewritten query end-to-end (not just row counts) and merged all 156 rows by `TIMESTAMP`. Max abs diff = 0.0 (exact) for `INJECTION_FLOW`, `DAM_RATE_B`, `REALTIME_RATE_B`, `WIND_IMPACT`, `SOLAR_IMPACT`, `HEADROOM_AFTER_CURTAILMENT`; `RT_CONSTRAINT_VALUE` matches on all 37/37 non-null rows, same 119/156 null pattern both sides.
+
+`validate_validation_fast_scan_v2.py` needed no changes — it extracts the `WITH` block by CTE name/position, and the two new CTEs (`SCEDTicks`, `SnapshotTick`) were inserted without renaming anything it stubs (`ParInjectionFlow`, `RenewableUnits`). Re-ran for config 256315 (2026-06-02..06-08, its usual reference config): 156 rows, `DAM_RATE_B` vs V1 still 0.0000 diff, `PSENSHIFTID` match 100%, RT-constraints sub-proc cross-check 37/37.
+
+**Still open:** the reproduced worst case (142.2s before / 16.8s after) is well under the observed 800s+ stall — even the *unfixed* query is only ~5.6x faster than what would be needed to explain the timeout. `SHOW LOCKS`/`SHOW TRANSACTIONS` are empty right now (no live contention visible, but that doesn't rule out a resolved-since lock wait at call time), and `AI_READ_ONLY` can't see sdalvi's own `QUERY_HISTORY`/warehouse/queue state (`SNOWFLAKE.ACCOUNT_USAGE` unauthorized). **Before assuming the rewrite alone fixes production, check the warehouse size/concurrency sdalvi's session was actually using at CALL time** — that gap is unexplained by the query plan itself.
+
 ## PUN injection loader (2026-09-25)
 
 Files: `ercot_pun_tie_map.sql` (`AWDEV.ERCOTRT.ERCOTPUNTIEMAP` DDL + 90 INSERT rows), `sp_load_ercot_pun_injection.sql` (`AWDEV.ERCOTRT.ERCOTPUNINJECTION` DDL + `SP_LOAD_ERCOT_PUN_INJECTION`), `validate_pun_injection.py`. Implements the Section 7 design in `pun_analysis/PUN_BACKOUT_FINDINGS.md` (56-PUN back-out, June 2026 spike).
