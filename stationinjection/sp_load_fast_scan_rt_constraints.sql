@@ -4,7 +4,8 @@
 -- other contingencies binding at the same time be pulled in by join.
 -- Only binding intervals exist in CONGFQPRICEVIEW, so absence of a (snapshot, contingency) row
 -- means that contingency was not binding near that snapshot -- not that data is missing.
--- Called by SP_RUN_FAST_SCAN_TEST_V2 after its main insert, but runs standalone too.
+-- Snapshots = the config's own FAST_SCAN_RESULTS rows in range, so the detail table aligns 1:1 with results (validation configs only have result rows for member hours).
+-- Called by SP_RUN_FAST_SCAN_TEST_V2 and SP_RUN_VALIDATION_FAST_SCAN_TEST_V2 after their main insert; standalone runs fill whatever results already exist.
 
 CREATE TABLE IF NOT EXISTS AW.FLOW_ANALYSIS.FAST_SCAN_RT_CONSTRAINTS (
     CONFIG_ID           NUMBER        NOT NULL,
@@ -62,9 +63,9 @@ BEGIN
         CONSTRAINT_NAME, RT_CONSTRAINT_VALUE, RT_CONSTRAINT_LIMIT, RT_ACTUAL_HEADROOM
     )
     WITH Snapshots AS (
-        SELECT DISTINCT "TIMESTAMP" AS TIMESTAMP
-        FROM AW.DBO.ERCOTSTATIONINJECTION
-        WHERE "TIMESTAMP" >= :v_start AND "TIMESTAMP" < :v_end
+        SELECT DISTINCT TIMESTAMP
+        FROM FLOW_ANALYSIS.FAST_SCAN_RESULTS
+        WHERE CONFIG_ID = :P_CONFIG_ID AND TIMESTAMP >= :v_start AND TIMESTAMP < :v_end
     ),
     BranchIds AS (
         SELECT DISTINCT BRANCHID FROM AW.DBO.PTOBRANCH
