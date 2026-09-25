@@ -469,6 +469,9 @@ rating).
 
 ## 7. Proposed method (design only, not deployed)
 
+**Implemented 2026-09-25**: built as `ercot_pun_tie_map.sql` and `sp_load_ercot_pun_injection.sql`.
+See `SESSION_HANDOFF.md`, "PUN injection loader", for the design fixes and dry-run results.
+
 This is pseudocode for a design, not tested or executable SQL as written. A derived view,
 `ERCOTPUNINJECTION`, at grain (TIMESTAMP, PUN station, tie kV), computed from
 `ERCOTSTATIONINJECTION` plus the neighbour's DAM load and nearest-tick SCED gen (via the DAM gen
