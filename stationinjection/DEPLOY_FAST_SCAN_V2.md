@@ -359,3 +359,76 @@ statements are blocked by privilege errors rather than reaching column resolutio
 - **`CREATE TABLE FAST_SCAN_RT_CONSTRAINTS`, the `ALTER TABLE ... ADD COLUMN`, and the
   three `CREATE OR REPLACE PROCEDURE` statements**: all DDL, not executable or
   `EXPLAIN`able under `AI_READ_ONLY`. Reviewed by eye only (Task 2).
+
+## Appendix C: staged rewrite (2026-09-25, `SP_RUN_VALIDATION_FAST_SCAN_TEST_V2` and
+`SP_RUN_FAST_SCAN_TEST_V2`)
+
+Both procs' per-config statement is now staged across three session temp tables instead of
+one ~20-CTE chain: `TMP_STATION_KV_SHIFTS` (bus->station/kV shift factors), `TMP_INJECTION_FLOW`
+(flow per SE snapshot), `TMP_BINDING_ROWS` (every binding contingency near each snapshot).
+`TMP_BINDING_ROWS` also feeds `FAST_SCAN_RT_CONSTRAINTS` directly -- **the `CALL
+FLOW_ANALYSIS.SP_LOAD_FAST_SCAN_RT_CONSTRAINTS` is gone from both procs**; that sub-proc file
+is unchanged and still valid for standalone/backfill use, just no longer invoked from either
+main proc. Redeploy order is unchanged (`sp_load_fast_scan_rt_constraints.sql` first is still
+fine, just no longer load-bearing for the two main procs).
+
+Read-only verification (`AI_READ_ONLY`, config 256913, 2026-06-02..2026-06-05): all four
+staged statements (`TMP_STATION_KV_SHIFTS`, `TMP_INJECTION_FLOW`, `TMP_BINDING_ROWS`, the main
+`INSERT`) compile via `EXPLAIN` as standalone `SELECT`s. Chained into one read-only query
+(temp tables aren't creatable under this role) and compared row-for-row against the existing
+`FAST_SCAN_RESULTS`/`FAST_SCAN_RT_CONSTRAINTS` rows for 256913: 84/84 rows match exactly
+(`PAR_FLOW` included, zero for this shift set -- confirmed `SHIFT_FACTORS.DBO.PAR_SHIFTS` has
+0 rows for `TOPOLOGYSHIFTSETID` 112403) on every non-curtailment column, and the 4/4 detail
+rows in `FAST_SCAN_RT_CONSTRAINTS` match exactly. One production row
+(2026-06-05 23:57:00) falls outside this test's literal window because its member-hour lands
+on 2026-06-06 -- a test-window edge, not a defect. `WIND_IMPACT`/`SOLAR_IMPACT` and everything
+derived from them can't be verified under this role (`ERCOT_RESOURCE_ADEQUACY_REPORT_VIEW`
+unauthorized, same as Appendix B).
+
+**Compile saving, stated honestly.** Real per-statement compile times measured via
+`INFORMATION_SCHEMA.QUERY_HISTORY` on the 256913 test window: stage 1 ~1.2s, stage 2 ~1.2s,
+stage 3 (`TMP_BINDING_ROWS`) ~5.7s, stage 4 (main `INSERT`, isolated against stand-in inputs)
+~1.4s -- sums to about **9.5s**, versus **10.7s** for the single old statement on the same
+window, i.e. roughly **1.2s** saved on this window, not a dramatic win. Stage 3's 5.7s is
+dominated by `CONGFQPRICEVIEW`/`CONGDEFCONSTRAINTVIEW` view expansion, which staging does not
+remove -- that cost exists either way, split out or not. This test window is small (84 member
+hours); it does not reproduce the original problem (156 member hours, 800s+ timeout) or its
+17.9s/18.8s compile/execute profile. The real full-range number has to come from timing one
+actual run under `AW_ACCESS` -- config 256601 previously took 36.7s total (17.9s compile) end
+to end; re-time that same config/range after redeploy to get the real before/after. The single
+chained query used for read-only equivalence testing above re-nests everything into one
+statement again (no real temp tables under `AI_READ_ONLY`) and so compiles slower (~24s) than
+either the old or the new staged form -- that number is a read-only-testing artifact, not
+evidence against the rewrite.
+
+**Deploy steps for this rewrite**: re-run step 3 (`sp_fast_scan_v2.sql`) and step 4
+(`validation_spV2.sql`) above -- both are `CREATE OR REPLACE PROCEDURE`, so redeploying
+overwrites the old bodies in place; no other step changes. `SP_LOAD_FAST_SCAN_RT_CONSTRAINTS`
+(`sp_load_fast_scan_rt_constraints.sql`) **stays deployed** -- it is no longer called by either
+main proc, but the file/table/proc are unchanged and still valid for standalone or backfill use.
+
+**STUDY config 256501 also carries PAR-era results.** It was used as the V2 smoke test in step
+6 above and has existing `FAST_SCAN_RESULTS` rows from before this rewrite;
+`SP_RUN_FAST_SCAN_TEST_V2`'s `EXISTING_CONFIG_ID` guard means it must be cleared before
+re-running it under the redeployed proc:
+```sql
+DELETE FROM AW.FLOW_ANALYSIS.FAST_SCAN_RESULTS WHERE CONFIG_ID = 256501;
+DELETE FROM AW.FLOW_ANALYSIS.FAST_SCAN_RT_CONSTRAINTS WHERE CONFIG_ID = 256501;
+```
+
+`SP_RUN_VALIDATION_FAST_SCAN_TEST_V2`'s signature and return object are unchanged. A rerun
+mode was added to `validation_create_all_14218_parallel.sql` instead: a one-time preview and
+delete of today's study-14218 validation configs' `FAST_SCAN_RESULTS`/`FAST_SCAN_RT_CONSTRAINTS`
+rows (115 configs -- every V2 validation result computed before this rewrite carries the
+injection PAR defect, so the whole day's batch is cleared, not just one run), then the four
+slot loops just `CALL` the proc on those same config ids, skipping any config that already has
+a `FAST_SCAN_RUN_LOG` row with `STATUS = 'SUCCESS'` and `RUN_AT` at or after an operator-set
+cutoff (restart-safe, and retries a config whose folded detail write failed after the results
+insert succeeded). A legitimate zero-row config (its member hours all fall after the injection
+table's data ends) still logs `SUCCESS` with 0 rows inserted, so it is correctly not retried.
+
+**Grader's one residual edge** (accepted, not fixed by this rewrite): if a shift set's member
+hours shrink between runs, result rows whose hour is no longer a member lose their detail rows
+on the next run, because the old sub-proc seeded its snapshot list from `FAST_SCAN_RESULTS`
+(every row ever inserted) while the folded `TMP_BINDING_ROWS` seeds from the current run's
+`TMP_INJECTION_FLOW` (this run's member hours only).
