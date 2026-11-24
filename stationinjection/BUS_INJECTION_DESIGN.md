@@ -1,4 +1,4 @@
-# Bus-grain SE net injection: design (2026-11-10)
+# Bus-grain SE net injection: design (2026-11-10, amended 2026-11-24)
 
 ## Intent
 
@@ -8,8 +8,7 @@ pairs at 69 kV and above split into two or more PSSE buses (WAP 138 kV has eight
 six, BRAUNIG 138 kV an east and a west bus), and one third of all SE line-end flow lands at
 such pairs. Averaging shift factors across those buses is the remaining grain error in the scan.
 
-`AWDEV.ERCOTRT.ERCOTLINESEGMENT` (CIM line export, one row per ACLineSegment or
-SeriesCompensator with its two end node groups) now lets every SE line end be placed on its
+`AWDEV.ERCOTRT.ERCOTLINESEGMENT` (CIM line export, one row per ACLineSegment or SeriesCompensator, refreshed 2026-11-24 so each end carries its station, nominal kV, PSSE bus number and name, connectivity node and, where ERCOT defines one, electrical bus) now lets every SE line end be placed on its
 CIM bus, and the winding export already does the same for transformer ends. This design adds
 a table at bus grain, built from the same SE branch flows as the station table, plus the
 derived map tables it needs. It also materialises the list of CIM lines ERCOT does not report
@@ -21,16 +20,20 @@ a later step over this table, not part of this build.
 
 - `AWDEV.ERCOTRT.ERCOTBUSINJECTION`, grain (TIMESTAMP, BUSNUMBER), with station, kV and
   CIMFILEID carried so it rolls up to the station table and joins `SHIFT_FACTORS.DBO.BUS_SHIFTS`
-  on BUSNUM directly. Range: snapshots from the first in-force CIM file that has connectivity
-  nodes after 2023-07-06 (nodes are missing for files in force 2021-12-21 to 2023-07-06)
-  through the end of `ISOERCOTSEBRANCH`. One snapshot per hour, same selection rule as the V2
+  on BUSNUM directly. Range: the loader takes a date range; the line export covers every CIM
+  file in force from 2021-12-21 on and the winding export every file, so any range from
+  2021-12-21 through the end of `ISOERCOTSEBRANCH` is valid. sdalvi asked for July 2023 onward
+  first. One snapshot per hour, same selection rule as the V2
   station loader.
 - Loader `SP_LOAD_ERCOT_BUS_INJECTION(P_START_DATE, P_END_DATE)` in
   `sp_load_ercot_bus_injection.sql`, same shape and size discipline as
   `sp_load_ercot_station_injection_v2.sql` (no verbose comments, two temp tables or fewer,
   delete-range-then-insert, in-force model per snapshot with fallback).
 - `AWDEV.ERCOTRT.ERCOTSEBRANCHBUSMAP`: per CIM file, each SE branch device (line or
-  transformer) with its from-bus and to-bus and how the link was made.
+  transformer) with its from-bus and to-bus and how the link was made. Each line end also
+  carries the CIM connectivity node name and electrical bus name from the export
+  (FROMCONNECTIVITYNODE, TOCONNECTIVITYNODE, FROMELECTRICALBUS, TOELECTRICALBUS, nullable), for
+  later finer aggregation; transformer ends have none.
 - `AWDEV.ERCOTRT.ERCOTREDACTEDLINE`: per CIM file, each CIM line segment with no SE device,
   with both end buses, stations, kV and which end is SE-visible.
 - Verification queries committed next to the proc, as for V2.
@@ -43,7 +46,10 @@ a later step over this table, not part of this build.
   `sp_load_ercot_pun_injection.sql`, never deployed) is to be redone as a view over this table
   once it exists.
 - Bus-level load or generation columns. Only the SE residual is stored.
-- History before July 2023 (no connectivity nodes for those CIM files).
+- Injection below bus grain. Electrical buses exist on 2,192 of 8,646 line ends in file 387 and
+  on no transformer end, and 844 buses hold more than one, so an electrical-bus residual would
+  mix labelled and unlabelled ends. A connectivity-node residual needs breaker status, which we
+  do not have. Both names are stored in the map so a later model can aggregate differently.
 
 ## Anti-goals
 
@@ -53,17 +59,26 @@ a later step over this table, not part of this build.
   wrong puts plus and minus the full flow on the wrong pair of buses. A device whose
   orientation cannot be settled must be reported, not guessed silently.
 - Silent fallback to a different CIM file without recording it. CIMFILEID in every row.
-- Joining anything on `ERCOTLINESEGMENT.FROMNUM` or `TONUM`. They are the PSSE bus only for
-  63 percent of rows.
+- Joining line ends through `CIMCONNODE`. Since the 2026-11-24 refresh
+  `ERCOTLINESEGMENT.FROMNUM` and `TONUM` are the node-group PSSE bus (equal to FROMCNGPSSENUM
+  and TOCNGPSSENUM in 8,645 of 8,646 rows, and including the exporter's grouping corrections
+  that the node table lacks, 4 ends per file). The node table is used only for the bus name,
+  station and kV of buses that appear on transformer windings alone.
 - Joining DAM-model bus numbers (`ERCOTDAMPSSELDVIEW.PSSEBUSNUMBER`) to CIM buses. Different
   numbering, 1 match in 7,773.
 
 ## Facts established (file 387 = 2026Sep.L1 unless stated)
 
-- `ERCOTLINESEGMENT.FROMRDFID` / `TORDFID` equal `AW.DBO.CIMCONNODE.NODEGROUPID`. A node group
-  is one PSSE bus at one station and voltage level (10,723 groups, none spanning two stations
-  or two bus numbers). 8,643 of 8,646 segments resolve at both ends; the 3 that do not are
-  series compensators with null end ids.
+- `ERCOTLINESEGMENT` (70 columns since 2026-11-24) gives per end FROMSTATION, FROMKV, FROMNUM
+  and FROMCNGPSSENAME (PSSE bus number and name of the node group), FROMCNNAME (connectivity
+  node), FROMEBNAME and FROMEBCODE (electrical bus, present where FROMSTATUS is `resolved`),
+  FROMGROUPINGSTATUS (`consistent` 8,306 ends, `detached_from_declared_primary` 328,
+  `discrepancy_candidate` 10, `ambiguous_candidates` 2 in file 387) and FROMCORRECTEDCNGNAME
+  where the exporter overrode the node-table grouping, and the same for the TO end.
+  FROMTERMINALSEQ and TOTERMINALSEQ are null in every row. FROMRDFID and TORDFID still equal
+  `CIMCONNODE.NODEGROUPID`.
+- Same-station segments in file 387: 566, of which 563 join two different buses and 3 start and
+  end on one bus.
 - SE line device name = CIM `LINENAME` for single-segment lines (6,088 devices) or
   `LINENAME || SEGMENTNAME` for multi-segment lines (2,344 devices, SE reports each segment).
   Two devices differ only in case (`BRINKR_RC138kV`). Five collide when both rules are tried
@@ -84,9 +99,16 @@ a later step over this table, not part of this build.
   69 kV and 2,890 of 2,895 below.
 - CIM file ids are not chronological (393 = 2023Mar.L5, 400 = 2026Oct.L4). Always resolve the
   model through `ERCOTCIMEFFECTIVEDATE`.
-- Coverage: connectivity nodes exist for all files in force from 2023-07-13 on; windings are
-  missing for the 12 files in force 2026-07-28 to 2026-10-27; lines exist for all files from
-  2021-12-21 on.
+- Coverage: lines exist for every CIM file in force from 2021-12-21 on; windings exist for 220
+  files (ids 2 to 408), so the earlier gap for files in force 2026-07-28 to 2026-10-27 is
+  closed; connectivity nodes are missing for files in force 2021-12-21 to 2023-07-06, which now
+  only costs bus names on transformer-only buses in that window. `ERCOTCIMEFFECTIVEDATE`
+  columns are CIM_LABEL, CIMFILEID, PRODUCTION_LOAD, EFFECTIVE_FROM, EFFECTIVE_TO; the newest
+  file is 408 (2026Nov.L3) from 2026-11-17 23:00.
+- Winding bus numbers: in file 387, 5,570 of 5,640 windings have a FROMNUM that is a bus in the
+  node table. 58 non-star windings on 55 buses carry 9xxxxx numbers (DCSES 900240, EXPSW 901529,
+  LEG 901873, NEDIN 902199 and others) that are in no node table, and 12 star rows are likewise
+  absent. sdalvi is correcting these in the winding export.
 - Redacted lines against SE devices active 2026-09-05: 129 ACLineSegment lines (130 segments)
   and 84 series compensators have no SE device. 30 lines run PUN to PUN, 96 have exactly one
   visible end, 4 are radial customer taps or the NASA tap (FT_NA_06, NA_WEB06). At most
@@ -144,12 +166,13 @@ a later step over this table, not part of this build.
    only once their file has 200 in-force snapshots; until then they are UNRESOLVED, and the
    loader is re-run for that window after the map build catches up.
 7. **Model in force and fallback**: per snapshot, the CIM file from `ERCOTCIMEFFECTIVEDATE`
-   is the `CIMFILEID` written to the row. Nodes, line segments and windings are each taken
+   is the `CIMFILEID` written to the row. Line segments, windings and nodes are each taken
    from the in-force file if it has them, else from the latest earlier file that does; the
-   map table records the three source files per in-force file (NODEFILEID, LINEFILEID,
-   WINDINGFILEID), so a fallback is visible without a flag on 200 million rows. Bus numbers
-   are stable across files, so a winding bus from a fallback file is used as is; if it does
-   not exist in the nodes file, the end is placed by decision 9's station-kV rule and flagged.
+   map table records the three source files per in-force file (LINEFILEID, WINDINGFILEID,
+   NODEFILEID), so a fallback is visible without a flag on 200 million rows. Bus number, name,
+   station and kV for a line end come from the line row itself. For a winding end the bus
+   number comes from the winding row and the name from any line end on that bus in the same
+   file, else from the node table, else null.
 8. **Map table build** is a separate statement (or small proc) that fills
    `ERCOTSEBRANCHBUSMAP` and `ERCOTREDACTEDLINE` for every CIM file that has nodes and lines,
    and is re-run when a new CIM file is loaded. The loader only reads the maps. Redacted =
@@ -160,9 +183,12 @@ a later step over this table, not part of this build.
    bus in the nodes file (MATCHMETHOD `STATIONKV`), else on the lowest-numbered bus of that
    station-kV (MATCHMETHOD `STATIONKV_AMBIGUOUS`). Each end is treated separately. The map
    build prints the count and the list by method, and `STATIONKV_AMBIGUOUS` ends with flow are
-   the ones to chase. Expectation from the probes: two case-only misses and the 21
-   same-station devices without a BRANCH TEID, all of which the name rule against `LINENAME`
-   should still catch, so the fallback should be near empty for 2026 files.
+   the ones to chase. A winding whose FROMNUM is not a bus known to any line end or node row
+   in its file (the 9xxxxx numbers above) is placed the same way with MATCHMETHOD
+   `WINDINGBUSUNKNOWN`; when sdalvi's corrected winding export lands, the map rebuild picks it
+   up and the loader is re-run for the affected range. Expectation from the probes: two
+   case-only misses on lines, the 58 split-bus windings, and nothing else of size for 2026
+   files.
 
 ## Verification (committed with the proc)
 
@@ -180,12 +206,13 @@ a later step over this table, not part of this build.
 
 ## Open for sdalvi
 
-- Can the line export add, per end, the node group's PSSE bus number and name, the station,
-  the nominal kV, and the CIM Terminal sequence number? Sequence number would replace decision
-  6 for every device that has it. Likewise for the winding export.
+- Delivered 2026-11-24: station, kV, bus number and name, connectivity node and electrical bus
+  per line end. Still null: the CIM Terminal sequence number. If the exporter can fill it, and
+  if the SE feed follows it, it would replace decision 6; until then orientation is derived
+  from data.
 - Does the raw ERCOT SE branch feed carry from-bus and to-bus names that were dropped when
   `ISOERCOTSEBRANCHDEVICE` was loaded? If so, reloading them removes the orientation problem.
-- Windings for the 12 newest CIM files, so the fallback is not used for Aug to Oct 2026.
+- The 58 split-bus windings (9xxxxx FROMNUM) per file, in progress on sdalvi's side.
 - `AWDEV.ERCOTRT` versus `AW.DBO` for the new tables.
 
 ## Left to the builder
