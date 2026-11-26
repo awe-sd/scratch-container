@@ -25,7 +25,7 @@ from pathlib import Path
 import pandas as pd
 import requests
 
-from .. import config
+from .. import config, mssql
 
 SQL_CACHE_DIR = config.CACHE_ROOT / "ercot_load"
 ARCHIVE_CACHE_DIR = config.CACHE_ROOT / "native_load"
@@ -75,9 +75,6 @@ ZONE_COLUMNS = {
 def _query_load_view(year: int, start_mmdd: str, end_mmdd: str) -> pd.DataFrame:
     """One sequential SQL Server query for one year's date window. Never call
     this in a loop/parallel — see module docstring."""
-    config.configure()
-    from awconnect import db
-
     start = _mmdd_to_date(year, start_mmdd)
     end = _mmdd_to_date(year, end_mmdd)
     sql = f"""
@@ -85,7 +82,7 @@ def _query_load_view(year: int, start_mmdd: str, end_mmdd: str) -> pd.DataFrame:
         FROM AW.dbo.ercotLoadView AS elv
         WHERE elv.date BETWEEN '{start}' AND '{end}'
     """
-    return db.getDfFromAwDb(sql, database="AW")
+    return mssql.query(sql)
 
 
 # ---------------------------------------------------------------------------

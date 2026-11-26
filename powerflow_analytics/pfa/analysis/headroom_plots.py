@@ -8,13 +8,13 @@ that HTML's embedded Plotly JSON:
 - Data source: AW.FLOW_ANALYSIS.FAST_SCAN_RESULTS (TIMESTAMP, HEADROOM,
   HEADROOM_AFTER_CURTAILMENT) for one CONFIG_ID (see fastscan.find_configs).
 - Wind axis: "West" region wind level from AW.dbo.ercotWindRegionHourly
-  (SQL Server, via awconnect.db) -- WIND_MW = avgHSLPct/100 * totalInstalledCapacityMW.
+  (SQL Server, via pfa.mssql) -- WIND_MW = avgHSLPct/100 * totalInstalledCapacityMW.
   isActual flips to False after 2026-05-14 for rows that ARE actuals (stale
   flag, verified corr 1.000 against the pre-flip actuals) -- don't filter on it.
 - Solar axis (legacy wind-vs-solar variant): AW.dbo.solarGenAct system solar
   generation (solarGen), joined via AW.dbo.awDate.
 - Load axis (new): AW.dbo.ercotLoadView.ERCOT_ALL_LD (SQL Server, via
-  awconnect.db) -- ERCOT system total load, hourly (date, he) grain, 2011+
+  pfa.mssql) -- ERCOT system total load, hourly (date, he) grain, 2011+
   coverage. This is the same series the original figure's OFFPEAK panel used.
 - Peak split, confirmed empirically against the reference HTML's embedded
   hover timestamps (not the repo's Mon-Fri "5x16" convention used elsewhere,
@@ -42,7 +42,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-from .. import config, sf
+from .. import config, mssql, sf
 from . import fastscan
 
 ONPEAK_HOURS = set(range(6, 22))  # HOUR(TIMESTAMP) is 0-23; HE7-22 == hour 6-21
@@ -81,15 +81,11 @@ def _fetch_headroom(config_id: int) -> pd.DataFrame:
 
 
 def _fetch_west_wind(hist_start: str, hist_end: str) -> pd.DataFrame:
-    config.configure()
-    from awconnect import db
-
-    df = db.getDfFromAwDb(
+    df = mssql.query(
         f"""SELECT TimeStamp, avgHSLPct, totalInstalledCapacityMW
             FROM AW.dbo.ercotWindRegionHourly
             WHERE windRegion = 'West'
               AND TimeStamp >= '{hist_start}' AND TimeStamp < '{hist_end}'""",
-        database="AW",
     )
     df["WIND_GW"] = (df["avgHSLPct"].astype(float) / 100.0) * df["totalInstalledCapacityMW"].astype(float) / 1000.0
     df = df.rename(columns={"TimeStamp": "TIMESTAMP"})
@@ -97,16 +93,12 @@ def _fetch_west_wind(hist_start: str, hist_end: str) -> pd.DataFrame:
 
 
 def _fetch_solar(hist_start: str, hist_end: str, iso_zone: int = 67) -> pd.DataFrame:
-    config.configure()
-    from awconnect import db
-
-    df = db.getDfFromAwDb(
+    df = mssql.query(
         f"""SELECT d.date AS TimeStampDate, s.HE, s.solarGen
             FROM AW.dbo.solarGenAct s
             JOIN AW.dbo.awDate d ON d.awDateID = s.awDateID
             WHERE s.isoZoneID = {iso_zone}
               AND d.date >= '{hist_start}' AND d.date < '{hist_end}'""",
-        database="AW",
     )
     df["TIMESTAMP"] = pd.to_datetime(df["TimeStampDate"]) + pd.to_timedelta(df["HE"].astype(int) - 1, unit="h")
     df["SOLAR_GW"] = df["solarGen"].astype(float) / 1000.0
@@ -115,14 +107,10 @@ def _fetch_solar(hist_start: str, hist_end: str, iso_zone: int = 67) -> pd.DataF
 
 def _fetch_load(hist_start: str, hist_end: str) -> pd.DataFrame:
     """AW.dbo.ercotLoadView.ERCOT_ALL_LD -- ERCOT system total load, GW."""
-    config.configure()
-    from awconnect import db
-
-    df = db.getDfFromAwDb(
+    df = mssql.query(
         f"""SELECT date, he, ERCOT_ALL_LD
             FROM AW.dbo.ercotLoadView
             WHERE date >= '{hist_start}' AND date < '{hist_end}'""",
-        database="AW",
     )
     df["TIMESTAMP"] = pd.to_datetime(df["date"]) + pd.to_timedelta(df["he"].astype(int) - 1, unit="h")
     df["LOAD_GW"] = df["ERCOT_ALL_LD"].astype(float) / 1000.0

@@ -21,7 +21,7 @@ from dataclasses import astuple
 import numpy as np
 import pandas as pd
 
-
+from pfa import sf
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
 from pfa.constraint_id import ConstraintId
 
@@ -134,11 +134,6 @@ def signed_impact(universe: pd.DataFrame, tofinder: pd.DataFrame, dirs: pd.Serie
 # Stage 4: bulk dispatch-node count (NQUAL) from CPNODE_SHIFTS_VIEW, one grouped query
 # ---------------------------------------------------------------------------
 def bulk_dispatch_nodes(universe: pd.DataFrame, study: int) -> pd.DataFrame:
-    import awconnect
-
-    awconnect.configure("read_only")
-    from awconnect import snowflake
-
     cand = universe[(universe.post_binds > 0) | (universe.pre_binds > 0)]
     tuples = ",".join("('%s','%s','%s','%s')" % astuple(ConstraintId.parse(c)) for c in cand.index)
     q = f"""
@@ -149,7 +144,7 @@ def bulk_dispatch_nodes(universe: pd.DataFrame, study: int) -> pd.DataFrame:
       AND NAME NOT LIKE 'LZ_%' AND NAME NOT LIKE 'WZ_%' AND ABS(PSENS) BETWEEN {SF_MIN} AND {SF_MAX}
       AND (FROMNUM::STRING, TONUM::STRING, TRIM(CKT), TRIM(CTGLABEL)) IN ({tuples})
     GROUP BY 1,2,3,4"""
-    nq = snowflake.performQuery("SHIFT_FACTORS", q, warehouse="AI_READ_ONLY", logInfo=False)
+    nq = sf.query("SHIFT_FACTORS", q)
     nq["C"] = nq["FN"] + "-" + nq["TN"] + "-" + nq["KK"] + "@" + nq["GG"]
     out = universe.join(nq.set_index("C")[["NQUAL", "MAXSF"]], how="left")
     out["NQUAL"] = out.NQUAL.fillna(0).astype(int)

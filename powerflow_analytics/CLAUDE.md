@@ -7,6 +7,8 @@ headroom + path optimization. The design spec file no longer exists; see the tra
 ## Conventions
 
 - All DB access via `awconnect` with profile `read_only`, Snowflake warehouse `AI_READ_ONLY` (`pfa/config.py`).
+- Snowflake goes ONLY through `pfa.sf.query`; SQL Server ONLY through `pfa.mssql.query` — no other module imports `awconnect` (config aside).
+- `pfa.mssql.query` enforces the house rules in code: one SQL Server query at a time (process-wide lock), and any `toAllIsos`/`to*` outage-table query without an `isoMarketId` and a `BranchId`/`teid` predicate is rejected before it is sent.
 - Extract once per study: `uv run powerflow_analytics/scripts/pull_study.py --study <id>` → parquet in `cache/study_<id>/` (gitignored). Analysis and Dash read the cache only — never Snowflake in callbacks.
 - Analyze: `uv run powerflow_analytics/scripts/build_report.py --study <id> --cutoff <YYYY-MM-DD> [--tickets]` → CSVs in `output/study_<id>/`.
 - SQL Server (`AW.dbo.toAllIsos`) gets ONLY targeted single-branch lookups (`pfa/extract/outages.py`) — never bulk queries, and strictly ONE query at a time (sequential).

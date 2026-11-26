@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from .. import config
+from .. import config, mssql
 
 
 BRANCH_MAP_CSV = (
@@ -56,10 +56,7 @@ def teids_for_endpoints(names: list[str], limit: int = 3) -> list[int]:
 
 
 def _query_awdb(sql: str) -> pd.DataFrame:
-    config.configure()
-    from awconnect import db
-
-    return db.getDfFromAwDb(sql, database="AW")
+    return mssql.query(sql)
 
 
 def lookup_branch_tickets(
