@@ -1,0 +1,23 @@
+import awconnect                                                                                                                                                                                       
+from awconnect import aws, snowflake                                                                                                                                                                   
+                                                                                                                                                                                                    
+if not aws.isReadOnlyMachine():                                                                                                                                                                        
+    raise SystemExit('Stopped: awconnect did not identify this as a read-only machine; no connection attempted.')                                                                                      
+print('Configuring awconnect with read_only; no alternative profile will be tried.', flush=True)                                                                                                       
+awconnect.configure('read_only')                                                                                                                                                                       
+print('Testing Snowflake authentication and session identity...', flush=True)                                                                                                                          
+identity = snowflake.performQuery(                                                                                                                                                                     
+    dbName='AWDEV', schema='DBO', user=snowflake.READ_ONLY_USER,                                                                                                                                       
+    warehouse=snowflake.READ_ONLY_WH, retryLimit=0, doMapColumns=False,                                                                                                                                
+    sqlQuery='SELECT CURRENT_USER() AS USER_NAME, CURRENT_ROLE() AS ROLE_NAME, CURRENT_WAREHOUSE() AS WAREHOUSE_NAME',                                                                                 
+)                                                                                                                                                                                                      
+print(identity.to_string(index=False), flush=True)                                                                                                                                                     
+print('Testing SELECT on AWDEV.DBO.AWCONNECT_RO_TEST...', flush=True)                                                                                                                                  
+result = snowflake.performQuery(                                                                                                                                                                       
+    dbName='AWDEV', schema='DBO', user=snowflake.READ_ONLY_USER,                                                                                                                                       
+    warehouse=snowflake.READ_ONLY_WH, retryLimit=0, doMapColumns=False,                                                                                                                                
+    sqlQuery='SELECT COUNT(*) AS ROW_COUNT FROM AWDEV.DBO.AWCONNECT_RO_TEST',                                                                                                                          
+)                                                                                                                                                                                                      
+print(result.to_string(index=False), flush=True)                                                                                                                                                       
+print('Read-only table query succeeded.', flush=True)                                                                                                                                                  
+snowflake.shutdownSnowflakeConnectionPools()  

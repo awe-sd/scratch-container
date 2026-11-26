@@ -69,3 +69,11 @@ gis-research/data/
 gis-research/docs/
 gis-research/assets/
 gis-research/output/
+.claude/*
+gis-research/data/*
+gis-research/outputr/*
+gis-research/research/*
+branch_tracking/data/*
+fast_scan/output/*
+load-forecast/data*
+load-forecast/output*
