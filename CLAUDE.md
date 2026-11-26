@@ -29,6 +29,10 @@ Other Appian Way repos (`LocalSkills`, `awconnect`) have been cloned under `/hom
 
 The main session model (Fable/Opus-class) does **thinking, grading, and planning only**: design the approach, write specs/briefs, review and grade results, decide what's next. **All coding labor is dispatched to Sonnet 5 subagents** (`model: sonnet` on the Agent tool) — file edits, script writing, debugging, running pipelines. This saves tokens and keeps the expensive model's context for judgment. Small verification queries/greps by the main session are fine; writing or fixing code directly is not.
 
+**Mandatory grading gate (sdalvi, 2026-08-12):** every substantive deliverable (report, ranking, valuation output, analysis HTML) must be graded by an **Opus reviewer agent** (`model: opus`) BEFORE being presented to the user as done. The grader gets: the spec/brief, the deliverable file(s), and explicit "would a senior trader find this ranking sane?" review questions — including whole-output sanity (does the SORT make sense? are top rows defensible end-to-end?), not just per-cell checks. Failures go back to the implementer; the deliverable is only surfaced after a passing grade. This exists because per-cell verification repeatedly missed structurally broken rankings.
+
 ## Subprojects
 
 - `branch_tracking/` — in-progress transmission-branch tracking table design (ERCOT / `isomarketid = 6`). See its own `CLAUDE.md` for details specific to that work.
+- `powerflow_analytics/` — SCOPF study output (Snowflake AWOPF) → CRR opportunity finder: binding constraints, marginal units, offer-derived λ(depth), outage drivers, valuation. Own `CLAUDE.md` (data gotchas + study-family rules). Studies 14411/12/25/31 (Sep-2026 auction family) + 14492 (2028 planning) analyzed.
+- `load-forecast/` — ERCOT weather-zone load-growth + scenario-replay engine (size index × LightGBM shape). Own `CLAUDE.md`; NOTE: its division-of-labor section OVERRIDES the repo rule above — main session codes that project. Current direction: 08-Y all-8-zone joint probabilistic index + system-wide forecast (spec pending).
