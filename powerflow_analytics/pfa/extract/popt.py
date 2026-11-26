@@ -94,25 +94,6 @@ def get_topology_set_members(set_id: int) -> pd.DataFrame:
         ORDER BY r.SIMDATE, r.SIMHOUR, ts.TOPOLOGYID""")
 
 
-def get_node_shift_factors(psenshiftid: int) -> pd.DataFrame:
-    """Node shift factors (psens) for one psenshiftid. Filter out dead buses."""
-    return sf.query("SHIFT_FACTORS", f"""
-        SELECT PSENSHIFTID, TOPOLOGYID, CPNODEID, NAME, PSENS, DIRECTION, DEADBUS, RUNID
-        FROM SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW
-        WHERE PSENSHIFTID = {int(psenshiftid)} AND DEADBUS = 0""")
-
-
-def get_node_shift_factors_multi(psenshift_ids: list[int]) -> pd.DataFrame:
-    """Node psens for several psenshiftids at once (no DEADBUS filter — aggregate LZ_/HB_ nodes
-    carry DEADBUS=4 and must stay). Exact duplicate (PSENSHIFTID, CPNODEID) rows are collapsed."""
-    ids = ",".join(str(int(i)) for i in psenshift_ids)
-    return sf.query("SHIFT_FACTORS", f"""
-        SELECT PSENSHIFTID, TOPOLOGYID, CPNODEID, PSENS, DEADBUS
-        FROM SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW
-        WHERE PSENSHIFTID IN ({ids})
-        QUALIFY ROW_NUMBER() OVER (PARTITION BY PSENSHIFTID, CPNODEID ORDER BY DEADBUS) = 1""")
-
-
 def fetch_constraint_sp(run_ids: list[int], frm: int, to: int, ckt: str, ctg: str) -> pd.DataFrame:
     """OUTCONSTRAINT2 shadow price (OPFCNLAMBDA) per run for one constraint; absent rows = not enforced."""
     ids = ",".join(str(int(r)) for r in run_ids)

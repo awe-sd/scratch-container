@@ -30,7 +30,7 @@ import pandas as pd
 
 from .. import sf
 from ..constraint_id import ConstraintId
-from ..extract import fastscan
+from ..extract import fastscan, shifts
 from .offer_lambda import MAX_SF, MIN_SF, sced_names
 from .valuation import PRICE_CAP
 
@@ -77,14 +77,7 @@ def relief_set(study_id: int, constraint: str, gen: pd.DataFrame,
     1436-2081-1@DWCSRAM5 (DIRECTION=1) was unaffected either way.
     """
     cid = ConstraintId.parse(constraint)
-    f, t, ckt, ctg = cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel
-    sfs = sf.query("SHIFT_FACTORS", f"""
-        SELECT BUSNUM, NAME, AVG(PSENS) SF
-        FROM SHIFT_FACTORS.DBO.BUS_SHIFTS_VIEW
-        WHERE ISOMARKETID=6 AND STUDYID={int(study_id)}
-          AND FROMNUM={int(f)} AND TONUM={int(t)} AND CKT='{ckt}' AND CTGLABEL='{ctg}'
-          AND LEFT(NAME, 3) NOT IN ('LZ_', 'WZ_')
-        GROUP BY BUSNUM, NAME""")
+    sfs = shifts.bus_sf_all_buses(study_id, cid)
     if sfs.empty:
         return pd.DataFrame()
     sfs["SF"] = sfs["SF"].astype(float) * int(direction)

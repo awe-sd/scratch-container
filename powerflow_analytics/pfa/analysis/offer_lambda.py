@@ -47,6 +47,7 @@ import pandas as pd
 
 from .. import sf
 from ..constraint_id import ConstraintId, constraint_key
+from ..extract import shifts
 from .valuation import PRICE_CAP
 
 N_PAIR = 40   # movers per side considered before shift-factor filtering
@@ -110,16 +111,7 @@ def redispatch_pair(ctgviol: pd.DataFrame, gen: pd.DataFrame, constraint: str,
 
 
 def bus_shift_factors(study_id: int, constraint: str, busnums: list[int]) -> pd.DataFrame:
-    cid = ConstraintId.parse(constraint)
-    f, t, ckt, ctg = cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel
-    ids = ",".join(str(int(b)) for b in set(busnums))
-    return sf.query("SHIFT_FACTORS", f"""
-        SELECT BUSNUM, AVG(PSENS) SF
-        FROM SHIFT_FACTORS.DBO.BUS_SHIFTS_VIEW
-        WHERE ISOMARKETID=6 AND STUDYID={int(study_id)}
-          AND FROMNUM={int(f)} AND TONUM={int(t)} AND CKT='{ckt}' AND CTGLABEL='{ctg}'
-          AND BUSNUM IN ({ids})
-        GROUP BY BUSNUM""")
+    return shifts.bus_sf_for_buses(study_id, ConstraintId.parse(constraint), busnums)
 
 
 def sced_names(pair: pd.DataFrame, bus_names: pd.DataFrame, genunit: pd.DataFrame,
@@ -259,32 +251,7 @@ def bulk_dispatch_features(study_id: int, constraints: list[str]) -> pd.DataFram
     from the result — callers should treat a missing constraint as unknown
     (None), not as a fail.
     """
-    tuples = []
-    for c in constraints:
-        cid = ConstraintId.parse(c)
-        f, t, ckt, ctg = cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel
-        ckt_esc = ckt.replace("'", "''")
-        ctg_esc = ctg.replace("'", "''")
-        tuples.append(f"({int(f)}, {int(t)}, '{ckt_esc}', '{ctg_esc}')")
-    if not tuples:
-        return pd.DataFrame()
-    values_sql = ",".join(tuples)
-    df = sf.query("SHIFT_FACTORS", f"""
-        WITH targets AS (
-          SELECT * FROM VALUES {values_sql} AS t(FROMNUM, TONUM, CKT, CTGLABEL)
-        )
-        SELECT t.FROMNUM, t.TONUM, t.CKT, t.CTGLABEL,
-               COUNT(DISTINCT CASE WHEN ABS(v.PSENS) >= {MIN_SF} AND ABS(v.PSENS) < {MAX_SF}
-                                    THEN v.NAME END) N_QUAL,
-               SUM(CASE WHEN v.PSENS >= {PAIR_MIN_SF} AND v.PSENS < {PAIR_MAX_SF} THEN 1 ELSE 0 END) N_POS_PAIR,
-               SUM(CASE WHEN v.PSENS <= -{PAIR_MIN_SF} AND v.PSENS > -{PAIR_MAX_SF} THEN 1 ELSE 0 END) N_NEG_PAIR
-        FROM targets t
-        JOIN SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW v
-          ON v.FROMNUM = t.FROMNUM AND v.TONUM = t.TONUM AND v.CKT = t.CKT AND v.CTGLABEL = t.CTGLABEL
-        WHERE v.ISOMARKETID = 6 AND v.STUDYID = {int(study_id)}
-          AND v.DEADBUS = 0 AND LEFT(v.NAME, 3) NOT IN ('LZ_', 'WZ_')
-        GROUP BY t.FROMNUM, t.TONUM, t.CKT, t.CTGLABEL
-    """)
+    df = shifts.cpnode_dispatch_features(study_id, constraints, MIN_SF, MAX_SF, PAIR_MIN_SF, PAIR_MAX_SF)
     if df.empty:
         return df
     df["CONSTRAINT"] = constraint_key(df)
@@ -297,18 +264,7 @@ def qualifying_node_count(study_id: int, constraint: str) -> int:
     non-deadbus, MIN_SF <= |PSENS| < MAX_SF (the same 0.03-0.9 band the
     screening report's dispatch column reports — a wider band than
     dispatch_screen's own PAIR_MIN_SF/PAIR_MAX_SF pair-existence test)."""
-    cid = ConstraintId.parse(constraint)
-    f, t, ckt, ctg = cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel
-    df = sf.query("SHIFT_FACTORS", f"""
-        SELECT COUNT(DISTINCT NAME) N
-        FROM SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW
-        WHERE ISOMARKETID = 6 AND STUDYID = {int(study_id)}
-          AND FROMNUM = {int(f)} AND TONUM = {int(t)}
-          AND CKT = '{ckt}' AND CTGLABEL = '{ctg}'
-          AND DEADBUS = 0
-          AND LEFT(NAME, 3) NOT IN ('LZ_', 'WZ_')
-          AND ABS(PSENS) >= {MIN_SF} AND ABS(PSENS) < {MAX_SF}
-    """)
+    df = shifts.cpnode_qualifying_count(study_id, ConstraintId.parse(constraint), MIN_SF, MAX_SF)
     if df is None or df.empty:
         return 0
     return int(df["N"].iloc[0] or 0)
@@ -344,20 +300,7 @@ def dispatch_screen(study_id: int, constraint: str) -> str | None:
     DEVICE_SHIFTS (the prior source) has zero rows for recent studies
     (e.g. 14411) — CPNODE_SHIFTS_VIEW is the live source, confirmed readable.
     """
-    cid = ConstraintId.parse(constraint)
-    f, t, ckt, ctg = cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel
-    df = sf.query("SHIFT_FACTORS", f"""
-        SELECT
-          SUM(CASE WHEN PSENS > 0 THEN 1 ELSE 0 END) AS N_POS,
-          SUM(CASE WHEN PSENS < 0 THEN 1 ELSE 0 END) AS N_NEG
-        FROM SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW
-        WHERE ISOMARKETID = 6 AND STUDYID = {int(study_id)}
-          AND FROMNUM = {int(f)} AND TONUM = {int(t)}
-          AND CKT = '{ckt}' AND CTGLABEL = '{ctg}'
-          AND DEADBUS = 0
-          AND LEFT(NAME, 3) NOT IN ('LZ_', 'WZ_')
-          AND ABS(PSENS) >= {PAIR_MIN_SF} AND ABS(PSENS) < {PAIR_MAX_SF}
-    """)
+    df = shifts.cpnode_pair_counts(study_id, ConstraintId.parse(constraint), PAIR_MIN_SF, PAIR_MAX_SF)
     if df is None or df.empty:
         return None
     n_pos = int(df["N_POS"].iloc[0] or 0)

@@ -25,10 +25,10 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from pfa import config, constraint_id, mssql, periods, sf
+from pfa import config, constraint_id, mssql, periods
 from pfa.analysis import marginal_units, offer_lambda, lambda_engine
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
-from pfa.extract import fastscan, gen_mapping
+from pfa.extract import fastscan, gen_mapping, shifts
 from pfa.cache import StudyCache
 
 ONPEAK_HOURS = set(range(7, 23))  # HE7-22
@@ -184,19 +184,12 @@ def binding_conditions(config_id: int, hist_start: str, hist_end: str, month: st
 # --------------------------------------------------------- 2. dispatch ------
 
 def dispatch_profile(study_id: int, c: dict, genunit: pd.DataFrame, scedname: pd.DataFrame) -> pd.DataFrame:
-    f, t, ckt, ctg = c["fromnum"], c["tonum"], c["ckt"], c["ctglabel"]
-    nodes = sf.query("SHIFT_FACTORS", f"""
-        SELECT NAME, CPNODEID, AVG(PSENS) PSENS, COUNT(*) N
-        FROM SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW
-        WHERE ISOMARKETID=6 AND STUDYID={int(study_id)}
-          AND FROMNUM={int(f)} AND TONUM={int(t)} AND CKT='{ckt}' AND CTGLABEL='{ctg}'
-          AND DEADBUS=0 AND LEFT(NAME,3) NOT IN ('LZ_','WZ_')
-        GROUP BY NAME, CPNODEID
-    """)
+    nodes = shifts.cpnode_live_nodes(
+        study_id, constraint_id.ConstraintId(c["fromnum"], c["tonum"], c["ckt"], c["ctglabel"]))
     if nodes.empty:
         return nodes
     nodes["PSENS"] = nodes["PSENS"].astype(float)
-    nodes = nodes[nodes["PSENS"].abs().between(0.03, 0.9)].copy()
+    nodes = nodes[nodes["PSENS"].abs().between(offer_lambda.MIN_SF, offer_lambda.MAX_SF)].copy()
     # several NAME rows are aliases for the same underlying node (identical PSENS/CPNODEID) --
     # collapse them so the top-N table shows distinct nodes, not repeats of one node's aliases.
     # CPNODEID=0 is a shared placeholder for MULTIPLE distinct unmapped nodes (e.g. four separate

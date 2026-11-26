@@ -16,19 +16,18 @@ from __future__ import annotations
 
 import argparse
 import gc
-from dataclasses import astuple
 
 import numpy as np
 import pandas as pd
 
-from pfa import sf
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
+from pfa.analysis.offer_lambda import MAX_SF as SF_MAX, MIN_SF as SF_MIN
 from pfa.constraint_id import ConstraintId
+from pfa.extract import shifts
 
 # ---------------------------------------------------------------------------
 # Thresholds — named constants, overridable via CLI (see argparse in main()).
 # ---------------------------------------------------------------------------
-SF_MIN, SF_MAX = 0.03, 0.9  # |PSENS| band for the dispatch-node bulk query
 
 PENALTY_TIERS = (500.0, 3500.0)  # SCOPF unresolvable-violation price caps
 PENALTY_SHARE_MAX = 0.4  # C no-dispatch if this fraction of a constraint's LP rows sit in a penalty tier
@@ -135,16 +134,7 @@ def signed_impact(universe: pd.DataFrame, tofinder: pd.DataFrame, dirs: pd.Serie
 # ---------------------------------------------------------------------------
 def bulk_dispatch_nodes(universe: pd.DataFrame, study: int) -> pd.DataFrame:
     cand = universe[(universe.post_binds > 0) | (universe.pre_binds > 0)]
-    tuples = ",".join("('%s','%s','%s','%s')" % astuple(ConstraintId.parse(c)) for c in cand.index)
-    q = f"""
-    SELECT FROMNUM::STRING FN, TONUM::STRING TN, TRIM(CKT) KK, TRIM(CTGLABEL) GG,
-           COUNT(DISTINCT NAME) NQUAL, MAX(ABS(PSENS)) MAXSF
-    FROM SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW
-    WHERE ISOMARKETID=6 AND STUDYID={study} AND DEADBUS=0
-      AND NAME NOT LIKE 'LZ_%' AND NAME NOT LIKE 'WZ_%' AND ABS(PSENS) BETWEEN {SF_MIN} AND {SF_MAX}
-      AND (FROMNUM::STRING, TONUM::STRING, TRIM(CKT), TRIM(CTGLABEL)) IN ({tuples})
-    GROUP BY 1,2,3,4"""
-    nq = sf.query("SHIFT_FACTORS", q)
+    nq = shifts.cpnode_dispatch_nodes(study, list(cand.index), SF_MIN, SF_MAX)
     nq["C"] = nq["FN"] + "-" + nq["TN"] + "-" + nq["KK"] + "@" + nq["GG"]
     out = universe.join(nq.set_index("C")[["NQUAL", "MAXSF"]], how="left")
     out["NQUAL"] = out.NQUAL.fillna(0).astype(int)

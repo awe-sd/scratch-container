@@ -30,13 +30,13 @@ import pandas as pd
 
 from .. import config, sf
 from ..cache import StudyCache
-from ..extract import gen_mapping
+from ..constraint_id import ConstraintId
+from ..extract import gen_mapping, shifts
 from .constraints import BINDING_PCT
 from .marginal_units import bus_name_map
 
 _GEN_RE = re.compile(r"^Gen (\d+) #(\d+)")
 
-CPNODE_VIEW = "SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW"
 
 
 def shadow_price_from_offer(
@@ -179,19 +179,8 @@ def value_constraint(study_id: int, fromnum: int, tonum: int, ckt: str, ctglabel
     units["CPNODEID"] = units["CPNODEID"].astype("Int64")
     cpnode_ids = [int(c) for c in units["CPNODEID"].dropna().unique()]
     if cpnode_ids:
-        ids = ",".join(str(c) for c in cpnode_ids)
-        sfs = sf.query(
-            "SHIFT_FACTORS",
-            f"""
-            SELECT CPNODEID, AVG(PSENS) AS PSENS
-            FROM {CPNODE_VIEW}
-            WHERE ISOMARKETID = {config.ISO_MARKET_ID} AND STUDYID = {int(study_id)}
-              AND FROMNUM = {int(fromnum)} AND TONUM = {int(tonum)}
-              AND CKT = '{ckt}' AND CTGLABEL = '{str(ctglabel).strip()}'
-              AND CPNODEID IN ({ids})
-            GROUP BY CPNODEID
-            """,
-        )
+        sfs = shifts.cpnode_psens_by_id(
+            study_id, ConstraintId(int(fromnum), int(tonum), ckt, str(ctglabel).strip()), cpnode_ids)
         sfs["CPNODEID"] = sfs["CPNODEID"].astype("Int64")
         units = units.merge(sfs, on="CPNODEID", how="left")
     else:

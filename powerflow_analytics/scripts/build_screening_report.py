@@ -20,13 +20,13 @@ import gc
 
 import pandas as pd
 
-from pfa import config, periods, sf
+from pfa import config, periods
 from pfa.analysis import lambda_engine as lam, marginal_units, offer_lambda
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
 from pfa.analysis.screening import classify_constraint
 from pfa.cache import StudyCache
 from pfa.constraint_id import ConstraintId
-from pfa.extract import buskv, fastscan, gen_mapping, popt
+from pfa.extract import buskv, fastscan, gen_mapping, popt, shifts
 
 
 # --------------------------------------------------------------------------
@@ -108,15 +108,7 @@ def cpnode_sf(study_id: int, constraint: str, names: list[str]) -> dict[str, flo
     if not names:
         return {}
     cid = ConstraintId.parse(constraint)
-    f, t, ckt, ctg = cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel
-    in_list = ",".join(f"'{n}'" for n in names)
-    df = sf.query("SHIFT_FACTORS", f"""
-        SELECT NAME, AVG(PSENS) SF
-        FROM SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW
-        WHERE ISOMARKETID=6 AND STUDYID={int(study_id)}
-          AND FROMNUM={int(f)} AND TONUM={int(t)} AND CKT='{ckt}' AND CTGLABEL='{ctg}'
-          AND NAME IN ({in_list})
-        GROUP BY NAME""")
+    df = shifts.cpnode_sf_by_name(study_id, cid, names)
     return {r["NAME"]: float(r["SF"]) for _, r in df.iterrows()} if len(df) else {}
 
 

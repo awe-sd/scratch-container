@@ -26,7 +26,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 
 from pfa.analysis import path_scatter
 from pfa.constraint_id import ConstraintId
-from pfa.extract import popt
+from pfa.extract import popt, shifts
 
 
 def run_multi(args):
@@ -75,7 +75,7 @@ def run_multi(args):
 
     S, repro, live_cols = {}, [], {}
     for l in alll:
-        n = popt.get_node_shift_factors_multi(list(ps_of[l].values))
+        n = shifts.node_shift_factors_multi(list(ps_of[l].values))
         ps2t = dict(zip(ps_of[l].values, topo))
         n["T"] = n["PSENSHIFTID"].map(ps2t)
         P = n.pivot(index="CPNODEID", columns="T", values="PSENS")[topo]
@@ -301,7 +301,7 @@ def run_spread(args):
 
     P, D, live_cols, sp_run, weights, sp_scale = {}, {}, {}, {}, {}, {}
     for l in alll:
-        n = popt.get_node_shift_factors_multi(list(ps_of[l].values))
+        n = shifts.node_shift_factors_multi(list(ps_of[l].values))
         n["T"] = n["PSENSHIFTID"].map(dict(zip(ps_of[l].values, topo)))
         P[l] = n.pivot(index="CPNODEID", columns="T", values="PSENS")[topo]
         D[l] = n.pivot(index="CPNODEID", columns="T", values="DEADBUS")[topo]
@@ -602,8 +602,8 @@ def main():
     print(f"  Top {len(top_n_merged):,} cheapest selected (price: "
           f"${top_n_merged['OPTIONPRICE'].min():.2f} to ${top_n_merged['OPTIONPRICE'].max():.2f}/MWh)")
 
-    node_sf_x = popt.get_node_shift_factors(psenshiftid_x)
-    node_sf_y = popt.get_node_shift_factors(psenshiftid_y)
+    node_sf_x = shifts.node_shift_factors(psenshiftid_x)
+    node_sf_y = shifts.node_shift_factors(psenshiftid_y)
 
     print(f"  Node SFs X: {len(node_sf_x):,} nodes")
     print(f"  Node SFs Y: {len(node_sf_y):,} nodes")
