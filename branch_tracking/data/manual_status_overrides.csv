@@ -1,0 +1,4 @@
+teid,default_status,reason,set_by,date
+725820,Closed,"DILLEYSW XF1 138kV-1kV leg — transformer confirmed in service; all 3 legs unmatched to branch_id so no derived status",sdalvi,2026-07-27
+725835,Closed,"DILLEYSW XF1 69kV-1kV leg — transformer confirmed in service; all 3 legs unmatched to branch_id so no derived status",sdalvi,2026-07-27
+725836,Closed,"DILLEYSW XF1 12.5kV-1kV leg — transformer confirmed in service; all 3 legs unmatched to branch_id so no derived status",sdalvi,2026-07-27

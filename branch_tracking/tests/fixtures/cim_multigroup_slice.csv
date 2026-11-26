@@ -1,0 +1,8 @@
+RunRefId,NodeType,PsseType,RdfId,BusNumber1,BusNumber2,BusName1,BusName2,Substation1,Substation2,BusNumber3,BusName3,Substation3,CircuitIdentifier,Name,TransmissionElementId,GroupName,EquipmentName,OpEqName,CimEnvironment
+r,bus,Bus,b1,801,0,MG_HI,,MG,,0,,,1,MG_HI 138kV,910001,MG,BHI,BHI,PROD
+r,bus,Bus,b2,802,0,MG_LO,,MG,,0,,,1,MG_LO 138kV,910002,MG,BLO,BLO,PROD
+r,bus,Bus,b3,901,0,MG_S1,,MG,,0,,,1,MG_S1 1kV,910003,MG,S1,S1,PROD
+r,bus,Bus,b4,902,0,MG_S2,,MG,,0,,,1,MG_S2 1kV,910004,MG,S2,S2,PROD
+r,br,Transformer,t1,801,901,MG_HI,MG_S1,MG,MG,0,,,1,WA 138kV-1kV,911001,MG,WA,MG_WA,PROD
+r,br,Transformer,t2,901,902,MG_S1,MG_S2,MG,MG,0,,,1,WX 1kV-1kV,911002,MG,WX,MG_WX,PROD
+r,br,Transformer,t3,902,802,MG_S2,MG_LO,MG,MG,0,,,1,WB 1kV-138kV,911003,MG,WB,MG_WB,PROD

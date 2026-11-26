@@ -10,7 +10,7 @@ In-progress design for a topology database table that tracks transmission branch
 
 ## Code layout (post phase-1)
 
-- `pipeline/` — 8 pure-logic modules, no DB access: `config`, `naming`, `mapping`, `legs`, `dates`, `dampsse`, `status`, `assemble`. Imported by scripts via a `sys.path` bootstrap (no packaging yet — that's phase 5).
+- `pipeline/` — 9 pure-logic modules, no DB access: `config`, `naming`, `mapping`, `legs`, `dates`, `dampsse`, `status`, `assemble`, `network`. Imported by scripts via a `sys.path` bootstrap (no packaging yet — that's phase 5).
 - `scripts/` — the original entry points are now thin wrappers around `pipeline/`: DB pulls + prints + CSV writes only. Every existing `uv run branch_tracking/scripts/<name>.py` invocation still works unchanged.
 - `scripts/adhoc/` — one-off investigation scripts, out of production scope, moved here verbatim.
 - `tests/` — test files (under `branch_tracking/`), including a golden byte-identity gate (`test_goldens.py`) and fixture-based regression pins for hand-verified marquee teids. Run with `uv run pytest` from the repo root (`testpaths` points here).
@@ -49,6 +49,7 @@ All investigation/working scripts for this folder live under `scripts/`, checked
 - `scripts/build_dampsse_default_status.py` — DAM PSSE `inService`-based `default_status` (2-year dominant status; per the user, a better indicator than the auction snapshots). Exact-name mapping tier; caches DAM dims + the aggregate to `data/raw/` for DB-free follow-ons. Output: `output/dampsse_default_status.csv`.
 - `scripts/map_unmapped_dampsse_teids.py` — DB-free fallback mapping tiers (substring name, station-pair, transformer leg-aware; fileType-filtered) for teids the exact-name tier missed, plus a diagnosis of what remains. Outputs: `output/dampsse_fallback_mappings.csv`, `output/dampsse_unmapped_diagnosis.csv`, `output/dampsse_default_status_fallback.csv`.
 - `scripts/compare_base_model_status.py <export.csv>` — one-off comparison of our status vs a PowerWorld base-model export (label columns classified by format: integer=teid, UUID=rdfid). Outputs: `output/base_model_status_comparison.csv` / `..._outages_...csv`.
+- `scripts/adhoc/infer_tertiary_status.py` — infers `default_status` for 3-winding-transformer tertiary stubs (no `branch_id`, hence no DAM/auction status) by propagating from sibling windings grouped by their internal star (connectivity) bus — a graph node whose incident edges are all transformer windings. All-agree-else-flag rule. Output: `output/inferred_tertiary_status.csv` (review artifact; NOT yet folded into `branch_tracking_table.csv`). Logic in `pipeline/network.py`.
 
 ## Inputs
 
