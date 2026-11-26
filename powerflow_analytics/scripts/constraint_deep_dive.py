@@ -25,10 +25,10 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from pfa import config, constraint_id, mssql, periods
+from pfa import config, constraint_id, periods
 from pfa.analysis import marginal_units, offer_lambda, lambda_engine
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
-from pfa.extract import fastscan, gen_mapping, shifts
+from pfa.extract import fastscan, gen_mapping, renewables, shifts
 from pfa.cache import StudyCache
 
 ONPEAK_HOURS = set(range(7, 23))  # HE7-22
@@ -63,11 +63,7 @@ def resolve_constraint(cache: StudyCache, spec: str) -> dict:
 # --------------------------------------------------------- 1. binding cond --
 
 def _fetch_wind(hist_start: str, hist_end: str) -> pd.DataFrame:
-    df = mssql.query(
-        f"""SELECT TimeStamp, windRegion, avgHSLPct, totalInstalledCapacityMW
-            FROM AW.dbo.ercotWindRegionHourly
-            WHERE TimeStamp >= '{hist_start}' AND TimeStamp < '{hist_end}'""",
-    )
+    df = renewables.wind_region_hourly(hist_start, hist_end)
     # avgHSLPct is a PERCENT (0-100), not a fraction -- divide by 100 or wind MW
     # comes out ~100x too big (caught in review: a naive pct*capacity join
     # produced a "SYSTEM_WIND_MW" threshold of 2.7M MW against ~40GW installed).
@@ -77,13 +73,7 @@ def _fetch_wind(hist_start: str, hist_end: str) -> pd.DataFrame:
 
 
 def _fetch_solar(hist_start: str, hist_end: str, iso_zone: int = 67) -> pd.DataFrame:
-    df = mssql.query(
-        f"""SELECT d.date AS TimeStampDate, s.HE, s.solarGen, s.solarMax
-            FROM AW.dbo.solarGenAct s
-            JOIN AW.dbo.awDate d ON d.awDateID = s.awDateID
-            WHERE s.isoZoneID = {iso_zone}
-              AND d.date >= '{hist_start}' AND d.date < '{hist_end}'""",
-    )
+    df = renewables.solar_hourly(hist_start, hist_end, iso_zone)
     df["TIMESTAMP"] = pd.to_datetime(df["TimeStampDate"]) + pd.to_timedelta(df["HE"].astype(int) - 1, unit="h")
     return df[["TIMESTAMP", "solarGen", "solarMax"]]
 

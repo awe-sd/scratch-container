@@ -43,7 +43,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 from .. import mssql
-from ..extract import fastscan
+from ..extract import fastscan, renewables
 
 ONPEAK_HOURS = set(range(6, 22))  # HOUR(TIMESTAMP) is 0-23; HE7-22 == hour 6-21
 LOAD_FILTER_STEPS = [0, 45, 50, 55, 60, 65, 70, 75]  # GW, matches original slider
@@ -74,25 +74,14 @@ def _fetch_headroom(config_id: int) -> pd.DataFrame:
 
 
 def _fetch_west_wind(hist_start: str, hist_end: str) -> pd.DataFrame:
-    df = mssql.query(
-        f"""SELECT TimeStamp, avgHSLPct, totalInstalledCapacityMW
-            FROM AW.dbo.ercotWindRegionHourly
-            WHERE windRegion = 'West'
-              AND TimeStamp >= '{hist_start}' AND TimeStamp < '{hist_end}'""",
-    )
+    df = renewables.wind_region_hourly(hist_start, hist_end, region="West")
     df["WIND_GW"] = (df["avgHSLPct"].astype(float) / 100.0) * df["totalInstalledCapacityMW"].astype(float) / 1000.0
     df = df.rename(columns={"TimeStamp": "TIMESTAMP"})
     return df[["TIMESTAMP", "WIND_GW"]]
 
 
 def _fetch_solar(hist_start: str, hist_end: str, iso_zone: int = 67) -> pd.DataFrame:
-    df = mssql.query(
-        f"""SELECT d.date AS TimeStampDate, s.HE, s.solarGen
-            FROM AW.dbo.solarGenAct s
-            JOIN AW.dbo.awDate d ON d.awDateID = s.awDateID
-            WHERE s.isoZoneID = {iso_zone}
-              AND d.date >= '{hist_start}' AND d.date < '{hist_end}'""",
-    )
+    df = renewables.solar_hourly(hist_start, hist_end, iso_zone)
     df["TIMESTAMP"] = pd.to_datetime(df["TimeStampDate"]) + pd.to_timedelta(df["HE"].astype(int) - 1, unit="h")
     df["SOLAR_GW"] = df["solarGen"].astype(float) / 1000.0
     return df[["TIMESTAMP", "SOLAR_GW"]]
