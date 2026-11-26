@@ -1,0 +1,687 @@
+{
+ "total_tool_calls": 57865,
+ "by_mode": {
+  "deep": 26139,
+  "triage": 31726
+ },
+ "tool_by_mode": {
+  "deep": {
+   "Agent": 87,
+   "Bash": 8983,
+   "Edit": 109,
+   "Glob": 285,
+   "Grep": 27,
+   "Read": 2539,
+   "Skill": 7,
+   "TaskCreate": 66,
+   "TaskList": 1,
+   "TaskOutput": 4,
+   "TaskStop": 3,
+   "TaskUpdate": 108,
+   "ToolSearch": 205,
+   "WebFetch": 13371,
+   "Write": 344
+  },
+  "triage": {
+   "Agent": 5,
+   "Bash": 9675,
+   "Edit": 4296,
+   "Glob": 828,
+   "Grep": 15,
+   "Read": 1142,
+   "Skill": 0,
+   "TaskCreate": 0,
+   "TaskList": 0,
+   "TaskOutput": 0,
+   "TaskStop": 0,
+   "TaskUpdate": 0,
+   "ToolSearch": 771,
+   "WebFetch": 12521,
+   "Write": 2473
+  }
+ },
+ "webfetch_total": 25892,
+ "webfetch_by_mode": {
+  "deep": 13371,
+  "triage": 12521
+ },
+ "top_domains": [
+  {
+   "domain": "html.duckduckgo.com",
+   "deep": 350,
+   "triage": 3010,
+   "total": 3360
+  },
+  {
+   "domain": "www.bing.com",
+   "deep": 1079,
+   "triage": 2264,
+   "total": 3343
+  },
+  {
+   "domain": "comptroller.texas.gov",
+   "deep": 722,
+   "triage": 2515,
+   "total": 3237
+  },
+  {
+   "domain": "interchange.puc.texas.gov",
+   "deep": 621,
+   "triage": 2390,
+   "total": 3011
+  },
+  {
+   "domain": "efts.sec.gov",
+   "deep": 936,
+   "triage": 33,
+   "total": 969
+  },
+  {
+   "domain": "www.ercot.com",
+   "deep": 828,
+   "triage": 139,
+   "total": 967
+  },
+  {
+   "domain": "nominatim.openstreetmap.org",
+   "deep": 163,
+   "triage": 373,
+   "total": 536
+  },
+  {
+   "domain": "overpass-api.de",
+   "deep": 224,
+   "triage": 177,
+   "total": 401
+  },
+  {
+   "domain": "mycpa.cpa.state.tx.us",
+   "deep": 319,
+   "triage": 71,
+   "total": 390
+  },
+  {
+   "domain": "www.puc.texas.gov",
+   "deep": 145,
+   "triage": 196,
+   "total": 341
+  },
+  {
+   "domain": "search.yahoo.com",
+   "deep": 252,
+   "triage": 0,
+   "total": 252
+  },
+  {
+   "domain": "www.sec.gov",
+   "deep": 224,
+   "triage": 3,
+   "total": 227
+  },
+  {
+   "domain": "openinframap.org",
+   "deep": 99,
+   "triage": 127,
+   "total": 226
+  },
+  {
+   "domain": "www.openstreetmap.org",
+   "deep": 50,
+   "triage": 171,
+   "total": 221
+  },
+  {
+   "domain": "oeaaa.faa.gov",
+   "deep": 168,
+   "triage": 48,
+   "total": 216
+  },
+  {
+   "domain": "www.prnewswire.com",
+   "deep": 204,
+   "triage": 3,
+   "total": 207
+  },
+  {
+   "domain": "www.eia.gov",
+   "deep": 146,
+   "triage": 44,
+   "total": 190
+  },
+  {
+   "domain": "www.google.com",
+   "deep": 158,
+   "triage": 7,
+   "total": 165
+  },
+  {
+   "domain": "www.engie-na.com",
+   "deep": 136,
+   "triage": 0,
+   "total": 136
+  },
+  {
+   "domain": "data.texas.gov",
+   "deep": 124,
+   "triage": 8,
+   "total": 132
+  },
+  {
+   "domain": "www.sos.state.tx.us",
+   "deep": 108,
+   "triage": 11,
+   "total": 119
+  },
+  {
+   "domain": "www.tceq.texas.gov",
+   "deep": 93,
+   "triage": 11,
+   "total": 104
+  },
+  {
+   "domain": "www.businesswire.com",
+   "deep": 94,
+   "triage": 4,
+   "total": 98
+  },
+  {
+   "domain": "opencorporates.com",
+   "deep": 86,
+   "triage": 6,
+   "total": 92
+  },
+  {
+   "domain": "interchange.ercot.com",
+   "deep": 2,
+   "triage": 83,
+   "total": 85
+  }
+ ],
+ "puct_calls": 3011,
+ "puct_402": 3010,
+ "domain_err": [
+  {
+   "domain": "html.duckduckgo.com",
+   "calls": 3360,
+   "errors": 146,
+   "err_rate": 4.3
+  },
+  {
+   "domain": "www.bing.com",
+   "calls": 3343,
+   "errors": 2,
+   "err_rate": 0.1
+  },
+  {
+   "domain": "comptroller.texas.gov",
+   "calls": 3237,
+   "errors": 132,
+   "err_rate": 4.1
+  },
+  {
+   "domain": "interchange.puc.texas.gov",
+   "calls": 3011,
+   "errors": 3010,
+   "err_rate": 100.0
+  },
+  {
+   "domain": "efts.sec.gov",
+   "calls": 969,
+   "errors": 969,
+   "err_rate": 100.0
+  },
+  {
+   "domain": "www.ercot.com",
+   "calls": 967,
+   "errors": 703,
+   "err_rate": 72.7
+  },
+  {
+   "domain": "nominatim.openstreetmap.org",
+   "calls": 536,
+   "errors": 1,
+   "err_rate": 0.2
+  },
+  {
+   "domain": "overpass-api.de",
+   "calls": 401,
+   "errors": 196,
+   "err_rate": 48.9
+  },
+  {
+   "domain": "mycpa.cpa.state.tx.us",
+   "calls": 390,
+   "errors": 24,
+   "err_rate": 6.2
+  },
+  {
+   "domain": "www.puc.texas.gov",
+   "calls": 341,
+   "errors": 341,
+   "err_rate": 100.0
+  },
+  {
+   "domain": "search.yahoo.com",
+   "calls": 252,
+   "errors": 22,
+   "err_rate": 8.7
+  },
+  {
+   "domain": "www.sec.gov",
+   "calls": 227,
+   "errors": 227,
+   "err_rate": 100.0
+  },
+  {
+   "domain": "openinframap.org",
+   "calls": 226,
+   "errors": 4,
+   "err_rate": 1.8
+  },
+  {
+   "domain": "www.openstreetmap.org",
+   "calls": 221,
+   "errors": 3,
+   "err_rate": 1.4
+  },
+  {
+   "domain": "oeaaa.faa.gov",
+   "calls": 216,
+   "errors": 135,
+   "err_rate": 62.5
+  },
+  {
+   "domain": "www.prnewswire.com",
+   "calls": 207,
+   "errors": 131,
+   "err_rate": 63.3
+  },
+  {
+   "domain": "www.eia.gov",
+   "calls": 190,
+   "errors": 36,
+   "err_rate": 18.9
+  },
+  {
+   "domain": "www.google.com",
+   "calls": 165,
+   "errors": 1,
+   "err_rate": 0.6
+  },
+  {
+   "domain": "www.engie-na.com",
+   "calls": 136,
+   "errors": 76,
+   "err_rate": 55.9
+  },
+  {
+   "domain": "data.texas.gov",
+   "calls": 132,
+   "errors": 45,
+   "err_rate": 34.1
+  },
+  {
+   "domain": "www.sos.state.tx.us",
+   "calls": 119,
+   "errors": 21,
+   "err_rate": 17.6
+  },
+  {
+   "domain": "www.tceq.texas.gov",
+   "calls": 104,
+   "errors": 69,
+   "err_rate": 66.3
+  },
+  {
+   "domain": "www.businesswire.com",
+   "calls": 98,
+   "errors": 98,
+   "err_rate": 100.0
+  },
+  {
+   "domain": "opencorporates.com",
+   "calls": 92,
+   "errors": 0,
+   "err_rate": 0.0
+  },
+  {
+   "domain": "interchange.ercot.com",
+   "calls": 85,
+   "errors": 85,
+   "err_rate": 100.0
+  },
+  {
+   "domain": "gov.texas.gov",
+   "calls": 82,
+   "errors": 72,
+   "err_rate": 87.8
+  },
+  {
+   "domain": "direct.sos.state.tx.us",
+   "calls": 82,
+   "errors": 50,
+   "err_rate": 61.0
+  },
+  {
+   "domain": "eerscmap.usgs.gov",
+   "calls": 71,
+   "errors": 71,
+   "err_rate": 100.0
+  },
+  {
+   "domain": "www15.tceq.texas.gov",
+   "calls": 70,
+   "errors": 4,
+   "err_rate": 5.7
+  },
+  {
+   "domain": "investor.wecenergygroup.com",
+   "calls": 67,
+   "errors": 54,
+   "err_rate": 80.6
+  }
+ ],
+ "class_err": [
+  {
+   "domain_class": "comptroller",
+   "calls": 3776,
+   "err": 223,
+   "rate": 5.9
+  },
+  {
+   "domain_class": "county_cad",
+   "calls": 959,
+   "err": 430,
+   "rate": 44.8
+  },
+  {
+   "domain_class": "eia",
+   "calls": 213,
+   "err": 57,
+   "rate": 26.8
+  },
+  {
+   "domain_class": "ercot",
+   "calls": 1204,
+   "err": 860,
+   "rate": 71.4
+  },
+  {
+   "domain_class": "faa",
+   "calls": 263,
+   "err": 170,
+   "rate": 64.6
+  },
+  {
+   "domain_class": "gov_other",
+   "calls": 218,
+   "err": 119,
+   "rate": 54.6
+  },
+  {
+   "domain_class": "maps",
+   "calls": 1572,
+   "err": 327,
+   "rate": 20.8
+  },
+  {
+   "domain_class": "news_pr",
+   "calls": 607,
+   "err": 421,
+   "rate": 69.4
+  },
+  {
+   "domain_class": "other",
+   "calls": 4505,
+   "err": 2698,
+   "rate": 59.9
+  },
+  {
+   "domain_class": "puct_portal",
+   "calls": 3447,
+   "err": 3446,
+   "rate": 100.0
+  },
+  {
+   "domain_class": "registry",
+   "calls": 204,
+   "err": 47,
+   "rate": 23.0
+  },
+  {
+   "domain_class": "search",
+   "calls": 7260,
+   "err": 176,
+   "rate": 2.4
+  },
+  {
+   "domain_class": "sec",
+   "calls": 1196,
+   "err": 1196,
+   "rate": 100.0
+  },
+  {
+   "domain_class": "sos",
+   "calls": 241,
+   "err": 109,
+   "rate": 45.2
+  },
+  {
+   "domain_class": "tceq",
+   "calls": 227,
+   "err": 101,
+   "rate": 44.5
+  }
+ ],
+ "webfetch_retries": 658,
+ "webfetch_retry_runs": 234,
+ "failure_tax": {
+  "('deep', 'budget_kill')": 13,
+  "('deep', 'exec_error')": 13,
+  "('deep', 'hung_hardkilled')": 9,
+  "('deep', 'max_turns')": 22,
+  "('triage', 'budget_kill')": 2,
+  "('triage', 'hung_hardkilled')": 10,
+  "('triage', 'max_turns')": 6
+ },
+ "budgetkill_last10_stage": {
+  "imagery": 13,
+  "web_research": 57,
+  "other": 63,
+  "wrapup": 14,
+  "stage0_queue": 3
+ },
+ "maxturns_last10_stage": {
+  "stage0_queue": 18,
+  "other": 66,
+  "wrapup": 37,
+  "imagery": 52,
+  "web_research": 107
+ },
+ "violations": {
+  "output_file_missing: dossier.md missing": 35,
+  "output_file_missing: findings.json missing": 31,
+  "token_budget_exceeded_killed": 33,
+  "image_read_over_cap": 30,
+  "output_file_missing: triage_findings.json missing keys: ['signals', 'deep_scan_recommended', 'cod_first_look']": 1,
+  "output_file_missing: triage_findings.json missing": 7
+ },
+ "viol_deep": 126,
+ "viol_triage": 11,
+ "stuck_episodes": 363,
+ "stuck_top": [
+  {
+   "tool": "WebFetch",
+   "fp": "comptroller.texas.gov/economy/local",
+   "episodes": 63,
+   "max_len": 12,
+   "total": 343
+  },
+  {
+   "tool": "Bash",
+   "fp": "curl:interchange.puc.texas.gov",
+   "episodes": 38,
+   "max_len": 26,
+   "total": 330
+  },
+  {
+   "tool": "WebFetch",
+   "fp": "efts.sec.gov/LATEST/search-index",
+   "episodes": 35,
+   "max_len": 26,
+   "total": 272
+  },
+  {
+   "tool": "WebFetch",
+   "fp": "www.bing.com/search",
+   "episodes": 38,
+   "max_len": 24,
+   "total": 253
+  },
+  {
+   "tool": "Bash",
+   "fp": "uv",
+   "episodes": 29,
+   "max_len": 11,
+   "total": 180
+  },
+  {
+   "tool": "Bash",
+   "fp": "curl:www.sec.gov",
+   "episodes": 13,
+   "max_len": 16,
+   "total": 95
+  },
+  {
+   "tool": "Bash",
+   "fp": "python3",
+   "episodes": 13,
+   "max_len": 21,
+   "total": 93
+  },
+  {
+   "tool": "Bash",
+   "fp": "",
+   "episodes": 9,
+   "max_len": 16,
+   "total": 88
+  },
+  {
+   "tool": "Bash",
+   "fp": "curl:overpass-api.de",
+   "episodes": 14,
+   "max_len": 10,
+   "total": 86
+  },
+  {
+   "tool": "TaskCreate",
+   "fp": "TaskCreate",
+   "episodes": 10,
+   "max_len": 8,
+   "total": 66
+  },
+  {
+   "tool": "Bash",
+   "fp": "#",
+   "episodes": 8,
+   "max_len": 17,
+   "total": 62
+  },
+  {
+   "tool": "WebFetch",
+   "fp": "html.duckduckgo.com/html",
+   "episodes": 10,
+   "max_len": 6,
+   "total": 53
+  },
+  {
+   "tool": "Bash",
+   "fp": "ls",
+   "episodes": 7,
+   "max_len": 6,
+   "total": 39
+  },
+  {
+   "tool": "Bash",
+   "fp": "curl:oeaaa.faa.gov",
+   "episodes": 3,
+   "max_len": 20,
+   "total": 31
+  },
+  {
+   "tool": "WebFetch",
+   "fp": "data.texas.gov/resource/9cir-efmm.json",
+   "episodes": 3,
+   "max_len": 14,
+   "total": 26
+  }
+ ],
+ "stage_total": {
+  "deep": {
+   "imagery": 2116,
+   "other": 6384,
+   "stage0_queue": 250,
+   "web_research": 16958,
+   "wrapup": 431
+  },
+  "triage": {
+   "imagery": 4846,
+   "other": 5879,
+   "stage0_queue": 1660,
+   "web_research": 12728,
+   "wrapup": 6613
+  }
+ },
+ "stage_avg_per_run": {
+  "deep": {
+   "imagery": 12.9,
+   "other": 38.9,
+   "stage0_queue": 1.5,
+   "web_research": 103.4,
+   "wrapup": 2.6
+  },
+  "triage": {
+   "imagery": 6.2,
+   "other": 7.5,
+   "stage0_queue": 2.1,
+   "web_research": 16.3,
+   "wrapup": 8.5
+  }
+ },
+ "stage_share": {
+  "web_research": 51.3,
+  "other": 21.2,
+  "wrapup": 12.2,
+  "imagery": 12.0,
+  "stage0_queue": 3.3
+ },
+ "web_total": 29700,
+ "repl_yes": 12708,
+ "repl_any": 18367,
+ "repl_yes_pct_all": 22.0,
+ "repl_any_pct_all": 31.7,
+ "repl_by_class": {
+  "comptroller": 4128,
+  "eia": 270,
+  "faa": 350,
+  "puct_portal": 4314,
+  "search": 7465,
+  "sec": 1531,
+  "tceq": 309
+ },
+ "search_scrape": 7260,
+ "search_scrape_pct_wf": 28.0,
+ "search_scrape_pct_all": 12.5,
+ "cost_by_mode": {
+  "deep": {
+   "sum": 660.304,
+   "mean": 4.26,
+   "max": 15.722
+  },
+  "triage": {
+   "sum": 732.296,
+   "mean": 0.952,
+   "max": 1.733
+  }
+ }
+}

@@ -1,0 +1,5 @@
+total tool-call rows: 57865
+runs parsed: 943 (triage 779, deep 164)
+tool_count mismatches vs meta.audit.tool_counts: 2
+  MISMATCH 20INR0162_diamondback-solar deep: meta={'Read': 10, 'Bash': 73, 'Glob': 4, 'Write': 1, 'Agent': 1, 'ToolSearch': 1, 'WebFetch': 77} parsed={'Read': 3}
+  MISMATCH 25INR0554_dan-kearney-bess deep: meta={'Read': 11, 'Glob': 4, 'Bash': 40, 'Write': 1, 'ToolSearch': 1, 'WebFetch': 139} parsed={'Read': 6, 'Glob': 1, 'Bash': 5, 'Write': 1, 'Agent': 2, 'ToolSearch': 2, 'WebFetch': 11}

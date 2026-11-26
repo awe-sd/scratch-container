@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cut-in / parallel-path conflict candidates — 2026-08-04</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; padding: 24px; background: #0f1115; color: #e6e6e6; }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  h2 { font-size: 17px; margin-top: 36px; border-bottom: 1px solid #333; padding-bottom: 6px; }
+  .lede { color: #9aa0a6; max-width: 900px; margin-bottom: 20px; line-height: 1.5; }
+  .tier1 h2 { color: #ff8a65; }
+  .tier2 h2 { color: #9fa8da; }
+  table { border-collapse: collapse; width: 100%; margin-bottom: 8px; font-size: 12.5px; }
+  th, td { border: 1px solid #2a2d33; padding: 5px 8px; text-align: left; white-space: nowrap; }
+  th { background: #1a1d23; color: #b0b6bd; position: sticky; top: 0; }
+  tr:nth-child(even) td { background: #14161a; }
+  tr:hover td { background: #22262e; }
+  .status-Closed { color: #66bb6a; font-weight: 600; }
+  .status-Open { color: #ef5350; font-weight: 600; }
+  .flagged { background: #2a1f14 !important; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; margin-left: 8px; }
+  .badge-old { background: #4a2a1f; color: #ffab91; }
+  .badge-new { background: #1f3a2a; color: #a5d6a7; }
+  .note { color: #9aa0a6; font-size: 12.5px; margin: 4px 0 14px; }
+  .wrap { overflow-x: auto; }
+  code { background: #1a1d23; padding: 1px 5px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<h1>Cut-in / parallel-path conflict candidates</h1>
+<p class="lede">
+  Generated 2026-08-04 from a station-pair (from_station/to_station) 2-hop-bypass
+  search over <code>db.load_static(with_meta=True)</code> (one query, 11,443 rows).
+  Pattern: an OLD branch still tagged <code>default_status=Closed</code> with weak
+  DAM support (<code>dampsse_default_status=Open</code> / low
+  <code>dampsse_pct_inservice</code>), where a NEWER branch at the same station
+  hub was recently energized — candidate for "the old parallel path should have
+  opened when the cut-in came in" (task #3 topology check). Rows flagged
+  <span class="badge badge-old">old / suspect</span> are the stale-looking member;
+  <span class="badge badge-new">new / replacement</span> is the newer leg it's
+  being compared against. This is read-only triage output, not yet applied to any table.
+</p>
+
+<div class="tier1">
+<h2>Tier 1 — high confidence: KINGFISHER hub</h2>
+<p class="note">
+  Both 864377 and 864378 nominally represent the legacy KINGFISHER–PALMITO345 tie:
+  36 years old (<code>in_service_date=1990-01-01</code>), never retired, but DAM
+  shows &lt;26% in-service and reads <code>Open</code>. Two new legs off KINGFISHER
+  (STEWART7A, NEDIN7A) energized within the last 5-8 weeks. Recommend treating all
+  four as one review: the old PALMITO345 tie likely should be Open/retired.
+</p>
+<div class="wrap"><table id="tier1-table"></table></div>
+</div>
+
+<div class="tier2">
+<h2>Tier 2 — weaker signal (same-construction-event noise, listed for completeness)</h2>
+<p class="note">
+  In most of these groups the "old" leg's <code>in_service_date</code> is itself
+  2025/2026 — plausibly part of the same construction event as its sibling, not a
+  genuinely stale asset. <b>754376 / 754386</b> is the one exception worth a second
+  look: real disparity between two circuits built together
+  (<code>dampsse_pct_inservice</code> 0.40 vs 0.98).
+</p>
+<div id="tier2-groups"></div>
+</div>
+
+<script>
+const TIER1 = [{"teid": 864377, "rdfid": "8202a0cd-5ee1-4a4a-a751-e77b966a6c7f", "branch_id": 60104915, "ercotDampsseId": 13201, "from_bus": "KINGFISHER", "to_bus": "PALMITO345", "ckt": "1", "from_station": "KNGFSHER", "to_station": "PALMITO", "OpEqName": "KNG_PALMITO_1_1", "EquipmentName": "1", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.2403, "in_service_date": "1990-01-01", "in_service_date_source": "default", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 864378, "rdfid": "6585e591-fda2-42e9-a4f4-1fb360f5b9c5", "branch_id": 60104916, "ercotDampsseId": 13202, "from_bus": "KINGFISHER", "to_bus": "PALMITO345", "ckt": "2", "from_station": "KNGFSHER", "to_station": "PALMITO", "OpEqName": "KNG_PALMITO_2_2", "EquipmentName": "2", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.2539, "in_service_date": "1990-01-01", "in_service_date_source": "default", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 864375, "rdfid": "38c9de63-9b3a-4b83-85ac-a4a52167cbb5", "branch_id": 60104917, "ercotDampsseId": 13203, "from_bus": "KINGFISHER", "to_bus": "STEWART7A", "ckt": "1", "from_station": "KNGFSHER", "to_station": "STEWART", "OpEqName": "KNG_STEWAR1_1", "EquipmentName": "1", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.2381, "in_service_date": "2026-06-30", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 864374, "rdfid": "9d8d0cb5-efd5-4c78-9a4b-78ce5ddeb8ae", "branch_id": 60105007, "ercotDampsseId": 13204, "from_bus": "KINGFISHER", "to_bus": "NEDIN7A", "ckt": "2", "from_station": "KNGFSHER", "to_station": "NEDIN", "OpEqName": "NEDIN_KNG2_2", "EquipmentName": "2", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.2539, "in_service_date": "2026-06-27", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}];
+const TIER2_GROUPS = {"PLATEAUT_8": [{"teid": 868936, "rdfid": "2879937b-274b-49a9-a73e-d6ce29d4f2ae", "branch_id": 60113844, "ercotDampsseId": 268, "from_bus": "PLATEAUT_8", "to_bus": "MCKENZIEDR_8", "ckt": "4", "from_station": "PLATE", "to_station": "MKDSW", "OpEqName": "6450__C", "EquipmentName": "_C", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.1259, "in_service_date": "2026-06-09", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 868965, "rdfid": "b20aedcb-dba1-44a6-99cd-29df32212e14", "branch_id": 60113841, "ercotDampsseId": 13467, "from_bus": "PLATEAUT_8", "to_bus": "TEXMABEE_8", "ckt": "1", "from_station": "PLATE", "to_station": "MABTX", "OpEqName": "6460__J", "EquipmentName": "_J", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Closed", "dampsse_pct_inservice": 0.6215, "in_service_date": "2026-06-09", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 868946, "rdfid": "3b49ff29-6482-4f80-8e2b-0a12e8561b65", "branch_id": 60113843, "ercotDampsseId": 388, "from_bus": "PLATEAUT_8", "to_bus": "TARZANSW_8", "ckt": "1", "from_station": "PLATE", "to_station": "TZPOI", "OpEqName": "6450__D", "EquipmentName": "_D", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.1259, "in_service_date": "2026-06-09", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}], "BLACKSTCK_8": [{"teid": 709659, "rdfid": "3ca16990-43b8-4c5a-b408-6646083967ce", "branch_id": 60093263, "ercotDampsseId": 12164, "from_bus": "BLACKSTCK_8", "to_bus": "ROYSE3_8", "ckt": "3", "from_station": "BKSTK", "to_station": "RYSSW", "OpEqName": "566__C", "EquipmentName": "_C", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.1283, "in_service_date": "2025-10-30", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 709568, "rdfid": "ba813550-77c8-4214-921f-e0f9ba90a03c", "branch_id": 60093262, "ercotDampsseId": 12163, "from_bus": "BLACKSTCK_8", "to_bus": "FRMVLWST_P8", "ckt": "2", "from_station": "BKSTK", "to_station": "AMPOI", "OpEqName": "566__B", "EquipmentName": "_B", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.1283, "in_service_date": "2025-10-30", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}], "HEALY_5": [{"teid": 743969, "rdfid": "2e25500d-4a89-4c24-a5fe-3fe196441b90", "branch_id": 60096338, "ercotDampsseId": 12512, "from_bus": "HEALY_5", "to_bus": "TRICRN1_5", "ckt": "1", "from_station": "HLYSW", "to_station": "TRCNR", "OpEqName": "170__B", "EquipmentName": "_B", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.1685, "in_service_date": "2026-05-14", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 743978, "rdfid": "618177f4-1b11-4d4e-b76a-42d1dd308c16", "branch_id": 60000472, "ercotDampsseId": 3324, "from_bus": "HEALY_5", "to_bus": "ELKTON_5", "ckt": "1", "from_station": "HLYSW", "to_station": "ELKTN", "OpEqName": "155__A", "EquipmentName": "_A", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.1685, "in_service_date": "2026-05-14", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}], "WCRSW_AUSTRO_SNDSW_BCRSW": [{"teid": 828526, "rdfid": "3b9508b0-3d57-4562-b4e9-cb9960806251", "branch_id": 60099738, "ercotDampsseId": 12837, "from_bus": "BEULAH_5", "to_bus": "WALLEYE_5", "ckt": "1", "from_station": "BLHSW", "to_station": "WCRSW", "OpEqName": "440__C", "EquipmentName": "_C", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.4243, "in_service_date": "2026-03-27", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 828539, "rdfid": "4acc2b45-1c02-4b8e-aa07-98544a3932fb", "branch_id": 60099739, "ercotDampsseId": 12838, "from_bus": "L_AUSTRO5_1Y", "to_bus": "WALLEYE_5", "ckt": "1", "from_station": "AUSTRO", "to_station": "WCRSW", "OpEqName": "450__B", "EquipmentName": "_B", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.3814, "in_service_date": "2026-03-27", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 828552, "rdfid": "aecce73a-3b54-4733-b428-e24495dc8443", "branch_id": 60103483, "ercotDampsseId": 12839, "from_bus": "WALLEYE_5", "to_bus": "SAND_TXU_5", "ckt": "1", "from_station": "WCRSW", "to_station": "SNDSW", "OpEqName": "460__A", "EquipmentName": "_A", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.4224, "in_service_date": "2026-03-31", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 828565, "rdfid": "bc890b42-1223-4783-9672-7fde466b4910", "branch_id": 60100821, "ercotDampsseId": 4758, "from_bus": "WALLEYE_8", "to_bus": "BRUSHYCRK_8", "ckt": "1", "from_station": "WCRSW", "to_station": "BCRSW", "OpEqName": "1720__A", "EquipmentName": "_A", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.2679, "in_service_date": "2026-05-14", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 828588, "rdfid": "b7a21ae5-a83c-4aa5-830b-d290cb39d01e", "branch_id": 60103481, "ercotDampsseId": 12827, "from_bus": "WALLEYE_8", "to_bus": "SAND_TXU_8", "ckt": "2", "from_station": "WCRSW", "to_station": "SNDSW", "OpEqName": "2140__A", "EquipmentName": "_A", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.2679, "in_service_date": "2026-05-14", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}], "EXPSW_FLAND": [{"teid": 869749, "rdfid": "b7bbdc65-96a9-4fbd-9647-54540912f429", "branch_id": 60112871, "ercotDampsseId": 14309, "from_bus": "EXPANSE_8", "to_bus": "LENORAH_8", "ckt": "2", "from_station": "EXPSW", "to_station": "LNPOD", "OpEqName": "16090__A", "EquipmentName": "_A", "DeviceType": "Line", "default_status": "Open", "default_status_source": "manual_override", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.35, "in_service_date": "2026-07-03", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": "ok", "match_status": "matched"}, {"teid": 869774, "rdfid": "613df113-3f7b-4584-8617-5d9ef7fc7e17", "branch_id": 60112869, "ercotDampsseId": 14307, "from_bus": "FLATLAND_8", "to_bus": "EXPANSE_8", "ckt": "3", "from_station": "FLAND", "to_station": "EXPSW", "OpEqName": "15070__D", "EquipmentName": "_D", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_recently_sustained", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.3368, "in_service_date": "2026-07-02", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": "ok", "match_status": "matched"}, {"teid": 869776, "rdfid": "fcceae97-b736-43d0-a42f-2fcf80bb79c7", "branch_id": 60112868, "ercotDampsseId": 14306, "from_bus": "FLATLAND_8", "to_bus": "EXPANSE_8", "ckt": "5", "from_station": "FLAND", "to_station": "EXPSW", "OpEqName": "15050__K", "EquipmentName": "_K", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "manual_override", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.2035, "in_service_date": "2026-07-06", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": "ok", "match_status": "matched"}, {"teid": 869750, "rdfid": "d97b1bfa-9117-43c5-86d5-4e746677e474", "branch_id": 60112872, "ercotDampsseId": 14310, "from_bus": "MERRICK_T8", "to_bus": "EXPANSE_8", "ckt": "2", "from_station": "MKPOD", "to_station": "EXPSW", "OpEqName": "16095__A", "EquipmentName": "_A", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "manual_override", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.1895, "in_service_date": "2026-07-17", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": "ok", "match_status": "matched"}], "867352_867353": [{"teid": 867352, "rdfid": "a0f48343-601d-4ddd-b1d3-914e767b5cea", "branch_id": 60112900, "ercotDampsseId": 14341, "from_bus": "EMBAR_8", "to_bus": "NELSON_8", "ckt": "1", "from_station": "EMBSW", "to_station": "NELSW", "OpEqName": "6102__A", "EquipmentName": "_A", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.3737, "in_service_date": "2026-06-30", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 867353, "rdfid": "fdf99423-b972-433e-888a-9691ce509381", "branch_id": 60008626, "ercotDampsseId": 9816, "from_bus": "EMBAR_8", "to_bus": "LITTMAN_8", "ckt": "1", "from_station": "EMBSW", "to_station": "LTMAN", "OpEqName": "6104__A", "EquipmentName": "_A", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.3737, "in_service_date": "2026-06-30", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}], "837049_837039": [{"teid": 837049, "rdfid": "baed2e5c-cdce-48f3-b570-491216a9a199", "branch_id": 60102950, "ercotDampsseId": 5152, "from_bus": "LAWNDALE_8", "to_bus": "PAULINE_8", "ckt": "6", "from_station": "LDALE", "to_station": "PAULN", "OpEqName": "975__E", "EquipmentName": "_E", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.3429, "in_service_date": "2026-04-13", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 837039, "rdfid": "e1edfd98-d430-4eef-a60e-be6ab925cbe1", "branch_id": 60102949, "ercotDampsseId": 3768, "from_bus": "LAWNDALE_8", "to_bus": "MABANK_8", "ckt": "5", "from_station": "LDALE", "to_station": "MABNK", "OpEqName": "975__C", "EquipmentName": "_C", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.319, "in_service_date": "2026-04-13", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}], "768560_768550": [{"teid": 768560, "rdfid": "43f43219-6ac8-43b2-9656-0999df2c2a63", "branch_id": 60098663, "ercotDampsseId": 12737, "from_bus": "DOLRHIDE2_8", "to_bus": "ANDRCOSO_8", "ckt": "1", "from_station": "DHIDE", "to_station": "ACSSW", "OpEqName": "6112__C", "EquipmentName": "_C", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.3877, "in_service_date": "2026-03-17", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 768550, "rdfid": "cc33b84e-e43c-4576-94ee-22fcaa0be418", "branch_id": 60098662, "ercotDampsseId": 12736, "from_bus": "DOLRHIDE2_8", "to_bus": "NOTSW_1_8", "ckt": "1", "from_station": "DHIDE", "to_station": "NOTSW", "OpEqName": "6112__B", "EquipmentName": "_B", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.3877, "in_service_date": "2026-03-17", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}], "861118_861127": [{"teid": 861118, "rdfid": "97fac688-a2a5-4e84-b506-5f868a955bd1", "branch_id": 60104593, "ercotDampsseId": 13267, "from_bus": "POLSER2_8", "to_bus": "CRLTNFRK1_8", "ckt": "8", "from_station": "POLSR", "to_station": "CRLFR", "OpEqName": "840__G", "EquipmentName": "_G", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.322, "in_service_date": "2026-06-25", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 861127, "rdfid": "d724512d-c8aa-4cc8-937b-73a867c63750", "branch_id": 60104594, "ercotDampsseId": 13268, "from_bus": "POLSER2_8", "to_bus": "AUSRNCH2_8", "ckt": "9", "from_station": "POLSR", "to_station": "ATNRN", "OpEqName": "840__H", "EquipmentName": "_H", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.322, "in_service_date": "2026-06-25", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}], "734629_734630": [{"teid": 734629, "rdfid": "d0a7b87c-0133-4f23-8cf1-b675f1116d10", "branch_id": 60095718, "ercotDampsseId": 12349, "from_bus": "LKVEW_RC", "to_bus": "6939", "ckt": "1", "from_station": "LKVEW_RC", "to_station": "LKVTP_RC", "OpEqName": "LKVTP_LKVEW_RC_1", "EquipmentName": "1", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.3894, "in_service_date": "2025-12-26", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 734630, "rdfid": "dfb29505-1ea1-46fc-88b5-72c95e79c8b6", "branch_id": 60104071, "ercotDampsseId": 12350, "from_bus": "6939", "to_bus": "LAKVWNODE_8", "ckt": "1", "from_station": "LKVTP_RC", "to_station": "LKVEW", "OpEqName": "LKVTP_ONCOR_RC_1", "EquipmentName": "1", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.3894, "in_service_date": "2025-12-26", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}], "754376_754386": [{"teid": 754376, "rdfid": "76092cab-39d0-423c-bfcb-219356a9af83", "branch_id": 60098112, "ercotDampsseId": 1832, "from_bus": "TEXASINS_8", "to_bus": "SLOAN_8", "ckt": "1", "from_station": "TIODE", "to_station": "SLNSW", "OpEqName": "6590__B", "EquipmentName": "_B", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.3983, "in_service_date": "2025-10-03", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 754386, "rdfid": "b9606312-10de-48b8-92ca-2bf790547c93", "branch_id": 60098214, "ercotDampsseId": 12578, "from_bus": "MIDESSAS_8", "to_bus": "SLOAN_8", "ckt": "1", "from_station": "MDSSW", "to_station": "SLNSW", "OpEqName": "15140__A", "EquipmentName": "_A", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Closed", "dampsse_pct_inservice": 0.9818, "in_service_date": "2025-05-08", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}], "740953_740952": [{"teid": 740953, "rdfid": "3b975a5b-9445-454d-8f3f-683506621c46", "branch_id": 60096991, "ercotDampsseId": 12462, "from_bus": "REDCREEK7A", "to_bus": "ODYSSEUS7A", "ckt": "1", "from_station": "REDCREEK", "to_station": "ODYSSEUS", "OpEqName": "ODYSSE_REDCRE1_A", "EquipmentName": "A", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.4061, "in_service_date": "2025-12-31", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}, {"teid": 740952, "rdfid": "869bde57-6f97-4c50-ab20-6c0954f1a9ea", "branch_id": 60097021, "ercotDampsseId": 12441, "from_bus": "ODYSSEUS7A", "to_bus": "BLF_CRK7A", "ckt": "1", "from_station": "ODYSSEUS", "to_station": "BLUF_CRK", "OpEqName": "BLUF_C_ODYSSE1_A", "EquipmentName": "A", "DeviceType": "Line", "default_status": "Closed", "default_status_source": "dam_summer_presence", "dampsse_default_status": "Open", "dampsse_pct_inservice": 0.4057, "in_service_date": "2025-12-31", "in_service_date_source": "energization_outage", "retirement_date": "2099-12-31", "retirement_date_source": "default", "dates_review_flag": "ok", "status_review_flag": null, "match_status": "matched"}]};
+
+const COLUMNS = [
+  "teid", "rdfid", "branch_id", "ercotDampsseId", "from_bus", "to_bus", "ckt",
+  "from_station", "to_station", "OpEqName", "EquipmentName", "DeviceType",
+  "default_status", "default_status_source",
+  "dampsse_default_status", "dampsse_pct_inservice",
+  "in_service_date", "in_service_date_source",
+  "retirement_date", "retirement_date_source",
+  "dates_review_flag", "status_review_flag", "match_status",
+];
+
+function cell(v) {
+  if (v === null || v === undefined) return "";
+  return String(v);
+}
+
+function renderTable(rows, roleByTeid) {
+  const table = document.createElement("table");
+  const thead = document.createElement("thead");
+  const headRow = document.createElement("tr");
+  ["role", ...COLUMNS].forEach(c => {
+    const th = document.createElement("th");
+    th.textContent = c;
+    headRow.appendChild(th);
+  });
+  thead.appendChild(headRow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+  rows.forEach(row => {
+    const tr = document.createElement("tr");
+    const role = roleByTeid ? roleByTeid[row.teid] : null;
+    if (row.dampsse_default_status === "Open" && row.default_status === "Closed") {
+      tr.classList.add("flagged");
+    }
+
+    const roleTd = document.createElement("td");
+    if (role === "old") {
+      roleTd.innerHTML = '<span class="badge badge-old">old / suspect</span>';
+    } else if (role === "new") {
+      roleTd.innerHTML = '<span class="badge badge-new">new / replacement</span>';
+    }
+    tr.appendChild(roleTd);
+
+    COLUMNS.forEach(c => {
+      const td = document.createElement("td");
+      const v = row[c];
+      td.textContent = cell(v);
+      if (c === "default_status") td.classList.add("status-" + v);
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  return table;
+}
+
+document.getElementById("tier1-table").replaceWith(
+  renderTable(TIER1, {864377: "old", 864378: "old", 864375: "new", 864374: "new"})
+);
+
+const groupsDiv = document.getElementById("tier2-groups");
+Object.entries(TIER2_GROUPS).forEach(([groupName, rows]) => {
+  const h3 = document.createElement("h3");
+  h3.style.fontSize = "14px";
+  h3.style.color = "#c5cae9";
+  h3.style.marginTop = "18px";
+  h3.textContent = groupName.replace(/_/g, " / ");
+  groupsDiv.appendChild(h3);
+  const wrap = document.createElement("div");
+  wrap.className = "wrap";
+  wrap.appendChild(renderTable(rows, null));
+  groupsDiv.appendChild(wrap);
+});
+</script>
+
+</body>
+</html>
