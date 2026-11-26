@@ -2,7 +2,7 @@
 
 Reads SCOPF study output (Snowflake AWOPF) and finds CRR trading opportunities:
 binding constraints → marginal units → outage/topology driver → (later) fast-scan
-headroom + path optimization. Design spec: `docs/superpowers/specs/2026-08-10-powerflow-analytics-design.md`.
+headroom + path optimization. The design spec file no longer exists; see the tracking issue "Clean-up of powerflow_analytics and fast_scan" on awe-sd/scratch-container.
 
 ## Conventions
 

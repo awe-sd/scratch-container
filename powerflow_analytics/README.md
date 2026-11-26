@@ -1,7 +1,7 @@
 # powerflow_analytics
 
 SCOPF study results → CRR opportunity finder. See `CLAUDE.md` for conventions
-and `docs/superpowers/specs/2026-08-10-powerflow-analytics-design.md` for the design.
+(the design spec no longer exists; see the tracking issue "Clean-up of powerflow_analytics and fast_scan" on awe-sd/scratch-container).
 
 ## Workflow
 

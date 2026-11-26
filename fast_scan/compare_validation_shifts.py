@@ -1,6 +1,6 @@
 """Compare study shift factors (CPNODE_SHIFTS_VIEW) against DART actual shifts
 (psenShiftDef type 14) for every validation-fast-scan topology-shift-set config
-of a study. See fast_scan/shift_benchmarking.py::benchmark_shifts for the
+of a study. See fast_scan/archive/shift_benchmarking.py::benchmark_shifts for the
 reference join this reuses (DART_shifts CTE, reference-bus normalization).
 """
 import argparse

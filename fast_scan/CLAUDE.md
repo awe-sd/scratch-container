@@ -31,7 +31,7 @@ uv run --project powerflow_analytics python fast_scan/build_mismatch_report.py -
 - `compare_validation_shifts.py` — pulls raw joined rows/set (cached to `cache/<set_id>[_<date_from>_<date_to>].parquet`), fits sign, writes `summary.csv`/`per_topology.parquet`/`per_cpnode.parquet` (study root or `--out-subdir`; cache always at study root). `--sets id1,id2` restricts; `--limit` caps count; `--no-cache` forces re-pull.
 - `mismatch_analysis.py` — re-reads the same per-set cache (must match `--date-from`/`--date-to`), does row-level mismatch/classification: REF_OFFSET correction, per-topology-hour sign resolution (`--sign-guard`, default 0.02), thresholds (`--rank-tol`, `--node-rate`, `--hour-bad-share`). Writes under `--out-subdir` (default `june`).
 - `build_mismatch_report.py` — reads only `--out-subdir` outputs above, renders `report.html` (sortable tables) into the same subdir.
-- `shift_benchmarking.py` — legacy notebook conversion, imports `AWUtil`/`AWDecomp`, **not installed in this venv**; do not run. Kept as reference for the original join logic `compare_validation_shifts.py` reused (see that script's docstring).
+- `archive/shift_benchmarking.py` — legacy notebook conversion, imports `AWUtil`/`AWDecomp`, **not installed in this venv**; do not run. Kept as reference for the original join logic `compare_validation_shifts.py` reused (see that script's docstring).
 
 ## Output layout
 
