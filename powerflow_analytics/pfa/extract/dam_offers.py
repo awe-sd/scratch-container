@@ -18,6 +18,7 @@ e.g. the Forney Energy Center's confirmed resource code is FRNYPP (pattern
 """
 from __future__ import annotations
 
+import re
 from datetime import date
 from typing import Iterable, Optional
 
@@ -26,6 +27,9 @@ import pandas as pd
 from .. import sf
 
 _SEGMENTS = range(1, 11)
+
+CAPACITY_ROW_LIMIT = 200000
+_CURVE_COLS = ",".join(f"CURVEMW{i},CURVEPRICE{i}" for i in _SEGMENTS)
 
 _CURVE_COLUMNS = ["RESOURCE", "DELIVERYDATE", "HOURENDING", "SEGMENT", "MW", "PRICE"]
 _SUMMARY_COLUMNS = [
@@ -213,3 +217,43 @@ def summarize_offers(resource_like: str, start: date, end: date) -> pd.DataFrame
     names = _resource_names(genids)
     df["RESOURCE"] = df["GENID"].map(names)
     return df[_SUMMARY_COLUMNS]
+
+
+def _quoted_points(settlement_points: Iterable) -> str:
+    return ",".join(f"'{re.sub(chr(39), '', s)}'" for s in set(settlement_points) if isinstance(s, str))
+
+
+def latest_curves_at_hours(settlement_points: Iterable, hours=(12, 18)) -> pd.DataFrame:
+    """Wide offer rows (SETTLEMENTPOINTNAME, CURVEMW1..10, CURVEPRICE1..10) for the listed
+    settlement points at the listed hour-endings, last 14 days of the disclosure (LIMIT 5000)."""
+    names = _quoted_points(settlement_points)
+    if not names:
+        return pd.DataFrame()
+    return sf.query("AW", f"""
+        SELECT SETTLEMENTPOINTNAME, {_CURVE_COLS}
+        FROM AW.DBO.ERCOT60DDAMGENRESOURCE
+        WHERE DELIVERYDATE >= DATEADD(day, -14, (SELECT MAX(DELIVERYDATE) FROM AW.DBO.ERCOT60DDAMGENRESOURCE))
+          AND HOURENDING IN ({','.join(map(str, hours))})
+          AND SETTLEMENTPOINTNAME IN ({names})
+        LIMIT 5000""")
+
+
+def latest_capacity_rows(settlement_points: Iterable, first_hour: int = 7, last_hour: int = 22) -> pd.DataFrame:
+    """Wide offer rows plus HSL, LSL, AWARDEDQUANTITY for the settlement points over HE first..last,
+    last 14 days of the disclosure. Raises if the LIMIT is hit (truncated)."""
+    names = _quoted_points(settlement_points)
+    if not names:
+        return pd.DataFrame()
+    df = sf.query("AW", f"""
+        SELECT SETTLEMENTPOINTNAME, HSL, LSL, AWARDEDQUANTITY, {_CURVE_COLS}
+        FROM AW.DBO.ERCOT60DDAMGENRESOURCE
+        WHERE DELIVERYDATE >= DATEADD(day, -14, (SELECT MAX(DELIVERYDATE) FROM AW.DBO.ERCOT60DDAMGENRESOURCE))
+          AND HOURENDING BETWEEN {first_hour} AND {last_hour}
+          AND SETTLEMENTPOINTNAME IN ({names})
+        LIMIT {CAPACITY_ROW_LIMIT}""")
+    if len(df) >= CAPACITY_ROW_LIMIT:
+        raise RuntimeError(
+            f"latest_capacity_rows: hit the {CAPACITY_ROW_LIMIT}-row LIMIT — results are truncated; "
+            "narrow the hour window or settlement-point set"
+        )
+    return df

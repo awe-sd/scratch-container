@@ -41,13 +41,10 @@ Defect 2's dispatch_screen flags many of the same constraints unenforceable.
 """
 from __future__ import annotations
 
-import re
-
 import pandas as pd
 
-from .. import sf
 from ..constraint_id import ConstraintId, constraint_key
-from ..extract import shifts
+from ..extract import dam_offers as dam_offers_reader, shifts
 from .valuation import PRICE_CAP
 
 N_PAIR = 40   # movers per side considered before shift-factor filtering
@@ -150,17 +147,7 @@ def sced_names(pair: pd.DataFrame, bus_names: pd.DataFrame, genunit: pd.DataFram
 
 def dam_offers(sced: list[str], hours=(12, 18)) -> pd.DataFrame:
     """Median offer at 60%/90% of curve for the latest disclosed month."""
-    names = ",".join(f"'{re.sub(chr(39), '', s)}'" for s in set(sced) if isinstance(s, str))
-    if not names:
-        return pd.DataFrame()
-    cols = ",".join(f"CURVEMW{i},CURVEPRICE{i}" for i in range(1, 11))
-    df = sf.query("AW", f"""
-        SELECT SETTLEMENTPOINTNAME, {cols}
-        FROM AW.DBO.ERCOT60DDAMGENRESOURCE
-        WHERE DELIVERYDATE >= DATEADD(day, -14, (SELECT MAX(DELIVERYDATE) FROM AW.DBO.ERCOT60DDAMGENRESOURCE))
-          AND HOURENDING IN ({','.join(map(str, hours))})
-          AND SETTLEMENTPOINTNAME IN ({names})
-        LIMIT 5000""")
+    df = dam_offers_reader.latest_curves_at_hours(sced, hours)
     if df.empty:
         return df
 

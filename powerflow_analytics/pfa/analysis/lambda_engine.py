@@ -24,13 +24,10 @@ the working chain avoids re-breaking that already-diagnosed mapping.
 """
 from __future__ import annotations
 
-import re
-
 import pandas as pd
 
-from .. import sf
 from ..constraint_id import ConstraintId
-from ..extract import fastscan, shifts
+from ..extract import dam_offers, fastscan, shifts
 from .offer_lambda import MAX_SF, MIN_SF, sced_names
 from .valuation import PRICE_CAP
 
@@ -110,24 +107,9 @@ def relief_set(study_id: int, constraint: str, gen: pd.DataFrame,
 def dam_capacity(sced: list[str], hours=(7, 22)) -> pd.DataFrame:
     """Per-unit median offer price (P60) and headroom (HSL, AWARDEDQUANTITY,
     LSL) over the latest disclosed 2-week window, HE 7-22."""
-    names = ",".join(f"'{re.sub(chr(39), '', s)}'" for s in set(sced) if isinstance(s, str))
-    if not names:
-        return pd.DataFrame()
-    cols = ",".join(f"CURVEMW{i},CURVEPRICE{i}" for i in range(1, 11))
-    df = sf.query("AW", f"""
-        SELECT SETTLEMENTPOINTNAME, HSL, LSL, AWARDEDQUANTITY, {cols}
-        FROM AW.DBO.ERCOT60DDAMGENRESOURCE
-        WHERE DELIVERYDATE >= DATEADD(day, -14, (SELECT MAX(DELIVERYDATE) FROM AW.DBO.ERCOT60DDAMGENRESOURCE))
-          AND HOURENDING BETWEEN {hours[0]} AND {hours[1]}
-          AND SETTLEMENTPOINTNAME IN ({names})
-        LIMIT 200000""")
+    df = dam_offers.latest_capacity_rows(sced, hours[0], hours[1])
     if df.empty:
         return df
-    if len(df) >= 200000:
-        raise RuntimeError(
-            "dam_capacity: hit the 200000-row LIMIT — results are truncated; "
-            "narrow the hour window or relief set before trusting P60/HSL/AWARDED"
-        )
 
     def p60(row):
         pts = [(row[f"CURVEMW{i}"], row[f"CURVEPRICE{i}"]) for i in range(1, 11)
