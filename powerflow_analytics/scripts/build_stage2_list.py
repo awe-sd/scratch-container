@@ -1,7 +1,7 @@
 """Consolidated two-step CRR screening pipeline (step-1 screen -> flip detection -> stage-2 gate -> HTML).
 
 Reproduces the approved study-14412 deliverable for an arbitrary study id, per
-docs/superpowers/specs/2026-08-12-screen-and-deepdive-productization.md (Feature 1 +
+tracking issue awe-sd/scratch-container #6 (Feature 1 +
 extensibility bar): eight named stage functions, each cache/CSV in -> DataFrame out,
 so any stage is independently importable/testable; main() is orchestration + I/O only.
 
