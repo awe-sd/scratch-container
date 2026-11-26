@@ -31,7 +31,7 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
-testpaths = ["archive/branch_tracking/tests", "powerflow_analytics/tests"]
+testpaths = ["archive/branch_tracking/tests", "powerflow_analytics/tests", "fast_scan/station_injection/tests"]
 
 [tool.uv.sources]
 awconnect = { path = "../../home/node/awconnect", editable = true }
