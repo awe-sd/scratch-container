@@ -33,7 +33,20 @@ The main session model (Fable/Opus-class) does **thinking, grading, and planning
 
 ## Subprojects
 
-- `branch_tracking/` — in-progress transmission-branch tracking table design (ERCOT / `isomarketid = 6`). See its own `CLAUDE.md` for details specific to that work.
-- `gis-research/` — ERCOT GIS interconnection-queue research + an interactive HTML queue report (`build_queue_report.py`: zone×milestone table + Texas county choropleth, all client-side). See its own `CLAUDE.md` for the data-model gotchas (grain, date-valued milestone columns, exclusion rules, GW). This worktree is `worktree-GIS-research`.
-- `powerflow_analytics/` — SCOPF study output (Snowflake AWOPF) → CRR opportunity finder: binding constraints, marginal units, offer-derived λ(depth), outage drivers, valuation. Own `CLAUDE.md` (data gotchas + study-family rules). Studies 14411/12/25/31 (Sep-2026 auction family) + 14492 (2028 planning) analyzed.
-- `load-forecast/` — ERCOT weather-zone load-growth + scenario-replay engine (size index × LightGBM shape). Own `CLAUDE.md`; NOTE: its division-of-labor section OVERRIDES the repo rule above — main session codes that project. Current direction: 08-Y all-8-zone joint probabilistic index + system-wide forecast (spec pending).
+Live:
+
+- `powerflow_analytics/` — SCOPF study output (Snowflake AWOPF) → CRR opportunity finder: binding constraints, marginal units, offer-derived λ(depth), outage drivers, valuation. Own `CLAUDE.md` (data gotchas + study-family rules).
+- `fast_scan/` — study-vs-DART shift-factor benchmarking and fast-scan work; includes `station_injection/` (SE net injection by kV, fast-scan V2 procs, bus-injection plan).
+- `analytics/` — ad-hoc congestion/shift-factor analysis scripts (own `CLAUDE.md`).
+
+Archived (frozen, not developed here):
+
+- `archive/branch_tracking/` — transmission-branch tracking table (ERCOT / `isomarketid = 6`); graduated to the baseline repo.
+- `archive/gis-research/` — ERCOT GIS interconnection-queue research + HTML queue report; graduated to the precog repo.
+- `archive/load-forecast/` — ERCOT weather-zone load-growth + scenario-replay engine; parked.
+
+## Branches and specs
+
+1. `master` is the single line of work; each session works on a short-lived branch off master and merges back when its task is done; no long-lived per-project branches.
+2. Worktrees go only under `.claude/worktrees/`, never `/tmp`.
+3. Plans and specs are not committed as files; they go in GitHub issues on awe-sd/scratch-container.

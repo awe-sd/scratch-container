@@ -11,9 +11,9 @@ In-progress design for a topology database table that tracks transmission branch
 ## Code layout (post phase-1)
 
 - `pipeline/` — 9 pure-logic modules, no DB access: `config`, `naming`, `mapping`, `legs`, `dates`, `dampsse`, `status`, `assemble`, `network`. Imported by scripts via a `sys.path` bootstrap (no packaging yet — that's phase 5).
-- `scripts/` — the original entry points are now thin wrappers around `pipeline/`: DB pulls + prints + CSV writes only. Every existing `uv run branch_tracking/scripts/<name>.py` invocation still works unchanged.
+- `scripts/` — the original entry points are now thin wrappers around `pipeline/`: DB pulls + prints + CSV writes only. Every existing `uv run archive/branch_tracking/scripts/<name>.py` invocation still works unchanged.
 - `scripts/adhoc/` — one-off investigation scripts, out of production scope, moved here verbatim.
-- `tests/` — test files (under `branch_tracking/`), including a golden byte-identity gate (`test_goldens.py`) and fixture-based regression pins for hand-verified marquee teids. Run with `uv run pytest` from the repo root (`testpaths` points here).
+- `tests/` — test files (under `archive/branch_tracking/`), including a golden byte-identity gate (`test_goldens.py`) and fixture-based regression pins for hand-verified marquee teids. Run with `uv run pytest` from the repo root (`testpaths` points here).
 
 Full docs restructure is deferred to phase 5; this section is just an orientation pointer for phase 1.
 
@@ -27,7 +27,7 @@ Never create the table against the actual database and never run `INSERT`/`dfIns
 
 ## Scripts
 
-All investigation/working scripts for this folder live under `scripts/`, checked into the repo — never in `/tmp` or the scratchpad. Run them with `uv run branch_tracking/scripts/<name>.py` from the repo root (see the top-level `CLAUDE.md` for why plain `uv run` is enough here, regardless of any `VIRTUAL_ENV` set in the shell).
+All investigation/working scripts for this folder live under `scripts/`, checked into the repo — never in `/tmp` or the scratchpad. Run them with `uv run archive/branch_tracking/scripts/<name>.py` from the repo root (see the top-level `CLAUDE.md` for why plain `uv run` is enough here, regardless of any `VIRTUAL_ENV` set in the shell).
 
 - `scripts/explore_branch_schema.py` — BRANCH/PTOBRANCH schema + sample via Snowflake (`AW.DBO`).
 - `scripts/explore_branch_sqlserver.py` — same investigation via SQL Server (`awconnect.db`, `dbo.BRANCH`). Kept alongside the Snowflake version because the two sources disagree — see "Source discrepancy" below.

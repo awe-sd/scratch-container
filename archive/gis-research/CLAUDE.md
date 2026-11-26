@@ -39,7 +39,7 @@ PROGRESS.md is the at-a-glance state (in-flight tracks, relaunch gate, backlog).
 - These objects are **SQL Server `AW.dbo` only** — not in Snowflake for the read-only role.
 - **`data/ercot_generation_interconnect.parquet` + `data/ercot_generation_interconnect_view.parquet`
   are intentionally tracked in git** — the only two exceptions to the "parquet lives on S3,
-  not in git" rule (`.gitignore`'s `gis-research/data/*.parquet`). A fresh clone needs the
+  not in git" rule (`.gitignore`'s `archive/gis-research/data/*.parquet`). A fresh clone needs the
   live queue snapshot on disk to bootstrap `factsheet.py`/`run_agent.py`/the report builder
   without an S3 pull first; re-commit them after a monthly queue refresh.
 

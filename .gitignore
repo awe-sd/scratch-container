@@ -70,9 +70,6 @@ archive/gis-research/docs/
 archive/gis-research/assets/
 archive/gis-research/output/
 .claude/*
-archive/gis-research/data/*
-archive/gis-research/outputr/*
-archive/gis-research/research/*
 archive/branch_tracking/data/*
 !archive/branch_tracking/data/CIM_Jul_ML1_1_07142026_Redacted_20260801-003000_TeidMap.csv
 !archive/branch_tracking/data/base_model.csv
@@ -81,3 +78,9 @@ archive/branch_tracking/data/*
 fast_scan/output/*
 archive/load-forecast/data*
 archive/load-forecast/output*
+
+# root symlinks to separate repos; untracked raw log dumps
+/baseline
+/precog
+/upload.txt
+/upload_run.txt
