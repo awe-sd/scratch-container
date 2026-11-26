@@ -1,9 +1,9 @@
 import argparse
 import json
-import sys
-from pathlib import Path
 
 import pandas as pd
+
+from shift_common import get_config_labels, output_dir, window_label
 
 
 def fmt(v, spec):
@@ -11,20 +11,8 @@ def fmt(v, spec):
         return "—"
     return format(v, spec)
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "powerflow_analytics"))
-from pfa.sf import query  # noqa: E402
-
 TOP_DETAIL_N = 20
 TOP_MAXDIFF_N = 10
-
-
-def get_config_labels(study_id: int, created_after: str) -> pd.DataFrame:
-    sql = f"""
-    SELECT TOPOLOGYSHIFTSETID, BRANCHLABEL, CTGLABEL
-    FROM AW.POPT.TOPOLOGYSHIFTSETDEF
-    WHERE STUDYID={study_id} AND CREATEDATE >= '{created_after}'
-    """
-    return query("AW", sql)
 
 
 def sortable_table(id_, headers, rows_html):
@@ -105,9 +93,10 @@ def detail_block(set_id, per_topo, per_node):
 """
 
 
-def build(study_id: int, created_after: str, out_subdir: str):
-    base_dir = Path(__file__).resolve().parent / "output" / "validation_shift_compare" / str(study_id)
-    out_dir = base_dir / out_subdir
+def build(study_id: int, created_after: str, out_subdir: str, date_from: str, date_to: str):
+    out_dir = output_dir(study_id, out_subdir)
+    base_dir = output_dir(study_id)
+    month = window_label(date_from, date_to) or "window"
 
     summary = pd.read_csv(out_dir / "mismatch_summary.csv").sort_values(
         ["max_nodes_mismatch_bad_hours", "avg_abs_diff_mismatch_bad_hours"], ascending=[False, False]
@@ -267,11 +256,11 @@ Sections: <a href="#hdr">Header/Params</a> | <a href="#t1">Table 1</a> | <a href
 """
 
     html = f"""<!doctype html>
-<html><head><meta charset="utf-8"><title>Mismatch Analysis — Study {study_id} (June)</title>
+<html><head><meta charset="utf-8"><title>Mismatch Analysis — Study {study_id} ({month})</title>
 {STYLE}
 </head>
 <body>
-<h1 id="hdr">Validation Shift Mismatch Analysis — Study {study_id}, June 2026-06-01 to 2026-06-30</h1>
+<h1 id="hdr">Validation Shift Mismatch Analysis — Study {study_id}, {month} {date_from} to {date_to}</h1>
 {sections_toc}
 <div class="params">
 <b>Grain:</b> a topology-hour = (topology VARIANT &times; clock-hour) pair; several variants can share one clock-hour
@@ -287,14 +276,14 @@ by minimizing MAE for that topology; <b>SIGN_UNRESOLVED</b> (--sign-guard = {par
 neither sign fits well (min MAE &gt; guard) — these keep the study convention sign +1 rather than a spurious best fit.<br>
 <b>REF_OFFSET:</b> if |bias|&gt;0.8&middot;MAE and &ge;90% of a config's cpnodes have bias within &plusmn;0.002 of the
 config bias, that constant offset is subtracted before mismatch counting; the "RefOffset nodes before&rarr;after" column
-shows the June-wide node-mismatch-rate count before and after de-biasing (can rise OR fall).<br>
+shows the {month}-wide node-mismatch-rate count before and after de-biasing (can rise OR fall).<br>
 <b>DUP_FANOUT:</b> root cause was duplicate rows inside AW.dbo.PSENSHIFT itself (psenshiftid 85019908 had 2222 rows for
 1111 cpnodes, bit-identical; mirrored on the study side for &times;4 total) — fixed upstream via QUALIFY ROW_NUMBER()
 dedupe on both join CTEs; the 3 affected sets (112447, 112449, 112421) were re-pulled with cache bypass and now show
 0 duplicate keys.<br>
 <b>Node labels</b> (Table 4) are rebased on BAD CLOCK-HOURS only, and require &ge;{params['min_bad_clock_hours_for_membership']}
 distinct bad clock-hours of a constraint before a node counts as "off in constraint X" (a single bad hour no longer
-taints a node's whole-June record). Tolerances: RANK_TOL = {params['rank_tol']}. The "JuneWide nodes/total" column
+taints a node's whole-{month} record). Tolerances: RANK_TOL = {params['rank_tol']}. The "JuneWide nodes/total" column
 (rate-based, NODE_RATE = {params['node_rate']:.0%}) stays demoted/fragile — with only 4-17 topology-hours per config in
 some cases, a single bad hour can push several nodes over a 10% rate gate on its own. Row-level shares at 0.0005/0.001/
 0.01 are reference only. Units: shift-factor (psen), dimensionless.<br>
@@ -304,7 +293,7 @@ has median {clean_share_001_median:.2%}, p90 {clean_share_001_p90:.2%}. Conclusi
 reproduce DART within 0.01 — but NOT within 0.001.</b>
 </div>
 <div class="warn">
-{n_mixed_sign} configs MIXED_SIGN (within June) &middot; {n_ref_offset} configs REF_OFFSET &middot;
+{n_mixed_sign} configs MIXED_SIGN (within {month}) &middot; {n_ref_offset} configs REF_OFFSET &middot;
 {n_sign_unresolved} topology-hours SIGN_UNRESOLVED &middot; {n_dup_fixed} configs had DUP_FANOUT (now fixed, dedupe
 confirmed 0 duplicate keys): {', '.join(summary[summary['DUP_FANOUT_FIXED']]['BRANCHLABEL'] + '/' + summary[summary['DUP_FANOUT_FIXED']]['CTGLABEL'])}.
 </div>
@@ -317,9 +306,9 @@ Two study topologies (85823400, 85841928) are genuinely bad matches to reality (
 two (85713639, 85768862) are much closer (99/971, 93/971 nodes, MAE ~0.005) but still clear the 5% HOUR_BAD_SHARE gate
 on node count. <b>The comparison itself is sound here</b> — no sign/reference/definitional artifact; 505_B/DVENFTS5 is
 likewise a real, verified error.<br>
-<b>DBIGKEN5 family, qualified:</b> the family is clean of SIGN artifacts (0/89 June configs MIXED_SIGN), but
+<b>DBIGKEN5 family, qualified:</b> the family is clean of SIGN artifacts (0/89 {month} configs MIXED_SIGN), but
 TREADW_YELWJC11/DBIGKEN5 06-07 h21 (max 0.698) and HAMILT_MAXWEL11/DBIGKEN5 06-17 h24 (max 0.536) remain the two
-largest real max|diff| values in all of June — genuine errors, not artifacts.
+largest real max|diff| values in all of {month} — genuine errors, not artifacts.
 </div>
 
 <h2 id="t1">1. Per-constraint mismatch summary (sorted by max nodes off in a bad hour desc, then avg|diff| in bad hours desc)</h2>
@@ -345,7 +334,7 @@ clusters are 06-30, 06-10, 06-17, and 06-07 (TREADW_YELWJC11/DBIGKEN5, max|diff|
 
 <h2 id="t4">4. Node summary — top 50 by n_constraints_mismatching</h2>
 <div class="caveat">Caveat: with membership requiring &ge;2 bad clock-hours per constraint, the node-label distribution below is
-a real signal (not degenerate), but June only has 20 bad clock-hours total across 89 constraints — treat these as
+a real signal (not degenerate), but {month} only has 20 bad clock-hours total across 89 constraints — treat these as
 directional, not a large-sample finding.</div>
 {sortable_table('t4', t4_headers, t4_rows)}
 
@@ -363,6 +352,8 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--study", type=int, required=True)
     ap.add_argument("--created-after", type=str, required=True)
-    ap.add_argument("--out-subdir", type=str, default="june")
+    ap.add_argument("--out-subdir", type=str, required=True)
+    ap.add_argument("--date-from", type=str, required=True)
+    ap.add_argument("--date-to", type=str, required=True)
     args = ap.parse_args()
-    build(args.study, args.created_after, args.out_subdir)
+    build(args.study, args.created_after, args.out_subdir, args.date_from, args.date_to)

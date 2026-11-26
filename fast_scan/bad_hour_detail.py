@@ -1,14 +1,12 @@
 """Bad-hour drill-down for a deep-dive constraint: reuses cached raw parquet + sign
-resolution from constraint_deep_dive.py's pipeline instead of requerying Snowflake.
+resolution from shift_constraint_deep_dive.py's pipeline instead of requerying Snowflake.
 """
 import argparse
-import sys
-from pathlib import Path
 
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from mismatch_analysis import resolve_signs_and_offset  # noqa: E402
+from mismatch_analysis import resolve_signs_and_offset
+from shift_common import cache_dir as study_cache_dir, output_dir
 
 
 def main():
@@ -19,12 +17,12 @@ def main():
     ap.add_argument("--set-id", type=int, required=True)
     ap.add_argument("--date-from", type=str, required=True)
     ap.add_argument("--date-to", type=str, required=True)
+    ap.add_argument("--out-subdir", type=str, required=True)
     ap.add_argument("--rank-tol", type=float, default=0.01)
     ap.add_argument("--sign-guard", type=float, default=0.02)
     args = ap.parse_args()
 
-    cache_dir = Path(__file__).resolve().parent / "output" / "validation_shift_compare" / str(args.study) / "cache"
-    cache_path = cache_dir / f"{args.set_id}_{args.date_from}_{args.date_to}.parquet"
+    cache_path = study_cache_dir(args.study) / f"{args.set_id}_{args.date_from}_{args.date_to}.parquet"
     raw = pd.read_parquet(cache_path)
     df, meta = resolve_signs_and_offset(raw, args.sign_guard)
 
@@ -62,7 +60,7 @@ def main():
     print(f"Distinct mismatched nodes (|diff|>{args.rank_tol}) at this hour: {n_mismatch_nodes}")
     print(top10.to_string(index=False))
 
-    out_dir = Path(__file__).resolve().parent / "output" / "validation_shift_compare" / str(args.study) / "june"
+    out_dir = output_dir(args.study, args.out_subdir)
     out_path = out_dir / f"deep_dive_{args.branch}_{args.ctg}_bad_hour.csv"
     top10.to_csv(out_path, index=False)
     print(f"Wrote {out_path}")
