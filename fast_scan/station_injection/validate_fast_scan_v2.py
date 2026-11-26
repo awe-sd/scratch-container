@@ -1,28 +1,35 @@
-"""Validate SP_RUN_FAST_SCAN_TEST_V2's main SELECT against V1 production rows.
+"""Validate SP_RUN_FAST_SCAN_TEST_V2's calculation against V1 production rows.
 
-Extracts the WITH...final-SELECT body straight out of sp_fast_scan_v2.sql (so the two
-files stay in sync by construction), substitutes the procedure's binds with literals
-pulled from FAST_SCAN_CONFIG, runs it as a plain SELECT (no CALL, no INSERT), and
-diffs the result against V1 rows already sitting in FAST_SCAN_RESULTS for the same
-config (V1 rows are on the hour -- MINUTE(TIMESTAMP) = 0 -- V2 rows carry snapshot
-minutes, typically :57).
+proc_extraction turns the staged procedure in sp_fast_scan_v2.sql (three TMP_* stages plus the
+INSERT INTO FAST_SCAN_RESULTS select) into ONE read-only SELECT, binds the procedure's
+variables to literals from FAST_SCAN_CONFIG and the CLI dates, runs it (no CALL, no write),
+and diffs the result against V1 rows already in FAST_SCAN_RESULTS for the same config (V1 rows
+are on the hour -- MINUTE(TIMESTAMP) = 0 -- V2 rows carry snapshot minutes, typically :57).
+Not covered: the guards/date defaulting (replaced by the CLI args) and the FAST_SCAN_RT_CONSTRAINTS
+delete+insert (a write; its source stage TMP_BINDING_ROWS is replayed but not compared here).
 
-Usage:
-    /workspaces/scratch-workspace/.venv/bin/python validate_fast_scan_v2.py \
-        --config-id 1 --start 2024-06-01 --end 2024-06-07
+Usage (from the repo root; read-only role):
+    uv run --project /workspaces/scratch-workspace python \\
+        fast_scan/station_injection/validate_fast_scan_v2.py \\
+        --config-id 254330 --start 2026-06-01 --end 2026-06-14 --skip-par
 """
 
 import argparse
-import re
 from pathlib import Path
 
 import awconnect
 import pandas as pd
 from awconnect import snowflake
 
+import proc_extraction as pe
+
 SQL_FILE = Path(__file__).parent / "sp_fast_scan_v2.sql"
 OUTPUT_DIR = Path(__file__).parent / "output"
 
+STAGES = ["TMP_STATION_KV_SHIFTS", "TMP_INJECTION_FLOW", "TMP_BINDING_ROWS"]
+FINAL_TARGET = "FLOW_ANALYSIS.FAST_SCAN_RESULTS"
+CONFIG_BINDS = ["PSENSHIFTID", "FROM_NUM", "TO_NUM", "CKT", "CTG_LABEL", "PTOID", "BRANCH_NAME",
+                "DEFAULT_RATE_B", "DEFAULT_RATE_B_RT"]
 DIFF_COLUMNS = ["INJECTION_FLOW", "DAM_RATE_B", "REALTIME_RATE_B", "RT_CONSTRAINT_VALUE"]
 
 
@@ -30,72 +37,26 @@ def q(sql, db="AW"):
     return snowflake.performQuery(db, sql, warehouse=snowflake.READ_ONLY_WH, logInfo=False)
 
 
-def extract_main_query(sql_text: str) -> str:
-    marker = "-- 4. THE MAIN CALCULATION"
-    marker_idx = sql_text.index(marker)
-    with_match = re.search(r"\bWITH\b", sql_text[marker_idx:])
-    if with_match is None:
-        raise ValueError("could not find WITH after the '-- 4. THE MAIN CALCULATION' marker")
-    with_idx = marker_idx + with_match.start()
-    end_idx = sql_text.index("WHERE NOT EXISTS", with_idx)
-    query = sql_text[with_idx:end_idx]
-    query = query.replace("''", "'")
-    return query.strip()
-
-
-def sql_literal(val):
-    if pd.isna(val):
-        return "NULL"
-    if isinstance(val, str):
-        return "'" + val.replace("'", "''") + "'"
-    return str(val)
-
-
-def stub_cte(query: str, cte_name: str, stub_select: str) -> str:
-    """Replace a named CTE's body with `stub_select` (validation-run only workaround for
-    a source table this role can't read), keeping the CTE name and paren wrapper intact
-    so downstream joins still compile. `stub_select` must project the same output columns
-    the real CTE body did."""
-    marker = f"{cte_name} AS ("
-    start = query.index(marker)
-    open_paren_idx = start + len(marker) - 1
-    depth = 0
-    i = open_paren_idx
-    while True:
-        if query[i] == "(":
-            depth += 1
-        elif query[i] == ")":
-            depth -= 1
-            if depth == 0:
-                break
-        i += 1
-    end_paren_idx = i
-    return query[: open_paren_idx + 1] + f"\n        {stub_select}\n    " + query[end_paren_idx:]
-
-
-def substitute_binds(query: str, config: dict, config_id: int, start: str, end: str) -> str:
-    # Longest/most-specific names first so e.g. v_default_rate_b_rt isn't clobbered by
-    # a v_default_rate_b substitution.
-    subs = [
-        ("P_INCLUDE_CURTAILMENT", "TRUE"),
-        ("P_ISO_MARKET_ID", "6"),
-        ("P_CONFIG_ID", str(config_id)),
-        ("v_default_rate_b_rt", sql_literal(config["DEFAULT_RATE_B_RT"])),
-        ("v_default_rate_b", sql_literal(config["DEFAULT_RATE_B"])),
-        ("v_actual_start", f"'{start}'"),
-        ("v_actual_end", f"'{end}'"),
-        ("v_branch_name", sql_literal(config["BRANCH_NAME"])),
-        ("v_psenshiftid", sql_literal(config["PSENSHIFTID"])),
-        ("v_from_num", sql_literal(config["FROM_NUM"])),
-        ("v_to_num", sql_literal(config["TO_NUM"])),
-        ("v_ckt", sql_literal(config["CKT"])),
-        ("v_ctg_label", sql_literal(config["CTG_LABEL"])),
-        ("v_ptoid", sql_literal(config["PTOID"])),
-        ("v_cim_file_id", "205"),
-    ]
-    for name, value in subs:
-        query = re.sub(r":" + name + r"\b", value, query, flags=re.IGNORECASE)
-    return query
+def build_query(config: dict, config_id: int, start: str, end: str, skip_par: bool) -> tuple:
+    ex = pe.extract_readonly_query(
+        SQL_FILE.read_text(), STAGES, FINAL_TARGET, source=SQL_FILE.name)
+    query = ex.query
+    if skip_par:
+        query = pe.stub_cte(
+            query, "ParInjectionFlow",
+            "SELECT NULL::TIMESTAMP_NTZ AS HOUR_START, 0.0 AS PAR_FLOW WHERE FALSE",
+        )
+        query = pe.stub_cte(
+            query, "RenewableUnits",
+            "SELECT NULL::VARCHAR AS UNIT_CODE, NULL::VARCHAR AS FUEL_TYPE WHERE FALSE",
+        )
+    values = {
+        **ex.declared_defaults,
+        "P_CONFIG_ID": config_id, "P_INCLUDE_CURTAILMENT": True, "P_ISO_MARKET_ID": 6,
+        "v_actual_start": start, "v_actual_end": end,
+        **{f"v_{k.lower()}": config[k] for k in CONFIG_BINDS},
+    }
+    return pe.bind(query, values), ex
 
 
 def main():
@@ -121,24 +82,10 @@ def main():
     config = config_df.iloc[0].to_dict()
     print(config_df.to_string())
 
-    sql_text = SQL_FILE.read_text()
-    query = extract_main_query(sql_text)
+    query, ex = build_query(config, args.config_id, args.start, args.end, args.skip_par)
+    print(pe.describe_coverage(ex, SQL_FILE.name))
     if args.skip_par:
-        query = stub_cte(
-            query, "ParInjectionFlow",
-            "SELECT NULL::TIMESTAMP_NTZ AS HOUR_START, 0.0 AS PAR_FLOW WHERE FALSE",
-        )
-        print("PAR flow stubbed to 0 (PARERCOTVIEW not readable from this role)")
-        # AW.DBO.ERCOT_RESOURCE_ADEQUACY_REPORT_VIEW (RenewableUnits) is likewise
-        # unauthorized for this role -- same class of gap as PARERCOTVIEW, discovered
-        # while running this same validation. Stubbed under the same flag rather than
-        # adding a second one for an identical situation.
-        query = stub_cte(
-            query, "RenewableUnits",
-            "SELECT NULL::VARCHAR AS UNIT_CODE, NULL::VARCHAR AS FUEL_TYPE WHERE FALSE",
-        )
-        print("RenewableUnits stubbed to empty (ERCOT_RESOURCE_ADEQUACY_REPORT_VIEW not readable from this role)")
-    query = substitute_binds(query, config, args.config_id, args.start, args.end)
+        print("PAR flow and RenewableUnits stubbed (PARERCOTVIEW / ERCOT_RESOURCE_ADEQUACY_REPORT_VIEW not readable from this role)")
 
     print("\nRunning extracted V2 SELECT...")
     v2 = q(query)

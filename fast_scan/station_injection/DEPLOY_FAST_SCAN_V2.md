@@ -11,7 +11,7 @@ need sdalvi's attention before/while running the deploy: a by-eye finding on the
 `FAST_SCAN_RT_CONSTRAINTS` NOT NULL columns (Task 2, item 3), and a real operational
 blocker in the originally-specified V2 smoke test (step 6).
 
-Files (all in `stationinjection/`): `sp_fast_scan_v2.sql`, `sp_load_fast_scan_rt_constraints.sql`,
+Files (all in `fast_scan/station_injection/`): `sp_fast_scan_v2.sql`, `sp_load_fast_scan_rt_constraints.sql`,
 `validation_spV2.sql`.
 
 ## Deployment is partially in progress -- check state before running anything
