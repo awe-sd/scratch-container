@@ -35,6 +35,7 @@ BASE = Path(__file__).resolve().parents[1]
 PARQUET = BASE / "data" / "ercot_generation_interconnect.parquet"
 ASSETS = BASE / "assets"
 OUT_DIR = BASE / "output"
+RESEARCH_DIR = BASE / "research"
 
 ZONE_ORDER = ["COASTAL", "EAST-SPP", "HOUSTON", "NORTH", "PANHANDLE", "SOUTH", "WEST", "Unassigned"]
 
@@ -48,6 +49,7 @@ MILESTONES = [
     ("finsec", "Financial Security"),
     ("s691", "Meets 6.9(1)"),
     ("s69", "Meets all 6.9"),
+    ("s691verified", "6.9.1 & AW-verified real"),
 ]
 
 # Projects already online / no longer in the interconnection queue -> excluded.
@@ -90,6 +92,39 @@ def normalize_fuel_tech(fuel: str | None, tech: str | None) -> str:
     return "Other"
 
 
+REAL_VERDICTS = {"real", "real_early", "real_active", "real_under_construction"}
+EXCLUDED_VERDICTS = {"paper", "unclear"}
+
+
+def load_verified_real_inrs() -> set[str]:
+    """INRs with our own research confirming a real (non-paper) project.
+
+    A dir counts only if findings.json (the DEEP-scan output) exists with
+    real_project_verdict in REAL_VERDICTS ("real", "real_early", "real_active",
+    "real_under_construction"). Triage-only dirs (triage_findings.json but no
+    findings.json) do not count. Prefer the "inr" field inside the json over the
+    dir-name prefix, since dir names are `<INR>_<slug>` but slugs can vary.
+    Deliberately reads "real_project_verdict", not the sometimes-present "verdict"
+    field — they diverge on 21INR0210.
+    """
+    verified: set[str] = set()
+    for f in sorted(RESEARCH_DIR.glob("*/findings.json")):
+        try:
+            data = json.loads(f.read_text())
+        except (json.JSONDecodeError, OSError) as e:
+            print(f"WARNING: could not parse {f}: {e}")
+            continue
+        verdict = data.get("real_project_verdict")
+        if verdict is not None and verdict not in REAL_VERDICTS and verdict not in EXCLUDED_VERDICTS:
+            print(f"WARNING: {f} has unrecognized real_project_verdict {verdict!r} "
+                  f"(not in REAL_VERDICTS or EXCLUDED_VERDICTS) — treated as not-verified")
+        if verdict not in REAL_VERDICTS:
+            continue
+        inr = data.get("inr") or f.parent.name.split("_", 1)[0]
+        verified.add(str(inr))
+    return verified
+
+
 def build_records(df: pd.DataFrame, report_date: str) -> tuple[list[dict], dict]:
     """Return (active-queue records, metadata) for the chosen report date."""
     dates = sorted(pd.Series(df["fileDate"].unique()).astype(str))
@@ -110,6 +145,7 @@ def build_records(df: pd.DataFrame, report_date: str) -> tuple[list[dict], dict]
     active = snap[~terminal].copy()
 
     name2fips = json.loads((ASSETS / "tx_county_fips.json").read_text())
+    verified_real_inrs = load_verified_real_inrs()
 
     cod = pd.to_datetime(active["projectCod"], errors="coerce")
     records = []
@@ -119,6 +155,7 @@ def build_records(df: pd.DataFrame, report_date: str) -> tuple[list[dict], dict]
         fips = name2fips.get(_norm_county(county)) if county else None
         if county and not fips:
             unmatched_counties.add(county)
+        s691 = bool(pd.notna(row["meetsSection691"]))
         records.append(
             {
                 "inr": row["INR"],
@@ -134,8 +171,9 @@ def build_records(df: pd.DataFrame, report_date: str) -> tuple[list[dict], dict]
                 "fis": bool(pd.notna(row["fisApproved"])),
                 "ia": bool(pd.notna(row["iaSigned"])),
                 "finsec": row["financialSecurityAndNoticeToProceedProvided"] == "Yes",
-                "s691": bool(pd.notna(row["meetsSection691"])),
+                "s691": s691,
                 "s69": bool(pd.notna(row["meetsAllSection69"])),
+                "s691verified": s691 and str(row["INR"]) in verified_real_inrs,
             }
         )
 
