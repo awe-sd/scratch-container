@@ -16,14 +16,11 @@ from __future__ import annotations
 
 import argparse
 import gc
-import sys
 from dataclasses import astuple
-from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
 from pfa.constraint_id import ConstraintId

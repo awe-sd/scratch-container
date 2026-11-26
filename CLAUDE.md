@@ -23,6 +23,8 @@ Other Appian Way repos (`LocalSkills`, `awconnect`) have been cloned under `/hom
 
 `.venv` here is a `uv`-managed virtualenv (`uv venv`) local to this repo. `awconnect` is declared in `pyproject.toml` as an editable path dependency on `/home/node/awconnect`, so `uv sync` keeps it — edits to that checkout are picked up immediately without reinstalling.
 
+`pfa` (the `powerflow_analytics/pfa/` library) is installed editable from `powerflow_analytics/` (a uv workspace member), so scripts and tests import it without `sys.path` edits.
+
 **Always run Python through `uv`** (`uv run script.py`, `uv run python -c ...`, `uv pip install ...`), never a bare `python`/`pip`. A minimal `pyproject.toml` marks this directory as the uv project root, so plain `uv run ...` from here (or any subfolder) resolves to this repo's `.venv` automatically — no `VIRTUAL_ENV=` override needed. If a container-wide `VIRTUAL_ENV` env var is set to something else, `uv run` still prefers the project `.venv` because `pyproject.toml` is present; only `uv pip install` without a preceding `uv run` can be redirected by a stray `VIRTUAL_ENV`, so prefer `uv run python -m pip install ...` or `uv add`/`uv pip install` from this directory if that ever resurfaces.
 
 ## Division of labor (sdalvi's standing rule, 2026-08-10)

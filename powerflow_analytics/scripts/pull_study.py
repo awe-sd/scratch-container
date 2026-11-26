@@ -5,11 +5,8 @@ Usage: uv run powerflow_analytics/scripts/pull_study.py --study 14411 [--refresh
 from __future__ import annotations
 
 import argparse
-import sys
 import time
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from pfa.cache import StudyCache
 from pfa.extract import gen_mapping, results, study

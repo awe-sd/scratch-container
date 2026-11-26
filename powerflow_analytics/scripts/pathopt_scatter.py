@@ -22,9 +22,7 @@ from pathlib import Path
 
 import pandas as pd
 
-# Resolve sys.path from __file__
 SCRIPT_DIR = Path(__file__).resolve().parent
-sys.path.insert(0, str(SCRIPT_DIR.parent))
 
 from pfa.analysis import path_scatter
 from pfa.constraint_id import ConstraintId

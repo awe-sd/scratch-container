@@ -14,6 +14,7 @@ dependencies = [
     "openpyxl>=3.1.5",
     "pandas>=3.0.3",
     "pdfplumber>=0.11.10",
+    "pfa",
     "pillow>=12.3.0",
     "pyarrow>=14.0.1,<24",
     "pymupdf>=1.28.0",
@@ -34,3 +35,9 @@ testpaths = ["archive/branch_tracking/tests", "powerflow_analytics/tests"]
 
 [tool.uv.sources]
 awconnect = { path = "../../home/node/awconnect", editable = true }
+pfa = { workspace = true, editable = true }
+
+[tool.uv.workspace]
+members = [
+    "powerflow_analytics",
+]

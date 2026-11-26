@@ -1,9 +1,6 @@
-import sys
-from pathlib import Path
 
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from pfa.extract import popt
 

@@ -16,6 +16,12 @@ resolution-markers = [
     "python_full_version < '3.13' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
 
+[manifest]
+members = [
+    "pfa",
+    "scratch-workspace",
+]
+
 [[package]]
 name = "affine"
 version = "2.4.0"
@@ -940,6 +946,11 @@ wheels = [
 ]
 
 [[package]]
+name = "pfa"
+version = "0.1.0"
+source = { editable = "powerflow_analytics" }
+
+[[package]]
 name = "pillow"
 version = "12.3.0"
 source = { registry = "https://appianwayenergy-052608017734.d.codeartifact.us-east-1.amazonaws.com/pypi/python/simple/" }
@@ -1565,6 +1576,7 @@ dependencies = [
     { name = "openpyxl" },
     { name = "pandas" },
     { name = "pdfplumber" },
+    { name = "pfa" },
     { name = "pillow" },
     { name = "pyarrow" },
     { name = "pymupdf" },
@@ -1593,6 +1605,7 @@ requires-dist = [
     { name = "openpyxl", specifier = ">=3.1.5" },
     { name = "pandas", specifier = ">=3.0.3" },
     { name = "pdfplumber", specifier = ">=0.11.10" },
+    { name = "pfa", editable = "powerflow_analytics" },
     { name = "pillow", specifier = ">=12.3.0" },
     { name = "pyarrow", specifier = ">=14.0.1,<24" },
     { name = "pymupdf", specifier = ">=1.28.0" },

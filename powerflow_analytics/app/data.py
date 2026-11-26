@@ -6,14 +6,11 @@ No Snowflake / SQL Server access from the app — pull and analyze first:
 """
 from __future__ import annotations
 
-import sys
 from dataclasses import dataclass
 from functools import lru_cache
-from pathlib import Path
 
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from pfa.analysis import constraints
 from pfa.config import CACHE_ROOT, OUTPUT_ROOT  # re-bound at module level so tests can monkeypatch

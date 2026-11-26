@@ -3,7 +3,6 @@ from pathlib import Path
 
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 from build_high_confidence_report import lam_and_source, value_per_mwh_sf  # noqa: E402
