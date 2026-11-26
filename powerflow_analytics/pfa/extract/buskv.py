@@ -18,7 +18,7 @@ _kv_map: dict[int, float] | None = None
 
 
 def _teidmap_path() -> Path:
-    data_dir = config.PROJECT_ROOT.parent / "branch_tracking" / "data"
+    data_dir = config.PROJECT_ROOT.parent / "archive" / "branch_tracking" / "data"
     paths = sorted(data_dir.glob(TEIDMAP_GLOB))
     if not paths:
         raise FileNotFoundError(f"no {TEIDMAP_GLOB} under {data_dir}")

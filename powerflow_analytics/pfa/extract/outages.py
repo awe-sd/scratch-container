@@ -11,7 +11,7 @@ from .. import config
 
 
 BRANCH_MAP_CSV = (
-    config.PROJECT_ROOT.parent / "branch_tracking" / "output" / "branch_tracking_table_final.csv"
+    config.PROJECT_ROOT.parent / "archive" / "branch_tracking" / "output" / "branch_tracking_table_final.csv"
 )
 _branch_map: pd.DataFrame | None = None
 
