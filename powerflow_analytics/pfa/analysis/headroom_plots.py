@@ -151,8 +151,9 @@ def plot_headroom_scatter(
     config_id: int,
     y: str = "load",
     peak: str = "onpeak",
-    hist_start: str = "2022-01-01",
-    hist_end: str = "2026-08-01",
+    *,
+    hist_start: str,
+    hist_end: str,
     out_html: str | Path | None = None,
     title_prefix: str = "",
 ) -> go.Figure:
@@ -318,8 +319,9 @@ def _orig_scatter_trace(sub, ycol, yname, visible, cb_x, cb_y):
 
 def plot_wind_load_both(
     config_id: int,
-    hist_start: str = "2022-01-01",
-    hist_end: str = "2026-08-01",
+    *,
+    hist_start: str,
+    hist_end: str,
     out_html: str | Path | None = None,
     title_prefix: str = "",
 ) -> go.Figure:
@@ -431,8 +433,8 @@ def main() -> None:
     ap.add_argument("--ctglabel", required=True)
     ap.add_argument("--y", choices=["solar", "load"], default="load")
     ap.add_argument("--peak", choices=["onpeak", "offpeak"], default="onpeak")
-    ap.add_argument("--hist-start", default="2022-01-01")
-    ap.add_argument("--hist-end", default="2026-08-01")
+    ap.add_argument("--hist-start", required=True)
+    ap.add_argument("--hist-end", required=True)
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
 

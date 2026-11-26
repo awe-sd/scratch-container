@@ -5,7 +5,7 @@ flip attribution between them.
 Usage:
     uv run powerflow_analytics/scripts/constraint_deep_dive.py --study 14412 \
         --constraint 35045 --constraint 35055_A \
-        --history-start 2026-04-01 --history-end 2026-09-28 \
+        --history-start 2026-04-01 --history-end 2026-09-28 --month 2026-09 \
         --out /path/to/report.md
 
 --constraint accepts either a full key "FROMNUM-TONUM-CKT@CTGLABEL" or a
@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import numpy as np
 import pandas as pd
 
-from pfa import config, constraint_id, sf
+from pfa import config, constraint_id, periods, sf
 from pfa.analysis import fastscan, marginal_units, offer_lambda, lambda_engine
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
 from pfa.extract import gen_mapping
@@ -98,7 +98,7 @@ CORR_MATERIALITY = 0.15  # below this, don't name a "dominant" driver -- noise
 DRIVER_MARGIN = 0.05     # wind-vs-solar corr must lead by this much to call one exclusively
 
 
-def binding_conditions(config_id: int, hist_start: str, hist_end: str) -> dict:
+def binding_conditions(config_id: int, hist_start: str, hist_end: str, month: str) -> dict:
     """Fast-scan headroom joined against regional wind + system solar."""
     hr = sf.query(config.FLOW_ANALYSIS_DB, f"""
         SELECT TIMESTAMP, HEADROOM, HEADROOM_RT, HEADROOM_AFTER_CURTAILMENT
@@ -161,10 +161,10 @@ def binding_conditions(config_id: int, hist_start: str, hist_end: str) -> dict:
     for c in region_cols:
         thresholds[c] = threshold(c)
 
-    # on/off-peak hit rate in September specifically (the auction month)
-    sept = df[df["TIMESTAMP"].dt.month == 9]
-    onpeak = sept[(sept["DOW"] < 5) & (sept["HOUR"].isin(ONPEAK_HOURS))]
-    offpeak = sept[~((sept["DOW"] < 5) & (sept["HOUR"].isin(ONPEAK_HOURS)))]
+    # on/off-peak hit rate in the target calendar month (any year in the window)
+    in_month = df[df["TIMESTAMP"].dt.month == periods.parse_month(month)[1]]
+    onpeak = in_month[(in_month["DOW"] < 5) & (in_month["HOUR"].isin(ONPEAK_HOURS))]
+    offpeak = in_month[~((in_month["DOW"] < 5) & (in_month["HOUR"].isin(ONPEAK_HOURS)))]
     pct_onpeak = round(100 * onpeak["NEG"].mean(), 1) if len(onpeak) else None
     pct_offpeak = round(100 * offpeak["NEG"].mean(), 1) if len(offpeak) else None
 
@@ -187,7 +187,8 @@ def binding_conditions(config_id: int, hist_start: str, hist_end: str) -> dict:
             "n_wind_matched": n_wind_matched, "n_solar_matched": n_solar_matched,
             "corr": corr, "dominant_wind_region": dominant_region,
             "thresholds": thresholds, "system_wind_cap_mw": system_cap_mw,
-            "pct_neg_onpeak_sept": pct_onpeak, "pct_neg_offpeak_sept": pct_offpeak,
+            "pct_neg_onpeak_month": pct_onpeak, "pct_neg_offpeak_month": pct_offpeak,
+            "month_name": periods.month_name(month),
             "hour_of_day_neg_rate": {int(k): float(v) for k, v in hod.items()}, "driver": driver}
 
 
@@ -416,6 +417,7 @@ def render_markdown(study_id: int, results: list[dict], flip_df: pd.DataFrame) -
             lines += ["No fast-scan headroom rows found for this config/window.", ""]
         else:
             hod = bc["hour_of_day_neg_rate"]
+            mname = bc["month_name"]
             top_hours = sorted(hod, key=hod.get, reverse=True)[:5]
             hod_str = ", ".join(f"HE{h}={hod[h]:.3f}" for h in top_hours)
             lines += [f"- FAST_SCAN_CONFIG_ID: {bc['config_id']}; fast-scan hours in window: {bc['n_hours']} "
@@ -431,18 +433,18 @@ def render_markdown(study_id: int, results: list[dict], flip_df: pd.DataFrame) -
                       f"pctile is computed over -- i.e. \"even at this much wind/solar the constraint can "
                       f"still bind\", not a hard cutoff; small n_neg means a thin, noisy estimate): "
                       f"`{_plain(bc['thresholds'])}`",
-                      f"- Historical September on-peak (Mon-Fri HE7-22) hours with headroom<0: "
-                      f"{bc['pct_neg_onpeak_sept']}% (study-topology fast-scan replay, not real-world P(bind))",
-                      f"- Historical September off-peak hours with headroom<0: {bc['pct_neg_offpeak_sept']}%",
-                      f"- Top negative-headroom hours-of-day (window-wide, not September-only): {hod_str}",
-                      *([f"- Note: this constraint's historical-replay negative-headroom hours in September "
-                         f"{'are 0% on- and off-peak' if bc['pct_neg_onpeak_sept'] == 0 and bc['pct_neg_offpeak_sept'] == 0 else 'are near-zero'} "
+                      f"- Historical {mname} on-peak (Mon-Fri HE7-22) hours with headroom<0: "
+                      f"{bc['pct_neg_onpeak_month']}% (study-topology fast-scan replay, not real-world P(bind))",
+                      f"- Historical {mname} off-peak hours with headroom<0: {bc['pct_neg_offpeak_month']}%",
+                      f"- Top negative-headroom hours-of-day (window-wide, not {mname}-only): {hod_str}",
+                      *([f"- Note: this constraint's historical-replay negative-headroom hours in {mname} "
+                         f"{'are 0% on- and off-peak' if bc['pct_neg_onpeak_month'] == 0 and bc['pct_neg_offpeak_month'] == 0 else 'are near-zero'} "
                          f"on THIS topology/config; the trigger levels above are estimated from negative-headroom "
-                         f"hours found across the FULL history window (mostly outside September), so treat them "
-                         f"as \"what it takes anywhere in the sample,\" not \"what September itself produced.\" "
+                         f"hours found across the FULL history window (mostly outside {mname}), so treat them "
+                         f"as \"what it takes anywhere in the sample,\" not \"what {mname} itself produced.\" "
                          f"The study-run binding evidence (LP shadow price, dispatch, structural lambda sections "
-                         f"below) is the September-specific evidence for this constraint."]
-                        if (bc['pct_neg_onpeak_sept'] in (0, 0.0) and bc['pct_neg_offpeak_sept'] in (0, 0.0))
+                         f"below) is the {mname}-specific evidence for this constraint."]
+                        if (bc['pct_neg_onpeak_month'] in (0, 0.0) and bc['pct_neg_offpeak_month'] in (0, 0.0))
                         else []),
                       ""]
 
@@ -578,8 +580,9 @@ def main() -> None:
     ap.add_argument("--study", type=int, required=True)
     ap.add_argument("--constraint", action="append", required=True,
                     help="'FROMNUM-TONUM-CKT@CTGLABEL' or a line LABEL (repeatable)")
-    ap.add_argument("--history-start", default="2025-09-01")
-    ap.add_argument("--history-end", default="2026-09-01")
+    ap.add_argument("--history-start", required=True)
+    ap.add_argument("--history-end", required=True)
+    ap.add_argument("--month", required=True, help="target calendar month YYYY-MM for the on/off-peak hit rate")
     ap.add_argument("--out", default=None)
     args = ap.parse_args()
 
@@ -604,7 +607,7 @@ def main() -> None:
         binding = {"empty": True}
         if not configs.empty:
             config_id = int(configs.iloc[0]["CONFIG_ID"])
-            binding = binding_conditions(config_id, args.history_start, args.history_end)
+            binding = binding_conditions(config_id, args.history_start, args.history_end, args.month)
         dispatch = dispatch_profile(args.study, c, genunit, scedname)
         price = price_formation(args.study, c, ctgviol, outcon, gen, bus_names, genunit, scedname)
         results.append({"c": c, "binding": binding, "dispatch": dispatch, "price": price})

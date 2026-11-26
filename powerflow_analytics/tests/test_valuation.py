@@ -70,3 +70,14 @@ def test_dollars_per_mwh_sf_scaling():
     full = valuation.dollars_per_mwh(stats, 2026, 9, ("2026-09-16", "2026-09-30"), "p50", 1.0)
     path = valuation.dollars_per_mwh(stats, 2026, 9, ("2026-09-16", "2026-09-30"), "p50", 0.31)
     assert path["dollars_per_mwh"] == pytest.approx(full["dollars_per_mwh"] * 0.31, abs=0.01)
+
+
+def test_dollars_per_mwh_2027_month():
+    # Mar 2027: 23 business days, no holidays; window 3/15-3/31 has 13
+    runs = _runs()
+    stats = valuation.binding_stats(_outcon(runs), runs, "10-11-1@CTGA",
+                                    window=("2026-09-16", "2026-09-30"))
+    out = valuation.dollars_per_mwh(stats, 2027, 3, ("2027-03-15", "2027-03-31"), "p50", sf=1.0)
+    assert out["onpeak_days"] == 23 and out["outage_onpeak_days"] == 13
+    # Sep 2027: Labor Day is 9/6 -> 21 business days
+    assert valuation.dollars_per_mwh(stats, 2027, 9, ("2027-09-01", "2027-09-30"))["onpeak_days"] == 21

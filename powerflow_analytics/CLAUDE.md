@@ -8,7 +8,7 @@ headroom + path optimization. The design spec file no longer exists; see the tra
 
 - All DB access via `awconnect` with profile `read_only`, Snowflake warehouse `AI_READ_ONLY` (`pfa/config.py`).
 - Extract once per study: `uv run powerflow_analytics/scripts/pull_study.py --study <id>` → parquet in `cache/study_<id>/` (gitignored). Analysis and Dash read the cache only — never Snowflake in callbacks.
-- Analyze: `uv run powerflow_analytics/scripts/build_report.py --study <id> [--tickets]` → CSVs in `output/study_<id>/`.
+- Analyze: `uv run powerflow_analytics/scripts/build_report.py --study <id> --cutoff <YYYY-MM-DD> [--tickets]` → CSVs in `output/study_<id>/`.
 - SQL Server (`AW.dbo.toAllIsos`) gets ONLY targeted single-branch lookups (`pfa/extract/outages.py`) — never bulk queries, and strictly ONE query at a time (sequential).
 - toAllIsos hygiene: every revision is a row — ALWAYS collapse to latest revision per outageIdentifier (`ROW_NUMBER() OVER (PARTITION BY outageIdentifier ORDER BY revNum DESC)=1`) and read current state from `toState`. ALWAYS read the `Notes` free text on candidate tickets — it carries the TSP's REQ/RAS/SUP narrative (mitigation intent, ERCOT TOAP directive ids, breaker-split handoffs) and is stronger evidence than timing/status inference (lesson: ERSKINE–MACKNZIE RAS TOAP041923-0 was spelled out in Notes). TSP ticket prefixes identify the submitter (e.g. `CLU%` = Lubbock LP&L); forced/as-operated mitigations show ~zero or negative submit-to-start gaps.
 - Constraint identity = (FROMNUM, TONUM, CKT, CTGLABEL). Use the `*2` output tables; v1 OUTBRANCH is empty for recent studies, and OUTGEN2.GENUNITID is NULL — gen identity routes (BUSNUM, ID) → OUTGENREF → AWDEV.DBO.GENUNIT.

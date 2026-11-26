@@ -8,7 +8,7 @@ Usage:
         --date 2026-11-10 --hour 18 --top 100000 --min-sf 0.05
 
 N-run mode (overlap of several PathOpt runs, pair search; --study = context study for binding stats):
-    ... pathopt_scatter.py --study 14966 --out-dir output/pathopt/14966_dblbywf5 --min-sf 0.02 \\
+    ... pathopt_scatter.py --study 14966 --out-dir output/pathopt/14966_dblbywf5 --min-sf 0.02 --holidays 2026-12-25 \\
         --runs JCKSTP18A=10023193,JCKREF27A=10023204,BLESSING1382=10023214,BLESSI_PAVLOV11=10023147 \\
         --required JCKSTP18A,JCKREF27A,BLESSING1382 \\
         --constraints JCKSTP18A=5915-42530-18@DBLBYWF5,JCKREF27A=42400-42530-27@DBLBYWF5,BLESSING1382=8121-8123-1@DBLBYWF5,BLESSI_PAVLOV11=8121-8614-1@DBLBYWF5
@@ -422,7 +422,8 @@ def run_spread(args):
     comp.to_csv(out / "comparison.csv", index=False)
     bl = pd.DataFrame([{"a": a, "b": b_, "topologies_both_live": v[0], "mean_node_psens_corr_in_shared_topologies": v[1]} for (a, b_), v in both_live.items()])
     bl.to_csv(out / "co_live.csv", index=False)
-    path_scatter.build_spread_report(out, args, dirs, res, comp, bl, sp_scale, n_runs, floor, alll, live_cols)
+    path_scatter.build_spread_report(out, args, dirs, res, comp, bl, sp_scale, n_runs, floor, alll, live_cols,
+                                   int(cfg[alll[0]].STUDYID))
     print("wrote", out)
 
 
@@ -444,11 +445,13 @@ def main():
     parser.add_argument("--long-basis", choices=["binding", "live"], default="live",
                         help="Spread mode: long leg tested on MIN_SF over all live periods (default) or its binding periods only")
     parser.add_argument("--min-sf-each", type=float, default=0.05, help="N-run mode: live-period MIN_SF floor on every required constraint")
-    parser.add_argument("--holidays", default="2026-12-25", help="N-run mode: dates for holiday sensitivity")
+    parser.add_argument("--holidays", help="N-run/spread mode (required there): comma-separated dates for holiday sensitivity, '' for none")
     parser.add_argument("--pool", type=int, default=300, help="N-run mode: pair-search pool per constraint")
     parser.add_argument("--top", type=int, default=100000, help="Top N cheapest paths for scatter (default: 100000)")
     parser.add_argument("--min-sf", type=float, default=0.05, help="Min SF floor on both MIN_SFs (default: 0.05)")
     args = parser.parse_args()
+    if args.runs and args.holidays is None:
+        parser.error("--holidays is required with --runs (comma-separated dates, or '' for none)")
     if args.runs and args.short:
         return run_spread(args)
     if args.runs:

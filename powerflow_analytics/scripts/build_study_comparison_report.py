@@ -8,7 +8,7 @@ non-penalty constraint:
 Ranked by rent score (P50 $/MWh x limit MVA); 345 kV floats up on size.
 
 Usage: uv run powerflow_analytics/scripts/build_study_comparison_report.py \
-    --study-a 14411 --study-b 14412 [--month 2026-09]
+    --study-a 14411 --study-b 14412 --month 2026-09
 """
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import pandas as pd
 
-from pfa import config, sf
+from pfa import config, periods, sf
 from pfa.analysis import fastscan, valuation
 from pfa.cache import StudyCache
 from pfa.constraint_id import ConstraintId
@@ -86,10 +86,10 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--study-a", type=int, required=True)
     ap.add_argument("--study-b", type=int, required=True)
-    ap.add_argument("--month", default="2026-09")
+    ap.add_argument("--month", required=True, help="settlement month YYYY-MM")
     ap.add_argument("--top-new", type=int, default=20, help="new constraints to enrich")
     args = ap.parse_args()
-    month = tuple(int(x) for x in args.month.split("-"))
+    month = periods.parse_month(args.month)
 
     a = study_frame(args.study_a, month)
     b = study_frame(args.study_b, month)

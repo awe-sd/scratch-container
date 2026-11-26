@@ -8,7 +8,7 @@ SCOPF study results → CRR opportunity finder. See `CLAUDE.md` for conventions
 1. Pull a study into the local cache (Snowflake, one-time per study):
    `uv run powerflow_analytics/scripts/pull_study.py --study 14411`
 2. Analyze it (writes CSVs to `output/study_14411/`):
-   `uv run powerflow_analytics/scripts/build_report.py --study 14411 --tickets`
+   `uv run powerflow_analytics/scripts/build_report.py --study 14411 --cutoff 2026-09-15 --tickets`
 3. Dashboard (reads only local files):
    `uv run powerflow_analytics/app/app.py` → http://127.0.0.1:8050
    - **Explorer**: ranked binding constraints; click a row for binding-hours

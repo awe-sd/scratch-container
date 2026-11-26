@@ -18,6 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import pandas as pd
 
+from pfa import periods
 from pfa.analysis import valuation
 from pfa.cache import StudyCache
 from pfa.constraint_id import ConstraintId
@@ -37,7 +38,7 @@ def main() -> None:
     cache = StudyCache(args.study)
     runs = cache.load("opfrun")
     outcon = cache.load("outconstraint2")
-    year, month = (int(x) for x in args.month.split("-"))
+    year, month = periods.parse_month(args.month)
 
     stats = valuation.binding_stats(outcon, runs, args.constraint, tuple(args.window))
     print(f"{args.constraint} — window {args.window[0]}..{args.window[1]} "

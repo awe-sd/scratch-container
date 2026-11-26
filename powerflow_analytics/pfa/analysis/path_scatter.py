@@ -6,10 +6,14 @@ where MIN_SF is the worst-case SF across PathOpt's 10-day window.
 """
 from __future__ import annotations
 
+import os
+import re
 from pathlib import Path
 
 import pandas as pd
 import plotly.graph_objects as go
+
+from .. import config
 
 
 def compute_path_shift_factors(
@@ -584,6 +588,23 @@ def find_pairs(pool: pd.DataFrame, S: dict[str, np.ndarray], required: list[str]
     return out
 
 
+def _short_name(label: str) -> str:
+    return re.sub(r"\d+[A-Z]?$", "", label)
+
+
+def _date_range_text(dates: list[str]) -> str:
+    d = sorted(pd.to_datetime(dates))
+    a, b = d[0], d[-1]
+    if a == b:
+        return f"{a:%b} {a.day}"
+    return f"{a:%b} {a.day}-{b.day}" if a.month == b.month else f"{a:%b} {a.day}-{b:%b} {b.day}"
+
+
+def _holiday_text(holidays: str | None) -> str:
+    ds = [pd.Timestamp(x) for x in holidays.split(",")] if holidays else []
+    return ", ".join(f"{d:%b} {d.day}" for d in ds) or "no holidays"
+
+
 def build_multi_report(out, args, labels, required, runs, cfg, counts, price_cons, repro, sp_tab, ctx_sum, ov, cand, ptt,
                        pairs, corr_u, corr_o, both, floors, hs, per, floors_b, sp_scale, n_runs, fam, nm) -> None:
     """report.html + README.md for the N-run overlap analysis."""
@@ -625,12 +646,19 @@ def build_multi_report(out, args, labels, required, runs, cfg, counts, price_con
     reqtxt = ", ".join(required)
     vo = cand.head(10)["VO_SHARE"]
     pn = cand[cand["SOURCENAME"] == "PCT_RN"].head(1)
+    po_study = int(cfg[labels[0]].STUDYID)
+    hol = _holiday_text(args.holidays)
+    la, lb = required[0], required[1]
+    bind_dates = lambda l: per.loc[per[f"SPSUM_{l}"] > 0, "DATES"].str.split(",").explode().tolist()
+    ranges = ", ".join(f"{_short_name(l)} {_date_range_text(bind_dates(l))}"
+                       for l in sorted((lb, la), key=lambda l: min(bind_dates(l))))
+    live_txt = f"{la} live {int(per[f'LIVE_{la}'].sum())}, {lb} {int(per[f'LIVE_{lb}'].sum())}"
     caveats = f"""- NET ranks on VALUE_ALL (signed sum over all legs). NET_REQ = VALUE_REQ - price counts the three required constraints only; value-only legs ({', '.join(l for l in labels if l not in required)}) supply {vo.min():.0%}-{vo.max():.0%} of VALUE_ALL in the top 10 singles.
 - Blessing is a passenger on the PCT_RN->BRP family (BLESSING1382 MIN_SF ~{pn['MIN_SF_BLESSING1382'].iloc[0] if len(pn) else float('nan'):.3f}, just above the {floor} floor): the NET there comes from JCK and the STP-Hillje legs.
-- SP value scale comes from study 14967 (the PathOpt study): mean SP over its {n_runs} on-peak runs (Dec 25 excluded), zero where not enforced. binding_summary.csv / binding_runs.csv come from study {args.study}. Scale rests on few SP runs for some legs ({', '.join(f"{r.constraint}: {int(r.n_runs_with_sp)}" for r in sp_tab.itertuples())}). value_k = scale_k x stored SHADOWPRICEPRECENT_k/100 where the path is in that PathOpt run, reconstructed from set SFs only as fallback.
+- SP value scale comes from study {po_study} (the PathOpt study): mean SP over its {n_runs} on-peak runs ({hol} excluded), zero where not enforced. binding_summary.csv / binding_runs.csv come from study {args.study}. Scale rests on few SP runs for some legs ({', '.join(f"{r.constraint}: {int(r.n_runs_with_sp)}" for r in sp_tab.itertuples())}). value_k = scale_k x stored SHADOWPRICEPRECENT_k/100 where the path is in that PathOpt run, reconstructed from set SFs only as fallback.
 - Value covers only the listed constraints and on-peak only; the path's other congestion is NOT included.
-- MIN_SF is a stress statistic over the constraint's live topology periods (at most 16; JCKSTP18A live 9, JCKREF27A 12), not a probability of earning. JCKSTP18A and JCKREF27A never co-bind (JCKREF Dec 1-10, JCKSTP Dec 16-22), yet the filter requires both.
-- Dec 25: holiday filter effect {hs}. The Dec 25 topology is one of the 16 PathOpt periods; no binding runs fall on it.
+- MIN_SF is a stress statistic over the constraint's live topology periods (at most {len(per)}; {live_txt}), not a probability of earning. {la} and {lb} never co-bind ({ranges}), yet the filter requires both.
+- {hol}: holiday filter effect {hs}. The {hol} topology is one of the {len(per)} PathOpt periods; no binding runs fall on it.
 - Dedup: aliases collapsed on MIN/AVG SF of every leg at 3 dp (cheapest kept); FAMILY groups rows whose per-leg MIN and AVG SFs all agree within 0.015 of the family leader (e.g. PAVLOV_BT_RN/PAVLOV_RN, BRP_BRAZ_RN/BRPANGLE_RN).
 - Pairs: PRICE_2MW and VALUE_ALL_2MW are totals for 2 MW (1 MW each leg); per-MW = half; SF halved to per-MW before the filter; complementary only (neither leg passes alone). Pool = top {args.pool} per constraint by value per $, so the search is not exhaustive. Pair values are additive."""
     html = f"""<html><head><meta charset="utf-8"><title>Multi-constraint paths</title><style>
@@ -668,7 +696,7 @@ SHORT_FLAG = a non-required binding leg has AVG_SF &lt; -0.02.</p>
     pc_md = ["A_PATH", "B_PATH", "PRICE_2MW", "VALUE_ALL_2MW", "PRICE_PER_MW", "VALUE_ALL_PER_MW", "NET_PER_MW", "NET_REQ_PER_MW", "VO_SHARE", "FAMILY_SIZE"] + [f"MIN_SF_{l}" for l in labels]
     (out / "README.md").write_text(f"""# Multi-constraint path search: {reqtxt}
 
-Command (from /workspaces/scratch-workspace):
+Command (from {config.PROJECT_ROOT.parent}):
 
 ```
 uv run --with "pyopenssl>=26.4" --project powerflow_analytics python powerflow_analytics/scripts/pathopt_scatter.py \\
@@ -700,7 +728,8 @@ Legacy 2-run mode (`--run-x/--run-y/--date/--hour`) is unchanged.
 """)
 
 
-def build_spread_report(out, args, dirs, res, comp, co_live, sp_scale, n_runs, floor, labels, live_cols) -> None:
+def build_spread_report(out, args, dirs, res, comp, co_live, sp_scale, n_runs, floor, labels, live_cols,
+                        po_study: int) -> None:
     """report.html + README.md for the long-A / short-B spread search."""
     out = Path(out)
     fl = lambda v: f"{v:.4g}"
@@ -721,16 +750,22 @@ def build_spread_report(out, args, dirs, res, comp, co_live, sp_scale, n_runs, f
         d = fam[[c for c in cols if c in fam and c != 'FAMILY_MEMBERS']].head(5)
         md.append("| " + " | ".join(d.columns) + " |\n|" + "---|" * len(d.columns) + "\n" + "\n".join(
             "| " + " | ".join(f"{v:.3f}" if isinstance(v, float) else str(v) for v in row) + " |" for row in d.itertuples(index=False)) + "\n")
-    caveats = f"""- Short leg tested on MAX_SF over its BINDING periods (study 14967 SP>0) <= -{floor} (the strict all-live-period test passes 0 paths, see counts: the two constraints are near-collinear in the topologies where both are live); long leg = MIN_SF >= {floor} on the basis given by --long-basis ({args.long_basis}). Universe is the long leg's PathOpt run (MAX_SF>0 there); short-leg SFs come from its own topology set.
-- VALUE_LONG = long-leg value only (option view: no cost to the short leg in hours when only the other constraint binds, valid because JCKSTP18A and JCKREF27A never co-bind). VALUE_OBLIG = signed sum incl. the short leg (obligation view). VALUE_ALL_OPT = exact per-run payoff max(0, sum over ALL legs SP x SF) over {n_runs} on-peak runs (Dec 25 excluded), study 14967 shadow prices; computed for the top 3000 rows only.
-- Other legs (BLESSING1382, BLESSI_PAVLOV11, STP-Hillje) are info only (SHORT_FLAG: AVG_SF < -0.02 while binding); they are not in NET_OPT. SP scale = study 14967 mean over {n_runs} runs, zero-imputed: {', '.join(f'{k} {v:.2f}' for k, v in sp_scale.items())}.
-- Value counts only the listed constraints, on-peak only. MIN/MAX are stress statistics over live topologies (JCKSTP18A live {int(live_cols['JCKSTP18A'].sum()) if 'JCKSTP18A' in live_cols else '?'}/16, JCKREF27A {int(live_cols['JCKREF27A'].sum()) if 'JCKREF27A' in live_cols else '?'}/16), not probabilities. Dec 25 effect not separately tested here.
+    hol = _holiday_text(args.holidays)
+    L0, Sh0 = next(iter(res))
+    pair = f"{L0} and {Sh0[0]}"
+    live_txt = ", ".join(f"{l} {int(live_cols[l].sum()) if l in live_cols else '?'}/{len(next(iter(live_cols.values())))}" for l in (L0, *Sh0))
+    prefix = os.path.commonprefix([L0, *Sh0]) or "Path"
+    other_legs = ", ".join(l for l in labels if l not in {L0, *Sh0})
+    caveats = f"""- Short leg tested on MAX_SF over its BINDING periods (study {po_study} SP>0) <= -{floor} (the strict all-live-period test passes 0 paths, see counts: the two constraints are near-collinear in the topologies where both are live); long leg = MIN_SF >= {floor} on the basis given by --long-basis ({args.long_basis}). Universe is the long leg's PathOpt run (MAX_SF>0 there); short-leg SFs come from its own topology set.
+- VALUE_LONG = long-leg value only (option view: no cost to the short leg in hours when only the other constraint binds, valid because {pair} never co-bind). VALUE_OBLIG = signed sum incl. the short leg (obligation view). VALUE_ALL_OPT = exact per-run payoff max(0, sum over ALL legs SP x SF) over {n_runs} on-peak runs ({hol} excluded), study {po_study} shadow prices; computed for the top 3000 rows only.
+- Other legs ({other_legs}) are info only (SHORT_FLAG: AVG_SF < -0.02 while binding); they are not in NET_OPT. SP scale = study {po_study} mean over {n_runs} runs, zero-imputed: {', '.join(f'{k} {v:.2f}' for k, v in sp_scale.items())}.
+- Value counts only the listed constraints, on-peak only. MIN/MAX are stress statistics over live topologies ({live_txt}), not probabilities. {hol} effect not separately tested here.
 - Thesis test: comparison.csv gives price per unit long AVG_SF for short-passing vs long-only paths in matched AVG_SF bands; families group paths within 0.015 on every leg's MIN/AVG SF."""
     html = f"""<html><head><meta charset="utf-8"><style>body{{font-family:sans-serif;max-width:1400px;margin:20px auto}} table.t{{border-collapse:collapse;font-size:12px}}
-table.t td,table.t th{{border:1px solid #ccc;padding:2px 6px}}</style></head><body><h1>JCK spread: long one leg / short the other</h1>
+table.t td,table.t th{{border:1px solid #ccc;padding:2px 6px}}</style></head><body><h1>{prefix} spread: long one leg / short the other</h1>
 <h2>Co-live topologies and collinearity</h2>{h(co_live)}{''.join(sec)}<h2>Price per unit long SF: short-passing vs long-only</h2>{h(comp)}<h2>Caveats</h2><pre>{caveats}</pre></body></html>"""
     (out / "report.html").write_text(html)
-    (out / "README.md").write_text(f"""# JCK spread search (long A / short B, both directions)
+    (out / "README.md").write_text(f"""# {prefix} spread search (long A / short B, both directions)
 
 ```
 uv run --with "pyopenssl>=26.4" --project powerflow_analytics python -u powerflow_analytics/scripts/pathopt_scatter.py --study {args.study} \\

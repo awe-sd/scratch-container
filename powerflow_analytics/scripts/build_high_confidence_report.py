@@ -10,7 +10,8 @@ constraints are kept and flagged: no economic dispatch resolves them, so ERCOT
 is likely to deny the driving outage — high risk, but cheap paths may still
 be worth it.
 
-Usage: uv run powerflow_analytics/scripts/build_high_confidence_report.py --study 14411
+Usage: uv run powerflow_analytics/scripts/build_high_confidence_report.py --study 14411 \
+        --month 2026-09 --cutoff 2026-09-15 --history-start 2026-05-01
 """
 from __future__ import annotations
 
@@ -72,8 +73,9 @@ def value_per_mwh_sf(row) -> float | None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--study", type=int, required=True)
-    ap.add_argument("--month", default="2026-09")
-    ap.add_argument("--history-start", default="2026-05-01",
+    ap.add_argument("--month", required=True, help="settlement month YYYY-MM")
+    ap.add_argument("--cutoff", required=True, help="pre/post split date YYYY-MM-DD")
+    ap.add_argument("--history-start", required=True,
                     help="start date for realized DA congestion history")
     args = ap.parse_args()
 
@@ -105,7 +107,7 @@ def main() -> None:
     tf_sum = pd.read_csv(out_dir / "tofinder_summary.csv")
     top_drv = (tf_sum.reindex(tf_sum["MEAN_FLOWDELTA"].abs().sort_values(ascending=False).index)
                .drop_duplicates("CONSTRAINT").set_index("CONSTRAINT"))
-    cutoff = f"{pd.to_datetime(runs['SIMDATE']).dt.year.mode().iloc[0]}-09-15"
+    cutoff = args.cutoff
     gc.collect()
 
     rows = []

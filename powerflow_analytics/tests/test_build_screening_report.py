@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 from pfa.analysis.screening import classify_constraint  # noqa: E402
 from build_screening_report import (  # noqa: E402
-    coverage_and_days, pre_post_bind_rates, sept_bind_dates,
+    coverage_and_days, pre_post_bind_rates, month_bind_dates,
 )
 
 
@@ -81,7 +81,7 @@ def test_unclassified_fallback():
 
 
 # ---------------------------------------------------------------------------
-# pre_post_bind_rates / sept_bind_dates (synthetic frames, no DB)
+# pre_post_bind_rates / month_bind_dates (synthetic frames, no DB)
 # ---------------------------------------------------------------------------
 
 def _synthetic_runs():
@@ -111,10 +111,10 @@ def test_pre_post_bind_rates_basic():
     assert rate_post[c] == 1.0
 
 
-def test_sept_bind_dates_proxy():
+def test_month_bind_dates_proxy():
     runs = _synthetic_runs()
     cv = _synthetic_ctgviol(binding_runids={3})  # binds only one of the two post-cutoff Sept dates
-    bind_days, n_sampled = sept_bind_dates(cv, runs, "2026-09-15")
+    bind_days, n_sampled = month_bind_dates(cv, runs, "2026-09-15", "2026-09")
     c = "100-200-1@X"
     assert n_sampled == 2
     assert bind_days.get(c, 0) == 1
@@ -124,7 +124,7 @@ def test_coverage_ticketed_short_window_sinks():
     """Addendum: a 1-day ticketed outage must get a small coverage fraction,
     not a free pass — 1 day * 16h / 336h ~= 0.048."""
     cov, n_days, marker, thin = coverage_and_days(
-        "c1", True, "2026-09-16", "2026-09-16", {}, 0)
+        "c1", True, "2026-09-16", "2026-09-16", {}, 0, "2026-09")
     assert n_days == 1
     assert cov < 0.06
     assert thin is True
@@ -133,7 +133,7 @@ def test_coverage_ticketed_short_window_sinks():
 
 def test_coverage_unticketed_uses_days_proxy_not_1():
     bind_days = pd.Series({"c1": 2})
-    cov, n_days, marker, thin = coverage_and_days("c1", False, None, None, bind_days, 10)
+    cov, n_days, marker, thin = coverage_and_days("c1", False, None, None, bind_days, 10, "2026-09")
     assert cov == 0.2
     assert marker == "(days-proxy)"
     assert thin is True  # 2 days < 3
@@ -141,5 +141,11 @@ def test_coverage_unticketed_uses_days_proxy_not_1():
 
 def test_coverage_unticketed_thin_flag_clears_at_3_days():
     bind_days = pd.Series({"c1": 3})
-    cov, n_days, marker, thin = coverage_and_days("c1", False, None, None, bind_days, 10)
+    cov, n_days, marker, thin = coverage_and_days("c1", False, None, None, bind_days, 10, "2026-09")
     assert thin is False
+
+
+def test_coverage_non_september_month():
+    cov, n_days, marker, thin = coverage_and_days(
+        "c1", True, "2027-03-01", "2027-03-05", {}, 0, "2027-03")
+    assert n_days == 5 and cov == round(5 / 23, 3) and not thin

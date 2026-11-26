@@ -5,12 +5,12 @@ classify each into A outage-driven/dispatchable, B baseline binder,
 C no-dispatch/unenforceable, D outage-relieved/bearish (see
 pfa.analysis.screening.classify_constraint).
 
-STEP 2 (class A only, capped at 40 by post-cutoff rent): September-only
+STEP 2 (class A only, capped at 40 by post-cutoff rent): single-month
 fast-scan P(bind), offer-curve lambda(depth) evaluated over the fast-scan
 negative-headroom distribution, ticket/days-active coverage, and the
 cheapest path-opt path's effective SF and edge.
 
-Usage: uv run powerflow_analytics/scripts/build_screening_report.py --study 14412
+Usage: uv run powerflow_analytics/scripts/build_screening_report.py --study 14412 --month 2026-09 --cutoff 2026-09-15
 """
 from __future__ import annotations
 
@@ -23,15 +23,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import pandas as pd
 
-from pfa import config, sf
+from pfa import config, periods, sf
 from pfa.analysis import fastscan, lambda_engine as lam, marginal_units, offer_lambda
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
 from pfa.analysis.screening import classify_constraint
 from pfa.cache import StudyCache
 from pfa.constraint_id import ConstraintId
 from pfa.extract import buskv, gen_mapping, popt
-
-CLASS_HOURS_SEPT = 336  # 5x16 weekday on-peak, Sept ex-Labor-Day
 
 
 # --------------------------------------------------------------------------
@@ -56,13 +54,14 @@ def pre_post_bind_rates(ctgviol: pd.DataFrame, runs: pd.DataFrame, cutoff: str):
     return rate_pre, rate_post, n_pre, n_post
 
 
-def sept_bind_dates(ctgviol: pd.DataFrame, runs: pd.DataFrame, cutoff: str):
-    """Per-constraint: (distinct post-cutoff Sept SIMDATEs it binds on,
-    distinct post-cutoff Sept SIMDATEs sampled at all) — the days-active
+def month_bind_dates(ctgviol: pd.DataFrame, runs: pd.DataFrame, cutoff: str, month: str):
+    """Per-constraint: (distinct post-cutoff in-month SIMDATEs it binds on,
+    distinct post-cutoff in-month SIMDATEs sampled at all) — the days-active
     proxy for un-ticketed class-A coverage."""
     r = runs.copy()
     r["SIMDATE"] = pd.to_datetime(r["SIMDATE"])
-    r = r[(r["SIMDATE"] >= pd.to_datetime(cutoff)) & (r["SIMDATE"].dt.month == 9)]
+    first, last = periods.month_range(month)
+    r = r[(r["SIMDATE"] >= pd.to_datetime(cutoff)) & (r["SIMDATE"] >= first) & (r["SIMDATE"] <= last)]
     n_sampled = r["SIMDATE"].dt.date.nunique()
     cv = ctgviol.copy()
     cv["CONSTRAINT"] = constraint_key(cv)
@@ -71,15 +70,14 @@ def sept_bind_dates(ctgviol: pd.DataFrame, runs: pd.DataFrame, cutoff: str):
     return bind_days, n_sampled
 
 
-def coverage_and_days(c: str, has_ticket: bool, start, end, bind_days_map, n_sampled):
-    """(coverage fraction, outage days in Sept, marker, thin_evidence)."""
+def coverage_and_days(c: str, has_ticket: bool, start, end, bind_days_map, n_sampled, month: str):
+    """(coverage fraction, outage days in the month, marker, thin_evidence)."""
     if has_ticket:
-        days = pd.bdate_range(max(pd.Timestamp(start), pd.Timestamp("2026-09-01")),
-                              min(pd.Timestamp(end), pd.Timestamp("2026-09-30")))
-        holidays = pd.to_datetime(["2026-09-07"])  # Labor Day
-        days = days[~days.isin(holidays)]
+        first, last = periods.month_range(month)
+        days = pd.bdate_range(max(pd.Timestamp(start), first), min(pd.Timestamp(end), last))
+        days = days[~days.isin(periods.nerc_holidays(first.year))]
         n_days = len(days)
-        cov = round(n_days * 16 / CLASS_HOURS_SEPT, 3)
+        cov = round(n_days * 16 / (len(periods.onpeak_days(month)) * 16), 3)
         return cov, n_days, "", n_days < 3
     n_days = int(bind_days_map.get(c, 0))
     cov = round(n_days / n_sampled, 3) if n_sampled else 0.0
@@ -90,14 +88,14 @@ def coverage_and_days(c: str, has_ticket: bool, start, end, bind_days_map, n_sam
 # Step-2 valuation
 # --------------------------------------------------------------------------
 
-def fastscan_sept_onpeak(config_id: int):
-    """Full September fast-scan headroom, restricted to weekday HE7-22
+def fastscan_month_onpeak(config_id: int, month: str):
+    """Fast-scan headroom for the calendar month across all years, restricted to weekday HE7-22
     on-peak rows; returns (p_bind_onpeak, need_df) where need_df is the
     NEED_MW frame (negative-headroom onpeak hours only, for lambda_engine)."""
     df = sf.query(config.FLOW_ANALYSIS_DB, f"""
         SELECT TIMESTAMP, HEADROOM
         FROM {config.FLOW_ANALYSIS}.FAST_SCAN_RESULTS
-        WHERE CONFIG_ID = {int(config_id)} AND MONTH(TIMESTAMP) = 9
+        WHERE CONFIG_ID = {int(config_id)} AND MONTH(TIMESTAMP) = {periods.parse_month(month)[1]}
     """)
     if df.empty:
         return None, pd.DataFrame()
@@ -129,7 +127,7 @@ def cpnode_sf(study_id: int, constraint: str, names: list[str]) -> dict[str, flo
     return {r["NAME"]: float(r["SF"]) for _, r in df.iterrows()} if len(df) else {}
 
 
-def value_row(study_id: int, c: str, gen, bus_names, genunit, scedname) -> dict:
+def value_row(study_id: int, c: str, gen, bus_names, genunit, scedname, month: str) -> dict:
     """Step-2 valuation components for one class-A constraint."""
     out: dict = {"_status": "ok"}
     cid = ConstraintId.parse(c)
@@ -140,11 +138,12 @@ def value_row(study_id: int, c: str, gen, bus_names, genunit, scedname) -> dict:
         return out
     config_id = int(cfgs["CONFIG_ID"].iloc[0])
     direction = int(cfgs["DIRECTION"].iloc[0]) if pd.notna(cfgs["DIRECTION"].iloc[0]) else 1
-    p_bind, need = fastscan_sept_onpeak(config_id)
+    label = periods.month_label(month)
+    p_bind, need = fastscan_month_onpeak(config_id, month)
     if p_bind is None:
-        out["_status"] = "no Sept on-peak fast-scan hours"
+        out["_status"] = f"no {label} on-peak fast-scan hours"
         return out
-    out["P(bind) Sept on-peak"] = round(p_bind, 3)
+    out[f"P(bind) {label} on-peak"] = round(p_bind, 3)
 
     # DIRECTION matters: on a reverse-bound branch (-1) a positive-PSENS
     # unit is relief (up), not the problem (down) — see relief_set's
@@ -266,7 +265,8 @@ function filterTable(id) {
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--study", type=int, required=True)
-    ap.add_argument("--month", default="2026-09")
+    ap.add_argument("--month", required=True, help="settlement month YYYY-MM")
+    ap.add_argument("--cutoff", required=True, help="pre/post split date YYYY-MM-DD")
     args = ap.parse_args()
 
     out_dir = config.OUTPUT_ROOT / f"study_{args.study}"
@@ -291,10 +291,10 @@ def main() -> None:
     top_drv = (tf_sum.reindex(tf_sum["MEAN_FLOWDELTA"].abs().sort_values(ascending=False).index)
                .drop_duplicates("CONSTRAINT").set_index("CONSTRAINT"))
 
-    cutoff_year = pd.to_datetime(runs["SIMDATE"]).dt.year.mode().iloc[0]
-    cutoff = f"{cutoff_year}-09-15"
+    cutoff = args.cutoff
+    label = periods.month_label(args.month)
     rate_pre, rate_post, n_pre, n_post = pre_post_bind_rates(ctgviol, runs, cutoff)
-    bind_days_map, n_sampled_sept = sept_bind_dates(ctgviol, runs, cutoff)
+    bind_days_map, n_sampled_month = month_bind_dates(ctgviol, runs, cutoff, args.month)
 
     # ONE bulk round trip for dispatch features on every candidate constraint
     # (was 2 queries x ~230 constraints — the architect-flagged cost problem).
@@ -337,7 +337,7 @@ def main() -> None:
 
         cov, n_days, marker, thin = coverage_and_days(
             c, has_ticket, r.get("DRIVER_TICKET_START"), r.get("DRIVER_TICKET_END"),
-            bind_days_map, n_sampled_sept)
+            bind_days_map, n_sampled_month, args.month)
 
         rows.append({
             "Constraint": c, "From": r["FROMNAME"], "To": r["TONAME"],
@@ -349,7 +349,7 @@ def main() -> None:
             "pre-cutoff binds": round(pr, 3),
             "post-cutoff binds": round(po, 3),
             "qualifying dispatch nodes": n_qual,
-            "Outage days in Sept": n_days,
+            f"Outage days in {label}": n_days,
             "_coverage": cov, "_cov_marker": marker, "_thin": thin,
             "Month rent ($)": int(r["TOTAL_RENT"]),
             "_rent_post": float(r["RENT_POST"]),
@@ -361,7 +361,7 @@ def main() -> None:
     # ---- Step 2 gate: hard thresholds, not a top-40 cap ----
     # A constraint gets full-scope research ONLY if ALL of: class A; positive
     # impact share >= 0.25 (implied by class A, re-asserted here); qualifying
-    # dispatch nodes >= 2; outage-days in Sept >= 3; post-cutoff rent >= $200k.
+    # dispatch nodes >= 2; outage-days in the month >= 3; post-cutoff rent >= $200k.
     GATE_MIN_QUAL_NODES = 2
     GATE_MIN_OUTAGE_DAYS = 3
     GATE_MIN_RENT_POST = 200_000
@@ -373,7 +373,7 @@ def main() -> None:
     funnel["impact_share>=0.25"] = len(g)
     g = g[g["qualifying dispatch nodes"].fillna(0) >= GATE_MIN_QUAL_NODES]
     funnel["qual_nodes>=2"] = len(g)
-    g = g[g["Outage days in Sept"].fillna(0) >= GATE_MIN_OUTAGE_DAYS]
+    g = g[g[f"Outage days in {label}"].fillna(0) >= GATE_MIN_OUTAGE_DAYS]
     funnel["outage_days>=3"] = len(g)
     g = g[g["_rent_post"] >= GATE_MIN_RENT_POST]
     funnel["rent_post>=200k"] = len(g)
@@ -384,8 +384,8 @@ def main() -> None:
     val_rows = []
     for _, r in classA.iterrows():
         c = r["Constraint"]
-        comp = value_row(args.study, c, gen, bus_names, genunit, scedname)
-        p_bind = comp.get("P(bind) Sept on-peak")
+        comp = value_row(args.study, c, gen, bus_names, genunit, scedname, args.month)
+        p_bind = comp.get(f"P(bind) {label} on-peak")
         elam = comp.get("E[lambda|bind]")
         cov = r["_coverage"]
         value = round(p_bind * elam * cov, 3) if (p_bind is not None and elam is not None) else None
@@ -395,14 +395,14 @@ def main() -> None:
                 if value is not None and eff_sf is not None and path_price is not None else None)
         val_rows.append({
             "Constraint": c, "From": r["From"], "To": r["To"], "kV": r["kV"],
-            "tickets": r["tickets"], "Outage days in Sept": r["Outage days in Sept"],
+            "tickets": r["tickets"], f"Outage days in {label}": r[f"Outage days in {label}"],
             "coverage": f"{r['_coverage']}{r['_cov_marker']}",
             "thin window evidence": "thin window evidence" if r["_thin"] else "",
-            "P(bind) Sept on-peak": p_bind,
+            f"P(bind) {label} on-peak": p_bind,
             "E[lambda|bind]": elam,
             "lambda P50": comp.get("lambda P50"), "lambda P90": comp.get("lambda P90"),
             "unpriced deep hours %": comp.get("unpriced deep hours %"),
-            "Sept value $/MWh/SF": value,
+            f"{label} value $/MWh/SF": value,
             "Path": comp.get("Path"), "Path SF": comp.get("Path SF"),
             "Edge $": edge,
             "status": comp.get("_status", "ok") if value is not None else comp.get("_status", "unpriced"),
@@ -415,7 +415,7 @@ def main() -> None:
         # coverage — a data gap, not a zero) at the very bottom, so a
         # legitimately-near-zero priced constraint is never mistaken for
         # (or ranked above/below) one we simply couldn't price.
-        val_df["_sort"] = val_df["Sept value $/MWh/SF"].where(~val_df["_thin"], -1e9)
+        val_df["_sort"] = val_df[f"{label} value $/MWh/SF"].where(~val_df["_thin"], -1e9)
         val_df = val_df.sort_values(["_priced", "_sort"], ascending=[False, False]).reset_index(drop=True)
         val_df = val_df.drop(columns=["_sort", "_thin", "_priced"])
 
@@ -437,16 +437,16 @@ preflow, positive, and a dispatchable relief pair exists) &mdash; <b>B</b> basel
 &gt;= half the post-cutoff rate) &mdash; <b>C</b> no-dispatch/unenforceable (penalty-tier LP lambda or no
 dispatchable relief pair &mdash; ERCOT unlikely to run the outage) &mdash; <b>D</b> outage-relieved/bearish
 (the outage set UNLOADS the constraint, or it stops binding post-cutoff). Class counts: {n_by_class}.
-Coverage for Step 2: ticketed constraints use the ticket window's Sept weekday hours / 336; un-ticketed
-class-A constraints use a (days-proxy) = distinct post-cutoff Sept sim-dates it binds on / distinct
-post-cutoff Sept sim-dates sampled &mdash; rows under 3 days-equivalent are flagged 'thin window evidence'
+Coverage for Step 2: ticketed constraints use the ticket window's {label} weekday hours / {len(periods.onpeak_days(args.month)) * 16}; un-ticketed
+class-A constraints use a (days-proxy) = distinct post-cutoff {label} sim-dates it binds on / distinct
+post-cutoff {label} sim-dates sampled &mdash; rows under 3 days-equivalent are flagged 'thin window evidence'
 and sorted to the bottom.</div>
 
 <h2>Step 1 — screen (all classes, filterable)</h2>
 {filterable_table('screen', df[[c for c in df.columns if not c.startswith('_')] ], row_classes_screen)}
 
 <h2>Step 2 — valuation ({len(classA)} constraints cleared the gate: class A, impact share &gt;= 0.25,
-qualifying dispatch nodes &gt;= 2, outage-days in Sept &gt;= 3, post-cutoff rent &gt;= $200k; hard cap 15 by rent)</h2>
+qualifying dispatch nodes &gt;= 2, outage-days in {label} &gt;= 3, post-cutoff rent &gt;= $200k; hard cap 15 by rent)</h2>
 <div class="meta">Gate funnel: {funnel}</div>
 {filterable_table('valuation', val_df) if not val_df.empty else '<p>No class-A constraints.</p>'}
 
@@ -458,7 +458,7 @@ qualifying dispatch nodes &gt;= 2, outage-days in Sept &gt;= 3, post-cutoff rent
     (out_dir / "screening_report.html").write_text(html)
 
     print(f"Class counts: {n_by_class}")
-    print(f"\nTop 15 class-A by Sept value:")
+    print(f"\nTop 15 class-A by {label} value:")
     if not val_df.empty:
         print(val_df.head(15).to_string(index=False))
     print(f"\nClass D (bearish): {len(classD)} constraints")

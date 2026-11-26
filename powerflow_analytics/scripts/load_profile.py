@@ -5,11 +5,12 @@ Usage:
 
 Pulls (cache-first) via pfa.extract.load.get_load_window / median_load_profile
 and writes an HTML plot with one trace per year to
-powerflow_analytics/output/sep_load_hourly_median_5yr.html.
+powerflow_analytics/output/<mon>_load_hourly_median_5yr.html (e.g. sep_...).
 """
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import sys
 from pathlib import Path
 
@@ -34,6 +35,10 @@ def parse_years(spec: str) -> list[int]:
     return years
 
 
+def _mon(mmdd: str) -> str:
+    return dt.date(2000, int(mmdd[:2]), 1).strftime("%b").lower()
+
+
 def build_figure(df, start_mmdd: str, end_mmdd: str, zone: str = "ERCOT") -> go.Figure:
     fig = go.Figure()
     for year in sorted(df["year"].unique()):
@@ -48,7 +53,7 @@ def build_figure(df, start_mmdd: str, end_mmdd: str, zone: str = "ERCOT") -> go.
         )
     zone_label = "ERCOT system" if zone == "ERCOT" else f"{zone} LZ"
     fig.update_layout(
-        title=f"{zone_label} median load by hour, Sep {start_mmdd[3:]}-{end_mmdd[3:]}",
+        title=f"{zone_label} median load by hour, {_mon(start_mmdd).title()} {start_mmdd[3:]}-{end_mmdd[3:]}",
         xaxis_title="Hour Ending (HE)",
         yaxis_title="Median load (GW)",
         hovermode="x unified",
@@ -60,8 +65,8 @@ def build_figure(df, start_mmdd: str, end_mmdd: str, zone: str = "ERCOT") -> go.
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--start", default="09-16", help="MM-DD, default 09-16")
-    ap.add_argument("--end", default="09-30", help="MM-DD, default 09-30")
+    ap.add_argument("--start", required=True, help="MM-DD")
+    ap.add_argument("--end", required=True, help="MM-DD")
     ap.add_argument("--years", default="2021-2025", help="e.g. 2021-2025 or 2021,2023,2025")
     ap.add_argument("--zone", default="ERCOT",
                      help="ERCOT (system total, default) or a weather zone: "
@@ -69,8 +74,8 @@ def main() -> None:
     ap.add_argument(
         "--out",
         default=None,
-        help="output HTML path (default: output/sep_load_hourly_median_5yr.html, "
-             "or output/sep_load_hourly_median_5yr_<zone>.html for a non-ERCOT zone)",
+        help="output HTML path (default: output/<mon>_load_hourly_median_5yr.html, "
+             "or output/<mon>_load_hourly_median_5yr_<zone>.html for a non-ERCOT zone)",
     )
     args = ap.parse_args()
 
@@ -82,7 +87,7 @@ def main() -> None:
     fig = build_figure(df, args.start, args.end, zone=args.zone)
     if args.out is None:
         suffix = "" if args.zone == "ERCOT" else f"_{args.zone}"
-        args.out = str(config.OUTPUT_ROOT / f"sep_load_hourly_median_5yr{suffix}.html")
+        args.out = str(config.OUTPUT_ROOT / f"{_mon(args.start)}_load_hourly_median_5yr{suffix}.html")
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     fig.write_html(out_path)

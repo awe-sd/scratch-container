@@ -18,6 +18,7 @@ from dataclasses import dataclass
 
 import pandas as pd
 
+from .. import periods
 from .constraints import constraint_key
 
 PRICE_CAP = 5000.0
@@ -25,16 +26,9 @@ PRICE_CAP = 5000.0
 # sampled sim-hour -> number of on-peak hours it represents (16h on-peak day)
 HOUR_BLOCKS = {12: 10, 18: 6}  # midday block HE7-16, evening block HE17-22
 
-NERC_HOLIDAYS_2026 = pd.to_datetime(
-    ["2026-01-01", "2026-05-25", "2026-07-04", "2026-09-07", "2026-11-26", "2026-12-25"]
-)
-
-
 def onpeak_days(year: int, month: int) -> pd.DatetimeIndex:
     """Business days (M-F minus NERC holidays) in a month."""
-    days = pd.bdate_range(f"{year}-{month:02d}-01", pd.Timestamp(year=year, month=month, day=1)
-                          + pd.offsets.MonthEnd(0))
-    return days[~days.isin(NERC_HOLIDAYS_2026)]
+    return periods.onpeak_days(f"{year}-{month:02d}")
 
 
 @dataclass

@@ -10,7 +10,7 @@ NQUAL is queried fresh from Snowflake (bulk_dispatch_nodes) for the full univers
 than read from a prior CSV.
 
 Usage:
-    uv run powerflow_analytics/scripts/build_stage2_list.py --study 14431
+    uv run powerflow_analytics/scripts/build_stage2_list.py --study 14431 --cutoff 2026-09-15
 """
 from __future__ import annotations
 
@@ -31,7 +31,6 @@ from pfa.constraint_id import ConstraintId
 # ---------------------------------------------------------------------------
 # Thresholds — named constants, overridable via CLI (see argparse in main()).
 # ---------------------------------------------------------------------------
-DEFAULT_CUTOFF = "2026-09-15"
 SF_MIN, SF_MAX = 0.03, 0.9  # |PSENS| band for the dispatch-node bulk query
 
 PENALTY_TIERS = (500.0, 3500.0)  # SCOPF unresolvable-violation price caps
@@ -256,32 +255,38 @@ def stage2_gate(
 
 # ---------------------------------------------------------------------------
 # Stage 8: HTML render — column-spec driven (header/filter row/body/alignment all
-# derive from COLUMNS so adding a column can't silently misalign the CSS).
+# derive from _columns() so adding a column can't silently misalign the CSS).
 # ---------------------------------------------------------------------------
-COLUMNS = [
-    # (header, accessor(row_dict), kind, css_class)
-    ("Label", lambda r: r["Label"], "text", "l"),
-    ("From bus", lambda r: r["From bus"], "id", "r"),
-    ("From name", lambda r: r["From name"], "text", "l"),
-    ("To bus", lambda r: r["To bus"], "id", "r"),
-    ("To name", lambda r: r["To name"], "text", "l"),
-    ("Ckt", lambda r: r["Ckt"], "text", "l"),
-    ("Contingency", lambda r: r["Contingency"], "text", "l"),
-    ("Direction", lambda r: r["Direction"], "id", "r"),
-    ("Impact share", lambda r: r["Impact share"], "num2", "r"),
-    ("Pre binds", lambda r: r["Pre binds"], "int", "r"),
-    ("Post binds", lambda r: r["Post binds"], "int", "r"),
-    ("Post days (of 5)", lambda r: r["Post days (of 5)"], "int", "r"),
-    ("λ avg (all)", lambda r: r["lam avg"], "num1", "r"),
-    ("λ P50 (all)", lambda r: r["lam p50"], "num1", "r"),
-    ("λ P50 (ex-cap, gate basis)", lambda r: r["lam p50 gate"], "num1", "r"),
-    ("Dispatch nodes", lambda r: r["Dispatch nodes"], "int", "r"),
-    ("Rent post-9/15 ($)", lambda r: r["Rent post-9/15 ($)"], "money", "r"),
-    ("Ticket", lambda r: r["Ticket"], "text", "l"),
-    ("Status", lambda r: r["Status"], "text", "l"),
-    ("Flip exempt", lambda r: r["Flip exempt"], "bool", "l"),
-    ("Thin intensity", lambda r: r["Thin intensity"], "bool", "l"),
-]
+def _columns(rent_col: str) -> list:
+    return [
+        # (header, accessor(row_dict), kind, css_class)
+        ("Label", lambda r: r["Label"], "text", "l"),
+        ("From bus", lambda r: r["From bus"], "id", "r"),
+        ("From name", lambda r: r["From name"], "text", "l"),
+        ("To bus", lambda r: r["To bus"], "id", "r"),
+        ("To name", lambda r: r["To name"], "text", "l"),
+        ("Ckt", lambda r: r["Ckt"], "text", "l"),
+        ("Contingency", lambda r: r["Contingency"], "text", "l"),
+        ("Direction", lambda r: r["Direction"], "id", "r"),
+        ("Impact share", lambda r: r["Impact share"], "num2", "r"),
+        ("Pre binds", lambda r: r["Pre binds"], "int", "r"),
+        ("Post binds", lambda r: r["Post binds"], "int", "r"),
+        ("Post days (of 5)", lambda r: r["Post days (of 5)"], "int", "r"),
+        ("λ avg (all)", lambda r: r["lam avg"], "num1", "r"),
+        ("λ P50 (all)", lambda r: r["lam p50"], "num1", "r"),
+        ("λ P50 (ex-cap, gate basis)", lambda r: r["lam p50 gate"], "num1", "r"),
+        ("Dispatch nodes", lambda r: r["Dispatch nodes"], "int", "r"),
+        (rent_col, lambda r: r[rent_col], "money", "r"),
+        ("Ticket", lambda r: r["Ticket"], "text", "l"),
+        ("Status", lambda r: r["Status"], "text", "l"),
+        ("Flip exempt", lambda r: r["Flip exempt"], "bool", "l"),
+        ("Thin intensity", lambda r: r["Thin intensity"], "bool", "l"),
+    ]
+
+
+def rent_col_name(cutoff: str) -> str:
+    d = pd.Timestamp(cutoff)
+    return f"Rent post-{d.month}/{d.day} ($)"
 
 
 def _fmt(v, kind):
@@ -302,7 +307,9 @@ def _fmt(v, kind):
     return str(v)
 
 
-def render_html(gated: pd.DataFrame, cache_dir: str, dirs: pd.Series, study: int, outdir: str) -> pd.DataFrame:
+def render_html(gated: pd.DataFrame, cache_dir: str, dirs: pd.Series, study: int, outdir: str,
+                cutoff: str) -> pd.DataFrame:
+    rent_col = rent_col_name(cutoff)
     br = (
         pd.read_parquet(f"{cache_dir}/outbranch2.parquet", columns=["LABEL", "FROMNUM", "TONUM", "CKT"])
         .drop_duplicates(["FROMNUM", "TONUM", "CKT"])
@@ -332,14 +339,14 @@ def render_html(gated: pd.DataFrame, cache_dir: str, dirs: pd.Series, study: int
                 "lam p50": r.lam_p50,
                 "lam p50 gate": r.lam_p50_gate,
                 "Dispatch nodes": int(r.NQUAL),
-                "Rent post-9/15 ($)": r.RENT_POST,
+                rent_col: r.RENT_POST,
                 "Ticket": r.DRIVER_TICKET if pd.notna(r.DRIVER_TICKET) else "",
                 "Status": r.DRIVER_TICKET_STATUS if pd.notna(r.DRIVER_TICKET_STATUS) else "",
                 "Flip exempt": bool(r.flip_exempt),
                 "Thin intensity": bool(r.thin_intensity),
             }
         )
-    out = pd.DataFrame(rows).sort_values("Rent post-9/15 ($)", ascending=False)
+    out = pd.DataFrame(rows).sort_values(rent_col, ascending=False)
 
     style = """
 body{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;margin:2rem;color:#1a1a2e;background:#fafafa}
@@ -359,12 +366,12 @@ if(v[0]==='>'&&!isNaN(num)){if(!(num>parseFloat(v.slice(1))))ok=false}
 else if(v[0]==='<'&&!isNaN(num)){if(!(num<parseFloat(v.slice(1))))ok=false}
 else if(!cell.toLowerCase().includes(v))ok=false;});r.style.display=ok?'':'none';});}
 """
-    head = "".join(f"<th class='{cls}'>{h}</th>" for h, _, _, cls in COLUMNS)
-    filt = "".join(f"<th class='{cls}'><input class='f' oninput='flt()'></th>" for _, _, _, cls in COLUMNS)
+    head = "".join(f"<th class='{cls}'>{h}</th>" for h, _, _, cls in _columns(rent_col))
+    filt = "".join(f"<th class='{cls}'><input class='f' oninput='flt()'></th>" for _, _, _, cls in _columns(rent_col))
     body_rows = []
     for _, row in out.iterrows():
         cells = "".join(
-            f"<td class='{cls}'>{_fmt(acc(row), kind)}</td>" for _, acc, kind, cls in COLUMNS
+            f"<td class='{cls}'>{_fmt(acc(row), kind)}</td>" for _, acc, kind, cls in _columns(rent_col)
         )
         body_rows.append(f"<tr>{cells}</tr>")
     body = "".join(body_rows)
@@ -392,7 +399,7 @@ def main() -> None:
     global PENALTY_SHARE_MAX
     ap = argparse.ArgumentParser()
     ap.add_argument("--study", type=int, required=True)
-    ap.add_argument("--cutoff", default=DEFAULT_CUTOFF)
+    ap.add_argument("--cutoff", required=True, help="pre/post split date YYYY-MM-DD")
     ap.add_argument("--share-min", type=float, default=SHARE_MIN)
     ap.add_argument("--post-days-min", type=int, default=POST_DAYS_MIN)
     ap.add_argument("--rent-min", type=float, default=RENT_MIN)
@@ -490,7 +497,7 @@ def main() -> None:
         print("(none)")
 
     # Stage 8
-    out = render_html(gated, cache, dirs, study, outdir)
+    out = render_html(gated, cache, dirs, study, outdir, args.cutoff)
     print()
     print(f"-> {outdir}/stage2_list.html | {outdir}/stage2_list.csv | {len(out)} rows")
 

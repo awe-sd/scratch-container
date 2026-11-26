@@ -1,6 +1,6 @@
 """Analyze a cached study: ranked binding constraints, marginal units, drivers.
 
-Usage: uv run powerflow_analytics/scripts/build_report.py --study 14411 [--top 15] [--tickets]
+Usage: uv run powerflow_analytics/scripts/build_report.py --study 14411 --cutoff 2026-09-15 [--top 15] [--tickets]
 """
 from __future__ import annotations
 
@@ -23,9 +23,8 @@ def main() -> None:
     ap.add_argument("--top", type=int, default=15, help="constraints to detail")
     ap.add_argument("--tickets", action="store_true",
                     help="verify drivers against toAllIsos (small SQL Server lookups)")
-    ap.add_argument("--cutoff", default=None,
-                    help="outage-season cutoff YYYY-MM-DD for rent split "
-                         "(default: Sep 15 of the study's sim year — ERCOT allows outages after Sep 15)")
+    ap.add_argument("--cutoff", required=True,
+                    help="outage-season cutoff YYYY-MM-DD for rent split")
     args = ap.parse_args()
 
     cache = StudyCache(args.study)
@@ -41,7 +40,7 @@ def main() -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     outcon = cache.load("outconstraint2")
-    cutoff = args.cutoff or f"{pd.to_datetime(runs['SIMDATE']).dt.year.mode().iloc[0]}-09-15"
+    cutoff = args.cutoff
 
     ranked = constraints.rank_constraints(ctgviol, runs)
     ranked = constraints.add_shadow_prices(ranked, outcon)
