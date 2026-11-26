@@ -1,0 +1,105 @@
+BRANCHNAME,PUN_STATION,PUN_SIDE_BUS,ERCOT_STATION,ERCOT_SIDE_BUS,KV,CLASS,INSERVICE,INCLUDE_IN_SHIFT_EQUIV,NOTE
+HUD_AK_04_21,AK,1072.0,HUD,87.0,138,RADIAL,1,True,
+G138_221,AMOCOOIL,512.0,GRNBELT,788.0,138,RADIAL,1,True,
+LN011,ARC,1246.0,PSA,528.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+BBPPWL79A,BBP,268.0,PWL,389.0,138,RADIAL,1,True,
+BBPBYU79A,BBP,268.0,BYU,711.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+ZBR_BYUG8_BBP1,BBP,269.0,BYU,712.0,13,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+BFMLP_96A,BFM,286.0,LP,1630.0,138,MESHED,1,True,
+BFMMIR961,BFM,1301.0,MIRAGE,286.0,138,MESHED,1,True,
+BSFBZ_02A,BSF,1099.0,BZ,483.0,138,MESHED,1,True,
+BSFHN_02A,BSF,1099.0,HN,295.0,138,MESHED,1,True,
+BTECHB-1A,BTE,392.0,CHB,1066.0,345,RADIAL,1,True,
+BYUSBK96A,BYU,711.0,SBK,1408.0,138,MESHED,1,True,
+BYUMCB96A,BYU,711.0,MCB,1264.0,138,MESHED,1,True,
+BYUORN79A,BYU,924.0,ORION,711.0,138,MESHED,1,True,
+CAL_PL_61,CAL,1215.0,PL,1029.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+6615_A,CARBN,7634.0,BSPSW,2909.0,69,MESHED,1,True,
+6615_G,CARBN,2894.0,COHMA,2909.0,69,MESHED,1,True,
+CITGO_NO_TIE11,CCEC,8753.0,CITGO_NO,9503.0,138,RADIAL,1,True,
+CELANE_KLEBER11,CELANEBI,8561.0,KLEBERG,8703.0,138,MESHED,1,True,
+CELANE_N_SHAR11,CELANEBI,8578.0,N_SHARPE,8563.0,138,MESHED,1,True,
+CHEDPW-1A,CHE,734.0,DPW,1775.0,345,RADIAL,1,True,
+CHELYDZ1A,CHE,757.0,LYD,731.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+138_61,COPSUB10,1277.0,CPCSUB9,1268.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+138_71,COPSUB10,1277.0,P66SUB12,1847.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+138_31,COPSUB8,1268.0,CPCSUB9,390.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+138_21,COPSUB8,645.0,SCLPCOGN,390.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+NORTHGA11,CSUNGATE,6956.0,TAM,6626.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+DIBSRB22A,DIB,1674.0,SRB,856.0,138,MESHED,1,True,
+DIBMNT21A,DIB,1657.0,MNT,856.0,138,MESHED,1,True,
+DOW_A_21,DOWGEN,1704.0,DOW,1576.0,138,RADIAL,1,True,
+DUP91,DUP1_V,1293.0,STONERSY,1226.0,138,RADIAL,1,True,
+DUP71,DUP2_V,1294.0,INV_TAP,1035.0,138,RADIAL,1,True,
+DUP31,DUPV1,1293.0,STONERSY,913.0,138,RADIAL,1,True,
+EQUIST_LON_HI11,EQUISTAR,8857.0,LON_HILL,9465.0,138,MESHED,1,True,
+EQUIST_MCKENZ11,EQUISTAR,8857.0,MCKENZIE,8877.0,138,MESHED,1,True,
+OXYCOGEN1,EQUISTAR,8857.0,OXY_CC,9009.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+BT_EXN66A,EXN,807.0,BT,1058.0,138,MESHED,1,True,
+DKREXN83A,EXN,1816.0,DKR,807.0,138,MESHED,1,True,
+EXNLH_03A,EXN,807.0,LH,1601.0,138,MESHED,1,True,
+FORMOS_JOSLIN11,FORMOSA,883.0,JOSLIN,620.0,138,MESHED,1,True,
+FORMOS_LOLITA11,FORMOSA,1599.0,LOLITA,880.0,138,MESHED,1,True,
+ICOSW_IDPSW_3A1,INGLCOSW,8529.0,I_DUPP1,8552.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+ICOSW_IDPSW_2A1,INGLCOSW,8684.0,OXY_INGL,8552.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+I_DUPP_I_DUPS11,I_DUPP1,9494.0,I_DUPSW,8529.0,138,RADIAL,1,True,
+LBM3_L011,LBM3,1335.0,PSA,537.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+LEVOYS11A,LEVEE,1304.0,OYS,83.0,138,RADIAL,1,True,
+I_DUPS_LGE21,LGE,8861.0,I_DUPSW,9494.0,138,RADIAL,1,True,
+LHMLY_08A,LHM,326.0,LY,475.0,138,RADIAL,1,True,
+LHMPSA08A,LHM,528.0,PSA,326.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+LKVEW_RC1,LKVPD,6672.0,LKVEW_RC,6600.0,138,MESHED,1,True,
+LKVTP_ONCOR_RC1,LKVPD,7061.0,LKVTP_RC,6672.0,138,MESHED,1,True,
+1250_J,LKVPD,6693.0,PLSTH,6672.0,138,MESHED,1,True,
+1250_F,LKVPD,6757.0,LLTSW,6672.0,138,MESHED,1,True,
+1250_P,LKVPD,7112.0,TIMBR,6673.0,138,MESHED,0,True,
+DPWLYD70A,LYD,1777.0,DPW,757.0,138,MESHED,1,True,
+GBYLYD70A,LYD,757.0,GBY,448.0,138,MESHED,1,True,
+SUNSWITCH1381,MATKM,2975.0,SUNSW,3208.0,138,RADIAL,1,True,
+POWERPLANT1381,MATKM,3204.0,SPPKM,3208.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+BNTMIN16A,MIN,559.0,BNT,1276.0,69,RADIAL,1,True,
+6217_B,MPPOI,7706.0,KEYSB,7600.0,138,MESHED,1,True,
+6217_A,MPPOI,7600.0,WLVSW,7393.0,138,MESHED,1,True,
+HUDMSN04A,MSN,566.0,HUD,87.0,138,MESHED,1,True,
+MSNPET04A,MSN,391.0,PET,566.0,138,MESHED,1,True,
+FT_NA_06A,,,,,138,NO_PUN_STATION_IDENTIFIED,1,False,neither endpoint matches a PUN station in pun_topology.csv — likely not a genuine PUN tie; excluded
+NA_WEB06A,,,,,138,NO_PUN_STATION_IDENTIFIED,1,False,neither endpoint matches a PUN station in pun_topology.csv — likely not a genuine PUN tie; excluded
+CANGRE_NCARBI21,NCARBIDE,1159.0,CANGREJO,1466.0,138,MESHED,0,True,
+NCARBI_SEADRF11,NCARBIDE,469.0,SEADRFTC,1152.0,138,MESHED,1,True,
+NCARBI_SANDCR11,NCARBIDE,135.0,SANDCRAB,1151.0,138,MESHED,1,True,
+CANGRE_NCARBI11,NCARBIDE,1158.0,CANGREJO,1470.0,69,MESHED,0,True,
+GREENL_NCARBI11,NCARBIDE,1150.0,GREENLK,387.0,69,MESHED,1,True,
+NCARBI_PV_TAP11,NCARBIDE,1150.0,PV_TAP,1161.0,69,MESHED,1,True,
+NCARBIDE_SDRFT1,NCARBIDE,1150.0,SEADRIFT,10.0,69,MESHED,1,True,
+NCARBI_VISTRO11,NCARBIDE,1152.0,VISTRON,1489.0,138,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+ALIQUI_OXY_IN11,OXY_INGL,8748.0,ALIQUING,8683.0,138,RADIAL,1,True,
+P66_31,P66SUB6,104.0,P66_3,550.0,69,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+69_PH6_SCP1,P66SUB6,104.0,SCLPCOGN,646.0,69,"PUN_PUN (both redacted, no ERCOT side)",1,False,both endpoints are PUN stations per pun_topology.csv — no genuine ERCOT-side neighbour; excluded from shift-equivalence stats
+P66_24A1,P66_3,550.0,P66SUB2,1394.0,69,RADIAL,1,True,
+G69_W1,PHILLPS5,613.0,OLDOCEAN,1034.0,69,MESHED,1,True,
+G69_V1,PHILLPS5,1034.0,PHILLPS2,758.0,69,MESHED,1,True,
+BERPL_96A,PL,1349.0,BER,1027.0,138,MESHED,1,True,
+CO_PL_84A,PL,1027.0,CO,819.0,138,MESHED,1,True,
+BLML1,PNPI,1184.0,WAP,1252.0,138,RADIAL,1,True,
+PR_PRS33A,PR,1041.0,PRS,9.0,69,RADIAL,1,True,
+BCVPSA03A,PSA,529.0,BCV,675.0,138,MESHED,1,True,
+HL_PSA08A,PSA,528.0,HL,1767.0,138,MESHED,1,True,
+LY_PSA03A,PSA,474.0,LY,529.0,138,MESHED,1,True,
+MTSPSA94A,PSA,528.0,MTS,852.0,138,MESHED,1,True,
+138_SCP_FMF1,SCLPCOGN,42.0,FM524,645.0,138,MESHED,1,True,
+138_LNV_SCP1,SCLPCOGN,645.0,LINVILLE,1331.0,138,MESHED,1,True,
+G138_T1,SCLPCOGN,593.0,WCOLMAIN,645.0,138,MESHED,1,True,
+G69_U11,SCLPCOGN,646.0,PHILLPS2,758.0,69,MESHED,1,True,
+1725_A,SDSES,2057.0,SNDSW,2503.0,138,RADIAL,1,True,
+AZ_SL_85A,SL,556.0,AZ,741.0,138,MESHED,0,True,
+BOGSL_85A,SL,134.0,BOG,740.0,138,MESHED,0,True,
+BOG_T11,SL,752.0,BOG,120.0,34,MESHED,1,True,
+BOG_T6S1,SL,132.0,BOG,743.0,12,MESHED,1,True,
+TAM_ATKINS1,TAM,6626.0,ATKINS,6776.0,138,MESHED,1,True,
+TAM_ENT1,TAM,6982.0,ENTERPR,6626.0,138,MESHED,1,True,
+BG_TC_37A,TC,468.0,BG,1002.0,138,MESHED,1,True,
+GN_TC_37A,TC,1002.0,GN,574.0,138,MESHED,1,True,
+APA_UCC11,UCC_COGN,1765.0,APACHE,652.0,138,RADIAL,1,True,
+BLCBAY_VISTRO11,VISTRON,1490.0,BLCBAYU4,1597.0,138,RADIAL,1,True,
+1580_F,,,,,138,NO_PUN_STATION_IDENTIFIED,1,False,neither endpoint matches a PUN station in pun_topology.csv — likely not a genuine PUN tie; excluded
+1580_E,,,,,138,NO_PUN_STATION_IDENTIFIED,1,False,neither endpoint matches a PUN station in pun_topology.csv — likely not a genuine PUN tie; excluded

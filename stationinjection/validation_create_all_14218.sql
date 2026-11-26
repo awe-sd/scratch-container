@@ -1,0 +1,52 @@
+-- Runbook: create + run V2 validation scans for every existing validation config of study 14218.
+-- Prerequisite: SP_CREATE_VALIDATION_CONFIG_TEST and SP_RUN_VALIDATION_FAST_SCAN_TEST_V2 deployed.
+-- 2026-09-25
+
+-- Preview: 114 rows expected (verified 2026-09-25).
+SELECT
+    BASELINE_CONFIG_ID,
+    ARRAY_AGG(DISTINCT CONFIG_ID) AS EXISTING_CONFIG_IDS,
+    ARRAY_AGG(DISTINCT TOPOLOGYSHIFTSETID) AS SHIFTSET_IDS
+FROM FLOW_ANALYSIS.FAST_SCAN_CONFIG
+WHERE STUDY_ID = 14218 AND SOURCE_TYPE = 'VALIDATION'
+GROUP BY BASELINE_CONFIG_ID
+ORDER BY BASELINE_CONFIG_ID;
+
+EXECUTE IMMEDIATE $$
+DECLARE
+    c_baselines CURSOR FOR
+        SELECT DISTINCT BASELINE_CONFIG_ID
+          FROM FLOW_ANALYSIS.FAST_SCAN_CONFIG
+         WHERE STUDY_ID = 14218 AND SOURCE_TYPE = 'VALIDATION'
+         ORDER BY 1;
+    v_baseline  NUMBER(38,0);
+    v_result    VARIANT;
+    v_config_id NUMBER(38,0);
+    v_created   INT DEFAULT 0;
+    v_failed    INT DEFAULT 0;
+BEGIN
+    FOR rec IN c_baselines DO
+        v_baseline := rec.BASELINE_CONFIG_ID;
+        CALL AW.FLOW_ANALYSIS.SP_CREATE_VALIDATION_CONFIG_TEST(:v_baseline, TRUE);
+        v_result := (SELECT $1 FROM TABLE(RESULT_SCAN(LAST_QUERY_ID())));
+        v_config_id := v_result:config_id::NUMBER(38,0);
+        v_created := v_created + 1;
+        BEGIN
+            CALL AW.FLOW_ANALYSIS.SP_RUN_VALIDATION_FAST_SCAN_TEST_V2(:v_config_id, NULL, NULL, TRUE, 6);
+        EXCEPTION
+            WHEN OTHER THEN
+                v_failed := v_failed + 1;
+        END;
+    END FOR;
+    RETURN 'created ' || v_created || ', runs failed ' || v_failed;
+END;
+$$;
+
+-- Post-check: new configs created today, with row counts. Failed V2 runs are visible in
+-- FLOW_ANALYSIS.FAST_SCAN_RUN_LOG by STATUS.
+SELECT c.CONFIG_ID, c.BASELINE_CONFIG_ID, c.TOPOLOGYSHIFTSETID, COUNT(r.CONFIG_ID) AS RESULT_ROWS
+FROM FLOW_ANALYSIS.FAST_SCAN_CONFIG c
+LEFT JOIN FLOW_ANALYSIS.FAST_SCAN_RESULTS r ON r.CONFIG_ID = c.CONFIG_ID
+WHERE c.STUDY_ID = 14218 AND c.SOURCE_TYPE = 'VALIDATION' AND c.CREATED_AT >= CURRENT_DATE()
+GROUP BY c.CONFIG_ID, c.BASELINE_CONFIG_ID, c.TOPOLOGYSHIFTSETID
+ORDER BY c.BASELINE_CONFIG_ID;
