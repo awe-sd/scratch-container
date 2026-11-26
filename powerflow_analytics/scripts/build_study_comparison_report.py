@@ -18,9 +18,10 @@ import argparse
 import pandas as pd
 
 from pfa import config, periods, sf
-from pfa.analysis import fastscan, valuation
+from pfa.analysis import valuation
 from pfa.cache import StudyCache
 from pfa.constraint_id import ConstraintId
+from pfa.extract import fastscan
 
 MIN_BIND = 5  # lower than single-study report: catching movers matters more here
 

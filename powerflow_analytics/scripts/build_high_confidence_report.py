@@ -23,9 +23,9 @@ import pandas as pd
 
 from pfa import config
 from pfa.constraint_id import ConstraintId, constraint_key
-from pfa.analysis import fastscan, marginal_units, market, offer_lambda, valuation
+from pfa.analysis import marginal_units, market, offer_lambda, valuation
 from pfa.cache import StudyCache
-from pfa.extract import buskv, gen_mapping, popt
+from pfa.extract import buskv, fastscan, gen_mapping, popt
 
 MIN_BIND = 1  # every last one
 ONPEAK_BLOCKS = {12: 10, 18: 6}  # sampled hour -> on-peak hours represented

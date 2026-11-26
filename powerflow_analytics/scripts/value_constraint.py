@@ -50,7 +50,7 @@ def main() -> None:
                               "rent_per_mw_month", "dollars_per_mwh"]].to_string(index=False))
 
     if args.fastscan:
-        from pfa.analysis import fastscan
+        from pfa.extract import fastscan
 
         cid = ConstraintId.parse(args.constraint)
         cfgs = fastscan.find_configs(args.study, cid.fromnum, cid.tonum, cid.ctglabel)

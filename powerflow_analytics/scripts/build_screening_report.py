@@ -21,12 +21,12 @@ import gc
 import pandas as pd
 
 from pfa import config, periods, sf
-from pfa.analysis import fastscan, lambda_engine as lam, marginal_units, offer_lambda
+from pfa.analysis import lambda_engine as lam, marginal_units, offer_lambda
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
 from pfa.analysis.screening import classify_constraint
 from pfa.cache import StudyCache
 from pfa.constraint_id import ConstraintId
-from pfa.extract import buskv, gen_mapping, popt
+from pfa.extract import buskv, fastscan, gen_mapping, popt
 
 
 # --------------------------------------------------------------------------
@@ -89,11 +89,7 @@ def fastscan_month_onpeak(config_id: int, month: str):
     """Fast-scan headroom for the calendar month across all years, restricted to weekday HE7-22
     on-peak rows; returns (p_bind_onpeak, need_df) where need_df is the
     NEED_MW frame (negative-headroom onpeak hours only, for lambda_engine)."""
-    df = sf.query(config.FLOW_ANALYSIS_DB, f"""
-        SELECT TIMESTAMP, HEADROOM
-        FROM {config.FLOW_ANALYSIS}.FAST_SCAN_RESULTS
-        WHERE CONFIG_ID = {int(config_id)} AND MONTH(TIMESTAMP) = {periods.parse_month(month)[1]}
-    """)
+    df = fastscan.headroom_for_month(config_id, periods.parse_month(month)[1])
     if df.empty:
         return None, pd.DataFrame()
     df["TIMESTAMP"] = pd.to_datetime(df["TIMESTAMP"])

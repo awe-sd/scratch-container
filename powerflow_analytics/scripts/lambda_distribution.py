@@ -12,10 +12,10 @@ import argparse
 
 import pandas as pd
 
-from pfa.analysis import fastscan, marginal_units, lambda_engine as lam
+from pfa.analysis import marginal_units, lambda_engine as lam
 from pfa.cache import StudyCache
 from pfa.constraint_id import ConstraintId
-from pfa.extract import gen_mapping
+from pfa.extract import fastscan, gen_mapping
 
 
 def main() -> None:

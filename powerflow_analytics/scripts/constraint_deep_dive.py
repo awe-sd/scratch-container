@@ -26,9 +26,9 @@ import numpy as np
 import pandas as pd
 
 from pfa import config, constraint_id, mssql, periods, sf
-from pfa.analysis import fastscan, marginal_units, offer_lambda, lambda_engine
+from pfa.analysis import marginal_units, offer_lambda, lambda_engine
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
-from pfa.extract import gen_mapping
+from pfa.extract import fastscan, gen_mapping
 from pfa.cache import StudyCache
 
 ONPEAK_HOURS = set(range(7, 23))  # HE7-22
@@ -94,12 +94,7 @@ DRIVER_MARGIN = 0.05     # wind-vs-solar corr must lead by this much to call one
 
 def binding_conditions(config_id: int, hist_start: str, hist_end: str, month: str) -> dict:
     """Fast-scan headroom joined against regional wind + system solar."""
-    hr = sf.query(config.FLOW_ANALYSIS_DB, f"""
-        SELECT TIMESTAMP, HEADROOM, HEADROOM_RT, HEADROOM_AFTER_CURTAILMENT
-        FROM {config.FLOW_ANALYSIS}.FAST_SCAN_RESULTS
-        WHERE CONFIG_ID = {int(config_id)}
-          AND TIMESTAMP >= '{hist_start}' AND TIMESTAMP < '{hist_end}'
-    """)
+    hr = fastscan.headroom_window(config_id, hist_start, hist_end)
     if hr.empty:
         return {"empty": True}
     hr["TIMESTAMP"] = pd.to_datetime(hr["TIMESTAMP"])

@@ -42,8 +42,8 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-from .. import config, mssql, sf
-from . import fastscan
+from .. import mssql
+from ..extract import fastscan
 
 ONPEAK_HOURS = set(range(6, 22))  # HOUR(TIMESTAMP) is 0-23; HE7-22 == hour 6-21
 LOAD_FILTER_STEPS = [0, 45, 50, 55, 60, 65, 70, 75]  # GW, matches original slider
@@ -68,14 +68,7 @@ def _write_html_guarded(fig: go.Figure, out_html: str | Path) -> None:
 
 
 def _fetch_headroom(config_id: int) -> pd.DataFrame:
-    df = sf.query(
-        config.FLOW_ANALYSIS_DB,
-        f"""
-        SELECT TIMESTAMP, HEADROOM, HEADROOM_AFTER_CURTAILMENT
-        FROM {config.FLOW_ANALYSIS}.FAST_SCAN_RESULTS
-        WHERE CONFIG_ID = {int(config_id)}
-        """,
-    )
+    df = fastscan.headroom_with_curtailment(config_id)
     df["TIMESTAMP"] = pd.to_datetime(df["TIMESTAMP"])
     return df
 
