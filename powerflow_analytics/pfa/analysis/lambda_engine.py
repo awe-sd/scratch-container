@@ -28,7 +28,7 @@ import re
 
 import pandas as pd
 
-from .. import sf
+from .. import config, sf
 from .offer_lambda import MAX_SF, MIN_SF, sced_names
 from .valuation import PRICE_CAP
 
@@ -255,9 +255,9 @@ def lambda_at_depth(curve: list[dict], depth: float) -> float | None:
 
 def fastscan_need(config_id: int) -> pd.DataFrame:
     """Raw negative-headroom hours for a fast-scan config: need = -HEADROOM."""
-    df = sf.query("AWDEV", f"""
+    df = sf.query(config.FLOW_ANALYSIS_DB, f"""
         SELECT TIMESTAMP, HEADROOM
-        FROM AWDEV.FLOW_ANALYSIS.FAST_SCAN_RESULTS
+        FROM {config.FLOW_ANALYSIS}.FAST_SCAN_RESULTS
         WHERE CONFIG_ID = {int(config_id)} AND HEADROOM < 0
     """)
     if df.empty:
@@ -300,8 +300,8 @@ def solar_regime(config_id: int) -> pd.DataFrame:
     the lambda distribution by solar/dark regime without a separate
     solarGenAct join — FAST_SCAN_RESULTS already carries per-hour
     SOLAR_IMPACT (MW of solar's contribution to headroom relief)."""
-    return sf.query("AWDEV", f"""
+    return sf.query(config.FLOW_ANALYSIS_DB, f"""
         SELECT TIMESTAMP, SOLAR_IMPACT
-        FROM AWDEV.FLOW_ANALYSIS.FAST_SCAN_RESULTS
+        FROM {config.FLOW_ANALYSIS}.FAST_SCAN_RESULTS
         WHERE CONFIG_ID = {int(config_id)}
     """)

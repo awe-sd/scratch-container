@@ -93,9 +93,9 @@ def fastscan_sept_onpeak(config_id: int):
     """Full September fast-scan headroom, restricted to weekday HE7-22
     on-peak rows; returns (p_bind_onpeak, need_df) where need_df is the
     NEED_MW frame (negative-headroom onpeak hours only, for lambda_engine)."""
-    df = sf.query("AWDEV", f"""
+    df = sf.query(config.FLOW_ANALYSIS_DB, f"""
         SELECT TIMESTAMP, HEADROOM
-        FROM AWDEV.FLOW_ANALYSIS.FAST_SCAN_RESULTS
+        FROM {config.FLOW_ANALYSIS}.FAST_SCAN_RESULTS
         WHERE CONFIG_ID = {int(config_id)} AND MONTH(TIMESTAMP) = 9
     """)
     if df.empty:

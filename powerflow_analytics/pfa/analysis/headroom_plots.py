@@ -5,7 +5,7 @@ Reproduces (and generalizes) the ad hoc `ph_headroom_wind_solar.html` figure
 built in an earlier session with no committed source. Reverse-engineered from
 that HTML's embedded Plotly JSON:
 
-- Data source: AWDEV.FLOW_ANALYSIS.FAST_SCAN_RESULTS (TIMESTAMP, HEADROOM,
+- Data source: AW.FLOW_ANALYSIS.FAST_SCAN_RESULTS (TIMESTAMP, HEADROOM,
   HEADROOM_AFTER_CURTAILMENT) for one CONFIG_ID (see fastscan.find_configs).
 - Wind axis: "West" region wind level from AW.dbo.ercotWindRegionHourly
   (SQL Server, via awconnect.db) -- WIND_MW = avgHSLPct/100 * totalInstalledCapacityMW.
@@ -69,10 +69,10 @@ def _write_html_guarded(fig: go.Figure, out_html: str | Path) -> None:
 
 def _fetch_headroom(config_id: int) -> pd.DataFrame:
     df = sf.query(
-        "AWDEV",
+        config.FLOW_ANALYSIS_DB,
         f"""
         SELECT TIMESTAMP, HEADROOM, HEADROOM_AFTER_CURTAILMENT
-        FROM AWDEV.FLOW_ANALYSIS.FAST_SCAN_RESULTS
+        FROM {config.FLOW_ANALYSIS}.FAST_SCAN_RESULTS
         WHERE CONFIG_ID = {int(config_id)}
         """,
     )

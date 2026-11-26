@@ -118,9 +118,9 @@ DRIVER_MARGIN = 0.05     # wind-vs-solar corr must lead by this much to call one
 
 def binding_conditions(config_id: int, hist_start: str, hist_end: str) -> dict:
     """Fast-scan headroom joined against regional wind + system solar."""
-    hr = sf.query("AWDEV", f"""
+    hr = sf.query(config.FLOW_ANALYSIS_DB, f"""
         SELECT TIMESTAMP, HEADROOM, HEADROOM_RT, HEADROOM_AFTER_CURTAILMENT
-        FROM AWDEV.FLOW_ANALYSIS.FAST_SCAN_RESULTS
+        FROM {config.FLOW_ANALYSIS}.FAST_SCAN_RESULTS
         WHERE CONFIG_ID = {int(config_id)}
           AND TIMESTAMP >= '{hist_start}' AND TIMESTAMP < '{hist_end}'
     """)

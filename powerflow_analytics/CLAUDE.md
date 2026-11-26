@@ -41,10 +41,11 @@ modules before adding new scripts.
 
 ## Access status (updated 2026-08-11 — all grants LANDED)
 
-- `SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW` / `BUS_SHIFTS_VIEW`, `AWDEV.FLOW_ANALYSIS.*`,
+- `SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW` / `BUS_SHIFTS_VIEW`, `AW.FLOW_ANALYSIS.*`,
   `AW.POPT.*`, and `AWVAL.DBO.*` are ALL readable by the read_only role. Do not treat any
   of them as blocked. Gotcha: `SHIFT_FACTORS.DBO.DEVICE_SHIFTS` simply has NO ROWS for
   recent studies (e.g. 14411) — use the CPNODE/BUS shift views instead; empty ≠ blocked.
+- Fast-scan tables (FAST_SCAN_CONFIG/RESULTS/RT_CONSTRAINTS/RUN_LOG) live in `AW.FLOW_ANALYSIS`; `AWDEV.FLOW_ANALYSIS` was renamed `_DEPRECATED` (2026-11-26); schema name is `pfa.config.FLOW_ANALYSIS`.
 - Container constraint: hard 8 GiB cgroup memory cap (~3 GB usable after IDE daemons) —
   report scripts must load parquet columns selectively and free frames aggressively.
 - SQL Server: device-scoped, TOP-capped, SEQUENTIAL queries only (never parallel).

@@ -6,6 +6,8 @@ from pathlib import Path
 ISO_MARKET_ID = 6  # ERCOT
 AWS_PROFILE = "read_only"
 WAREHOUSE = "AI_READ_ONLY"
+FLOW_ANALYSIS_DB = "AW"
+FLOW_ANALYSIS = f"{FLOW_ANALYSIS_DB}.FLOW_ANALYSIS"  # fast-scan tables
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 CACHE_ROOT = PROJECT_ROOT / "cache"
