@@ -17,11 +17,11 @@ import argparse
 
 import pandas as pd
 
-from pfa import config, periods, sf
+from pfa import config, periods
 from pfa.analysis import valuation
 from pfa.cache import StudyCache
 from pfa.constraint_id import ConstraintId
-from pfa.extract import fastscan
+from pfa.extract import fastscan, popt
 
 MIN_BIND = 5  # lower than single-study report: catching movers matters more here
 
@@ -55,29 +55,6 @@ def study_frame(study_id: int, month: tuple[int, int]) -> pd.DataFrame:
             "TICKET_STATUS": r.get("DRIVER_TICKET_STATUS"),
         })
     return pd.DataFrame(rows)
-
-
-def popt_best_paths(study_id: int, constraint: str, top_n: int = 3) -> pd.DataFrame | None:
-    """Cheapest completed path-opt paths per unit exposure for one constraint."""
-    cid = ConstraintId.parse(constraint)
-    f, t, ctg = cid.fromnum, cid.tonum, cid.ctglabel
-    batches = sf.query("AW", f"""
-        SELECT PATHOPTRUNID FROM AW.POPT.PATHOPT_BATCH_INPUT
-        WHERE STUDYID = {study_id} AND CTGLABEL = '{ctg}' AND PATHOPTRUNID IS NOT NULL
-          AND (BRANCHLABEL ILIKE '%{f} %' OR BRANCHLABEL ILIKE '%{f}-%' OR BRANCHLABEL ILIKE '%_A%'
-               OR BRANCHLABEL ILIKE '%{t}%')
-        LIMIT 5""")
-    if batches.empty:
-        return None
-    run_ids = ",".join(str(int(x)) for x in batches["PATHOPTRUNID"].unique())
-    return sf.query("AW", f"""
-        WITH d AS (
-          SELECT SOURCENAME, SINKNAME, OPTIONPRICE, AVG_SF,
-                 OPTIONPRICE / NULLIF(AVG_SF,0) AS PRICE_PER_SF
-          FROM AW.POPT.PATHOPTDETAIL
-          WHERE PATHOPTRUNID IN ({run_ids}) AND AVG_SF >= 0.05
-        )
-        SELECT * FROM d ORDER BY PRICE_PER_SF ASC LIMIT {top_n}""")
 
 
 def main() -> None:
@@ -116,7 +93,7 @@ def main() -> None:
         except Exception:
             pass
         try:
-            paths = popt_best_paths(args.study_b, c)
+            paths = popt.best_paths(args.study_b, c)
             if paths is not None and len(paths):
                 p = paths.iloc[0]
                 new.loc[i, "BEST_PATH"] = (f"{p['SOURCENAME']}→{p['SINKNAME']} "
