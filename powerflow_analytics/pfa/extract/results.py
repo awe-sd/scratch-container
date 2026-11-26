@@ -71,13 +71,31 @@ def fetch_gen(study_id: int) -> pd.DataFrame:
     GENUNITSCEDNAME-derived name (JCKCNTY2_CC1) does — confirming the
     current sced_names()/dam_offers() chain already uses the only naming
     convention the DAM disclosure actually matches. Neither alternate is
-    wired in; this note exists so the next person doesn't re-try them."""
+    wired in; this note exists so the next person doesn't re-try them.
+
+    FUELZONE / RENEWZONE (2026-09-11, study 14605): some OUTGEN2 schema
+    versions lack these columns entirely (14605 is ptoid 1517, a different
+    vintage than 14411/12/25/31/14492 which all still carry them). Probe
+    INFORMATION_SCHEMA.COLUMNS first and only select a column when present;
+    otherwise emit it as a NULL literal so downstream code that references
+    the column keeps working without a KeyError."""
+    cols_df = sf.query(
+        "AWOPF",
+        """
+        SELECT COLUMN_NAME FROM AWOPF.INFORMATION_SCHEMA.COLUMNS
+        WHERE TABLE_SCHEMA = 'DBO' AND TABLE_NAME = 'OUTGEN2'
+          AND COLUMN_NAME IN ('FUELZONE', 'RENEWZONE')
+        """,
+    )
+    present = set(cols_df["COLUMN_NAME"]) if not cols_df.empty else set()
+    fuelzone_expr = "FUELZONE" if "FUELZONE" in present else "NULL AS FUELZONE"
+    renewzone_expr = "RENEWZONE" if "RENEWZONE" in present else "NULL AS RENEWZONE"
     df = sf.query(
         "AWOPF",
         f"""
         SELECT RUNID, LABEL, GENUNITID, BUSNUM, ID, UNITTYPE, MW, MWMIN, MWMAX,
                EDMARGCOSTMW, BUSMARGCOSTMW, GENSTATUS, LPDELTAMW, AGC, PARTFACT,
-               FUELTYPE, FUELZONE, RENEWZONE, AREANAME, ZONENAME
+               FUELTYPE, {fuelzone_expr}, {renewzone_expr}, AREANAME, ZONENAME
         FROM AWOPF.DBO.OUTGEN2
         WHERE {_runid_filter(study_id)}
         """,

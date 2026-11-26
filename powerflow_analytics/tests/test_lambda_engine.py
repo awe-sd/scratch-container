@@ -39,6 +39,38 @@ def test_lambda_nondecreasing_in_depth():
     assert lambdas == sorted(lambdas)
 
 
+def test_negative_priced_pair_floors_at_zero_not_negative():
+    """Regression for the study-14412 bug on 3380-3390-1@DPNAONA5: when the
+    UP mover's offer is CHEAPER than the DOWN mover's offer, the raw
+    (u.price - d.price)/dsf is negative. By LP duality a binding max-flow
+    constraint's shadow price can never be negative (the LP would take a
+    genuinely profitable redispatch on its own, constraint or not) — that
+    pair is free relief, not "negative-cost" relief, and must be recorded as
+    lambda=0, not a negative number. It should still be preferred (consumed
+    first) precisely because it's free."""
+    up = [{"sced": "CHEAP_UP", "sf": -0.2, "price": 5.0, "avail": 40.0}]
+    down = [{"sced": "EXPENSIVE_DOWN", "sf": 0.2, "price": 80.0, "avail": 40.0}]
+    curve = lambda_depth_curve(up, down, max_depth=500)
+    assert len(curve) == 1
+    assert curve[0]["lambda"] == 0.0
+    assert curve[0]["lambda"] >= 0.0
+
+
+def test_free_pair_consumed_before_a_pricier_one():
+    """A free (negative-raw-lambda) pair must still be exhausted before a
+    genuinely-priced one, so the curve stays non-decreasing after flooring."""
+    up = [
+        {"sced": "FREE_UP", "sf": -0.2, "price": 5.0, "avail": 10.0},   # vs DOWN1: free
+        {"sced": "PRICEY_UP", "sf": -0.2, "price": 50.0, "avail": 100.0},
+    ]
+    down = [{"sced": "DOWN1", "sf": 0.2, "price": 80.0, "avail": 10.0}]
+    curve = lambda_depth_curve(up, down, max_depth=500)
+    assert curve[0]["pair"].startswith("DOWN1")
+    assert curve[0]["lambda"] == 0.0
+    lambdas = [s["lambda"] for s in curve]
+    assert lambdas == sorted(lambdas)
+
+
 def test_lambda_at_depth_lookup():
     curve = lambda_depth_curve(UP, DOWN, max_depth=500)
     assert lambda_at_depth(curve, 25) == round(10.0 / 0.9, 2)

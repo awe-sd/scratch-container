@@ -52,7 +52,7 @@ STACK_MIN_SF = MIN_SF
 
 def relief_set(study_id: int, constraint: str, gen: pd.DataFrame,
                bus_names: pd.DataFrame, genunit: pd.DataFrame,
-               scedname: pd.DataFrame) -> pd.DataFrame:
+               scedname: pd.DataFrame, direction: int = 1) -> pd.DataFrame:
     """Every unit with MIN_SF <= |SF| < MAX_SF on `constraint`, excluding
     LZ_/WZ_ aggregate rows, mapped to its DAM/SCED resource name.
 
@@ -60,6 +60,19 @@ def relief_set(study_id: int, constraint: str, gen: pd.DataFrame,
     in a specific set of binding OPF runs), this starts from every unit in
     the study's gen table and prices its SF directly off BUS_SHIFTS_VIEW —
     the full relief set, not just the top differential movers.
+
+    `direction` (default +1, i.e. loading in the FROMNUM->TONUM sense) must
+    be the fast-scan config's DIRECTION for this constraint when the branch
+    is bound in the reverse (-1) sense — SIDE is assigned off SF * direction,
+    not raw SF. Getting this wrong silently inverts every unit onto the
+    wrong side of the relief set: PSENS>0 means "increasing this unit's
+    output increases FROMNUM->TONUM flow", so on a reverse-bound branch a
+    positive-PSENS unit is actually part of the *relief* (up), not the
+    problem (down). Confirmed empirically on study 14412: 3380-3390-1@
+    DPNAONA5 has fast-scan DIRECTION=-1 and produced an all-UP-cheaper-than-
+    all-DOWN relief set (lambda(depth)==0 at every step, a physically
+    implausible "constraint relieved for free" result) until this fix;
+    1436-2081-1@DWCSRAM5 (DIRECTION=1) was unaffected either way.
     """
     f, t, rest = constraint.split("-", 2)
     ckt, ctg = rest.split("@")
@@ -72,7 +85,7 @@ def relief_set(study_id: int, constraint: str, gen: pd.DataFrame,
         GROUP BY BUSNUM, NAME""")
     if sfs.empty:
         return pd.DataFrame()
-    sfs["SF"] = sfs["SF"].astype(float)
+    sfs["SF"] = sfs["SF"].astype(float) * int(direction)
     sfs = sfs[sfs["SF"].abs().between(MIN_SF, MAX_SF)]
     if sfs.empty:
         return pd.DataFrame()
@@ -155,7 +168,13 @@ def build_stacks(relief: pd.DataFrame, cap: pd.DataFrame) -> tuple[list[dict], l
             avail = max(0.0, float(row["HSL"]) - float(row["AWARDED"]))
             if avail <= 0:
                 continue
-            up.append({"sced": sced, "sf": sf_val, "price": float(row["P60"]), "avail": avail})
+            # AWARDED==0 means DAM did not commit this unit -- its "headroom" is
+            # a startup decision, not marginal ramp on an already-running unit.
+            # Flag rather than exclude: an all-uncommitted up stack (as happens
+            # on thin flowgates) is itself the honest finding, not something to hide.
+            committed = float(row["AWARDED"]) > 0.0
+            up.append({"sced": sced, "sf": sf_val, "price": float(row["P60"]), "avail": avail,
+                      "committed": committed})
         else:
             avail = max(0.0, float(row["AWARDED"]) - float(row["LSL"]))
             if bool(r["IS_RENEWABLE"]):
@@ -204,10 +223,17 @@ def lambda_depth_curve(up: list[dict], down: list[dict],
             # exhausted pair with no flow capacity; drop the emptier side
             (up if u["avail"] <= d["avail"] else down).pop(ui if u["avail"] <= d["avail"] else di)
             continue
-        lam = min(lam, PRICE_CAP)
+        # Floor the RECORDED lambda at 0: a negative (u.price - d.price)/dsf
+        # means the LP would take this redispatch for its own economics
+        # regardless of the constraint (by LP duality a binding max-flow
+        # constraint's shadow price can never be negative) — it's genuinely
+        # free relief, not "negatively priced" relief. Selection above still
+        # uses the raw (possibly negative) lam so free pairs get consumed
+        # first, which keeps the curve non-decreasing once flooded.
+        lam = max(0.0, min(lam, PRICE_CAP))
         steps.append({"depth_lo": depth, "depth_hi": depth + cap_flow,
                       "lambda": round(lam, 2), "pair": f"{d['sced']}↓/{u['sced']}↑",
-                      "dsf": round(dsf, 3)})
+                      "dsf": round(dsf, 3), "up_committed": bool(u.get("committed", True))})
         depth += cap_flow
         u["avail"] -= cap_mw
         d["avail"] -= cap_mw

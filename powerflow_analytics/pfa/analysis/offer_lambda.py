@@ -247,6 +247,74 @@ PAIR_MAX_SF = 0.5    # radial/near-1.0-family sibling units of the same
                      # "relief" that isn't a real redispatch option.
 
 
+def bulk_dispatch_features(study_id: int, constraints: list[str]) -> pd.DataFrame:
+    """One round trip for ALL candidate constraints: qualifying dispatch node
+    count (MIN_SF<=|SF|<MAX_SF band) and dispatch-pair existence
+    (PAIR_MIN_SF<=|SF|<PAIR_MAX_SF band, opposite-sign both sides) from
+    CPNODE_SHIFTS_VIEW, joined against a VALUES list of (FROMNUM, TONUM,
+    CKT, CTGLABEL) tuples instead of one query per constraint.
+
+    Returns one row per constraint with N_QUAL and DISPATCH_OK (bool);
+    constraints with no matching CPNODE_SHIFTS_VIEW rows are simply absent
+    from the result — callers should treat a missing constraint as unknown
+    (None), not as a fail.
+    """
+    tuples = []
+    for c in constraints:
+        f, t, rest = c.split("-", 2)
+        ckt, ctg = rest.split("@")
+        ckt_esc = ckt.replace("'", "''")
+        ctg_esc = ctg.replace("'", "''")
+        tuples.append(f"({int(f)}, {int(t)}, '{ckt_esc}', '{ctg_esc}')")
+    if not tuples:
+        return pd.DataFrame()
+    values_sql = ",".join(tuples)
+    df = sf.query("SHIFT_FACTORS", f"""
+        WITH targets AS (
+          SELECT * FROM VALUES {values_sql} AS t(FROMNUM, TONUM, CKT, CTGLABEL)
+        )
+        SELECT t.FROMNUM, t.TONUM, t.CKT, t.CTGLABEL,
+               COUNT(DISTINCT CASE WHEN ABS(v.PSENS) >= {MIN_SF} AND ABS(v.PSENS) < {MAX_SF}
+                                    THEN v.NAME END) N_QUAL,
+               SUM(CASE WHEN v.PSENS >= {PAIR_MIN_SF} AND v.PSENS < {PAIR_MAX_SF} THEN 1 ELSE 0 END) N_POS_PAIR,
+               SUM(CASE WHEN v.PSENS <= -{PAIR_MIN_SF} AND v.PSENS > -{PAIR_MAX_SF} THEN 1 ELSE 0 END) N_NEG_PAIR
+        FROM targets t
+        JOIN SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW v
+          ON v.FROMNUM = t.FROMNUM AND v.TONUM = t.TONUM AND v.CKT = t.CKT AND v.CTGLABEL = t.CTGLABEL
+        WHERE v.ISOMARKETID = 6 AND v.STUDYID = {int(study_id)}
+          AND v.DEADBUS = 0 AND LEFT(v.NAME, 3) NOT IN ('LZ_', 'WZ_')
+        GROUP BY t.FROMNUM, t.TONUM, t.CKT, t.CTGLABEL
+    """)
+    if df.empty:
+        return df
+    df["CONSTRAINT"] = (df["FROMNUM"].astype(int).astype(str) + "-" + df["TONUM"].astype(int).astype(str)
+                        + "-" + df["CKT"].astype(str).str.strip() + "@" + df["CTGLABEL"].astype(str).str.strip())
+    df["DISPATCH_OK"] = (df["N_POS_PAIR"] > 0) & (df["N_NEG_PAIR"] > 0)
+    return df.set_index("CONSTRAINT")[["N_QUAL", "DISPATCH_OK"]]
+
+
+def qualifying_node_count(study_id: int, constraint: str) -> int:
+    """Count of dispatchable cpnodes on this constraint: non-LZ/WZ,
+    non-deadbus, MIN_SF <= |PSENS| < MAX_SF (the same 0.03-0.9 band the
+    screening report's dispatch column reports — a wider band than
+    dispatch_screen's own PAIR_MIN_SF/PAIR_MAX_SF pair-existence test)."""
+    f, t, rest = constraint.split("-", 2)
+    ckt, ctg = rest.split("@")
+    df = sf.query("SHIFT_FACTORS", f"""
+        SELECT COUNT(DISTINCT NAME) N
+        FROM SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW
+        WHERE ISOMARKETID = 6 AND STUDYID = {int(study_id)}
+          AND FROMNUM = {int(f)} AND TONUM = {int(t)}
+          AND CKT = '{ckt}' AND CTGLABEL = '{ctg}'
+          AND DEADBUS = 0
+          AND LEFT(NAME, 3) NOT IN ('LZ_', 'WZ_')
+          AND ABS(PSENS) >= {MIN_SF} AND ABS(PSENS) < {MAX_SF}
+    """)
+    if df is None or df.empty:
+        return 0
+    return int(df["N"].iloc[0] or 0)
+
+
 def dispatch_screen(study_id: int, constraint: str) -> str | None:
     """'unenforceable' when no dispatchable redispatch PAIR exists for this
     constraint (no dispatchable relief — ERCOT is unlikely to run the driving

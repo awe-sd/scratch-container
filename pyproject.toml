@@ -7,6 +7,7 @@ dependencies = [
     "dash-ag-grid>=35.3.0",
     "dash-bootstrap-components>=2.0.4",
     "duckdb>=1.5.5",
+    "lightgbm>=4.7.0",
     "networkx>=3.4",
     "openpyxl>=3.1.5",
     "pandas>=3.0.3",
@@ -14,6 +15,8 @@ dependencies = [
     "pillow>=12.3.0",
     "pyarrow>=25.0.0",
     "pypdf>=6.14.2",
+    "statsmodels>=0.14.6",
+    "tabulate>=0.10.0",
 ]
 
 [dependency-groups]
