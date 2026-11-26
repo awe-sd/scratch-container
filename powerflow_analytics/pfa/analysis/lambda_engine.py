@@ -29,6 +29,7 @@ import re
 import pandas as pd
 
 from .. import config, sf
+from ..constraint_id import ConstraintId
 from .offer_lambda import MAX_SF, MIN_SF, sced_names
 from .valuation import PRICE_CAP
 
@@ -74,8 +75,8 @@ def relief_set(study_id: int, constraint: str, gen: pd.DataFrame,
     implausible "constraint relieved for free" result) until this fix;
     1436-2081-1@DWCSRAM5 (DIRECTION=1) was unaffected either way.
     """
-    f, t, rest = constraint.split("-", 2)
-    ckt, ctg = rest.split("@")
+    cid = ConstraintId.parse(constraint)
+    f, t, ckt, ctg = cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel
     sfs = sf.query("SHIFT_FACTORS", f"""
         SELECT BUSNUM, NAME, AVG(PSENS) SF
         FROM SHIFT_FACTORS.DBO.BUS_SHIFTS_VIEW

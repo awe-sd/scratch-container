@@ -46,7 +46,7 @@ import re
 import pandas as pd
 
 from .. import sf
-from .constraints import constraint_key
+from ..constraint_id import ConstraintId, constraint_key
 from .valuation import PRICE_CAP
 
 N_PAIR = 40   # movers per side considered before shift-factor filtering
@@ -110,8 +110,8 @@ def redispatch_pair(ctgviol: pd.DataFrame, gen: pd.DataFrame, constraint: str,
 
 
 def bus_shift_factors(study_id: int, constraint: str, busnums: list[int]) -> pd.DataFrame:
-    f, t, rest = constraint.split("-", 2)
-    ckt, ctg = rest.split("@")
+    cid = ConstraintId.parse(constraint)
+    f, t, ckt, ctg = cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel
     ids = ",".join(str(int(b)) for b in set(busnums))
     return sf.query("SHIFT_FACTORS", f"""
         SELECT BUSNUM, AVG(PSENS) SF
@@ -261,8 +261,8 @@ def bulk_dispatch_features(study_id: int, constraints: list[str]) -> pd.DataFram
     """
     tuples = []
     for c in constraints:
-        f, t, rest = c.split("-", 2)
-        ckt, ctg = rest.split("@")
+        cid = ConstraintId.parse(c)
+        f, t, ckt, ctg = cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel
         ckt_esc = ckt.replace("'", "''")
         ctg_esc = ctg.replace("'", "''")
         tuples.append(f"({int(f)}, {int(t)}, '{ckt_esc}', '{ctg_esc}')")
@@ -287,8 +287,7 @@ def bulk_dispatch_features(study_id: int, constraints: list[str]) -> pd.DataFram
     """)
     if df.empty:
         return df
-    df["CONSTRAINT"] = (df["FROMNUM"].astype(int).astype(str) + "-" + df["TONUM"].astype(int).astype(str)
-                        + "-" + df["CKT"].astype(str).str.strip() + "@" + df["CTGLABEL"].astype(str).str.strip())
+    df["CONSTRAINT"] = constraint_key(df)
     df["DISPATCH_OK"] = (df["N_POS_PAIR"] > 0) & (df["N_NEG_PAIR"] > 0)
     return df.set_index("CONSTRAINT")[["N_QUAL", "DISPATCH_OK"]]
 
@@ -298,8 +297,8 @@ def qualifying_node_count(study_id: int, constraint: str) -> int:
     non-deadbus, MIN_SF <= |PSENS| < MAX_SF (the same 0.03-0.9 band the
     screening report's dispatch column reports — a wider band than
     dispatch_screen's own PAIR_MIN_SF/PAIR_MAX_SF pair-existence test)."""
-    f, t, rest = constraint.split("-", 2)
-    ckt, ctg = rest.split("@")
+    cid = ConstraintId.parse(constraint)
+    f, t, ckt, ctg = cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel
     df = sf.query("SHIFT_FACTORS", f"""
         SELECT COUNT(DISTINCT NAME) N
         FROM SHIFT_FACTORS.DBO.CPNODE_SHIFTS_VIEW
@@ -345,8 +344,8 @@ def dispatch_screen(study_id: int, constraint: str) -> str | None:
     DEVICE_SHIFTS (the prior source) has zero rows for recent studies
     (e.g. 14411) — CPNODE_SHIFTS_VIEW is the live source, confirmed readable.
     """
-    f, t, rest = constraint.split("-", 2)
-    ckt, ctg = rest.split("@")
+    cid = ConstraintId.parse(constraint)
+    f, t, ckt, ctg = cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel
     df = sf.query("SHIFT_FACTORS", f"""
         SELECT
           SUM(CASE WHEN PSENS > 0 THEN 1 ELSE 0 END) AS N_POS,

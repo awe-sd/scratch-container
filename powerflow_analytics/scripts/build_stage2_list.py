@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import gc
 import sys
+from dataclasses import astuple
 from pathlib import Path
 
 import numpy as np
@@ -25,6 +26,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
+from pfa.constraint_id import ConstraintId
 
 # ---------------------------------------------------------------------------
 # Thresholds — named constants, overridable via CLI (see argparse in main()).
@@ -43,13 +45,6 @@ NQUAL_MIN = 2
 
 INTENSITY_MIN_HARD = 600  # below this: dropped even if flip-exempt-eligible... see stage2_gate
 INTENSITY_MIN_FULL = 1000  # at/above this: passes on its own, no flag needed
-
-
-def parse_constraint_key(c: str) -> tuple[str, str, str, str]:
-    """Single parse site for the 'FROM-TO-CKT@CTG' constraint identity string."""
-    ft, ctg = c.split("@")
-    frm, to, ckt = ft.split("-", 2)
-    return frm, to, ckt, ctg
 
 
 # ---------------------------------------------------------------------------
@@ -149,7 +144,7 @@ def bulk_dispatch_nodes(universe: pd.DataFrame, study: int) -> pd.DataFrame:
     from awconnect import snowflake
 
     cand = universe[(universe.post_binds > 0) | (universe.pre_binds > 0)]
-    tuples = ",".join("('%s','%s','%s','%s')" % parse_constraint_key(c) for c in cand.index)
+    tuples = ",".join("('%s','%s','%s','%s')" % astuple(ConstraintId.parse(c)) for c in cand.index)
     q = f"""
     SELECT FROMNUM::STRING FN, TONUM::STRING TN, TRIM(CKT) KK, TRIM(CTGLABEL) GG,
            COUNT(DISTINCT NAME) NQUAL, MAX(ABS(PSENS)) MAXSF
@@ -200,10 +195,11 @@ def detect_flips(df: pd.DataFrame) -> pd.DataFrame:
     NEW = df[(df.pre_binds == 0) & (df.post_binds > 0)]
     flips = []
     for c, d in D.iterrows():
+        line = ConstraintId.parse(c).line_key
         for b in (d.FROMNUM, d.TONUM):
             hits = NEW[(NEW.FROMNUM == b) | (NEW.TONUM == b)]
             for c2, n in hits.iterrows():
-                if c2.split("@")[0] != c.split("@")[0]:
+                if ConstraintId.parse(c2).line_key != line:
                     flips.append(
                         {
                             "fades": c,
@@ -315,8 +311,8 @@ def render_html(gated: pd.DataFrame, cache_dir: str, dirs: pd.Series, study: int
 
     rows = []
     for c, r in gated.iterrows():
-        frm, to, ckt, ctg = parse_constraint_key(c)
-        f, t = int(frm), int(to)
+        cid = ConstraintId.parse(c)
+        f, t, ckt, ctg = cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel
         lab = br.loc[(f, t, ckt), "LABEL"] if (f, t, ckt) in br.index else None
         rows.append(
             {

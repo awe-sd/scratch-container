@@ -20,6 +20,7 @@ import pandas as pd
 
 from pfa.analysis import valuation
 from pfa.cache import StudyCache
+from pfa.constraint_id import ConstraintId
 
 
 def main() -> None:
@@ -53,9 +54,8 @@ def main() -> None:
     if args.fastscan:
         from pfa.analysis import fastscan
 
-        f, t, rest = args.constraint.split("-", 2)
-        ckt_ctg = rest.split("@")
-        cfgs = fastscan.find_configs(args.study, int(f), int(t), ckt_ctg[1])
+        cid = ConstraintId.parse(args.constraint)
+        cfgs = fastscan.find_configs(args.study, cid.fromnum, cid.tonum, cid.ctglabel)
         if cfgs.empty:
             print("\nfast-scan: no config found for this constraint/study")
         else:

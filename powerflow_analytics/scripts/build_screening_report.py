@@ -28,6 +28,7 @@ from pfa.analysis import fastscan, lambda_engine as lam, marginal_units, offer_l
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
 from pfa.analysis.screening import classify_constraint
 from pfa.cache import StudyCache
+from pfa.constraint_id import ConstraintId
 from pfa.extract import buskv, gen_mapping, popt
 
 CLASS_HOURS_SEPT = 336  # 5x16 weekday on-peak, Sept ex-Labor-Day
@@ -115,8 +116,8 @@ def cpnode_sf(study_id: int, constraint: str, names: list[str]) -> dict[str, flo
     names = [n for n in names if isinstance(n, str) and n]
     if not names:
         return {}
-    f, t, rest = constraint.split("-", 2)
-    ckt, ctg = rest.split("@")
+    cid = ConstraintId.parse(constraint)
+    f, t, ckt, ctg = cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel
     in_list = ",".join(f"'{n}'" for n in names)
     df = sf.query("SHIFT_FACTORS", f"""
         SELECT NAME, AVG(PSENS) SF
@@ -131,8 +132,8 @@ def cpnode_sf(study_id: int, constraint: str, names: list[str]) -> dict[str, flo
 def value_row(study_id: int, c: str, gen, bus_names, genunit, scedname) -> dict:
     """Step-2 valuation components for one class-A constraint."""
     out: dict = {"_status": "ok"}
-    f, t, rest = c.split("-", 2)
-    ctg = rest.split("@")[1]
+    cid = ConstraintId.parse(c)
+    f, t, ctg = cid.fromnum, cid.tonum, cid.ctglabel
     cfgs = fastscan.find_configs(study_id, int(f), int(t), ctg)
     if cfgs.empty:
         out["_status"] = "no fast-scan config"
@@ -303,7 +304,8 @@ def main() -> None:
     rows = []
     for _, r in short.iterrows():
         c = r["CONSTRAINT"]
-        f, t = c.split("-")[:2]
+        cid = ConstraintId.parse(c)
+        f, t = cid.fromnum, cid.tonum
         kv = buskv.constraint_kv(int(f), int(t))
 
         penalty = False

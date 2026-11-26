@@ -11,17 +11,10 @@ from __future__ import annotations
 
 import pandas as pd
 
+from ..constraint_id import constraint_key  # noqa: F401  (re-export)
+
 BINDING_PCT = 99.5
 KEY = ["FROMNUM", "TONUM", "CKT", "CTGLABEL"]
-
-
-def constraint_key(df: pd.DataFrame) -> pd.Series:
-    return (
-        df["FROMNUM"].astype(int).astype(str)
-        + "-" + df["TONUM"].astype(int).astype(str)
-        + "-" + df["CKT"].astype(str).str.strip()
-        + "@" + df["CTGLABEL"].astype(str).str.strip()
-    )
 
 
 def rank_constraints(ctgviol: pd.DataFrame, runs: pd.DataFrame) -> pd.DataFrame:

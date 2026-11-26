@@ -23,6 +23,7 @@ import pandas as pd
 from pfa import config, sf
 from pfa.analysis import fastscan, valuation
 from pfa.cache import StudyCache
+from pfa.constraint_id import ConstraintId
 
 MIN_BIND = 5  # lower than single-study report: catching movers matters more here
 
@@ -60,8 +61,8 @@ def study_frame(study_id: int, month: tuple[int, int]) -> pd.DataFrame:
 
 def popt_best_paths(study_id: int, constraint: str, top_n: int = 3) -> pd.DataFrame | None:
     """Cheapest completed path-opt paths per unit exposure for one constraint."""
-    f, t, rest = constraint.split("-", 2)
-    ctg = rest.split("@")[1]
+    cid = ConstraintId.parse(constraint)
+    f, t, ctg = cid.fromnum, cid.tonum, cid.ctglabel
     batches = sf.query("AW", f"""
         SELECT PATHOPTRUNID FROM AW.POPT.PATHOPT_BATCH_INPUT
         WHERE STUDYID = {study_id} AND CTGLABEL = '{ctg}' AND PATHOPTRUNID IS NOT NULL
@@ -107,8 +108,8 @@ def main() -> None:
     new["BEST_PATH"] = None
     for i in new.index[: args.top_new]:
         c = new.loc[i, "CONSTRAINT"]
-        f, t, rest = c.split("-", 2)
-        ctg = rest.split("@")[1]
+        cid = ConstraintId.parse(c)
+        f, t, ctg = cid.fromnum, cid.tonum, cid.ctglabel
         try:
             cfgs = fastscan.find_configs(args.study_b, int(f), int(t), ctg)
             if not cfgs.empty:

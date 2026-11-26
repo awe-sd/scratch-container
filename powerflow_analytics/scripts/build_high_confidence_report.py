@@ -24,6 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import pandas as pd
 
 from pfa import config
+from pfa.constraint_id import ConstraintId, constraint_key
 from pfa.analysis import fastscan, marginal_units, market, offer_lambda, valuation
 from pfa.cache import StudyCache
 from pfa.extract import buskv, gen_mapping, popt
@@ -119,7 +120,8 @@ def main() -> None:
         except Exception:
             unenforceable = None
         limit = float(r.get("LIMIT_MVA") or 0)
-        f, t = c.split("-")[:2]
+        cid = ConstraintId.parse(c)
+        f, t = cid.fromnum, cid.tonum
         kv = buskv.constraint_kv(int(f), int(t))
         p12, p18, p3 = (stats.p_bind.get(h, 0.0) for h in (12, 18, 3))
 
@@ -159,8 +161,7 @@ def main() -> None:
 
     # BRANCHCONTINGENCYID per constraint (for the ID join to ISO constraints)
     cv = ctgviol.copy()
-    cv["Constraint"] = (cv["FROMNUM"].astype(int).astype(str) + "-" + cv["TONUM"].astype(int).astype(str)
-                        + "-" + cv["CKT"].astype(str).str.strip() + "@" + cv["CTGLABEL"].astype(str).str.strip())
+    cv["Constraint"] = constraint_key(cv)
     bc = cv.dropna(subset=["BRANCHCONTINGENCYID"]).drop_duplicates("Constraint").set_index("Constraint")
     df["_bcid"] = df["Constraint"].map(bc["BRANCHCONTINGENCYID"])
     df["_bid"] = df["Constraint"].map(bc["BRANCHID"])
@@ -172,8 +173,8 @@ def main() -> None:
     df["_lam_hi_offer"] = None
     for i in df.index:
         c = df.loc[i, "Constraint"]
-        f, t, rest = c.split("-", 2)
-        ctg = rest.split("@")[1]
+        cid = ConstraintId.parse(c)
+        f, t, ctg = cid.fromnum, cid.tonum, cid.ctglabel
         try:  # realized ISO history (ID join)
             if pd.notna(df.loc[i, "_bid"]) and pd.notna(df.loc[i, "_bcid"]):
                 ids = market.iso_constraint_ids(int(df.loc[i, "_bid"]), int(df.loc[i, "_bcid"]))

@@ -22,6 +22,7 @@ from __future__ import annotations
 import pandas as pd
 
 from .. import sf
+from ..constraint_id import ConstraintId
 
 
 def _branch_label(study_id: int, f: str, t: str) -> str | None:
@@ -36,8 +37,8 @@ def _branch_label(study_id: int, f: str, t: str) -> str | None:
 
 def best_paths(study_id: int, constraint: str, top_n: int = 3) -> pd.DataFrame | None:
     """Cheapest completed path-opt paths per unit exposure for one constraint."""
-    f, t, rest = constraint.split("-", 2)
-    ctg = rest.split("@")[1]
+    cid = ConstraintId.parse(constraint)
+    f, t, ctg = cid.fromnum, cid.tonum, cid.ctglabel
     label = _branch_label(study_id, f, t)
     label_filter = (f"BRANCHLABEL = '{label}'" if label else
                     f"(BRANCHLABEL ILIKE '%{f} %{t}%' OR BRANCHLABEL NOT LIKE '% %')")

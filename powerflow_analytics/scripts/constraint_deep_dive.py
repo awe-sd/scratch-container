@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import numpy as np
 import pandas as pd
 
-from pfa import config, sf
+from pfa import config, constraint_id, sf
 from pfa.analysis import fastscan, marginal_units, offer_lambda, lambda_engine
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
 from pfa.extract import gen_mapping
@@ -46,26 +46,8 @@ def resolve_constraint(cache: StudyCache, spec: str) -> dict:
     ov = cache.load("outctgviol2", columns=["RUNID", "FROMNUM", "TONUM", "CKT",
                                             "CTGLABEL", "LIMVIOLPCT", "OUTBRANCHDIRECTION"])
 
-    if "@" in spec:
-        f, t, rest = spec.split("-", 2)
-        ckt, ctg = rest.split("@")
-        fromnum, tonum, ckt = int(f), int(t), ckt
-    else:
-        m = branch[branch["LABEL"].astype(str) == str(spec)].drop_duplicates(
-            ["FROMNUM", "TONUM", "CKT"])
-        if m.empty:
-            raise ValueError(f"line label {spec!r} not found in cached outbranch2")
-        if len(m) > 1:
-            print(f"  note: label {spec!r} maps to {len(m)} FROMNUM/TONUM/CKT combos; "
-                  f"using the first ({m.iloc[0][['FROMNUM','TONUM','CKT']].to_dict()})")
-        row = m.iloc[0]
-        fromnum, tonum, ckt = int(row.FROMNUM), int(row.TONUM), str(row.CKT)
-        sub = ov[(ov.FROMNUM == fromnum) & (ov.TONUM == tonum) & (ov.CKT == ckt)]
-        bind = sub[sub.LIMVIOLPCT >= BINDING_PCT]
-        if bind.empty:
-            raise ValueError(f"no binding runs found for {spec!r} ({fromnum}-{tonum}-{ckt})")
-        counts = bind.groupby("CTGLABEL").size().sort_values(ascending=False)
-        ctg = counts.index[0]
+    cid = constraint_id.resolve(cache, spec)
+    fromnum, tonum, ckt, ctg = cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel
 
     sub = ov[(ov.FROMNUM == fromnum) & (ov.TONUM == tonum) & (ov.CKT == ckt) & (ov.CTGLABEL == ctg)]
     bind = sub[sub.LIMVIOLPCT >= BINDING_PCT]
@@ -74,7 +56,7 @@ def resolve_constraint(cache: StudyCache, spec: str) -> dict:
     label = bname["LABEL"].iloc[0] if len(bname) else spec
     fromname = bname["FROMNAME"].iloc[0] if len(bname) else "?"
     toname = bname["TONAME"].iloc[0] if len(bname) else "?"
-    key = f"{fromnum}-{tonum}-{ckt}@{ctg}"
+    key = str(cid)
     return dict(fromnum=fromnum, tonum=tonum, ckt=ckt, ctglabel=ctg, label=label,
                 fromname=fromname, toname=toname, direction=direction, key=key,
                 n_binding_runs=len(bind))

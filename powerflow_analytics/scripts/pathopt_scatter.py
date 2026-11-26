@@ -27,6 +27,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPT_DIR.parent))
 
 from pfa.analysis import path_scatter
+from pfa.constraint_id import ConstraintId
 from pfa.extract import popt
 
 
@@ -46,9 +47,8 @@ def run_multi(args):
     for x in (args.constraints or "").split(","):
         if x:
             lab, c = x.split("=")
-            f, t, rest = c.split("-", 2)
-            ckt, ctg = rest.split("@")
-            cons[lab] = (int(f), int(t), ckt, ctg)
+            cid = ConstraintId.parse(c)
+            cons[lab] = (cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel)
     cfg = {l: popt.get_run_config(r) for l, r in {**runs, **vruns}.items()}
 
     mem = {l: popt.get_topology_set_members(cfg[l].TOPOLOGYSHIFTSETID) for l in alll}
@@ -285,9 +285,8 @@ def run_spread(args):
     cons = {}
     for x in args.constraints.split(","):
         lab, c = x.split("=")
-        f, t, rest = c.split("-", 2)
-        ckt, ctg = rest.split("@")
-        cons[lab] = (int(f), int(t), ckt, ctg)
+        cid = ConstraintId.parse(c)
+        cons[lab] = (cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel)
     cfg = {l: popt.get_run_config(r) for l, r in {**runs, **vruns}.items()}
     mem = {l: popt.get_topology_set_members(cfg[l].TOPOLOGYSHIFTSETID) for l in alll}
     onp = {l: path_scatter.onpeak_members(mem[l]) for l in alll}

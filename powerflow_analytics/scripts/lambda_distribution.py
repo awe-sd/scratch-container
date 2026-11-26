@@ -17,6 +17,7 @@ import pandas as pd
 
 from pfa.analysis import fastscan, marginal_units, lambda_engine as lam
 from pfa.cache import StudyCache
+from pfa.constraint_id import ConstraintId
 from pfa.extract import gen_mapping
 
 
@@ -58,8 +59,8 @@ def main() -> None:
         val = lam.lambda_at_depth(curve, d)
         print(f"  D={d:>4} MW  lambda={'n/a' if val is None else f'${val:,.1f}'}")
 
-    f, t, rest = args.constraint.split("-", 2)
-    ctg = rest.split("@")[1]
+    cid = ConstraintId.parse(args.constraint)
+    f, t, ctg = cid.fromnum, cid.tonum, cid.ctglabel
     configs = fastscan.find_configs(args.study, int(f), int(t), ctg)
     if configs.empty:
         print("\nno fast-scan config found for this constraint — skipping distribution")
