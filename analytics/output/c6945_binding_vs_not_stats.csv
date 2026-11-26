@@ -1,0 +1,5 @@
+,wind_west,wind_west,wind_panhandle,wind_panhandle,pan_minus_west,pan_minus_west,west_load,west_load,net_load,net_load,ercot_all_ld,ercot_all_ld
+,mean,median,mean,median,mean,median,mean,median,mean,median,mean,median
+bind_any,,,,,,,,,,,,
+False,9442.6,10236.0,1764.8,1648.2,-7677.8,-8261.5,9577.6,9578.5,33747.2,33686.6,64886.7,64761.1
+True,6718.3,6184.2,1574.2,1468.7,-5144.1,-4717.8,9118.6,9094.9,41476.7,41324.4,57732.6,56577.1
