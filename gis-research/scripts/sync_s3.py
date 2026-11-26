@@ -37,13 +37,9 @@ AWS_TIMEOUT_S = 3600
 
 GROUPS = {
     "research": ["aws", "s3", "sync", str(BASE / "research"), f"{BUCKET}/research",
-                 "--exclude", "*/run_stream_*.jsonl",
-                 # runtime orchestration droppings — no archival value
-                 "--exclude", "*/.budget_*", "--exclude", "*/.deep_*",
-                 "--exclude", "*/.checkpoint_state.json"],
+                 "--exclude", "*/run_stream_*.jsonl"],
     "data": ["aws", "s3", "sync", str(BASE / "data" / "reference"),
-             f"{BUCKET}/data/reference",
-             "--exclude", "search_cache/*"],  # ephemeral query cache, grows unbounded
+             f"{BUCKET}/data/reference"],
     "analysis": ["aws", "s3", "sync", str(BASE / "docs" / "analysis"),
                  f"{BUCKET}/analysis"],
 }
