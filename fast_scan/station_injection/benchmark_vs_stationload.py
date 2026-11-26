@@ -8,7 +8,7 @@ OLD."DATE" AND HOUR(NEW."TIMESTAMP") = OLD."HOUR" AND station code.
 
 Usage:
     /workspaces/scratch-workspace/.venv/bin/python benchmark_vs_stationload.py \
-        --start 2022-01-01 --end 2026-07-25 --out stationinjection/output/
+        --start 2022-01-01 --end 2026-07-25 --out fast_scan/station_injection/output/
 """
 import argparse
 import sys
@@ -195,7 +195,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--start", default="2022-01-01")
     ap.add_argument("--end", default="2026-07-25")
-    ap.add_argument("--out", default="stationinjection/output/")
+    ap.add_argument("--out", default="fast_scan/station_injection/output/")
     args = ap.parse_args()
 
     out_dir = Path(args.out)
