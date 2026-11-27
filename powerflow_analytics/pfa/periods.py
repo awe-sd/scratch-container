@@ -78,3 +78,8 @@ def month_label(month: str) -> str:
 
 def month_name(month: str) -> str:
     return dt.date(2000, parse_month(month)[1], 1).strftime("%B")
+
+
+def fastscan_he_label(hour: int) -> str:
+    """Hour-ending label for a FAST_SCAN_RESULTS clock hour (hour-BEGINNING stamp): hour 0 -> 'HE1', hour 23 -> 'HE24'."""
+    return f"HE{int(hour) + 1}"
