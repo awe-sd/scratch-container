@@ -2,8 +2,7 @@
 
 STEP 1 (all binding constraints, local computation from cache + CSVs):
 classify each into A outage-driven/dispatchable, B baseline binder,
-C no-dispatch/unenforceable, D outage-relieved/bearish (see
-pfa.analysis.screening.classify_constraint).
+C no-dispatch/unenforceable, D outage-relieved/bearish (see classify_constraint below).
 
 STEP 2 (class A only, capped at 40 by post-cutoff rent): single-month
 fast-scan P(bind), offer-curve lambda(depth) evaluated over the fast-scan
@@ -23,10 +22,50 @@ import pandas as pd
 from pfa import config, periods
 from pfa.analysis import dispatch_screen, marginal_units, shadow_price as sp
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
-from pfa.analysis.screening import classify_constraint
 from pfa.cache import StudyCache
 from pfa.constraint_id import ConstraintId
 from pfa.extract import network_ref, fastscan, gen_mapping, popt, shifts
+
+
+TOP_SHARE_MIN = 0.25  # class A: top tofinder group must move this share of preflow
+
+
+def classify_constraint(
+    top_share: float | None,
+    dispatch_ok: bool | None,
+    penalty: bool,
+    pre_rate: float | None,
+    post_rate: float | None,
+) -> tuple[str, str]:
+    """Returns (class_letter, reason).
+
+    Precedence: D (bearish — the outage relieves the constraint, or it was a
+    pre-cutoff binder that the outage set makes go away) beats everything
+    else, since it flips the trading direction; then A (outage-driven,
+    dispatchable — the actionable long list); then C (no dispatchable relief
+    exists, or the LP prices it at the penalty tier — ERCOT unlikely to run
+    the outage); then B (binds anyway, outage or not); else unclassified.
+    """
+    if top_share is not None and top_share < 0:
+        return "D", "top outage group UNLOADS the constraint (negative flow-delta share)"
+    if pre_rate is not None and post_rate is not None and pre_rate > 0 and post_rate == 0:
+        return "D", "bound pre-cutoff, stops binding post-cutoff with the outage set in"
+
+    if top_share is not None and top_share >= TOP_SHARE_MIN and dispatch_ok is not False:
+        return "A", "outage-driven (top group >= 25% of preflow) and dispatch screen passes"
+
+    if penalty or dispatch_ok is False:
+        reason = []
+        if penalty:
+            reason.append("penalty-tier LP lambda")
+        if dispatch_ok is False:
+            reason.append("no dispatchable relief pair")
+        return "C", " + ".join(reason)
+
+    if pre_rate is not None and post_rate is not None and post_rate > 0 and pre_rate >= 0.5 * post_rate:
+        return "B", "binds pre-cutoff at >= half the post-cutoff rate (baseline, not outage-created)"
+
+    return "U", "no class criterion matched (thin/ambiguous evidence)"
 
 
 # --------------------------------------------------------------------------

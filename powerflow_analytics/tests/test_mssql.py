@@ -71,10 +71,7 @@ def test_queries_from_two_threads_never_overlap(monkeypatch):
 
 
 def test_stage2_dispatch_nodes_goes_through_sf_query(monkeypatch):
-    path = Path(__file__).resolve().parents[1] / "scripts" / "build_stage2_list.py"
-    spec = importlib.util.spec_from_file_location("build_stage2_list", path)
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
+    from pfa.analysis import screening as mod
     seen = []
 
     def fake_query(db_name, sql):

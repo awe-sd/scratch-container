@@ -5,9 +5,8 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from pfa.analysis.screening import classify_constraint  # noqa: E402
 from build_screening_report import (  # noqa: E402
-    coverage_and_days, pre_post_bind_rates, month_bind_dates,
+    classify_constraint, coverage_and_days, pre_post_bind_rates, month_bind_dates,
 )
 
 
