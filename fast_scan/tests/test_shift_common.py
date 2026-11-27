@@ -33,3 +33,9 @@ def test_chain_full_variant_join_order_and_dedupe():
 def test_window_label():
     assert window_label("2026-06-01", "2026-06-30") == "June"
     assert window_label("2026-06-01", "2026-07-02") == ""
+
+
+def test_labels_with_single_quotes_are_escaped():
+    sql = dart_chain_sql("1", "2026-06-01", "2026-06-30", "O'NEIL_1", "CTG'X")
+    assert "b.branchName = 'O''NEIL_1'" in sql
+    assert "cdc.congContName = 'CTG''X'" in sql

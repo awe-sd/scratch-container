@@ -432,3 +432,26 @@ hours shrink between runs, result rows whose hour is no longer a member lose the
 on the next run, because the old sub-proc seeded its snapshot list from `FAST_SCAN_RESULTS`
 (every row ever inserted) while the folded `TMP_BINDING_ROWS` seeds from the current run's
 `TMP_INJECTION_FLOW` (this run's member hours only).
+
+## Shared calculation between the two V2 procedures
+
+`sp_fast_scan_v2.sql` and `validation_spV2.sql` carry identical copies of these blocks, kept
+identical by hand and guarded by `tests/test_shared_stages.py` (it compares them by SQL structure,
+ignoring indentation, blank lines and comments, and fails with a diff naming the block):
+
+- `StationBusMapping` CTE (stage `TMP_STATION_KV_SHIFTS`)
+- `Snapshots` CTE (stage `TMP_INJECTION_FLOW`)
+- the whole `TMP_BINDING_ROWS` stage
+- the main `INSERT INTO FAST_SCAN_RESULTS` column list
+- `DAMLimits`, `RTConstraint`, `RenewableUnits` CTEs
+- the `WHERE NOT EXISTS` guard
+- the `FAST_SCAN_RT_CONSTRAINTS` refresh `DELETE` and `INSERT`
+
+Edit one, edit the other, and run the test. Measured 2026-11-27: 119 identical lines, 30.7% of
+`sp_fast_scan_v2.sql` and 25.1% of `validation_spV2.sql` (27.6% of the pair). That is too little for
+a template/build step to pay for itself, and the deployed files must stay byte-identical, so no
+build step exists. Everything else (member hours, per-member-shift joins, PAR, curtailment,
+final SELECT, return objects) differs by design.
+
+`sp_load_fast_scan_rt_constraints.sql` is a standalone backfill that the V2 procedures no longer
+call; its header comment still says they do. The file is not edited because it mirrors what is deployed.
