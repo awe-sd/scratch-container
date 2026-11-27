@@ -256,3 +256,28 @@ def latest_capacity_rows(settlement_points: Iterable, first_hour: int = 7, last_
             "narrow the hour window or settlement-point set"
         )
     return df
+
+
+def latest_delivery_date() -> date:
+    """Newest DELIVERYDATE in the disclosure table (the "latest 14 days" window ends here)."""
+    df = sf.query("AW", "SELECT MAX(DELIVERYDATE) AS D FROM AW.DBO.ERCOT60DDAMGENRESOURCE")
+    df.columns = [c.upper() for c in df.columns]
+    return pd.Timestamp(df["D"].iloc[0]).date()
+
+
+def point_coverage(settlement_points: Iterable) -> pd.DataFrame:
+    """Per settlement point: rows ever, newest delivery date, rows with an energy curve (CURVEMW1 and
+    CURVEPRICE1 not null) in the latest-14-day window. Points absent from the table are absent here."""
+    names = _quoted_points(settlement_points)
+    if not names:
+        return pd.DataFrame()
+    df = sf.query("AW", f"""
+        SELECT SETTLEMENTPOINTNAME, COUNT(*) AS N_ALL, MAX(DELIVERYDATE) AS LAST_DATE,
+               SUM(IFF(DELIVERYDATE >= DATEADD(day, -14, (SELECT MAX(DELIVERYDATE) FROM AW.DBO.ERCOT60DDAMGENRESOURCE)), 1, 0)) AS N_WINDOW,
+               SUM(IFF(DELIVERYDATE >= DATEADD(day, -14, (SELECT MAX(DELIVERYDATE) FROM AW.DBO.ERCOT60DDAMGENRESOURCE))
+                       AND CURVEMW1 IS NOT NULL AND CURVEPRICE1 IS NOT NULL, 1, 0)) AS N_WINDOW_CURVE
+        FROM AW.DBO.ERCOT60DDAMGENRESOURCE
+        WHERE SETTLEMENTPOINTNAME IN ({names})
+        GROUP BY SETTLEMENTPOINTNAME""")
+    df.columns = [c.upper() for c in df.columns]
+    return df

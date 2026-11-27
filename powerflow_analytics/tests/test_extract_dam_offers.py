@@ -42,3 +42,15 @@ def test_resolve_genids_quotes_the_pattern(monkeypatch):
     calls = _fake(monkeypatch, pd.DataFrame({"GENID": [7], "RESOURCENAME": ["X"]}))
     assert dam_offers._resolve_genids("O'NEAL%") == [7]
     assert "ILIKE 'O''NEAL%'" in calls[0][1]
+
+
+def test_latest_delivery_date_and_point_coverage_scope(monkeypatch):
+    calls = _fake(monkeypatch, pd.DataFrame({"D": [pd.Timestamp("2026-09-26")]}))
+    assert str(dam_offers.latest_delivery_date()) == "2026-09-26"
+    assert "MAX(DELIVERYDATE)" in calls[0][1]
+    calls = _fake(monkeypatch, pd.DataFrame({"settlementpointname": ["A"], "n_all": [3]}))
+    out = dam_offers.point_coverage(["A", "B'x"])
+    sql = calls[0][1]
+    assert "SETTLEMENTPOINTNAME IN (" in sql and "'Bx'" in sql and "GROUP BY SETTLEMENTPOINTNAME" in sql
+    assert list(out.columns) == ["SETTLEMENTPOINTNAME", "N_ALL"]
+    assert dam_offers.point_coverage([]).empty
