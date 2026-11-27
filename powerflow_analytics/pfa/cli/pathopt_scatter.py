@@ -18,6 +18,8 @@ import argparse
 import sys
 from pathlib import Path
 
+import pandas as pd
+
 from pfa import config
 from pfa.analysis import path_search
 from pfa.report import path_search as report
@@ -117,13 +119,19 @@ def main(argv=None) -> None:
     parser.add_argument("--top", type=int, default=100000, help="Top N cheapest paths for scatter (default: 100000)")
     parser.add_argument("--min-sf", type=float, default=0.05, help="Min SF floor on both MIN_SFs (default: 0.05)")
     args = parser.parse_args(argv)
-    command = report.invocation([sys.argv[0], *(sys.argv[1:] if argv is None else argv)])
+    command = report.invocation(list(sys.argv[1:] if argv is None else argv))
     if args.runs and args.holidays is None:
         parser.error("--holidays is required with --runs (comma-separated dates, or '' for none)")
+    if args.runs and args.short and not args.required:
+        parser.error("--short (spread mode) needs --required naming the single long leg")
     if args.runs and args.short:
         return run_spread(args, command)
     if args.runs:
         return run_multi(args, command)
     if None in (args.run_x, args.run_y, args.date, args.hour):
         parser.error("either --runs or all of --run-x --run-y --date --hour are required")
+    try:
+        args.date = pd.Timestamp(args.date).strftime("%Y-%m-%d")
+    except ValueError:
+        parser.error(f"--date must be a date (YYYY-MM-DD), got {args.date!r}")
     return run_pair(args)

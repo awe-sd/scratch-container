@@ -12,9 +12,9 @@ from pfa import config
 from pfa.report import html, markdown
 
 
-def invocation(argv: list[str]) -> str:
-    """The command as typed: argv[0] (`pfa paths` or the script path) plus its arguments, shell-quoted."""
-    return " ".join([argv[0], *(shlex.quote(a) for a in argv[1:])])
+def invocation(args: list[str]) -> str:
+    """A runnable command line for `pfa paths` with the arguments as given, shell-quoted (whichever entry point was used)."""
+    return " ".join(["uv run pfa paths", *(shlex.quote(a) for a in args)])
 
 
 def short_name(label: str) -> str:
@@ -34,22 +34,28 @@ def holiday_text(holidays) -> str:
     return ", ".join(f"{d:%b} {d.day}" for d in ds) or "no holidays"
 
 
-def holiday_sentence(hol: str, hs: dict, n_periods: int, holiday_periods: list, binding: dict) -> str:
-    """The holiday caveat: filter effect, how many PathOpt periods hold a listed holiday, and the binding runs found on one."""
-    if len(holiday_periods) == 1:
-        where = f"The {hol} topology is one of the {n_periods} PathOpt periods;"
-        them = "it"
-    else:
-        where = f"{len(holiday_periods)} of the {n_periods} PathOpt periods contain a listed holiday;"
-        them = "them"
-    total = binding["total"]
-    if total == 0:
-        found = f"no binding runs fall on {them}."
-    else:
+def holiday_sentence(hol: str, hs: dict, n_periods: int, holiday_periods: list, binding: dict, po_study, ctx_study) -> str:
+    """The holiday caveat, one clause per grain and study: PathOpt periods (PathOpt study) and, when the context study
+    was read, its on-peak runs. Empty when no listed holiday falls inside either data window."""
+    clauses = []
+    if holiday_periods:
+        if len(holiday_periods) == 1:
+            clause = f"The {hol} topology is one of the {n_periods} PathOpt periods (study {po_study})"
+        else:
+            clause = f"{len(holiday_periods)} of the {n_periods} PathOpt periods (study {po_study}) contain a listed holiday"
+        if binding["basis"] == "periods":
+            total = binding["total"]
+            legs = ", ".join(f"{l}: {n}" for l, n in binding["by_leg"].items() if n)
+            clause += (f"; {total} binding periods fall on a listed holiday ({legs}), so the holiday filter matters for the legs named"
+                       if total else "; no binding periods fall on a listed holiday")
+        clauses.append(clause + ".")
+    if binding["basis"] == "runs" and binding.get("n_runs_on_holiday"):
+        total = binding["total"]
         legs = ", ".join(f"{l}: {n}" for l, n in binding["by_leg"].items() if n)
-        unit = "runs" if binding["basis"] == "runs" else "periods"
-        found = f"{total} binding {unit} fall on a listed holiday ({legs}), so the holiday filter matters for the legs named."
-    return f"{hol}: holiday filter effect {hs}. {where} {found}"
+        found = (f"{total} binding runs fall on a listed holiday ({legs}), so the holiday filter matters for the legs named" if total
+                 else "no binding runs fall on a listed holiday")
+        clauses.append(f"In study {ctx_study}, {binding['n_runs_on_holiday']} of the {binding['n_runs']} on-peak runs fall on a listed holiday; {found}.")
+    return f"{hol}: holiday filter effect {hs}. " + " ".join(clauses) if clauses else ""
 
 
 # ------------------------------------------------------------------ multi --
@@ -100,8 +106,9 @@ def multi_caveats(r) -> list[str]:
         else:
             cobind += f" {la} and {lb} co-bind in {n_co} of {len(per)} periods."
     lines.append(cobind)
-    if spec.holidays:
-        lines.append(holiday_sentence(hol, r.hs, len(per), r.holiday_periods, r.holiday_binding))
+    hol_line = holiday_sentence(hol, r.hs, len(per), r.holiday_periods, r.holiday_binding, r.po_study, spec.study) if spec.holidays else ""
+    if hol_line:
+        lines.append(hol_line)
     lines.append(f"Dedup: aliases collapsed on MIN/AVG SF of every leg at 3 dp (cheapest kept); FAMILY groups rows whose per-leg MIN and AVG SFs all agree within 0.015 of the family leader{' (e.g. PAVLOV_BT_RN/PAVLOV_RN, BRP_BRAZ_RN/BRPANGLE_RN)' if 'BLESSING1382' in labels else ''}.")
     lines.append(f"Pairs: PRICE_2MW and VALUE_ALL_2MW are totals for 2 MW (1 MW each leg); per-MW = half; SF halved to per-MW before the filter; complementary only (neither leg passes alone). Pool = top {spec.pool} per constraint by value per $, so the search is not exhaustive. Pair values are additive.")
     return lines
@@ -178,7 +185,7 @@ def multi_readme(r, command: str) -> str:
     caveats = "\n".join("- " + l for l in multi_caveats(r))
     return f"""# Multi-constraint path search: {reqtxt}
 
-Command (from {config.PROJECT_ROOT.parent}):
+Command (from {config.PROJECT_ROOT.parent}; needs `pyopenssl`, so add `--with "pyopenssl>=26.4"` after `uv run` if it is not installed):
 
 {markdown.code_block(command)}
 
@@ -215,15 +222,14 @@ def _spread_cols(L: str, Sh: list[str]) -> list[str]:
 
 
 def cobind_warnings(r) -> list[str]:
-    """One warning per direction in which the long and short legs both bind in some period(s)."""
-    out = []
+    """One warning when the long and short legs bind in the same run(s); the two directions share the same runs, so it is not repeated per direction."""
     for d in r.directions:
         cb = d.cobind
-        if cb["n_both"]:
-            out.append(f"Long {d.long} / short {', '.join(d.short)}: the legs co-bind in {cb['n_both']} of {cb['n_periods']} periods "
-                       f"(long binds in {cb['long_binds']}, short in {cb['short_binds']}). VALUE_LONG assumes the short leg costs nothing "
-                       f"when only the long leg binds, so the long-leg option value is overstated for those periods; VALUE_LONG is not adjusted.")
-    return out
+        if cb["runs_both"]:
+            return [f"{d.long} and {', '.join(d.short)} co-bind in {cb['runs_both']} of {cb['n_runs']} runs ({cb['n_both']} of {cb['n_periods']} periods; "
+                    f"{d.long} binds in {cb['long_runs']} runs, {', '.join(d.short)} in {cb['short_runs']}). VALUE_LONG assumes the short leg costs nothing "
+                    f"when only the long leg binds, so the long-leg option value is overstated for those runs; VALUE_LONG is not adjusted."]
+    return []
 
 
 def spread_caveats(r) -> list[str]:
@@ -234,13 +240,15 @@ def spread_caveats(r) -> list[str]:
     pair = f"{L0} and {Sh0[0]}"
     live_txt = ", ".join(f"{l} {r.live_counts.get(l, '?')}/{r.n_periods}" for l in (L0, *Sh0))
     other_legs = ", ".join(l for l in spec.all_labels if l not in {L0, *Sh0})
-    overstated = [d for d in r.directions if d.cobind["n_both"]]
+    overstated = [d for d in r.directions if d.cobind["runs_both"]]
     if overstated:
         cb = overstated[0].cobind
-        valid = (f"NOT valid in the {cb['n_both']} of {cb['n_periods']} periods where {pair} co-bind: there the short leg costs money "
+        valid = (f"NOT valid in the {cb['runs_both']} of {cb['n_runs']} runs where {pair} co-bind: there the short leg costs money "
                  f"and VALUE_LONG overstates the long-leg option value")
     else:
-        valid = f"valid because {pair} never co-bind"
+        cb = r.directions[0].cobind
+        shared = f" in any run (they share {cb['n_both']} of {cb['n_periods']} periods)" if cb["n_both"] else ""
+        valid = f"valid because {pair} never co-bind{shared}"
     return [
         f"Short leg tested on MAX_SF over its BINDING periods (study {r.po_study} SP>0) <= -{floor} (the strict all-live-period test passes 0 paths, see counts: the two constraints are near-collinear in the topologies where both are live); long leg = MIN_SF >= {floor} on the basis given by --long-basis ({spec.long_basis}). Universe is the long leg's PathOpt run (MAX_SF>0 there); short-leg SFs come from its own topology set.",
         f"VALUE_LONG = long-leg value only (option view: no cost to the short leg in hours when only the other constraint binds, {valid}). VALUE_OBLIG = signed sum incl. the short leg (obligation view). VALUE_ALL_OPT = exact per-run payoff max(0, sum over ALL legs SP x SF) over {r.n_runs} on-peak runs ({hol} excluded), study {r.po_study} shadow prices; computed for the top 3000 rows only.",
@@ -290,6 +298,8 @@ def spread_readme(r, command: str) -> str:
     warn = "".join(f"> WARNING: {w}\n\n" for w in cobind_warnings(r))
     caveats = "\n".join("- " + l for l in spread_caveats(r))
     return f"""# {_spread_title(r)} spread search (long A / short B, both directions)
+
+Command (from {config.PROJECT_ROOT.parent}; needs `pyopenssl`, so add `--with "pyopenssl>=26.4"` after `uv run` if it is not installed):
 
 {markdown.code_block(command)}
 

@@ -488,11 +488,15 @@ class PathSpec:
         return {**self.runs, **self.value_only}
 
 
-def holiday_binding(ctx_sum: pd.DataFrame | None, per: pd.DataFrame, labels: list[str], holidays) -> dict:
-    """Binding runs that fall on a listed holiday: the study's on-peak binding runs when available, else PathOpt periods with SP>0."""
+def holiday_binding(ctx_sum: pd.DataFrame | None, per: pd.DataFrame, labels: list[str], holidays, ctx: pd.DataFrame | None = None) -> dict:
+    """Binding runs that fall on a listed holiday: the context study's on-peak binding runs when available
+    (with its on-peak run count and how many of those runs sit on a listed holiday), else PathOpt periods with SP>0."""
     if ctx_sum is not None:
         by = {r.constraint: int(r.onpeak_binding_on_holiday) for r in ctx_sum.itertuples()}
-        return {"basis": "runs", "by_leg": by, "total": int(sum(by.values()))}
+        n_runs = n_hol = None
+        if ctx is not None:
+            n_runs, n_hol = int(ctx["ONPEAK"].sum()), int((ctx["ONPEAK"] & ctx["HOLIDAY"]).sum())
+        return {"basis": "runs", "by_leg": by, "total": int(sum(by.values())), "n_runs": n_runs, "n_runs_on_holiday": n_hol}
     by = {}
     for l in labels:
         dates = per.loc[per[f"SPSUM_{l}"] > 0, "DATES"].str.split(",")
@@ -740,7 +744,7 @@ def run_multi(spec: PathSpec, log=_NOLOG) -> MultiResult:
         csvs["binding_runs.csv"] = ctx.reset_index()
         csvs["binding_summary.csv"] = ctx_sum
     return MultiResult(spec, int(cfg[labels[0]].STUDYID), cfg[labels[0]].CTGLABEL, n_runs, len(per),
-                       [topo[i] for i in hol_cols], holiday_binding(ctx_sum, per, alll, hol), counts, price_cons, repro, sp_tab,
+                       [topo[i] for i in hol_cols], holiday_binding(ctx_sum, per, alll, hol, ctx), counts, price_cons, repro, sp_tab,
                        ctx_sum, per, ov, cand_d, fam, nm_f, ptt_d, pairs, corr_u, corr_o, floors, floors_b, hs, sp_scale,
                        csvs)
 
@@ -784,12 +788,22 @@ class SpreadResult:
     csvs: dict
 
 
-def spread_cobind(weights: dict, long: str, shorts: list[str]) -> dict:
-    """Periods where the long leg and any short leg both have binding shadow price (SP sum > 0 in that PathOpt period)."""
+def period_sums(sp: pd.Series, run_period: pd.Series, topo: list) -> np.ndarray:
+    """A leg's per-run shadow prices summed over the runs of each PathOpt period (topology), in `topo` order."""
+    return sp.groupby(run_period.values).sum().reindex(topo).fillna(0.0).values
+
+
+def spread_cobind(weights: dict, sp_run: dict, long: str, shorts: list[str]) -> dict:
+    """Co-binding of the long leg with any short leg: per run (SP > 0 in the same PathOpt run, the grain the
+    option-value claim needs) and per period (period SP sum > 0, kept for reference)."""
     long_b = np.asarray(weights[long]) > 0
     short_b = np.logical_or.reduce([np.asarray(weights[s]) > 0 for s in shorts])
+    long_r = np.asarray(sp_run[long]) > 0
+    short_r = np.logical_or.reduce([np.asarray(sp_run[s]) > 0 for s in shorts])
     return {"n_both": int((long_b & short_b).sum()), "n_periods": int(len(long_b)),
-            "long_binds": int(long_b.sum()), "short_binds": int(short_b.sum())}
+            "long_binds": int(long_b.sum()), "short_binds": int(short_b.sum()),
+            "runs_both": int((long_r & short_r).sum()), "n_runs": int(len(long_r)),
+            "long_runs": int(long_r.sum()), "short_runs": int(short_r.sum())}
 
 
 def run_spread(spec: PathSpec, log=_NOLOG) -> SpreadResult:
@@ -823,7 +837,7 @@ def run_spread(spec: PathSpec, log=_NOLOG) -> SpreadResult:
         f, t, ckt, ctg = cons[l]
         sp = popt.fetch_constraint_sp(runids, f, t, ckt, ctg).set_index("RUNID")["SP"].reindex(runids).fillna(0.0)
         sp_run[l] = sp.values
-        weights[l] = sp.groupby(r2t.values).sum().reindex(topo).fillna(0.0).values
+        weights[l] = period_sums(sp, r2t, topo)
         sp_scale[l] = float(sp.sum() / n_runs)
         del n
     cols = ["SOURCECPNODEID", "SINKCPNODEID", "SOURCENAME", "SINKNAME", "OPTIONPRICE", "SHADOWPRICEPRECENT"]
@@ -931,7 +945,7 @@ def run_spread(spec: PathSpec, log=_NOLOG) -> SpreadResult:
         directions.append(SpreadDirection(
             L, list(Sh), cnt, len(U), cand, bm, int(mask.sum()), pc, int(okp.sum()),
             float((np.sign(xa[okp]) != np.sign(ya[okp])).mean()) if okp.any() else float("nan"),
-            spread_cobind(weights, L, list(Sh)), csv_name, fam))
+            spread_cobind(weights, sp_run, L, list(Sh)), csv_name, fam))
         log(f"long {L} short {Sh}: universe {len(U)}, counts {cnt}, candidates {mask.sum()} -> {len(cand)} distinct, {int(fam.shape[0])} families")
     comp = pd.DataFrame(comp)
     co_live = pd.DataFrame([{"a": a, "b": b_, "topologies_both_live": v[0], "mean_node_psens_corr_in_shared_topologies": v[1]}
