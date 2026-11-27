@@ -2,8 +2,7 @@
 
 STEP 1 (all binding constraints, local computation from cache + CSVs):
 classify each into A outage-driven/dispatchable, B baseline binder,
-C no-dispatch/unenforceable, D outage-relieved/bearish (see
-pfa.analysis.screening.classify_constraint).
+C no-dispatch/unenforceable, D outage-relieved/bearish (see classify_constraint below).
 
 STEP 2 (class A only, capped at 40 by post-cutoff rent): single-month
 fast-scan P(bind), offer-curve lambda(depth) evaluated over the fast-scan
@@ -21,12 +20,53 @@ import gc
 import pandas as pd
 
 from pfa import config, periods
-from pfa.analysis import lambda_engine as lam, marginal_units, offer_lambda
+from pfa.analysis import dispatch_screen, marginal_units, shadow_price as sp
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
-from pfa.analysis.screening import classify_constraint
 from pfa.cache import StudyCache
 from pfa.constraint_id import ConstraintId
-from pfa.extract import buskv, fastscan, gen_mapping, popt, shifts
+from pfa.analysis.shortlist_value import coverage_and_days, month_bind_dates, value_row
+from pfa.extract import network_ref, gen_mapping
+
+
+TOP_SHARE_MIN = 0.25  # class A: top tofinder group must move this share of preflow
+
+
+def classify_constraint(
+    top_share: float | None,
+    dispatch_ok: bool | None,
+    penalty: bool,
+    pre_rate: float | None,
+    post_rate: float | None,
+) -> tuple[str, str]:
+    """Returns (class_letter, reason).
+
+    Precedence: D (bearish — the outage relieves the constraint, or it was a
+    pre-cutoff binder that the outage set makes go away) beats everything
+    else, since it flips the trading direction; then A (outage-driven,
+    dispatchable — the actionable long list); then C (no dispatchable relief
+    exists, or the LP prices it at the penalty tier — ERCOT unlikely to run
+    the outage); then B (binds anyway, outage or not); else unclassified.
+    """
+    if top_share is not None and top_share < 0:
+        return "D", "top outage group UNLOADS the constraint (negative flow-delta share)"
+    if pre_rate is not None and post_rate is not None and pre_rate > 0 and post_rate == 0:
+        return "D", "bound pre-cutoff, stops binding post-cutoff with the outage set in"
+
+    if top_share is not None and top_share >= TOP_SHARE_MIN and dispatch_ok is not False:
+        return "A", "outage-driven (top group >= 25% of preflow) and dispatch screen passes"
+
+    if penalty or dispatch_ok is False:
+        reason = []
+        if penalty:
+            reason.append("penalty-tier LP lambda")
+        if dispatch_ok is False:
+            reason.append("no dispatchable relief pair")
+        return "C", " + ".join(reason)
+
+    if pre_rate is not None and post_rate is not None and post_rate > 0 and pre_rate >= 0.5 * post_rate:
+        return "B", "binds pre-cutoff at >= half the post-cutoff rate (baseline, not outage-created)"
+
+    return "U", "no class criterion matched (thin/ambiguous evidence)"
 
 
 # --------------------------------------------------------------------------
@@ -49,132 +89,6 @@ def pre_post_bind_rates(ctgviol: pd.DataFrame, runs: pd.DataFrame, cutoff: str):
     rate_pre = (pre_bind / n_pre) if n_pre else pre_bind * 0.0
     rate_post = (post_bind / n_post) if n_post else post_bind * 0.0
     return rate_pre, rate_post, n_pre, n_post
-
-
-def month_bind_dates(ctgviol: pd.DataFrame, runs: pd.DataFrame, cutoff: str, month: str):
-    """Per-constraint: (distinct post-cutoff in-month SIMDATEs it binds on,
-    distinct post-cutoff in-month SIMDATEs sampled at all) — the days-active
-    proxy for un-ticketed class-A coverage."""
-    r = runs.copy()
-    r["SIMDATE"] = pd.to_datetime(r["SIMDATE"])
-    first, last = periods.month_range(month)
-    r = r[(r["SIMDATE"] >= pd.to_datetime(cutoff)) & (r["SIMDATE"] >= first) & (r["SIMDATE"] <= last)]
-    n_sampled = r["SIMDATE"].dt.date.nunique()
-    cv = ctgviol.copy()
-    cv["CONSTRAINT"] = constraint_key(cv)
-    cv = cv[cv["LIMVIOLPCT"] >= BINDING_PCT].merge(r[["RUNID", "SIMDATE"]], on="RUNID", how="inner")
-    bind_days = cv.groupby("CONSTRAINT")["SIMDATE"].apply(lambda s: s.dt.date.nunique())
-    return bind_days, n_sampled
-
-
-def coverage_and_days(c: str, has_ticket: bool, start, end, bind_days_map, n_sampled, month: str):
-    """(coverage fraction, outage days in the month, marker, thin_evidence)."""
-    if has_ticket:
-        first, last = periods.month_range(month)
-        days = pd.bdate_range(max(pd.Timestamp(start), first), min(pd.Timestamp(end), last))
-        days = days[~days.isin(periods.nerc_holidays(first.year))]
-        n_days = len(days)
-        cov = round(n_days * 16 / (len(periods.onpeak_days(month)) * 16), 3)
-        return cov, n_days, "", n_days < 3
-    n_days = int(bind_days_map.get(c, 0))
-    cov = round(n_days / n_sampled, 3) if n_sampled else 0.0
-    return cov, n_days, "(days-proxy)", n_days < 3
-
-
-# --------------------------------------------------------------------------
-# Step-2 valuation
-# --------------------------------------------------------------------------
-
-def fastscan_month_onpeak(config_id: int, month: str):
-    """Fast-scan headroom for the calendar month across all years, restricted to weekday HE7-22
-    on-peak rows (ex-NERC holidays); returns (p_bind_onpeak, need_df) where need_df is the
-    NEED_MW frame (negative-headroom onpeak hours only, for lambda_engine)."""
-    df = fastscan.headroom_for_month(config_id, periods.parse_month(month)[1])
-    if df.empty:
-        return None, pd.DataFrame()
-    df["TIMESTAMP"] = pd.to_datetime(df["TIMESTAMP"])
-    onpk = df[periods.fastscan_hour_class(df["TIMESTAMP"]) == "OnPeak"]
-    if onpk.empty:
-        return None, pd.DataFrame()
-    p_bind = float((onpk["HEADROOM"] < 0).mean())
-    need = onpk[onpk["HEADROOM"] < 0].copy()
-    need["NEED_MW"] = -need["HEADROOM"].astype(float)
-    return p_bind, need
-
-
-def cpnode_sf(study_id: int, constraint: str, names: list[str]) -> dict[str, float]:
-    names = [n for n in names if isinstance(n, str) and n]
-    if not names:
-        return {}
-    cid = ConstraintId.parse(constraint)
-    df = shifts.cpnode_sf_by_name(study_id, cid, names)
-    return {r["NAME"]: float(r["SF"]) for _, r in df.iterrows()} if len(df) else {}
-
-
-def value_row(study_id: int, c: str, gen, bus_names, genunit, scedname, month: str) -> dict:
-    """Step-2 valuation components for one class-A constraint."""
-    out: dict = {"_status": "ok"}
-    cid = ConstraintId.parse(c)
-    f, t, ctg = cid.fromnum, cid.tonum, cid.ctglabel
-    cfgs = fastscan.find_configs(study_id, int(f), int(t), ctg)
-    if cfgs.empty:
-        out["_status"] = "no fast-scan config"
-        return out
-    config_id = int(cfgs["CONFIG_ID"].iloc[0])
-    direction = int(cfgs["DIRECTION"].iloc[0]) if pd.notna(cfgs["DIRECTION"].iloc[0]) else 1
-    label = periods.month_label(month)
-    p_bind, need = fastscan_month_onpeak(config_id, month)
-    if p_bind is None:
-        out["_status"] = f"no {label} on-peak fast-scan hours"
-        return out
-    out[f"P(bind) {label} on-peak"] = round(p_bind, 3)
-
-    # DIRECTION matters: on a reverse-bound branch (-1) a positive-PSENS
-    # unit is relief (up), not the problem (down) — see relief_set's
-    # docstring for the study-14412 canary this fixes (3380-3390-1@DPNAONA5).
-    relief = lam.relief_set(study_id, c, gen, bus_names, genunit, scedname, direction=direction)
-    if relief.empty:
-        out["_status"] = "no relief-set units in SF band"
-        return out
-    cap = lam.dam_capacity(relief["SCED"].dropna().tolist())
-    if cap.empty:
-        out["_status"] = "no DAM offer coverage for relief-set units"
-        return out
-    up, down = lam.build_stacks(relief, cap)
-    if not up or not down:
-        out["_status"] = "no DAM offer coverage for relief-set units"
-        return out
-    curve = lam.lambda_depth_curve(up, down)
-    if not curve or need.empty:
-        out["_status"] = "no fast-scan negative-headroom hours"
-        return out
-    dist = lam.lambda_distribution(curve, need)
-    priced = dist["LAMBDA"].dropna()
-    if priced.empty:
-        out["_status"] = "fast-scan need exceeds relief-set capacity at every hour"
-        return out
-    pct = lam.percentiles(priced)
-    out["E[lambda|bind]"] = round(float(priced.mean()), 1)
-    out["lambda P50"] = pct.get("P50")
-    out["lambda P90"] = pct.get("P90")
-    out["unpriced deep hours %"] = round(100.0 * dist["LAMBDA"].isna().mean(), 1)
-
-    paths = popt.best_paths(study_id, c)
-    if paths is not None:
-        p = paths.iloc[0]
-        source, sink = str(p["SOURCENAME"]), str(p["SINKNAME"])
-        sfs = cpnode_sf(study_id, c, [source, sink])
-        if source in sfs and sink in sfs:
-            eff_sf = sfs[source] - sfs[sink]
-            sf_marker = ""
-        else:
-            eff_sf = float(p["AVG_SF"])
-            sf_marker = "~"
-        out["Path"] = f"{source}->{sink} ${float(p['OPTIONPRICE']):.2f}"
-        out["Path SF"] = f"{sf_marker}{eff_sf:.3f}"
-        out["_eff_sf"] = eff_sf
-        out["_path_price"] = float(p["OPTIONPRICE"])
-    return out
 
 
 # --------------------------------------------------------------------------
@@ -282,7 +196,7 @@ def main() -> None:
 
     # ONE bulk round trip for dispatch features on every candidate constraint
     # (was 2 queries x ~230 constraints — the architect-flagged cost problem).
-    dispatch_feats = offer_lambda.bulk_dispatch_features(args.study, short["CONSTRAINT"].tolist())
+    dispatch_feats = dispatch_screen.bulk_dispatch_features(args.study, short["CONSTRAINT"].tolist())
     gc.collect()
 
     rows = []
@@ -290,7 +204,7 @@ def main() -> None:
         c = r["CONSTRAINT"]
         cid = ConstraintId.parse(c)
         f, t = cid.fromnum, cid.tonum
-        kv = buskv.constraint_kv(int(f), int(t))
+        kv = network_ref.constraint_kv(int(f), int(t))
 
         penalty = False
         if "MEAN_SHADOW" in r and pd.notna(r.get("MEAN_SHADOW")):

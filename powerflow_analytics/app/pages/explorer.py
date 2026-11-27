@@ -98,7 +98,7 @@ def layout():
 )
 def _load_grid(study_id):
     if study_id is None:
-        return [], "No analyzed studies found — run pull_study.py + build_report.py first."
+        return [], "No analyzed studies found — run `pfa pull` + `pfa summary` first."
     b = data.load_study(int(study_id))
     binding = b.ranked[b.ranked["N_RUNS_BINDING"] > 0]
     info = f"{b.study_name}: {b.n_runs} runs, {len(binding)} constraints ever binding"

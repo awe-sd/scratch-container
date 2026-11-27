@@ -75,6 +75,7 @@ def congestion_rent(
     outcon: pd.DataFrame,
     runs: pd.DataFrame,
     cutoff_date: str | None = None,
+    exclude_lambda: tuple[float, ...] = (),
 ) -> pd.DataFrame:
     """Per-constraint congestion rent: sum over runs of lambda x limit MW.
 
@@ -83,8 +84,11 @@ def congestion_rent(
     than a moderate one binding all month. cutoff_date (YYYY-MM-DD) splits the
     rent into RENT_PRE/RENT_POST (ERCOT allows outages after Sep 15, so
     post-cutoff congestion depends on outages that may still move or cancel).
+    `exclude_lambda` drops LP rows whose lambda equals one of those values (the SCOPF penalty tiers).
     """
     oc = outcon.rename(columns={"LPOPFCTGID": "CTGLABEL"})
+    if exclude_lambda:
+        oc = oc[~oc["OPFCNLAMBDA"].isin(exclude_lambda)].copy()
     oc["CONSTRAINT"] = constraint_key(oc)
     cv = ctgviol.copy()
     cv["CONSTRAINT"] = constraint_key(cv)

@@ -86,3 +86,9 @@ def test_fastscan_hour_class_series_matches_scalar():
     ts = pd.Series(pd.to_datetime(["2026-09-08 06:00", "2026-09-07 10:00", "2026-09-08 22:00", "2026-09-08 21:57"]), index=[5, 6, 7, 8])
     assert periods.fastscan_hour_class(ts).tolist() == ["OnPeak", "2x16", "7x8", "OnPeak"]
     assert list(periods.fastscan_hour_class(ts).index) == [5, 6, 7, 8]
+
+
+def test_fastscan_he_label_is_hour_ending():
+    assert periods.fastscan_he_label(0) == "HE1"
+    assert periods.fastscan_he_label(23) == "HE24"
+    assert periods.fastscan_he_label(16) == "HE17"

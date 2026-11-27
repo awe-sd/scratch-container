@@ -29,6 +29,8 @@ from .. import sf
 _SEGMENTS = range(1, 11)
 
 CAPACITY_ROW_LIMIT = 200000
+CAPACITY_CHUNK = 50  # 17 resources x 14 days x 16 hours x 50 points stays under the row LIMIT
+LOOKBACK_DAYS = 14  # the "latest" window of the offer readers ends at the newest delivery date in the table
 _CURVE_COLS = ",".join(f"CURVEMW{i},CURVEPRICE{i}" for i in _SEGMENTS)
 
 _CURVE_COLUMNS = ["RESOURCE", "DELIVERYDATE", "HOURENDING", "SEGMENT", "MW", "PRICE"]
@@ -50,11 +52,10 @@ def _resolve_genids(resource_like: str) -> list[int]:
     Resource names live in AW.DBO.ERCOT60DDAMGEN, not on ERCOT60DDAMGENRESOURCE
     directly. Returns an empty list if no resource matches.
     """
-    pattern = resource_like.replace("'", "")
     sql = f"""
         SELECT DISTINCT GENID, RESOURCENAME
         FROM AW.DBO.ERCOT60DDAMGEN
-        WHERE RESOURCENAME ILIKE '{pattern}'
+        WHERE RESOURCENAME ILIKE {sf.quote(resource_like)}
     """
     df = sf.query("AW", sql)
     df.columns = [c.upper() for c in df.columns]
@@ -232,7 +233,7 @@ def latest_curves_at_hours(settlement_points: Iterable, hours=(12, 18)) -> pd.Da
     return sf.query("AW", f"""
         SELECT SETTLEMENTPOINTNAME, {_CURVE_COLS}
         FROM AW.DBO.ERCOT60DDAMGENRESOURCE
-        WHERE DELIVERYDATE >= DATEADD(day, -14, (SELECT MAX(DELIVERYDATE) FROM AW.DBO.ERCOT60DDAMGENRESOURCE))
+        WHERE DELIVERYDATE >= DATEADD(day, -{LOOKBACK_DAYS}, (SELECT MAX(DELIVERYDATE) FROM AW.DBO.ERCOT60DDAMGENRESOURCE))
           AND HOURENDING IN ({','.join(map(str, hours))})
           AND SETTLEMENTPOINTNAME IN ({names})
         LIMIT 5000""")
@@ -240,20 +241,49 @@ def latest_curves_at_hours(settlement_points: Iterable, hours=(12, 18)) -> pd.Da
 
 def latest_capacity_rows(settlement_points: Iterable, first_hour: int = 7, last_hour: int = 22) -> pd.DataFrame:
     """Wide offer rows plus HSL, LSL, AWARDEDQUANTITY for the settlement points over HE first..last,
-    last 14 days of the disclosure. Raises if the LIMIT is hit (truncated)."""
+    last 14 days of the disclosure. Queried CAPACITY_CHUNK points at a time; raises if a chunk hits the LIMIT (truncated)."""
+    points = sorted({re.sub(chr(39), "", s) for s in settlement_points if isinstance(s, str)})
+    if not points:
+        return pd.DataFrame()
+    parts = []
+    for i in range(0, len(points), CAPACITY_CHUNK):
+        names = _quoted_points(points[i:i + CAPACITY_CHUNK])
+        df = sf.query("AW", f"""
+            SELECT SETTLEMENTPOINTNAME, HSL, LSL, AWARDEDQUANTITY, {_CURVE_COLS}
+            FROM AW.DBO.ERCOT60DDAMGENRESOURCE
+            WHERE DELIVERYDATE >= DATEADD(day, -{LOOKBACK_DAYS}, (SELECT MAX(DELIVERYDATE) FROM AW.DBO.ERCOT60DDAMGENRESOURCE))
+              AND HOURENDING BETWEEN {first_hour} AND {last_hour}
+              AND SETTLEMENTPOINTNAME IN ({names})
+            LIMIT {CAPACITY_ROW_LIMIT}""")
+        if len(df) >= CAPACITY_ROW_LIMIT:
+            raise RuntimeError(
+                f"latest_capacity_rows: hit the {CAPACITY_ROW_LIMIT}-row LIMIT — results are truncated; "
+                "narrow the hour window or settlement-point set"
+            )
+        parts.append(df)
+    return parts[0] if len(parts) == 1 else pd.concat(parts, ignore_index=True)
+
+
+def latest_delivery_date() -> date:
+    """Newest DELIVERYDATE in the disclosure table (the "latest 14 days" window ends here)."""
+    df = sf.query("AW", "SELECT MAX(DELIVERYDATE) AS D FROM AW.DBO.ERCOT60DDAMGENRESOURCE")
+    df.columns = [c.upper() for c in df.columns]
+    return pd.Timestamp(df["D"].iloc[0]).date()
+
+
+def point_coverage(settlement_points: Iterable) -> pd.DataFrame:
+    """Per settlement point: rows ever, newest delivery date, rows with an energy curve (CURVEMW1 and
+    CURVEPRICE1 not null) in the latest-14-day window. Points absent from the table are absent here."""
     names = _quoted_points(settlement_points)
     if not names:
         return pd.DataFrame()
     df = sf.query("AW", f"""
-        SELECT SETTLEMENTPOINTNAME, HSL, LSL, AWARDEDQUANTITY, {_CURVE_COLS}
+        SELECT SETTLEMENTPOINTNAME, COUNT(*) AS N_ALL, MAX(DELIVERYDATE) AS LAST_DATE,
+               SUM(IFF(DELIVERYDATE >= DATEADD(day, -{LOOKBACK_DAYS}, (SELECT MAX(DELIVERYDATE) FROM AW.DBO.ERCOT60DDAMGENRESOURCE)), 1, 0)) AS N_WINDOW,
+               SUM(IFF(DELIVERYDATE >= DATEADD(day, -{LOOKBACK_DAYS}, (SELECT MAX(DELIVERYDATE) FROM AW.DBO.ERCOT60DDAMGENRESOURCE))
+                       AND CURVEMW1 IS NOT NULL AND CURVEPRICE1 IS NOT NULL, 1, 0)) AS N_WINDOW_CURVE
         FROM AW.DBO.ERCOT60DDAMGENRESOURCE
-        WHERE DELIVERYDATE >= DATEADD(day, -14, (SELECT MAX(DELIVERYDATE) FROM AW.DBO.ERCOT60DDAMGENRESOURCE))
-          AND HOURENDING BETWEEN {first_hour} AND {last_hour}
-          AND SETTLEMENTPOINTNAME IN ({names})
-        LIMIT {CAPACITY_ROW_LIMIT}""")
-    if len(df) >= CAPACITY_ROW_LIMIT:
-        raise RuntimeError(
-            f"latest_capacity_rows: hit the {CAPACITY_ROW_LIMIT}-row LIMIT — results are truncated; "
-            "narrow the hour window or settlement-point set"
-        )
+        WHERE SETTLEMENTPOINTNAME IN ({names})
+        GROUP BY SETTLEMENTPOINTNAME""")
+    df.columns = [c.upper() for c in df.columns]
     return df

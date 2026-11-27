@@ -1,27 +1,44 @@
-"""Constraint valuation in $/MWh over the 5x16 on-peak settlement block.
+"""Constraint valuation: a fact sheet and the monthly $/MWh mark.
 
-Method (per constraint):
-1. Binding stats from the study LP (OUTCONSTRAINT2): P(bind | hour block) and
-   the lambda distribution, restricted to the driving outage's window.
-2. Lambda cross-check from marginal-unit offers: lambda = offer spread / delta-SF
-   (the caller supplies offer quantiles; ERCOT's $5000 cap bounds the tail).
-3. Normalize to $/MWh: expected rent per MW of flowgate over the month divided
-   by the month's total on-peak hours (M-F 5x16, NERC holidays excluded).
+Two halves with DIFFERENT binding definitions (pending an owner decision):
+- fact_sheet(): binding = LIMVIOLPCT >= 99.5 in OUTCTGVIOL2 (constraints.BINDING_PCT); lambda is
+  OUTCONSTRAINT2.OPFCNLAMBDA over those runs; marginal units come from LPBASICVARID.
+- binding_stats() / dollars_per_mwh(): binding = the run has a row for the constraint in
+  OUTCONSTRAINT2; on-peak 5x16 only.
 
-Study runs sample a few hours (e.g. HE 3/12/18); each sampled hour represents
-a block of on-peak hours (HOUR_BLOCKS). Scale a path by its shift factor on
-the flowgate to get $/MWh of CRR path.
+Fact-sheet marginal units: OUTCONSTRAINT2.GENBUSNUM/GENID are NULL for ERCOT studies, so the only
+live identity is the free-text LPBASICVARID ("Gen 8968 #1 MW Control" resolves to a generator;
+"Slack-Line ..." rows are dropped). Bus number -> name uses marginal_units.bus_name_map(outbranch2)
+(a generator bus with no line-endpoint appearance in the cache is dropped, not guessed). PSENS comes
+from CPNODE_SHIFTS_VIEW scoped to the constraint and CPNODEID.
+
+Monthly mark (per constraint):
+1. Binding stats from the study LP: P(bind | hour block) and the lambda distribution, restricted to
+   the driving outage's window.
+2. Normalize to $/MWh: expected rent per MW of flowgate over the month divided by the month's total
+   on-peak hours (M-F 5x16, NERC holidays excluded).
+
+Study runs sample a few hours (e.g. HE 3/12/18); each sampled hour represents a block of on-peak
+hours (HOUR_BLOCKS). Scale a path by its shift factor on the flowgate to get $/MWh of CRR path.
+The lambda cross-check from marginal-unit offers lives in shadow_price.
 """
 from __future__ import annotations
 
 from dataclasses import dataclass
 
+import re
+
 import pandas as pd
 
 from .. import periods
-from .constraints import constraint_key
+from ..cache import StudyCache
+from ..constraint_id import ConstraintId
+from ..extract import gen_mapping, results, shifts, study
+from .constraints import BINDING_PCT, constraint_key
+from .marginal_units import bus_name_map
+from .shadow_price import PRICE_CAP
 
-PRICE_CAP = 5000.0
+_GEN_RE = re.compile(r"^Gen (\d+) #(\d+)")
 
 # sampled sim-hour -> number of on-peak hours it represents (16h on-peak day)
 HOUR_BLOCKS = {12: 10, 18: 6}  # midday block HE7-16, evening block HE17-22
@@ -70,13 +87,6 @@ def binding_stats(
                         lam, window, int(r["RUNID"].nunique()))
 
 
-def offer_lambda(spread_low: float, spread_high: float, delta_sf: float) -> tuple[float, float]:
-    """Lambda range from marginal-unit offer spread / delta shift factor, capped."""
-    if delta_sf <= 0:
-        raise ValueError("delta_sf must be positive")
-    return (min(spread_low / delta_sf, PRICE_CAP), min(spread_high / delta_sf, PRICE_CAP))
-
-
 def dollars_per_mwh(
     stats: BindingStats,
     year: int,
@@ -108,3 +118,140 @@ def dollars_per_mwh(
         "lam_col": lam_col,
         "sf": sf,
     }
+
+
+# ------------------------------------------------------------ fact sheet --
+
+def _load_from_cache_or_snowflake(study_id: int) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Returns (ctgviol, outcon, runs, branch), preferring the local parquet cache."""
+    cache = StudyCache(study_id)
+    if cache.has("outctgviol2") and cache.has("outconstraint2") and cache.has("opfrun") and cache.has("outbranch2"):
+        return (
+            cache.load("outctgviol2"),
+            cache.load("outconstraint2"),
+            cache.load("opfrun"),
+            cache.load("outbranch2"),
+        )
+    return (results.fetch_ctgviol(study_id), results.fetch_constraint(study_id),
+            study.fetch_runs(study_id), results.fetch_branch(study_id))
+
+
+def fact_sheet(study_id: int, fromnum: int, tonum: int, ckt: str, ctglabel: str) -> dict:
+    """Binding run count (LIMVIOLPCT >= 99.5 in OUTCTGVIOL2) + lambda distribution + marginal
+    units + their PSENS, for one (study, FROMNUM, TONUM, CKT, CTGLABEL)."""
+    ckt = str(ckt).strip()
+    ctgviol, outcon, runs, branch = _load_from_cache_or_snowflake(study_id)
+
+    n_total_runs = int(runs["RUNID"].nunique())
+
+    cv = ctgviol[
+        (ctgviol["FROMNUM"].astype(int) == int(fromnum))
+        & (ctgviol["TONUM"].astype(int) == int(tonum))
+        & (ctgviol["CKT"].astype(str).str.strip() == ckt)
+        & (ctgviol["CTGLABEL"].astype(str).str.strip() == str(ctglabel).strip())
+    ]
+    n_total_cases = int(cv["RUNID"].nunique())
+    binding = cv[cv["LIMVIOLPCT"] >= BINDING_PCT]
+    binding_runids = set(binding["RUNID"].unique())
+    n_binding_cases = int(binding["RUNID"].nunique())
+
+    oc = outcon.rename(columns={"LPOPFCTGID": "CTGLABEL"})
+    oc_match = oc[
+        (oc["FROMNUM"].astype(int) == int(fromnum))
+        & (oc["TONUM"].astype(int) == int(tonum))
+        & (oc["CKT"].astype(str).str.strip() == ckt)
+        & (oc["CTGLABEL"].astype(str).str.strip() == str(ctglabel).strip())
+    ]
+    oc_binding = oc_match[oc_match["RUNID"].isin(binding_runids)]
+
+    # OUTCONSTRAINT2 has one row per basic-variable per run — OPFCNLAMBDA is
+    # constant per RUNID for a given constraint, so dedupe to RUNID before
+    # computing distribution stats to avoid overweighting runs with many
+    # marginal units.
+    lam = oc_binding.dropna(subset=["OPFCNLAMBDA"]).drop_duplicates("RUNID")["OPFCNLAMBDA"]
+    lambda_stats = {
+        "min": float(lam.min()) if len(lam) else None,
+        "p25": float(lam.quantile(0.25)) if len(lam) else None,
+        "median": float(lam.median()) if len(lam) else None,
+        "mean": float(lam.mean()) if len(lam) else None,
+        "p75": float(lam.quantile(0.75)) if len(lam) else None,
+        "max": float(lam.max()) if len(lam) else None,
+        "n": int(len(lam)),
+    }
+    lambda_n_mismatch = lambda_stats["n"] != n_binding_cases
+    if lambda_n_mismatch:
+        print(
+            f"WARNING: lambda_stats['n']={lambda_stats['n']} != n_binding_cases="
+            f"{n_binding_cases} — OPFCNLAMBDA may not be constant per RUNID, or some "
+            "binding RUNIDs have no OUTCONSTRAINT2 row for this constraint."
+        )
+
+    # --- marginal units: parse "Gen <busnum> #<id>" out of LPBASICVARID ---
+    parsed_raw = oc_binding["LPBASICVARID"].astype(str).str.extract(_GEN_RE)
+    parsed_raw.columns = ["BUSNUM", "GENID"]
+    n_slack_line_dropped = int(parsed_raw["BUSNUM"].isna().sum())
+    parsed = parsed_raw.dropna(subset=["BUSNUM"])
+    parsed["BUSNUM"] = parsed["BUSNUM"].astype(int)
+    unit_counts = parsed.groupby(["BUSNUM", "GENID"]).size().rename("N_APPEARANCES").reset_index()
+
+    bnames = bus_name_map(branch)
+    units = unit_counts.merge(bnames, on="BUSNUM", how="left")
+    n_bus_unresolved = int(units["BUSNAME"].isna().sum())
+    units = units.dropna(subset=["BUSNAME"])
+
+    # GENUNIT has no column carrying the PowerWorld "#<id>" generator index
+    # (UNITNAME/UNITCODE suffixes are a different, unrelated naming scheme —
+    # see gen_mapping.fetch_genunit_sced_name docstring for the one place a
+    # real (BUSNAME, unit-index) bridge exists, GENUNITSCEDNAME, which is not
+    # wired in here). Rather than guess a wrong join or arbitrarily keep one
+    # unit per bus (the old drop_duplicates("BUSNAME") behavior, which
+    # silently mispriced any bus with multiple units), keep ALL matching
+    # GENUNIT rows per bus and flag when a bus has more than one candidate
+    # unit so disambiguation-was-not-possible is visible in the output.
+    genunit = gen_mapping.fetch_genunit()
+    bus_unit_counts = genunit.groupby("BUSNAME").size().rename("N_GENUNIT_CANDIDATES")
+    units = units.merge(
+        genunit[["BUSNAME", "UNITNAME", "CPNODEID", "GENFUELTYPE"]],
+        on="BUSNAME", how="left",
+    )
+    units = units.merge(bus_unit_counts, on="BUSNAME", how="left")
+    units["N_GENUNIT_CANDIDATES"] = units["N_GENUNIT_CANDIDATES"].fillna(0).astype(int)
+    units["genunit_ambiguous"] = units["N_GENUNIT_CANDIDATES"] > 1
+    units = units.sort_values(
+        ["N_APPEARANCES", "BUSNUM", "GENID"], ascending=[False, False, False]
+    ).reset_index(drop=True)
+
+    # --- PSENS from CPNODE_SHIFTS_VIEW, scoped to this study + constraint ---
+    # CPNODEID can come back float64 here (NaNs introduced by the left-joins
+    # above) while Snowflake returns int64 for the SHIFT_FACTORS query —
+    # cast both sides to nullable Int64 before merging so the join actually
+    # matches instead of silently producing all-NaN PSENS.
+    units["CPNODEID"] = units["CPNODEID"].astype("Int64")
+    cpnode_ids = [int(c) for c in units["CPNODEID"].dropna().unique()]
+    if cpnode_ids:
+        sfs = shifts.cpnode_psens_by_id(
+            study_id, ConstraintId(int(fromnum), int(tonum), ckt, str(ctglabel).strip()), cpnode_ids)
+        sfs["CPNODEID"] = sfs["CPNODEID"].astype("Int64")
+        units = units.merge(sfs, on="CPNODEID", how="left")
+    else:
+        units["PSENS"] = None
+
+    marginal_units = units.head(10).to_dict(orient="records")
+
+    return {
+        "constraint": f"{fromnum}-{tonum}-{ckt}@{ctglabel}",
+        "study_id": int(study_id),
+        "n_binding_cases": n_binding_cases,
+        "n_total_cases": n_total_cases,
+        "n_total_study_runs": n_total_runs,
+        "lambda_stats": lambda_stats,
+        "lambda_n_mismatch": lambda_n_mismatch,
+        "n_slack_line_dropped": n_slack_line_dropped,
+        "n_bus_unresolved": n_bus_unresolved,
+        "marginal_units": marginal_units,
+    }
+
+
+def mark_table(stats: BindingStats, year: int, month: int, window: tuple[str, str], sf: float = 1.0) -> pd.DataFrame:
+    """One dollars_per_mwh row per lambda statistic (p25, p50, p75, mean)."""
+    return pd.DataFrame([dollars_per_mwh(stats, year, month, window, col, sf) for col in ("p25", "p50", "p75", "mean")])

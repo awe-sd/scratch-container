@@ -1,8 +1,8 @@
 """Read-only data access for the dashboard: local cache + analysis CSVs only.
 
 No Snowflake / SQL Server access from the app — pull and analyze first:
-  uv run powerflow_analytics/scripts/pull_study.py --study <id>
-  uv run powerflow_analytics/scripts/build_report.py --study <id> --tickets
+  uv run pfa pull --study <id>
+  uv run pfa summary --study <id> --cutoff <YYYY-MM-DD> --tickets
 """
 from __future__ import annotations
 

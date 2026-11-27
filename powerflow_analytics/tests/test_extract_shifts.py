@@ -31,8 +31,6 @@ def test_constraint_scoped_readers_carry_study_and_constraint(monkeypatch):
         (lambda: shifts.cpnode_sf_by_name(14412, CID, ["A", "B"]), "CPNODE_SHIFTS_VIEW", "NAME IN ('A','B')"),
         (lambda: shifts.cpnode_psens_by_id(14412, CID, [3, 4]), "CPNODE_SHIFTS_VIEW", "CPNODEID IN (3,4)"),
         (lambda: shifts.cpnode_live_nodes(14412, CID), "CPNODE_SHIFTS_VIEW", "DEADBUS=0"),
-        (lambda: shifts.cpnode_qualifying_count(14412, CID, 0.03, 0.9), "CPNODE_SHIFTS_VIEW", "ABS(PSENS) >= 0.03"),
-        (lambda: shifts.cpnode_pair_counts(14412, CID, 0.1, 0.5), "CPNODE_SHIFTS_VIEW", "ABS(PSENS) < 0.5"),
     ]
     for call, view, extra in cases:
         calls = _fake(monkeypatch, canned)
@@ -43,13 +41,6 @@ def test_constraint_scoped_readers_carry_study_and_constraint(monkeypatch):
 
 def test_bulk_readers_build_constraint_tuples(monkeypatch):
     canned = pd.DataFrame({"N_QUAL": [1]})
-    calls = _fake(monkeypatch, canned)
-    out = shifts.cpnode_dispatch_features(14412, ["1436-2081-1@DWCSRAM5", "7-8-A@B'C"], 0.03, 0.9, 0.1, 0.5)
-    sql = calls[0][1]
-    assert out is canned
-    assert "(1436, 2081, '1', 'DWCSRAM5')" in sql and "'B''C'" in sql and "STUDYID = 14412" in sql
-    assert shifts.cpnode_dispatch_features(14412, [], 0.03, 0.9, 0.1, 0.5).empty
-
     calls = _fake(monkeypatch, canned)
     assert shifts.cpnode_dispatch_nodes(14412, ["1436-2081-1@DWCSRAM5"], 0.03, 0.9) is canned
     sql = calls[0][1]

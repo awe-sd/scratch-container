@@ -132,3 +132,28 @@ def test_update_or_merge_on_a_stage_raises():
         sql = _proc(STAGE, "INSERT INTO T1 SELECT 1, 2;", stmt, FINAL)
         with pytest.raises(pe.UnsupportedStageStatement, match="T1"):
             pe.extract_readonly_query(sql, ["T1"], "OUT.T", source="tiny.sql")
+
+
+def test_insert_with_column_list_maps_onto_declared_stage_columns():
+    sql = _proc(STAGE, "INSERT INTO T1 (B) SELECT 2;", FINAL)
+    q = pe.extract_readonly_query(sql, ["T1"], "OUT.T", source="tiny.sql").query
+    assert "T1(A, B) AS" in q
+    assert "SELECT NULL AS A, B FROM (\nSELECT 2\n) AS _ins(B)" in q
+
+
+def test_insert_with_column_list_appends_after_plain_insert():
+    sql = _proc(STAGE, "INSERT INTO T1 SELECT 1, 2;", "INSERT INTO T1 (B, A) SELECT 4, 3;", FINAL)
+    q = pe.extract_readonly_query(sql, ["T1"], "OUT.T", source="tiny.sql").query
+    assert q.count("UNION ALL") == 1 and "AS _ins(B, A)" in q
+
+
+def test_insert_with_column_list_into_ctas_stage_raises():
+    sql = _proc("CREATE OR REPLACE TEMPORARY TABLE T1 AS SELECT 1 AS A, 2 AS B;", "INSERT INTO T1 (A) SELECT 3;", FINAL)
+    with pytest.raises(pe.UnsupportedStageStatement, match="T1"):
+        pe.extract_readonly_query(sql, ["T1"], "OUT.T", source="tiny.sql")
+
+
+def test_insert_with_unknown_column_raises():
+    sql = _proc(STAGE, "INSERT INTO T1 (Z) SELECT 1;", FINAL)
+    with pytest.raises(pe.ProcExtractionError, match="unknown"):
+        pe.extract_readonly_query(sql, ["T1"], "OUT.T", source="tiny.sql")

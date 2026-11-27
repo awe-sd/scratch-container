@@ -10,50 +10,6 @@ import pandas as pd
 from .. import config, mssql, sf
 
 
-BRANCH_MAP_CSV = (
-    config.PROJECT_ROOT.parent / "archive" / "branch_tracking" / "output" / "branch_tracking_table_final.csv"
-)
-_branch_map: pd.DataFrame | None = None
-
-
-def branch_map() -> pd.DataFrame:
-    """Local branch_id -> teid / bus-name map from the branch_tracking table.
-
-    branch_id there shares the 60M id-space with AWOPF BRANCHID columns, and
-    teid is the authoritative device id for outage lookups — so the mapping
-    never needs a DB query.
-    """
-    global _branch_map
-    if _branch_map is None:
-        df = pd.read_csv(
-            BRANCH_MAP_CSV,
-            usecols=["teid", "branch_id", "from_bus", "to_bus", "ckt", "default_status_final"],
-        )
-        df = df.dropna(subset=["branch_id"])
-        df["branch_id"] = df["branch_id"].astype("int64")
-        _branch_map = df.drop_duplicates("branch_id").set_index("branch_id")
-    return _branch_map
-
-
-def teid_for_branch(branch_id: int) -> int | None:
-    m = branch_map()
-    if int(branch_id) in m.index:
-        t = m.loc[int(branch_id), "teid"]
-        return int(t) if pd.notna(t) else None
-    return None
-
-
-def teids_for_endpoints(names: list[str], limit: int = 3) -> list[int]:
-    """Fallback when a branch id isn't in the map (e.g. tofinder reports an
-    internal transformer winding): devices touching any of these bus names.
-    Star-bus names resolve a winding to its parent transformer bank."""
-    names = [str(n).strip() for n in names if n and str(n).strip()]
-    if not names:
-        return []
-    m = branch_map()
-    hit = m[m["from_bus"].isin(names) | m["to_bus"].isin(names)]
-    return [int(t) for t in hit["teid"].dropna().unique()[:limit]]
-
 
 def _query_awdb(sql: str) -> pd.DataFrame:
     return mssql.query(sql)
@@ -66,7 +22,7 @@ def lookup_branch_tickets(
     [window_start, window_end] (YYYY-MM-DD).
 
     Device filter: teid when provided (authoritative id, map branch_id->teid
-    via branch_tracking_table_final.csv), else BranchId — never unscoped.
+    via network_ref.teid_for_branch), else BranchId — never unscoped.
     Tickets are revised over time (revNum); only the newest row per
     outageIdentifier reflects the current status/state/dates, so older
     revisions are dropped via ROW_NUMBER. toState tracks the lifecycle

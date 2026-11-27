@@ -18,10 +18,12 @@ that HTML's embedded Plotly JSON:
   coverage. This is the same series the original figure's OFFPEAK panel used.
 - Peak split, confirmed empirically against the reference HTML's embedded
   hover timestamps (not the repo's Mon-Fri "5x16" convention used elsewhere,
-  e.g. scripts/build_screening_report.py): ONPEAK = HE7-22 (hour-of-day 6-21
+  e.g. pfa/analysis/shortlist_value.py): ONPEAK = HE7-22 (hour-of-day 6-21
   in 0-indexed HOUR()), ALL SEVEN DAYS OF WEEK. OFFPEAK = the complement
   (HE1-6, HE23-24). No weekday/weekend filter -- every day-of-week appeared
   in both the onpeak and offpeak trace timestamps of the reference figure.
+
+Both entry points return the figure; the page is written by pfa.report.headroom.
 
 Two entry points:
 - plot_headroom_scatter(): new, generic function -- x is always wind, y is
@@ -34,9 +36,6 @@ Two entry points:
 """
 from __future__ import annotations
 
-import argparse
-from pathlib import Path
-
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -46,25 +45,6 @@ from .. import mssql, periods
 from ..extract import fastscan, renewables
 
 LOAD_FILTER_STEPS = [0, 45, 50, 55, 60, 65, 70, 75]  # GW, matches original slider
-
-# Existing reference/variant figures the user explicitly said must never be
-# overwritten by this module -- any write to one of these basenames is refused.
-_PROTECTED_OUTPUT_BASENAMES = {
-    "ph_headroom_wind_solar.html", "ph_headroom_wind_solar1.html",
-    "ph_headroom_wind_solar_v1.html", "ph_headroom_wind_solar_sep25.html",
-    "ph_headroom_load_wind_onpeak.html",
-}
-
-
-def _write_html_guarded(fig: go.Figure, out_html: str | Path) -> None:
-    out_path = Path(out_html)
-    if out_path.name in _PROTECTED_OUTPUT_BASENAMES:
-        raise RuntimeError(
-            f"refusing to write to {out_path} -- this basename is protected "
-            f"(existing reference/variant figure); use a new filename."
-        )
-    fig.write_html(str(out_path), include_plotlyjs="cdn")
-
 
 def _fetch_headroom(config_id: int) -> pd.DataFrame:
     df = fastscan.headroom_with_curtailment(config_id)
@@ -122,7 +102,6 @@ def plot_headroom_scatter(
     *,
     hist_start: str,
     hist_end: str,
-    out_html: str | Path | None = None,
     title_prefix: str = "",
 ) -> go.Figure:
     """Headroom heatmap + scatter: West wind (GW) on x, `y` ('solar' or
@@ -131,7 +110,7 @@ def plot_headroom_scatter(
     ONPEAK = HOUR(TIMESTAMP) in 6..21 (HE7-22), all 7 days of week.
     OFFPEAK = complement. This matches the reference `ph_headroom_wind_solar`
     figure's embedded data, NOT the repo's separate Mon-Fri "5x16" convention
-    used elsewhere (e.g. build_screening_report.py).
+    used elsewhere (e.g. shortlist_value.py).
 
     A load-filter slider (as in the original wind-vs-solar figure) is only
     added when y == 'solar' -- with y == 'load' it would duplicate the y-axis
@@ -246,8 +225,6 @@ def plot_headroom_scatter(
     fig.update_layout(title=dict(text=subtitle), height=900, width=950,
                        margin=dict(r=130))
 
-    if out_html:
-        _write_html_guarded(fig, out_html)
     return fig
 
 
@@ -290,7 +267,6 @@ def plot_wind_load_both(
     *,
     hist_start: str,
     hist_end: str,
-    out_html: str | Path | None = None,
     title_prefix: str = "",
 ) -> go.Figure:
     """Exact clone of the reference `ph_headroom_wind_solar.html` 4-panel
@@ -388,39 +364,4 @@ def plot_wind_load_both(
     print(f"[headroom_plots] plot_wind_load_both: offpeak heatmap_n={len(offpeak)}, "
           f"scatter_n(<50MW)={n_scat_off}")
 
-    if out_html:
-        _write_html_guarded(fig, out_html)
     return fig
-
-
-def main() -> None:
-    ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--study", type=int, required=True)
-    ap.add_argument("--fromnum", type=int, required=True)
-    ap.add_argument("--tonum", type=int, required=True)
-    ap.add_argument("--ctglabel", required=True)
-    ap.add_argument("--y", choices=["solar", "load"], default="load")
-    ap.add_argument("--peak", choices=["onpeak", "offpeak"], default="onpeak")
-    ap.add_argument("--hist-start", required=True)
-    ap.add_argument("--hist-end", required=True)
-    ap.add_argument("--out", required=True)
-    args = ap.parse_args()
-
-    configs = fastscan.find_configs(args.study, args.fromnum, args.tonum, args.ctglabel)
-    if configs.empty:
-        raise SystemExit(f"no active fast-scan config for study={args.study} "
-                          f"{args.fromnum}-{args.tonum}@{args.ctglabel}")
-    config_id = int(configs.iloc[0]["CONFIG_ID"])
-    label = configs.iloc[0]["BRANCH_LABEL"]
-
-    plot_headroom_scatter(
-        config_id, y=args.y, peak=args.peak,
-        hist_start=args.hist_start, hist_end=args.hist_end,
-        out_html=args.out,
-        title_prefix=f"{label} @ {args.ctglabel} (config {config_id}) —",
-    )
-    print(f"wrote {args.out}")
-
-
-if __name__ == "__main__":
-    main()

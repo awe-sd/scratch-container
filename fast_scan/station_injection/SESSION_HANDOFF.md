@@ -27,6 +27,8 @@ logic via `SELECT` but cannot run it.
 
 2026-11-26: `validate_fast_scan_v2.py` and `validate_validation_fast_scan_v2.py` repaired (they stopped on the removed `-- 4. THE MAIN CALCULATION` comment). Shared `proc_extraction.py` now rebuilds each staged V2 proc as ONE read-only SELECT by SQL structure (each `CREATE [OR REPLACE] TEMPORARY TABLE` stage becomes a CTE in order, then the select of `INSERT INTO FAST_SCAN_RESULTS`, NOT EXISTS guard dropped) and fails with the missing stage's name. Covered: every stage plus the main calculation (validation: member-hours INSERT + its DELETEs as filters). Not covered: the guards/IF blocks, date defaulting (CLI args replace it), run-log writes, and the `FAST_SCAN_RT_CONSTRAINTS` delete+insert (writes; stage `TMP_BINDING_ROWS` is replayed, and the content is cross-checked against `sp_load_fast_scan_rt_constraints.sql`'s SELECT). Tests: `tests/test_proc_extraction.py`.
 
+2026-11-27: B4 measured -- the two V2 procedures share only ~28% of their lines (119 identical), so no SQL build step; instead `tests/test_shared_stages.py` fails if the shared blocks drift between `sp_fast_scan_v2.sql` and `validation_spV2.sql`. `proc_extraction.py` now replays `INSERT INTO <stage> (cols) SELECT` into declared stages (raises for CTAS stages).
+
 Nothing has been run against the database. This container connects only as
 `ai_read_only_user` / role `AI_READ_ONLY`, which is **read-only** — it can
 compile-validate (`only_compile`) and verify logic via `SELECT`, but cannot

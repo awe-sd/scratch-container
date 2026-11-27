@@ -91,3 +91,14 @@ def headroom_window(config_id: int, start: str, end: str) -> pd.DataFrame:
         WHERE CONFIG_ID = {int(config_id)}
           AND TIMESTAMP >= '{start}' AND TIMESTAMP < '{end}'
     """)
+
+
+def timestamp_span(config_id: int) -> tuple[pd.Timestamp, pd.Timestamp, int]:
+    """(first TIMESTAMP, last TIMESTAMP, row count) of every hour stored for the config."""
+    df = sf.query(config.FLOW_ANALYSIS_DB, f"""
+        SELECT MIN(TIMESTAMP) AS T0, MAX(TIMESTAMP) AS T1, COUNT(*) AS N
+        FROM {config.FLOW_ANALYSIS}.FAST_SCAN_RESULTS
+        WHERE CONFIG_ID = {int(config_id)}
+    """)
+    df.columns = [c.upper() for c in df.columns]
+    return pd.Timestamp(df["T0"].iloc[0]), pd.Timestamp(df["T1"].iloc[0]), int(df["N"].iloc[0])

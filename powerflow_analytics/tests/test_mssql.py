@@ -71,10 +71,7 @@ def test_queries_from_two_threads_never_overlap(monkeypatch):
 
 
 def test_stage2_dispatch_nodes_goes_through_sf_query(monkeypatch):
-    path = Path(__file__).resolve().parents[1] / "scripts" / "build_stage2_list.py"
-    spec = importlib.util.spec_from_file_location("build_stage2_list", path)
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
+    from pfa.analysis import screening as mod
     seen = []
 
     def fake_query(db_name, sql):
@@ -95,6 +92,9 @@ def test_stage2_dispatch_nodes_goes_through_sf_query(monkeypatch):
     "SELECT * FROM AW.dbo.toAllIsos WHERE Notes = 'isoMarketId = 6 AND teid = 1'",
     "SELECT * FROM [AW].[dbo].[toAllIsos] WHERE isoMarketId = 6",
     "SELECT * FROM AW.dbo.ercotLoadView v JOIN AW.dbo.toAllIsos t ON t.x = v.x WHERE v.date > '2026-01-01'",
+    "SELECT * FROM AW.dbo.TOALLISOS WHERE x=1",
+    "SELECT * FROM AW.dbo.TOSTATE WHERE teid = 1",
+    "SELECT * FROM AW.dbo.toState s JOIN AW.dbo.toAllIsos t ON t.s = s.toStateId WHERE s.toStateId = 5",
 ])
 def test_outage_query_rejected_cases(fake_db, sql):
     with pytest.raises(ValueError, match="scoped"):
@@ -131,3 +131,31 @@ def test_every_current_caller_sql_passes_the_guard(monkeypatch):
     renewables.solar_hourly("2026-01-01", "2026-02-01")
     headroom_plots._fetch_load("2026-01-01", "2026-02-01")
     assert len(sent) == 7 and sum("toAllIsos" in q for q in sent) == 3
+
+
+@pytest.mark.parametrize("sql", [
+    "SELECT * FROM dbo.TOSTATE WHERE toStateId = 5",
+    "SELECT * FROM AW.dbo.toStatus WHERE toStatusId IN (1, 2)",
+    "SELECT * FROM AW.dbo.TOREASON WHERE toReasonId = 3",
+])
+def test_dimension_table_by_key_lookup_allowed(fake_db, sql):
+    mssql.query(sql)
+    assert fake_db == [(sql, "AW")]
+
+
+def test_comparison_report_lookup_error_is_recorded_per_constraint(monkeypatch):
+    from pfa.analysis import study_compare as mod
+
+    def find_configs(study, f, t, ctg):
+        if ctg == "BAD":
+            raise RuntimeError("boom")
+        return pd.DataFrame()
+
+    best = pd.DataFrame({"SOURCENAME": ["S"], "SINKNAME": ["K"], "OPTIONPRICE": [1.5], "AVG_SF": [0.25]})
+    monkeypatch.setattr(mod.fastscan, "find_configs", find_configs)
+    monkeypatch.setattr(mod.popt, "best_paths", lambda study, c: best if c.endswith("@GOOD") else None)
+    new = pd.DataFrame({"CONSTRAINT": ["1-2-1@BAD", "1-2-1@GOOD", "1-2-1@NONE"]})
+    out = mod.enrich_new(new, 14412, 3)
+    assert out.loc[0, "FASTSCAN_MAX_NEG"] == "lookup failed: boom"
+    assert out.loc[1, "BEST_PATH"] == "S→K $1.50 @SF 0.25"
+    assert pd.isna(out.loc[2, "BEST_PATH"]) and pd.isna(out.loc[2, "FASTSCAN_MAX_NEG"])

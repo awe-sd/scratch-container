@@ -10,15 +10,27 @@ headroom + path optimization. The design spec file no longer exists; see the tra
 - Snowflake goes ONLY through `pfa.sf.query`; SQL Server ONLY through `pfa.mssql.query` — no other module imports `awconnect` (config aside).
 - `pfa.mssql.query` enforces the house rules in code: one SQL Server query at a time (process-wide lock), and any `toAllIsos`/`to*` outage-table query without an `isoMarketId` and a `BranchId`/`teid` predicate is rejected before it is sent.
 - One reader per market-data source, all in `pfa/extract/`: `fastscan.py` (FAST_SCAN_CONFIG/RESULTS), `shifts.py` (CPNODE_/BUS_SHIFTS_VIEW), `dam_offers.py` (ERCOT60DDAMGENRESOURCE), `renewables.py` (wind/solar actuals), `popt.py` (AW.POPT path costs).
+- `pfa/analysis/shadow_price.py` is the one home of the unit-qualification rule (MIN_SF/MAX_SF, PAIR_MIN_SF/PAIR_MAX_SF, PRICE_CAP), the relief set, the price-versus-depth curve and the single redispatch-pair price.
+- `pfa/analysis/valuation.py` + `pfa value` are the one valuation module/command: a fact sheet (binding = LIMVIOLPCT >= 99.5 in OUTCTGVIOL2) then the on-peak monthly mark (binding = a row in OUTCONSTRAINT2); the two definitions are kept pending an owner decision.
+- One command: `uv run pfa <sub-command>` (`pfa/cli/`; `scripts/<name>.py` are shims). Funnel: `summary` -> `shortlist` -> `deep-dive` -> `paths`. The one classification scheme and gate live in `pfa/analysis/screening.py` (`screen_study`); month valuation of the shortlist in `pfa/analysis/shortlist_value.py` (`value_shortlist`). Retired reports are in `archive/`.
+- Layers: `pfa/analysis/` returns data (DataFrames, plain values, result objects) and never builds pages; every HTML/markdown/console report is built in `pfa/report/` (HTML only through the `pfa.report.html` toolkit); `pfa/cli/` only parses arguments, calls and writes files.
+- Fast-scan clock hours are labelled hour-ending through `pfa.periods.fastscan_he_label` (hour 0 -> HE1, hour 23 -> HE24); study SIMHOUR values are already hour-ending and are not relabelled.
+- Branch map (branch_id -> teid) and bus -> kV come ONLY from `pfa/extract/network_ref.py`; files are located via `pfa/config.py` and overridable with env var `PFA_NETWORK_REF_DIR`.
 - Table names and their SQL live ONLY in that source's reader module (plus tests and prose); analysis modules and scripts call the reader and never embed the table name.
 - A new query against one of those sources is a new function in its reader, with a test that fakes `sf.query`/`mssql.query` and asserts the scoping predicates (see `tests/test_extract_*.py`).
-- Extract once per study: `uv run powerflow_analytics/scripts/pull_study.py --study <id>` → parquet in `cache/study_<id>/` (gitignored). Analysis and Dash read the cache only — never Snowflake in callbacks.
-- Analyze: `uv run powerflow_analytics/scripts/build_report.py --study <id> --cutoff <YYYY-MM-DD> [--tickets]` → CSVs in `output/study_<id>/`.
+- Extract once per study: `uv run pfa pull --study <id>` → parquet in `cache/study_<id>/` (gitignored). Analysis and Dash read the cache only — never Snowflake in callbacks.
+- Analyze: `uv run pfa summary --study <id> --cutoff <YYYY-MM-DD> [--tickets]` → CSVs in `output/study_<id>/`.
 - SQL Server (`AW.dbo.toAllIsos`) gets ONLY targeted single-branch lookups (`pfa/extract/outages.py`) — never bulk queries, and strictly ONE query at a time (sequential).
 - toAllIsos hygiene: every revision is a row — ALWAYS collapse to latest revision per outageIdentifier (`ROW_NUMBER() OVER (PARTITION BY outageIdentifier ORDER BY revNum DESC)=1`) and read current state from `toState`. ALWAYS read the `Notes` free text on candidate tickets — it carries the TSP's REQ/RAS/SUP narrative (mitigation intent, ERCOT TOAP directive ids, breaker-split handoffs) and is stronger evidence than timing/status inference (lesson: ERSKINE–MACKNZIE RAS TOAP041923-0 was spelled out in Notes). TSP ticket prefixes identify the submitter (e.g. `CLU%` = Lubbock LP&L); forced/as-operated mitigations show ~zero or negative submit-to-start gaps.
 - 2026-11-27: FAST_SCAN_RESULTS.TIMESTAMP is hour-BEGINNING (DAM HE n is stored at hour n-1; verified config 81760: ercotDampsseLnView HE1 RATEB = TIMESTAMP 00:00 DAM_RATE_B; solar impact starts 07:00-08:00 and ends ~20:00), so HE7-22 = HOUR 6..21. Classify via `pfa.periods.fastscan_hour_class` (OnPeak / 2x16 / 7x8, NERC holidays excluded); never filter `.dt.hour` by hand.
 - Constraint identity = (FROMNUM, TONUM, CKT, CTGLABEL). Use the `*2` output tables; v1 OUTBRANCH is empty for recent studies, and OUTGEN2.GENUNITID is NULL — gen identity routes (BUSNUM, ID) → OUTGENREF → AWDEV.DBO.GENUNIT.
 - Binding = LIMVIOLPCT >= 99.5 in OUTCTGVIOL2 (SCOPF holds constraints at ~100). ">100" alone is NOT unresolved — solver tolerance overshoots by ~0.01 MW routinely (study 14492: 28 of 29 >100% rows were tolerance). Materially unresolved = real MW overshoot (≳0.5 MW / LIMVIOLPCT ≳ 100.5) — cross-check OUTCONSTRAINT2 for λ at the 3500 cap with OPFCNCUP=−3500/negative slack. OPFBINDING/MARGCOSTMVA in OUTBRANCH2 are only set for base-case (pre-ctg) binders.
+
+## Classification and shortlist rules (2026-11-27)
+
+- 2026-11-27: The single classification scheme is the stage-2 one (`screening.classify`, first match wins: D bearish > C no-dispatch > B baseline > A target > weak). It differs from the retired A/B/C/D/U scheme of the old screening report: different rule order (retired: D, A, C, B, U), bearish at signed share < -0.10 or binding pre-cutoff only (retired: share < 0), a penalty-share test for C (more than 40% of LP rows at the 500/3500 tiers; retired: penalty-tier lambda flag and a dispatch-pair screen), and baseline on bind counts (`pre_binds >= max(1, 0.5 x post_binds)`; retired: pre/post binding rates). Class letters are not comparable between the two.
+- 2026-11-27: The shortlist values every gated row (`value_shortlist`); it no longer applies the retired screening report's "outage days in month >= 3, top 15 by value" step. Rows that cannot be priced stay on the page's Not valued table with the specific reason; thin evidence is flagged in `thin window evidence`.
+- 2026-11-27: A study unit's DAM offer key is its GENUNIT.CPNODEID -> AW.DBO.CPNODE name (`gen_mapping.with_cpnode_names`, route `cpnode`; the bus link is still GENUNIT.BUSNAME, since AW.DBO.GENUNIT shares no ids or bus names with the study); the SCED-name key (route `name`) is used only where CPNODEID is null/has no CPNODE row, or where the CPNODE name has no offer rows in the window but the SCED name does (combined cycles: CPNODEID names the unit node, offers sit on the plant node). Units sharing a key collapse to one (key, side) row; `OFFER_ROUTE` records the route.
 
 ## Planning studies vs auction studies (learned on 14492, 2026-08-19)
 
@@ -34,14 +46,14 @@ headroom + path optimization. The design spec file no longer exists; see the tra
 - OUTCONSTRAINT2 λ rows can be MISSING for the slackest binders; the LP writes λ=0 for
   present-but-slack, so **zero-impute** missing binder rows for mean-type stats (report
   both bases). Ratings (LIMITMVANORMAL=LIMVIOLLIMIT=LIMITMVACTG) key on month AND hour.
-- dispatch_screen's "unenforceable — no dispatchable relief pair" tag presumes a declinable
+- A "no dispatchable relief pair" (unenforceable) read presumes a declinable
   planned outage; it does NOT apply to base-case N-1 ctgs in NoOutage studies (TOUTSETID
   all NULL) — those are enforced regardless; λ then = the lone mover's opportunity cost.
 
 ## Standing rule (sdalvi, 2026-08-12): reusable functions, not one-off queries
 
 Every requested analysis must land as a reusable, parameterized function in `pfa/` (plus a
-thin CLI in `scripts/` where useful) — e.g. constraint valuation, marginal-unit resolution,
+sub-command in `pfa/cli/` where useful) — e.g. constraint valuation, marginal-unit resolution,
 DAM offer pulls. Answer the user's question BY running the function. Extend existing
 modules before adding new scripts.
 
@@ -71,7 +83,7 @@ columns. This is a live schema change upstream, not a study-specific quirk.
 this **masks** the drift rather than surfacing it: any future analysis run today (or any cache
 rebuild) silently gets NULL FUELZONE/RENEWZONE with no other tell than an empty column. Confirmed
 non-regressive for the one place that could have depended on them: `IS_RENEWABLE` classification in
-`pfa/analysis/lambda_engine.py::relief_set()` derives from `OUTGEN2.FUELTYPE` (e.g. "SUN (Solar)",
+`pfa/analysis/shadow_price.py::relief_set()` derives from `OUTGEN2.FUELTYPE` (e.g. "SUN (Solar)",
 "WND (Wind)"), not FUELZONE/RENEWZONE, and correctly classified 171 renewable units on study 14605
 under this fix. If a future analysis needs FUELZONE/RENEWZONE specifically (not just FUELTYPE), it
 will get silent NULLs — check `fetch_gen()`'s docstring note before assuming those columns carry data.

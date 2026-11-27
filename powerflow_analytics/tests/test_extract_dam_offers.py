@@ -36,3 +36,29 @@ def test_latest_capacity_rows_scope_and_truncation_guard(monkeypatch):
     _fake(monkeypatch, big)
     with pytest.raises(RuntimeError):
         dam_offers.latest_capacity_rows(["A"])
+
+
+def test_resolve_genids_quotes_the_pattern(monkeypatch):
+    calls = _fake(monkeypatch, pd.DataFrame({"GENID": [7], "RESOURCENAME": ["X"]}))
+    assert dam_offers._resolve_genids("O'NEAL%") == [7]
+    assert "ILIKE 'O''NEAL%'" in calls[0][1]
+
+
+def test_latest_delivery_date_and_point_coverage_scope(monkeypatch):
+    calls = _fake(monkeypatch, pd.DataFrame({"D": [pd.Timestamp("2026-09-26")]}))
+    assert str(dam_offers.latest_delivery_date()) == "2026-09-26"
+    assert "MAX(DELIVERYDATE)" in calls[0][1]
+    calls = _fake(monkeypatch, pd.DataFrame({"settlementpointname": ["A"], "n_all": [3]}))
+    out = dam_offers.point_coverage(["A", "B'x"])
+    sql = calls[0][1]
+    assert "SETTLEMENTPOINTNAME IN (" in sql and "'Bx'" in sql and "GROUP BY SETTLEMENTPOINTNAME" in sql
+    assert list(out.columns) == ["SETTLEMENTPOINTNAME", "N_ALL"]
+    assert dam_offers.point_coverage([]).empty
+
+
+def test_latest_capacity_rows_queries_points_in_chunks(monkeypatch):
+    calls = _fake(monkeypatch, pd.DataFrame({"SETTLEMENTPOINTNAME": ["A"]}))
+    pts = [f"P{i:03d}" for i in range(dam_offers.CAPACITY_CHUNK + 1)]
+    out = dam_offers.latest_capacity_rows(pts)
+    assert len(calls) == 2 and len(out) == 2
+    assert "'P000'" in calls[0][1] and f"'P{dam_offers.CAPACITY_CHUNK:03d}'" in calls[1][1] and f"'P{dam_offers.CAPACITY_CHUNK:03d}'" not in calls[0][1]

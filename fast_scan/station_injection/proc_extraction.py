@@ -181,6 +181,30 @@ def extract_readonly_query(sql_text: str, expected_stages: list, final_target: s
             else:
                 parts.append((f"{name}__0", declared_cols[name], select))
             continue
+        m = re.match(r"^INSERT\s+INTO\s+([A-Za-z_][\w$.]*)\s*\(", stmt, re.I)
+        if m and m.group(1).upper() in stage_ctes and final_select is None:
+            name = m.group(1).upper()
+            if name not in declared_cols:
+                raise UnsupportedStageStatement(
+                    f"{source}: {_label(stmt)!r} lists columns for stage {name}, which is created with AS SELECT; "
+                    "the extractor can only map a column list onto a stage declared with CREATE TABLE T (cols)")
+            close = _balanced_paren_end(stmt, stmt.index("("))
+            listed = [c.strip().strip('"').upper() for c in _split_top_level_commas(stmt[stmt.index("(") + 1:close])]
+            select = stmt[close + 1:].strip()
+            if not re.match(r"(WITH|SELECT)\b", select, re.I):
+                raise UnsupportedStageStatement(f"{source}: {_label(stmt)!r}: INSERT column list not followed by WITH/SELECT")
+            unknown = [c for c in listed if c not in {d.upper() for d in declared_cols[name]}]
+            if unknown:
+                raise ProcExtractionError(f"{source}: INSERT INTO {name} lists unknown column(s) {unknown}")
+            picks = ", ".join(c if c.upper() in listed else f"NULL AS {c}" for c in declared_cols[name])
+            mapped = f"SELECT {picks} FROM (\n{select}\n) AS _ins({', '.join(listed)})"
+            parts = stage_ctes[name]
+            if parts:
+                parts.append((f"{name}__{len(parts)}", None,
+                              f"SELECT * FROM {parts[-1][0]}\nUNION ALL\nSELECT * FROM (\n{mapped}\n)"))
+            else:
+                parts.append((f"{name}__0", declared_cols[name], mapped))
+            continue
         m = re.match(r"^(?:UPDATE|MERGE\s+INTO)\s+([A-Za-z_][\w$.]*)", stmt, re.I)
         if m and m.group(1).upper() in stage_ctes and final_select is None:
             raise UnsupportedStageStatement(
