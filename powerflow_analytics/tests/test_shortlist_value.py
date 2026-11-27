@@ -161,15 +161,55 @@ def test_value_row_free_relief_gets_its_own_status_not_ok(monkeypatch):
     up, down = _stack(-5.0, 30.0)
     _patch_value_row(monkeypatch, up, down, [1.0, 2.0])
     out = sv.value_row(1, "100-200-1@X", None, None, None, None, "2026-09", W)
-    assert out["_status"] == "priced at 0: cheapest step is free relief"
+    assert out["_status"] == "relief set covers 100.0% of binding hours (1 curve step)"  # 1 step: never "priced at 0"
     assert out["E[lambda|bind]"] == 0.0 and out["lambda P50"] == 0 and out["lambda P90"] == 0
+    assert out["_elam_high"] is None  # a $0 last step is not a ceiling
+
+
+def _free_curve_inputs(n_steps):
+    up = [{"sced": f"U{i}", "sf": -0.2, "price": float(-5 - i), "avail": 10.0, "committed": True} for i in range(n_steps)]
+    down = [{"sced": f"D{i}", "sf": 0.2, "price": 30.0, "avail": 10.0} for i in range(n_steps)]
+    return up, down
+
+
+def test_value_row_priced_at_zero_only_for_a_deep_curve_covering_the_hours(monkeypatch):
+    up, down = _free_curve_inputs(3)  # 3 free steps of 4 MW flow each = 12 MW
+    _patch_value_row(monkeypatch, up, down, [1.0, 5.0, 9.0])
+    out = sv.value_row(1, "100-200-1@X", None, None, None, None, "2026-09", W)
+    assert out["_n_steps"] == 3 and out["_status"] == "priced at 0: cheapest step is free relief"
+
+
+def test_value_row_thin_curve_or_mostly_unpriced_hours_says_what_the_relief_set_covers(monkeypatch):
+    up, down = _free_curve_inputs(3)
+    _patch_value_row(monkeypatch, up, down, [1.0] + [50.0] * 199)  # 3 steps, 99.5% of hours beyond the 12 MW curve
+    out = sv.value_row(1, "100-200-1@X", None, None, None, None, "2026-09", W)
+    assert out["unpriced deep hours %"] == 99.5 and out["_status"] == "relief set covers 0.5% of binding hours (3 curve steps)"
+    assert out["_elam_high"] is None and out["_n_neg_hours"] == 200
+
+
+def test_value_row_start_required_mw_and_share(monkeypatch):
+    up, down = _stack(30.0, 10.0)
+    up[0]["committed"] = False
+    _patch_value_row(monkeypatch, up, down, [1.0, 2.0])
+    out = sv.value_row(1, "100-200-1@X", None, None, None, None, "2026-09", W)
+    assert out["_startreq_mw"] == out["_curve_mw"] == 4.0
+
+
+def test_need_summary_bands_match_the_row_columns(monkeypatch):
+    up, down = _stack(30.0, 10.0)
+    _patch_value_row(monkeypatch, up, down, [1.0, 2.0, 3.0, 10.0])
+    out = sv.value_row(1, "100-200-1@X", None, None, None, None, "2026-09", W)
+    ns = sv.need_summary(sp.lambda_depth_curve(up, down), [1.0, 2.0, 3.0, 10.0])
+    assert (ns["mean"], ns["p50"], ns["p90"], ns["unpriced_pct"]) == (
+        out["E[lambda|bind]"], out["lambda P50"], out["lambda P90"], out["unpriced deep hours %"])
+    assert ns["n_neg"] == out["_n_neg_hours"] == 4 and ns["bands"][0]["hours"] == 3 and ns["beyond_hours"] == 1 and ns["beyond_share"] == 0.25
 
 
 def test_value_row_bounds_path_numbers_and_pbind_basis(monkeypatch):
     up, down = _stack(30.0, 10.0)  # lambda = 20/0.4 = 50 for 10 MW * 0.4 = 4 MW of flow
     _patch_value_row(monkeypatch, up, down, [1.0, 2.0, 3.0, 10.0])
     out = sv.value_row(1, "100-200-1@X", None, None, None, None, "2026-09", W)
-    assert out["_status"] == "ok"
+    assert out["_status"] == "relief set covers 75.0% of binding hours (1 curve step)"
     assert out["E[lambda|bind]"] == 50.0 and out["unpriced deep hours %"] == 25.0  # the 10 MW hour exceeds 4 MW of capacity
     assert out["_elam_low"] == 37.5 and out["_elam_high"] == 50.0  # 3 priced hours at 50, one at 0 / at the last step
     assert out["_eff_sf"] == 0.3 and out["_sf_approx"] is True and out["_path_price"] == 1.0
@@ -197,15 +237,15 @@ def test_binding_run_sets_and_sibling_notes():
     cv = pd.concat([
         pd.DataFrame({"RUNID": r, "FROMNUM": f, "TONUM": t, "CKT": "1", "CTGLABEL": g, "LIMVIOLPCT": 100.0})
         for f, t, g, runs in [(1, 2, "A", range(10)), (1, 2, "B", range(10)),   # identical run set, same line
-                              (3, 4, "A", range(9)),                           # 9/10 overlap, other line -> corridor
+                              (3, 4, "A", range(1, 11)),                         # 9/10 overlap, other line -> corridor
                               (5, 6, "A", range(20, 30)),                      # disjoint
                               (7, 8, "A", range(5))]                           # 5/10: neither
         for r in [list(runs)]])
     rs = sv.binding_run_sets(cv)
     assert rs["1-2-1@A"] == frozenset(range(10)) and len(rs) == 5
     notes = sv.sibling_notes(["1-2-1@A", "5-6-1@A", "9-9-1@Z"], rs)
-    assert notes["1-2-1@A"].startswith("sibling of 1-2-1@B; corridor with 3-4-1@A (overlap 9/10)")
-    assert "7-8-1@A" not in notes["1-2-1@A"]
+    assert notes["1-2-1@A"].startswith("sibling contingency of 1-2-1@B (identical run set; do not add rents); corridor with 3-4-1@A (overlap 9/10)")
+    assert "7-8-1@A" not in notes["1-2-1@A"]  # a 5-run set is too small to name a corridor
     assert notes["5-6-1@A"] == "" and notes["9-9-1@Z"] == ""
 
 
@@ -246,3 +286,28 @@ def test_value_shortlist_dead_ticket_blank_coverage_and_added_columns(monkeypatc
     assert r["Rent post-9/15 ex-penalty ($)"] == 1000.0  # the 500 tier row is dropped; 10 * 100
     assert set(sv.added_columns("2026-09", "2026-09-15")) <= set(out.columns)
     assert list(out.columns[:1]) == ["x"] and list(out.columns[1:14]) == sv.value_columns("2026-09")
+
+
+def test_sibling_notes_parallel_element_vs_sibling_contingency_and_smaller_set_corridor():
+    cv = pd.concat([
+        pd.DataFrame({"RUNID": list(runs), "FROMNUM": f, "TONUM": t, "CKT": "1", "CTGLABEL": g, "LIMVIOLPCT": 100.0})
+        for f, t, g, runs in [(1, 2, "A", range(10)), (3, 4, "A", range(10)),   # same ctg, different element, identical runs
+                              (1, 2, "B", range(10)),                           # same element, different ctg
+                              (5, 6, "C", range(100, 114)), (7, 8, "C", range(100, 113)),   # 13/13 of the smaller set
+                              (9, 10, "D", range(1000, 1010)),
+                              (11, 12, "E", range(100, 103))]])  # 3/3 inside C, but under the minimum run count
+    notes = sv.sibling_notes(["3-4-1@A", "7-8-1@C", "5-6-1@C"], sv.binding_run_sets(cv))
+    assert "parallel element of 1-2-1@A (identical run set; do not add rents)" in notes["3-4-1@A"]
+    assert "sibling contingency of 1-2-1@B" in sv.sibling_notes(["1-2-1@A"], sv.binding_run_sets(cv))["1-2-1@A"]
+    assert notes["7-8-1@C"] == "corridor with 5-6-1@C (overlap 13/13)"
+    assert notes["5-6-1@C"] == "corridor with 7-8-1@C (overlap 13/13)"  # the 3-run set 11-12 is not named
+
+
+def test_relaxation_flag_needs_high_ex_cap_p50_and_not_a_penalty_tier():
+    assert sv.relaxation_flag(2010.3, 1846.4) is True
+    assert sv.relaxation_flag(598.0, 598.0) is False and sv.relaxation_flag(3500.0, 1800.0) is False
+    assert sv.relaxation_flag(float("nan"), float("nan")) is False
+
+
+def test_bounds_blank_high_when_last_step_is_free():
+    assert sv._bounds(0.3, 1.0, 0.0, None, 0.5, 2.0) == (0.0, None, -2.0, None)

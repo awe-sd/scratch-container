@@ -18,7 +18,10 @@ def _row(label, value, edge, rent, status="ok", low=False, basis="ticket", pbind
             "E[lambda|bind]": 10.0, "lambda P50": 9.0, "lambda P90": 20.0, "unpriced deep hours %": 0.0,
             "Sept value $/MWh/SF": value, "Sept value LOW $/MWh/SF": value, "Sept value HIGH $/MWh/SF": value,
             "Path": "S->K $1.00", "Path price $/MWh": 1.0, "Path SF value": 0.3, "Path SF approximate": True,
-            "Edge $": edge, "Edge LOW $": edge, "Edge HIGH $": edge, "status": status, "Post days sampled": 5}
+            "Edge $": edge, "Edge LOW $": edge, "Edge HIGH $": edge, "status": status, "Post days sampled": 5,
+            "P(bind) negative-headroom hours": 150, "Low evidence": False, "Edge sign ambiguous": False, "curve steps": 5,
+            "start-required curve MW": 0.0, "start-required share of curve": 0.0, "start-required > 25%": False,
+            "relief units mapped via CPNODE id": 4, "relief units mapped via name": 2, "LP price above structural range": False}
     return base
 
 
@@ -59,3 +62,21 @@ def test_proxy_rows_show_sampled_days_not_outage_days():
     vals = {c.header: c.value(row) for c in cols}
     assert vals["Ticket outage days in Sept"] is None and vals["Sampled bind days in Sept (no ticket; proxy)"] == 7
     assert "A target" not in page.split("Not valued")[1].split("<tbody>")[1]
+
+
+def test_not_valued_sorted_by_rent_excluding_penalty_rows():
+    rows = _rows()
+    rows.loc[rows["Label"] == "ZERO", RENT_EX] = 1.0  # big total rent, but nearly all of it penalty-tier
+    _, nv = sr.split_rows(rows, MON, CUT)
+    assert list(nv["Label"]) == ["NOPRICE", "ZERO"]
+
+
+def test_new_flags_columns_and_legend_notes_are_rendered():
+    rows = _rows()
+    rows.loc[0, ["Low evidence", "Edge sign ambiguous", "start-required > 25%", "LP price above structural range"]] = True
+    rows.loc[0, ["P(bind) negative-headroom hours", "start-required share of curve"]] = [9, 0.4]
+    page = sr.render(rows, 14412, CUT, MON, Thresholds())
+    assert "LOW EVIDENCE (9 h)" in page and "EDGE SIGN AMBIGUOUS" in page and "START-REQUIRED 40% OF CURVE" in page
+    assert page.count("LP price above structural range — likely relaxation price") >= 2  # the row flag and the legend entry
+    assert "Relief units mapped via CPNODE id" in page and "falling back to the SCED-name key" in page and "27.9 / +6.43" in page
+    assert "valued at the AVERAGE of the priced hours" in page and "parallel element of" in page and "SMALLER" in page

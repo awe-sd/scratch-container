@@ -83,6 +83,31 @@ def offer_window_text(newest, days: int = dam_offers.LOOKBACK_DAYS) -> str:
     return f"{(end - pd.Timedelta(days=days)).date()}..{end.date()}"
 
 
+def need_summary(curve: list[dict], need_mw) -> dict:
+    """Where the negative-headroom hours' relief need falls on the curve: hours per step band and beyond it,
+    plus the offer-derived mean / P50 / P90 over priced hours and the unpriced share (the shortlist's columns)."""
+    need = pd.Series(need_mw, dtype=float).reset_index(drop=True)
+    dist = sp.lambda_distribution(curve, pd.DataFrame({"NEED_MW": need}))
+    n = len(dist)
+    bands = []
+    for i, st in enumerate(curve, 1):
+        h = int(((need >= st["depth_lo"]) & (need < st["depth_hi"])).sum())
+        bands.append({"step": i, "depth_lo": st["depth_lo"], "depth_hi": st["depth_hi"], "price": st["lambda"],
+                      "hours": h, "share": h / n if n else None})
+    priced = dist["LAMBDA"].dropna()
+    pct = sp.percentiles(priced) if len(priced) else {}
+    beyond = int(dist["LAMBDA"].isna().sum())
+    return {"n_neg": n, "bands": bands, "beyond_hours": beyond, "beyond_share": beyond / n if n else None,
+            "mean": round(float(priced.mean()), 1) if len(priced) else None, "p50": pct.get("P50"), "p90": pct.get("P90"),
+            "unpriced_pct": round(100.0 * dist["LAMBDA"].isna().mean(), 1) if n else None, "dist": dist}
+
+
+def start_required_mw(curve: list[dict]) -> tuple[float, float]:
+    """(flow MW of curve steps whose up unit DAM did not commit, total curve flow MW)."""
+    tot = sum(s["depth_hi"] - s["depth_lo"] for s in curve)
+    return sum(s["depth_hi"] - s["depth_lo"] for s in curve if not s.get("up_committed", True)), tot
+
+
 def relief_status(relief: sp.ReliefSet, window: str) -> str | None:
     """The reason a relief set cannot be priced (None when both stacks have units)."""
     if relief.n_band == 0:
@@ -126,6 +151,7 @@ def value_row(study_id: int, c: str, gen, bus_names, genunit, scedname, month: s
         return out
     out[f"P(bind) {label} on-peak"] = round(p_bind, 3)
     out["_pbind_hours"] = n_hours
+    out["_n_neg_hours"] = len(need)
     out["_pbind_years"] = ", ".join(str(y) for y in years)
 
     # DIRECTION matters: on a reverse-bound branch (-1) a positive-PSENS
@@ -148,19 +174,24 @@ def value_row(study_id: int, c: str, gen, bus_names, genunit, scedname, month: s
     if need.empty:
         out["_status"] = "no fast-scan negative-headroom hours"
         return out
-    dist = sp.lambda_distribution(curve, need)
+    ns = need_summary(curve, need["NEED_MW"])
+    dist = ns["dist"]
+    sr_mw, curve_mw = start_required_mw(curve)
+    out["_startreq_mw"], out["_curve_mw"] = round(sr_mw, 1), round(curve_mw, 1)
     priced = dist["LAMBDA"].dropna()
     if priced.empty:
         out["_status"] = "fast-scan need exceeds relief-set capacity at every hour"
         return out
-    pct = sp.percentiles(priced)
-    out["E[lambda|bind]"] = round(float(priced.mean()), 1)
-    out["lambda P50"] = pct.get("P50")
-    out["lambda P90"] = pct.get("P90")
-    out["unpriced deep hours %"] = round(100.0 * dist["LAMBDA"].isna().mean(), 1)
+    out["E[lambda|bind]"] = ns["mean"]
+    out["lambda P50"] = ns["p50"]
+    out["lambda P90"] = ns["p90"]
+    out["unpriced deep hours %"] = ns["unpriced_pct"]
     out["_elam_low"] = round(float(dist["LAMBDA"].fillna(0.0).mean()), 1)
-    out["_elam_high"] = round(float(dist["LAMBDA"].fillna(curve[-1]["lambda"]).mean()), 1)
-    if float(priced.mean()) == 0.0 and pct.get("P50") == 0 and pct.get("P90") == 0:
+    out["_elam_high"] = None if curve[-1]["lambda"] == 0 else round(float(dist["LAMBDA"].fillna(curve[-1]["lambda"]).mean()), 1)
+    if len(curve) <= THIN_CURVE_STEPS or ns["unpriced_pct"] > THIN_CURVE_UNPRICED_PCT:
+        out["_status"] = (f"relief set covers {100 - ns['unpriced_pct']:.1f}% of binding hours "
+                          f"({len(curve)} curve step{'s' if len(curve) != 1 else ''})")
+    elif float(priced.mean()) == 0.0 and ns["p50"] == 0 and ns["p90"] == 0:
         out["_status"] = "priced at 0: cheapest step is free relief"
 
     paths = popt.best_paths(study_id, c)
@@ -203,14 +234,24 @@ def added_columns(month: str, cutoff: str) -> list[str]:
         "P(bind) on-peak hours", "P(bind) years",
         "Post days sampled", "Sampled days in month", "Outage-day basis",
         rent_ex_penalty_col_name(cutoff), "Sibling/corridor note", "Low P(bind)",
+        "P(bind) negative-headroom hours", "Low evidence", "Edge sign ambiguous",
+        "start-required curve MW", "start-required share of curve", "start-required > 25%",
+        "LP price above structural range",
     ]
 
 
 # ticket states that grant no coverage (ERCOT outage scheduler: rejected / cancelled / withdrawn)
 DEAD_TICKET_PREFIXES = ("rej", "cancel", "cncl", "withdr", "denied", "abort")
 LOW_PBIND = 0.005
+LOW_EVIDENCE_HOURS = 20
+START_REQUIRED_SHARE_FLAG = 0.25
+RELAXATION_LP_P50 = 1000.0
+THIN_CURVE_STEPS = 2
+THIN_CURVE_UNPRICED_PCT = 50.0
+RELAXATION_LABEL = "LP price above structural range — likely relaxation price"
 FAILED_PREFIX = "lookup failed: "
 CORRIDOR_OVERLAP = 0.8
+CORRIDOR_MIN_RUNS = 10  # a smaller run set below this overlaps almost anything by chance
 
 
 def ticket_dead_state(state, cancellation_date=None) -> str | None:
@@ -230,45 +271,64 @@ def binding_run_sets(ctgviol: pd.DataFrame) -> dict[str, frozenset]:
 
 
 def sibling_notes(keys, run_sets: dict[str, frozenset], overlap_min: float = CORRIDOR_OVERLAP) -> dict[str, str]:
-    """Per key: 'sibling of <key>' for constraints binding the identical run set, and 'corridor with <key>
-    (overlap n/m)' for constraints on a different line whose runs overlap >= overlap_min of the larger set."""
+    """Per key: for constraints binding the identical run set, 'parallel element of <key>' (same contingency, different element),
+    'sibling contingency of <key>' (same element, different contingency) or 'identical run set as <key>' (both differ); and
+    'corridor with <key> (overlap n/m)' for a different line whose runs overlap >= overlap_min of the SMALLER run set (m)."""
     notes = {}
     for k in keys:
         a = run_sets.get(k)
         if not a:
             notes[k] = ""
             continue
-        line = ConstraintId.parse(k).line_key
-        sib, cor = [], []
+        cid = ConstraintId.parse(k)
+        par, sib, ident, cor = [], [], [], []
         for k2, b in run_sets.items():
             if k2 == k:
                 continue
+            cid2 = ConstraintId.parse(k2)
+            same_line = cid2.line_key == cid.line_key
             if b == a:
-                sib.append(k2)
+                (sib if same_line else par if cid2.ctglabel == cid.ctglabel else ident).append(k2)
                 continue
-            m = max(len(a), len(b))
-            if min(len(a), len(b)) / m < overlap_min or ConstraintId.parse(k2).line_key == line:
+            if same_line:
                 continue
+            m = min(len(a), len(b))
             n = len(a & b)
-            if n / m >= overlap_min:
+            if m >= CORRIDOR_MIN_RUNS and n / m >= overlap_min:
                 cor.append((n, m, k2))
+
+        def listed(label, ks, suffix=""):
+            return f"{label} " + ", ".join(sorted(ks)[:3]) + (f" (+{len(ks) - 3} more)" if len(ks) > 3 else "") + suffix
+
         parts = []
+        if par:
+            parts.append(listed("parallel element of", par, " (identical run set; do not add rents)"))
         if sib:
-            parts.append("sibling of " + ", ".join(sorted(sib)[:3]) + (f" (+{len(sib) - 3} more)" if len(sib) > 3 else ""))
-        for n, m, k2 in sorted(cor, key=lambda x: (-x[0] / x[1], x[2]))[:3]:
+            parts.append(listed("sibling contingency of", sib, " (identical run set; do not add rents)"))
+        if ident:
+            parts.append(listed("identical run set as", ident, " (different element and contingency; do not add rents)"))
+        for n, m, k2 in sorted(cor, key=lambda x: (-x[0] / x[1], -x[1], x[2]))[:3]:
             parts.append(f"corridor with {k2} (overlap {n}/{m})")
         notes[k] = "; ".join(parts)
     return notes
 
 
+def relaxation_flag(lam_p50_all, lam_p50_gate) -> bool:
+    """LP P50 (ex-cap) above RELAXATION_LP_P50 while the all-rows P50 is not exactly a penalty tier."""
+    if pd.isna(lam_p50_gate) or float(lam_p50_gate) <= RELAXATION_LP_P50:
+        return False
+    return pd.isna(lam_p50_all) or float(lam_p50_all) not in PENALTY_TIERS
+
+
 def _bounds(p_bind, cov, elam_low, elam_high, eff_sf, path_price):
-    """(value LOW, value HIGH, edge LOW, edge HIGH); None for any piece that cannot be computed."""
+    """(value LOW, value HIGH, edge LOW, edge HIGH); None for any piece that cannot be computed (HIGH is None when the last curve step is $0)."""
     if p_bind is None or cov is None or elam_low is None:
         return None, None, None, None
-    lo, hi = round(p_bind * elam_low * cov, 3), round(p_bind * elam_high * cov, 3)
+    lo = round(p_bind * elam_low * cov, 3)
+    hi = None if elam_high is None else round(p_bind * elam_high * cov, 3)
     if eff_sf is None or path_price is None:
         return lo, hi, None, None
-    return lo, hi, round(lo * eff_sf - path_price, 2), round(hi * eff_sf - path_price, 2)
+    return lo, hi, round(lo * eff_sf - path_price, 2), None if hi is None else round(hi * eff_sf - path_price, 2)
 
 
 def value_shortlist(result: ScreeningResult, month: str) -> pd.DataFrame:
@@ -334,6 +394,9 @@ def value_shortlist(result: ScreeningResult, month: str) -> pd.DataFrame:
         edge = (round(value * eff_sf - path_price, 2)
                 if value is not None and eff_sf is not None and path_price is not None else None)
         lo, hi, edge_lo, edge_hi = _bounds(p_bind, cov, comp.get("_elam_low"), comp.get("_elam_high"), eff_sf, path_price)
+        n_neg = comp.get("_n_neg_hours")
+        sr_mw, curve_mw = comp.get("_startreq_mw"), comp.get("_curve_mw")
+        sr_share = round(sr_mw / curve_mw, 3) if sr_mw is not None and curve_mw else None
         detail = comp.get("_status", "ok") if value is not None else comp.get("_status", "unpriced")
         row.update({
             f"Outage days in {label}": n_days,
@@ -365,6 +428,13 @@ def value_shortlist(result: ScreeningResult, month: str) -> pd.DataFrame:
             rent_col: float(rent_ex.get(c, 0.0)),
             "Sibling/corridor note": notes.get(c, ""),
             "Low P(bind)": bool(p_bind is not None and p_bind <= LOW_PBIND),
+            "P(bind) negative-headroom hours": n_neg,
+            "Low evidence": bool(n_neg is not None and n_neg < LOW_EVIDENCE_HOURS),
+            "Edge sign ambiguous": bool(edge_lo is not None and edge_hi is not None and edge_lo < 0 < edge_hi),
+            "start-required curve MW": sr_mw,
+            "start-required share of curve": sr_share,
+            "start-required > 25%": bool(sr_share is not None and sr_share > START_REQUIRED_SHARE_FLAG),
+            "LP price above structural range": relaxation_flag(*(short[k].get(c, float("nan")) if k in short else float("nan") for k in ("lam_p50", "lam_p50_gate"))),
         })
         if err is not None:
             row["status"] = row["valuation detail"] = f"{FAILED_PREFIX}{type(err).__name__}: {err}"
