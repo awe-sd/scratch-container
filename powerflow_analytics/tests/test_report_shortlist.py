@@ -12,7 +12,7 @@ def _row(label, value, edge, rent, status="ok", low=False, basis="ticket", pbind
     base = {"Label": label, "From bus": 1, "From name": "A", "To bus": 2, "To name": "B", "Ckt": "1", "Contingency": "X",
             "Direction": 1, "Impact share": 1.4, "Pre binds": 0, "Post binds": 5, "Post days (of 5)": 3, "lam avg": 1.0,
             "lam p50": 1.0, "lam p50 gate": 1.0, "Dispatch nodes": 4, RENT: rent, RENT_EX: rent / 2, "Ticket": "", "Status": "",
-            "Flip exempt": False, "Thin intensity": False, "Sibling/corridor note": "", "Outage days in Sept": 7,
+            "Flip exempt": False, "Thin intensity": False, "Sibling/corridor note": "", "Co-binding": "", "Outage days in Sept": 7,
             "Outage-day basis": basis, "Sampled days in month": 5, "coverage": "0.5", "thin window evidence": "",
             "P(bind) Sept on-peak": pbind, "P(bind) on-peak hours": 1200, "P(bind) years": "2022, 2024", "Low P(bind)": low,
             "E[lambda|bind]": 10.0, "lambda P50": 9.0, "lambda P90": 20.0, "unpriced deep hours %": 0.0,
@@ -79,4 +79,33 @@ def test_new_flags_columns_and_legend_notes_are_rendered():
     assert "LOW EVIDENCE (9 h)" in page and "EDGE SIGN AMBIGUOUS" in page and "START-REQUIRED 40% OF CURVE" in page
     assert page.count("LP price above structural range — likely relaxation price") >= 2  # the row flag and the legend entry
     assert "Relief units mapped via CPNODE id" in page and "falling back to the SCED-name key" in page and "27.9 / +6.43" in page
-    assert "valued at the AVERAGE of the priced hours" in page and "parallel element of" in page and "SMALLER" in page
+    assert "valued at the AVERAGE of the priced hours" in page and "parallel element of" in page and "LARGER" in page
+
+
+def test_thin_evidence_rows_move_to_their_own_table_between_valued_and_not_valued():
+    rows = _rows()
+    rows.loc[rows["Label"] == "LOW_EDGE", ["Low evidence", "P(bind) negative-headroom hours"]] = [True, 9]
+    valued, thin = sr.split_thin(sr.split_rows(rows, MON, CUT)[0])
+    assert list(valued["Label"]) == ["HI_EDGE"] and list(thin["Label"]) == ["LOW_EDGE"]
+    page = sr.render(rows, 14412, CUT, MON, Thresholds())
+    i_v, i_t, i_n = page.index("Valued (1)"), page.index("Valued on thin evidence (1)"), page.index("Not valued (")
+    assert i_v < i_t < i_n and "rest on very few hours" in page
+    assert page.count('<table class="t"') == 4
+    low_p = _rows()
+    low_p.loc[low_p["Label"] == "HI_EDGE", "Low P(bind)"] = True
+    assert list(sr.split_thin(sr.split_rows(low_p, MON, CUT)[0])[1]["Label"]) == ["HI_EDGE"]
+    assert "Valued on thin evidence" not in sr.render(_rows(), 14412, CUT, MON, Thresholds())
+
+
+def test_page_header_summary_precedes_tables_and_legend_follows():
+    page = sr.render(_rows(), 14412, CUT, MON, Thresholds())
+    head = page[page.index("How to read this page"):page.index("Valued (")]
+    assert head.count("<li>") == 5 and "even value HIGH is a floor if the constraint is enforced" in head
+    assert page.index("Column legend") > page.index("Not valued (")
+
+
+def test_co_binding_is_a_separate_low_emphasis_column():
+    rows = _rows()
+    rows["Co-binding"] = ["", "co-binds with 3-4-1@B (23 of 23; other binds 54 runs)", "", ""]
+    page = sr.render(rows, 14412, CUT, MON, Thresholds())
+    assert "Co-binding</th>" in page and 'class="l cobind"' in page and "co-binds with 3-4-1@B" in page

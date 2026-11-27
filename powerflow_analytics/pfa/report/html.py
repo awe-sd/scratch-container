@@ -78,6 +78,7 @@ class Col:
     key: str | Callable[[Any], Any]
     fmt: str = "text"
     align: str = "r"
+    css: str = ""  # extra class on the column's header and body cells
 
     def value(self, row) -> Any:
         return self.key(row) if callable(self.key) else row[self.key]
@@ -130,12 +131,12 @@ def table(data: pd.DataFrame, cols: list[Col], *, filter_row: bool = True, sorta
         return f'<div class="note">{esc(empty)}</div>'
     _counter["n"] += 1
     tid = f"t{_counter['n']}"
-    cls = lambda c: ' class="l"' if c.align == "l" else ""
+    cls = lambda c: f' class="{" ".join(x for x in (c.align == "l" and "l" or "", c.css) if x)}"' if (c.align == "l" or c.css) else ""
 
     def head_attr(i, c):
         if not sortable:
             return cls(c)
-        return f' class="s{" l" if c.align == "l" else ""}" onclick="pfaSort(this.closest(\'table\'),{i})"'
+        return f' class="s{" l" if c.align == "l" else ""}{" " + c.css if c.css else ""}" onclick="pfaSort(this.closest(\'table\'),{i})"'
 
     head = "".join(f"<th{head_attr(i, c)}>{esc(c.header)}</th>" for i, c in enumerate(cols))
     filt = ""

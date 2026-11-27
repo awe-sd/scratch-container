@@ -233,7 +233,7 @@ def added_columns(month: str, cutoff: str) -> list[str]:
         "relief units with DAM rows", "relief units usable up", "relief units usable down", "curve steps",
         "P(bind) on-peak hours", "P(bind) years",
         "Post days sampled", "Sampled days in month", "Outage-day basis",
-        rent_ex_penalty_col_name(cutoff), "Sibling/corridor note", "Low P(bind)",
+        rent_ex_penalty_col_name(cutoff), "Sibling/corridor note", "Co-binding", "Low P(bind)",
         "P(bind) negative-headroom hours", "Low evidence", "Edge sign ambiguous",
         "start-required curve MW", "start-required share of curve", "start-required > 25%",
         "LP price above structural range",
@@ -270,46 +270,82 @@ def binding_run_sets(ctgviol: pd.DataFrame) -> dict[str, frozenset]:
     return {k: frozenset(g) for k, g in cv["RUNID"].groupby(constraint_key(cv))}
 
 
+def _shares_bus(c1: ConstraintId, c2: ConstraintId) -> bool:
+    return bool({c1.fromnum, c1.tonum} & {c2.fromnum, c2.tonum})
+
+
+def _partners(k: str, run_sets: dict[str, frozenset]):
+    """(identical-set partners as (key, kind), other-line overlaps as (n, own size, other size, key)) for constraint k."""
+    a = run_sets[k]
+    cid = ConstraintId.parse(k)
+    ident, overlaps = [], []
+    for k2, b in run_sets.items():
+        if k2 == k:
+            continue
+        cid2 = ConstraintId.parse(k2)
+        same_line = cid2.line_key == cid.line_key
+        if b == a:
+            ident.append((k2, "sib" if same_line else "par" if cid2.ctglabel == cid.ctglabel else "ident"))
+        elif not same_line:
+            overlaps.append((len(a & b), len(a), len(b), k2))
+    return cid, ident, overlaps
+
+
 def sibling_notes(keys, run_sets: dict[str, frozenset], overlap_min: float = CORRIDOR_OVERLAP) -> dict[str, str]:
     """Per key: for constraints binding the identical run set, 'parallel element of <key>' (same contingency, different element),
     'sibling contingency of <key>' (same element, different contingency) or 'identical run set as <key>' (both differ); and
-    'corridor with <key> (overlap n/m)' for a different line whose runs overlap >= overlap_min of the SMALLER run set (m)."""
+    'corridor with <key> (overlap n/M)' for a different line whose overlap is >= overlap_min of the LARGER run set (M), or
+    >= overlap_min of the smaller set when the two share a contingency label and a bus."""
     notes = {}
     for k in keys:
-        a = run_sets.get(k)
-        if not a:
+        if not run_sets.get(k):
             notes[k] = ""
             continue
-        cid = ConstraintId.parse(k)
-        par, sib, ident, cor = [], [], [], []
-        for k2, b in run_sets.items():
-            if k2 == k:
+        cid, ident, overlaps = _partners(k, run_sets)
+        by_kind = {kind: [k2 for k2, kk in ident if kk == kind] for kind in ("par", "sib", "ident")}
+        cor = []
+        for n, la, lb, k2 in overlaps:
+            m = min(la, lb)
+            if m < CORRIDOR_MIN_RUNS:
                 continue
             cid2 = ConstraintId.parse(k2)
-            same_line = cid2.line_key == cid.line_key
-            if b == a:
-                (sib if same_line else par if cid2.ctglabel == cid.ctglabel else ident).append(k2)
-                continue
-            if same_line:
-                continue
-            m = min(len(a), len(b))
-            n = len(a & b)
-            if m >= CORRIDOR_MIN_RUNS and n / m >= overlap_min:
-                cor.append((n, m, k2))
+            if n / max(la, lb) >= overlap_min or (n / m >= overlap_min and cid2.ctglabel == cid.ctglabel and _shares_bus(cid, cid2)):
+                cor.append((n, max(la, lb), k2))
 
         def listed(label, ks, suffix=""):
             return f"{label} " + ", ".join(sorted(ks)[:3]) + (f" (+{len(ks) - 3} more)" if len(ks) > 3 else "") + suffix
 
         parts = []
-        if par:
-            parts.append(listed("parallel element of", par, " (identical run set; do not add rents)"))
-        if sib:
-            parts.append(listed("sibling contingency of", sib, " (identical run set; do not add rents)"))
-        if ident:
-            parts.append(listed("identical run set as", ident, " (different element and contingency; do not add rents)"))
-        for n, m, k2 in sorted(cor, key=lambda x: (-x[0] / x[1], -x[1], x[2]))[:3]:
-            parts.append(f"corridor with {k2} (overlap {n}/{m})")
+        if by_kind["par"]:
+            parts.append(listed("parallel element of", by_kind["par"], " (identical run set; do not add rents)"))
+        if by_kind["sib"]:
+            parts.append(listed("sibling contingency of", by_kind["sib"], " (identical run set; do not add rents)"))
+        if by_kind["ident"]:
+            parts.append(listed("identical run set as", by_kind["ident"], " (different element and contingency; do not add rents)"))
+        for n, mx, k2 in sorted(cor, key=lambda x: (-x[0] / x[1], -x[1], x[2]))[:3]:
+            parts.append(f"corridor with {k2} (overlap {n}/{mx})")
         notes[k] = "; ".join(parts)
+    return notes
+
+
+def cobinding_notes(keys, run_sets: dict[str, frozenset], overlap_min: float = CORRIDOR_OVERLAP) -> dict[str, str]:
+    """Per key: ONE 'co-binds with <key> (n of <own runs>; other binds <runs> runs)': the other-line partner (not an identical
+    set, not already a corridor note) with the highest overlap against the LARGER of the two run sets; lines that bind in the
+    same stress runs, not shared paths. Needs >= overlap_min of the smaller set and CORRIDOR_MIN_RUNS runs in it."""
+    corridor = sibling_notes(keys, run_sets, overlap_min)
+    notes = {}
+    for k in keys:
+        if not run_sets.get(k):
+            notes[k] = ""
+            continue
+        _, _, overlaps = _partners(k, run_sets)
+        cand = [(n / max(la, lb), n, la, lb, k2) for n, la, lb, k2 in overlaps
+                if min(la, lb) >= CORRIDOR_MIN_RUNS and n / min(la, lb) >= overlap_min and f"corridor with {k2} " not in corridor[k]]
+        if not cand:
+            notes[k] = ""
+            continue
+        _, n, la, lb, k2 = sorted(cand, key=lambda x: (-x[0], -x[1], x[4]))[0]
+        notes[k] = f"co-binds with {k2} ({n} of {la}; other binds {lb} runs)"
     return notes
 
 
@@ -356,6 +392,7 @@ def value_shortlist(result: ScreeningResult, month: str) -> pd.DataFrame:
     del ctgviol, outcon
     n_post_days = int(pd.to_datetime(runs["SIMDATE"])[pd.to_datetime(runs["SIMDATE"]) >= pd.to_datetime(result.cutoff)].dt.date.nunique())
     notes = sibling_notes(list(short.index), run_sets)
+    cobind = cobinding_notes(list(short.index), run_sets)
     gen = cache.load("outgen2", columns=["RUNID", "BUSNUM", "ID", "LPDELTAMW", "FUELTYPE", "MW", "MWMAX"])
     branch = cache.load("outbranch2", columns=["RUNID", "FROMNUM", "TONUM", "CKT", "FROMNAME", "TONAME"])
     genunit = gen_mapping.with_cpnode_names(cache.load("genunit"))
@@ -427,6 +464,7 @@ def value_shortlist(result: ScreeningResult, month: str) -> pd.DataFrame:
             "Outage-day basis": (f"ticket ({dead})" if dead else "ticket") if has_ticket else "sampled bind days (no ticket)",
             rent_col: float(rent_ex.get(c, 0.0)),
             "Sibling/corridor note": notes.get(c, ""),
+            "Co-binding": cobind.get(c, ""),
             "Low P(bind)": bool(p_bind is not None and p_bind <= LOW_PBIND),
             "P(bind) negative-headroom hours": n_neg,
             "Low evidence": bool(n_neg is not None and n_neg < LOW_EVIDENCE_HOURS),

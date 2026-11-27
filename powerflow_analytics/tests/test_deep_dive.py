@@ -211,7 +211,8 @@ def test_price_formation_lists_curve_steps_outage_flow_and_flags_up_renewables(m
     md = _render(_bc(), out)
     row = [l for l in md.splitlines() if l.startswith("|") and "UP_WIND" in l and "DN1" in l][0]
     assert [c.strip() for c in row.strip("|").split("|")][:8] == ["1", "DN1", "0.2", "10", "UP_WIND", "-0.2", "30", "0.4"]
-    assert "UP unit is wind/solar: cannot increase output" in md and "does not model it as curtailment" in md
+    assert "wind/solar on the up side: cannot increase output, so this step is not real relief" in md and "curtailment-only" not in md
+    assert "Steps resting on up-side wind/solar (not real relief): 1 of 1 steps, 4.0 MW of flow relief." in md
     assert "mean flow change on this line +60.0 MW in its bound sense, averaged over 1 run (" in md and "n = 1: a single run, thin" in md
     assert "not the relief needed, so it is not compared with the curve" in md and "The driving outage adds" not in md
     assert "Curve exhausted at" in md and "LP's P50 shadow price" in md and "min $30.0, P50 $30.0, max $30.0" in md
@@ -260,11 +261,12 @@ def test_price_formation_text_does_not_call_zero_steps_free_and_prints_method_lp
     assert "min=$22.0, mean=$50.0, p50=$47.7, max=$134.8" in md and "min $22.0, P50 $47.7, max $134.8" in md
     assert "Depth covered by $0 steps ($0 by the P60-offer method): 3.0 MW of flow relief in 1 of 2 steps" in md
     tail = md[md.index("**Open method questions**"):].splitlines()
-    assert [l for l in tail if l[:2] in ("1.", "2.", "3.", "4.")] == [
+    assert [l for l in tail if l[:2] in ("1.", "2.", "3.", "4.", "5.")] == [
         "1. Down-side units are priced at the P60 of their offer curve rather than their marginal awarded segment.",
         "2. The cheap part of the curve includes start-required units.",
         "3. Wind/solar/storage without offers contribute no relief.",
-        "4. Capacity at multi-resource settlement points is a median, not a sum."]
+        "4. Capacity at multi-resource settlement points is a median, not a sum.",
+        "5. up-side wind/solar units are still counted in the curve"]
 
 
 def test_zero_step_in_curve_table_is_flagged_with_the_method_label():

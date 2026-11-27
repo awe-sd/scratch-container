@@ -12,7 +12,7 @@ from pfa.report import html
 
 NOT_VALUED_CLASS = "A – not valued"
 EXTRA_CSS = (".lowp td{background:#fdecea}.legend table.t td{white-space:normal;text-align:left;min-width:12rem}"
-             ".legend table.t th{position:static}")
+             ".legend table.t th{position:static}.cobind{color:#888;font-size:.85em}")
 
 
 def columns(rent_col: str, rent_ex_col: str, label: str, n_post, not_valued: bool = False) -> list[html.Col]:
@@ -51,6 +51,7 @@ def columns(rent_col: str, rent_ex_col: str, label: str, n_post, not_valued: boo
         html.Col("Flip exempt", "Flip exempt", "bool", "l"),
         html.Col("Thin intensity", "Thin intensity", "bool", "l"),
         html.Col("Sibling / corridor note", "Sibling/corridor note", "text", "l"),
+        html.Col("Co-binding", "Co-binding", "text", "l", "cobind"),
         html.Col(f"Ticket outage days in {lbl}", lambda r: r.get(days_key) if str(r.get("Outage-day basis", "")).startswith("ticket") else None, "int"),
         html.Col(f"Sampled bind days in {lbl} (no ticket; proxy)", lambda r: None if str(r.get("Outage-day basis", "")).startswith("ticket") else r.get(days_key), "int"),
         html.Col("Sampled days in month", "Sampled days in month", "int"),
@@ -95,6 +96,26 @@ def split_rows(rows: pd.DataFrame, month: str, cutoff: str) -> tuple[pd.DataFram
     return valued, rows[~ok].sort_values(rent_ex_penalty_col_name(cutoff), ascending=False)
 
 
+def split_thin(valued: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """(valued on solid evidence, valued on thin evidence): thin = Low evidence (< LOW_EVIDENCE_HOURS negative-headroom hours) or Low P(bind)."""
+    thin = valued.get("Low evidence", pd.Series(False, index=valued.index)).eq(True) | valued.get("Low P(bind)", pd.Series(False, index=valued.index)).eq(True)
+    return valued[~thin], valued[thin]
+
+
+HOW_TO_READ = [
+    "<b>EDGE SIGN AMBIGUOUS</b>: Edge LOW is negative and Edge HIGH positive, so whether the trade is worth anything depends on how the unpriced deep hours are valued.",
+    f"<b>START-REQUIRED</b>: more than {START_REQUIRED_SHARE_FLAG:.0%} of the depth curve's relief needs a unit that was not committed in DAM to start.",
+    f"<b>LOW EVIDENCE</b>: P(bind) rests on fewer than {LOW_EVIDENCE_HOURS} negative-headroom hours (or is at most {LOW_PBIND}); such rows sit in their own table.",
+    f"<b>LP price above structural range</b>: the study LP shadow price is far above anything the offer curve produces (P50 above {RELAXATION_LP_P50:.0f} $/MWh), so it is probably a relaxation price, not a market price.",
+    "<b>Not valued = not vetted</b>: those constraints could not be priced; the rent shown is study LP rent, not an opportunity.",
+]
+HOW_TO_READ_FLOOR = ("Where binding hours need more relief than the curve can supply, even value HIGH is a floor if the constraint is enforced.")
+
+
+def how_to_read() -> str:
+    return html.note("<b>How to read this page</b><ol>" + "".join(f"<li>{x}</li>" for x in HOW_TO_READ) + f"</ol>{HOW_TO_READ_FLOOR}")
+
+
 def legend(label: str, th: Thresholds) -> str:
     items = [
         ("Outage flow change / |preflow|", "Direction-signed mean flow change from the top outage group divided by |mean pre-outage flow| (CSV: Impact share). Not a share: above 1 means the outage adds more flow than the line carried before."),
@@ -115,7 +136,8 @@ def legend(label: str, th: Thresholds) -> str:
         ("Relief units mapped via CPNODE id / via name", "Units are matched to DAM offers by GENUNIT.CPNODEID, falling back to the SCED-name key when the ID key has no offer rows (combined-cycle plants are keyed on a plant node). The value depends on this mapping: for 1436-2081-1@DWCSRAM5 an ID-only mapping gives 27.9 / +6.43 because it loses those plants."),
         ("LP price flag", f"{RELAXATION_LABEL}: LP shadow-price P50 (ex-cap, post-cutoff non-zero) above {RELAXATION_LP_P50:.0f} $/MWh while the all-rows P50 is not exactly a penalty tier."),
         ("Edge", "Value x path shift factor - path option price: $/MWh per MW of path. LOW / HIGH use the LOW / HIGH values. Path SF approximate = the path tool's AVG_SF was used because source/sink node shift factors were unavailable."),
-        ("Sibling / corridor note", "parallel element of = identical run set under the same contingency on a different element; sibling contingency of = same element, different contingency, identical run set (both: one flowgate, do not add rents); corridor with = a different line whose runs overlap at least 80% of the SMALLER of the two run sets (n/m runs)."),
+        ("Sibling / corridor note", "parallel element of = identical run set under the same contingency on a different element; sibling contingency of = same element, different contingency, identical run set (both: one flowgate, do not add rents); corridor with = a different line whose runs overlap at least 80% of the LARGER of the two run sets (n/M runs), or at least 80% of the smaller set when the two share a contingency label and a bus."),
+        ("Co-binding", "Lower-emphasis note: the one other line whose binding runs overlap this row's the most (against the LARGER of the two run sets), shown as n of this row's runs; the other line's run count. These are lines that bind in the same stress runs, not shared paths, so it is not a reason to add or merge rents."),
         ("Low P(bind)", f"On-peak P(bind) at or below {LOW_PBIND}; the row is shaded."),
         ("Ticket states", "Apprv = approved; RatE = rated, awaiting approval (inferred from the rated -> approved lifecycle); Rejct = rejected. A rejected / cancelled driver ticket gives no coverage (status 'driver ticket <state>')."),
     ]
@@ -139,14 +161,23 @@ def render(rows: pd.DataFrame, study: int, cutoff: str, month: str, th: Threshol
         f"numbers.")
     valued, not_valued = split_rows(rows, month, cutoff)
     lowp = lambda r: "lowp" if (r.get("Low P(bind)") or r.get("Low evidence") is True) else ""
-    body = [intro, html.section("Column legend", legend(label, th), level=2),
+    valued, thin = split_thin(valued)
+    cols = columns(rent_col, rent_ex_col, label, n_post)
+    body = [intro, how_to_read(),
             html.section(f"Valued ({len(valued)}): non-zero {label} value, sorted by edge",
-                         html.scroll(html.table(valued, columns(rent_col, rent_ex_col, label, n_post), row_class=lowp)))]
+                         html.scroll(html.table(valued, cols, row_class=lowp)))]
+    if len(thin):
+        body.append(html.section(
+            f"Valued on thin evidence ({len(thin)}): sorted by edge",
+            html.warning("These figures rest on very few hours (P(bind) from fewer than "
+                         f"{LOW_EVIDENCE_HOURS} negative-headroom hours, or P(bind) of at most {LOW_PBIND}); treat them as indications, not priced targets."),
+            html.scroll(html.table(thin, cols, row_class=lowp))))
     body.append(html.section(
         f"Not valued ({len(not_valued)}): sorted by post-cutoff rent excluding penalty-tier rows",
         html.warning("These constraints passed the screen but could not be priced (or priced at exactly zero). They are <b>not vetted targets</b>: "
                      "the rent shown is study LP rent, not a priced opportunity. The reason column says which step failed."),
         html.scroll(html.table(not_valued, columns(rent_col, rent_ex_col, label, n_post, not_valued=True), row_class=lowp))))
+    body.append(html.section("Column legend", legend(label, th), level=2))
     return html.page(f"Stage-2 candidates — study {study}, {len(rows)} constraints", "\n".join(body), extra_css=EXTRA_CSS)
 
 

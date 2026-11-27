@@ -288,7 +288,7 @@ def test_value_shortlist_dead_ticket_blank_coverage_and_added_columns(monkeypatc
     assert list(out.columns[:1]) == ["x"] and list(out.columns[1:14]) == sv.value_columns("2026-09")
 
 
-def test_sibling_notes_parallel_element_vs_sibling_contingency_and_smaller_set_corridor():
+def test_sibling_notes_parallel_element_vs_sibling_contingency_and_larger_set_corridor():
     cv = pd.concat([
         pd.DataFrame({"RUNID": list(runs), "FROMNUM": f, "TONUM": t, "CKT": "1", "CTGLABEL": g, "LIMVIOLPCT": 100.0})
         for f, t, g, runs in [(1, 2, "A", range(10)), (3, 4, "A", range(10)),   # same ctg, different element, identical runs
@@ -299,8 +299,8 @@ def test_sibling_notes_parallel_element_vs_sibling_contingency_and_smaller_set_c
     notes = sv.sibling_notes(["3-4-1@A", "7-8-1@C", "5-6-1@C"], sv.binding_run_sets(cv))
     assert "parallel element of 1-2-1@A (identical run set; do not add rents)" in notes["3-4-1@A"]
     assert "sibling contingency of 1-2-1@B" in sv.sibling_notes(["1-2-1@A"], sv.binding_run_sets(cv))["1-2-1@A"]
-    assert notes["7-8-1@C"] == "corridor with 5-6-1@C (overlap 13/13)"
-    assert notes["5-6-1@C"] == "corridor with 7-8-1@C (overlap 13/13)"  # the 3-run set 11-12 is not named
+    assert notes["7-8-1@C"] == "corridor with 5-6-1@C (overlap 13/14)"
+    assert notes["5-6-1@C"] == "corridor with 7-8-1@C (overlap 13/14)"  # the 3-run set 11-12 is not named
 
 
 def test_relaxation_flag_needs_high_ex_cap_p50_and_not_a_penalty_tier():
@@ -311,3 +311,37 @@ def test_relaxation_flag_needs_high_ex_cap_p50_and_not_a_penalty_tier():
 
 def test_bounds_blank_high_when_last_step_is_free():
     assert sv._bounds(0.3, 1.0, 0.0, None, 0.5, 2.0) == (0.0, None, -2.0, None)
+
+
+def _cv(spec):
+    return pd.concat([pd.DataFrame({"RUNID": list(runs), "FROMNUM": f, "TONUM": t, "CKT": "1", "CTGLABEL": g, "LIMVIOLPCT": 100.0})
+                      for f, t, g, runs in spec])
+
+
+def test_small_set_inside_a_large_one_is_co_binding_not_corridor():
+    rs = sv.binding_run_sets(_cv([(1, 2, "A", range(23)), (3, 4, "B", range(54))]))  # 23/23 of the smaller, 23/54 of the larger
+    assert sv.sibling_notes(["1-2-1@A", "3-4-1@B"], rs) == {"1-2-1@A": "", "3-4-1@B": ""}
+    cb = sv.cobinding_notes(["1-2-1@A", "3-4-1@B"], rs)
+    assert cb["1-2-1@A"] == "co-binds with 3-4-1@B (23 of 23; other binds 54 runs)"
+    assert cb["3-4-1@B"] == "co-binds with 1-2-1@A (23 of 54; other binds 23 runs)"
+
+
+def test_cobinding_is_one_partner_ranked_against_the_larger_set_and_skips_corridor_and_identical():
+    rs = sv.binding_run_sets(_cv([(1, 2, "A", range(20)),
+                                  (3, 4, "B", range(40)),      # 20/40 of larger
+                                  (5, 6, "C", range(30)),      # 20/30 of larger: best co-bind
+                                  (7, 8, "D", range(20)),      # identical set: not a co-bind
+                                  (9, 10, "E", range(19))]))   # 19/20: a corridor, so not repeated as a co-bind
+    assert sv.sibling_notes(["1-2-1@A"], rs)["1-2-1@A"].startswith("parallel element of") is False
+    cb = sv.cobinding_notes(["1-2-1@A"], rs)["1-2-1@A"]
+    assert cb == "co-binds with 5-6-1@C (20 of 20; other binds 30 runs)" and cb.count("co-binds") == 1
+    assert "corridor with 9-10-1@E (overlap 19/20)" in sv.sibling_notes(["1-2-1@A"], rs)["1-2-1@A"]
+
+
+def test_same_contingency_and_shared_bus_keeps_a_corridor_below_80pct_of_the_larger_set():
+    rs = sv.binding_run_sets(_cv([(131, 130, "F", range(32)), (130, 3636, "F", range(13)),   # shared bus 130, same ctg
+                                  (126, 3636, "F", range(13))]))                              # same ctg, no shared bus with 131-130
+    n = sv.sibling_notes(["131-130-1@F", "126-3636-1@F"], rs)
+    assert n["131-130-1@F"] == "corridor with 130-3636-1@F (overlap 13/32)" and "126-3636" not in n["131-130-1@F"]
+    assert "131-130" not in n["126-3636-1@F"]
+    assert sv.cobinding_notes(["131-130-1@F"], rs)["131-130-1@F"] == "co-binds with 126-3636-1@F (13 of 32; other binds 13 runs)"

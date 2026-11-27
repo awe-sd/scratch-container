@@ -8,8 +8,7 @@ from pfa import periods
 from pfa.analysis.deep_dive import CORR_MATERIALITY, DRIVER_LEAD, ZERO_STEP_LABEL
 
 
-UP_RENEWABLE_FLAG = ("UP unit is wind/solar: cannot increase output, so its relief is curtailment-only; the engine prices it from its DAM "
-                     "offer as ordinary up relief (it does not model it as curtailment)")
+UP_RENEWABLE_FLAG = "wind/solar on the up side: cannot increase output, so this step is not real relief"
 STEP_PRICE_METHOD = ("Step prices are formed as the P60 of the up unit's offer curve minus the P60 of the down unit's offer curve, divided by the "
                      "difference of their shift factors on the constraint, floored at 0 (and capped at the engine's price cap).")
 OPEN_METHOD_QUESTIONS = [
@@ -17,6 +16,7 @@ OPEN_METHOD_QUESTIONS = [
     "The cheap part of the curve includes start-required units.",
     "Wind/solar/storage without offers contribute no relief.",
     "Capacity at multi-resource settlement points is a median, not a sum.",
+    "up-side wind/solar units are still counted in the curve",
 ]
 
 
@@ -233,6 +233,9 @@ def _curve_lines(sl: dict, lp: dict | None, month: dict | None = None, mname: st
     out = ["", "Depth curve (greedy cheapest pair per step; flow MW = pair MW x delta-SF):",
            pd.DataFrame(rows).to_markdown(index=False), ""]
     out.append(f"- Curve exhausted at {sl['exhaustion_depth_mw']} MW of flow relief.")
+    up_r = [st for st in steps if st.get("up_renewable")]
+    out.append(f"- Steps resting on up-side wind/solar (not real relief): {len(up_r)} of {sl['n_steps']} steps, "
+               f"{sum(st['depth_hi'] - st['depth_lo'] for st in up_r):.1f} MW of flow relief.")
     n0 = sl.get("n_zero_steps", 0)
     out.append(f"- Depth covered by $0 steps ({ZERO_STEP_LABEL}): {sl.get('zero_step_depth_mw', 0.0)} MW of flow relief in {n0} of {sl['n_steps']} steps.")
     if lp:
