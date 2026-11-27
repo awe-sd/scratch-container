@@ -13,6 +13,11 @@ def query(db_name: str, sql: str) -> pd.DataFrame:
     return snowflake.performQuery(db_name, sql, warehouse=config.WAREHOUSE, logInfo=False)
 
 
+def quote(value) -> str:
+    """SQL string literal with single quotes doubled."""
+    return "'" + str(value).replace("'", "''") + "'"
+
+
 def validate_columns(df: pd.DataFrame, expected: list[str], source: str) -> None:
     """Fail loudly if a source table stopped carrying the columns we rely on."""
     missing = [c for c in expected if c not in df.columns]

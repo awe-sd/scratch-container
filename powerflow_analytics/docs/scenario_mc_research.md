@@ -404,4 +404,4 @@ rescaler rather than rebuilding the sampler.
 - [Risk-based security assessment of transmission line overloading considering spatio-temporal dependence of load and wind power using vine copula, IET Renewable Power Generation (2019)](https://digital-library.theiet.org/doi/full/10.1049/iet-rpg.2018.6091)
 - [Owen & Maximov, "Importance sampling the union of rare events with an application to power systems analysis," Electronic Journal of Statistics 13(1), 2019](https://arxiv.org/abs/1710.06965)
 - [Shift factors in ERCOT congestion pricing — Ross Baldick](https://users.ece.utexas.edu/~baldick/papers/shiftfactors.pdf)
-- Internal: `powerflow_analytics/pfa/extract/shifts.py`, `pfa/analysis/offer_lambda.py`, `pfa/analysis/market.py`, `pfa/analysis/fastscan.py`, `docs/auction_schema_notes.md`, and `AW.dbo.ercotWindRegionHourly` access pattern (memory: `powerflow_crr_valuation_method.md`).
+- Internal: `powerflow_analytics/pfa/extract/shifts.py`, `pfa/analysis/offer_lambda.py`, `pfa/analysis/market.py`, `pfa/extract/fastscan.py`, `docs/auction_schema_notes.md`, and `AW.dbo.ercotWindRegionHourly` access pattern (memory: `powerflow_crr_valuation_method.md`).

@@ -57,9 +57,9 @@ def main() -> None:
         if cfgs.empty:
             print("\nfast-scan: no config found for this constraint/study")
         else:
-            cid = int(cfgs["CONFIG_ID"].iloc[0])
-            print(f"\nfast-scan config {cid} headroom profile:")
-            print(fastscan.headroom_profile(cid).round(1).to_string(index=False))
+            config_id = int(cfgs["CONFIG_ID"].iloc[0])
+            print(f"\nfast-scan config {config_id} headroom profile:")
+            print(fastscan.headroom_profile(config_id).round(1).to_string(index=False))
 
 
 if __name__ == "__main__":

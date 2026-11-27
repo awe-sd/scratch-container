@@ -37,6 +37,10 @@ class UnboundParameter(ProcExtractionError):
     pass
 
 
+class UnsupportedStageStatement(ProcExtractionError):
+    pass
+
+
 @dataclass
 class Extracted:
     query: str                      # one SELECT; may still contain :binds until bind() is applied
@@ -168,10 +172,20 @@ def extract_readonly_query(sql_text: str, expected_stages: list, final_target: s
             stage_order.append(name)
             continue
         m = re.match(r"^INSERT\s+INTO\s+([A-Za-z_][\w$.]*)\s+(?=WITH\b|SELECT\b)", stmt, re.I)
-        if m and m.group(1).upper() in declared_cols and final_select is None:
+        if m and m.group(1).upper() in stage_ctes and final_select is None:
             name = m.group(1).upper()
-            stage_ctes[name].append((f"{name}__0", declared_cols[name], stmt[m.end():].strip()))
+            parts, select = stage_ctes[name], stmt[m.end():].strip()
+            if parts:   # a later INSERT appends rows, as it does when the procedure runs
+                parts.append((f"{name}__{len(parts)}", None,
+                              f"SELECT * FROM {parts[-1][0]}\nUNION ALL\nSELECT * FROM (\n{select}\n)"))
+            else:
+                parts.append((f"{name}__0", declared_cols[name], select))
             continue
+        m = re.match(r"^(?:UPDATE|MERGE\s+INTO)\s+([A-Za-z_][\w$.]*)", stmt, re.I)
+        if m and m.group(1).upper() in stage_ctes and final_select is None:
+            raise UnsupportedStageStatement(
+                f"{source}: {_label(stmt)!r} modifies stage {m.group(1).upper()}; the extractor replays only "
+                "INSERT and DELETE on stage tables, so this procedure cannot be validated until it is supported")
         m = re.match(r"^DELETE\s+FROM\s+([A-Za-z_][\w$.]*)\s+WHERE\s+(.*)$", stmt, re.I | re.S)
         if m and m.group(1).upper() in declared_cols and final_select is None:
             name = m.group(1).upper()

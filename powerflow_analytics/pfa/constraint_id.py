@@ -50,15 +50,15 @@ def resolve(cache, spec: str) -> ConstraintId:
         return ConstraintId.parse(spec)
     branch = cache.load("outbranch2", columns=["FROMNUM", "TONUM", "CKT", "LABEL"])
     ov = cache.load("outctgviol2", columns=["FROMNUM", "TONUM", "CKT", "CTGLABEL", "LIMVIOLPCT"])
-    m = branch[branch["LABEL"].astype(str) == str(spec)].drop_duplicates(["FROMNUM", "TONUM", "CKT"])
+    m = branch[branch["LABEL"].astype(str).str.strip() == str(spec).strip()].drop_duplicates(["FROMNUM", "TONUM", "CKT"])
     if m.empty:
         raise ValueError(f"line label {spec!r} not found in cached outbranch2")
     if len(m) > 1:
         print(f"  note: label {spec!r} maps to {len(m)} FROMNUM/TONUM/CKT combos; "
               f"using the first ({m.iloc[0][['FROMNUM','TONUM','CKT']].to_dict()})")
     row = m.iloc[0]
-    fromnum, tonum, ckt = int(row.FROMNUM), int(row.TONUM), str(row.CKT)
-    sub = ov[(ov.FROMNUM == fromnum) & (ov.TONUM == tonum) & (ov.CKT == ckt)]
+    fromnum, tonum, ckt = int(row.FROMNUM), int(row.TONUM), str(row.CKT).strip()
+    sub = ov[(ov.FROMNUM == fromnum) & (ov.TONUM == tonum) & (ov.CKT.astype(str).str.strip() == ckt)]
     bind = sub[sub.LIMVIOLPCT >= BINDING_PCT]
     if bind.empty:
         raise ValueError(f"no binding runs found for {spec!r} ({fromnum}-{tonum}-{ckt})")

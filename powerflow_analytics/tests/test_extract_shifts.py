@@ -64,3 +64,13 @@ def test_psenshiftid_readers(monkeypatch):
     calls = _fake(monkeypatch, canned)
     assert shifts.node_shift_factors_multi([77, 78]) is canned
     assert "PSENSHIFTID IN (77,78)" in calls[0][1]
+
+
+def test_quote_labels_are_escaped_and_iso_market_id_comes_from_config(monkeypatch):
+    seen = []
+    monkeypatch.setattr(shifts.sf, "query", lambda db, sql: seen.append(sql) or pd.DataFrame())
+    cid = ConstraintId(1, 2, "A'1", "CTG'X")
+    shifts.bus_sf_all_buses(14412, cid)
+    shifts.cpnode_sf_by_name(14412, cid, ["N'1"])
+    assert "CKT='A''1' AND CTGLABEL='CTG''X'" in seen[0]
+    assert "NAME IN ('N''1')" in seen[1] and "ISOMARKETID=6" in seen[1]

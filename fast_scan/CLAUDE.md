@@ -39,7 +39,7 @@ Scripts, in pipeline order:
 - `shift_constraint_deep_dive.py` — args `--study --branch --ctg --date-from --date-to --out-subdir` (required), `--check-id`, `--sign-guard`, `--no-cache`. One constraint: per-topology-hour table, top nodes, load-zone/hub comparison (own deadbus-free pull), DART congConstraintID count. A few live queries.
 - `bad_hour_detail.py` — args `--study --branch --ctg --set-id --date-from --date-to --out-subdir` (required), `--rank-tol`, `--sign-guard`. Worst clock-hour drilldown from the cache only; writes `deep_dive_<branch>_<ctg>_bad_hour.csv`.
 - `archive/shift_benchmarking.py` — legacy notebook conversion, imports `AWUtil`/`AWDecomp`, **not installed in this venv**; do not run. Reference for the original join logic.
-- `tests/` — pytest, no database: `uv run --project <repo root> python -m pytest fast_scan/tests -q` (covers sign/offset resolution, mismatch classifiers and thresholds, the DART chain builder). Not yet in the root `testpaths`.
+- `tests/` — pytest, no database: `uv run --project <repo root> python -m pytest fast_scan/tests -q` (covers sign/offset resolution, mismatch classifiers and thresholds, the DART chain builder). In the root `testpaths`.
 
 ## Output layout
 

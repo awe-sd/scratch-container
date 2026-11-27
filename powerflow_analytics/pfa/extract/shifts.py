@@ -10,7 +10,6 @@ SHIFT_FACTORS.DBO.DEVICE_SHIFTS has no rows for recent studies; use these views.
 """
 from __future__ import annotations
 
-from dataclasses import astuple
 
 import pandas as pd
 
@@ -34,8 +33,8 @@ def bus_sf_for_buses(study_id: int, cid: ConstraintId, busnums: list[int]) -> pd
     return sf.query(_DB, f"""
         SELECT BUSNUM, AVG(PSENS) SF
         FROM {_BUS}
-        WHERE ISOMARKETID=6 AND STUDYID={int(study_id)}
-          AND FROMNUM={int(cid.fromnum)} AND TONUM={int(cid.tonum)} AND CKT='{cid.ckt}' AND CTGLABEL='{cid.ctglabel}'
+        WHERE ISOMARKETID={config.ISO_MARKET_ID} AND STUDYID={int(study_id)}
+          AND FROMNUM={int(cid.fromnum)} AND TONUM={int(cid.tonum)} AND CKT={sf.quote(cid.ckt)} AND CTGLABEL={sf.quote(cid.ctglabel)}
           AND BUSNUM IN ({ids})
         GROUP BY BUSNUM""")
 
@@ -45,8 +44,8 @@ def bus_sf_all_buses(study_id: int, cid: ConstraintId) -> pd.DataFrame:
     return sf.query(_DB, f"""
         SELECT BUSNUM, NAME, AVG(PSENS) SF
         FROM {_BUS}
-        WHERE ISOMARKETID=6 AND STUDYID={int(study_id)}
-          AND FROMNUM={int(cid.fromnum)} AND TONUM={int(cid.tonum)} AND CKT='{cid.ckt}' AND CTGLABEL='{cid.ctglabel}'
+        WHERE ISOMARKETID={config.ISO_MARKET_ID} AND STUDYID={int(study_id)}
+          AND FROMNUM={int(cid.fromnum)} AND TONUM={int(cid.tonum)} AND CKT={sf.quote(cid.ckt)} AND CTGLABEL={sf.quote(cid.ctglabel)}
           AND LEFT(NAME, 3) NOT IN ('LZ_', 'WZ_')
         GROUP BY BUSNUM, NAME""")
 
@@ -55,12 +54,12 @@ def bus_sf_all_buses(study_id: int, cid: ConstraintId) -> pd.DataFrame:
 
 def cpnode_sf_by_name(study_id: int, cid: ConstraintId, names: list[str]) -> pd.DataFrame:
     """NAME, SF (AVG PSENS) for the listed node names on one constraint."""
-    in_list = ",".join(f"'{n}'" for n in names)
+    in_list = ",".join(sf.quote(n) for n in names)
     return sf.query(_DB, f"""
         SELECT NAME, AVG(PSENS) SF
         FROM {_CPNODE}
-        WHERE ISOMARKETID=6 AND STUDYID={int(study_id)}
-          AND FROMNUM={int(cid.fromnum)} AND TONUM={int(cid.tonum)} AND CKT='{cid.ckt}' AND CTGLABEL='{cid.ctglabel}'
+        WHERE ISOMARKETID={config.ISO_MARKET_ID} AND STUDYID={int(study_id)}
+          AND FROMNUM={int(cid.fromnum)} AND TONUM={int(cid.tonum)} AND CKT={sf.quote(cid.ckt)} AND CTGLABEL={sf.quote(cid.ctglabel)}
           AND NAME IN ({in_list})
         GROUP BY NAME""")
 
@@ -74,7 +73,7 @@ def cpnode_psens_by_id(study_id: int, cid: ConstraintId, cpnode_ids: list[int]) 
             FROM {_CPNODE}
             WHERE ISOMARKETID = {config.ISO_MARKET_ID} AND STUDYID = {int(study_id)}
               AND FROMNUM = {int(cid.fromnum)} AND TONUM = {int(cid.tonum)}
-              AND CKT = '{cid.ckt}' AND CTGLABEL = '{cid.ctglabel}'
+              AND CKT = {sf.quote(cid.ckt)} AND CTGLABEL = {sf.quote(cid.ctglabel)}
               AND CPNODEID IN ({_ids(cpnode_ids)})
             GROUP BY CPNODEID
             """,
@@ -86,8 +85,8 @@ def cpnode_live_nodes(study_id: int, cid: ConstraintId) -> pd.DataFrame:
     return sf.query(_DB, f"""
         SELECT NAME, CPNODEID, AVG(PSENS) PSENS, COUNT(*) N
         FROM {_CPNODE}
-        WHERE ISOMARKETID=6 AND STUDYID={int(study_id)}
-          AND FROMNUM={int(cid.fromnum)} AND TONUM={int(cid.tonum)} AND CKT='{cid.ckt}' AND CTGLABEL='{cid.ctglabel}'
+        WHERE ISOMARKETID={config.ISO_MARKET_ID} AND STUDYID={int(study_id)}
+          AND FROMNUM={int(cid.fromnum)} AND TONUM={int(cid.tonum)} AND CKT={sf.quote(cid.ckt)} AND CTGLABEL={sf.quote(cid.ctglabel)}
           AND DEADBUS=0 AND LEFT(NAME,3) NOT IN ('LZ_','WZ_')
         GROUP BY NAME, CPNODEID
     """)
@@ -98,9 +97,9 @@ def cpnode_qualifying_count(study_id: int, cid: ConstraintId, min_sf: float, max
     return sf.query(_DB, f"""
         SELECT COUNT(DISTINCT NAME) N
         FROM {_CPNODE}
-        WHERE ISOMARKETID = 6 AND STUDYID = {int(study_id)}
+        WHERE ISOMARKETID = {config.ISO_MARKET_ID} AND STUDYID = {int(study_id)}
           AND FROMNUM = {int(cid.fromnum)} AND TONUM = {int(cid.tonum)}
-          AND CKT = '{cid.ckt}' AND CTGLABEL = '{cid.ctglabel}'
+          AND CKT = {sf.quote(cid.ckt)} AND CTGLABEL = {sf.quote(cid.ctglabel)}
           AND DEADBUS = 0
           AND LEFT(NAME, 3) NOT IN ('LZ_', 'WZ_')
           AND ABS(PSENS) >= {min_sf} AND ABS(PSENS) < {max_sf}
@@ -114,9 +113,9 @@ def cpnode_pair_counts(study_id: int, cid: ConstraintId, pair_min_sf: float, pai
           SUM(CASE WHEN PSENS > 0 THEN 1 ELSE 0 END) AS N_POS,
           SUM(CASE WHEN PSENS < 0 THEN 1 ELSE 0 END) AS N_NEG
         FROM {_CPNODE}
-        WHERE ISOMARKETID = 6 AND STUDYID = {int(study_id)}
+        WHERE ISOMARKETID = {config.ISO_MARKET_ID} AND STUDYID = {int(study_id)}
           AND FROMNUM = {int(cid.fromnum)} AND TONUM = {int(cid.tonum)}
-          AND CKT = '{cid.ckt}' AND CTGLABEL = '{cid.ctglabel}'
+          AND CKT = {sf.quote(cid.ckt)} AND CTGLABEL = {sf.quote(cid.ctglabel)}
           AND DEADBUS = 0
           AND LEFT(NAME, 3) NOT IN ('LZ_', 'WZ_')
           AND ABS(PSENS) >= {pair_min_sf} AND ABS(PSENS) < {pair_max_sf}
@@ -131,9 +130,7 @@ def cpnode_dispatch_features(study_id: int, constraints: list[str], min_sf: floa
     tuples = []
     for c in constraints:
         cid = ConstraintId.parse(c)
-        ckt_esc = cid.ckt.replace("'", "''")
-        ctg_esc = cid.ctglabel.replace("'", "''")
-        tuples.append(f"({int(cid.fromnum)}, {int(cid.tonum)}, '{ckt_esc}', '{ctg_esc}')")
+        tuples.append(f"({int(cid.fromnum)}, {int(cid.tonum)}, {sf.quote(cid.ckt)}, {sf.quote(cid.ctglabel)})")
     if not tuples:
         return pd.DataFrame()
     values_sql = ",".join(tuples)
@@ -149,7 +146,7 @@ def cpnode_dispatch_features(study_id: int, constraints: list[str], min_sf: floa
         FROM targets t
         JOIN {_CPNODE} v
           ON v.FROMNUM = t.FROMNUM AND v.TONUM = t.TONUM AND v.CKT = t.CKT AND v.CTGLABEL = t.CTGLABEL
-        WHERE v.ISOMARKETID = 6 AND v.STUDYID = {int(study_id)}
+        WHERE v.ISOMARKETID = {config.ISO_MARKET_ID} AND v.STUDYID = {int(study_id)}
           AND v.DEADBUS = 0 AND LEFT(v.NAME, 3) NOT IN ('LZ_', 'WZ_')
         GROUP BY t.FROMNUM, t.TONUM, t.CKT, t.CTGLABEL
     """)
@@ -158,12 +155,13 @@ def cpnode_dispatch_features(study_id: int, constraints: list[str], min_sf: floa
 def cpnode_dispatch_nodes(study_id: int, constraints: list[str], sf_min: float, sf_max: float) -> pd.DataFrame:
     """Bulk: FN, TN, KK (CKT), GG (CTGLABEL) as strings, NQUAL (distinct live non-LZ_/WZ_ nodes with
     sf_min <= |PSENS| <= sf_max, inclusive), MAXSF. Constraints with no qualifying rows are absent."""
-    tuples = ",".join("('%s','%s','%s','%s')" % astuple(ConstraintId.parse(c)) for c in constraints)
+    tuples = ",".join("('{0.fromnum}','{0.tonum}',{1},{2})".format(cid, sf.quote(cid.ckt), sf.quote(cid.ctglabel))
+                       for cid in map(ConstraintId.parse, constraints))
     return sf.query(_DB, f"""
     SELECT FROMNUM::STRING FN, TONUM::STRING TN, TRIM(CKT) KK, TRIM(CTGLABEL) GG,
            COUNT(DISTINCT NAME) NQUAL, MAX(ABS(PSENS)) MAXSF
     FROM {_CPNODE}
-    WHERE ISOMARKETID=6 AND STUDYID={study_id} AND DEADBUS=0
+    WHERE ISOMARKETID={config.ISO_MARKET_ID} AND STUDYID={study_id} AND DEADBUS=0
       AND NAME NOT LIKE 'LZ_%' AND NAME NOT LIKE 'WZ_%' AND ABS(PSENS) BETWEEN {sf_min} AND {sf_max}
       AND (FROMNUM::STRING, TONUM::STRING, TRIM(CKT), TRIM(CTGLABEL)) IN ({tuples})
     GROUP BY 1,2,3,4""")

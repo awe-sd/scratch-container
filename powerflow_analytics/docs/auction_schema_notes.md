@@ -272,7 +272,7 @@ Sample rows for RUNID=1946934 (in the study-14411 range 1946934-1947143) show in
 
 **SQL Server `AW.dbo.ercot_resource_adequacy_report_view`**: columns `REPORT_DATE` (date), `SOURCE` (varchar, e.g. `MORA_August2026` — ties to ERCOT's periodic MORA/CDR-style adequacy reports), `UNIT_NAME`, `UNIT_CODE`, `INR`, `COUNTY`, `COUNTY2`, `FUEL` (e.g. `STORAGE`, `WIND-O`), `ZONE`, `IN_SERVICE` (int — looks like an in-service **year**, values like 2022/2024 in the sample, not a boolean; confirm before treating as a flag), `INSTALLED_CAPACITY_RATING_MW` (float), `NOTES`. **Coverage: `MIN(report_date) = 2023-09-19`, `MAX(report_date) = 2026-06-08`** — periodic snapshots (one `SOURCE` label per report vintage), not continuous daily data; three years of vintages is enough to build capacity-rescaling factors for recent history but not a long back-series.
 
-### 6. Fast-scan input side (Snowflake `AWDEV.FLOW_ANALYSIS`)
+### 6. Fast-scan input side (Snowflake `AW.FLOW_ANALYSIS`)
 
 **`FAST_SCAN_RUN_LOG`**: `RUN_ID` (identity PK), `CONFIG_ID`, `START_DATE`, `END_DATE`, `ROWS_INSERTED`, `STATUS`, `ERROR_MESSAGE`, `RUN_AT`, `RUN_BY`. Sample rows all show `STATUS='EXISTING_CONFIG_ID'`, `ROWS_INSERTED=0`, `START_DATE`/`END_DATE` NULL — these look like config-registration/no-op log entries rather than completed data-generating runs; a `CONFIG_ID` dimension table (not explored — access wasn't granted to probe further tables in this database beyond the two named) presumably holds the actual run parameters (topology, date range, contingency set) that `CONFIG_ID` points to.
 
@@ -304,7 +304,7 @@ Concrete data recipe for the linearized scenario Monte Carlo:
 
 **Gaps found**:
 - No Snowflake equivalent for bulk hourly zonal load actuals (`ercotLoadView`) or solar actuals (`solarGenAct`) — both remain SQL-Server-only, so bulk historical sampling for the MC needs either periodic capped pulls or a request to mirror these into Snowflake.
-- `AWDEV.FLOW_ANALYSIS.UNCONSTRAINED_DISPATCH_HOURLY` is empty despite a complete, on-point schema for per-unit dispatch injections — confirm with the fast-scan/data-eng owner whether it's mid-build or whether another source already feeds `FAST_SCAN_RESULTS.INJECTION_FLOW`.
+- `AW.FLOW_ANALYSIS.UNCONSTRAINED_DISPATCH_HOURLY` is empty despite a complete, on-point schema for per-unit dispatch injections — confirm with the fast-scan/data-eng owner whether it's mid-build or whether another source already feeds `FAST_SCAN_RESULTS.INJECTION_FLOW`.
 - `FAST_SCAN_RUN_LOG` sampled rows are all no-op `EXISTING_CONFIG_ID` entries with null date ranges — the actual run-parameterization (topology/date range/contingency set) likely lives in a `CONFIG_ID`-keyed dimension table not yet identified/explored.
 - `LDFCSTLOAD.FORECASTTYPEID` and `ercot_resource_adequacy_report_view.IN_SERVICE` semantics are not confirmed against a dimension table (the latter looks like an in-service year, not a boolean, based on sample values) — verify before using either in a model.
 - `BUS_SHIFTS_VIEW` access appears to have changed since the branch's last documented blocker (2026-08-10 `CLAUDE.md` note said not authorized; this session's query succeeded) — re-verify and update that note so `pfa/extract/shifts.py` can stop degrading to the LPDELTAMW fallback if access is now solid.

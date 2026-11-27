@@ -109,3 +109,26 @@ def test_missing_final_insert_raises():
 def test_unexpected_new_stage_order_raises():
     with pytest.raises(pe.ProcExtractionError, match="differ from expected order"):
         extract(FAST[0], list(reversed(FAST[1])))
+
+
+def _proc(*stmts):
+    return "CREATE PROCEDURE P() AS '\nBEGIN;\n" + "\n".join(stmts) + "\nEND;\n';"
+
+
+STAGE = "CREATE OR REPLACE TEMPORARY TABLE T1 (A INT, B INT);"
+FINAL = "INSERT INTO OUT.T (A, B) SELECT A, B FROM T1;"
+
+
+def test_second_insert_into_a_stage_appends_rows():
+    sql = _proc(STAGE, "INSERT INTO T1 SELECT 1, 2;", "INSERT INTO T1 SELECT 3, 4;", FINAL)
+    q = pe.extract_readonly_query(sql, ["T1"], "OUT.T", source="tiny.sql").query
+    assert q.count("UNION ALL") == 1
+    assert "T1__0(A, B) AS" in q and "SELECT 1, 2" in q and "SELECT 3, 4" in q
+    assert "SELECT * FROM T1__0\nUNION ALL" in q
+
+
+def test_update_or_merge_on_a_stage_raises():
+    for stmt in ("UPDATE T1 SET A = 0 WHERE B = 2;", "MERGE INTO T1 USING X ON T1.A = X.A WHEN MATCHED THEN DELETE;"):
+        sql = _proc(STAGE, "INSERT INTO T1 SELECT 1, 2;", stmt, FINAL)
+        with pytest.raises(pe.UnsupportedStageStatement, match="T1"):
+            pe.extract_readonly_query(sql, ["T1"], "OUT.T", source="tiny.sql")

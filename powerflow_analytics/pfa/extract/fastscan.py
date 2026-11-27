@@ -20,7 +20,7 @@ def find_configs(study_id: int, fromnum: int, tonum: int, ctglabel: str) -> pd.D
         SELECT CONFIG_ID, STUDY_ID, TOPOLOGY_ID, CTG_LABEL, DIRECTION, BRANCH_LABEL, CREATED_AT
         FROM {config.FLOW_ANALYSIS}.FAST_SCAN_CONFIG
         WHERE STUDY_ID = {int(study_id)} AND FROM_NUM = {int(fromnum)}
-          AND TO_NUM = {int(tonum)} AND CTG_LABEL = '{ctglabel}' AND IS_ACTIVE
+          AND TO_NUM = {int(tonum)} AND CTG_LABEL = {sf.quote(ctglabel)} AND IS_ACTIVE
         ORDER BY CREATED_AT DESC LIMIT 20
         """,
     )

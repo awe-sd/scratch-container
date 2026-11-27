@@ -103,3 +103,10 @@ def test_resolve_label_errors():
         resolve(_cache(), "NOPE")
     with pytest.raises(ValueError, match="no binding"):
         resolve(_cache(), "LINE_B")
+
+
+def test_resolve_strips_label_and_ckt_on_both_sides():
+    branch = pd.DataFrame({"FROMNUM": [10], "TONUM": [20], "CKT": ["1 "], "LABEL": ["LINE_A  "]})
+    ov = pd.DataFrame({"FROMNUM": [10], "TONUM": [20], "CKT": ["1"], "CTGLABEL": ["C1"], "LIMVIOLPCT": [100.0]})
+    got = resolve(_Cache({"outbranch2": branch, "outctgviol2": ov}), " LINE_A")
+    assert got == ConstraintId(10, 20, "1", "C1")

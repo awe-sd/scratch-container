@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from .. import config, mssql
+from .. import config, mssql, sf
 
 
 BRANCH_MAP_CSV = (
@@ -115,7 +115,6 @@ def ticket_history(outage_identifier: str, branch_id: int) -> pd.DataFrame:
     branch_id is required to keep the query on the indexed BranchId path —
     a bare outageIdentifier scan is slow on this table.
     """
-    ident = str(outage_identifier).replace("'", "''")
     sql = f"""
         SELECT TOP 100 t.outageIdentifier, t.revNum, t.ReportTime, t.statusID,
                s.status AS statusName, t.toStateId, cs.status AS currentStatusName,
@@ -128,7 +127,7 @@ def ticket_history(outage_identifier: str, branch_id: int) -> pd.DataFrame:
         LEFT JOIN AW.dbo.toStatus cs ON cs.statusID = st.statusID
         WHERE t.isoMarketId = {config.ISO_MARKET_ID}
           AND t.BranchId = {int(branch_id)}
-          AND t.outageIdentifier = '{ident}'
+          AND t.outageIdentifier = {sf.quote(outage_identifier)}
         ORDER BY t.revNum DESC, t.ReportTime DESC
     """
     return _query_awdb(sql)

@@ -13,7 +13,7 @@ line LABEL from the cached outbranch2 table (e.g. "35045"); a bare label is
 resolved to (FROMNUM, TONUM, CKT) via outbranch2 and to its dominant binding
 CTGLABEL via outctgviol2 (most binding-run count at LIMVIOLPCT>=99.5).
 
-Reuses pfa.analysis.fastscan / offer_lambda / lambda_engine / gen_mapping —
+Reuses pfa.extract.fastscan / offer_lambda / lambda_engine / gen_mapping —
 this script only orchestrates and writes markdown.
 """
 from __future__ import annotations

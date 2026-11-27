@@ -28,9 +28,9 @@ def find_monitors(monitored_like: str) -> pd.DataFrame:
                TOSTATION, TOKV, INSERTDATE
         FROM AW.DBO.CONGDEFMONITOR
         WHERE ISOMARKETID = 6
-          AND (CONGMONTNAME ILIKE '{monitored_like}'
-               OR FROMSTATION ILIKE '{monitored_like}'
-               OR TOSTATION ILIKE '{monitored_like}')
+          AND (CONGMONTNAME ILIKE {sf.quote(monitored_like)}
+               OR FROMSTATION ILIKE {sf.quote(monitored_like)}
+               OR TOSTATION ILIKE {sf.quote(monitored_like)})
         ORDER BY CONGMONTID
     """)
     return df
@@ -70,7 +70,7 @@ def lookup_constraint_history(
 
     ctg_filter = ""
     if contingency_like:
-        ctg_filter = f"AND ct.CONGCONTNAME ILIKE '{contingency_like}'"
+        ctg_filter = f"AND ct.CONGCONTNAME ILIKE {sf.quote(contingency_like)}"
 
     date_filter = ""
     if start:

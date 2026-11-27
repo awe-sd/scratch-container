@@ -26,7 +26,7 @@ def _branch_labels(study_id: int, f: int, t: int, ckt: str) -> list[str]:
     df = sf.query("AWOPF", f"""
         SELECT DISTINCT LABEL FROM AWOPF.DBO.OUTBRANCH2
         WHERE RUNID IN (SELECT RUNID FROM AWOPF.DBO.OPFRUN WHERE STUDYID = {int(study_id)})
-          AND FROMNUM = {int(f)} AND TONUM = {int(t)} AND TRIM(CKT) = '{ckt.strip()}'
+          AND FROMNUM = {int(f)} AND TONUM = {int(t)} AND TRIM(CKT) = {sf.quote(ckt.strip())}
           AND LABEL IS NOT NULL""")
     return [str(x) for x in df["LABEL"]] if len(df) else []
 
@@ -38,7 +38,7 @@ def best_paths(study_id: int, constraint: str, top_n: int = 3) -> pd.DataFrame |
     labels = _branch_labels(study_id, cid.fromnum, cid.tonum, cid.ckt)
     if not labels:
         return None
-    label_filter = "BRANCHLABEL IN (" + ", ".join(f"'{x}'" for x in labels) + ")"
+    label_filter = "BRANCHLABEL IN (" + ", ".join(sf.quote(x) for x in labels) + ")"
     df = sf.query("AW", f"""
         WITH ranked AS (
           SELECT SOURCENAME, SINKNAME, OPTIONPRICE, AVG_SF, WAVG_DOLLAR_MWH, RUNCREATEDATE,
@@ -46,7 +46,7 @@ def best_paths(study_id: int, constraint: str, top_n: int = 3) -> pd.DataFrame |
                  ROW_NUMBER() OVER (PARTITION BY SOURCENAME, SINKNAME
                                      ORDER BY RUNCREATEDATE DESC) AS rn
           FROM AW.POPT.PATHOPTDETAILVIEW
-          WHERE STUDYID = {int(study_id)} AND CTGLABEL = '{ctg}' AND PRICECLASSID = 2
+          WHERE STUDYID = {int(study_id)} AND CTGLABEL = {sf.quote(ctg)} AND PRICECLASSID = 2
             AND STATUS = 'COMPLETED' AND AVG_SF >= 0.05 AND {label_filter}
         )
         SELECT SOURCENAME, SINKNAME, OPTIONPRICE, AVG_SF, WAVG_DOLLAR_MWH, PRICE_PER_SF
@@ -97,7 +97,7 @@ def fetch_constraint_sp(run_ids: list[int], frm: int, to: int, ckt: str, ctg: st
     return sf.query("AWOPF", f"""
         SELECT RUNID, MAX(OPFCNLAMBDA) AS SP FROM AWOPF.DBO.OUTCONSTRAINT2
         WHERE RUNID IN ({ids}) AND FROMNUM = {int(frm)} AND TONUM = {int(to)}
-          AND CKT = '{ckt}' AND LPOPFCTGID = '{ctg}'
+          AND CKT = {sf.quote(ckt)} AND LPOPFCTGID = {sf.quote(ctg)}
         GROUP BY RUNID""")
 
 
@@ -107,7 +107,7 @@ def fetch_ctg_loading(study_id: int, frm: int, to: int, ckt: str, ctg: str) -> p
         SELECT v.RUNID, r.SIMDATE, r.SIMHOUR, MAX(v.LIMVIOLPCT) AS LIMVIOLPCT
         FROM AWOPF.DBO.OUTCTGVIOL2 v JOIN AWOPF.DBO.OPFRUN r ON r.RUNID = v.RUNID
         WHERE r.STUDYID = {int(study_id)} AND v.FROMNUM = {int(frm)} AND v.TONUM = {int(to)}
-          AND v.CKT = '{ckt}' AND v.CTGLABEL = '{ctg}'
+          AND v.CKT = {sf.quote(ckt)} AND v.CTGLABEL = {sf.quote(ctg)}
         GROUP BY v.RUNID, r.SIMDATE, r.SIMHOUR""")
 
 

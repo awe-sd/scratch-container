@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from .. import mssql
+from .. import mssql, sf
 
 SYSTEM_SOLAR_ISO_ZONE = 67
 
@@ -16,7 +16,7 @@ SYSTEM_SOLAR_ISO_ZONE = 67
 def wind_region_hourly(start: str, end: str, region: str | None = None) -> pd.DataFrame:
     """TimeStamp, windRegion, avgHSLPct, totalInstalledCapacityMW for start <= TimeStamp < end;
     one region if `region` is given (e.g. 'West'), else all regions."""
-    region_sql = f"\n              AND windRegion = '{region}'" if region else ""
+    region_sql = f"\n              AND windRegion = {sf.quote(region)}" if region else ""
     return mssql.query(
         f"""SELECT TimeStamp, windRegion, avgHSLPct, totalInstalledCapacityMW
             FROM AW.dbo.ercotWindRegionHourly
