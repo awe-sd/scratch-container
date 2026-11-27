@@ -86,3 +86,48 @@ def test_stage2_dispatch_nodes_goes_through_sf_query(monkeypatch):
     out = mod.bulk_dispatch_nodes(universe, 14412)
     assert seen and seen[0][0] == "SHIFT_FACTORS"
     assert out.loc["1-2-1@CTG", "NQUAL"] == 3
+
+
+@pytest.mark.parametrize("sql", [
+    "SELECT teid, BranchId FROM AW.dbo.toAllIsos WHERE isoMarketId = 6 AND plannedStartDate > '2026-01-01'",
+    "SELECT * FROM AW.dbo.toAllIsos WHERE plannedStartDate > '2026-01-01' -- isoMarketId = 6 AND teid = 1",
+    "SELECT * FROM AW.dbo.toAllIsos WHERE x > 1 /* isoMarketId = 6 AND teid = 1 */",
+    "SELECT * FROM AW.dbo.toAllIsos WHERE Notes = 'isoMarketId = 6 AND teid = 1'",
+    "SELECT * FROM [AW].[dbo].[toAllIsos] WHERE isoMarketId = 6",
+    "SELECT * FROM AW.dbo.ercotLoadView v JOIN AW.dbo.toAllIsos t ON t.x = v.x WHERE v.date > '2026-01-01'",
+])
+def test_outage_query_rejected_cases(fake_db, sql):
+    with pytest.raises(ValueError, match="scoped"):
+        mssql.query(sql)
+    assert fake_db == []
+
+
+@pytest.mark.parametrize("sql", [
+    "SELECT fromDate, toDate FROM AW.dbo.somethingElse WHERE fromDate > '2026-01-01'",
+    "SELECT a AS toBusNum FROM AW.dbo.ercotLoadView WHERE date = '2026-01-01'",
+    "SELECT * FROM [AW].[dbo].[toAllIsos] WHERE isoMarketId IN (6) AND BranchId IN (1, 2)",
+    "SELECT * FROM AW.dbo.ercotLoadView v JOIN AW.dbo.toAllIsos t ON t.isoMarketId = 6 AND t.teid = 3 WHERE v.date > '2026-01-01'",
+    "select * from aw.dbo.toallisos where isomarketid=6 and teid=3",
+])
+def test_outage_query_accepted_cases(fake_db, sql):
+    mssql.query(sql)
+    assert fake_db == [(sql, "AW")]
+
+
+def test_every_current_caller_sql_passes_the_guard(monkeypatch):
+    import awconnect.db
+    from pfa.extract import load, outages, renewables
+    from pfa.analysis import headroom_plots
+
+    sent = []
+    monkeypatch.setattr(config, "configure", lambda: None)
+    monkeypatch.setattr(awconnect.db, "getDfFromAwDb",
+                        lambda sql, database="AW": sent.append(sql) or pd.DataFrame({"date": [], "he": [], "ERCOT_ALL_LD": []}))
+    outages.lookup_branch_tickets(1, "2026-09-01", "2026-09-30")
+    outages.lookup_branch_tickets(1, "2026-09-01", "2026-09-30", teid=5)
+    outages.ticket_history("ONC1", 1)
+    load._query_load_view(2025, "09-01", "09-30")
+    renewables.wind_region_hourly("2026-01-01", "2026-02-01", "West")
+    renewables.solar_hourly("2026-01-01", "2026-02-01")
+    headroom_plots._fetch_load("2026-01-01", "2026-02-01")
+    assert len(sent) == 7 and sum("toAllIsos" in q for q in sent) == 3
