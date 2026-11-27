@@ -124,8 +124,9 @@ def preformatted(text: str) -> str:
 
 def table(data: pd.DataFrame, cols: list[Col], *, filter_row: bool = True, sortable: bool = True,
           row_class: Callable[[Any], str] | None = None, empty: str = "none") -> str:
-    """Table from a column spec. Filter inputs accept text, or >/< on numbers; header click sorts."""
-    if data is None or len(data) == 0:
+    """Table from a column spec; no rows still renders the header (so the table set stays stable), data=None renders the `empty` note.
+    Filter inputs accept text, or >/< on numbers; header click sorts."""
+    if data is None:
         return f'<div class="note">{esc(empty)}</div>'
     _counter["n"] += 1
     tid = f"t{_counter['n']}"
@@ -141,7 +142,7 @@ def table(data: pd.DataFrame, cols: list[Col], *, filter_row: bool = True, sorta
     if filter_row:
         filt = "<tr>" + "".join(f"<th{cls(c)}><input class='f' oninput='pfaFilter(this.closest(\"table\"))'></th>" for c in cols) + "</tr>"
     body = []
-    for _, row in data.iterrows():
+    for row in data.to_dict("records"):
         rc = row_class(row) if row_class else ""
         cells = "".join(f"<td{cls(c)}>{esc(fmt(c.value(row), c.fmt))}</td>" for c in cols)
         rattr = f' class="{esc(rc)}"' if rc else ""
@@ -153,3 +154,8 @@ def table(data: pd.DataFrame, cols: list[Col], *, filter_row: bool = True, sorta
 def figure(fig, plotlyjs: bool | str = True) -> str:
     """Plotly figure as an embeddable block (plotlyjs: True embeds the library, 'cdn' links it)."""
     return fig.to_html(full_html=False, include_plotlyjs=plotlyjs)
+
+
+def pandas_text(df: pd.DataFrame) -> pd.DataFrame:
+    """Frame of strings formatted the way pandas prints each column (uniform decimals, NaN), for display-only tables."""
+    return pd.DataFrame({c: [x.strip() for x in df[c].to_string(index=False).split("\n")] for c in df.columns}, index=df.index)

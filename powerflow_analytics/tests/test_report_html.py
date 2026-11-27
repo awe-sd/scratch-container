@@ -19,9 +19,10 @@ def test_number_formats():
     assert html.fmt(0.123456, "auto") == "0.1235" and html.fmt(float("nan"), "auto") == "NaN" and html.fmt(7, "auto") == "7"
 
 
-def test_empty_table_renders_a_note_not_a_table():
-    out = html.table(pd.DataFrame({"a": []}), [html.Col("a", "a")], empty="no rows")
-    assert "<table" not in out and "no rows" in out
+def test_empty_table_keeps_header_and_none_renders_note():
+    out = html.table(pd.DataFrame({"a": []}), [html.Col("a", "a")])
+    assert "<table" in out and "<th" in out and "<td" not in out
+    assert "<table" not in html.table(None, [html.Col("a", "a")], empty="no rows") and "no rows" in html.table(None, [], empty="no rows")
 
 
 def test_filter_row_has_one_input_per_column_and_can_be_dropped():
