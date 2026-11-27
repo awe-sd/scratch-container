@@ -6,16 +6,16 @@ import sys
 
 # (sub-command, module in pfa.cli, one-line description) in funnel order
 COMMANDS = [
-    ("summary", "build_report", "step 1: rank a study's binding constraints (CSVs in output/study_<id>/)"),
-    ("shortlist", "build_stage2_list", "step 2: classify, gate and value the shortlist for a settlement month"),
-    ("deep-dive", "constraint_deep_dive", "step 3: wind/solar thresholds, dispatch and price formation for constraints"),
-    ("paths", "pathopt_scatter", "step 4: cheapest paths that are long all required constraints (PathOpt runs)"),
-    ("value", "value_constraint", "fact sheet and on-peak monthly mark for one constraint"),
-    ("compare", "build_study_comparison_report", "compare two studies' constraints (persisting vs new)"),
-    ("lambda-dist", "lambda_distribution", "shadow-price distribution for one constraint from offers and fast-scan"),
-    ("pull", "pull_study", "extract a study from Snowflake into the local cache"),
-    ("history", "constraint_history", "realized ISO constraint history lookup"),
-    ("offers", "pull_dam_offers", "pull DAM generator offers"),
+    ("summary", "summary", "step 1: rank a study's binding constraints (CSVs in output/study_<id>/)"),
+    ("shortlist", "shortlist", "step 2: classify, gate and value the shortlist for a settlement month"),
+    ("deep-dive", "deep_dive", "step 3: wind/solar thresholds, dispatch and price formation for constraints"),
+    ("paths", "paths", "step 4: cheapest paths that are long all required constraints (PathOpt runs)"),
+    ("value", "value", "fact sheet and on-peak monthly mark for one constraint"),
+    ("compare", "compare", "compare two studies' constraints (persisting vs new)"),
+    ("lambda-dist", "lambda_dist", "shadow-price distribution for one constraint from offers and fast-scan"),
+    ("pull", "pull", "extract a study from Snowflake into the local cache"),
+    ("history", "history", "realized ISO constraint history lookup"),
+    ("offers", "offers", "pull DAM generator offers"),
     ("load-profile", "load_profile", "median ERCOT load profile figure"),
     ("headroom", "headroom", "fast-scan headroom scatter for one constraint (HTML)"),
 ]

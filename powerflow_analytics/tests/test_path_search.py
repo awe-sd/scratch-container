@@ -208,7 +208,7 @@ def test_spread_cobind_any_of_several_shorts():
 
 
 def test_paths_spread_without_required_is_an_argparse_error(capsys):
-    from pfa.cli import pathopt_scatter as cmd
+    from pfa.cli import paths as cmd
     import pytest
 
     with pytest.raises(SystemExit) as e:
@@ -218,7 +218,7 @@ def test_paths_spread_without_required_is_an_argparse_error(capsys):
 
 def test_legacy_date_is_normalised_once_for_the_output_folder(monkeypatch, tmp_path):
     from pfa import config
-    from pfa.cli import pathopt_scatter as cmd
+    from pfa.cli import paths as cmd
 
     seen = {}
     monkeypatch.setattr(cmd, "run_pair", lambda args: seen.setdefault("date", args.date))

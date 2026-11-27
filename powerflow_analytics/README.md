@@ -27,7 +27,8 @@ Worked example: study 14412, outage cutoff 2026-09-15, settlement month 2026-09.
    uv run pfa shortlist --study 14412 --cutoff 2026-09-15 --month 2026-09
    ```
    Writes `output/study_14412/`: `step1_screen.csv` (classified universe), `step1_flips.csv`, `stage2_list.csv` and `stage2_list.html`
-   (the shortlist with value columns), `constraint_dirs.csv`. Gate thresholds are options (`--share-min`, `--post-days-min`,
+   (the shortlist with value columns; the page has a column legend, a Valued table sorted by edge and a Not valued table with the reason each row could not be priced),
+   `constraint_dirs.csv`. The command prints a valuation summary and exits non-zero if any row's lookup raised. Gate thresholds are options (`--share-min`, `--post-days-min`,
    `--rent-min`, `--nqual-min`, `--intensity-min-hard`, `--intensity-min-full`, `--penalty-share-max`).
 
 3. **deep-dive** — wind/solar binding thresholds, dispatch profile and price formation for one or more shortlisted constraints.
@@ -56,11 +57,21 @@ Worked example: study 14412, outage cutoff 2026-09-15, settlement month 2026-09.
 | `lambda-dist` | Shadow-price distribution for one constraint from DAM offers and fast-scan (`--study --constraint`) |
 | `pull` | Extract a study into the cache (`--study [--refresh]`) |
 | `history` | Realized ISO constraint history for a monitored element (`--monitored PATTERN`) |
-| `offers` | DAM generator offer pull (`--start --end [--summary]`) |
+| `offers` | DAM generator offer pull (`--resource PATTERN --start --end [--summary]`; `--resource` is required, an ILIKE pattern on RESOURCENAME, e.g. `FRNYPP%`) |
 | `load-profile` | Median ERCOT load profile figure (`--start MM-DD --end MM-DD`) |
 | `headroom` | Fast-scan headroom scatter for one constraint, HTML (`--study --fromnum --tonum --ctglabel --hist-start --hist-end --out`) |
 
 The old `scripts/<name>.py` command lines still work; each is a shim for the matching `pfa` command.
+
+## Not wired into any command (pending owner decision)
+
+These modules/functions have no live caller; they are kept (not deleted, not wired in) while the owner decides on realized history and on the relief-pair screen.
+
+- `pfa/analysis/market.py` (`iso_constraint_ids`, `realized_history`, `implied_outage_check`) — maps a study constraint to ISO constraint ids by id-join and pulls realized DA/RT binding hours and lambda stats; checks an implied (breaker) outage from the study's own line status. Used by `archive/build_high_confidence_report.py`.
+- `pfa/extract/network_ref.py::constraint_kv` — max kV of a constraint's two endpoint buses (voltage class). Used by `archive/build_high_confidence_report.py` and `archive/build_screening_report.py`.
+- `PAIR_MIN_SF` / `PAIR_MAX_SF` in `pfa/analysis/shadow_price.py` (0.1 / 0.5) — the shift-factor band of the relief-pair dispatch screen, together with the single redispatch-pair price (`redispatch_pair`, `pair_offers`, `pair_price`, `pair_estimate`). Used by `archive/build_high_confidence_report.py` and `archive/build_screening_report.py` (through `dispatch_screen`).
+
+The reports under `archive/` are not runnable as-is (their imports no longer all resolve). The relief-pair dispatch screen (`pfa/analysis/dispatch_screen.py`, its bulk reader in `pfa/extract/shifts.py` and `tests/test_dispatch_screen.py`) was removed in commit 5c78cd6c and can be restored from a9d144be.
 
 ## Dashboard
 

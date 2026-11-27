@@ -30,12 +30,22 @@ def test_unknown_command_is_an_error(capsys):
     assert _exit_code(["nope"]) == 2
 
 
-@pytest.mark.parametrize("module", [m for _, m, _ in cli.COMMANDS if m != "headroom"])
-def test_script_shims_import_and_point_at_cli(module):
+SHIMS = {"build_report": "summary", "build_stage2_list": "shortlist", "constraint_deep_dive": "deep_dive",
+         "pathopt_scatter": "paths", "value_constraint": "value", "build_study_comparison_report": "compare",
+         "lambda_distribution": "lambda_dist", "pull_study": "pull", "constraint_history": "history",
+         "pull_dam_offers": "offers", "load_profile": "load_profile"}
+
+
+def test_cli_modules_are_named_after_their_subcommands():
+    assert {n.replace("-", "_") for n, _, _ in cli.COMMANDS} == {m for _, m, _ in cli.COMMANDS}
+
+
+@pytest.mark.parametrize("script,module", sorted(SHIMS.items()))
+def test_script_shims_keep_old_file_names_and_point_at_cli(script, module):
     import runpy
     from pathlib import Path
 
-    shim = Path(__file__).resolve().parents[1] / "scripts" / f"{module}.py"
+    shim = Path(__file__).resolve().parents[1] / "scripts" / f"{script}.py"
     ns = runpy.run_path(str(shim), run_name="not_main")
     assert ns["main"] is importlib.import_module(f"pfa.cli.{module}").main
 
@@ -60,7 +70,7 @@ def test_main_returns_the_subcommand_exit_status(monkeypatch):
 
 def test_shortlist_before_summary_names_the_missing_file_and_command(monkeypatch, tmp_path, capsys):
     from pfa import config
-    from pfa.cli import build_stage2_list as cmd
+    from pfa.cli import shortlist as cmd
 
     monkeypatch.setattr(config, "OUTPUT_ROOT", tmp_path)
     (tmp_path / "study_7").mkdir()
@@ -91,7 +101,7 @@ def _screening_stub(cmd, monkeypatch, tmp_path):
 
 def test_shortlist_exits_nonzero_and_summarises_when_lookups_raise(monkeypatch, tmp_path, capsys):
     from pfa.analysis import shortlist_value as sv
-    from pfa.cli import build_stage2_list as cmd
+    from pfa.cli import shortlist as cmd
 
     res = _screening_stub(cmd, monkeypatch, tmp_path)
     monkeypatch.setattr(sv, "StudyCache", _AllCache)
@@ -150,7 +160,7 @@ def test_failed_row_keeps_the_columns_computed_before_the_error(monkeypatch, tmp
 
 def test_value_prints_the_cache_only_mark_first_when_the_database_is_down(monkeypatch, capsys):
     from pfa.analysis import valuation
-    from pfa.cli import value_constraint as cmd
+    from pfa.cli import value as cmd
 
     class Cache:
         def __init__(self, study):

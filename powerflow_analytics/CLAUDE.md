@@ -26,6 +26,11 @@ headroom + path optimization. The design spec file no longer exists; see the tra
 - Constraint identity = (FROMNUM, TONUM, CKT, CTGLABEL). Use the `*2` output tables; v1 OUTBRANCH is empty for recent studies, and OUTGEN2.GENUNITID is NULL — gen identity routes (BUSNUM, ID) → OUTGENREF → AWDEV.DBO.GENUNIT.
 - Binding = LIMVIOLPCT >= 99.5 in OUTCTGVIOL2 (SCOPF holds constraints at ~100). ">100" alone is NOT unresolved — solver tolerance overshoots by ~0.01 MW routinely (study 14492: 28 of 29 >100% rows were tolerance). Materially unresolved = real MW overshoot (≳0.5 MW / LIMVIOLPCT ≳ 100.5) — cross-check OUTCONSTRAINT2 for λ at the 3500 cap with OPFCNCUP=−3500/negative slack. OPFBINDING/MARGCOSTMVA in OUTBRANCH2 are only set for base-case (pre-ctg) binders.
 
+## Classification and shortlist rules (2026-11-27)
+
+- 2026-11-27: The single classification scheme is the stage-2 one (`screening.classify`, first match wins: D bearish > C no-dispatch > B baseline > A target > weak). It differs from the retired A/B/C/D/U scheme of the old screening report: different rule order (retired: D, A, C, B, U), bearish at signed share < -0.10 or binding pre-cutoff only (retired: share < 0), a penalty-share test for C (more than 40% of LP rows at the 500/3500 tiers; retired: penalty-tier lambda flag and a dispatch-pair screen), and baseline on bind counts (`pre_binds >= max(1, 0.5 x post_binds)`; retired: pre/post binding rates). Class letters are not comparable between the two.
+- 2026-11-27: The shortlist values every gated row (`value_shortlist`); it no longer applies the retired screening report's "outage days in month >= 3, top 15 by value" step. Rows that cannot be priced stay on the page's Not valued table with the specific reason; thin evidence is flagged in `thin window evidence`.
+
 ## Planning studies vs auction studies (learned on 14492, 2026-08-19)
 
 - ptoid identifies the family: **1504** = Sep-2026 auction models (14411/12/31...),

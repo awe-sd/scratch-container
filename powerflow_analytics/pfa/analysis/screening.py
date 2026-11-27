@@ -1,7 +1,7 @@
 """Constraint screening: universe -> signed impact -> dispatch-node count -> class -> flips -> stage-2 gate.
 
 The one classification scheme (A target / B baseline / C no-dispatch / D bearish / weak) and the
-shortlist gate. Reads the local study cache and the two CSVs written by build_report.py --tickets;
+shortlist gate. Reads the local study cache and the two CSVs written by `pfa summary --tickets`;
 NQUAL comes from one grouped CPNODE_SHIFTS_VIEW query via pfa.extract.shifts. No file writing here.
 """
 from __future__ import annotations
@@ -235,7 +235,7 @@ def screen_study(study: int, cutoff: str, thresholds: Thresholds = Thresholds(),
     """Classified universe, flips and gated shortlist for one study.
 
     Inputs: cache/study_<id>/{opfrun,outctgviol2,outconstraint2}.parquet and
-    output/study_<id>/{ranked_constraints,tofinder_summary}.csv (from build_report.py --tickets).
+    output/study_<id>/{ranked_constraints,tofinder_summary}.csv (from `pfa summary --tickets`).
     """
     cache_dir = Path(cache_dir) if cache_dir else config.CACHE_ROOT / f"study_{study}"
     out_dir = Path(out_dir) if out_dir else config.OUTPUT_ROOT / f"study_{study}"
