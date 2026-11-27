@@ -23,7 +23,7 @@ import pandas as pd
 
 from pfa import config
 from pfa.constraint_id import ConstraintId, constraint_key
-from pfa.analysis import marginal_units, market, offer_lambda, valuation
+from pfa.analysis import dispatch_screen, marginal_units, market, shadow_price, valuation
 from pfa.cache import StudyCache
 from pfa.extract import buskv, fastscan, gen_mapping, popt
 
@@ -35,7 +35,7 @@ def lam_and_source(row) -> tuple[float | None, str | None]:
     """E[lambda|bind] precedence for the Edge/Value column:
 
     1. offers-based lambda hi (marginal-unit offers / dSF — the house
-       method) wherever offer_lambda.estimate covered the constraint; hi =
+       method) wherever shadow_price.pair_estimate covered the constraint; hi =
        the pairs-exhausted / binding-regime price, lo is just the free first
        leg, so hi is the right single-point estimate here.
     2. realized DA P50 (CONGHRPRICE, ID-joined) when offers don't cover it.
@@ -115,7 +115,7 @@ def main() -> None:
         lam_p50 = float(stats.lam["p50"].max()) if len(stats.lam) else None
         penalty = lam_p50 is not None and lam_p50 >= 500
         try:
-            unenforceable = offer_lambda.dispatch_screen(args.study, c)
+            unenforceable = dispatch_screen.dispatch_screen(args.study, c)
         except Exception:
             unenforceable = None
         limit = float(r.get("LIMIT_MVA") or 0)
@@ -193,7 +193,7 @@ def main() -> None:
         except Exception:
             pass
         try:  # independent offer-based lambda (SF-filtered pair)
-            est = offer_lambda.estimate(args.study, ctgviol, gen, bus_names, genunit, scedname, c)
+            est = shadow_price.pair_estimate(args.study, ctgviol, gen, bus_names, genunit, scedname, c)
             if est:
                 df.loc[i, "λ offers (lo–hi)"] = f"{est['lam_lo']}–{est['lam_hi']}"
                 df.loc[i, "Redispatch pair"] = est["pair"]

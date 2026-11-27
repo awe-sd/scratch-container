@@ -258,7 +258,7 @@ just *how* to compute it at scenario scale.
   with `|SF| ≥ ~0.9` (radial/bottled, `ISRADIAL` flag is present directly in
   `DEVICE_SHIFTS` — no separate lookup needed) — these aren't dispatchable
   relief. Also exclude `|SF| < 0.03` (below dispatch-sensitivity noise floor,
-  per the existing offer_lambda convention). That leaves roughly the ~20-unit
+  per the existing shadow_price convention). That leaves roughly the ~20-unit
   window the house method already uses per constraint, out of whatever the
   full connected set is — this shrinks the "100 constraints" scope to
   however many post-screen actually have qualifying dispatch (constraints
@@ -404,4 +404,4 @@ rescaler rather than rebuilding the sampler.
 - [Risk-based security assessment of transmission line overloading considering spatio-temporal dependence of load and wind power using vine copula, IET Renewable Power Generation (2019)](https://digital-library.theiet.org/doi/full/10.1049/iet-rpg.2018.6091)
 - [Owen & Maximov, "Importance sampling the union of rare events with an application to power systems analysis," Electronic Journal of Statistics 13(1), 2019](https://arxiv.org/abs/1710.06965)
 - [Shift factors in ERCOT congestion pricing — Ross Baldick](https://users.ece.utexas.edu/~baldick/papers/shiftfactors.pdf)
-- Internal: `powerflow_analytics/pfa/extract/shifts.py`, `pfa/analysis/offer_lambda.py`, `pfa/analysis/market.py`, `pfa/extract/fastscan.py`, `docs/auction_schema_notes.md`, and `AW.dbo.ercotWindRegionHourly` access pattern (memory: `powerflow_crr_valuation_method.md`).
+- Internal: `powerflow_analytics/pfa/extract/shifts.py`, `pfa/analysis/shadow_price.py`, `pfa/analysis/market.py`, `pfa/extract/fastscan.py`, `docs/auction_schema_notes.md`, and `AW.dbo.ercotWindRegionHourly` access pattern (memory: `powerflow_crr_valuation_method.md`).

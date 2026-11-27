@@ -21,7 +21,7 @@ import gc
 import pandas as pd
 
 from pfa import config, periods
-from pfa.analysis import lambda_engine as lam, marginal_units, offer_lambda
+from pfa.analysis import dispatch_screen, marginal_units, shadow_price as sp
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
 from pfa.analysis.screening import classify_constraint
 from pfa.cache import StudyCache
@@ -88,7 +88,7 @@ def coverage_and_days(c: str, has_ticket: bool, start, end, bind_days_map, n_sam
 def fastscan_month_onpeak(config_id: int, month: str):
     """Fast-scan headroom for the calendar month across all years, restricted to weekday HE7-22
     on-peak rows (ex-NERC holidays); returns (p_bind_onpeak, need_df) where need_df is the
-    NEED_MW frame (negative-headroom onpeak hours only, for lambda_engine)."""
+    NEED_MW frame (negative-headroom onpeak hours only, for shadow_price)."""
     df = fastscan.headroom_for_month(config_id, periods.parse_month(month)[1])
     if df.empty:
         return None, pd.DataFrame()
@@ -132,28 +132,23 @@ def value_row(study_id: int, c: str, gen, bus_names, genunit, scedname, month: s
     # DIRECTION matters: on a reverse-bound branch (-1) a positive-PSENS
     # unit is relief (up), not the problem (down) — see relief_set's
     # docstring for the study-14412 canary this fixes (3380-3390-1@DPNAONA5).
-    relief = lam.relief_set(study_id, c, gen, bus_names, genunit, scedname, direction=direction)
-    if relief.empty:
+    relief = sp.relief_set(study_id, c, gen, bus_names, genunit, scedname, direction=direction)
+    if relief.units.empty:
         out["_status"] = "no relief-set units in SF band"
         return out
-    cap = lam.dam_capacity(relief["SCED"].dropna().tolist())
-    if cap.empty:
+    if relief.capacity.empty or not relief.up or not relief.down:
         out["_status"] = "no DAM offer coverage for relief-set units"
         return out
-    up, down = lam.build_stacks(relief, cap)
-    if not up or not down:
-        out["_status"] = "no DAM offer coverage for relief-set units"
-        return out
-    curve = lam.lambda_depth_curve(up, down)
+    curve = relief.curve()
     if not curve or need.empty:
         out["_status"] = "no fast-scan negative-headroom hours"
         return out
-    dist = lam.lambda_distribution(curve, need)
+    dist = sp.lambda_distribution(curve, need)
     priced = dist["LAMBDA"].dropna()
     if priced.empty:
         out["_status"] = "fast-scan need exceeds relief-set capacity at every hour"
         return out
-    pct = lam.percentiles(priced)
+    pct = sp.percentiles(priced)
     out["E[lambda|bind]"] = round(float(priced.mean()), 1)
     out["lambda P50"] = pct.get("P50")
     out["lambda P90"] = pct.get("P90")
@@ -282,7 +277,7 @@ def main() -> None:
 
     # ONE bulk round trip for dispatch features on every candidate constraint
     # (was 2 queries x ~230 constraints — the architect-flagged cost problem).
-    dispatch_feats = offer_lambda.bulk_dispatch_features(args.study, short["CONSTRAINT"].tolist())
+    dispatch_feats = dispatch_screen.bulk_dispatch_features(args.study, short["CONSTRAINT"].tolist())
     gc.collect()
 
     rows = []

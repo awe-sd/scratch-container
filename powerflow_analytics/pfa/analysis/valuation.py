@@ -3,8 +3,7 @@
 Method (per constraint):
 1. Binding stats from the study LP (OUTCONSTRAINT2): P(bind | hour block) and
    the lambda distribution, restricted to the driving outage's window.
-2. Lambda cross-check from marginal-unit offers: lambda = offer spread / delta-SF
-   (the caller supplies offer quantiles; ERCOT's $5000 cap bounds the tail).
+2. Lambda cross-check from marginal-unit offers: see shadow_price (capped at PRICE_CAP).
 3. Normalize to $/MWh: expected rent per MW of flowgate over the month divided
    by the month's total on-peak hours (M-F 5x16, NERC holidays excluded).
 
@@ -20,8 +19,7 @@ import pandas as pd
 
 from .. import periods
 from .constraints import constraint_key
-
-PRICE_CAP = 5000.0
+from .shadow_price import PRICE_CAP
 
 # sampled sim-hour -> number of on-peak hours it represents (16h on-peak day)
 HOUR_BLOCKS = {12: 10, 18: 6}  # midday block HE7-16, evening block HE17-22
@@ -68,13 +66,6 @@ def binding_stats(
     ).clip(upper=PRICE_CAP)
     return BindingStats(constraint, {int(k): float(v) for k, v in p.items()},
                         lam, window, int(r["RUNID"].nunique()))
-
-
-def offer_lambda(spread_low: float, spread_high: float, delta_sf: float) -> tuple[float, float]:
-    """Lambda range from marginal-unit offer spread / delta shift factor, capped."""
-    if delta_sf <= 0:
-        raise ValueError("delta_sf must be positive")
-    return (min(spread_low / delta_sf, PRICE_CAP), min(spread_high / delta_sf, PRICE_CAP))
 
 
 def dollars_per_mwh(

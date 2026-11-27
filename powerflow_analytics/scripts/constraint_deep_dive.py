@@ -13,7 +13,7 @@ line LABEL from the cached outbranch2 table (e.g. "35045"); a bare label is
 resolved to (FROMNUM, TONUM, CKT) via outbranch2 and to its dominant binding
 CTGLABEL via outctgviol2 (most binding-run count at LIMVIOLPCT>=99.5).
 
-Reuses pfa.extract.fastscan / offer_lambda / lambda_engine / gen_mapping —
+Reuses pfa.extract.fastscan / shadow_price / gen_mapping —
 this script only orchestrates and writes markdown.
 """
 from __future__ import annotations
@@ -26,7 +26,7 @@ import numpy as np
 import pandas as pd
 
 from pfa import config, constraint_id, periods
-from pfa.analysis import marginal_units, offer_lambda, lambda_engine
+from pfa.analysis import marginal_units, shadow_price
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
 from pfa.extract import fastscan, gen_mapping, renewables, shifts
 from pfa.cache import StudyCache
@@ -178,7 +178,7 @@ def dispatch_profile(study_id: int, c: dict, genunit: pd.DataFrame, scedname: pd
     if nodes.empty:
         return nodes
     nodes["PSENS"] = nodes["PSENS"].astype(float)
-    nodes = nodes[nodes["PSENS"].abs().between(offer_lambda.MIN_SF, offer_lambda.MAX_SF)].copy()
+    nodes = nodes[nodes["PSENS"].abs().between(shadow_price.MIN_SF, shadow_price.MAX_SF)].copy()
     # several NAME rows are aliases for the same underlying node (identical PSENS/CPNODEID) --
     # collapse them so the top-N table shows distinct nodes, not repeats of one node's aliases.
     # CPNODEID=0 is a shared placeholder for MULTIPLE distinct unmapped nodes (e.g. four separate
@@ -232,15 +232,14 @@ def price_formation(study_id: int, c: dict, ctgviol: pd.DataFrame, outcon: pd.Da
     marg_summary = (marg.groupby(["BUSNUM", "ID", "FUELTYPE"])
                     .size().rename("N").reset_index().sort_values(["N", "BUSNUM", "ID", "FUELTYPE"], ascending=[False, True, True, True]).head(10))
 
-    # structural lambda via lambda_engine relief-set stack, shallow vs deep
+    # structural lambda via shadow_price relief-set stack, shallow vs deep
     struct = None
     try:
-        relief = lambda_engine.relief_set(study_id, key, gen, bus_names, genunit, scedname,
-                                          direction=c["direction"])
+        rs = shadow_price.relief_set(study_id, key, gen, bus_names, genunit, scedname,
+                                     direction=c["direction"])
+        relief, cap, up, down = rs.units, rs.capacity, rs.up, rs.down
         if not relief.empty:
-            cap = lambda_engine.dam_capacity(relief["SCED"].dropna().tolist())
-            up, down = lambda_engine.build_stacks(relief, cap)
-            curve = lambda_engine.lambda_depth_curve(up, down)
+            curve = rs.curve()
             if not curve:
                 # relief_set found qualifying units, but build_stacks/lambda_depth_curve
                 # produced no priced step -- distinct from "no relief set at all": this is

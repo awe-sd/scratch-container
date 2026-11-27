@@ -21,7 +21,7 @@ import numpy as np
 import pandas as pd
 
 from pfa.analysis.constraints import BINDING_PCT, constraint_key
-from pfa.analysis.offer_lambda import MAX_SF as SF_MAX, MIN_SF as SF_MIN
+from pfa.analysis.shadow_price import MAX_SF as SF_MAX, MIN_SF as SF_MIN
 from pfa.constraint_id import ConstraintId
 from pfa.extract import shifts
 

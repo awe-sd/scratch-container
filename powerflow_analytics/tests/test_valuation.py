@@ -1,6 +1,6 @@
 
-import pandas as pd
 import pytest
+import pandas as pd
 
 
 from pfa.analysis import valuation
@@ -38,14 +38,6 @@ def test_binding_stats_window():
     assert stats.p_bind[18] == 0.5 and stats.p_bind[12] == 0.25
     assert stats.lam.loc[18, "p50"] == 60.0
     assert stats.n_window_runs == 12
-
-
-def test_offer_lambda_capped():
-    lo, hi = valuation.offer_lambda(7.0, 60.0, 0.18)
-    assert round(lo, 1) == 38.9 and round(hi, 1) == 333.3
-    assert valuation.offer_lambda(2000.0, 3000.0, 0.1)[1] == valuation.PRICE_CAP
-    with pytest.raises(ValueError):
-        valuation.offer_lambda(1.0, 2.0, 0.0)
 
 
 def test_dollars_per_mwh():

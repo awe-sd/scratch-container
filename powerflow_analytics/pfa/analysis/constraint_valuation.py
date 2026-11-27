@@ -39,17 +39,6 @@ _GEN_RE = re.compile(r"^Gen (\d+) #(\d+)")
 
 
 
-def shadow_price_from_offer(
-    offer_low: float, offer_high: float, shift_factor: float, counter_price: float = 0.0
-) -> tuple[float, float]:
-    """mu = (offer - counter_price) / SF, returned as (low, high). Pure function."""
-    if shift_factor == 0:
-        raise ValueError("shift_factor must be non-zero")
-    lo = (offer_low - counter_price) / shift_factor
-    hi = (offer_high - counter_price) / shift_factor
-    return (min(lo, hi), max(lo, hi))
-
-
 def _load_from_cache_or_snowflake(study_id: int) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Returns (ctgviol, outcon, runs, branch), preferring the local parquet cache."""
     cache = StudyCache(study_id)

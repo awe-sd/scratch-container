@@ -71,7 +71,7 @@ columns. This is a live schema change upstream, not a study-specific quirk.
 this **masks** the drift rather than surfacing it: any future analysis run today (or any cache
 rebuild) silently gets NULL FUELZONE/RENEWZONE with no other tell than an empty column. Confirmed
 non-regressive for the one place that could have depended on them: `IS_RENEWABLE` classification in
-`pfa/analysis/lambda_engine.py::relief_set()` derives from `OUTGEN2.FUELTYPE` (e.g. "SUN (Solar)",
+`pfa/analysis/shadow_price.py::relief_set()` derives from `OUTGEN2.FUELTYPE` (e.g. "SUN (Solar)",
 "WND (Wind)"), not FUELZONE/RENEWZONE, and correctly classified 171 renewable units on study 14605
 under this fix. If a future analysis needs FUELZONE/RENEWZONE specifically (not just FUELTYPE), it
 will get silent NULLs — check `fetch_gen()`'s docstring note before assuming those columns carry data.
