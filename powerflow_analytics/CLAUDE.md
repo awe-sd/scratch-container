@@ -9,6 +9,9 @@ headroom + path optimization. The design spec file no longer exists; see the tra
 - All DB access via `awconnect` with profile `read_only`, Snowflake warehouse `AI_READ_ONLY` (`pfa/config.py`).
 - Snowflake goes ONLY through `pfa.sf.query`; SQL Server ONLY through `pfa.mssql.query` — no other module imports `awconnect` (config aside).
 - `pfa.mssql.query` enforces the house rules in code: one SQL Server query at a time (process-wide lock), and any `toAllIsos`/`to*` outage-table query without an `isoMarketId` and a `BranchId`/`teid` predicate is rejected before it is sent.
+- One reader per market-data source, all in `pfa/extract/`: `fastscan.py` (FAST_SCAN_CONFIG/RESULTS), `shifts.py` (CPNODE_/BUS_SHIFTS_VIEW), `dam_offers.py` (ERCOT60DDAMGENRESOURCE), `renewables.py` (wind/solar actuals), `popt.py` (AW.POPT path costs).
+- Table names and their SQL live ONLY in that source's reader module (plus tests and prose); analysis modules and scripts call the reader and never embed the table name.
+- A new query against one of those sources is a new function in its reader, with a test that fakes `sf.query`/`mssql.query` and asserts the scoping predicates (see `tests/test_extract_*.py`).
 - Extract once per study: `uv run powerflow_analytics/scripts/pull_study.py --study <id>` → parquet in `cache/study_<id>/` (gitignored). Analysis and Dash read the cache only — never Snowflake in callbacks.
 - Analyze: `uv run powerflow_analytics/scripts/build_report.py --study <id> --cutoff <YYYY-MM-DD> [--tickets]` → CSVs in `output/study_<id>/`.
 - SQL Server (`AW.dbo.toAllIsos`) gets ONLY targeted single-branch lookups (`pfa/extract/outages.py`) — never bulk queries, and strictly ONE query at a time (sequential).
