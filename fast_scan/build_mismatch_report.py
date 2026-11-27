@@ -93,10 +93,35 @@ def detail_block(set_id, per_topo, per_node):
 """
 
 
+JUNE_14218 = dict(study=14218, date_from="2026-06-01", date_to="2026-06-30")
+
+
+def june_14218_findings(month: str) -> dict:
+    """Hand-written findings for study 14218, June 2026 only (numbers and ids are specific to that run)."""
+    return dict(
+        grain_eg="\n(e.g. 6965/MCATPRL5 2026-06-30 15:00 packs 4 variants)",
+        dup='<b>DUP_FANOUT:</b> root cause was duplicate rows inside AW.dbo.PSENSHIFT itself (psenshiftid 85019908 had 2222 rows for\n1111 cpnodes, bit-identical; mirrored on the study side for &times;4 total) — fixed upstream via QUALIFY ROW_NUMBER()\ndedupe on both join CTEs; the 3 affected sets (112447, 112449, 112421) were re-pulled with cache bypass and now show\n0 duplicate keys.<br>\n',
+        concl='Conclusion: <b>outside bad hours, study shifts\nreproduce DART within 0.01 — but NOT within 0.001.</b>\n',
+        note=f'<div class="note">\n<b>112401 6965/MCATPRL5, 2026-06-30 h15 — why 4 study topologies in one hour:</b> the 4 study psenshiftids\n(85823400, 85841928, 85713639, 85768862) map to 4 distinct TOPOLOGYIDs (176239, 175915, 176315, 176062) and 4 distinct\nRUNIDs (1898497, 1898039, 1898666, 1898248) — 4 separate validation-fast-scan topology variants scored against the same\nreal hour (intended design). DART has exactly ONE actual psenshiftid (85785153, congConstraintID 222555) for that hour.\nTwo study topologies (85823400, 85841928) are genuinely bad matches to reality (702/968 nodes, MAE ~0.031, max 0.309);\ntwo (85713639, 85768862) are much closer (99/971, 93/971 nodes, MAE ~0.005) but still clear the 5% HOUR_BAD_SHARE gate\non node count. <b>The comparison itself is sound here</b> — no sign/reference/definitional artifact; 505_B/DVENFTS5 is\nlikewise a real, verified error.<br>\n<b>DBIGKEN5 family, qualified:</b> the family is clean of SIGN artifacts (0/89 {month} configs MIXED_SIGN), but\nTREADW_YELWJC11/DBIGKEN5 06-07 h21 (max 0.698) and HAMILT_MAXWEL11/DBIGKEN5 06-17 h24 (max 0.536) remain the two\nlargest real max|diff| values in all of {month} — genuine errors, not artifacts.\n' + "</div>",
+        t2head=" — watch for the 06-30 h12-15 / 06-10 h13-15 / 06-17 / 06-07 clusters",
+        t2foot='<div class="note">Footnote: 06-27 and 06-28 also show 13 bad constraint-clock-hours each, but both are entirely\nWESLCO_HIDLBRG1/MHARNED5 (a small-magnitude REF_OFFSET config, 74 nodes) — not a new real cluster; the genuine\nclusters are 06-30, 06-10, 06-17, and 06-07 (TREADW_YELWJC11/DBIGKEN5, max|diff| 0.698).' + "</div>",
+        dup_fixed=" (now fixed, dedupe\nconfirmed 0 duplicate keys)",
+        t4n=f"{month} only has 20 bad clock-hours total across 89 constraints — ",
+    )
+
+
+NO_FINDINGS = dict(grain_eg="", dup="", concl="", note="<p>No written findings exist for this study/window; computed tables only.</p>",
+                   t2head="", t2foot="", dup_fixed="", t4n="")
+
+
 def build(study_id: int, created_after: str, out_subdir: str, date_from: str, date_to: str):
     out_dir = output_dir(study_id, out_subdir)
     base_dir = output_dir(study_id)
     month = window_label(date_from, date_to) or "window"
+    exact = (study_id, date_from, date_to) == (JUNE_14218["study"], JUNE_14218["date_from"], JUNE_14218["date_to"])
+    found = june_14218_findings(month) if exact else NO_FINDINGS
+    f_grain_eg, f_dup, f_concl, f_note = found["grain_eg"], found["dup"], found["concl"], found["note"]
+    f_t2head, f_t2foot, f_dup_fixed, f_t4n = found["t2head"], found["t2foot"], found["dup_fixed"], found["t4n"]
 
     summary = pd.read_csv(out_dir / "mismatch_summary.csv").sort_values(
         ["max_nodes_mismatch_bad_hours", "avg_abs_diff_mismatch_bad_hours"], ascending=[False, False]
@@ -171,7 +196,7 @@ def build(study_id: int, created_after: str, out_subdir: str, date_from: str, da
     t1_headers = ["Branch", "Ctg", "BadClockHrs/Tot", "%bad(clock)", "BadVariants/Tot", "median nodes(bad)",
                   "max nodes(bad)", "avg|diff|(bad)", "Bad hours (first 5, clock-hour)", "Flags",
                   "RefOffset nodes before&rarr;after", "Share@0.0005", "Share@0.001", "Share@0.01",
-                  "JuneWide nodes/total (fragile)"]
+                  f"{month}Wide nodes/total (fragile)"]
 
     # Table 1b: bad topology-hours list (variant grain, with TOPOLOGYID/RUNBEGINTIME)
     tbh_rows = "".join(
@@ -263,8 +288,7 @@ Sections: <a href="#hdr">Header/Params</a> | <a href="#t1">Table 1</a> | <a href
 <h1 id="hdr">Validation Shift Mismatch Analysis — Study {study_id}, {month} {date_from} to {date_to}</h1>
 {sections_toc}
 <div class="params">
-<b>Grain:</b> a topology-hour = (topology VARIANT &times; clock-hour) pair; several variants can share one clock-hour
-(e.g. 6965/MCATPRL5 2026-06-30 15:00 packs 4 variants). Counts are reported at both grains: n_bad_topology_variants
+<b>Grain:</b> a topology-hour = (topology VARIANT &times; clock-hour) pair; several variants can share one clock-hour{f_grain_eg}. Counts are reported at both grains: n_bad_topology_variants
 (variant grain) and bad_clock_hours/tot_clock_hours (distinct simdate+simhour grain — what "N bad hours" should mean
 to a human). A topology-hour VARIANT is BAD if &ge;<b>HOUR_BAD_SHARE = {params['hour_bad_share']:.0%}</b> of its cpnodes
 have |diff|&gt;RANK_TOL.<br>
@@ -277,39 +301,20 @@ neither sign fits well (min MAE &gt; guard) — these keep the study convention 
 <b>REF_OFFSET:</b> if |bias|&gt;0.8&middot;MAE and &ge;90% of a config's cpnodes have bias within &plusmn;0.002 of the
 config bias, that constant offset is subtracted before mismatch counting; the "RefOffset nodes before&rarr;after" column
 shows the {month}-wide node-mismatch-rate count before and after de-biasing (can rise OR fall).<br>
-<b>DUP_FANOUT:</b> root cause was duplicate rows inside AW.dbo.PSENSHIFT itself (psenshiftid 85019908 had 2222 rows for
-1111 cpnodes, bit-identical; mirrored on the study side for &times;4 total) — fixed upstream via QUALIFY ROW_NUMBER()
-dedupe on both join CTEs; the 3 affected sets (112447, 112449, 112421) were re-pulled with cache bypass and now show
-0 duplicate keys.<br>
-<b>Node labels</b> (Table 4) are rebased on BAD CLOCK-HOURS only, and require &ge;{params['min_bad_clock_hours_for_membership']}
+{f_dup}<b>Node labels</b> (Table 4) are rebased on BAD CLOCK-HOURS only, and require &ge;{params['min_bad_clock_hours_for_membership']}
 distinct bad clock-hours of a constraint before a node counts as "off in constraint X" (a single bad hour no longer
-taints a node's whole-{month} record). Tolerances: RANK_TOL = {params['rank_tol']}. The "JuneWide nodes/total" column
+taints a node's whole-{month} record). Tolerances: RANK_TOL = {params['rank_tol']}. The "{month}Wide nodes/total" column
 (rate-based, NODE_RATE = {params['node_rate']:.0%}) stays demoted/fragile — with only 4-17 topology-hours per config in
 some cases, a single bad hour can push several nodes over a 10% rate gate on its own. Row-level shares at 0.0005/0.001/
 0.01 are reference only. Units: shift-factor (psen), dimensionless.<br>
 <b>Clean-hours agreement</b> (the {n_clean} configs with 0 bad clock-hours, i.e. outside the flagged errors): share of
 rows with |diff|&gt;0.01 has median {clean_share_01_median:.2%}, max {clean_share_01_max:.2%}; share with |diff|&gt;0.001
-has median {clean_share_001_median:.2%}, p90 {clean_share_001_p90:.2%}. Conclusion: <b>outside bad hours, study shifts
-reproduce DART within 0.01 — but NOT within 0.001.</b>
-</div>
+has median {clean_share_001_median:.2%}, p90 {clean_share_001_p90:.2%}. {f_concl}</div>
 <div class="warn">
 {n_mixed_sign} configs MIXED_SIGN (within {month}) &middot; {n_ref_offset} configs REF_OFFSET &middot;
-{n_sign_unresolved} topology-hours SIGN_UNRESOLVED &middot; {n_dup_fixed} configs had DUP_FANOUT (now fixed, dedupe
-confirmed 0 duplicate keys): {', '.join(summary[summary['DUP_FANOUT_FIXED']]['BRANCHLABEL'] + '/' + summary[summary['DUP_FANOUT_FIXED']]['CTGLABEL'])}.
+{n_sign_unresolved} topology-hours SIGN_UNRESOLVED &middot; {n_dup_fixed} configs had DUP_FANOUT{f_dup_fixed}: {', '.join(summary[summary['DUP_FANOUT_FIXED']]['BRANCHLABEL'] + '/' + summary[summary['DUP_FANOUT_FIXED']]['CTGLABEL'])}.
 </div>
-<div class="note">
-<b>112401 6965/MCATPRL5, 2026-06-30 h15 — why 4 study topologies in one hour:</b> the 4 study psenshiftids
-(85823400, 85841928, 85713639, 85768862) map to 4 distinct TOPOLOGYIDs (176239, 175915, 176315, 176062) and 4 distinct
-RUNIDs (1898497, 1898039, 1898666, 1898248) — 4 separate validation-fast-scan topology variants scored against the same
-real hour (intended design). DART has exactly ONE actual psenshiftid (85785153, congConstraintID 222555) for that hour.
-Two study topologies (85823400, 85841928) are genuinely bad matches to reality (702/968 nodes, MAE ~0.031, max 0.309);
-two (85713639, 85768862) are much closer (99/971, 93/971 nodes, MAE ~0.005) but still clear the 5% HOUR_BAD_SHARE gate
-on node count. <b>The comparison itself is sound here</b> — no sign/reference/definitional artifact; 505_B/DVENFTS5 is
-likewise a real, verified error.<br>
-<b>DBIGKEN5 family, qualified:</b> the family is clean of SIGN artifacts (0/89 {month} configs MIXED_SIGN), but
-TREADW_YELWJC11/DBIGKEN5 06-07 h21 (max 0.698) and HAMILT_MAXWEL11/DBIGKEN5 06-17 h24 (max 0.536) remain the two
-largest real max|diff| values in all of {month} — genuine errors, not artifacts.
-</div>
+{f_note}
 
 <h2 id="t1">1. Per-constraint mismatch summary (sorted by max nodes off in a bad hour desc, then avg|diff| in bad hours desc)</h2>
 {sortable_table('t1', t1_headers, ''.join(t1_rows))}
@@ -323,10 +328,8 @@ largest real max|diff| values in all of {month} — genuine errors, not artifact
 <h2 id="drill">Drill-down: worst topology-hours / worst nodes (union of top {TOP_DETAIL_N} by max nodes-in-bad-hour and top {TOP_MAXDIFF_N} by max nodes in any hour)</h2>
 {''.join(detail_html)}
 
-<h2 id="t2">2. Day summary (bad clock-hour basis) — watch for the 06-30 h12-15 / 06-10 h13-15 / 06-17 / 06-07 clusters</h2>
-<div class="note">Footnote: 06-27 and 06-28 also show 13 bad constraint-clock-hours each, but both are entirely
-WESLCO_HIDLBRG1/MHARNED5 (a small-magnitude REF_OFFSET config, 74 nodes) — not a new real cluster; the genuine
-clusters are 06-30, 06-10, 06-17, and 06-07 (TREADW_YELWJC11/DBIGKEN5, max|diff| 0.698).</div>
+<h2 id="t2">2. Day summary (bad clock-hour basis){f_t2head}</h2>
+{f_t2foot}
 {sortable_table('t2', t2_headers, t2_rows)}
 
 <h2 id="t3">3. Top 50 node-days (cross-constraint view, bad clock-hour basis)</h2>
@@ -334,7 +337,7 @@ clusters are 06-30, 06-10, 06-17, and 06-07 (TREADW_YELWJC11/DBIGKEN5, max|diff|
 
 <h2 id="t4">4. Node summary — top 50 by n_constraints_mismatching</h2>
 <div class="caveat">Caveat: with membership requiring &ge;2 bad clock-hours per constraint, the node-label distribution below is
-a real signal (not degenerate), but {month} only has 20 bad clock-hours total across 89 constraints — treat these as
+a real signal (not degenerate), but {f_t4n}treat these as
 directional, not a large-sample finding.</div>
 {sortable_table('t4', t4_headers, t4_rows)}
 
