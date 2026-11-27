@@ -26,7 +26,7 @@ from pfa.analysis.constraints import BINDING_PCT, constraint_key
 from pfa.analysis.screening import classify_constraint
 from pfa.cache import StudyCache
 from pfa.constraint_id import ConstraintId
-from pfa.extract import buskv, fastscan, gen_mapping, popt, shifts
+from pfa.extract import network_ref, fastscan, gen_mapping, popt, shifts
 
 
 # --------------------------------------------------------------------------
@@ -285,7 +285,7 @@ def main() -> None:
         c = r["CONSTRAINT"]
         cid = ConstraintId.parse(c)
         f, t = cid.fromnum, cid.tonum
-        kv = buskv.constraint_kv(int(f), int(t))
+        kv = network_ref.constraint_kv(int(f), int(t))
 
         penalty = False
         if "MEAN_SHADOW" in r and pd.notna(r.get("MEAN_SHADOW")):

@@ -13,6 +13,13 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 CACHE_ROOT = PROJECT_ROOT / "cache"
 OUTPUT_ROOT = PROJECT_ROOT / "output"
 
+# network reference files (frozen branch_tracking export); PFA_NETWORK_REF_DIR points both at one directory
+NETWORK_REF_DIR_ENV = "PFA_NETWORK_REF_DIR"
+BRANCH_MAP_DIR = PROJECT_ROOT.parent / "archive" / "branch_tracking" / "output"
+BRANCH_MAP_FILE = "branch_tracking_table_final.csv"
+TEIDMAP_DIR = PROJECT_ROOT.parent / "archive" / "branch_tracking" / "data"
+TEIDMAP_GLOB = "CIM_*_TeidMap.csv"
+
 _configured = False
 
 

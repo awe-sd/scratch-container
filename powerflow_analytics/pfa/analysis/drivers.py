@@ -81,7 +81,7 @@ def classify_constraints(
                         and i < ticket_top_n and pd.notna(t["BRANCHID_OUTAGE"])):
                     bid = int(t["BRANCHID_OUTAGE"])
                     if bid not in ticket_cache:
-                        from ..extract.outages import teid_for_branch, teids_for_endpoints
+                        from ..extract.network_ref import teid_for_branch, teids_for_endpoints
 
                         try:
                             teid = teid_for_branch(bid)

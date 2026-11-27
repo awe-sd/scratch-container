@@ -25,7 +25,7 @@ from pfa import config
 from pfa.constraint_id import ConstraintId, constraint_key
 from pfa.analysis import dispatch_screen, marginal_units, market, shadow_price, valuation
 from pfa.cache import StudyCache
-from pfa.extract import buskv, fastscan, gen_mapping, popt
+from pfa.extract import network_ref, fastscan, gen_mapping, popt
 
 MIN_BIND = 1  # every last one
 ONPEAK_BLOCKS = {12: 10, 18: 6}  # sampled hour -> on-peak hours represented
@@ -121,7 +121,7 @@ def main() -> None:
         limit = float(r.get("LIMIT_MVA") or 0)
         cid = ConstraintId.parse(c)
         f, t = cid.fromnum, cid.tonum
-        kv = buskv.constraint_kv(int(f), int(t))
+        kv = network_ref.constraint_kv(int(f), int(t))
         p12, p18, p3 = (stats.p_bind.get(h, 0.0) for h in (12, 18, 3))
 
         tickets_all = r.get("DRIVER_TICKETS_ALL")
