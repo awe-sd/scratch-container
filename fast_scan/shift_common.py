@@ -3,7 +3,7 @@ lookup, reference node, output folders and the DART psenShiftDef lookup chain.""
 from pathlib import Path
 
 import pandas as pd
-from pfa.sf import query
+from pfa.sf import query, quote
 
 REFERENCE_CPNODEID = 12791
 OUTPUT_ROOT = Path(__file__).resolve().parent / "output" / "validation_shift_compare"
@@ -66,8 +66,8 @@ def dart_chain_sql(select: str, start: str, end: str, branch_label: str, ctg_lab
         f"SELECT {select}\n        FROM {nl.join(joins)}\n"
         f"        WHERE psd.isoMarketID = 6 AND psd.psenShiftTypeId = 14\n"
         f"            AND psd.extractionEnd >= '{start}' AND psd.extractionEnd <= '{end}'\n"
-        f"            AND b.branchName = '{branch_label}'\n"
-        f"            AND cdc.congContName = '{ctg_label}'"
+        f"            AND b.branchName = {quote(branch_label)}\n"
+        f"            AND cdc.congContName = {quote(ctg_label)}"
         + (f"\n            {extra_where}" if extra_where else "")
         + (f"\n        {_DART_DEDUPE}" if dedupe else "")
     )
