@@ -11,12 +11,13 @@ headroom + path optimization. The design spec file no longer exists; see the tra
 - `pfa.mssql.query` enforces the house rules in code: one SQL Server query at a time (process-wide lock), and any `toAllIsos`/`to*` outage-table query without an `isoMarketId` and a `BranchId`/`teid` predicate is rejected before it is sent.
 - One reader per market-data source, all in `pfa/extract/`: `fastscan.py` (FAST_SCAN_CONFIG/RESULTS), `shifts.py` (CPNODE_/BUS_SHIFTS_VIEW), `dam_offers.py` (ERCOT60DDAMGENRESOURCE), `renewables.py` (wind/solar actuals), `popt.py` (AW.POPT path costs).
 - `pfa/analysis/shadow_price.py` is the one home of the unit-qualification rule (MIN_SF/MAX_SF, PAIR_MIN_SF/PAIR_MAX_SF, PRICE_CAP), the relief set, the price-versus-depth curve and the single redispatch-pair price.
-- `pfa/analysis/valuation.py` + `scripts/value_constraint.py` are the one valuation module/command: a fact sheet (binding = LIMVIOLPCT >= 99.5 in OUTCTGVIOL2) then the on-peak monthly mark (binding = a row in OUTCONSTRAINT2); the two definitions are kept pending an owner decision.
+- `pfa/analysis/valuation.py` + `pfa value` are the one valuation module/command: a fact sheet (binding = LIMVIOLPCT >= 99.5 in OUTCTGVIOL2) then the on-peak monthly mark (binding = a row in OUTCONSTRAINT2); the two definitions are kept pending an owner decision.
+- One command: `uv run pfa <sub-command>` (`pfa/cli/`; `scripts/<name>.py` are shims). Funnel: `summary` -> `shortlist` -> `deep-dive` -> `paths`. The one classification scheme and gate live in `pfa/analysis/screening.py` (`screen_study`); month valuation of the shortlist in `pfa/analysis/shortlist_value.py` (`value_shortlist`). Retired reports are in `archive/`.
 - Branch map (branch_id -> teid) and bus -> kV come ONLY from `pfa/extract/network_ref.py`; files are located via `pfa/config.py` and overridable with env var `PFA_NETWORK_REF_DIR`.
 - Table names and their SQL live ONLY in that source's reader module (plus tests and prose); analysis modules and scripts call the reader and never embed the table name.
 - A new query against one of those sources is a new function in its reader, with a test that fakes `sf.query`/`mssql.query` and asserts the scoping predicates (see `tests/test_extract_*.py`).
-- Extract once per study: `uv run powerflow_analytics/scripts/pull_study.py --study <id>` → parquet in `cache/study_<id>/` (gitignored). Analysis and Dash read the cache only — never Snowflake in callbacks.
-- Analyze: `uv run powerflow_analytics/scripts/build_report.py --study <id> --cutoff <YYYY-MM-DD> [--tickets]` → CSVs in `output/study_<id>/`.
+- Extract once per study: `uv run pfa pull --study <id>` → parquet in `cache/study_<id>/` (gitignored). Analysis and Dash read the cache only — never Snowflake in callbacks.
+- Analyze: `uv run pfa summary --study <id> --cutoff <YYYY-MM-DD> [--tickets]` → CSVs in `output/study_<id>/`.
 - SQL Server (`AW.dbo.toAllIsos`) gets ONLY targeted single-branch lookups (`pfa/extract/outages.py`) — never bulk queries, and strictly ONE query at a time (sequential).
 - toAllIsos hygiene: every revision is a row — ALWAYS collapse to latest revision per outageIdentifier (`ROW_NUMBER() OVER (PARTITION BY outageIdentifier ORDER BY revNum DESC)=1`) and read current state from `toState`. ALWAYS read the `Notes` free text on candidate tickets — it carries the TSP's REQ/RAS/SUP narrative (mitigation intent, ERCOT TOAP directive ids, breaker-split handoffs) and is stronger evidence than timing/status inference (lesson: ERSKINE–MACKNZIE RAS TOAP041923-0 was spelled out in Notes). TSP ticket prefixes identify the submitter (e.g. `CLU%` = Lubbock LP&L); forced/as-operated mitigations show ~zero or negative submit-to-start gaps.
 - 2026-11-27: FAST_SCAN_RESULTS.TIMESTAMP is hour-BEGINNING (DAM HE n is stored at hour n-1; verified config 81760: ercotDampsseLnView HE1 RATEB = TIMESTAMP 00:00 DAM_RATE_B; solar impact starts 07:00-08:00 and ends ~20:00), so HE7-22 = HOUR 6..21. Classify via `pfa.periods.fastscan_hour_class` (OnPeak / 2x16 / 7x8, NERC holidays excluded); never filter `.dt.hour` by hand.
@@ -44,7 +45,7 @@ headroom + path optimization. The design spec file no longer exists; see the tra
 ## Standing rule (sdalvi, 2026-08-12): reusable functions, not one-off queries
 
 Every requested analysis must land as a reusable, parameterized function in `pfa/` (plus a
-thin CLI in `scripts/` where useful) — e.g. constraint valuation, marginal-unit resolution,
+sub-command in `pfa/cli/` where useful) — e.g. constraint valuation, marginal-unit resolution,
 DAM offer pulls. Answer the user's question BY running the function. Extend existing
 modules before adding new scripts.
 

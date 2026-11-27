@@ -29,7 +29,7 @@ class StudyCache:
         p = self.path(table)
         if not p.exists():
             raise FileNotFoundError(
-                f"{p} not cached — run scripts/pull_study.py --study {self.study_id} first"
+                f"{p} not cached — run `pfa pull --study {self.study_id}` first"
             )
         return pd.read_parquet(p, columns=columns)
 
