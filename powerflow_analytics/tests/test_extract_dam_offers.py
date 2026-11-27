@@ -36,3 +36,9 @@ def test_latest_capacity_rows_scope_and_truncation_guard(monkeypatch):
     _fake(monkeypatch, big)
     with pytest.raises(RuntimeError):
         dam_offers.latest_capacity_rows(["A"])
+
+
+def test_resolve_genids_quotes_the_pattern(monkeypatch):
+    calls = _fake(monkeypatch, pd.DataFrame({"GENID": [7], "RESOURCENAME": ["X"]}))
+    assert dam_offers._resolve_genids("O'NEAL%") == [7]
+    assert "ILIKE 'O''NEAL%'" in calls[0][1]

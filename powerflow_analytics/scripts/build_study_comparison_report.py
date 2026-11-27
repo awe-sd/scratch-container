@@ -57,6 +57,32 @@ def study_frame(study_id: int, month: tuple[int, int]) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def enrich_new(new: pd.DataFrame, study_b: int, top_new: int) -> pd.DataFrame:
+    """Fast-scan stress + cheapest path-opt path for the top new constraints; a database error in one
+    lookup becomes a visible 'lookup failed: ...' cell for that row, an empty result stays empty."""
+    new["FASTSCAN_MAX_NEG"] = None
+    new["BEST_PATH"] = None
+    for i in new.index[:top_new]:
+        c = new.loc[i, "CONSTRAINT"]
+        cid = ConstraintId.parse(c)
+        try:
+            cfgs = fastscan.find_configs(study_b, int(cid.fromnum), int(cid.tonum), cid.ctglabel)
+            if not cfgs.empty:
+                prof = fastscan.headroom_profile(int(cfgs["CONFIG_ID"].iloc[0]))
+                new.loc[i, "FASTSCAN_MAX_NEG"] = round(float(prof["PCT_NEG"].max()), 1)
+        except Exception as e:
+            new.loc[i, "FASTSCAN_MAX_NEG"] = f"lookup failed: {e}"
+        try:
+            paths = popt.best_paths(study_b, c)
+            if paths is not None and len(paths):
+                p = paths.iloc[0]
+                new.loc[i, "BEST_PATH"] = (f"{p['SOURCENAME']}→{p['SINKNAME']} "
+                                           f"${p['OPTIONPRICE']:.2f} @SF {p['AVG_SF']:.2f}")
+        except Exception as e:
+            new.loc[i, "BEST_PATH"] = f"lookup failed: {e}"
+    return new
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--study-a", type=int, required=True)
@@ -78,22 +104,7 @@ def main() -> None:
     dropped = a[~a["CONSTRAINT"].isin(b_keys)].sort_values("RENT_SCORE", ascending=False)
 
     # enrich top new constraints: fast-scan stress + cheapest path-opt path
-    new = new.reset_index(drop=True)
-    new["FASTSCAN_MAX_NEG"] = None
-    new["BEST_PATH"] = None
-    for i in new.index[: args.top_new]:
-        c = new.loc[i, "CONSTRAINT"]
-        cid = ConstraintId.parse(c)
-        f, t, ctg = cid.fromnum, cid.tonum, cid.ctglabel
-        cfgs = fastscan.find_configs(args.study_b, int(f), int(t), ctg)
-        if not cfgs.empty:
-            prof = fastscan.headroom_profile(int(cfgs["CONFIG_ID"].iloc[0]))
-            new.loc[i, "FASTSCAN_MAX_NEG"] = round(float(prof["PCT_NEG"].max()), 1)
-        paths = popt.best_paths(args.study_b, c)
-        if paths is not None and len(paths):
-            p = paths.iloc[0]
-            new.loc[i, "BEST_PATH"] = (f"{p['SOURCENAME']}→{p['SINKNAME']} "
-                                       f"${p['OPTIONPRICE']:.2f} @SF {p['AVG_SF']:.2f}")
+    new = enrich_new(new.reset_index(drop=True), args.study_b, args.top_new)
 
     out_dir = config.OUTPUT_ROOT / f"study_{args.study_b}"
     out_dir.mkdir(parents=True, exist_ok=True)

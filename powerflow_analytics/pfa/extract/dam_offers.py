@@ -50,11 +50,10 @@ def _resolve_genids(resource_like: str) -> list[int]:
     Resource names live in AW.DBO.ERCOT60DDAMGEN, not on ERCOT60DDAMGENRESOURCE
     directly. Returns an empty list if no resource matches.
     """
-    pattern = resource_like.replace("'", "")
     sql = f"""
         SELECT DISTINCT GENID, RESOURCENAME
         FROM AW.DBO.ERCOT60DDAMGEN
-        WHERE RESOURCENAME ILIKE '{pattern}'
+        WHERE RESOURCENAME ILIKE {sf.quote(resource_like)}
     """
     df = sf.query("AW", sql)
     df.columns = [c.upper() for c in df.columns]
