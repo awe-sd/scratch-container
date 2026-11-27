@@ -1,7 +1,7 @@
-"""Shortlist of CRR candidates for one study: screening (pfa.analysis.screening) -> CSVs + HTML.
+"""Shortlist of CRR candidates for one study: screening (pfa.analysis.screening) + month valuation -> CSVs + HTML.
 
 Usage:
-    uv run powerflow_analytics/scripts/build_stage2_list.py --study 14431 --cutoff 2026-09-15
+    uv run powerflow_analytics/scripts/build_stage2_list.py --study 14431 --cutoff 2026-09-15 --month 2026-09
 """
 from __future__ import annotations
 
@@ -9,14 +9,15 @@ import argparse
 
 import pandas as pd
 
-from pfa import config
+from pfa import config, periods
 from pfa.analysis.screening import PENALTY_TIERS, Thresholds, screen_study
+from pfa.analysis.shortlist_value import value_columns, value_shortlist
 from pfa.constraint_id import ConstraintId
 
 
 # HTML render — column-spec driven (header/filter row/body/alignment all
 # derive from _columns() so adding a column can't silently misalign the CSS).
-def _columns(rent_col: str) -> list:
+def _columns(rent_col: str, label: str) -> list:
     return [
         # (header, accessor(row_dict), kind, css_class)
         ("Label", lambda r: r["Label"], "text", "l"),
@@ -40,6 +41,19 @@ def _columns(rent_col: str) -> list:
         ("Status", lambda r: r["Status"], "text", "l"),
         ("Flip exempt", lambda r: r["Flip exempt"], "bool", "l"),
         ("Thin intensity", lambda r: r["Thin intensity"], "bool", "l"),
+        (f"Outage days in {label}", lambda r: r[f"Outage days in {label}"], "int", "r"),
+        ("Coverage", lambda r: r["coverage"], "text", "r"),
+        ("Thin window", lambda r: r["thin window evidence"], "text", "l"),
+        (f"P(bind) {label} on-peak", lambda r: r[f"P(bind) {label} on-peak"], "num3", "r"),
+        ("E[lambda|bind]", lambda r: r["E[lambda|bind]"], "num1", "r"),
+        ("lambda P50", lambda r: r["lambda P50"], "num1", "r"),
+        ("lambda P90", lambda r: r["lambda P90"], "num1", "r"),
+        ("Unpriced deep hours %", lambda r: r["unpriced deep hours %"], "num1", "r"),
+        (f"{label} value $/MWh/SF", lambda r: r[f"{label} value $/MWh/SF"], "num3", "r"),
+        ("Path", lambda r: r["Path"], "text", "l"),
+        ("Path SF", lambda r: r["Path SF"], "text", "r"),
+        ("Edge $", lambda r: r["Edge $"], "num2", "r"),
+        ("Valuation status", lambda r: r["status"], "text", "l"),
     ]
 
 
@@ -57,6 +71,8 @@ def _fmt(v, kind):
         return f"{int(v):,}"
     if kind == "num1":
         return f"{float(v):.1f}"
+    if kind == "num3":
+        return f"{float(v):.3f}"
     if kind == "num2":
         return f"{float(v):.2f}"
     if kind == "money":
@@ -67,8 +83,9 @@ def _fmt(v, kind):
 
 
 def render_html(gated: pd.DataFrame, cache_dir: str, dirs: pd.Series, study: int, outdir: str,
-                cutoff: str, th: Thresholds) -> pd.DataFrame:
+                cutoff: str, th: Thresholds, month: str) -> pd.DataFrame:
     rent_col = rent_col_name(cutoff)
+    label = periods.month_label(month)
     br = (
         pd.read_parquet(f"{cache_dir}/outbranch2.parquet", columns=["LABEL", "FROMNUM", "TONUM", "CKT"])
         .drop_duplicates(["FROMNUM", "TONUM", "CKT"])
@@ -103,6 +120,7 @@ def render_html(gated: pd.DataFrame, cache_dir: str, dirs: pd.Series, study: int
                 "Status": r.DRIVER_TICKET_STATUS if pd.notna(r.DRIVER_TICKET_STATUS) else "",
                 "Flip exempt": bool(r.flip_exempt),
                 "Thin intensity": bool(r.thin_intensity),
+                **{k: r[k] for k in value_columns(month)},
             }
         )
     out = pd.DataFrame(rows).sort_values(rent_col, ascending=False)
@@ -125,12 +143,12 @@ if(v[0]==='>'&&!isNaN(num)){if(!(num>parseFloat(v.slice(1))))ok=false}
 else if(v[0]==='<'&&!isNaN(num)){if(!(num<parseFloat(v.slice(1))))ok=false}
 else if(!cell.toLowerCase().includes(v))ok=false;});r.style.display=ok?'':'none';});}
 """
-    head = "".join(f"<th class='{cls}'>{h}</th>" for h, _, _, cls in _columns(rent_col))
-    filt = "".join(f"<th class='{cls}'><input class='f' oninput='flt()'></th>" for _, _, _, cls in _columns(rent_col))
+    head = "".join(f"<th class='{cls}'>{h}</th>" for h, _, _, cls in _columns(rent_col, label))
+    filt = "".join(f"<th class='{cls}'><input class='f' oninput='flt()'></th>" for _, _, _, cls in _columns(rent_col, label))
     body_rows = []
     for _, row in out.iterrows():
         cells = "".join(
-            f"<td class='{cls}'>{_fmt(acc(row), kind)}</td>" for _, acc, kind, cls in _columns(rent_col)
+            f"<td class='{cls}'>{_fmt(acc(row), kind)}</td>" for _, acc, kind, cls in _columns(rent_col, label)
         )
         body_rows.append(f"<tr>{cells}</tr>")
     body = "".join(body_rows)
@@ -157,6 +175,7 @@ def main(argv=None) -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--study", type=int, required=True)
     ap.add_argument("--cutoff", required=True, help="pre/post split date YYYY-MM-DD")
+    ap.add_argument("--month", required=True, help="settlement month YYYY-MM to value the shortlist for")
     ap.add_argument("--share-min", type=float, default=d.share_min)
     ap.add_argument("--post-days-min", type=int, default=d.post_days_min)
     ap.add_argument("--rent-min", type=float, default=d.rent_min)
@@ -191,7 +210,7 @@ def main(argv=None) -> None:
     print()
     print(f"-> {outdir}/step1_screen.csv + step1_flips.csv")
 
-    gated = res.shortlist
+    gated = value_shortlist(res, args.month)
     gated.to_csv(f"{outdir}/stage2_list.csv")
 
     print()
@@ -211,7 +230,7 @@ def main(argv=None) -> None:
     else:
         print("(none)")
 
-    out = render_html(gated, cache, res.dirs, study, outdir, args.cutoff, th)
+    out = render_html(gated, cache, res.dirs, study, outdir, args.cutoff, th, args.month)
     print()
     print(f"-> {outdir}/stage2_list.html | {outdir}/stage2_list.csv | {len(out)} rows")
 
