@@ -149,3 +149,15 @@ def console_shortlist(gated: pd.DataFrame, dropped: pd.DataFrame) -> str:
         f"STAGE-2 LIST — {len(gated)} constraints", gated[show].round(2).to_string(), "",
         "=== rows dropped by the hard intensity floor ===",
         dropped[["FROMNAME", "TONAME", "post_binds", "lam_p50_gate", "intensity"]].round(2).to_string() if not dropped.empty else "(none)"])
+
+
+def console_valuation_summary(summary: dict) -> str:
+    """Counts after the valuation step: rows, priced, per unpriced reason, failed lookups with their messages."""
+    lines = [f"VALUATION: {summary['n_rows']} rows, {summary['n_priced']} priced, "
+             f"{summary['n_rows'] - summary['n_priced'] - sum(summary['failed'].values())} unpriced by a data reason, "
+             f"{sum(summary['failed'].values())} failed"]
+    lines += [f"  {n:>3} x {reason}" for reason, n in summary["reasons"].items()]
+    if summary["failed"]:
+        lines.append("  FAILED lookups (each row kept the columns computed before the error):")
+        lines += [f"  {n:>3} x {msg}" for msg, n in summary["failed"].items()]
+    return "\n".join(lines)

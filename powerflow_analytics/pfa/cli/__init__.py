@@ -39,5 +39,5 @@ def main(argv=None) -> int:
         print(f"pfa: unknown command {name!r}\n\n{_usage()}", file=sys.stderr)
         return 2
     sys.argv[0] = f"pfa {name}"
-    importlib.import_module(f"pfa.cli.{_MODULES[name]}").main(argv[1:])
-    return 0
+    rc = importlib.import_module(f"pfa.cli.{_MODULES[name]}").main(argv[1:])
+    return int(rc) if rc else 0

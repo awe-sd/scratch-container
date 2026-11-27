@@ -7,7 +7,7 @@ Usage:
 
 --constraint is a full key or a line label (resolved to its dominant binding contingency).
 Window = the driving outage's dates; the mark needs --month and --window, otherwise only the
-fact sheet is printed. --sf scales flowgate $/MWh to a CRR path's exposure.
+fact sheet is printed. The cache-only mark prints first, the fact sheet (database) second; a failed fact sheet exits 1. --sf scales flowgate $/MWh to a CRR path's exposure.
 The two sections define "binding" differently (each is labelled): fact sheet = LIMVIOLPCT >= 99.5
 in OUTCTGVIOL2; monthly mark = runs with a row for the constraint in OUTCONSTRAINT2.
 """
@@ -22,7 +22,7 @@ from pfa.constraint_id import resolve
 from pfa.report import value as value_report
 
 
-def main(argv=None) -> None:
+def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--study", type=int, required=True)
     ap.add_argument("--constraint", required=True, help='full key "1436-2081-1@DWCSRAM5" or a line label')
@@ -39,13 +39,11 @@ def main(argv=None) -> None:
     cid = resolve(cache, args.constraint)
     key = str(cid)
 
-    print("== Fact sheet (binding = LIMVIOLPCT >= 99.5 in OUTCTGVIOL2) ==")
-    print(value_report.fact_sheet(valuation.fact_sheet(args.study, cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel)))
-
+    # cache-only mark first: it must still print when the database is unavailable
     if not args.window:
-        print("\n== Monthly on-peak mark skipped: no --window given ==")
+        print("== Monthly on-peak mark skipped: no --window given ==")
     else:
-        print("\n== Monthly on-peak mark (binding = runs with a row for the constraint in OUTCONSTRAINT2) ==")
+        print("== Monthly on-peak mark (binding = runs with a row for the constraint in OUTCONSTRAINT2) ==")
         runs = cache.load("opfrun")
         outcon = cache.load("outconstraint2")
         year, month = periods.parse_month(args.month)
@@ -53,6 +51,13 @@ def main(argv=None) -> None:
         window = tuple(args.window)
         stats = valuation.binding_stats(outcon, runs, key, window)
         print(value_report.monthly_mark(key, window, stats, valuation.mark_table(stats, year, month, window, args.sf)))
+
+    print("\n== Fact sheet (binding = LIMVIOLPCT >= 99.5 in OUTCTGVIOL2) ==")
+    try:
+        print(value_report.fact_sheet(valuation.fact_sheet(args.study, cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel)))
+    except Exception as e:
+        print(f"fact sheet failed: {type(e).__name__}: {e}")
+        return 1
 
     if args.fastscan:
         from pfa.extract import fastscan
@@ -63,4 +68,4 @@ def main(argv=None) -> None:
         else:
             config_id = int(cfgs["CONFIG_ID"].iloc[0])
             print("\n" + value_report.headroom_profile(config_id, fastscan.headroom_profile(config_id)))
-
+    return 0

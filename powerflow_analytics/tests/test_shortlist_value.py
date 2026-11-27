@@ -85,10 +85,11 @@ def test_value_shortlist_lookup_failure_is_visible_and_run_continues(monkeypatch
     monkeypatch.setattr(sv.marginal_units, "bus_name_map", lambda b: {})
     monkeypatch.setattr(sv.dam_offers, "latest_delivery_date", lambda: pd.Timestamp("2026-09-26").date())
 
-    def fake_value_row(study, c, *a):
+    def fake_value_row(study, c, *a, out=None):
         if c.endswith("@Y"):
             raise RuntimeError("boom")
-        return {"_status": "no fast-scan config"}
+        out["_status"] = "no fast-scan config"
+        return out
 
     monkeypatch.setattr(sv, "value_row", fake_value_row)
     short = pd.DataFrame({"x": [1, 2]}, index=["100-200-1@X", "100-200-1@Y"])
@@ -229,9 +230,9 @@ def test_value_shortlist_dead_ticket_blank_coverage_and_added_columns(monkeypatc
     monkeypatch.setattr(sv.gen_mapping, "fetch_genunit_sced_name", lambda: pd.DataFrame())
     monkeypatch.setattr(sv.marginal_units, "bus_name_map", lambda b: {})
     monkeypatch.setattr(sv.dam_offers, "latest_delivery_date", lambda: pd.Timestamp("2026-09-26").date())
-    monkeypatch.setattr(sv, "value_row", lambda *a: {"_status": "no relief units in SF band", "P(bind) Sept on-peak": 0.4,
-                                                     "E[lambda|bind]": 10.0, "_elam_low": 8.0, "_elam_high": 12.0,
-                                                     "_eff_sf": 0.5, "_path_price": 1.0, "_sf_approx": False})
+    monkeypatch.setattr(sv, "value_row", lambda *a, out=None: out.update(
+        {"_status": "no relief units in SF band", "P(bind) Sept on-peak": 0.4, "E[lambda|bind]": 10.0, "_elam_low": 8.0,
+         "_elam_high": 12.0, "_eff_sf": 0.5, "_path_price": 1.0, "_sf_approx": False}))
     short = pd.DataFrame({"x": [1]}, index=["100-200-1@X"])
     res = ScreeningResult(1, "2026-09-15", Thresholds(), pd.Series(dtype=float), short, pd.DataFrame(), short, short)
     out = sv.value_shortlist(res, "2026-09")

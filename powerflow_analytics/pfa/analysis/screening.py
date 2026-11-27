@@ -239,6 +239,9 @@ def screen_study(study: int, cutoff: str, thresholds: Thresholds = Thresholds(),
     """
     cache_dir = Path(cache_dir) if cache_dir else config.CACHE_ROOT / f"study_{study}"
     out_dir = Path(out_dir) if out_dir else config.OUTPUT_ROOT / f"study_{study}"
+    for name in ("ranked_constraints.csv", "tofinder_summary.csv"):
+        if not (out_dir / name).exists():
+            raise FileNotFoundError(f"{out_dir / name} is missing; run `pfa summary --study {study} --cutoff {cutoff} --tickets` first")
 
     runs = pd.read_parquet(cache_dir / "opfrun.parquet", columns=["RUNID", "SIMDATE"])
     runs["post"] = pd.to_datetime(runs.SIMDATE) >= cutoff

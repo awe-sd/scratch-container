@@ -2,4 +2,4 @@
 from pfa.cli.build_study_comparison_report import main
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

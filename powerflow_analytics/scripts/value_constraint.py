@@ -2,4 +2,4 @@
 from pfa.cli.value_constraint import main
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

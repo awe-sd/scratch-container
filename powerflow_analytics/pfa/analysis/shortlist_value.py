@@ -7,6 +7,7 @@ negative-headroom distribution, ticket/days coverage, cheapest path SF and edge.
 from __future__ import annotations
 
 import gc
+import re
 
 import pandas as pd
 
@@ -102,9 +103,10 @@ def relief_status(relief: sp.ReliefSet, window: str) -> str | None:
 
 
 def value_row(study_id: int, c: str, gen, bus_names, genunit, scedname, month: str,
-              offer_window: str = "the latest 14 days") -> dict:
-    """Step-2 valuation components for one class-A constraint."""
-    out: dict = {"_status": "ok"}
+              offer_window: str = "the latest 14 days", out: dict | None = None) -> dict:
+    """Step-2 valuation components for one class-A constraint; pass `out` to keep what was computed if a lookup raises."""
+    out = {} if out is None else out
+    out["_status"] = "ok"
     cid = ConstraintId.parse(c)
     f, t, ctg = cid.fromnum, cid.tonum, cid.ctglabel
     cfgs = fastscan.find_configs(study_id, int(f), int(t), ctg)
@@ -200,6 +202,7 @@ def added_columns(month: str, cutoff: str) -> list[str]:
 # ticket states that grant no coverage (ERCOT outage scheduler: rejected / cancelled / withdrawn)
 DEAD_TICKET_PREFIXES = ("rej", "cancel", "cncl", "withdr", "denied", "abort")
 LOW_PBIND = 0.005
+FAILED_PREFIX = "lookup failed: "
 CORRIDOR_OVERLAP = 0.8
 
 
@@ -302,6 +305,9 @@ def value_shortlist(result: ScreeningResult, month: str) -> pd.DataFrame:
     rows = []
     for c in short.index:
         row = {k: None for k in cols}
+        comp: dict = {}
+        cov = n_days = dead = None
+        marker, thin, has_ticket, err = "", False, False, None
         try:
             r = ranked.loc[c]
             has_ticket = pd.notna(r.get("DRIVER_TICKET")) and pd.notna(r.get("DRIVER_TICKET_START"))
@@ -311,49 +317,68 @@ def value_shortlist(result: ScreeningResult, month: str) -> pd.DataFrame:
                 bind_days_map, n_sampled, month)
             if dead:
                 cov, n_days, marker, thin = None, None, "", False
-            comp = value_row(study, c, gen, bus_names, genunit, scedname, month, offer_window)
-            p_bind = comp.get(f"P(bind) {label} on-peak")
-            elam = comp.get("E[lambda|bind]")
-            value = round(p_bind * elam * cov, 3) if (p_bind is not None and elam is not None and cov is not None) else None
-            eff_sf, path_price = comp.get("_eff_sf"), comp.get("_path_price")
-            edge = (round(value * eff_sf - path_price, 2)
-                    if value is not None and eff_sf is not None and path_price is not None else None)
-            lo, hi, edge_lo, edge_hi = _bounds(p_bind, cov, comp.get("_elam_low"), comp.get("_elam_high"), eff_sf, path_price)
-            detail = comp.get("_status", "ok") if value is not None else comp.get("_status", "unpriced")
-            row.update({
-                f"Outage days in {label}": n_days,
-                "coverage": None if cov is None else f"{cov}{marker}",
-                "thin window evidence": "thin window evidence" if thin else "",
-                f"P(bind) {label} on-peak": p_bind,
-                "E[lambda|bind]": elam,
-                "lambda P50": comp.get("lambda P50"), "lambda P90": comp.get("lambda P90"),
-                "unpriced deep hours %": comp.get("unpriced deep hours %"),
-                f"{label} value $/MWh/SF": value,
-                "Path": comp.get("Path"), "Path SF": comp.get("Path SF"),
-                "Edge $": edge,
-                "status": f"driver ticket {dead}" if dead else detail,
-                f"{label} value LOW $/MWh/SF": lo, f"{label} value HIGH $/MWh/SF": hi,
-                "Edge LOW $": edge_lo, "Edge HIGH $": edge_hi,
-                "Path price $/MWh": path_price,
-                "Path SF value": None if eff_sf is None else round(eff_sf, 3),
-                "Path SF approximate": comp.get("_sf_approx"),
-                "valuation detail": detail,
-                "offer window": offer_window,
-                "relief units in band": comp.get("_n_band"), "relief units mapped": comp.get("_n_mapped"),
-                "relief units with DAM rows": comp.get("_n_offer_rows"),
-                "relief units usable up": comp.get("_n_up"), "relief units usable down": comp.get("_n_down"),
-                "curve steps": comp.get("_n_steps"),
-                "P(bind) on-peak hours": comp.get("_pbind_hours"), "P(bind) years": comp.get("_pbind_years"),
-                "Post days sampled": n_post_days, "Sampled days in month": n_sampled,
-                "Outage-day basis": (f"ticket ({dead})" if dead else "ticket") if has_ticket else "sampled bind days (no ticket)",
-                rent_col: float(rent_ex.get(c, 0.0)),
-                "Sibling/corridor note": notes.get(c, ""),
-                "Low P(bind)": bool(p_bind is not None and p_bind <= LOW_PBIND),
-            })
+            value_row(study, c, gen, bus_names, genunit, scedname, month, offer_window, out=comp)
         except Exception as e:
-            row["status"] = f"lookup failed: {type(e).__name__}: {e}"
+            err = e
+        p_bind = comp.get(f"P(bind) {label} on-peak")
+        elam = comp.get("E[lambda|bind]")
+        value = round(p_bind * elam * cov, 3) if (p_bind is not None and elam is not None and cov is not None) else None
+        eff_sf, path_price = comp.get("_eff_sf"), comp.get("_path_price")
+        edge = (round(value * eff_sf - path_price, 2)
+                if value is not None and eff_sf is not None and path_price is not None else None)
+        lo, hi, edge_lo, edge_hi = _bounds(p_bind, cov, comp.get("_elam_low"), comp.get("_elam_high"), eff_sf, path_price)
+        detail = comp.get("_status", "ok") if value is not None else comp.get("_status", "unpriced")
+        row.update({
+            f"Outage days in {label}": n_days,
+            "coverage": None if cov is None else f"{cov}{marker}",
+            "thin window evidence": "thin window evidence" if thin else "",
+            f"P(bind) {label} on-peak": p_bind,
+            "E[lambda|bind]": elam,
+            "lambda P50": comp.get("lambda P50"), "lambda P90": comp.get("lambda P90"),
+            "unpriced deep hours %": comp.get("unpriced deep hours %"),
+            f"{label} value $/MWh/SF": value,
+            "Path": comp.get("Path"), "Path SF": comp.get("Path SF"),
+            "Edge $": edge,
+            "status": f"driver ticket {dead}" if dead else detail,
+            f"{label} value LOW $/MWh/SF": lo, f"{label} value HIGH $/MWh/SF": hi,
+            "Edge LOW $": edge_lo, "Edge HIGH $": edge_hi,
+            "Path price $/MWh": path_price,
+            "Path SF value": None if eff_sf is None else round(eff_sf, 3),
+            "Path SF approximate": comp.get("_sf_approx"),
+            "valuation detail": detail,
+            "offer window": offer_window,
+            "relief units in band": comp.get("_n_band"), "relief units mapped": comp.get("_n_mapped"),
+            "relief units with DAM rows": comp.get("_n_offer_rows"),
+            "relief units usable up": comp.get("_n_up"), "relief units usable down": comp.get("_n_down"),
+            "curve steps": comp.get("_n_steps"),
+            "P(bind) on-peak hours": comp.get("_pbind_hours"), "P(bind) years": comp.get("_pbind_years"),
+            "Post days sampled": n_post_days, "Sampled days in month": n_sampled,
+            "Outage-day basis": (f"ticket ({dead})" if dead else "ticket") if has_ticket else "sampled bind days (no ticket)",
+            rent_col: float(rent_ex.get(c, 0.0)),
+            "Sibling/corridor note": notes.get(c, ""),
+            "Low P(bind)": bool(p_bind is not None and p_bind <= LOW_PBIND),
+        })
+        if err is not None:
+            row["status"] = row["valuation detail"] = f"{FAILED_PREFIX}{type(err).__name__}: {err}"
         rows.append(row)
     return pd.concat([short, pd.DataFrame(rows, index=short.index)], axis=1)
+
+
+def reason_key(status) -> str:
+    """A status with its counts, dates and parenthesised detail removed, so equal reasons group."""
+    t = str(status).split(" (")[0]
+    t = re.sub(r"\d{4}-\d{2}-\d{2}\.\.\d{4}-\d{2}-\d{2}", "<window>", t)
+    return re.sub(r"\d+", "N", t)
+
+
+def valuation_summary(valued: pd.DataFrame, month: str) -> dict:
+    """{n_rows, n_priced (non-null month value), reasons {reason: n} for unpriced rows, failed {error message: n}}."""
+    value = pd.to_numeric(valued[f"{periods.month_label(month)} value $/MWh/SF"], errors="coerce")
+    status = valued["status"].astype(str)
+    failed = status[status.str.startswith(FAILED_PREFIX)]
+    reasons = status[value.isna() & ~status.str.startswith(FAILED_PREFIX)].map(reason_key).value_counts()
+    return {"n_rows": len(valued), "n_priced": int(value.notna().sum()), "reasons": reasons.to_dict(),
+            "failed": failed.str[len(FAILED_PREFIX):].value_counts().to_dict()}
 
 
 def rent_col_name(cutoff: str) -> str:

@@ -2,4 +2,4 @@
 from pfa.cli.lambda_distribution import main
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
