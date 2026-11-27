@@ -185,7 +185,7 @@ def dispatch_profile(study_id: int, c: dict, genunit: pd.DataFrame, scedname: pd
     # CPNODEID=0 is a shared placeholder for MULTIPLE distinct unmapped nodes (e.g. four separate
     # Red Oak data-center load cpnodes all sit at CPNODEID=0 with identical PSENS) -- identity
     # must include NAME or those genuinely-distinct nodes get wrongly collapsed into one row.
-    nodes = nodes.sort_values("N", ascending=False).drop_duplicates(["CPNODEID", "NAME", "PSENS"])
+    nodes = nodes.sort_values(["N", "NAME", "CPNODEID"], ascending=[False, True, True]).drop_duplicates(["CPNODEID", "NAME", "PSENS"])
     # sign convention: PSENS is on FROMNUM->TONUM; direction=-1 flips relief/harm sense
     nodes["EFFECTIVE_SIGN"] = np.sign(nodes["PSENS"]) * c["direction"]
     nodes["RELIEF_OR_HARM"] = np.where(nodes["EFFECTIVE_SIGN"] < 0, "relief (up relieves)", "harm (up loads)")
@@ -200,7 +200,7 @@ def dispatch_profile(study_id: int, c: dict, genunit: pd.DataFrame, scedname: pd
     gu.loc[gu["CPNODEID"].isin(ambiguous_ids), ["GENFUELTYPE", "RESOURCE_TYPE"]] = "AMBIGUOUS(multi-fuel site)"
     nodes = nodes.merge(gu, on="CPNODEID", how="left")
     nodes["ABS_PSENS"] = nodes["PSENS"].abs()
-    return nodes.sort_values("ABS_PSENS", ascending=False).drop(columns="ABS_PSENS").head(20)
+    return nodes.sort_values(["ABS_PSENS", "NAME", "CPNODEID"], ascending=[False, True, True]).drop(columns="ABS_PSENS").head(20)
 
 
 # --------------------------------------------------------- 3. price form ---
@@ -231,7 +231,7 @@ def price_formation(study_id: int, c: dict, ctgviol: pd.DataFrame, outcon: pd.Da
     marg = g[(g["MW"] > g["MWMIN"]) & (g["MW"] < g["MWMAX"]) &
              ((g["BUSMARGCOSTMW"] - g["EDMARGCOSTMW"]).abs() <= 1.0)]
     marg_summary = (marg.groupby(["BUSNUM", "ID", "FUELTYPE"])
-                    .size().rename("N").reset_index().sort_values("N", ascending=False).head(10))
+                    .size().rename("N").reset_index().sort_values(["N", "BUSNUM", "ID", "FUELTYPE"], ascending=[False, True, True, True]).head(10))
 
     # structural lambda via lambda_engine relief-set stack, shallow vs deep
     struct = None
@@ -353,7 +353,7 @@ def flip_attribution(cache: StudyCache, constraints: list[dict]) -> pd.DataFrame
         # sort by SIGNED_FLOWDELTA descending (not abs) so a flow-adding group ranks
         # above a flow-reducing one -- an abs-sort can put a relief group ahead of
         # the actual loading driver in a "what explains this constraint binding" table
-        rows.append(g.sort_values("SIGNED_FLOWDELTA", ascending=False).head(5))
+        rows.append(g.sort_values(["SIGNED_FLOWDELTA", "OUTAGE_GROUP"], ascending=[False, True]).head(5))
     return pd.concat(rows, ignore_index=True) if rows else pd.DataFrame()
 
 
@@ -390,7 +390,7 @@ def render_markdown(study_id: int, results: list[dict], flip_df: pd.DataFrame) -
         else:
             hod = bc["hour_of_day_neg_rate"]
             mname = bc["month_name"]
-            top_hours = sorted(hod, key=hod.get, reverse=True)[:5]
+            top_hours = sorted(hod, key=lambda h: (-hod[h], h))[:5]
             hod_str = ", ".join(f"HE{h}={hod[h]:.3f}" for h in top_hours)
             lines += [f"- FAST_SCAN_CONFIG_ID: {bc['config_id']}; fast-scan hours in window: {bc['n_hours']} "
                       f"(wind matched: {bc['n_wind_matched']}, solar matched: {bc['n_solar_matched']} -- "
