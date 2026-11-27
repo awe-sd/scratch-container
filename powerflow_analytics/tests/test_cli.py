@@ -106,6 +106,7 @@ def test_shortlist_exits_nonzero_and_summarises_when_lookups_raise(monkeypatch, 
     res = _screening_stub(cmd, monkeypatch, tmp_path)
     monkeypatch.setattr(sv, "StudyCache", _AllCache)
     monkeypatch.setattr(sv.gen_mapping, "fetch_genunit_sced_name", lambda: pd.DataFrame())
+    monkeypatch.setattr(sv.gen_mapping, "with_cpnode_names", lambda g: g)
     monkeypatch.setattr(sv.marginal_units, "bus_name_map", lambda b: {})
     monkeypatch.setattr(sv.dam_offers, "latest_delivery_date", lambda: pd.Timestamp("2026-09-26").date())
     monkeypatch.setattr(sv, "value_row", lambda *a, **k: (_ for _ in ()).throw(RuntimeError("snowflake down")))
@@ -143,6 +144,7 @@ def test_failed_row_keeps_the_columns_computed_before_the_error(monkeypatch, tmp
     pd.DataFrame({"CONSTRAINT": ["1-2-1@X"]}).to_csv(tmp_path / "study_7" / "ranked_constraints.csv", index=False)
     monkeypatch.setattr(sv, "StudyCache", _AllCache)
     monkeypatch.setattr(sv.gen_mapping, "fetch_genunit_sced_name", lambda: pd.DataFrame())
+    monkeypatch.setattr(sv.gen_mapping, "with_cpnode_names", lambda g: g)
     monkeypatch.setattr(sv.marginal_units, "bus_name_map", lambda b: {})
     monkeypatch.setattr(sv.dam_offers, "latest_delivery_date", lambda: pd.Timestamp("2026-09-26").date())
 

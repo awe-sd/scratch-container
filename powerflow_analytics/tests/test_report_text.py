@@ -14,7 +14,7 @@ def test_lambda_report_stops_where_the_analysis_stopped():
 
 
 def test_lambda_report_full_distribution():
-    disp = pd.DataFrame({c: [1] for c in ["BUSNUM", "ID", "SIDE", "SF", "SCED", "IS_RENEWABLE", "P60", "HSL", "AWARDED", "LSL"]})
+    disp = pd.DataFrame({c: [1] for c in ["BUSNUM", "ID", "SIDE", "SF", "SCED", "OFFER_ROUTE", "IS_RENEWABLE", "P60", "HSL", "AWARDED", "LSL"]})
     r = lambda_dist.LambdaDist(1, "1-2-1@X", "done", disp, 2, 3, 1, [(25, 10.0), (50, None)], 7, 120.4,
                                {"n_hours": 10, "n_priced": 8, "n_unpriceable": 2, "exhaustion_depth_mw": 90.0},
                                {"P25": 1, "P50": 2, "P75": 3, "P90": 4, "max": 5, "n": 8},

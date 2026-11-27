@@ -102,6 +102,10 @@ def relief_status(relief: sp.ReliefSet, window: str) -> str | None:
     return f"no units on the {'up' if not relief.up else 'down'} side ({detail})"
 
 
+def _route_count(units: pd.DataFrame, route: str) -> int:
+    return int((units["OFFER_ROUTE"] == route).sum()) if "OFFER_ROUTE" in units.columns else 0
+
+
 def value_row(study_id: int, c: str, gen, bus_names, genunit, scedname, month: str,
               offer_window: str = "the latest 14 days", out: dict | None = None) -> dict:
     """Step-2 valuation components for one class-A constraint; pass `out` to keep what was computed if a lookup raises."""
@@ -129,6 +133,8 @@ def value_row(study_id: int, c: str, gen, bus_names, genunit, scedname, month: s
     # docstring for the study-14412 canary this fixes (3380-3390-1@DPNAONA5).
     relief = sp.relief_set(study_id, c, gen, bus_names, genunit, scedname, direction=direction)
     out.update({"_n_band": relief.n_band, "_n_mapped": len(relief.units),
+                "_n_cpnode": _route_count(relief.units, "cpnode"),
+                "_n_name": _route_count(relief.units, "name"),
                 "_n_offer_rows": len(relief.capacity), "_n_up": len(relief.up), "_n_down": len(relief.down)})
     reason = relief_status(relief, offer_window)
     if reason:
@@ -192,6 +198,7 @@ def added_columns(month: str, cutoff: str) -> list[str]:
         f"{label} value LOW $/MWh/SF", f"{label} value HIGH $/MWh/SF", "Edge LOW $", "Edge HIGH $",
         "Path price $/MWh", "Path SF value", "Path SF approximate",
         "valuation detail", "offer window", "relief units in band", "relief units mapped",
+        "relief units mapped via CPNODE id", "relief units mapped via name",
         "relief units with DAM rows", "relief units usable up", "relief units usable down", "curve steps",
         "P(bind) on-peak hours", "P(bind) years",
         "Post days sampled", "Sampled days in month", "Outage-day basis",
@@ -291,7 +298,7 @@ def value_shortlist(result: ScreeningResult, month: str) -> pd.DataFrame:
     notes = sibling_notes(list(short.index), run_sets)
     gen = cache.load("outgen2", columns=["RUNID", "BUSNUM", "ID", "LPDELTAMW", "FUELTYPE", "MW", "MWMAX"])
     branch = cache.load("outbranch2", columns=["RUNID", "FROMNUM", "TONUM", "CKT", "FROMNAME", "TONAME"])
-    genunit = cache.load("genunit")
+    genunit = gen_mapping.with_cpnode_names(cache.load("genunit"))
     scedname = gen_mapping.fetch_genunit_sced_name()
     bus_names = marginal_units.bus_name_map(branch)
     del branch
@@ -348,6 +355,7 @@ def value_shortlist(result: ScreeningResult, month: str) -> pd.DataFrame:
             "valuation detail": detail,
             "offer window": offer_window,
             "relief units in band": comp.get("_n_band"), "relief units mapped": comp.get("_n_mapped"),
+            "relief units mapped via CPNODE id": comp.get("_n_cpnode"), "relief units mapped via name": comp.get("_n_name"),
             "relief units with DAM rows": comp.get("_n_offer_rows"),
             "relief units usable up": comp.get("_n_up"), "relief units usable down": comp.get("_n_down"),
             "curve steps": comp.get("_n_steps"),

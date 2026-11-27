@@ -54,3 +54,11 @@ def test_latest_delivery_date_and_point_coverage_scope(monkeypatch):
     assert "SETTLEMENTPOINTNAME IN (" in sql and "'Bx'" in sql and "GROUP BY SETTLEMENTPOINTNAME" in sql
     assert list(out.columns) == ["SETTLEMENTPOINTNAME", "N_ALL"]
     assert dam_offers.point_coverage([]).empty
+
+
+def test_latest_capacity_rows_queries_points_in_chunks(monkeypatch):
+    calls = _fake(monkeypatch, pd.DataFrame({"SETTLEMENTPOINTNAME": ["A"]}))
+    pts = [f"P{i:03d}" for i in range(dam_offers.CAPACITY_CHUNK + 1)]
+    out = dam_offers.latest_capacity_rows(pts)
+    assert len(calls) == 2 and len(out) == 2
+    assert "'P000'" in calls[0][1] and f"'P{dam_offers.CAPACITY_CHUNK:03d}'" in calls[1][1] and f"'P{dam_offers.CAPACITY_CHUNK:03d}'" not in calls[0][1]

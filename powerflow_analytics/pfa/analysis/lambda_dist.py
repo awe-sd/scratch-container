@@ -34,7 +34,7 @@ def analyze(study: int, constraint: str) -> LambdaDist:
     cache = StudyCache(study)
     gen = cache.load("outgen2", columns=["BUSNUM", "ID", "FUELTYPE", "MW", "MWMAX"])
     branch = cache.load("outbranch2", columns=["FROMNUM", "FROMNAME", "TONUM", "TONAME"])
-    genunit = cache.load("genunit")
+    genunit = gen_mapping.with_cpnode_names(cache.load("genunit"))
     bus_names = marginal_units.bus_name_map(branch)
     scedname = gen_mapping.fetch_genunit_sced_name()
 

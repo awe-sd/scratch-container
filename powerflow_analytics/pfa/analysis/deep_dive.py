@@ -286,7 +286,7 @@ def marginal_unit_table(study_id: int, c: dict, marg: pd.DataFrame, bus_names: p
         named = shadow_price.sced_names(pair, bus_names, genunit, scedname)
         bn = bus_names.drop_duplicates("BUSNUM").set_index("BUSNUM")["BUSNAME"]
         out["UNIT"] = [sc if isinstance(sc, str) else (f"{bn.get(b)} #{i}" if b in bn.index else u)
-                       for sc, b, i, u in zip(named["SCED"], out["BUSNUM"], out["ID"], out["UNIT"])]
+                       for sc, b, i, u in zip(named["SCED_NAME"], out["BUSNUM"], out["ID"], out["UNIT"])]
     except Exception:
         pass
     try:
@@ -498,7 +498,7 @@ class StudyTables:
 def load_tables(study_id: int) -> StudyTables:
     cache = StudyCache(study_id)
     return StudyTables(cache, cache.load("outctgviol2"), cache.load("outconstraint2"), cache.load("outgen2"),
-                       cache.load("genunit"), marginal_units.bus_name_map(cache.load("outbranch2")),
+                       gen_mapping.with_cpnode_names(cache.load("genunit")), marginal_units.bus_name_map(cache.load("outbranch2")),
                        gen_mapping.fetch_genunit_sced_name(), cache.load("outtofindermax2"))
 
 

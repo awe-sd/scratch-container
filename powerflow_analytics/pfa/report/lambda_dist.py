@@ -10,7 +10,7 @@ def text(r: LambdaDist) -> str:
         return "\n".join(out + ["  no relief-set units found (SF band empty or unmapped)"])
     if r.stage == "offers":
         return "\n".join(out + ["  no DAM offer/capacity data for mapped resources"])
-    out.append(r.display[["BUSNUM", "ID", "SIDE", "SF", "SCED", "IS_RENEWABLE", "P60", "HSL", "AWARDED", "LSL"]].to_string(index=False))
+    out.append(r.display[["BUSNUM", "ID", "SIDE", "SF", "SCED", "OFFER_ROUTE", "IS_RENEWABLE", "P60", "HSL", "AWARDED", "LSL"]].to_string(index=False))
     out.append(f"\nUP stack: {r.n_up} units, DOWN stack: {r.n_down} units ({r.n_curtail} curtailment)")
     out.append("\nlambda(depth):")
     for d, val in r.checkpoints:

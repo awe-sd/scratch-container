@@ -82,6 +82,7 @@ def test_value_shortlist_lookup_failure_is_visible_and_run_continues(monkeypatch
     monkeypatch.setattr(config, "OUTPUT_ROOT", tmp_path)
     monkeypatch.setattr(sv, "StudyCache", _FakeCache)
     monkeypatch.setattr(sv.gen_mapping, "fetch_genunit_sced_name", lambda: pd.DataFrame())
+    monkeypatch.setattr(sv.gen_mapping, "with_cpnode_names", lambda g: g)
     monkeypatch.setattr(sv.marginal_units, "bus_name_map", lambda b: {})
     monkeypatch.setattr(sv.dam_offers, "latest_delivery_date", lambda: pd.Timestamp("2026-09-26").date())
 
@@ -228,6 +229,7 @@ def test_value_shortlist_dead_ticket_blank_coverage_and_added_columns(monkeypatc
     monkeypatch.setattr(config, "OUTPUT_ROOT", tmp_path)
     monkeypatch.setattr(sv, "StudyCache", _FakeCache)
     monkeypatch.setattr(sv.gen_mapping, "fetch_genunit_sced_name", lambda: pd.DataFrame())
+    monkeypatch.setattr(sv.gen_mapping, "with_cpnode_names", lambda g: g)
     monkeypatch.setattr(sv.marginal_units, "bus_name_map", lambda b: {})
     monkeypatch.setattr(sv.dam_offers, "latest_delivery_date", lambda: pd.Timestamp("2026-09-26").date())
     monkeypatch.setattr(sv, "value_row", lambda *a, out=None: out.update(

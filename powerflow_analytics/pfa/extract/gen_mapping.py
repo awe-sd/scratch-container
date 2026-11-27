@@ -53,3 +53,30 @@ def fetch_genunit_sced_name() -> pd.DataFrame:
     df = sf.query("AWDEV", "SELECT GENUNITID, NAME, KIND, EPOCH FROM AWDEV.DBO.GENUNITSCEDNAME")
     sf.validate_columns(df, ["GENUNITID", "NAME", "KIND"], "GENUNITSCEDNAME")
     return df
+
+
+def fetch_cpnode_names(cpnode_ids) -> pd.DataFrame:
+    """CPNODEID -> NAME (AW.DBO.CPNODE), scoped to the ERCOT ids given. NAME equals DISPLAYNAME for every
+    ERCOT genunit node (checked 2026-11-27) and is the DAM offer table's SETTLEMENTPOINTNAME."""
+    ids = sorted({int(i) for i in pd.Series(list(cpnode_ids)).dropna()})
+    if not ids:
+        return pd.DataFrame(columns=["CPNODEID", "CPNODENAME"])
+    df = sf.query(
+        "AW",
+        f"""
+        SELECT CPNODEID, NAME AS CPNODENAME
+        FROM AW.DBO.CPNODE
+        WHERE ISOMARKETID = {config.ISO_MARKET_ID} AND CPNODEID IN ({",".join(map(str, ids))})
+        """,
+    )
+    sf.validate_columns(df, ["CPNODEID", "CPNODENAME"], "CPNODE")
+    return df.drop_duplicates("CPNODEID")
+
+
+def with_cpnode_names(genunit: pd.DataFrame) -> pd.DataFrame:
+    """`genunit` plus CPNODENAME (settlement-point name via CPNODEID; NaN where CPNODEID is null or has no CPNODE row)."""
+    names = fetch_cpnode_names(genunit["CPNODEID"])
+    out = genunit.drop(columns=["CPNODENAME"], errors="ignore").copy()
+    out["CPNODEID"] = pd.to_numeric(out["CPNODEID"], errors="coerce")
+    names = names.assign(CPNODEID=pd.to_numeric(names["CPNODEID"]))
+    return out.merge(names, on="CPNODEID", how="left")

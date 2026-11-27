@@ -97,31 +97,42 @@ def dam_capacity(sced: list[str], hours=(7, 22)) -> pd.DataFrame:
         LSL=("LSL", "median"), AWARDED=("AWARDEDQUANTITY", "median"))
 
 
-# --------------------------------------------------------- unit -> SCED name --
+# ------------------------------------------------------ unit -> offer key --
 
 def sced_names(pair: pd.DataFrame, bus_names: pd.DataFrame, genunit: pd.DataFrame,
                scedname: pd.DataFrame) -> pd.DataFrame:
-    """Map (BUSNUM, ID) -> bus name -> GENUNIT -> GENUNITSCEDNAME -> SCED resource name.
+    """Map (BUSNUM, ID) -> bus name -> GENUNIT -> the key of its DAM offer rows (column SCED).
 
-    No (BUSNUM, ID) -> GENUNITID bridge exists for ERCOT (OUTGENREF is empty
-    for ISOMARKETID=6), so BUSNAME is the join key into GENUNIT. A bus with
-    several units (e.g. a 3-train CC) has several GENUNITSCEDNAME rows sharing
-    that BUSNAME, one per per-unit SCED index (JACKCNTY_CC1_1/_2/_3) — the same
-    index carried in OUTGEN2.ID; matching that trailing index against ID picks
-    the specific unit's SCED name rather than an arbitrary sibling's.
+    Primary route (OFFER_ROUTE "cpnode"): GENUNIT.CPNODEID -> CPNODE name, the settlement point the offer
+    table is keyed on; needs `genunit` to carry CPNODENAME (gen_mapping.with_cpnode_names). Fallback (route
+    "name"), for units whose CPNODEID is null or has no CPNODE row: the GENUNITSCEDNAME name with its
+    trailing unit index stripped (SCED_NAME). SCED holds whichever key the route gives; NaN when neither exists.
+
+    No (BUSNUM, ID) -> GENUNITID bridge exists for ERCOT (OUTGENREF is empty for ISOMARKETID=6), so BUSNAME
+    is the join key into GENUNIT. A bus with several units (e.g. a 3-train CC) has several GENUNIT rows
+    sharing that BUSNAME, one per per-unit SCED index (JACKCNTY_CC1_1/_2/_3) — the same index carried in
+    OUTGEN2.ID; matching that trailing index against ID picks the specific unit's row rather than a sibling's.
     """
-    gu = genunit.merge(scedname[scedname["KIND"] == "GEN"], on="GENUNITID", how="inner")
-    gu = gu[["BUSNAME", "NAME"]].dropna().drop_duplicates()
+    has_cp = "CPNODENAME" in genunit.columns
+    gu = genunit.merge(scedname[scedname["KIND"] == "GEN"], on="GENUNITID", how="left")
+    gu["CPNODENAME"] = gu["CPNODENAME"] if has_cp else None
+    gu = gu[["BUSNAME", "NAME", "CPNODENAME"]].dropna(subset=["BUSNAME"])
+    gu = gu[gu["NAME"].notna() | gu["CPNODENAME"].notna()].drop_duplicates()
     gu["SUFFIX"] = gu["NAME"].str.extract(r"_(\d+)$")[0]
     m = pair.merge(bus_names, on="BUSNUM", how="left").merge(gu, on="BUSNAME", how="left")
     m["ID"] = m["ID"].astype(str).str.strip()
     # no suffix match (index conventions differ): fall back to any candidate for the bus rather than dropping the unit
     m["_rank"] = (m["SUFFIX"] != m["ID"]).astype(int)
-    m = m.sort_values("_rank")
+    m["_nocp"] = m["CPNODENAME"].isna().astype(int)
+    m["_noname"] = m["NAME"].isna().astype(int)
+    m = m.sort_values(["_rank", "_nocp", "_noname"], kind="mergesort")
     out = m.drop_duplicates(["BUSNUM", "ID", "SIDE"])
-    out = pair.merge(out[["BUSNUM", "ID", "SIDE", "NAME"]], on=["BUSNUM", "ID", "SIDE"], how="left")
+    out = pair.merge(out[["BUSNUM", "ID", "SIDE", "NAME", "CPNODENAME"]], on=["BUSNUM", "ID", "SIDE"], how="left")
     # SCED unit names carry a trailing unit index (JACKCNTY_CC1_1); the DAM disclosure keys on the settlement point (JACKCNTY_CC1)
-    out["SCED"] = out["NAME"].str.replace(r"_\d+$", "", regex=True)
+    out["SCED_NAME"] = out["NAME"].str.replace(r"_\d+$", "", regex=True)
+    out["OFFER_ROUTE"] = out["CPNODENAME"].notna().map({True: "cpnode", False: None})
+    out.loc[out["CPNODENAME"].isna() & out["SCED_NAME"].notna(), "OFFER_ROUTE"] = "name"
+    out["SCED"] = out["CPNODENAME"].where(out["CPNODENAME"].notna(), out["SCED_NAME"])
     return out
 
 
@@ -129,7 +140,7 @@ def sced_names(pair: pd.DataFrame, bus_names: pd.DataFrame, genunit: pd.DataFram
 
 def _relief_units(study_id: int, constraint: str, gen: pd.DataFrame, bus_names: pd.DataFrame,
                   genunit: pd.DataFrame, scedname: pd.DataFrame, direction: int) -> tuple[pd.DataFrame, int]:
-    """(relief units mapped to a SCED name, count of study units in the SF band before mapping)."""
+    """(in-band units with their offer key and route, one row per study unit; count of study units in the SF band before mapping)."""
     cid = ConstraintId.parse(constraint)
     sfs = shifts.bus_sf_all_buses(study_id, cid)
     if sfs.empty:
@@ -148,14 +159,27 @@ def _relief_units(study_id: int, constraint: str, gen: pd.DataFrame, bus_names: 
     # OUTGEN2.FUELTYPE carries ERCOT fuel codes, e.g. "WND (Wind)" / "SUN (Solar)"
     RENEW_CODES = ("WND", "SUN")
     mapped["IS_RENEWABLE"] = mapped["FUELTYPE"].astype(str).str.upper().str.startswith(RENEW_CODES)
-    # several (BUSNUM, ID) units collapse to one SCED name: one row per (SCED, SIDE), strongest |SF|,
-    # IS_RENEWABLE OR-ed, or the same resource's headroom is counted twice (once as gas, once as curtailment)
+    return mapped, n_band
+
+
+def _fall_back_to_name(units: pd.DataFrame, cap: pd.DataFrame) -> pd.DataFrame:
+    """A CPNODE-route key with no offer rows in the window is unresolved: use the SCED-name key where that one has rows
+    (combined cycles: CPNODEID names the unit node, the offer table is keyed on the plant node). See CLAUDE.md 2026-11-27."""
+    miss = (units["OFFER_ROUTE"] == "cpnode") & ~units["SCED"].isin(cap.index) & units["SCED_NAME"].isin(cap.index)
+    out = units.copy()
+    out.loc[miss, "SCED"] = out.loc[miss, "SCED_NAME"]
+    out.loc[miss, "OFFER_ROUTE"] = "name"
+    return out
+
+
+def _one_row_per_key(mapped: pd.DataFrame) -> pd.DataFrame:
+    """Several (BUSNUM, ID) units can share one offer key (a resource node serving a plant): one row per (key, SIDE),
+    strongest |SF|, IS_RENEWABLE OR-ed, or the same offer curve's headroom is counted twice (once as gas, once as curtailment)."""
+    mapped = mapped.copy()
     mapped["_absSF"] = mapped["SF"].abs()
-    is_renew = mapped.groupby(["SCED", "SIDE"])["IS_RENEWABLE"].transform("any")
-    mapped["IS_RENEWABLE"] = is_renew
-    out = (mapped.sort_values("_absSF", ascending=False)
-           .drop_duplicates(["SCED", "SIDE"]).drop(columns="_absSF"))
-    return out, n_band
+    mapped["IS_RENEWABLE"] = mapped.groupby(["SCED", "SIDE"])["IS_RENEWABLE"].transform("any")
+    return (mapped.sort_values("_absSF", ascending=False, kind="mergesort")
+            .drop_duplicates(["SCED", "SIDE"]).drop(columns="_absSF"))
 
 
 def build_stacks(relief: pd.DataFrame, cap: pd.DataFrame) -> tuple[list[dict], list[dict]]:
@@ -275,7 +299,7 @@ class ReliefSet:
 def relief_set(study_id: int, constraint: str, gen: pd.DataFrame, bus_names: pd.DataFrame,
                genunit: pd.DataFrame, scedname: pd.DataFrame, direction: int = 1) -> ReliefSet:
     """Every unit with a qualifying |SF| on `constraint` (LZ_/WZ_ excluded), mapped to its
-    DAM/SCED name, with DAM offers and the up/down stacks.
+    DAM offer key (see sced_names; `units["OFFER_ROUTE"]` is the route), with DAM offers and the up/down stacks.
 
     Starts from every unit in the study's gen table and prices its SF off BUS_SHIFTS_VIEW.
     `direction` must be the fast-scan config's DIRECTION when the branch is bound in the
@@ -283,10 +307,13 @@ def relief_set(study_id: int, constraint: str, gen: pd.DataFrame, bus_names: pd.
     unit on the wrong side (study 14412 3380-3390-1@DPNAONA5, DIRECTION=-1, priced all
     relief at 0 before this).
     """
-    units, n_band = _relief_units(study_id, constraint, gen, bus_names, genunit, scedname, direction)
-    if units.empty:
-        return ReliefSet(units, n_band=n_band)
-    cap = dam_capacity(units["SCED"].dropna().tolist())
+    mapped, n_band = _relief_units(study_id, constraint, gen, bus_names, genunit, scedname, direction)
+    if mapped.empty:
+        return ReliefSet(mapped, n_band=n_band)
+    keys = set(mapped["SCED"]) | set(mapped["SCED_NAME"].dropna())
+    cap = dam_capacity(sorted(keys))
+    units = _one_row_per_key(_fall_back_to_name(mapped, cap)) if not cap.empty else _one_row_per_key(mapped)
+    cap = cap.loc[cap.index.intersection(units["SCED"])] if not cap.empty else cap
     if cap.empty:
         return ReliefSet(units, cap, n_band=n_band)
     up, down = build_stacks(units, cap)

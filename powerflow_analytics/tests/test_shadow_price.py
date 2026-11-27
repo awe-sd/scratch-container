@@ -183,3 +183,77 @@ def test_pair_price_requires_dsf_of_at_least_0_02():
     down = pd.DataFrame({"SCED": ["DN1"], "SF": [0.11]})
     offers = pd.DataFrame({"P60": [20.0, 10.0], "P90": [20.0, 10.0]}, index=["UP1", "DN1"])
     assert shadow_price.pair_price(up, down, offers) is None
+
+
+# ---- offer key: CPNODE id route primary, SCED-name route fallback ----
+
+def _map_inputs():
+    pair = pd.DataFrame({"BUSNUM": [1, 2, 3, 4], "ID": ["1", "1", "1", "1"], "SIDE": ["up"] * 4, "DIFF_MW": [1.0] * 4})
+    bus_names = pd.DataFrame({"BUSNUM": [1, 2, 3, 4], "BUSNAME": ["B1", "B2", "B3", "B4"]})
+    genunit = pd.DataFrame({
+        "GENUNITID": [11, 12, 13, 14], "BUSNAME": ["B1", "B2", "B3", "B4"],
+        "CPNODEID": [101.0, 102.0, None, 104.0],
+        "CPNODENAME": ["RN_PLANT_A", None, None, "NODE_NO_SCED"],  # 102: CPNODEID has no CPNODE row; 103: null id
+    })
+    scedname = pd.DataFrame({"GENUNITID": [11, 12, 13], "NAME": ["PLANT_A_1", "PEAKER_2_1", "OLD_UNIT_1"], "KIND": ["GEN"] * 3})
+    return pair, bus_names, genunit, scedname
+
+
+def test_sced_names_uses_cpnode_name_and_records_route():
+    out = shadow_price.sced_names(*_map_inputs()).set_index("BUSNUM")
+    assert out.loc[1, "SCED"] == "RN_PLANT_A" and out.loc[1, "OFFER_ROUTE"] == "cpnode"
+    assert out.loc[1, "SCED_NAME"] == "PLANT_A"  # the name route's key stays available
+
+
+def test_sced_names_falls_back_to_name_when_cpnodeid_null_or_unresolved():
+    out = shadow_price.sced_names(*_map_inputs()).set_index("BUSNUM")
+    assert out.loc[2, "SCED"] == "PEAKER_2" and out.loc[2, "OFFER_ROUTE"] == "name"
+    assert out.loc[3, "SCED"] == "OLD_UNIT" and out.loc[3, "OFFER_ROUTE"] == "name"
+
+
+def test_sced_names_maps_a_node_with_no_sced_row_and_leaves_unknown_unmapped():
+    pair, bus_names, genunit, scedname = _map_inputs()
+    out = shadow_price.sced_names(pair, bus_names, genunit, scedname).set_index("BUSNUM")
+    assert out.loc[4, "SCED"] == "NODE_NO_SCED" and out.loc[4, "OFFER_ROUTE"] == "cpnode"
+    no_cp = shadow_price.sced_names(pair, bus_names, genunit.drop(columns="CPNODENAME"), scedname).set_index("BUSNUM")
+    assert (no_cp["OFFER_ROUTE"].dropna() == "name").all() and pd.isna(no_cp.loc[4, "SCED"])
+
+
+def _relief_fixture(monkeypatch, offered):
+    """Units 1 and 2 share one resource node (many-to-one, same side); unit 3 is a combined cycle whose CPNODE name has no offers."""
+    gen = pd.DataFrame({"BUSNUM": [1, 2, 3], "ID": ["1", "1", "1"], "FUELTYPE": ["NG", "NG", "NG"], "MW": [1.0] * 3, "MWMAX": [2.0] * 3})
+    bus_names = pd.DataFrame({"BUSNUM": [1, 2, 3], "BUSNAME": ["B1", "B2", "B3"]})
+    genunit = pd.DataFrame({"GENUNITID": [11, 12, 13], "BUSNAME": ["B1", "B2", "B3"], "CPNODEID": [1.0, 1.0, 2.0],
+                            "CPNODENAME": ["RN_SHARED", "RN_SHARED", "CC_UNIT_NODE"]})
+    scedname = pd.DataFrame({"GENUNITID": [11, 12, 13], "NAME": ["SHARED_G1_1", "SHARED_G2_1", "PLANT_CC1_1"], "KIND": ["GEN"] * 3})
+    monkeypatch.setattr(shadow_price.shifts, "bus_sf_all_buses",
+                        lambda *a, **k: pd.DataFrame({"BUSNUM": [1, 2, 3], "SF": [-0.30, -0.20, -0.10]}))
+    asked = []
+
+    def cap(points, hours=(7, 22)):
+        asked.append(set(points))
+        idx = [p for p in points if p in offered]
+        return pd.DataFrame({"P60": 10.0, "HSL": 100.0, "LSL": 0.0, "AWARDED": 0.0}, index=pd.Index(idx, name="SETTLEMENTPOINTNAME"))
+
+    monkeypatch.setattr(shadow_price, "dam_capacity", cap)
+    return shadow_price.relief_set(1, "1-2-1@X", gen, bus_names, genunit, scedname), asked
+
+
+def test_relief_set_many_to_one_counts_a_shared_offer_curve_once(monkeypatch):
+    rs, _ = _relief_fixture(monkeypatch, {"RN_SHARED", "PLANT_CC1"})
+    shared = rs.units[rs.units["SCED"] == "RN_SHARED"]
+    assert len(shared) == 1 and shared["SF"].iloc[0] == -0.30  # strongest |SF| kept
+    assert [b["sced"] for b in rs.up].count("RN_SHARED") == 1
+
+
+def test_relief_set_cpnode_key_without_offers_falls_back_to_name_key(monkeypatch):
+    rs, asked = _relief_fixture(monkeypatch, {"RN_SHARED", "PLANT_CC1"})
+    cc = rs.units.set_index("SCED").loc["PLANT_CC1"]
+    assert cc["OFFER_ROUTE"] == "name" and "PLANT_CC1" in rs.capacity.index
+    assert rs.units.set_index("SCED").loc["RN_SHARED", "OFFER_ROUTE"] == "cpnode"
+    assert {"CC_UNIT_NODE", "PLANT_CC1"} <= asked[0]  # both candidate keys are looked up in one pull
+
+
+def test_relief_set_keeps_cpnode_route_when_neither_key_has_offers(monkeypatch):
+    rs, _ = _relief_fixture(monkeypatch, set())
+    assert set(rs.units["OFFER_ROUTE"]) == {"cpnode"} and rs.capacity.empty
