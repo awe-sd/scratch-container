@@ -645,22 +645,38 @@ def build_multi_report(out, args, labels, required, runs, cfg, counts, price_con
           + [f"MIN_SF_{l}" for l in labels] + [f"AVG_SF_{l}" for l in labels])
     reqtxt = ", ".join(required)
     vo = cand.head(10)["VO_SHARE"]
-    pn = cand[cand["SOURCENAME"] == "PCT_RN"].head(1)
     po_study = int(cfg[labels[0]].STUDYID)
     hol = _holiday_text(args.holidays)
-    la, lb = required[0], required[1]
+    n_words = {1: "one", 2: "two", 3: "three", 4: "four"}.get(len(required), str(len(required)))
+    value_only = [l for l in labels if l not in required]
+    vo_txt = f"; value-only legs ({', '.join(value_only)}) supply {vo.min():.0%}-{vo.max():.0%} of VALUE_ALL in the top 10 singles" if value_only and len(vo) else ""
     bind_dates = lambda l: per.loc[per[f"SPSUM_{l}"] > 0, "DATES"].str.split(",").explode().tolist()
-    ranges = ", ".join(f"{_short_name(l)} {_date_range_text(bind_dates(l))}"
-                       for l in sorted((lb, la), key=lambda l: min(bind_dates(l))))
-    live_txt = f"{la} live {int(per[f'LIVE_{la}'].sum())}, {lb} {int(per[f'LIVE_{lb}'].sum())}"
-    caveats = f"""- NET ranks on VALUE_ALL (signed sum over all legs). NET_REQ = VALUE_REQ - price counts the three required constraints only; value-only legs ({', '.join(l for l in labels if l not in required)}) supply {vo.min():.0%}-{vo.max():.0%} of VALUE_ALL in the top 10 singles.
-- Blessing is a passenger on the PCT_RN->BRP family (BLESSING1382 MIN_SF ~{pn['MIN_SF_BLESSING1382'].iloc[0] if len(pn) else float('nan'):.3f}, just above the {floor} floor): the NET there comes from JCK and the STP-Hillje legs.
-- SP value scale comes from study {po_study} (the PathOpt study): mean SP over its {n_runs} on-peak runs ({hol} excluded), zero where not enforced. binding_summary.csv / binding_runs.csv come from study {args.study}. Scale rests on few SP runs for some legs ({', '.join(f"{r.constraint}: {int(r.n_runs_with_sp)}" for r in sp_tab.itertuples())}). value_k = scale_k x stored SHADOWPRICEPRECENT_k/100 where the path is in that PathOpt run, reconstructed from set SFs only as fallback.
-- Value covers only the listed constraints and on-peak only; the path's other congestion is NOT included.
-- MIN_SF is a stress statistic over the constraint's live topology periods (at most {len(per)}; {live_txt}), not a probability of earning. {la} and {lb} never co-bind ({ranges}), yet the filter requires both.
-- {hol}: holiday filter effect {hs}. The {hol} topology is one of the {len(per)} PathOpt periods; no binding runs fall on it.
-- Dedup: aliases collapsed on MIN/AVG SF of every leg at 3 dp (cheapest kept); FAMILY groups rows whose per-leg MIN and AVG SFs all agree within 0.015 of the family leader (e.g. PAVLOV_BT_RN/PAVLOV_RN, BRP_BRAZ_RN/BRPANGLE_RN).
-- Pairs: PRICE_2MW and VALUE_ALL_2MW are totals for 2 MW (1 MW each leg); per-MW = half; SF halved to per-MW before the filter; complementary only (neither leg passes alone). Pool = top {args.pool} per constraint by value per $, so the search is not exhaustive. Pair values are additive."""
+    lines = [f"- NET ranks on VALUE_ALL (signed sum over all legs). NET_REQ = VALUE_REQ - price counts the {n_words} required constraint{'s' if len(required) != 1 else ''} only{vo_txt}."]
+    if {"BLESSING1382", "JCKSTP18A", "JCKREF27A", "STPHLJ_DHLJNHK5", "STPHLJ_SHLJSTP5"} <= set(labels):  # 14966 analysis
+        pn = cand[cand["SOURCENAME"] == "PCT_RN"].head(1)
+        lines.append(f"- Blessing is a passenger on the PCT_RN->BRP family (BLESSING1382 MIN_SF ~{pn['MIN_SF_BLESSING1382'].iloc[0] if len(pn) else float('nan'):.3f}, just above the {floor} floor): the NET there comes from JCK and the STP-Hillje legs.")
+    lines.append(f"- SP value scale comes from study {po_study} (the PathOpt study): mean SP over its {n_runs} on-peak runs ({hol} excluded), zero where not enforced. binding_summary.csv / binding_runs.csv come from study {args.study}. Scale rests on few SP runs for some legs ({', '.join(f'{r.constraint}: {int(r.n_runs_with_sp)}' for r in sp_tab.itertuples())}). value_k = scale_k x stored SHADOWPRICEPRECENT_k/100 where the path is in that PathOpt run, reconstructed from set SFs only as fallback.")
+    lines.append("- Value covers only the listed constraints and on-peak only; the path's other congestion is NOT included.")
+    live_txt = ", ".join(f"{l} live {int(per[f'LIVE_{l}'].sum())}" if i == 0 else f"{l} {int(per[f'LIVE_{l}'].sum())}" for i, l in enumerate(required[:2]))
+    cobind = f"MIN_SF is a stress statistic over the constraint's live topology periods (at most {len(per)}; {live_txt}), not a probability of earning."
+    unbound = [l for l in required if not bind_dates(l)]
+    if unbound:
+        cobind += f" No binding period for {', '.join(unbound)}."
+    if len(required) >= 2 and not unbound:
+        la, lb = required[0], required[1]
+        n_co = int(((per[f"SPSUM_{la}"] > 0) & (per[f"SPSUM_{lb}"] > 0)).sum())
+        if n_co == 0:
+            ranges = ", ".join(f"{_short_name(l)} {_date_range_text(bind_dates(l))}"
+                               for l in sorted((lb, la), key=lambda l: min(bind_dates(l))))
+            cobind += f" {la} and {lb} never co-bind ({ranges}), yet the filter requires both."
+        else:
+            cobind += f" {la} and {lb} co-bind in {n_co} of {len(per)} periods."
+    lines.append("- " + cobind)
+    if args.holidays:
+        lines.append(f"- {hol}: holiday filter effect {hs}. The {hol} topology is one of the {len(per)} PathOpt periods; no binding runs fall on it.")
+    lines.append(f"- Dedup: aliases collapsed on MIN/AVG SF of every leg at 3 dp (cheapest kept); FAMILY groups rows whose per-leg MIN and AVG SFs all agree within 0.015 of the family leader{' (e.g. PAVLOV_BT_RN/PAVLOV_RN, BRP_BRAZ_RN/BRPANGLE_RN)' if 'BLESSING1382' in labels else ''}.")
+    lines.append(f"- Pairs: PRICE_2MW and VALUE_ALL_2MW are totals for 2 MW (1 MW each leg); per-MW = half; SF halved to per-MW before the filter; complementary only (neither leg passes alone). Pool = top {args.pool} per constraint by value per $, so the search is not exhaustive. Pair values are additive.")
+    caveats = "\n".join(lines)
     html = f"""<html><head><meta charset="utf-8"><title>Multi-constraint paths</title><style>
 body{{font-family:sans-serif;max-width:1400px;margin:20px auto}} table.t{{border-collapse:collapse;font-size:12px}}
 table.t td,table.t th{{border:1px solid #ccc;padding:2px 6px}} h2{{margin-top:30px}}</style></head><body>
