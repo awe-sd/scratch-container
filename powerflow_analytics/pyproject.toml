@@ -2,7 +2,15 @@
 name = "pfa"
 version = "0.1.0"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "awconnect",
+    "duckdb",
+    "numpy",
+    "pandas",
+    "plotly",
+    "pyarrow",
+    "requests",
+]
 
 [build-system]
 requires = ["hatchling"]

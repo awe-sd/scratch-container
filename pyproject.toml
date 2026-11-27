@@ -34,7 +34,7 @@ dev = [
 testpaths = ["archive/branch_tracking/tests", "powerflow_analytics/tests", "fast_scan/station_injection/tests", "fast_scan/tests"]
 
 [tool.uv.sources]
-awconnect = { path = "../../home/node/awconnect", editable = true }
+awconnect = { path = "/home/node/awconnect", editable = true }
 pfa = { workspace = true, editable = true }
 
 [tool.uv.workspace]
