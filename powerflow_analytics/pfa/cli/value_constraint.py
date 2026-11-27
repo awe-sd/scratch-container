@@ -14,26 +14,12 @@ in OUTCTGVIOL2; monthly mark = runs with a row for the constraint in OUTCONSTRAI
 from __future__ import annotations
 
 import argparse
-import json
-
-import pandas as pd
 
 from pfa import periods
 from pfa.analysis import valuation
 from pfa.cache import StudyCache
 from pfa.constraint_id import resolve
-
-
-def print_fact_sheet(result: dict) -> None:
-    print(f"constraint {result['constraint']} (study {result['study_id']})")
-    print(f"  binding cases: {result['n_binding_cases']} / {result['n_total_cases']} rows flagged "
-          f"in OUTCTGVIOL2 ({result['n_total_study_runs']} total study runs)")
-    print("  lambda ($/MWh) over binding runs:")
-    for k, v in result["lambda_stats"].items():
-        print(f"    {k}: {v}")
-    print(f"  top marginal units ({len(result['marginal_units'])}):")
-    for u in result["marginal_units"]:
-        print(f"    {json.dumps(u, default=str)}")
+from pfa.report import value as value_report
 
 
 def main(argv=None) -> None:
@@ -54,7 +40,7 @@ def main(argv=None) -> None:
     key = str(cid)
 
     print("== Fact sheet (binding = LIMVIOLPCT >= 99.5 in OUTCTGVIOL2) ==")
-    print_fact_sheet(valuation.fact_sheet(args.study, cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel))
+    print(value_report.fact_sheet(valuation.fact_sheet(args.study, cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel)))
 
     if not args.window:
         print("\n== Monthly on-peak mark skipped: no --window given ==")
@@ -64,17 +50,9 @@ def main(argv=None) -> None:
         outcon = cache.load("outconstraint2")
         year, month = periods.parse_month(args.month)
 
-        stats = valuation.binding_stats(outcon, runs, key, tuple(args.window))
-        print(f"{key} — window {args.window[0]}..{args.window[1]} "
-              f"({stats.n_window_runs} runs in window)")
-        print("P(bind | sim hour):", {h: round(p, 2) for h, p in stats.p_bind.items()})
-        print("lambda ($/MWh):")
-        print(stats.lam.round(1).to_string())
-        print()
-        rows = [valuation.dollars_per_mwh(stats, year, month, tuple(args.window), col, args.sf)
-                for col in ("p25", "p50", "p75", "mean")]
-        print(pd.DataFrame(rows)[["lam_col", "sf", "outage_onpeak_days",
-                                  "rent_per_mw_month", "dollars_per_mwh"]].to_string(index=False))
+        window = tuple(args.window)
+        stats = valuation.binding_stats(outcon, runs, key, window)
+        print(value_report.monthly_mark(key, window, stats, valuation.mark_table(stats, year, month, window, args.sf)))
 
     if args.fastscan:
         from pfa.extract import fastscan
@@ -84,6 +62,5 @@ def main(argv=None) -> None:
             print("\nfast-scan: no config found for this constraint/study")
         else:
             config_id = int(cfgs["CONFIG_ID"].iloc[0])
-            print(f"\nfast-scan config {config_id} headroom profile:")
-            print(fastscan.headroom_profile(config_id).round(1).to_string(index=False))
+            print("\n" + value_report.headroom_profile(config_id, fastscan.headroom_profile(config_id)))
 

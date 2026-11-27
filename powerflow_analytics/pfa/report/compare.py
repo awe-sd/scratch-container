@@ -45,3 +45,8 @@ def render(study_a: int, study_b: int, month: str, min_bind: int,
         html.section(f"Dropped vs study {study_a} ({len(dropped)}) — bound in {study_a} only", _table(dropped, DROPPED_COLS)),
     ])
     return html.page(f"Study {study_b} vs {study_a} — CRR constraint comparison ({month})", body, generated=generated)
+
+
+def console_new(new: pd.DataFrame, top: int) -> str:
+    """The first `top` new constraints as the printed table."""
+    return new.head(top)[present(new, NEW_COLS)].to_string(index=False)

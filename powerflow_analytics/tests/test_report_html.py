@@ -43,3 +43,14 @@ def test_page_shell_and_figure():
     p = html.page("T <x>", html.section("S", html.note("n"), html.warning("w")), generated="2026-01-01 00:00")
     assert "<title>T &lt;x&gt;</title>" in p and "Generated 2026-01-01 00:00" in p and 'class="warning"' in p
     assert "Plotly.newPlot" in html.figure(go.Figure(go.Scatter(x=[1], y=[2])), plotlyjs="cdn")
+
+
+def test_headroom_page_and_protected_names(tmp_path):
+    import plotly.graph_objects as go
+    import pytest
+    from pfa.report import headroom
+    page = headroom.render(go.Figure(go.Scatter(x=[1], y=[2])), "cfg 1 — headroom")
+    assert "Plotly.newPlot" in page and "<h1>cfg 1 — headroom</h1>" in page
+    assert headroom.check_output_path(tmp_path / "new.html") == tmp_path / "new.html"
+    with pytest.raises(RuntimeError):
+        headroom.check_output_path(tmp_path / "ph_headroom_wind_solar.html")

@@ -144,7 +144,7 @@ def test_dimension_table_by_key_lookup_allowed(fake_db, sql):
 
 
 def test_comparison_report_lookup_error_is_recorded_per_constraint(monkeypatch):
-    from pfa.cli import build_study_comparison_report as mod
+    from pfa.analysis import study_compare as mod
 
     def find_configs(study, f, t, ctg):
         if ctg == "BAD":

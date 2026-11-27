@@ -23,6 +23,8 @@ that HTML's embedded Plotly JSON:
   (HE1-6, HE23-24). No weekday/weekend filter -- every day-of-week appeared
   in both the onpeak and offpeak trace timestamps of the reference figure.
 
+Both entry points return the figure; the page is written by pfa.report.headroom.
+
 Two entry points:
 - plot_headroom_scatter(): new, generic function -- x is always wind, y is
   either 'solar' or 'load'; peak is 'onpeak' or 'offpeak'.
@@ -34,8 +36,6 @@ Two entry points:
 """
 from __future__ import annotations
 
-from pathlib import Path
-
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -45,25 +45,6 @@ from .. import mssql, periods
 from ..extract import fastscan, renewables
 
 LOAD_FILTER_STEPS = [0, 45, 50, 55, 60, 65, 70, 75]  # GW, matches original slider
-
-# Existing reference/variant figures the user explicitly said must never be
-# overwritten by this module -- any write to one of these basenames is refused.
-_PROTECTED_OUTPUT_BASENAMES = {
-    "ph_headroom_wind_solar.html", "ph_headroom_wind_solar1.html",
-    "ph_headroom_wind_solar_v1.html", "ph_headroom_wind_solar_sep25.html",
-    "ph_headroom_load_wind_onpeak.html",
-}
-
-
-def _write_html_guarded(fig: go.Figure, out_html: str | Path) -> None:
-    out_path = Path(out_html)
-    if out_path.name in _PROTECTED_OUTPUT_BASENAMES:
-        raise RuntimeError(
-            f"refusing to write to {out_path} -- this basename is protected "
-            f"(existing reference/variant figure); use a new filename."
-        )
-    fig.write_html(str(out_path), include_plotlyjs="cdn")
-
 
 def _fetch_headroom(config_id: int) -> pd.DataFrame:
     df = fastscan.headroom_with_curtailment(config_id)
@@ -121,7 +102,6 @@ def plot_headroom_scatter(
     *,
     hist_start: str,
     hist_end: str,
-    out_html: str | Path | None = None,
     title_prefix: str = "",
 ) -> go.Figure:
     """Headroom heatmap + scatter: West wind (GW) on x, `y` ('solar' or
@@ -245,8 +225,6 @@ def plot_headroom_scatter(
     fig.update_layout(title=dict(text=subtitle), height=900, width=950,
                        margin=dict(r=130))
 
-    if out_html:
-        _write_html_guarded(fig, out_html)
     return fig
 
 
@@ -289,7 +267,6 @@ def plot_wind_load_both(
     *,
     hist_start: str,
     hist_end: str,
-    out_html: str | Path | None = None,
     title_prefix: str = "",
 ) -> go.Figure:
     """Exact clone of the reference `ph_headroom_wind_solar.html` 4-panel
@@ -387,6 +364,4 @@ def plot_wind_load_both(
     print(f"[headroom_plots] plot_wind_load_both: offpeak heatmap_n={len(offpeak)}, "
           f"scatter_n(<50MW)={n_scat_off}")
 
-    if out_html:
-        _write_html_guarded(fig, out_html)
     return fig

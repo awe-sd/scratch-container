@@ -67,6 +67,13 @@ The old `scripts/<name>.py` command lines still work; each is a shim for the mat
 `uv run powerflow_analytics/app/app.py` → http://127.0.0.1:8050 (reads only local files). **Explorer**: ranked binding constraints
 with binding-hours profile, marginal units and tofinder outage evidence. **Comparison**: constraint deltas between two analyzed studies.
 
+## Module map (`pfa/`)
+
+- `extract/` — one reader per data source (Snowflake / SQL Server); the only place SQL lives.
+- `analysis/` — calculations that return DataFrames or plain data (screening, valuation, deep dive, path search, study compare, summary); never build pages.
+- `report/` — the one rendering layer: `html.py` toolkit (page shell, sections, filterable/sortable tables from a column spec, Plotly blocks), `markdown.py`, and one module per report.
+- `cli/` — `pfa <sub-command>`: argument parsing, calls into analysis and report, file writing.
+
 ## Tests
 
 `uv run pytest -q`

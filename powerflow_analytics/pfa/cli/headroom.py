@@ -5,6 +5,7 @@ import argparse
 
 from pfa.analysis.headroom_plots import plot_headroom_scatter
 from pfa.extract import fastscan
+from pfa.report import headroom as headroom_report
 
 
 def main(argv=None) -> None:
@@ -20,6 +21,7 @@ def main(argv=None) -> None:
     ap.add_argument("--out", required=True)
     args = ap.parse_args(argv)
 
+    out = headroom_report.check_output_path(args.out)
     configs = fastscan.find_configs(args.study, args.fromnum, args.tonum, args.ctglabel)
     if configs.empty:
         raise SystemExit(f"no active fast-scan config for study={args.study} "
@@ -27,11 +29,8 @@ def main(argv=None) -> None:
     config_id = int(configs.iloc[0]["CONFIG_ID"])
     label = configs.iloc[0]["BRANCH_LABEL"]
 
-    plot_headroom_scatter(
-        config_id, y=args.y, peak=args.peak,
-        hist_start=args.hist_start, hist_end=args.hist_end,
-        out_html=args.out,
-        title_prefix=f"{label} @ {args.ctglabel} (config {config_id}) —",
-    )
+    title_prefix = f"{label} @ {args.ctglabel} (config {config_id}) —"
+    fig = plot_headroom_scatter(config_id, y=args.y, peak=args.peak, hist_start=args.hist_start, hist_end=args.hist_end,
+                                title_prefix=title_prefix)
+    out.write_text(headroom_report.render(fig, f"{title_prefix} headroom vs wind"))
     print(f"wrote {args.out}")
-

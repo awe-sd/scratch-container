@@ -39,42 +39,20 @@ def main(argv=None) -> None:
 
     res = screen_study(study, args.cutoff, th)
 
-    res.dirs.to_frame().to_csv(f"{outdir}/constraint_dirs.csv")
+    res.dirs.to_frame().to_csv(outdir / "constraint_dirs.csv")
     print("-> constraint_dirs.csv | direction distribution:", res.dirs.value_counts().to_dict())
-
-    fl = res.flips
-    fl.to_csv(f"{outdir}/step1_flips.csv", index=False)
-    print("FUNNEL:", res.universe["class"].value_counts().to_dict(), "| universe:", len(res.universe))
-    print()
-    print("=== FLIP PAIRS (baseline fades -> new binder emerges, shared bus) ===")
-    print(fl.head(15).to_string(index=False) if not fl.empty else "(none)")
-
-    res.universe.to_csv(f"{outdir}/step1_screen.csv")
+    res.flips.to_csv(outdir / "step1_flips.csv", index=False)
+    res.universe.to_csv(outdir / "step1_screen.csv")
+    print(shortlist_report.console_screen(res))
     print()
     print(f"-> {outdir}/step1_screen.csv + step1_flips.csv")
 
     gated = value_shortlist(res, args.month)
-    gated.to_csv(f"{outdir}/stage2_list.csv")
-
+    gated.to_csv(outdir / "stage2_list.csv")
     print()
-    print(f"STAGE-2 LIST — {len(gated)} constraints")
-    show = [
-        "FROMNAME", "TONAME", "share", "pre_binds", "post_binds", "post_days", "lam_p50_gate",
-        "intensity", "NQUAL", "RENT_POST", "flip_exempt", "thin_intensity",
-        "DRIVER_TICKET", "DRIVER_TICKET_STATUS",
-    ]
-    print(gated[show].round(2).to_string())
-
-    dropped = res.intensity_dropped
-    print()
-    print("=== rows dropped by the hard intensity floor ===")
-    if not dropped.empty:
-        print(dropped[["FROMNAME", "TONAME", "post_binds", "lam_p50_gate", "intensity"]].round(2).to_string())
-    else:
-        print("(none)")
+    print(shortlist_report.console_shortlist(gated, res.intensity_dropped))
 
     out = shortlist_rows(study, gated, res.dirs, args.cutoff, args.month)
     (outdir / "stage2_list.html").write_text(shortlist_report.render(out, study, args.cutoff, args.month, th))
     print()
     print(f"-> {outdir}/stage2_list.html | {outdir}/stage2_list.csv | {len(out)} rows")
-

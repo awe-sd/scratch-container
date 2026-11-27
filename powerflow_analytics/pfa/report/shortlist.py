@@ -61,3 +61,21 @@ def render(rows: pd.DataFrame, study: int, cutoff: str, month: str, th: Threshol
         f"numbers.")
     body = intro + html.table(rows, columns(rent_col_name(cutoff), label))
     return html.page(f"Stage-2 candidates — study {study}, {len(rows)} constraints", body)
+
+
+def console_screen(res) -> str:
+    """Funnel counts and flip pairs printed after screening."""
+    fl = res.flips
+    return "\n".join([
+        f"FUNNEL: {res.universe['class'].value_counts().to_dict()} | universe: {len(res.universe)}", "",
+        "=== FLIP PAIRS (baseline fades -> new binder emerges, shared bus) ===",
+        fl.head(15).to_string(index=False) if not fl.empty else "(none)"])
+
+
+def console_shortlist(gated: pd.DataFrame, dropped: pd.DataFrame) -> str:
+    show = ["FROMNAME", "TONAME", "share", "pre_binds", "post_binds", "post_days", "lam_p50_gate",
+            "intensity", "NQUAL", "RENT_POST", "flip_exempt", "thin_intensity", "DRIVER_TICKET", "DRIVER_TICKET_STATUS"]
+    return "\n".join([
+        f"STAGE-2 LIST — {len(gated)} constraints", gated[show].round(2).to_string(), "",
+        "=== rows dropped by the hard intensity floor ===",
+        dropped[["FROMNAME", "TONAME", "post_binds", "lam_p50_gate", "intensity"]].round(2).to_string() if not dropped.empty else "(none)"])

@@ -250,3 +250,8 @@ def fact_sheet(study_id: int, fromnum: int, tonum: int, ckt: str, ctglabel: str)
         "n_bus_unresolved": n_bus_unresolved,
         "marginal_units": marginal_units,
     }
+
+
+def mark_table(stats: BindingStats, year: int, month: int, window: tuple[str, str], sf: float = 1.0) -> pd.DataFrame:
+    """One dollars_per_mwh row per lambda statistic (p25, p50, p75, mean)."""
+    return pd.DataFrame([dollars_per_mwh(stats, year, month, window, col, sf) for col in ("p25", "p50", "p75", "mean")])
