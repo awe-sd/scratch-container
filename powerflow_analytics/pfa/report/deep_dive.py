@@ -5,7 +5,19 @@ import numpy as np
 import pandas as pd
 
 from pfa import periods
-from pfa.analysis.deep_dive import CORR_MATERIALITY, DRIVER_LEAD
+from pfa.analysis.deep_dive import CORR_MATERIALITY, DRIVER_LEAD, ZERO_STEP_LABEL
+
+
+UP_RENEWABLE_FLAG = ("UP unit is wind/solar: cannot increase output, so its relief is curtailment-only; the engine prices it from its DAM "
+                     "offer as ordinary up relief (it does not model it as curtailment)")
+STEP_PRICE_METHOD = ("Step prices are formed as the P60 of the up unit's offer curve minus the P60 of the down unit's offer curve, divided by the "
+                     "difference of their shift factors on the constraint, floored at 0 (and capped at the engine's price cap).")
+OPEN_METHOD_QUESTIONS = [
+    "Down-side units are priced at the P60 of their offer curve rather than their marginal awarded segment.",
+    "The cheap part of the curve includes start-required units.",
+    "Wind/solar/storage without offers contribute no relief.",
+    "Capacity at multi-resource settlement points is a median, not a sum.",
+]
 
 
 def _plain(d: dict | None) -> dict | None:
@@ -55,7 +67,8 @@ def render_markdown(study_id: int, results: list[dict], flip_df: pd.DataFrame, s
                       f"- Trigger levels (hours with headroom<0 = binding hours, over the same {sp['months']} span). If headroom FALLS as a driver rises "
                       f"(corr < 0) the constraint binds when the driver is HIGH and the informative level is a LOW percentile of the driver among binding "
                       f"hours (P10: where binding starts); if corr > 0 it binds when the driver is LOW and the informative level is P90. "
-                      f"Binding rate by quintile of the driver is over all hours of the span. Small n binding = thin estimate:",
+                      f"Binding rate by quintile of the driver is over all hours of the span. The level is replaced by 'no clear trigger' when P10 (P90) of "
+                      f"the binding hours sits at the driver's floor (ceiling) or the binding rate by quintile is not monotonic. Small n binding = thin estimate:",
                       "", _triggers_md(bc["triggers"]), ""]
             lines += _month_lines(bc, mname)
             lines += [f"- Top negative-headroom hours-of-day (window-wide, not {mname}-only): {hod_str}", ""]
@@ -67,7 +80,9 @@ def render_markdown(study_id: int, results: list[dict], flip_df: pd.DataFrame, s
             lines += ["No qualifying CPNODE_SHIFTS_VIEW rows.", ""]
         else:
             cols = ["NAME", "PSENS", "EFFECTIVE_SIGN", "RELIEF_OR_HARM", "GENFUELTYPE", "RESOURCE_TYPE"]
-            lines += [disp[cols].to_markdown(index=False), ""]
+            shown = disp[cols].assign(flags=[UP_RENEWABLE_FLAG if (w and rh.startswith("relief")) else ""
+                                             for w, rh in zip(disp.get("WIND_SOLAR", False), disp["RELIEF_OR_HARM"])])
+            lines += [shown.to_markdown(index=False), ""]
 
         lines += ["### 3. Price formation"]
         pf = r["price"]
@@ -76,15 +91,17 @@ def render_markdown(study_id: int, results: list[dict], flip_df: pd.DataFrame, s
             note = "" if ls["n"] == ls["n_binding_runs"] else (
                 f" (note: {ls['n_binding_runs'] - ls['n']} binding run(s) had no OPFCNLAMBDA row -- excluded, not zeroed)")
             lines += [f"- LP shadow price (OPFCNLAMBDA) over {ls['n']}/{ls['n_binding_runs']} binding runs: "
-                      f"mean=${ls['mean']}, p50=${ls['p50']}, max=${ls['max']}, "
+                      f"min=${ls.get('min')}, mean=${ls['mean']}, p50=${ls['p50']}, max=${ls['max']}, "
                       f"pct_penalty_tier={ls['pct_penalty_tier']}{note} "
                       f"(pct_penalty_tier flags flat 500/3500 penalty values as unpriced, not real $)."]
         else:
             lines += ["- No LP shadow-price rows found for binding runs."]
         of = pf.get("outage_flow")
         if of:
-            lines += [f"- Driving outage group `{of['group']}`: adds {of['signed_fd']:+.1f} MW to this constraint in its bound sense "
-                      f"(mean over {of['n_runs']} runs, signed by OUTBRANCHDIRECTION; mean pre-outage flow {of['mean_preflow']} MW)."]
+            thin = " **n = 1: a single run, thin.**" if of["n_runs"] == 1 else ""
+            lines += [f"- Driving outage group `{of['group']}`: mean flow change on this line {of['signed_fd']:+.1f} MW in its bound sense, "
+                      f"averaged over {of['n_runs']} run{'s' if of['n_runs'] != 1 else ''} (signed by OUTBRANCHDIRECTION; mean pre-outage flow "
+                      f"{of['mean_preflow']} MW).{thin} This is the flow the outage adds on the line, not the relief needed, so it is not compared with the curve."]
         if len(pf["marginal_units"]):
             mu = pf["marginal_units"].rename(columns={"UNIT": "UNIT (SCED name)", "N": "N runs", "SF": "SF on constraint (bound sense)",
                                                       "PRICE_SETTER": "price setter for this constraint?"})
@@ -116,10 +133,9 @@ def render_markdown(study_id: int, results: list[dict], flip_df: pd.DataFrame, s
                       f"shallow relief "
                       f"{_fmt(sl['shallow_lambda'], sl['shallow_pair'], sl['shallow_regime'])}; "
                       f"deep relief {_fmt(sl['deep_lambda'], sl['deep_pair'], sl['deep_regime'])}. "
-                      f"A $0.0/MWh figure is only shown when both sides of the pair have a real DAM offer "
-                      f"price and the down-side genuinely clears at/above the up-side; 'unpriced' means a "
-                      f"DAM offer price was missing for one side, not a free redispatch."]
-            lines += _curve_lines(sl, pf.get("outage_flow"), pf["lp_stats"])
+                      f"{STEP_PRICE_METHOD} A $0.0/MWh step means the floored P60 spread is 0 (labelled '{ZERO_STEP_LABEL}'), "
+                      f"not that the relief is free; 'unpriced' means a DAM offer price was missing for one side."]
+            lines += _curve_lines(sl, pf["lp_stats"], r.get("month"), r["binding"].get("month_name", "month"))
         elif sl and "error" in sl:
             lines += [f"- Structural lambda: could not compute ({sl['error']})."]
         elif sl and sl.get("empty_curve"):
@@ -130,6 +146,7 @@ def render_markdown(study_id: int, results: list[dict], flip_df: pd.DataFrame, s
         else:
             lines += ["- Structural lambda: no relief set / offer coverage found."]
         lines += [""]
+        lines += _open_questions()
 
     if not flip_df.empty:
         lines += ["## 4. Flip attribution (tofinder outage-group impact per constraint)", ""]
@@ -161,7 +178,8 @@ def _triggers_md(trig: dict) -> str:
             rows.append({"driver": var, "corr": "", "binds when": "no data", "n binding hours": 0})
             continue
         q = "; ".join(f"{x['lo']:,.0f}-{x['hi']:,.0f}: {x['bind_rate']:.3f} (n={x['n']})" for x in t["quintiles"])
-        start = f"{t['start_pctile']} = {t['start_level']:,.0f} MW" if t.get("start_level") is not None else ""
+        start = (f"{t['start_pctile']} = {t['start_level']:,.0f} MW" if t.get("start_level") is not None
+                 else f"no clear trigger ({t['no_clear_trigger']})" if t.get("no_clear_trigger") else "")
         rows.append({"driver": var, "corr": t["corr"], "binds when": t["direction"], "n binding hours": t["n_neg"],
                      "P10": t.get("p10"), "P50": t.get("p50"), "P90": t.get("p90"), "where binding starts": start,
                      "binding rate by quintile (range MW: rate)": q})
@@ -193,16 +211,17 @@ def _month_lines(bc: dict, mname: str) -> list[str]:
     return out
 
 
-def _curve_lines(sl: dict, outage_flow: dict | None, lp: dict | None) -> list[str]:
+def _curve_lines(sl: dict, lp: dict | None, month: dict | None = None, mname: str = "month") -> list[str]:
     steps = sl.get("steps") or []
     if not steps:
         return []
     rows = []
     for i, st in enumerate(steps, 1):
         flags = []
+        if st["lambda"] == 0.0 and not (pd.isna(st["price_down"]) or pd.isna(st["price_up"])):
+            flags.append(ZERO_STEP_LABEL)
         if st.get("up_renewable"):
-            flags.append("UP unit is wind/solar: cannot increase output, so its relief is curtailment-only; the engine prices it from its DAM "
-                         "offer as ordinary up relief (it does not model it as curtailment)")
+            flags.append(UP_RENEWABLE_FLAG)
         if not st.get("up_committed", True):
             flags.append("up unit not DAM-committed (start required)")
         down_offer = f"{st['price_down']:.2f}" + (" (curtailment proxy)" if st.get("down_renewable") else "")
@@ -214,10 +233,15 @@ def _curve_lines(sl: dict, outage_flow: dict | None, lp: dict | None) -> list[st
     out = ["", "Depth curve (greedy cheapest pair per step; flow MW = pair MW x delta-SF):",
            pd.DataFrame(rows).to_markdown(index=False), ""]
     out.append(f"- Curve exhausted at {sl['exhaustion_depth_mw']} MW of flow relief.")
-    if outage_flow:
-        sfd = outage_flow["signed_fd"]
-        verdict = "within" if sfd <= sl["exhaustion_depth_mw"] else "beyond"
-        out.append(f"- The driving outage adds {sfd:+.1f} MW of flow: {verdict} the curve's {sl['exhaustion_depth_mw']} MW.")
+    n0 = sl.get("n_zero_steps", 0)
+    out.append(f"- Depth covered by $0 steps ({ZERO_STEP_LABEL}): {sl.get('zero_step_depth_mw', 0.0)} MW of flow relief in {n0} of {sl['n_steps']} steps.")
+    if lp:
+        out.append(f"- Study LP shadow price over the {lp['n_binding_runs']} binding runs, for comparison with the curve: min ${lp.get('min')}, "
+                   f"P50 ${lp['p50']}, max ${lp['max']}.")
+    if month:
+        out.append(f"- Relief need vs curve depth: fast-scan negative headroom in {mname} on-peak pooled hours (n = {month['n_neg']}): "
+                   f"P50 {month['need_p50']} MW, P90 {month['need_p90']} MW, max {month['need_max']} MW, against the curve's "
+                   f"{month['curve_depth_mw']} MW ({'curve exhausted before the P90 need' if month['need_p90'] > month['curve_depth_mw'] else 'P90 need within the curve'}).")
     loc = sl.get("lp_p50_on_curve")
     if loc and lp:
         p50 = lp["p50"]
@@ -229,8 +253,31 @@ def _curve_lines(sl: dict, outage_flow: dict | None, lp: dict | None) -> list[st
         elif loc["where"] == "above_last":
             out.append(f"- The LP's P50 shadow price (${p50}) is above the curve's last step (${loc['last_price']} at "
                        f"{loc['exhaustion_mw']:.1f} MW): the offer curve does not reach it.")
+    out += _month_table(month, mname)
     out.append("")
     return out
+
+
+def _month_table(month: dict | None, mname: str) -> list[str]:
+    """Settlement month's pooled on-peak negative-headroom hours distributed over the curve steps (the shortlist row's basis)."""
+    if not month:
+        return []
+    yrs = ", ".join(str(y) for y in month.get("years") or [])
+    rows = [{"step": b["step"], "flow depth MW": f"{b['depth_lo']:.1f}-{b['depth_hi']:.1f}", "step price $/MWh": b["price"],
+             "hours": b["hours"], "share of negative-headroom hours": f"{100 * b['share']:.1f}%"} for b in month["bands"]]
+    rows.append({"step": "beyond curve", "flow depth MW": f">{month['curve_depth_mw']}", "step price $/MWh": "unpriced",
+                 "hours": month["beyond_hours"], "share of negative-headroom hours": f"{100 * month['beyond_share']:.1f}%"})
+    pb = "" if month.get("p_bind") is None else f"; P(bind) {month['p_bind']:.3f} of {month['n_onpeak_hours']:,} on-peak hours"
+    return ["", f"Settlement month ({mname}) on-peak hours against the curve (pooled history, years {yrs}; same basis as the shortlist's P(bind)):",
+            pd.DataFrame(rows).to_markdown(index=False), "",
+            f"- Negative-headroom hours: {month['n_neg']}{pb}.",
+            f"- Offer-derived price over priced hours: mean ${month['mean']}, P50 ${month['p50']}, P90 ${month['p90']}; "
+            f"unpriced share {month['unpriced_pct']}% (hours needing more relief than the curve supplies). These equal the shortlist row's "
+            f"'offer λ mean / P50 / P90' and 'Unpriced deep hours %'."]
+
+
+def _open_questions() -> list[str]:
+    return ["", "**Open method questions**", *[f"{i}. {q}" for i, q in enumerate(OPEN_METHOD_QUESTIONS, 1)], ""]
 
 
 def _flip_synthesis(f: dict | None, flip_df: pd.DataFrame) -> list[str]:

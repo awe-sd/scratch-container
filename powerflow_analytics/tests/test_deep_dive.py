@@ -67,7 +67,7 @@ def test_price_formation_lp_stats_and_marginal_units(monkeypatch):
                         "EDMARGCOSTMW": [20.5, 20.0, 20.0]})
     monkeypatch.setattr(dd.shifts, "bus_sf_for_buses", lambda *a: pd.DataFrame({"BUSNUM": [7], "SF": [0.01]}))
     out = dd.price_formation(1, C, ctg, oc, gen, pd.DataFrame(), pd.DataFrame(), pd.DataFrame())
-    assert out["lp_stats"] == {"n": 2, "n_binding_runs": 2, "mean": 255.0, "p50": 255.0, "max": 500.0, "pct_penalty_tier": 0.5}
+    assert out["lp_stats"] == {"n": 2, "n_binding_runs": 2, "min": 10.0, "mean": 255.0, "p50": 255.0, "max": 500.0, "pct_penalty_tier": 0.5}
     assert list(out["marginal_units"]["BUSNUM"]) == [7] and out["structural_lambda"] == {"error": "no offers"}
     assert out["marginal_units"]["PRICE_SETTER"].iloc[0].startswith("no: abs(SF) < 0.03")  # SF 0.01 is below the price-setter band
 
@@ -129,9 +129,9 @@ def _bc(**kw):
     return base
 
 
-def _render(bc, price=None):
+def _render(bc, price=None, month=None):
     price = price or {"lp_stats": None, "marginal_units": pd.DataFrame(), "structural_lambda": None}
-    return dd_report.render_markdown(7, [{"c": C, "binding": bc, "dispatch": pd.DataFrame(), "price": price}], pd.DataFrame(), None)
+    return dd_report.render_markdown(7, [{"c": C, "binding": bc, "dispatch": pd.DataFrame(), "price": price, "month": month}], pd.DataFrame(), None)
 
 
 def test_window_without_month_hours_says_so_and_adds_pooled_history():
@@ -212,7 +212,9 @@ def test_price_formation_lists_curve_steps_outage_flow_and_flags_up_renewables(m
     row = [l for l in md.splitlines() if l.startswith("|") and "UP_WIND" in l and "DN1" in l][0]
     assert [c.strip() for c in row.strip("|").split("|")][:8] == ["1", "DN1", "0.2", "10", "UP_WIND", "-0.2", "30", "0.4"]
     assert "UP unit is wind/solar: cannot increase output" in md and "does not model it as curtailment" in md
-    assert "The driving outage adds +60.0 MW of flow: beyond the curve's 4.0 MW." in md and "Curve exhausted at" in md and "LP's P50 shadow price" in md
+    assert "mean flow change on this line +60.0 MW in its bound sense, averaged over 1 run (" in md and "n = 1: a single run, thin" in md
+    assert "not the relief needed, so it is not compared with the curve" in md and "The driving outage adds" not in md
+    assert "Curve exhausted at" in md and "LP's P50 shadow price" in md and "min $30.0, P50 $30.0, max $30.0" in md
 
 
 def test_marginal_unit_table_names_units_and_marks_non_price_setters(monkeypatch):
@@ -223,3 +225,103 @@ def test_marginal_unit_table_names_units_and_marks_non_price_setters(monkeypatch
     assert list(out["PRICE_SETTER"])[0] == "yes" and "not a price setter for this constraint" in out["PRICE_SETTER"].iloc[1]
     out = dd.marginal_unit_table(1, {**C, "direction": -1}, marg, pd.DataFrame(), pd.DataFrame(), pd.DataFrame())
     assert list(out["SF"]) == [-0.25, 0.01]
+
+
+# ------------------------------------------------------------ honesty fixes --
+
+def _curve(steps):
+    out, depth = [], 0.0
+    for price, flow, committed in steps:
+        out.append({"depth_lo": depth, "depth_hi": depth + flow, "lambda": price, "pair": "D↓/U↑", "dsf": 0.1, "up_committed": committed,
+                    "up": "U", "down": "D", "sf_up": -0.05, "sf_down": 0.05, "price_up": 16.9, "price_down": 250.01, "pair_mw": flow / 0.1,
+                    "up_renewable": False, "down_renewable": False})
+        depth += flow
+    return out
+
+
+def _sl(curve):
+    return {"shallow_lambda": 0.0, "shallow_pair": "D↓/U↑", "exhaustion_depth_mw": curve[-1]["depth_hi"], "single_step": len(curve) == 1,
+            "committed_mw": 5.0, "uncommitted_mw": 0.0, "n_uncommitted_steps": 0, "deep_lambda": 40.0, "deep_pair": "D↓/U↑",
+            "n_steps": len(curve), "shallow_regime": ZERO, "deep_regime": "gas-spread-priced", "steps": curve,
+            "zero_step_depth_mw": 3.0, "n_zero_steps": 1, "lp_p50_on_curve": None}
+
+
+ZERO = dd.ZERO_STEP_LABEL
+
+
+def test_price_formation_text_does_not_call_zero_steps_free_and_prints_method_lp_range_and_open_questions():
+    curve = _curve([(0.0, 3.0, True), (40.0, 5.0, True)])
+    lp = {"n": 4, "n_binding_runs": 4, "min": 22.0, "mean": 50.0, "p50": 47.7, "max": 134.8, "pct_penalty_tier": 0.0}
+    md = _render(_bc(), {"lp_stats": lp, "marginal_units": pd.DataFrame(), "structural_lambda": _sl(curve), "outage_flow": None})
+    assert "genuinely" not in md and "free relief" not in md and "not that the relief is free" in md
+    assert "$0 by the P60-offer method" in md
+    assert "P60 of the up unit's offer curve minus the P60 of the down unit's offer curve, divided by the difference of their shift factors" in md
+    assert "floored at 0" in md
+    assert "min=$22.0, mean=$50.0, p50=$47.7, max=$134.8" in md and "min $22.0, P50 $47.7, max $134.8" in md
+    assert "Depth covered by $0 steps ($0 by the P60-offer method): 3.0 MW of flow relief in 1 of 2 steps" in md
+    tail = md[md.index("**Open method questions**"):].splitlines()
+    assert [l for l in tail if l[:2] in ("1.", "2.", "3.", "4.")] == [
+        "1. Down-side units are priced at the P60 of their offer curve rather than their marginal awarded segment.",
+        "2. The cheap part of the curve includes start-required units.",
+        "3. Wind/solar/storage without offers contribute no relief.",
+        "4. Capacity at multi-resource settlement points is a median, not a sum."]
+
+
+def test_zero_step_in_curve_table_is_flagged_with_the_method_label():
+    curve = _curve([(0.0, 3.0, True), (40.0, 5.0, True)])
+    md = _render(_bc(), {"lp_stats": None, "marginal_units": pd.DataFrame(), "structural_lambda": _sl(curve), "outage_flow": None})
+    rows = [l for l in md.splitlines() if l.startswith("|") and "D" in l and "U" in l and "250.01" in l]
+    assert ZERO in rows[0] and ZERO not in rows[1]
+
+
+def test_month_need_table_matches_the_shortlist_columns_and_bands_sum_to_all_hours(monkeypatch):
+    from pfa.analysis import shadow_price as sp, shortlist_value as sv
+    up = [{"sced": "U0", "sf": -0.2, "price": 30.0, "avail": 10.0, "committed": True}]
+    down = [{"sced": "D0", "sf": 0.2, "price": 10.0, "avail": 10.0}]
+    need = [1.0, 2.0, 3.0, 10.0]
+    monkeypatch.setattr(sv.fastscan, "find_configs", lambda *a: pd.DataFrame({"CONFIG_ID": [1], "DIRECTION": [1]}))
+    monkeypatch.setattr(sv, "fastscan_month_onpeak", lambda cid, m: (0.5, pd.DataFrame({"NEED_MW": need}), 100, [2022]))
+    units = pd.DataFrame({"SCED": ["U0", "D0"], "SIDE": ["up", "down"]})
+    rs = sp.ReliefSet(units, pd.DataFrame({"P60": [1.0, 1.0]}, index=["U0", "D0"]), up, down, n_band=2)
+    monkeypatch.setattr(sv.sp, "relief_set", lambda *a, **k: rs)
+    monkeypatch.setattr(sv.popt, "best_paths", lambda *a: None)
+    row = sv.value_row(1, "100-200-1@X", None, None, None, None, "2026-09", "w")
+    m = dd.month_need_table(sp.lambda_depth_curve(up, down), {"need_mw": need, "p_bind": 0.5, "n_onpeak_hours": 100, "years": [2022]})
+    assert (m["mean"], m["p50"], m["p90"], m["unpriced_pct"], m["n_neg"]) == (
+        row["E[lambda|bind]"], row["lambda P50"], row["lambda P90"], row["unpriced deep hours %"], row["_n_neg_hours"])
+    assert sum(b["hours"] for b in m["bands"]) + m["beyond_hours"] == m["n_neg"] == 4
+    assert (m["need_p50"], m["need_max"], m["curve_depth_mw"]) == (2.5, 10.0, 4.0)
+    md = _render(_bc(), {"lp_stats": None, "marginal_units": pd.DataFrame(), "structural_lambda": _sl(sp.lambda_depth_curve(up, down)),
+                         "outage_flow": None}, month=m)
+    assert "| beyond curve" in md and "Negative-headroom hours: 4; P(bind) 0.500 of 100 on-peak hours" in md
+    assert "unpriced share 25.0%" in md and "P50 2.5 MW, P90 7.9 MW, max 10.0 MW, against the curve's 4.0 MW (curve exhausted before the P90 need)" in md
+
+
+def test_trigger_suppressed_when_p10_is_at_the_floor_or_quintiles_are_not_monotonic():
+    rng = np.random.default_rng(3)
+    n = 3000
+    solar = np.where(rng.random(n) < 0.2, 0.0, rng.uniform(0, 8000, n))  # a night floor of exactly 0 MW
+    df = pd.DataFrame({"HEADROOM": 20 - solar / 100 + rng.normal(0, 3, n), "S": solar})
+    at_floor = (df["S"] == 0.0) & (rng.random(n) < 0.5)
+    df.loc[at_floor, "HEADROOM"] = -5.0  # some floor hours bind as well, so P10 of the binding hours is 0 MW
+    t = dd.trigger_levels(df, "S")
+    assert t["start_level"] is None and "floor" in t["no_clear_trigger"]
+    wind = rng.uniform(0, 10000, n)
+    df2 = pd.DataFrame({"W": wind, "HEADROOM": 20 - wind / 100 + np.where((wind > 4000) & (wind < 6000), 60, 0) + rng.normal(0, 3, n)})
+    t2 = dd.trigger_levels(df2, "W")
+    assert t2["start_level"] is None and "not monotonic" in t2["no_clear_trigger"]
+    md = _render(_bc(triggers={"S": t, "W": t2}))
+    assert md.count("no clear trigger (") == 2
+    ok = dd.trigger_levels(_frame(), "W")
+    assert ok["start_level"] is not None and ok["no_clear_trigger"] is None
+
+
+def test_dispatch_wind_solar_up_relief_carries_the_curve_flag(monkeypatch):
+    nodes = pd.DataFrame({"NAME": ["SLR", "GASU", "WNDH"], "CPNODEID": [1, 2, 3], "PSENS": [-0.2, -0.2, 0.2], "N": [1, 1, 1]})
+    monkeypatch.setattr(dd.shifts, "cpnode_live_nodes", lambda *a: nodes)
+    gu = pd.DataFrame({"CPNODEID": [1, 2, 3], "GENFUELTYPE": ["SOLAR", "GAS", "WIND"], "RESOURCE_TYPE": ["SOLAR", "GAS", "WIND"]})
+    d = dd.dispatch_profile(1, {**C, "direction": 1}, gu, pd.DataFrame())
+    res = [{"c": C, "binding": _bc(), "dispatch": d, "price": {"lp_stats": None, "marginal_units": pd.DataFrame(), "structural_lambda": None}}]
+    out = dd_report.render_markdown(7, res, pd.DataFrame(), None)
+    flagged = {l.split("|")[1].strip() for l in out.splitlines() if dd_report.UP_RENEWABLE_FLAG in l}
+    assert flagged == {"SLR"}  # wind WNDH is harm (up loads), the gas unit is not wind/solar

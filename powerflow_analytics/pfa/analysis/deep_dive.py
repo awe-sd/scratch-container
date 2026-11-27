@@ -63,6 +63,7 @@ def _fetch_solar(hist_start: str, hist_end: str, iso_zone: int = 67) -> pd.DataF
     return df[["TIMESTAMP", "solarGen", "solarMax"]]
 
 
+WIND_SOLAR_FUELS = {"WIND", "WIND-C", "SOLAR"}  # GENUNIT fuel / resource-type codes of units that cannot increase output
 CORR_MATERIALITY = 0.15  # below this |corr| a variable is not named as a driver
 DRIVER_LEAD = 0.10       # a single driver is named only if its |corr| leads the runner-up by at least this much
 CLEAR_DIRECTION = 0.05   # below this |corr| the binding direction of a variable is not stated
@@ -78,6 +79,25 @@ def attribute_driver(corrs: dict) -> dict:
         return {"kind": "none", "lead": None}
     lead = abs(vals[ranked[0]]) - (abs(vals[ranked[1]]) if len(ranked) > 1 else 0.0)
     return {"kind": ranked[0] if lead >= DRIVER_LEAD else "mixed", "lead": round(lead, 3)}
+
+
+FLOOR_BAND = 0.02  # a start level within this share of the driver's range from its observed extreme sits at the floor/ceiling
+
+
+def _trigger_doubt(values: pd.Series, level: float, start: str, quint: list[dict]) -> str | None:
+    """Why a 'binding starts at' level is not a trigger: it sits at the driver's floor (P10) / ceiling (P90), or the
+    binding rate by quintile does not move monotonically in the stated direction. None when the level stands."""
+    lo, hi = float(values.min()), float(values.max())
+    if start == "P10" and level <= lo + FLOOR_BAND * (hi - lo):
+        return "P10 of binding hours is at the driver's floor"
+    if start == "P90" and level >= hi - FLOOR_BAND * (hi - lo):
+        return "P90 of binding hours is at the driver's ceiling"
+    rates = [q["bind_rate"] for q in quint]
+    rising = all(b >= a for a, b in zip(rates, rates[1:]))
+    falling = all(b <= a for a, b in zip(rates, rates[1:]))
+    if not (rising if start == "P10" else falling):
+        return "binding rate by quintile is not monotonic"
+    return None
 
 
 def trigger_levels(df: pd.DataFrame, col: str) -> dict | None:
@@ -110,6 +130,13 @@ def trigger_levels(df: pd.DataFrame, col: str) -> dict | None:
     except ValueError:
         pass
     out["quintiles"] = quint
+    out["no_clear_trigger"] = None
+    if out.get("start_level") is not None:
+        out["no_clear_trigger"] = _trigger_doubt(sub[col], out["start_level"], start, quint)
+        if out["no_clear_trigger"]:
+            out["start_level"] = None
+    elif direction == "no clear direction":
+        out["no_clear_trigger"] = "no clear direction"
     return out
 
 
@@ -198,8 +225,9 @@ def binding_conditions(config_id: int, hist_start: str, hist_end: str, month: st
 
     pooled = cfg_span = None
     try:
-        p_bind, _, n_pooled, years = shortlist_value.fastscan_month_onpeak(config_id, month)
-        pooled = {"p_bind": p_bind, "n_onpeak_hours": n_pooled, "years": years}
+        p_bind, pooled_need, n_pooled, years = shortlist_value.fastscan_month_onpeak(config_id, month)
+        pooled = {"p_bind": p_bind, "n_onpeak_hours": n_pooled, "years": years,
+                  "need_mw": [] if pooled_need.empty else pooled_need["NEED_MW"].astype(float).tolist()}
         t0, t1, n_all = fastscan.timestamp_span(config_id)
         cfg_span = {"start": t0, "end": t1, "n_hours": n_all}
     except Exception as e:
@@ -245,11 +273,15 @@ def dispatch_profile(study_id: int, c: dict, genunit: pd.DataFrame, scedname: pd
     gu = gu_raw.drop_duplicates("CPNODEID").copy()
     gu.loc[gu["CPNODEID"].isin(ambiguous_ids), ["GENFUELTYPE", "RESOURCE_TYPE"]] = "AMBIGUOUS(multi-fuel site)"
     nodes = nodes.merge(gu, on="CPNODEID", how="left")
+    nodes["WIND_SOLAR"] = (nodes["GENFUELTYPE"].astype(str).str.upper().isin(WIND_SOLAR_FUELS)
+                           | nodes["RESOURCE_TYPE"].astype(str).str.upper().isin(WIND_SOLAR_FUELS))
     nodes["ABS_PSENS"] = nodes["PSENS"].abs()
     return nodes.sort_values(["ABS_PSENS", "NAME", "CPNODEID"], ascending=[False, True, True]).drop(columns="ABS_PSENS").head(20)
 
 
 # --------------------------------------------------------- 3. price form ---
+
+ZERO_STEP_LABEL = "$0 by the P60-offer method"
 
 def outage_flow(c: dict, tofinder: pd.DataFrame | None) -> dict | None:
     """The driving outage group's signed flow change on this constraint (mean over runs x OUTBRANCHDIRECTION, as the summary's signed_fd)."""
@@ -317,7 +349,7 @@ def price_formation(study_id: int, c: dict, ctgviol: pd.DataFrame, outcon: pd.Da
     lp_stats = None
     if len(lp_lambda):
         lp_stats = {"n": int(len(lp_lambda)), "n_binding_runs": len(binding_runs),
-                    "mean": round(float(lp_lambda.mean()), 1),
+                    "min": round(float(lp_lambda.min()), 1), "mean": round(float(lp_lambda.mean()), 1),
                     "p50": round(float(lp_lambda.median()), 1), "max": round(float(lp_lambda.max()), 1),
                     "pct_penalty_tier": lp_unpriced_frac}
 
@@ -365,14 +397,9 @@ def price_formation(study_id: int, c: dict, ctgviol: pd.DataFrame, outcon: pd.Da
                     return down_sced, up_sced.rstrip("↑")
 
                 def _step_status(step):
-                    """A lambda of exactly 0.0 has two distinct causes that must not
-                    be conflated: (a) a genuine NaN offer price for one side of the
-                    pair (unpriced -- lambda_depth_curve's max(0.0, min(nan, cap))
-                    collapses a NaN spread to 0.0), or (b) both offers are real and
-                    the down (displaced) unit's price already sits at/above the up
-                    unit's -- a genuinely free/negative-cost redispatch. Distinguish
-                    by checking cap.loc[sced, 'P60'] directly rather than inferring
-                    from step count, which says nothing about the cause."""
+                    """A lambda of exactly 0.0 has two causes: (a) a NaN offer price on one side (unpriced), or (b) both P60 offers
+                    are real and the down unit's P60 is at/above the up unit's, so the floored spread is 0 by construction of the
+                    P60-offer method (not evidence that the relief is free)."""
                     down_sced, up_sced = _pair_sceds(step)
                     p_down = cap.loc[down_sced, "P60"] if down_sced in cap.index else None
                     p_up = cap.loc[up_sced, "P60"] if up_sced in cap.index else None
@@ -384,8 +411,7 @@ def price_formation(study_id: int, c: dict, ctgviol: pd.DataFrame, outcon: pd.Da
                         f" -- CAVEAT: {up_sced} has AWARDEDQUANTITY=0 in DAM (not committed); this " \
                         f"relief requires STARTING the unit, not just ramping an online one"
                     if step["lambda"] == 0.0:
-                        return 0.0, ("free relief (down offer >= up offer at this depth, not a data gap)"
-                                     + uncommitted_note)
+                        return 0.0, ZERO_STEP_LABEL + uncommitted_note
                     down_sced_r = down_sced
                     if down_sced_r in renew_down_sced:
                         return step["lambda"], "wind/solar-curtailment-priced" + uncommitted_note
@@ -405,7 +431,9 @@ def price_formation(study_id: int, c: dict, ctgviol: pd.DataFrame, outcon: pd.Da
                                           if not s.get("up_committed", True)), 1)
                 n_uncommitted_steps = sum(1 for s in curve if not s.get("up_committed", True))
                 committed_mw = round(exhaustion_mw - uncommitted_mw, 1)
-                struct = {"shallow_lambda": shallow_lambda, "shallow_pair": shallow["pair"],
+                zero_mw = round(sum(s["depth_hi"] - s["depth_lo"] for s in curve if s["lambda"] == 0.0), 1)
+                struct = {"zero_step_depth_mw": zero_mw, "n_zero_steps": sum(1 for s in curve if s["lambda"] == 0.0),
+                          "shallow_lambda": shallow_lambda, "shallow_pair": shallow["pair"],
                           "exhaustion_depth_mw": exhaustion_mw, "single_step": len(curve) == 1,
                           "committed_mw": committed_mw, "uncommitted_mw": uncommitted_mw,
                           "n_uncommitted_steps": n_uncommitted_steps,
@@ -423,6 +451,20 @@ def price_formation(study_id: int, c: dict, ctgviol: pd.DataFrame, outcon: pd.Da
 
     return {"lp_stats": lp_stats, "marginal_units": marg_summary, "structural_lambda": struct,
             "outage_flow": outage_flow(c, tofinder)}
+
+
+def month_need_table(curve: list[dict], pooled: dict | None) -> dict | None:
+    """The settlement month's pooled on-peak negative-headroom hours against the depth curve, on the shortlist's basis
+    (shortlist_value.need_summary): hours per step band and beyond the curve, offer-derived mean/P50/P90, unpriced share, and
+    the fast-scan relief need (P50 / P90 / max MW of negative headroom)."""
+    if not curve or not pooled or "error" in pooled or not pooled.get("need_mw"):
+        return None
+    need = pd.Series(pooled["need_mw"], dtype=float)
+    ns = shortlist_value.need_summary(curve, need)
+    ns.pop("dist")
+    return {**ns, "p_bind": pooled.get("p_bind"), "n_onpeak_hours": pooled.get("n_onpeak_hours"), "years": pooled.get("years"),
+            "need_p50": round(float(need.quantile(0.5)), 1), "need_p90": round(float(need.quantile(0.9)), 1),
+            "need_max": round(float(need.max()), 1), "curve_depth_mw": round(curve[-1]["depth_hi"], 1)}
 
 
 # --------------------------------------------------------- 4. flip attrib --
@@ -503,11 +545,12 @@ def load_tables(study_id: int) -> StudyTables:
 
 
 def analyze_constraint(study_id: int, c: dict, t: StudyTables, hist_start: str, hist_end: str, month: str) -> dict:
-    """All per-constraint sections: {'c', 'binding', 'dispatch', 'price'}."""
+    """All per-constraint sections: {'c', 'binding', 'dispatch', 'price', 'month'}."""
     configs = fastscan.find_configs(study_id, c["fromnum"], c["tonum"], c["ctglabel"])
     binding = {"empty": True}
     if not configs.empty:
         binding = binding_conditions(int(configs.iloc[0]["CONFIG_ID"]), hist_start, hist_end, month)
-    return {"c": c, "binding": binding,
-            "dispatch": dispatch_profile(study_id, c, t.genunit, t.scedname),
-            "price": price_formation(study_id, c, t.ctgviol, t.outcon, t.gen, t.bus_names, t.genunit, t.scedname, t.tofinder)}
+    price = price_formation(study_id, c, t.ctgviol, t.outcon, t.gen, t.bus_names, t.genunit, t.scedname, t.tofinder)
+    sl = price["structural_lambda"] or {}
+    return {"c": c, "binding": binding, "dispatch": dispatch_profile(study_id, c, t.genunit, t.scedname), "price": price,
+            "month": month_need_table(sl.get("steps") or [], binding.get("pooled_month"))}
