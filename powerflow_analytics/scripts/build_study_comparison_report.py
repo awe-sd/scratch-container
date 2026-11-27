@@ -85,21 +85,15 @@ def main() -> None:
         c = new.loc[i, "CONSTRAINT"]
         cid = ConstraintId.parse(c)
         f, t, ctg = cid.fromnum, cid.tonum, cid.ctglabel
-        try:
-            cfgs = fastscan.find_configs(args.study_b, int(f), int(t), ctg)
-            if not cfgs.empty:
-                prof = fastscan.headroom_profile(int(cfgs["CONFIG_ID"].iloc[0]))
-                new.loc[i, "FASTSCAN_MAX_NEG"] = round(float(prof["PCT_NEG"].max()), 1)
-        except Exception:
-            pass
-        try:
-            paths = popt.best_paths(args.study_b, c)
-            if paths is not None and len(paths):
-                p = paths.iloc[0]
-                new.loc[i, "BEST_PATH"] = (f"{p['SOURCENAME']}→{p['SINKNAME']} "
-                                           f"${p['OPTIONPRICE']:.2f} @SF {p['AVG_SF']:.2f}")
-        except Exception:
-            pass
+        cfgs = fastscan.find_configs(args.study_b, int(f), int(t), ctg)
+        if not cfgs.empty:
+            prof = fastscan.headroom_profile(int(cfgs["CONFIG_ID"].iloc[0]))
+            new.loc[i, "FASTSCAN_MAX_NEG"] = round(float(prof["PCT_NEG"].max()), 1)
+        paths = popt.best_paths(args.study_b, c)
+        if paths is not None and len(paths):
+            p = paths.iloc[0]
+            new.loc[i, "BEST_PATH"] = (f"{p['SOURCENAME']}→{p['SINKNAME']} "
+                                       f"${p['OPTIONPRICE']:.2f} @SF {p['AVG_SF']:.2f}")
 
     out_dir = config.OUTPUT_ROOT / f"study_{args.study_b}"
     out_dir.mkdir(parents=True, exist_ok=True)

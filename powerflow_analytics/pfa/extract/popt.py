@@ -9,13 +9,9 @@ BRANCHLABEL resolution: PATHOPTDETAILVIEW's BRANCHLABEL is the same LABEL
 field AWOPF.DBO.OUTBRANCH2 carries for the branch (confirmed empirically for
 1436-2081@DWCSRAM5 in study 14411: OUTBRANCH2.LABEL='35100_A', and filtering
 PATHOPTDETAILVIEW to that exact label gives WCPP->CHISMGRD_RN, $2.24 @
-SF~0.31 — the known-good answer). Labels are opaque ISO-style tokens
-('35100_A') that do NOT embed FROMNUM/TONUM, so pattern-matching on the
-numbers (the original approach) is unreliable: for this same constraint it
-also pulled in an unrelated branch ('BOWFMR1') that happens to contain no
-spaces either. A descriptive multi-word style ('1436 PARKER_5 2081 HICKS_SW
-1') has been seen in isolated docs/other studies, so the ILIKE match on
-FROMNUM/TONUM is kept as a fallback for when the exact-label lookup misses.
+SF~0.31 — the known-good answer). Labels are opaque tokens that do NOT embed
+FROMNUM/TONUM, so house rule: resolve the label from FROMNUM/TONUM/CKT, match
+it EXACTLY, and if it does not resolve return None — never fuzzy-match names.
 """
 from __future__ import annotations
 
@@ -25,23 +21,24 @@ from .. import sf
 from ..constraint_id import ConstraintId
 
 
-def _branch_label(study_id: int, f: str, t: str) -> str | None:
-    """Single targeted lookup: OUTBRANCH2.LABEL for this study's FROMNUM/TONUM."""
+def _branch_labels(study_id: int, f: int, t: int, ckt: str) -> list[str]:
+    """OUTBRANCH2.LABEL(s) for this study's FROMNUM/TONUM/CKT (exact; empty if none)."""
     df = sf.query("AWOPF", f"""
         SELECT DISTINCT LABEL FROM AWOPF.DBO.OUTBRANCH2
         WHERE RUNID IN (SELECT RUNID FROM AWOPF.DBO.OPFRUN WHERE STUDYID = {int(study_id)})
-          AND FROMNUM = {int(f)} AND TONUM = {int(t)}
-        LIMIT 1""")
-    return str(df["LABEL"].iloc[0]) if len(df) else None
+          AND FROMNUM = {int(f)} AND TONUM = {int(t)} AND TRIM(CKT) = '{ckt.strip()}'
+          AND LABEL IS NOT NULL""")
+    return [str(x) for x in df["LABEL"]] if len(df) else []
 
 
 def best_paths(study_id: int, constraint: str, top_n: int = 3) -> pd.DataFrame | None:
-    """Cheapest completed path-opt paths per unit exposure for one constraint."""
+    """Cheapest completed path-opt paths per unit exposure for one constraint, or None when its branch label does not resolve exactly."""
     cid = ConstraintId.parse(constraint)
-    f, t, ctg = cid.fromnum, cid.tonum, cid.ctglabel
-    label = _branch_label(study_id, f, t)
-    label_filter = (f"BRANCHLABEL = '{label}'" if label else
-                    f"(BRANCHLABEL ILIKE '%{f} %{t}%' OR BRANCHLABEL NOT LIKE '% %')")
+    ctg = cid.ctglabel
+    labels = _branch_labels(study_id, cid.fromnum, cid.tonum, cid.ckt)
+    if not labels:
+        return None
+    label_filter = "BRANCHLABEL IN (" + ", ".join(f"'{x}'" for x in labels) + ")"
     df = sf.query("AW", f"""
         WITH ranked AS (
           SELECT SOURCENAME, SINKNAME, OPTIONPRICE, AVG_SF, WAVG_DOLLAR_MWH, RUNCREATEDATE,
@@ -54,7 +51,7 @@ def best_paths(study_id: int, constraint: str, top_n: int = 3) -> pd.DataFrame |
         )
         SELECT SOURCENAME, SINKNAME, OPTIONPRICE, AVG_SF, WAVG_DOLLAR_MWH, PRICE_PER_SF
         FROM ranked WHERE rn = 1
-        ORDER BY PRICE_PER_SF ASC LIMIT {int(top_n)}""")
+        ORDER BY PRICE_PER_SF ASC, SOURCENAME, SINKNAME LIMIT {int(top_n)}""")
     return df if len(df) else None
 
 
