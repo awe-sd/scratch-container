@@ -22,6 +22,7 @@ from pfa.analysis import valuation
 from pfa.cache import StudyCache
 from pfa.constraint_id import ConstraintId
 from pfa.extract import fastscan, popt
+from pfa.report import compare as compare_report
 
 MIN_BIND = 5  # lower than single-study report: catching movers matters more here
 
@@ -111,59 +112,11 @@ def main(argv=None) -> None:
     persist.to_csv(out_dir / f"persisting_vs_{args.study_a}.csv", index=False)
     new.to_csv(out_dir / f"new_vs_{args.study_a}.csv", index=False)
 
-    def table(df, cols):
-        head = "".join(f"<th>{c}</th>" for c in cols)
-        body = "".join(
-            "<tr class='hi345'>" + "".join(
-                f"<td>{'' if pd.isna(r[c]) else r[c]}</td>" for c in cols) + "</tr>"
-            if r.get("KV345") else
-            "<tr>" + "".join(f"<td>{'' if pd.isna(r[c]) else r[c]}</td>" for c in cols) + "</tr>"
-            for _, r in df.iterrows())
-        return f"<table><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>"
-
-    pcols = ["CONSTRAINT", "FROMNAME", "TONAME", "KV345", "LIMIT_MVA", "LAM_P50", "P_BIND_18",
-             "USD_MWH_P50", "RENT_SCORE", "USD_MWH_P50_A", "RENT_SCORE_A",
-             "DRIVER_A", "TICKET_A", "TICKET_STATUS_A"]
-    persist = persist.rename(columns={"DRIVER": "DRIVER_B", "TICKET": "TICKET_B"})
-    pcols = [c for c in pcols if c in persist.columns]
-    ncols = ["CONSTRAINT", "FROMNAME", "TONAME", "KV345", "LIMIT_MVA", "LAM_P50", "P_BIND_18",
-             "USD_MWH_P50", "RENT_SCORE", "N_RUNS_BINDING", "FASTSCAN_MAX_NEG", "BEST_PATH"]
-    dcols = ["CONSTRAINT", "FROMNAME", "TONAME", "KV345", "RENT_SCORE", "TICKET", "TICKET_STATUS"]
-
-    style = """
-    body{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;margin:2rem;color:#1a1a2e;background:#fafafa}
-    h1{font-size:1.35rem} h2{font-size:1.1rem;margin-top:2.2rem}
-    .meta,.note{color:#444;font-size:0.88rem;max-width:75rem;line-height:1.45}
-    table{border-collapse:collapse;font-size:0.8rem;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.12);margin-top:.6rem}
-    th,td{border:1px solid #ddd;padding:4px 7px;text-align:right;white-space:nowrap}
-    th{background:#22304a;color:#fff}
-    td:first-child,td:nth-child(2),td:nth-child(3),td:last-child{text-align:left}
-    tr:nth-child(even){background:#f4f6fa}
-    tr.hi345 td{background:#fff8e1;font-weight:600}
-    """
-    html = f"""<!doctype html><html><head><meta charset="utf-8">
-<title>Study {args.study_b} vs {args.study_a} — constraint comparison</title><style>{style}</style></head><body>
-<h1>Study {args.study_b} vs {args.study_a} — CRR constraint comparison ({args.month})</h1>
-<div class="meta">Study {args.study_b} includes implied (breaker) outages. Binding ≥ {MIN_BIND} runs, LP-priced,
-penalty-tier λ excluded. $/MWh per 1.0 SF over the 5x16 block; Rent score = P50 $/MWh × limit MVA.
-<b>345 kV rows highlighted.</b> Generated {pd.Timestamp.now():%Y-%m-%d %H:%M}.</div>
-
-<h2>Persisting constraints ({len(persist)}) — bind in BOTH studies (highest confidence)</h2>
-<div class="note">_A columns = study {args.study_a} values; tickets were verified in study {args.study_a}.</div>
-{table(persist, pcols)}
-
-<h2>New in study {args.study_b} ({len(new)}) — implied/breaker-outage driven</h2>
-<div class="note">No outage ticket exists to verify (drivers are implied breaker states).
-Evidence: fast-scan max % of historical hours with negative headroom on this topology, and the
-cheapest completed path-opt path (option $/MWh @ avg SF) where a run exists.</div>
-{table(new, ncols)}
-
-<h2>Dropped vs study {args.study_a} ({len(dropped)}) — bound in {args.study_a} only</h2>
-{table(dropped, dcols)}
-</body></html>"""
+    html_text = compare_report.render(args.study_a, args.study_b, args.month, MIN_BIND, persist, new, dropped,
+                                      f"{pd.Timestamp.now():%Y-%m-%d %H:%M}")
     html_path = out_dir / f"comparison_{args.study_b}_vs_{args.study_a}.html"
-    html_path.write_text(html)
+    html_path.write_text(html_text)
     print(f"persisting {len(persist)}, new {len(new)}, dropped {len(dropped)}")
-    print(new.head(args.top_new)[[c for c in ncols if c in new.columns]].to_string(index=False))
+    print(new.head(args.top_new)[compare_report.present(new, compare_report.NEW_COLS)].to_string(index=False))
     print(f"-> {html_path}")
 

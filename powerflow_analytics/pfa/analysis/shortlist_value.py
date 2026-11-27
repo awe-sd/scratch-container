@@ -208,3 +208,50 @@ def value_shortlist(result: ScreeningResult, month: str) -> pd.DataFrame:
             row["status"] = f"lookup failed: {type(e).__name__}: {e}"
         rows.append(row)
     return pd.concat([short, pd.DataFrame(rows, index=short.index)], axis=1)
+
+
+def rent_col_name(cutoff: str) -> str:
+    d = pd.Timestamp(cutoff)
+    return f"Rent post-{d.month}/{d.day} ($)"
+
+
+def shortlist_rows(study: int, gated: pd.DataFrame, dirs: pd.Series, cutoff: str, month: str) -> pd.DataFrame:
+    """One display row per shortlisted constraint (line label, names, direction, gate evidence, value columns), rent-sorted."""
+    rent_col = rent_col_name(cutoff)
+    br = (
+        StudyCache(study).load("outbranch2", columns=["LABEL", "FROMNUM", "TONUM", "CKT"])
+        .drop_duplicates(["FROMNUM", "TONUM", "CKT"])
+        .set_index(["FROMNUM", "TONUM", "CKT"])
+    )
+    rows = []
+    for c, r in gated.iterrows():
+        cid = ConstraintId.parse(c)
+        f, t, ckt, ctg = cid.fromnum, cid.tonum, cid.ckt, cid.ctglabel
+        lab = br.loc[(f, t, ckt), "LABEL"] if (f, t, ckt) in br.index else None
+        rows.append(
+            {
+                "Label": lab,
+                "From bus": f,
+                "From name": r.FROMNAME,
+                "To bus": t,
+                "To name": r.TONAME,
+                "Ckt": ckt,
+                "Contingency": ctg,
+                "Direction": int(dirs.get(c, 1)),
+                "Impact share": r["share"],
+                "Pre binds": int(r.pre_binds),
+                "Post binds": int(r.post_binds),
+                "Post days (of 5)": int(r.post_days),
+                "lam avg": r.lam_mean,
+                "lam p50": r.lam_p50,
+                "lam p50 gate": r.lam_p50_gate,
+                "Dispatch nodes": int(r.NQUAL),
+                rent_col: r.RENT_POST,
+                "Ticket": r.DRIVER_TICKET if pd.notna(r.DRIVER_TICKET) else "",
+                "Status": r.DRIVER_TICKET_STATUS if pd.notna(r.DRIVER_TICKET_STATUS) else "",
+                "Flip exempt": bool(r.flip_exempt),
+                "Thin intensity": bool(r.thin_intensity),
+                **{k: r[k] for k in value_columns(month)},
+            }
+        )
+    return pd.DataFrame(rows).sort_values(rent_col, ascending=False)
