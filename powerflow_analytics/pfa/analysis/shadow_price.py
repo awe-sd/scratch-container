@@ -176,9 +176,10 @@ def build_stacks(relief: pd.DataFrame, cap: pd.DataFrame) -> tuple[list[dict], l
             # AWARDED==0 means DAM did not commit the unit (headroom is a startup decision): flag, don't exclude
             committed = float(row["AWARDED"]) > 0.0
             up.append({"sced": sced, "sf": sf_val, "price": float(row["P60"]), "avail": avail,
-                      "committed": committed})
+                      "committed": committed, "renewable": bool(r["IS_RENEWABLE"])})
         else:
             avail = max(0.0, float(row["AWARDED"]) - float(row["LSL"]))
+            offer = float(row["P60"])
             if bool(r["IS_RENEWABLE"]):
                 price = CURTAIL_PRICE
                 avail = max(0.0, float(row["AWARDED"]))  # curtailable to 0
@@ -186,7 +187,8 @@ def build_stacks(relief: pd.DataFrame, cap: pd.DataFrame) -> tuple[list[dict], l
                 price = float(row["P60"])
             if avail <= 0:
                 continue
-            down.append({"sced": sced, "sf": sf_val, "price": price, "avail": avail})
+            down.append({"sced": sced, "sf": sf_val, "price": price, "avail": avail,
+                         "renewable": bool(r["IS_RENEWABLE"]), "offer": offer})
     up.sort(key=lambda b: b["price"])
     down.sort(key=lambda b: -b["price"])
     return up, down
@@ -226,7 +228,10 @@ def lambda_depth_curve(up: list[dict], down: list[dict],
         lam = clamp_price(lam)
         steps.append({"depth_lo": depth, "depth_hi": depth + cap_flow,
                       "lambda": round(lam, 2), "pair": f"{d['sced']}↓/{u['sced']}↑",
-                      "dsf": round(dsf, 3), "up_committed": bool(u.get("committed", True))})
+                      "dsf": round(dsf, 3), "up_committed": bool(u.get("committed", True)),
+                      "up": u["sced"], "down": d["sced"], "sf_up": u["sf"], "sf_down": d["sf"],
+                      "price_up": u["price"], "price_down": d["price"], "pair_mw": cap_mw,
+                      "up_renewable": bool(u.get("renewable", False)), "down_renewable": bool(d.get("renewable", False))})
         depth += cap_flow
         u["avail"] -= cap_mw
         d["avail"] -= cap_mw
