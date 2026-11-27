@@ -31,7 +31,6 @@ from pfa.analysis.constraints import BINDING_PCT, constraint_key
 from pfa.extract import fastscan, gen_mapping, renewables, shifts
 from pfa.cache import StudyCache
 
-ONPEAK_HOURS = set(range(7, 23))  # HE7-22
 
 
 # ---------------------------------------------------------------- resolve --
@@ -142,8 +141,8 @@ def binding_conditions(config_id: int, hist_start: str, hist_end: str, month: st
 
     # on/off-peak hit rate in the target calendar month (any year in the window)
     in_month = df[df["TIMESTAMP"].dt.month == periods.parse_month(month)[1]]
-    onpeak = in_month[(in_month["DOW"] < 5) & (in_month["HOUR"].isin(ONPEAK_HOURS))]
-    offpeak = in_month[~((in_month["DOW"] < 5) & (in_month["HOUR"].isin(ONPEAK_HOURS)))]
+    is_onpeak = periods.fastscan_hour_class(in_month["TIMESTAMP"]) == "OnPeak"
+    onpeak, offpeak = in_month[is_onpeak], in_month[~is_onpeak]
     pct_onpeak = round(100 * onpeak["NEG"].mean(), 1) if len(onpeak) else None
     pct_offpeak = round(100 * offpeak["NEG"].mean(), 1) if len(offpeak) else None
 
@@ -405,7 +404,7 @@ def render_markdown(study_id: int, results: list[dict], flip_df: pd.DataFrame) -
                       f"pctile is computed over -- i.e. \"even at this much wind/solar the constraint can "
                       f"still bind\", not a hard cutoff; small n_neg means a thin, noisy estimate): "
                       f"`{_plain(bc['thresholds'])}`",
-                      f"- Historical {mname} on-peak (Mon-Fri HE7-22) hours with headroom<0: "
+                      f"- Historical {mname} on-peak (Mon-Fri HE7-22, ex-NERC holidays) hours with headroom<0: "
                       f"{bc['pct_neg_onpeak_month']}% (study-topology fast-scan replay, not real-world P(bind))",
                       f"- Historical {mname} off-peak hours with headroom<0: {bc['pct_neg_offpeak_month']}%",
                       f"- Top negative-headroom hours-of-day (window-wide, not {mname}-only): {hod_str}",

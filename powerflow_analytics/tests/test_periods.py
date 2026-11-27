@@ -65,3 +65,24 @@ def test_hour_class():
     assert periods.hour_class("2026-09-07", 12) == "2x16"  # Labor Day
     assert periods.hour_class("2026-09-12", 12) == "2x16"  # Saturday
     assert periods.hour_class("2026-09-12", 3) == "7x8"
+
+
+def test_fastscan_hour_class_is_hour_beginning():
+    f = periods.fastscan_hour_class
+    assert f(pd.Timestamp("2026-09-08 05:00")) == "7x8"   # HE6
+    assert f(pd.Timestamp("2026-09-08 06:00")) == "OnPeak"  # HE7
+    assert f(pd.Timestamp("2026-09-08 21:00")) == "OnPeak"  # HE22
+    assert f(pd.Timestamp("2026-09-08 22:00")) == "7x8"   # HE23
+
+
+def test_fastscan_hour_class_weekend_and_labor_day():
+    f = periods.fastscan_hour_class
+    assert f(pd.Timestamp("2026-09-12 10:00")) == "2x16"  # Saturday
+    assert f(pd.Timestamp("2026-09-07 10:00")) == "2x16"  # Labor Day 2026
+    assert f(pd.Timestamp("2026-09-07 23:00")) == "7x8"
+
+
+def test_fastscan_hour_class_series_matches_scalar():
+    ts = pd.Series(pd.to_datetime(["2026-09-08 06:00", "2026-09-07 10:00", "2026-09-08 22:00", "2026-09-08 21:57"]), index=[5, 6, 7, 8])
+    assert periods.fastscan_hour_class(ts).tolist() == ["OnPeak", "2x16", "7x8", "OnPeak"]
+    assert list(periods.fastscan_hour_class(ts).index) == [5, 6, 7, 8]

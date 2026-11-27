@@ -42,10 +42,9 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-from .. import mssql
+from .. import mssql, periods
 from ..extract import fastscan, renewables
 
-ONPEAK_HOURS = set(range(6, 22))  # HOUR(TIMESTAMP) is 0-23; HE7-22 == hour 6-21
 LOAD_FILTER_STEPS = [0, 45, 50, 55, 60, 65, 70, 75]  # GW, matches original slider
 
 # Existing reference/variant figures the user explicitly said must never be
@@ -100,8 +99,7 @@ def _fetch_load(hist_start: str, hist_end: str) -> pd.DataFrame:
 
 
 def _peak_mask(ts: pd.Series, peak: str) -> pd.Series:
-    hours = ts.dt.hour
-    onpeak = hours.isin(ONPEAK_HOURS)
+    onpeak = periods.fastscan_hour_class(ts) != "7x8"  # HE7-22, all seven days (the reference figure's convention)
     return onpeak if peak == "onpeak" else ~onpeak
 
 

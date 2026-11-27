@@ -87,14 +87,13 @@ def coverage_and_days(c: str, has_ticket: bool, start, end, bind_days_map, n_sam
 
 def fastscan_month_onpeak(config_id: int, month: str):
     """Fast-scan headroom for the calendar month across all years, restricted to weekday HE7-22
-    on-peak rows; returns (p_bind_onpeak, need_df) where need_df is the
+    on-peak rows (ex-NERC holidays); returns (p_bind_onpeak, need_df) where need_df is the
     NEED_MW frame (negative-headroom onpeak hours only, for lambda_engine)."""
     df = fastscan.headroom_for_month(config_id, periods.parse_month(month)[1])
     if df.empty:
         return None, pd.DataFrame()
     df["TIMESTAMP"] = pd.to_datetime(df["TIMESTAMP"])
-    onpk = df[(df["TIMESTAMP"].dt.weekday < 5)
-              & (df["TIMESTAMP"].dt.hour >= 7) & (df["TIMESTAMP"].dt.hour < 23)]
+    onpk = df[periods.fastscan_hour_class(df["TIMESTAMP"]) == "OnPeak"]
     if onpk.empty:
         return None, pd.DataFrame()
     p_bind = float((onpk["HEADROOM"] < 0).mean())

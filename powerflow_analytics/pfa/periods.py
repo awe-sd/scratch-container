@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import datetime as dt
 
+import numpy as np
 import pandas as pd
 
 ONPEAK_HE = range(7, 23)  # HE7-22
@@ -54,6 +55,19 @@ def hour_class(day, he: int) -> str:
         return "7x8"
     d = pd.Timestamp(day).normalize()
     return "OnPeak" if d.dayofweek < 5 and d not in nerc_holidays(d.year) else "2x16"
+
+
+def fastscan_hour_class(ts):
+    """OnPeak/2x16/7x8 for FAST_SCAN_RESULTS.TIMESTAMP (a Timestamp or Series); the stamp is hour-BEGINNING, so HE = hour + 1."""
+    if isinstance(ts, pd.Series):
+        ts = pd.to_datetime(ts)
+        he, day = ts.dt.hour + 1, ts.dt.normalize()
+        hol = pd.DatetimeIndex([h for y in day.dt.year.dropna().unique() for h in nerc_holidays(int(y))])
+        peak_he = he.isin(ONPEAK_HE)
+        workday = (day.dt.dayofweek < 5) & ~day.isin(hol)
+        return pd.Series(np.where(~peak_he, "7x8", np.where(workday, "OnPeak", "2x16")), index=ts.index)
+    t = pd.Timestamp(ts)
+    return hour_class(t.normalize(), t.hour + 1)
 
 
 def month_label(month: str) -> str:
