@@ -1,22 +1,20 @@
-"""Deep-dive on one validation constraint (BRANCHLABEL/CTGLABEL) for a study.
+"""Deep-dive (shift_constraint_deep_dive.py) on one validation constraint (BRANCHLABEL/CTGLABEL) for a study.
 Reuses compare_validation_shifts.py (config lookup, get_date_range, pull_joined_raw,
 check_duplicates) and mismatch_analysis.py (resolve_signs_and_offset: per-topology
 sign resolution + REF_OFFSET) rather than re-deriving the join/sign logic.
 """
 import argparse
 import sys
-from pathlib import Path
 
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "powerflow_analytics"))
-from pfa.sf import query  # noqa: E402
-from compare_validation_shifts import get_date_range, pull_joined_raw, check_duplicates  # noqa: E402
-from mismatch_analysis import resolve_signs_and_offset  # noqa: E402
+from pfa.sf import query
+
+from compare_validation_shifts import get_date_range, pull_joined_raw, check_duplicates
+from mismatch_analysis import resolve_signs_and_offset
+from shift_common import REFERENCE_CPNODEID, cache_dir as study_cache_dir, dart_chain_sql, output_dir, window_label
 
 HUBZONE_PREFIXES = ("LZ_", "HB_")
-REFERENCE_CPNODEID = 12791
 
 
 def pull_zone_raw(set_id: int, branch_label: str, ctg_label: str, start_date: str, end_date: str,
@@ -46,21 +44,10 @@ def pull_zone_raw(set_id: int, branch_label: str, ctg_label: str, start_date: st
         QUALIFY ROW_NUMBER() OVER (PARTITION BY cv.PSENSHIFTID, cv.cpnodeid ORDER BY cv.deadbus ASC, cv.RUNID) = 1
     ),
     DART_shifts AS (
-        SELECT psd.psenshiftid, ps.psen, ps.cpnodeid,
-            b.branchName AS branchlabel, cdc.congContName AS ctglabel,
-            TO_DATE(psd.extractionEnd) AS simdate, HOUR(psd.extractionEnd)+1 AS simhour
-        FROM AW.dbo.psenShiftDef psd
-        INNER JOIN AW.DBO.PSENSHIFT ps ON ps.psenshiftid = psd.psenshiftid
-        INNER JOIN AW.DBO.congDefConstraint cd ON cd.congConstraintID = psd.congConstraintID
-        INNER JOIN AW.DBO.congDefMonitor cdm ON cdm.congMontID = cd.congMontID
-        INNER JOIN AW.DBO.congDefContingency cdc ON cdc.congContID = cd.congContID
-        INNER JOIN AW.DBO.branchMonitored bm ON bm.branchMonitoredID = cdm.branchMonitoredId
-        INNER JOIN AW.DBO.branch b ON b.branchID = bm.branchID
-        WHERE psd.isoMarketID = 6 AND psd.psenShiftTypeId = 14
-            AND psd.extractionEnd >= '{start_date}' AND psd.extractionEnd <= '{end_date}'
-            AND b.branchName = '{branch_label}'
-            AND cdc.congContName = '{ctg_label}'
-        QUALIFY ROW_NUMBER() OVER (PARTITION BY psd.psenshiftid, ps.cpnodeid ORDER BY psd.psenshiftid) = 1
+        {dart_chain_sql(
+            "psd.psenshiftid, ps.psen, ps.cpnodeid, b.branchName AS branchlabel, cdc.congContName AS ctglabel, "
+            "TO_DATE(psd.extractionEnd) AS simdate, HOUR(psd.extractionEnd)+1 AS simhour",
+            start_date, end_date, branch_label, ctg_label, psenshift=True, dedupe=True)}
     )
     SELECT ss.psenshiftid, ss.psens_raw, ss.deadbus, ss.cpnodeid, ss.name AS cpnode_name,
         ss.simdate, ss.simhour, ss.TOPOLOGYID, ss.RUNBEGINTIME,
@@ -117,37 +104,14 @@ def identify_id(check_id: int, study_id: int, branch_label: str, ctg_label: str)
 
 
 def dart_congconstraintids(branch_label: str, ctg_label: str, date_from: str, date_to: str) -> pd.DataFrame:
-    sql = f"""
-    SELECT DISTINCT cd.congConstraintID
-    FROM AW.dbo.psenShiftDef psd
-    INNER JOIN AW.DBO.congDefConstraint cd ON cd.congConstraintID = psd.congConstraintID
-    INNER JOIN AW.DBO.congDefMonitor cdm ON cdm.congMontID = cd.congMontID
-    INNER JOIN AW.DBO.congDefContingency cdc ON cdc.congContID = cd.congContID
-    INNER JOIN AW.DBO.branchMonitored bm ON bm.branchMonitoredID = cdm.branchMonitoredId
-    INNER JOIN AW.DBO.branch b ON b.branchID = bm.branchID
-    WHERE psd.isoMarketID = 6 AND psd.psenShiftTypeId = 14
-        AND psd.extractionEnd >= '{date_from}' AND psd.extractionEnd <= '{date_to}'
-        AND b.branchName = '{branch_label}' AND cdc.congContName = '{ctg_label}'
-    """
+    sql = dart_chain_sql("DISTINCT cd.congConstraintID", date_from, date_to, branch_label, ctg_label)
     return query("AW", sql)
 
 
 def dart_load_zones_hubs(branch_label: str, ctg_label: str, date_from: str, date_to: str) -> pd.DataFrame:
-    sql = f"""
-    SELECT DISTINCT cp.name, cp.cpnodeid
-    FROM AW.dbo.psenShiftDef psd
-    INNER JOIN AW.DBO.PSENSHIFT ps ON ps.psenshiftid = psd.psenshiftid
-    INNER JOIN AW.DBO.congDefConstraint cd ON cd.congConstraintID = psd.congConstraintID
-    INNER JOIN AW.DBO.congDefMonitor cdm ON cdm.congMontID = cd.congMontID
-    INNER JOIN AW.DBO.congDefContingency cdc ON cdc.congContID = cd.congContID
-    INNER JOIN AW.DBO.branchMonitored bm ON bm.branchMonitoredID = cdm.branchMonitoredId
-    INNER JOIN AW.DBO.branch b ON b.branchID = bm.branchID
-    INNER JOIN AW.DBO.CPNODE cp ON cp.cpnodeid = ps.cpnodeid
-    WHERE psd.isoMarketID = 6 AND psd.psenShiftTypeId = 14
-        AND psd.extractionEnd >= '{date_from}' AND psd.extractionEnd <= '{date_to}'
-        AND b.branchName = '{branch_label}' AND cdc.congContName = '{ctg_label}'
-        AND (cp.name LIKE 'LZ$_%' ESCAPE '$' OR cp.name LIKE 'HB$_%' ESCAPE '$')
-    """
+    sql = dart_chain_sql(
+        "DISTINCT cp.name, cp.cpnodeid", date_from, date_to, branch_label, ctg_label, psenshift=True, cpnode=True,
+        extra_where="AND (cp.name LIKE 'LZ$_%' ESCAPE '$' OR cp.name LIKE 'HB$_%' ESCAPE '$')")
     return query("AW", sql)
 
 
@@ -158,6 +122,7 @@ def main():
     ap.add_argument("--ctg", type=str, required=True)
     ap.add_argument("--date-from", type=str, required=True)
     ap.add_argument("--date-to", type=str, required=True)
+    ap.add_argument("--out-subdir", type=str, required=True)
     ap.add_argument("--check-id", type=int, default=None)
     ap.add_argument("--sign-guard", type=float, default=0.02)
     ap.add_argument("--no-cache", action="store_true")
@@ -180,9 +145,9 @@ def main():
         if id_info.get("psenshiftdef"):
             print(f"  psenShiftDef row: {id_info['psenshiftdef']}")
 
-    out_dir = Path(__file__).resolve().parent / "output" / "validation_shift_compare" / str(args.study) / "june"
+    out_dir = output_dir(args.study, args.out_subdir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    cache_dir = Path(__file__).resolve().parent / "output" / "validation_shift_compare" / str(args.study) / "cache"
+    cache_dir = study_cache_dir(args.study)
     cache_dir.mkdir(parents=True, exist_ok=True)
     cache_path = cache_dir / f"{set_id}_{args.date_from}_{args.date_to}.parquet"
 
@@ -309,12 +274,14 @@ def main():
     def df_to_html(d: pd.DataFrame, title: str) -> str:
         return f"<h2>{title}</h2>" + d.to_html(index=False, border=1) if not d.empty else f"<h2>{title}</h2><p>(empty)</p>"
 
+    month = window_label(args.date_from, args.date_to)
+    wl = f"{month} " if month else ""
     html_parts = [
         f"<h1>Deep dive: study {args.study} {args.branch}/{args.ctg} (set {set_id})</h1>",
-        f"<p>June {args.date_from}..{args.date_to}. REF_OFFSET={meta['ref_offset']} (bias_raw={meta['bias_raw']:.4f}). "
+        f"<p>{wl}{args.date_from}..{args.date_to}. REF_OFFSET={meta['ref_offset']} (bias_raw={meta['bias_raw']:.4f}). "
         f"n_topo_sign_pos={meta['n_topo_sign_pos']} n_topo_sign_neg={meta['n_topo_sign_neg']} "
         f"n_sign_unresolved={meta['n_sign_unresolved']}. dup_rows_flagged={dup_n}. "
-        f"distinct DART congConstraintIDs in June: {n_congids} {list(congids['CONGCONSTRAINTID']) if n_congids else ''}</p>",
+        f"distinct DART congConstraintIDs in {month or "window"}: {n_congids} {list(congids['CONGCONSTRAINTID']) if n_congids else ''}</p>",
     ]
     if id_info is not None:
         html_parts.append(f"<p>check-id {args.check_id}: matches={id_info['matches']}, "

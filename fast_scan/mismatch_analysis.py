@@ -1,6 +1,6 @@
 """Row-level mismatch analysis for validation-fast-scan shift comparisons.
-Reuses the June (2026-06-01..2026-06-30) per-set cache already pulled by
-compare_validation_shifts.py (cache/<set_id>_2026-06-01_2026-06-30.parquet).
+Reuses the per-set cache already pulled by compare_validation_shifts.py for the
+same window (cache/<set_id>_<date_from>_<date_to>.parquet).
 
 GRAIN, precisely (2026-09-12 round-2 fix): a "topology-hour" (psenshiftid) is
 a (topology VARIANT x clock-hour) pair -- several variants can share the same
@@ -34,27 +34,16 @@ taints a node's whole-June record).
 """
 import argparse
 import json
-import sys
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "powerflow_analytics"))
-from pfa.sf import query  # noqa: E402
+from shift_common import cache_dir as study_cache_dir, get_configs, output_dir
 
 REF_TOLS = [0.0005, 0.001, 0.01]
 REF_OFFSET_BAND = 0.002
 MIN_BAD_CLOCK_HOURS_FOR_MEMBERSHIP = 2
-
-
-def get_configs(study_id: int, created_after: str) -> pd.DataFrame:
-    sql = f"""
-    SELECT TOPOLOGYSHIFTSETID, BRANCHLABEL, CTGLABEL, INTERFACENAME, DIRECTION
-    FROM AW.POPT.TOPOLOGYSHIFTSETDEF
-    WHERE STUDYID={study_id} AND CREATEDATE >= '{created_after}'
-    """
-    return query("AW", sql)
 
 
 def resolve_signs_and_offset(raw: pd.DataFrame, sign_guard: float) -> tuple[pd.DataFrame, dict]:
@@ -118,7 +107,7 @@ def load_all_raw(cache_dir: Path, configs: pd.DataFrame, date_from: str, date_to
     return raws, metas
 
 
-def june_wide_node_rate(df: pd.DataFrame, col: str, rank_tol: float) -> int:
+def window_node_rate(df: pd.DataFrame, col: str, rank_tol: float) -> int:
     per_node = df.groupby("cpnodeid").agg(
         matched=("psenshiftid", "size"),
         mism=(col, lambda s: (s.abs() > rank_tol).sum()),
@@ -187,8 +176,8 @@ def build_constraint_summary(raws: dict, metas: dict, configs: pd.DataFrame, top
         )
 
         # June-wide before/after REF_OFFSET node-mismatch counts
-        n_nodes_before = june_wide_node_rate(df, "diff_before_offset", rank_tol)
-        n_nodes_after = june_wide_node_rate(df, "diff_adj", rank_tol)
+        n_nodes_before = window_node_rate(df, "diff_before_offset", rank_tol)
+        n_nodes_after = window_node_rate(df, "diff_adj", rank_tol)
 
         row = {
             "TOPOLOGYSHIFTSETID": set_id, "BRANCHLABEL": branch_label, "CTGLABEL": ctg_label,
@@ -400,12 +389,11 @@ def main():
     ap.add_argument("--node-rate", type=float, default=0.10)
     ap.add_argument("--hour-bad-share", type=float, default=0.05)
     ap.add_argument("--sign-guard", type=float, default=0.02)
-    ap.add_argument("--out-subdir", type=str, default="june")
+    ap.add_argument("--out-subdir", type=str, required=True)
     args = ap.parse_args()
 
-    base_dir = Path(__file__).resolve().parent / "output" / "validation_shift_compare" / str(args.study)
-    cache_dir = base_dir / "cache"
-    out_dir = base_dir / args.out_subdir
+    cache_dir = study_cache_dir(args.study)
+    out_dir = output_dir(args.study, args.out_subdir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
     configs = get_configs(args.study, args.created_after)

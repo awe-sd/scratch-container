@@ -5,7 +5,6 @@ reference join this reuses (DART_shifts CTE, reference-bus normalization).
 """
 import argparse
 import logging
-import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -13,24 +12,14 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "powerflow_analytics"))
-from pfa.sf import query  # noqa: E402
+from pfa.sf import query
+
+from shift_common import REFERENCE_CPNODEID, cache_dir as study_cache_dir, dart_chain_sql, get_configs, output_dir
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 log = logging.getLogger("compare_validation_shifts")
 
-REFERENCE_CPNODEID = 12791
 BAD_THRESHOLD = 0.02
-
-
-def get_configs(study_id: int, created_after: str) -> pd.DataFrame:
-    sql = f"""
-    SELECT TOPOLOGYSHIFTSETID, BRANCHLABEL, CTGLABEL, INTERFACENAME, DIRECTION,
-        CREATEDATE, NOTES, FROMNUM, TONUM, CKT
-    FROM AW.POPT.TOPOLOGYSHIFTSETDEF
-    WHERE STUDYID={study_id} AND CREATEDATE >= '{created_after}'
-    """
-    return query("AW", sql)
 
 
 def get_date_range(set_id: int, date_from: str | None = None, date_to: str | None = None) -> tuple[str, str]:
@@ -77,22 +66,10 @@ def pull_joined_raw(
         QUALIFY ROW_NUMBER() OVER (PARTITION BY cv.PSENSHIFTID, cv.cpnodeid ORDER BY cv.RUNID) = 1
     ),
     DART_shifts AS (
-        SELECT psd.psenshiftid, ps.psen, ps.cpnodeid, cp.name,
-            b.branchName AS branchlabel, cdc.congContName AS ctglabel,
-            TO_DATE(psd.extractionEnd) AS simdate, HOUR(psd.extractionEnd)+1 AS simhour
-        FROM AW.dbo.psenShiftDef psd
-        INNER JOIN AW.DBO.PSENSHIFT ps ON ps.psenshiftid = psd.psenshiftid
-        INNER JOIN AW.DBO.congDefConstraint cd ON cd.congConstraintID = psd.congConstraintID
-        INNER JOIN AW.DBO.congDefMonitor cdm ON cdm.congMontID = cd.congMontID
-        INNER JOIN AW.DBO.congDefContingency cdc ON cdc.congContID = cd.congContID
-        INNER JOIN AW.DBO.branchMonitored bm ON bm.branchMonitoredID = cdm.branchMonitoredId
-        INNER JOIN AW.DBO.branch b ON b.branchID = bm.branchID
-        INNER JOIN AW.DBO.CPNODE cp ON cp.cpnodeid = ps.cpnodeid
-        WHERE psd.isoMarketID = 6 AND psd.psenShiftTypeId = 14
-            AND psd.extractionEnd >= '{start_date}' AND psd.extractionEnd <= '{end_date}'
-            AND b.branchName = '{branch_label}'
-            AND cdc.congContName = '{ctg_label}'
-        QUALIFY ROW_NUMBER() OVER (PARTITION BY psd.psenshiftid, ps.cpnodeid ORDER BY psd.psenshiftid) = 1
+        {dart_chain_sql(
+            "psd.psenshiftid, ps.psen, ps.cpnodeid, cp.name, b.branchName AS branchlabel, cdc.congContName AS ctglabel, "
+            "TO_DATE(psd.extractionEnd) AS simdate, HOUR(psd.extractionEnd)+1 AS simhour",
+            start_date, end_date, branch_label, ctg_label, psenshift=True, cpnode=True, dedupe=True)}
     )
     SELECT
         ss.psenshiftid, ds.psenshiftid AS dart_psenshiftid,
@@ -121,20 +98,10 @@ def n_study_topologies(set_id: int) -> int:
 def check_duplicates(set_id: int, branch_label: str, ctg_label: str, start_date: str, end_date: str) -> int:
     sql = f"""
     WITH DART_shifts AS (
-        SELECT psd.psenshiftid, ps.cpnodeid,
-            b.branchName AS branchlabel, cdc.congContName AS ctglabel,
-            TO_DATE(psd.extractionEnd) AS simdate, HOUR(psd.extractionEnd)+1 AS simhour
-        FROM AW.dbo.psenShiftDef psd
-        INNER JOIN AW.DBO.PSENSHIFT ps ON ps.psenshiftid = psd.psenshiftid
-        INNER JOIN AW.DBO.congDefConstraint cd ON cd.congConstraintID = psd.congConstraintID
-        INNER JOIN AW.DBO.congDefMonitor cdm ON cdm.congMontID = cd.congMontID
-        INNER JOIN AW.DBO.congDefContingency cdc ON cdc.congContID = cd.congContID
-        INNER JOIN AW.DBO.branchMonitored bm ON bm.branchMonitoredID = cdm.branchMonitoredId
-        INNER JOIN AW.DBO.branch b ON b.branchID = bm.branchID
-        WHERE psd.isoMarketID = 6 AND psd.psenShiftTypeId = 14
-            AND psd.extractionEnd >= '{start_date}' AND psd.extractionEnd <= '{end_date}'
-            AND b.branchName = '{branch_label}'
-            AND cdc.congContName = '{ctg_label}'
+        {dart_chain_sql(
+            "psd.psenshiftid, ps.cpnodeid, b.branchName AS branchlabel, cdc.congContName AS ctglabel, "
+            "TO_DATE(psd.extractionEnd) AS simdate, HOUR(psd.extractionEnd)+1 AS simhour",
+            start_date, end_date, branch_label, ctg_label, psenshift=True)}
     )
     SELECT COUNT(*) n FROM (
         SELECT branchlabel, ctglabel, cpnodeid, simdate, simhour, COUNT(*) c
@@ -311,9 +278,8 @@ def main():
     ap.add_argument("--out-subdir", type=str, default=None)
     args = ap.parse_args()
 
-    base_dir = Path(__file__).resolve().parent / "output" / "validation_shift_compare" / str(args.study)
-    out_dir = base_dir / args.out_subdir if args.out_subdir else base_dir
-    cache_dir = base_dir / "cache"
+    out_dir = output_dir(args.study, args.out_subdir)
+    cache_dir = study_cache_dir(args.study)
     cache_dir.mkdir(parents=True, exist_ok=True)
     out_dir.mkdir(parents=True, exist_ok=True)
 

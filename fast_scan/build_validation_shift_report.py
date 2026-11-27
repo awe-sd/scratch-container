@@ -1,11 +1,7 @@
 import argparse
-import sys
-from pathlib import Path
-
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "powerflow_analytics"))
-from pfa.sf import query  # noqa: E402
+from shift_common import get_config_labels, output_dir
 
 PATTERN_COLOR = {
     "OK": "#1a7f37",
@@ -16,15 +12,6 @@ PATTERN_COLOR = {
 }
 
 TOP_N_DETAIL = 20
-
-
-def get_config_labels(study_id: int, created_after: str) -> pd.DataFrame:
-    sql = f"""
-    SELECT TOPOLOGYSHIFTSETID, BRANCHLABEL, CTGLABEL
-    FROM AW.POPT.TOPOLOGYSHIFTSETDEF
-    WHERE STUDYID={study_id} AND CREATEDATE >= '{created_after}'
-    """
-    return query("AW", sql)
 
 
 def detail_block(set_id: int, per_topo: pd.DataFrame, per_cpnode: pd.DataFrame) -> str:
@@ -54,8 +41,7 @@ def detail_block(set_id: int, per_topo: pd.DataFrame, per_cpnode: pd.DataFrame) 
 
 
 def build(study_id: int, created_after: str, out_subdir: str | None = None):
-    base_dir = Path(__file__).resolve().parent / "output" / "validation_shift_compare" / str(study_id)
-    out_dir = base_dir / out_subdir if out_subdir else base_dir
+    out_dir = output_dir(study_id, out_subdir)
 
     summary = pd.read_csv(out_dir / "summary.csv")
     skipped = pd.read_csv(out_dir / "skipped.csv")
