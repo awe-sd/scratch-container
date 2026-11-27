@@ -144,13 +144,6 @@ def test_offer_lambda_capped():
         shadow_price.offer_lambda_range(1.0, 2.0, 0.0)
 
 
-def test_shadow_price_from_offer_uncapped_and_sorted():
-    assert shadow_price.shadow_price_from_offer(10.0, 40.0, -0.5, 5.0) == (-70.0, -10.0)
-    assert shadow_price.shadow_price_from_offer(10000.0, 20000.0, 1.0)[1] == 20000.0
-    with pytest.raises(ValueError):
-        shadow_price.shadow_price_from_offer(1.0, 2.0, 0.0)
-
-
 def test_clamp_price_floors_and_caps():
     assert shadow_price.clamp_price(-3.0) == 0.0
     assert shadow_price.clamp_price(1e9) == shadow_price.PRICE_CAP

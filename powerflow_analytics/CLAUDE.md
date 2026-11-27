@@ -10,7 +10,7 @@ headroom + path optimization. The design spec file no longer exists; see the tra
 - Snowflake goes ONLY through `pfa.sf.query`; SQL Server ONLY through `pfa.mssql.query` — no other module imports `awconnect` (config aside).
 - `pfa.mssql.query` enforces the house rules in code: one SQL Server query at a time (process-wide lock), and any `toAllIsos`/`to*` outage-table query without an `isoMarketId` and a `BranchId`/`teid` predicate is rejected before it is sent.
 - One reader per market-data source, all in `pfa/extract/`: `fastscan.py` (FAST_SCAN_CONFIG/RESULTS), `shifts.py` (CPNODE_/BUS_SHIFTS_VIEW), `dam_offers.py` (ERCOT60DDAMGENRESOURCE), `renewables.py` (wind/solar actuals), `popt.py` (AW.POPT path costs).
-- `pfa/analysis/shadow_price.py` is the one home of the unit-qualification rule (MIN_SF/MAX_SF, PAIR_MIN_SF/PAIR_MAX_SF, PRICE_CAP), the relief set, the price-versus-depth curve and the single redispatch-pair price; `dispatch_screen.py` answers "is there dispatchable relief" (a screen, not a price).
+- `pfa/analysis/shadow_price.py` is the one home of the unit-qualification rule (MIN_SF/MAX_SF, PAIR_MIN_SF/PAIR_MAX_SF, PRICE_CAP), the relief set, the price-versus-depth curve and the single redispatch-pair price.
 - `pfa/analysis/valuation.py` + `scripts/value_constraint.py` are the one valuation module/command: a fact sheet (binding = LIMVIOLPCT >= 99.5 in OUTCTGVIOL2) then the on-peak monthly mark (binding = a row in OUTCONSTRAINT2); the two definitions are kept pending an owner decision.
 - Branch map (branch_id -> teid) and bus -> kV come ONLY from `pfa/extract/network_ref.py`; files are located via `pfa/config.py` and overridable with env var `PFA_NETWORK_REF_DIR`.
 - Table names and their SQL live ONLY in that source's reader module (plus tests and prose); analysis modules and scripts call the reader and never embed the table name.
@@ -37,7 +37,7 @@ headroom + path optimization. The design spec file no longer exists; see the tra
 - OUTCONSTRAINT2 λ rows can be MISSING for the slackest binders; the LP writes λ=0 for
   present-but-slack, so **zero-impute** missing binder rows for mean-type stats (report
   both bases). Ratings (LIMITMVANORMAL=LIMVIOLLIMIT=LIMITMVACTG) key on month AND hour.
-- dispatch_screen's "unenforceable — no dispatchable relief pair" tag presumes a declinable
+- A "no dispatchable relief pair" (unenforceable) read presumes a declinable
   planned outage; it does NOT apply to base-case N-1 ctgs in NoOutage studies (TOUTSETID
   all NULL) — those are enforced regardless; λ then = the lone mover's opportunity cost.
 

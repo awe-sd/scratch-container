@@ -18,7 +18,7 @@ that HTML's embedded Plotly JSON:
   coverage. This is the same series the original figure's OFFPEAK panel used.
 - Peak split, confirmed empirically against the reference HTML's embedded
   hover timestamps (not the repo's Mon-Fri "5x16" convention used elsewhere,
-  e.g. scripts/build_screening_report.py): ONPEAK = HE7-22 (hour-of-day 6-21
+  e.g. pfa/analysis/shortlist_value.py): ONPEAK = HE7-22 (hour-of-day 6-21
   in 0-indexed HOUR()), ALL SEVEN DAYS OF WEEK. OFFPEAK = the complement
   (HE1-6, HE23-24). No weekday/weekend filter -- every day-of-week appeared
   in both the onpeak and offpeak trace timestamps of the reference figure.
@@ -131,7 +131,7 @@ def plot_headroom_scatter(
     ONPEAK = HOUR(TIMESTAMP) in 6..21 (HE7-22), all 7 days of week.
     OFFPEAK = complement. This matches the reference `ph_headroom_wind_solar`
     figure's embedded data, NOT the repo's separate Mon-Fri "5x16" convention
-    used elsewhere (e.g. build_screening_report.py).
+    used elsewhere (e.g. shortlist_value.py).
 
     A load-filter slider (as in the original wind-vs-solar figure) is only
     added when y == 'solar' -- with y == 'load' it would duplicate the y-axis

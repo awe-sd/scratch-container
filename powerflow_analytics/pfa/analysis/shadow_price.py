@@ -60,17 +60,6 @@ def offer_lambda_range(spread_low: float, spread_high: float, delta_sf: float) -
             min(spread_price(spread_high, delta_sf), PRICE_CAP))
 
 
-def shadow_price_from_offer(
-    offer_low: float, offer_high: float, shift_factor: float, counter_price: float = 0.0
-) -> tuple[float, float]:
-    """mu = (offer - counter_price) / SF, returned as (low, high); uncapped, SF may be negative."""
-    if shift_factor == 0:
-        raise ValueError("shift_factor must be non-zero")
-    lo = spread_price(offer_low - counter_price, shift_factor)
-    hi = spread_price(offer_high - counter_price, shift_factor)
-    return (min(lo, hi), max(lo, hi))
-
-
 # ------------------------------------------------------------- DAM offers --
 
 def _offer_at(row, frac: float):
