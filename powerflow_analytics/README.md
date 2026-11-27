@@ -15,6 +15,10 @@ SCOPF study results → CRR opportunity finder. See `CLAUDE.md` for conventions
      profile, marginal units, and tofinder outage evidence.
    - **Comparison**: constraint deltas between two analyzed studies.
 
+4. Value one constraint (fact sheet, then the monthly on-peak $/MWh mark when `--window` is given):
+   `uv run powerflow_analytics/scripts/value_constraint.py --study 14412 --constraint "1436-2081-1@DWCSRAM5" --month 2026-09 --window 2026-09-16 2026-10-02`
+   The two sections use different binding definitions (labelled in the output).
+
 ## Tests
 
 `uv run python -m pytest powerflow_analytics/tests/ -q`
