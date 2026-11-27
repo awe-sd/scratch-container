@@ -151,6 +151,11 @@ def table(data: pd.DataFrame, cols: list[Col], *, filter_row: bool = True, sorta
             f'<tbody>{"".join(body)}</tbody></table>')
 
 
+def scroll(block: str) -> str:
+    """Wrap a wide block (a table) in a horizontal-scroll container."""
+    return f'<div style="overflow-x:auto;max-width:100%">{block}</div>'
+
+
 def figure(fig, plotlyjs: bool | str = True) -> str:
     """Plotly figure as an embeddable block (plotlyjs: True embeds the library, 'cdn' links it)."""
     return fig.to_html(full_html=False, include_plotlyjs=plotlyjs)

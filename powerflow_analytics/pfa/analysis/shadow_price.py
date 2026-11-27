@@ -128,18 +128,20 @@ def sced_names(pair: pd.DataFrame, bus_names: pd.DataFrame, genunit: pd.DataFram
 # ------------------------------------------------------------- relief set --
 
 def _relief_units(study_id: int, constraint: str, gen: pd.DataFrame, bus_names: pd.DataFrame,
-                  genunit: pd.DataFrame, scedname: pd.DataFrame, direction: int) -> pd.DataFrame:
+                  genunit: pd.DataFrame, scedname: pd.DataFrame, direction: int) -> tuple[pd.DataFrame, int]:
+    """(relief units mapped to a SCED name, count of study units in the SF band before mapping)."""
     cid = ConstraintId.parse(constraint)
     sfs = shifts.bus_sf_all_buses(study_id, cid)
     if sfs.empty:
-        return pd.DataFrame()
+        return pd.DataFrame(), 0
     sfs["SF"] = sfs["SF"].astype(float) * int(direction)
     sfs = sfs[qualifying(sfs["SF"])]
     if sfs.empty:
-        return pd.DataFrame()
+        return pd.DataFrame(), 0
 
     units = gen[["BUSNUM", "ID", "FUELTYPE", "MW", "MWMAX"]].drop_duplicates(["BUSNUM", "ID"])
     pair = units.merge(sfs[["BUSNUM", "SF"]], on="BUSNUM", how="inner")
+    n_band = len(pair)
     pair["SIDE"] = pair["SF"].apply(lambda x: "down" if x > 0 else "up")
     mapped = sced_names(pair, bus_names, genunit, scedname)
     mapped = mapped.dropna(subset=["SCED"])
@@ -151,8 +153,9 @@ def _relief_units(study_id: int, constraint: str, gen: pd.DataFrame, bus_names: 
     mapped["_absSF"] = mapped["SF"].abs()
     is_renew = mapped.groupby(["SCED", "SIDE"])["IS_RENEWABLE"].transform("any")
     mapped["IS_RENEWABLE"] = is_renew
-    return (mapped.sort_values("_absSF", ascending=False)
-            .drop_duplicates(["SCED", "SIDE"]).drop(columns="_absSF"))
+    out = (mapped.sort_values("_absSF", ascending=False)
+           .drop_duplicates(["SCED", "SIDE"]).drop(columns="_absSF"))
+    return out, n_band
 
 
 def build_stacks(relief: pd.DataFrame, cap: pd.DataFrame) -> tuple[list[dict], list[dict]]:
@@ -246,12 +249,14 @@ def lambda_at_depth(curve: list[dict], depth: float) -> float | None:
 @dataclass
 class ReliefSet:
     """Units that can relieve one constraint. `units` is empty when no unit is in the SF band;
-    `capacity` is empty when none of them has a DAM offer; `up`/`down` are the priced stacks."""
+    `capacity` is empty when none of them has a DAM offer; `up`/`down` are the priced stacks;
+    `n_band` counts study units inside the SF band before the SCED mapping."""
     units: pd.DataFrame
     capacity: pd.DataFrame = field(default_factory=pd.DataFrame)
     up: list = field(default_factory=list)
     down: list = field(default_factory=list)
     _curve: list | None = field(default=None, repr=False)
+    n_band: int = 0
 
     def curve(self) -> list[dict]:
         if self._curve is None:
@@ -273,14 +278,14 @@ def relief_set(study_id: int, constraint: str, gen: pd.DataFrame, bus_names: pd.
     unit on the wrong side (study 14412 3380-3390-1@DPNAONA5, DIRECTION=-1, priced all
     relief at 0 before this).
     """
-    units = _relief_units(study_id, constraint, gen, bus_names, genunit, scedname, direction)
+    units, n_band = _relief_units(study_id, constraint, gen, bus_names, genunit, scedname, direction)
     if units.empty:
-        return ReliefSet(units)
+        return ReliefSet(units, n_band=n_band)
     cap = dam_capacity(units["SCED"].dropna().tolist())
     if cap.empty:
-        return ReliefSet(units, cap)
+        return ReliefSet(units, cap, n_band=n_band)
     up, down = build_stacks(units, cap)
-    return ReliefSet(units, cap, up, down)
+    return ReliefSet(units, cap, up, down, n_band=n_band)
 
 
 # ------------------------------------------------- need -> price distribution --
